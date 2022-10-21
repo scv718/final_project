@@ -17,7 +17,7 @@
 	href="${pageContext.request.contextPath}/css/loginform.css" />
 <style>
 #naverIdLogin_loginButton {
-	background: url(img/btnG_축약형.png);
+	background: url(resources/img/btnG_축약형.png);
 	background-size: cover;
 	width: 140px;
 	
@@ -26,7 +26,7 @@
 	margin-left: 190px;
 }
 #btn-kakao-login{
-	background: url(img/kakao_login_medium.png);
+	background: url(resources/img/kakao_login_medium.png);
 	background-size: cover;
 	background-position:center;
 	width: 140px;
@@ -44,57 +44,85 @@
 		return true;
 	}
 </script>
+<script type="text/javascript">
+	$(
+			function() {
 
+				$("#btn-kakao-login")
+						.click(
+								function(event) {
+									// a태그 기능 실행멈춤.
+									event.preventDefault();
+									// 카카오 로그인 실행시 오류메시지를 표시하는 경고창을 화면에 보이지 않게 한다.
+									$("alert-kakao-login").addClass("d-none");
+									// 사용자 키를 전달, 카카오 로그인 서비스 초기화.
+									Kakao.init('db6431198fa45dc73997d274adc51435');
+									// 카카오 로그인 서비스 실행하기 및 사용자 정보 가져오기.
+									Kakao.Auth
+											.login({
+												success : function(auth) {
+													Kakao.API
+															.request({
+																url : '/v2/user/me',
+																success : function(
+																		response) {
+																	// 사용자 정보를 가져와서 폼에 추가.
+																	var account = response.kakao_account;
+
+																	$('#form-kakao-login input[name=email]').val(
+																					account.email);
+																	$('#form-kakao-login input[name=name]').val(
+																					account.profile.nickname);
+																	// 사용자 정보가 포함된 폼을 서버로 제출한다.
+																	document.querySelector('#form-kakao-login')
+																			.submit();
+																},
+																fail : function(
+																		error) {
+																	// 경고창에 에러메시지 표시
+																	$('alert-kakao-login').removeClass("d-none").text("카카오 로그인 처리 중 오류가 발생했습니다.")
+																}
+															}); // api request
+												}, // success 결과.
+												fail : function(error) {
+													// 경고창에 에러메시지 표시
+													$('alert-kakao-login')
+															.removeClass(
+																	"d-none")
+															.text(
+																	"카카오 로그인 처리 중 오류가 발생했습니다.")
+												}
+											}); // 로그인 인증.
+								}) // 클릭이벤트
+			})// 카카오로그인 끝.
+</script>
 </head>
 <body class = "d-flex flex-column min-vh-100">
 	<jsp:include page="/header.jsp" />
 	<div id="bestbooks">
-		<div class="container">
-			
-				<div class="col">
-					<div class="row" id="titlemenu">
-						<a>로그인</a>
-					</div>
-					<hr>
+	
 					<div class="row">
 
-<%
-	if(request.getParameter("error") != null){
-		out.println("<div class = 'alert alert-danger'>");
-		out.println("아이디와 비밀번호를 확인해 주세여");
-		out.println("</div");
-	}
-%>
-	
+						<section id="loginformArea" style="margin: 0 auto;">
 							<form class="form-signin" name="loginform"
-								action="login.do" method="post"
-								>
+								action="${pageContext.request.contextPath}/memberLoginAction.me"
+								method="post">
 
 
 								<div class="form-group">
 									<label for="USERID" class="sr-only">아이디</label> <input
 										type="text" class="form-control" placeholder="ID"
-										name='id' required autofocus>
+										name='USERID' required autofocus>
 								</div>
 								<div class="form-group">
 									<label for="PASSPW" class="sr-only">비밀번호</label> <input
 										type="password" class="form-control" placeholder="PASSPW"
-										name='password' required>
+										name='PASSPW' required>
 								</div>
 								<button class="btn btn-lg1 btn-block btn-dark" type="submit">로그인</button>
 								<button class="btn btn-lg1 btn-block btn-dark"
 									onclick='return info_chk2(this.form);' type="button">아이디/비밀번호
 									찾기</button>
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
 									
 <!-- 									---소셜로그인--- -->
 								<a type = button class = "btn" id="btn-kakao-login" href="kakao/login">
@@ -104,19 +132,15 @@
 								<%-- 								<a href="${pageContext.request.contextPath}/find.main" id = "find">아이디/비밀번호 찾기</a> --%>
 
 							</form>
-
-						
 					</div>
 					<form id="form-kakao-login" method="post" action="kakaoLogin.main">
 						<input type="hidden" name="email" /> <input type="hidden"
 							name="name" />
 
 					</form>
-
-
-
 					<script
-						src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+						src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
+						charset="utf-8"></script>
 
 					<script>
 						var hostIndex = location.href.indexOf(location.host)
@@ -191,6 +215,6 @@
 		</div>
 	</div>
 
-
+	<%@ include file="/footer.jsp"%>
 </body>
 </html>
