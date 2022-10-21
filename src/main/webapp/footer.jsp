@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
 <footer class="py-4 mt-auto">
 	<div class="footertext">
 		<span>Copyright&copy; 2022-09-28</span> 

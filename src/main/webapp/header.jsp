@@ -15,8 +15,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
 
 	<ul class="navbar-nav" id="loginform">
 		<c:choose>
