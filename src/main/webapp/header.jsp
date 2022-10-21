@@ -28,7 +28,7 @@
 			</c:when>
 			<c:otherwise>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item"><a id = "loginLang" class="nav-link" href="login.jsp">Login</a>
+					<li class="nav-item"><a id = "loginLang" class="nav-link" href="loginForm.do">Login</a>
 					</li>
 				</ul>
 			</c:otherwise>
@@ -42,10 +42,10 @@
 <nav class="navbar navbar-expand-sm bg-white navbar-light ">
 
 	<ul class="navbar-nav" id="upmenu">
-		<li><a class="dropdown-item" href="getBoardList.do" >글목록</a></li>
-		<li><a class="dropdown-item" href="insertBoard.jsp">글쓰기</a></li>
-		<li><a class="dropdown-item" href="ajaxFile.jsp">아작스테스트</a></li>
-		<li><a class="dropdown-item" href="member.jsp">두두두</a></li>
+		<li><a id = "menuBtn" class="dropdown-item" href="introDuce.do" >와인소개</a></li>
+		<li><a id = "menuBtn" class="dropdown-item" href="wineSearch.do">와인검색</a></li>
+		<li><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">구독하기</a></li>
+		<li><a id = "menuBtn" class="dropdown-item" href="member.jsp">커뮤니티</a></li>
 	</ul>
 
 

@@ -74,9 +74,8 @@ body {
 	background-size: cover;
 }
 
-#bestbooks {
-	margin-top: 30px;
-	margin-bottom: 30px;
+#menuBtn{
+	margin-right: 30px;
 }
 
 .navbar {
@@ -139,9 +138,6 @@ h2 {
 /* 	padding-bottom: 40px; */
 }
 
-#loginLang{
-	font-family: Parisienne !important;
-}
 
 
 #upmenu {
@@ -175,47 +171,8 @@ h2 {
 	display: none;
 }
 
-#barimg {
-	width: 48px;
-	margin: 19px;
-	display: block;
-}
 
-#sidemenu {
-	display: none;
-	text-decoration: none;
-	color: white;
-}
 
-#titlename {
-	width: 100%;
-}
-
-#titlemenu {
-	padding-top: 27px;	
-	border-radius: 15px 15px 0px 0px;
-	font-size: 40px;
-	margin-bottom: 30px;
-	/* 	background-color: black; */
-	background-image: url("../img/타이틀메뉴2.jpg");
-	background-size: cover;
-	color: #ffffff;
-	width: 100%;
-	margin-left: 0;
-}
-
-#searchcontainer {
-	position: absolute;
-	top: 35%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-#titlename h2 {
-	color: rgb(34, 52, 102);
-	display: inline;
-	font-family: '양진체';
-}
 
 .dropdown-item.active, .dropdown-item:active {
     text-decoration: none;
