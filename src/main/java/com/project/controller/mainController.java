@@ -21,15 +21,8 @@ public class mainController {
 		return "WEB-INF/view/winesearch.jsp";
 	}
 	
-	public String subscribe() {
-		System.out.println("소개하기");
-		return "WEB-INF/view/introduce.jsp";
-	}
 	
-	public String community() {
-		System.out.println("소개하기");
-		return "WEB-INF/view/introduce.jsp";
-	}
+
 	
 	
 	@RequestMapping(value = "/loginForm.do")

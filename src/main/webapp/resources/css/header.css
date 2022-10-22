@@ -50,10 +50,8 @@
 	font-weight: normal;
 	font-style: normal;
 }
-#bookmenu .active{
-   background-image: url("../img/메뉴선택노란색.png");
-   background-position: center;
-}
+
+
 
 * {
 	font-family: S-CoreDream-3Light;
@@ -65,20 +63,55 @@
 	color:black;
 }
 
-.btn1 {
-	background-color: red;
+.box, .box1{
+	display: none;
+}
+#box{
+	line-height: 2.3;
+	text-align:center;
+	height: 40px;
+	padding: 0;
+    margin: 0;
+	border-bottom: 1px solid #999;
+	background-color: #f6f6f6;
+	position: sticky;
+  	top:70px;
+    z-index: 10;
 }
 
-body {
-	background: url("../img/배경패턴.jpg");
-	background-size: cover;
+#header{
+	position: sticky;
+  	top: 0px;
+    z-index: 10;
+}
+
+#secondMenu{
+	text-decoration: none;
+	color:black;
+	margin-right: 20px;
+}
+
+#two:hover ~ #second{
+	display: block !important;
 }
 
 #menuBtn{
+/* 	display: block; */
+/*     padding: 0.25rem 1.5rem; */
+/*     clear: both; */
+/*     font-weight: 400; */
+/*     color: #212529; */
+/*     text-align: inherit; */
+/*     white-space: nowrap; */
+/*     background-color: transparent; */
+/*     border: 0; */
+}
+.nav-item{
 	margin-right: 30px;
 }
 
 .navbar {
+	background-color: white !important;
 	position: relative;
 	font-size: 15px;
 	height: 70px;
@@ -98,10 +131,6 @@ body {
 /* 게시판 메뉴쪽 */
 .dropdown-toggle {
 	color: black;
-	font-size: 20px;
-	letter-spacing: 3px;
-	font-weight: bold;
-	font-family: 'S-CoreDream-4Regular';
 }
 
 /* #bookdrop:hover { */
@@ -144,10 +173,7 @@ h2 {
 	margin: 0 auto;
 }
 
-#menu {
-	margin-left: 10px;
-	padding-left: 10px;
-}
+
 
 /* .dropdown-toggle:hover { */
 /* 	color: black; */
