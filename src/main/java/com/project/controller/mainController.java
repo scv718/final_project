@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class mainController {
 	
-	@RequestMapping(value = "/introDuce.do")
+	@RequestMapping(value = "/introDuce.wp")
 	public String introDuce() {
 		System.out.println("소개하기");
 		return "WEB-INF/view/introduce.jsp";
 	}
 	
 	
-	@RequestMapping(value = "/wineSearch.do")
+	@RequestMapping(value = "/wineSearch.wp")
 	public String search() {
 		System.out.println("소개하기");
 		return "WEB-INF/view/winesearch.jsp";
 	}
 	
 
-	@RequestMapping(value = "/subscribe.do")
+	@RequestMapping(value = "/subscribe.wp")
 	public String subscribe() {
 		System.out.println("구독하기");
 		return "WEB-INF/view/subscribe/subscribe.jsp";
@@ -31,7 +31,12 @@ public class mainController {
 
 	
 	
-	@RequestMapping(value = "/loginForm.do")
+	@RequestMapping(value = "/userCertification.wp")
+	public String userCertification() {
+		System.out.println("로그인폼이동");
+		return "WEB-INF/view/user/userCertification.jsp";
+	}
+	@RequestMapping(value = "/loginForm.wp")
 	public String loginFrom() {
 		System.out.println("로그인폼이동");
 		return "WEB-INF/view/user/loginform.jsp";

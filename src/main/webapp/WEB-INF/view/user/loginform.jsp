@@ -39,11 +39,18 @@
 
 <script>
 	function info_chk2(frm) {
-		frm.action = 'find.main';
+		frm.action = 'find.wp';
+		frm.submit();
+		return true;
+	}
+	
+	function info_chk3(frm) {
+		frm.action = 'userCertification.wp';
 		frm.submit();
 		return true;
 	}
 </script>
+
 <script type="text/javascript">
 	$(
 			function() {
@@ -105,7 +112,7 @@
 
 						<section id="loginformArea" style="margin: 0 auto;">
 								<form class="form-signin" name="loginform"
-								action="login.do" method="post"
+								action="login.wp" method="post"
 								>
 
 								<div class="form-group">
@@ -119,6 +126,9 @@
 										name='m_pw' required>
 								</div>
 								<button class="btn btn-lg1 btn-block btn-dark" type="submit">로그인</button>
+								<button class="btn btn-lg1 btn-block btn-dark"
+									onclick='return info_chk3(this.form);' type="button">회원가입
+									</button>
 								<button class="btn btn-lg1 btn-block btn-dark"
 									onclick='return info_chk2(this.form);' type="button">아이디/비밀번호
 									찾기</button>

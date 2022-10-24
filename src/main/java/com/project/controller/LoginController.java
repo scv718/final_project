@@ -1,11 +1,15 @@
 package com.project.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.user.UserVO;
 import com.project.user.impl.UserDAOMybatis;
@@ -15,7 +19,7 @@ public class LoginController {
 	@Autowired
 	private UserDAOMybatis userService;
 	
-	@RequestMapping(value = "login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
 	public String loginView(UserVO vo, HttpSession session) {
 	
 		System.out.println("로그인 인증 처리.....");
@@ -34,7 +38,7 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping("/logout.do")
+	@RequestMapping("/logout.wp")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
