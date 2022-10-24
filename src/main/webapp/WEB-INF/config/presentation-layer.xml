@@ -42,7 +42,8 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/login.do" />
+			<mvc:mapping path="/order.do" />
+<!-- 			<mvc:exclude-mapping path="/login.do" /> -->
 			<ref bean="authenticationInterceptor"></ref>
 		</mvc:interceptor>
 	</mvc:interceptors>

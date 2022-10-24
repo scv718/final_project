@@ -21,14 +21,13 @@
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item"><a class="nav-link">${userName}님</a></li>
-					<li class="nav-item"><a id = "loginLang" class="nav-link" href="logout.do">Logout</a>
+					<li class="nav-item" id = "loginMenu"><a class="nav-link">${userName}님</a> <a id = "loginLang" class="nav-link" href="logout.do">Logout</a></li>
 					</li>
 				</ul>
 			</c:when>
 			<c:otherwise>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item"><a id = "loginLang" class="nav-link" href="loginForm.do">Login</a>
+					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="loginForm.do">Login</a>
 					</li>
 				</ul>
 			</c:otherwise>
@@ -91,37 +90,56 @@
 	var display1 = style1.display
 	
 	
-$('#btnone').hover(function() {
-	if (display1.indexOf('block') == 0){
-	}else{
-		 $('.box').css("display", "block");
-		   element = document.getElementsByClassName("box")[0]
-		  	 display = style.display
+// $('#btnone').hover(function() {
+// 	if (display1.indexOf('block') == 0){
+// 	}else{
+// 		$('.box').show();
+// 		 $('.box').css("display", "block");
+// 		  	 display = style.display
 
-	}
-});
-
-let box = document.querySelector('.box');
-box.addEventListener('mouseleave',function(){
-
-	$('#box').css("display", "none");
-	display = style.display
-});
-
-$('#btntwo').hover(function() {
-	if (display.indexOf('block') == 0){
-		
-	}else{
-		$('.box1').css("display", "block");
-		display1 = style1.display
+// 	}
+// });
 	
-	}
+	// let box = document.querySelector('.box');
+	// box.addEventListener('mouseleave',function(){
+
+//	 	$('#box').css("display", "none");
+//	 	display = style.display
+	// });
+
+	// $('#btntwo').hover(function() {
+//	 	if (display.indexOf('block') == 0){
+			
+//	 	}else{
+//	 		$('.box1').css("display", "block");
+//	 		display1 = style1.display
+		
+//	 	}
+	// });
+//	 	let box1 = document.querySelector('.box1');
+//	 	box1.addEventListener('mouseleave',function(){
+//	 		$('.box1').css("display", "none");
+//	 		display1 = style1.display
+//	 	});
+$('#btnone').mouseover(function() {
+	$('.box1').hide();
+	$('.box').show();
 });
-	let box1 = document.querySelector('.box1');
-	box1.addEventListener('mouseleave',function(){
-		$('.box1').css("display", "none");
-		display1 = style1.display
-	});
+
+$('.box').mouseout(function(){
+	$('.box').hide();
+});
+
+$('#btntwo').mouseover(function() {
+	$('.box').hide();
+	$('.box1').show();
+});
+
+$('.box').mouseout(function(){
+	$('.box1').hide();
+});
+
+
 	
 
 
