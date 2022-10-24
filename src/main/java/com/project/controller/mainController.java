@@ -21,9 +21,10 @@ public class mainController {
 		return "WEB-INF/view/winesearch.jsp";
 	}
 	
+	@RequestMapping(value = "/subscribe.do")
 	public String subscribe() {
-		System.out.println("소개하기");
-		return "WEB-INF/view/introduce.jsp";
+		System.out.println("구독하기");
+		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 	
 	public String community() {

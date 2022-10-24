@@ -44,7 +44,7 @@
 	<ul class="navbar-nav" id="upmenu">
 		<li><a id = "menuBtn" class="dropdown-item" href="introDuce.do" >와인소개</a></li>
 		<li><a id = "menuBtn" class="dropdown-item" href="wineSearch.do">와인검색</a></li>
-		<li><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">구독하기</a></li>
+		<li><a id = "menuBtn" class="dropdown-item" href="subscribe.do">구독하기</a></li>
 		<li><a id = "menuBtn" class="dropdown-item" href="member.jsp">커뮤니티</a></li>
 	</ul>
 
