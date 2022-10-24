@@ -35,23 +35,102 @@
 		</c:choose>
 	</ul>
 <div style = "text-align: center;">
-<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Woody</a>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Winery</a>
 
 </div>
 
-<nav class="navbar navbar-expand-sm bg-white navbar-light ">
-
+<nav id = "header" class="navbar navbar-expand-sm  navbar-light">
 	<ul class="navbar-nav" id="upmenu">
+<<<<<<< HEAD
 		<li><a id = "menuBtn" class="dropdown-item" href="introDuce.do" >와인소개</a></li>
 		<li><a id = "menuBtn" class="dropdown-item" href="wineSearch.do">와인검색</a></li>
 		<li><a id = "menuBtn" class="dropdown-item" href="subscribe.do">구독하기</a></li>
 		<li><a id = "menuBtn" class="dropdown-item" href="member.jsp">커뮤니티</a></li>
+=======
+		<li class="nav-item">
+		<a id = "menuBtn" class ="dropdown-item" href="introDuce.do" >Winery?</a></li>
+		<li class="nav-item" id = "btntwo">
+		<a id = "menuBtn"  class ="dropdown-item" href="introDuce.do" >와인이야기</a></li>
+		<li class="nav-item">	
+		<a id = "menuBtn" class="dropdown-item" href="wineSearch.do">와인검색</a></li>
+		<li class="nav-item">	
+		<a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">구독하기</a></li>
+		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">커뮤니티</a></li>
+>>>>>>> 2fbd0017fc3357e3817f4d56ac16e3605c101310
 	</ul>
-
-
-
-
-
 </nav>
 
+<div class = "box" id = "box">
+<a  id = "secondMenu" href="#">공지사항</a>
+<a  id = "secondMenu"  href="#">이벤트</a>
+<a  id = "secondMenu" href="#">QnA</a> 
+<a  id = "secondMenu"  href="#">리뷰</a> 
+</div>
 
+
+<div class = "box1" id = "box">
+	<a id = "secondMenu" href="#">와인소개</a> 
+	<a id = "secondMenu" href="#">맛있게 와인 마시는법</a> 
+</div>
+
+
+<script type="text/javascript">
+// const header = document.querySelector("#header");
+// const headerHeight = header.getBoundingClientRect().height;
+ 
+// window.addEventListener("scroll", () => {
+//       if (window.scrollY > headerHeight) {
+//       header.setAttribute("style", "background-color: white !important;");
+//    } else {    
+// header.setAttribute("style", "background-color: transparent;");
+//    }
+// });
+</script>
+
+
+<script>
+	var element = document.getElementsByClassName("box")[0]
+	var style = getComputedStyle(element)
+	var display = style.display
+	
+	var element1 = document.getElementsByClassName("box1")[0]
+	var style1 = getComputedStyle(element1)
+	var display1 = style1.display
+	
+	
+$('#btnone').hover(function() {
+	if (display1.indexOf('block') == 0){
+	}else{
+		 $('.box').css("display", "block");
+		   element = document.getElementsByClassName("box")[0]
+		  	 display = style.display
+
+	}
+});
+
+let box = document.querySelector('.box');
+box.addEventListener('mouseleave',function(){
+
+	$('#box').css("display", "none");
+	display = style.display
+});
+
+$('#btntwo').hover(function() {
+	if (display.indexOf('block') == 0){
+		
+	}else{
+		$('.box1').css("display", "block");
+		display1 = style1.display
+	
+	}
+});
+	let box1 = document.querySelector('.box1');
+	box1.addEventListener('mouseleave',function(){
+		$('.box1').css("display", "none");
+		display1 = style1.display
+	});
+	
+
+
+
+</script>
