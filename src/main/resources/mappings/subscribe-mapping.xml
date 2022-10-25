@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- mapper 태그 namespace ="클래스 명처럼 작동" --> 
+<!-- select id="getAll"  -->
+<!--클래스 명처럼 작동.id --> 
+<mapper namespace="SubscribeDAO">
+	<!--커리문 명령어는 대부분 대문자 컨트롤+쉬프트 X 소문자는 컨트롤+쉬프트 Y -->
+	<!--매개변수 = #{} --> 
+	<!--resultMap ="경로포함.리턴 객체(=즉 매핑하려는 자바 클래스의 전체 경로를 입력함)" --> 
+
+ 	<!--구독하기 상세 조회 (조회 한줄) --> 
+	<select id="getSubscribe" resultType="subscribe">
+	SELECT * FROM SUBSCRIBE WHERE
+	ID=#{id}
+	</select>
+
+	<!--구독하기 목록 조회 (조회 여러줄(=동적 커리 문)) --> 
+	<select id="getSubscribe" resultType="subscribe">
+		SELECT * FROM SUBSCRIBE WHERE 1=1
+		<if test="searchCondition == 'TITLE' "> AND TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'CONTENT' "> AND CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		ORDER BY SEQ DESC
+		LIMIT 10 OFFSET #{offset}
+	</select>
+	
+ 	<!--페이징--> 
+ <!-- 	<select id="totalBoardListCnt" resultType="_int"> --> 
+ <!-- 		SELECT COUNT(*) FROM BOARD WHERE 1=1 -->
+ <!-- 		<if test="searchCondition == 'TITLE' "> AND TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if> --> 
+ <!-- 		<if test="searchCondition == 'CONTENT' "> AND CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if> --> 
+ <!-- 		ORDER BY SEQ DESC  --> 
+ <!-- 	</select> --> 
+
+	<!--추가 insert id = "객체" parameterType = "생략 가능" --> 
+	<insert id="insertSubscribe" keyProperty="id" keyColumn="id">
+	
+		INSERT INTO SUBSCRIBE(ID, LEVEL, OPTION,
+		S_DATE,E_DATE,SUB_STATUS)VALUES(#{id},#{level},'구독O',NOW(),NOW(),'0')
+	</insert>
+	
+	 <insert id="insertSubscribe" keyProperty="id" keyColumn="id">
+        INSERT INTO SUBSCRIBE(ID, LEVEL, OPTION,
+		S_DATE,E_DATE,SUB_STATUS)VALUES(#{id},#{level},'구독O',NOW(),NOW(),'0')
+        <selectKey resultType="users" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+    </insert>
+
+	<!--수정 update --> 
+	<update id="updateSubscribe">
+		UPDATE SUBSCRIBE SET LEVEL = #{level} where
+		ID = #{id};
+	</update>
+
+ 	<!--삭제 delete --> 
+	<delete id="deleteSubscribe">
+		DELETE FROM SUBSCRIBE WHERE OPTION = #{option}
+	</delete>
+
+</mapper>
