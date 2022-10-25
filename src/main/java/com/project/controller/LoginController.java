@@ -57,15 +57,15 @@ public class LoginController {
 	@ResponseBody
 	public String insertUser(UserVO vo, HttpSession session) {
 		System.out.println("회원가입 실행");
+//		
+//		vo.setM_birth((String)session.getAttribute("birthday"));
+//		vo.setM_name((String)session.getAttribute("name"));
+//		vo.setM_phone((String)session.getAttribute("phone"));
 		
-		vo.setM_birth((String)session.getAttribute("birthday"));
-		vo.setM_name((String)session.getAttribute("name"));
-		vo.setM_phone((String)session.getAttribute("phone"));
 		
-		
-//		vo.setM_birth("1995-07-18");
-//		vo.setM_name("박상현");
-//		vo.setM_phone("010-9618-3516");
+		vo.setM_birth("1995-07-18");
+		vo.setM_name("박상현");
+		vo.setM_phone("010-9618-3516");
 		System.out.println(vo.getId());
 		System.out.println(vo.getM_pw());
 		System.out.println(vo.getM_email());

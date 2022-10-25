@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -6,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>관리자페이지</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="adminmain.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminmain.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -29,24 +31,31 @@
             </div>
 
             <ul class="list-unstyled components">
-                <p>회원관리목록</p>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">회원관리</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">데이터정보</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">회원목록</a>
+                     <li>
+                            <a href="#profile">프로필</a>
                         </li>
                         <li>
-                            <a href="#">수정/삭제</a>
+                            <a href="#">회원관리</a>
                         </li>
                         <li>
-                            <a href="#">신규등록</a>
+                            <a href="#">와인관리</a>
+                        </li>
+                        <li>
+                            <a href="#">소개페이지관리</a>
+                        </li>
+                        <li>
+                            <a href="#">구독관리</a>
+                        </li>
+                         <li>
+                            <a href="#">판매,배송관리</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">게시판목록</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">게시판</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">커뮤니티</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
                             <a href="#">공지사항</a>
@@ -55,7 +64,7 @@
                             <a href="#">Q&A</a>
                         </li>
                         <li>
-                            <a href="#">게시판</a>
+                            <a href="#">리뷰</a>
                         </li>
                     </ul>
                 </li>
@@ -83,18 +92,21 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">관리자메인화면</a>
+                                <a class="nav-link" href="http://localhost:8090/user/adminmain.jsp#profile">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">홈페이지메인이동</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">로그아웃</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            
+           <h2>관리자페이지(테스트)</h2>
+            
             
         </div>
     </div>
