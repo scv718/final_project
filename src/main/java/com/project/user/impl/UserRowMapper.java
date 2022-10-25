@@ -15,9 +15,9 @@ public class UserRowMapper implements RowMapper<UserVO>{
 		// 일반 row 개수랑 다름 일반은 1 2 3 
 		UserVO user = new UserVO();
 		user.setId(rs.getString("id"));
-		user.setPassword(rs.getString("password"));
-		user.setName(rs.getString("name"));
-		user.setRole(rs.getString("role"));
+		user.setM_pw(rs.getString("m_pw"));
+		user.setM_name(rs.getString("m_name"));
+		
 		return user;
 	}
 	

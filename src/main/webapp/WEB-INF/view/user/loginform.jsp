@@ -14,7 +14,7 @@
 	<script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/loginform.css" />
+	href="${pageContext.request.contextPath}/resources/css/loginform.css" />
 <style>
 #naverIdLogin_loginButton {
 	background: url(resources/img/btnG_축약형.png);
@@ -39,11 +39,18 @@
 
 <script>
 	function info_chk2(frm) {
-		frm.action = 'find.main';
+		frm.action = 'find.wp';
+		frm.submit();
+		return true;
+	}
+	
+	function info_chk3(frm) {
+		frm.action = 'userCertification.wp';
 		frm.submit();
 		return true;
 	}
 </script>
+
 <script type="text/javascript">
 	$(
 			function() {
@@ -104,22 +111,24 @@
 					<div class="row">
 
 						<section id="loginformArea" style="margin: 0 auto;">
-							<form class="form-signin" name="loginform"
-								action="${pageContext.request.contextPath}/memberLoginAction.me"
-								method="post">
-
+								<form class="form-signin" name="loginform"
+								action="login.wp" method="post"
+								>
 
 								<div class="form-group">
 									<label for="USERID" class="sr-only">아이디</label> <input
 										type="text" class="form-control" placeholder="ID"
-										name='USERID' required autofocus>
+										name='id' required autofocus>
 								</div>
 								<div class="form-group">
 									<label for="PASSPW" class="sr-only">비밀번호</label> <input
-										type="password" class="form-control" placeholder="PASSPW"
-										name='PASSPW' required>
+										type="m_pw" class="form-control" placeholder="PASSPW"
+										name='m_pw' required>
 								</div>
 								<button class="btn btn-lg1 btn-block btn-dark" type="submit">로그인</button>
+								<button class="btn btn-lg1 btn-block btn-dark"
+									onclick='return info_chk3(this.form);' type="button">회원가입
+									</button>
 								<button class="btn btn-lg1 btn-block btn-dark"
 									onclick='return info_chk2(this.form);' type="button">아이디/비밀번호
 									찾기</button>

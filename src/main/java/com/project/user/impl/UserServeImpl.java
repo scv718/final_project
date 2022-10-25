@@ -26,7 +26,7 @@ public class UserServeImpl implements UserService{
 
 	@Override
 	public void insertUser(UserVO vo) {
-		// TODO Auto-generated method stub
+		userDAO.insertUser(vo);
 		
 	}
 
@@ -46,6 +46,12 @@ public class UserServeImpl implements UserService{
 	public List<UserVO> getUserList(UserVO vo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int checkUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 //	@Override

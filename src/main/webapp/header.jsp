@@ -21,14 +21,13 @@
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item"><a class="nav-link">${userName}님</a></li>
-					<li class="nav-item"><a id = "loginLang" class="nav-link" href="logout.do">Logout</a>
+					<li class="nav-item" id = "loginMenu"><a class="nav-link">${userName}님</a> <a id = "loginLang" class="nav-link" href="logout.wp">Logout</a></li>
 					</li>
 				</ul>
 			</c:when>
 			<c:otherwise>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item"><a id = "loginLang" class="nav-link" href="loginForm.do">Login</a>
+					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a>
 					</li>
 				</ul>
 			</c:otherwise>
@@ -41,17 +40,25 @@
 
 <nav id = "header" class="navbar navbar-expand-sm  navbar-light">
 	<ul class="navbar-nav" id="upmenu">
+<<<<<<< HEAD
 
+=======
+>>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 		<li class="nav-item">
-		<a id = "menuBtn" class ="dropdown-item" href="introDuce.do" >Winery?</a></li>
-		<li class="nav-item" id = "btntwo">
-		<a id = "menuBtn"  class ="dropdown-item" href="introDuce.do" >와인이야기</a></li>
+		<a id = "menuBtn" class ="dropdown-item" href="phone.jsp" >Winery?</a></li>
+		<li class="nav-item" id = "btntwo" >
+		<a id = "menuBtn"  class ="dropdown-item" >와인이야기</a></li>
 		<li class="nav-item">	
-		<a id = "menuBtn" class="dropdown-item" href="wineSearch.do">와인검색</a></li>
+		<a id = "menuBtn" class="dropdown-item" href="test.jsp">와인검색</a></li>
 		<li class="nav-item">	
+<<<<<<< HEAD
 		<a id = "menuBtn" class="dropdown-item" href="subscribe.do">구독하기</a></li>
 		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">커뮤니티</a></li>
 
+=======
+		<a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">구독하기</a></li>
+		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item">커뮤니티</a></li>
+>>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 	</ul>
 </nav>
 
@@ -84,46 +91,65 @@
 
 
 <script>
-	var element = document.getElementsByClassName("box")[0]
-	var style = getComputedStyle(element)
-	var display = style.display
+// 	var element = document.getElementsByClassName("box")[0]
+// 	var style = getComputedStyle(element)
+// 	var display = style.display
 	
-	var element1 = document.getElementsByClassName("box1")[0]
-	var style1 = getComputedStyle(element1)
-	var display1 = style1.display
+// 	var element1 = document.getElementsByClassName("box1")[0]
+// 	var style1 = getComputedStyle(element1)
+// 	var display1 = style1.display
 	
 	
-$('#btnone').hover(function() {
-	if (display1.indexOf('block') == 0){
-	}else{
-		 $('.box').css("display", "block");
-		   element = document.getElementsByClassName("box")[0]
-		  	 display = style.display
+// $('#btnone').hover(function() {
+// 	if (display1.indexOf('block') == 0){
+// 	}else{
+// 		$('.box').show();
+// 		 $('.box').css("display", "block");
+// 		  	 display = style.display
 
-	}
-});
+// 	}
+// });
+	
+	// let box = document.querySelector('.box');
+	// box.addEventListener('mouseleave',function(){
 
-let box = document.querySelector('.box');
-box.addEventListener('mouseleave',function(){
+//	 	$('#box').css("display", "none");
+//	 	display = style.display
+	// });
 
-	$('#box').css("display", "none");
-	display = style.display
-});
-
-$('#btntwo').hover(function() {
-	if (display.indexOf('block') == 0){
+	// $('#btntwo').hover(function() {
+//	 	if (display.indexOf('block') == 0){
+			
+//	 	}else{
+//	 		$('.box1').css("display", "block");
+//	 		display1 = style1.display
 		
-	}else{
-		$('.box1').css("display", "block");
-		display1 = style1.display
-	
-	}
+//	 	}
+	// });
+//	 	let box1 = document.querySelector('.box1');
+//	 	box1.addEventListener('mouseleave',function(){
+//	 		$('.box1').css("display", "none");
+//	 		display1 = style1.display
+//	 	});
+$('#btnone').mouseover(function() {
+	$('.box1').hide();
+	$('.box').show();
 });
-	let box1 = document.querySelector('.box1');
-	box1.addEventListener('mouseleave',function(){
-		$('.box1').css("display", "none");
-		display1 = style1.display
-	});
+
+$('.box').mouseout(function(){
+	$('.box').hide();
+});
+
+$('#btntwo').mouseover(function() {
+	$('.box').hide();
+	$('.box1').show();
+});
+
+$('.box1').mouseout(function(){
+	$('.box1').hide();
+});
+
+
 	
 
 
