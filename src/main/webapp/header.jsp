@@ -41,7 +41,10 @@
 <nav id = "header" class="navbar navbar-expand-sm  navbar-light">
 	<ul class="navbar-nav" id="upmenu">
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 =======
 >>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 		<li class="nav-item">
@@ -52,9 +55,14 @@
 		<a id = "menuBtn" class="dropdown-item" href="test.jsp">와인검색</a></li>
 		<li class="nav-item">	
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<a id = "menuBtn" class="dropdown-item" href="subscribe.do">구독하기</a></li>
 		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">커뮤니티</a></li>
 
+=======
+		<a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">구독하기</a></li>
+		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item">커뮤니티</a></li>
+>>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 =======
 		<a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">구독하기</a></li>
 		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item">커뮤니티</a></li>

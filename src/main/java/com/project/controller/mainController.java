@@ -23,7 +23,11 @@ public class mainController {
 	
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@RequestMapping(value = "/subscribe.do")
+=======
+	@RequestMapping(value = "/subscribe.wp")
+>>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 =======
 	@RequestMapping(value = "/subscribe.wp")
 >>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
@@ -33,7 +37,10 @@ public class mainController {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+>>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 =======
 >>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 
