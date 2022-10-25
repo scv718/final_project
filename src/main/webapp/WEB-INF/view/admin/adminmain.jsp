@@ -1,4 +1,7 @@
+<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/adminmain.jsp
+=======
 <<<<<<< HEAD
+>>>>>>> 6b18a3b8a0c9de1b9eb614074653249953e2ca85:adminmain.jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -129,6 +132,8 @@
     </script>
 </body>
 
+<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/adminmain.jsp
+=======
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -261,4 +266,5 @@
 </body>
 
 >>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
+>>>>>>> 6b18a3b8a0c9de1b9eb614074653249953e2ca85:adminmain.jsp
 </html>

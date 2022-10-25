@@ -74,9 +74,12 @@
 								}) // 클릭이벤트
 			})// 카카오로그인 끝.
 </script>
-<script type="text/javascript">
+
+<script>
 function joinform_check() {
 	  //변수에 담아주기
+	    
+	
 	  var uid = document.getElementById("id");
 	  var pwd = document.getElementById("m_pw");
 	  var repwd = document.getElementById("repassword");
@@ -121,124 +124,87 @@ function joinform_check() {
 	    email_id.focus();
 	    return false;
 	  }
+	
+	 
+	  if (!agree.checked) { //체크박스 미체크시
+	    alert("약관 동의를 체크하세요.");
+	    agree.focus();
+	    return false;
+	  }
+	  
+		document.userInfo.submit(); //유효성 검사의 포인트  
 
-// 	  if (!agree.checked) { //체크박스 미체크시
-// 	    alert("약관 동의를 체크하세요.");
-// 	    agree.focus();
-// 	    return false;
-// 	  }
 	  
-	  
-// 	  form.action="insertUser.wp";
-//       form.method="post" ;
-//       form.submit();
-// 	  //입력 값 전송
-	  document.userInfo.submit(); //유효성 검사의 포인트  
 	}
 
-
-	
 </script>
 
-<script type="text/javascript">
-//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
-var idck = 0;
-$(function() {
-    //idck 버튼을 클릭했을 때 
-    $("#idck").click(function() {
-        
-        //userid 를 param.
-        var id =  $("#id").val(); 
-        $.ajax({
-            async: true,
-            type : 'POST',
-            data : id,
-            url : "idCheck.wp",
-            dataType : "json",
-            contentType: "application/json; charset=UTF-8",
-            success : function(data) {
-                if (data.cnt > 0) {
-                	alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-                } else {
-                    alert("사용가능한 아이디입니다.");
-                    idck = 1;
-                }
-            },
-            error : function(error) {
-                
-                alert("error : " + error);
-            }
-        });
-    });
-});
- 
- 
-</script>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-		$("#signUp").click(function(){
-		IMP.certification(
-						{
-							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
-						},
-						function(rsp) {
+// 	$(document).ready(function(){
+// 		var IMP = window.IMP; // 생략가능
+// 		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+// 		$("#signUp").click(function(){
+// 		IMP.certification(
+// 						{
+// 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+// 						},
+// 						function(rsp) {
 
-							if (rsp.success) {
-								// 인증성공
+// 							if (rsp.success) {
+// 								// 인증성공
 
-								console.log(rsp.imp_uid);
-								console.log(rsp.merchant_uid);
-								console.log('인증성공');
-								$.ajax({
-									type : 'POST',
-									url : 'certification.wp',
-									dataType : 'json',
-									contentType: 'application/json',
-									data : JSON.stringify ({
-					        			  imp_uid: rsp.imp_uid	                
-					        		}),
-					        		success : function(val){
-					        			console.log(val);
-					        			if (val == 1){
+// 								console.log(rsp.imp_uid);
+// 								console.log(rsp.merchant_uid);
+// 								console.log('인증성공');
+// 								$.ajax({
+// 									type : 'POST',
+// 									url : 'certification.wp',
+// 									dataType : 'json',
+// 									contentType: 'application/json',
+// 									data : JSON.stringify ({
+// 					        			  imp_uid: rsp.imp_uid	                
+// 					        		}),
+// 					        		success : function(val){
+// 					        			console.log(val);
+// 					        			if (val == 1){
 					        				
-					        			}else{
-					        				alert("나이 제한");
-					        				location.href = 'index.jsp';
-					        			}
-					        		}
-								}).done(function() {
-									takeResponseAndHandle(rsp)
-								});
+// 					        			}else{
+// 					        				alert("나이 제한");
+// 					        				location.href = 'index.jsp';
+// 					        			}
+// 					        		}
+// 								}).done(function() {
+// 									takeResponseAndHandle(rsp)
+// 								});
 								
 
-							} else {
-								// 인증취소 또는 인증실패
-								var msg = '인증에 실패하였습니다.';
-								msg += '에러내용 : ' + rsp.error_msg;
-
-								alert(msg);
-							}
-						})
+// 							} else {
+// 								// 인증취소 또는 인증실패
+// 								var msg = '인증에 실패하였습니다.';
+// 								msg += '에러내용 : ' + rsp.error_msg;
+// 								alert(msg);
+// 								location.href = 'index.jsp';
+								
+// 							}
+// 						})
 	
 
-		function takeResponseAndHandle(rsp) {
-			if (rsp.success) {
-				// 인증성공
-				console.log(rsp.imp_uid);
-				console.log(rsp.merchant_uid);
-			} else {
-				// 인증취소 또는 인증실패
-				var msg = '인증에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
+// 		function takeResponseAndHandle(rsp) {
+// 			if (rsp.success) {
+// 				// 인증성공
+// 				console.log(rsp.imp_uid);
+// 				console.log(rsp.merchant_uid);
+// 			} else {
+// 				// 인증취소 또는 인증실패
+// 				var msg = '인증에 실패하였습니다.';
+// 				msg += '에러내용 : ' + rsp.error_msg;
 
-				alert(msg);
-			}
-		}
-		});
-	});
+// 				alert(msg);
+// 			}
+// 		}
+// 		});
+// 	});
 	</script>
 <div style = "text-align: center;">
 <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Winery</a>
@@ -254,11 +220,12 @@ $(function() {
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <input type="text"  id = "id" name="id" placeholder = "아이디" >
-      <input type ="button" id = "idck" onclick="#" value="아이디 중복 확인"/>
+      <input type ="button" id = "idck" value="아이디 중복 확인" />
       <input type="password" id = "m_pw" name="m_pw" placeholder="비밀번호" />
       <input type="password" id = "repassword" placeholder="비밀번호 확인" />
       <input type="email" id = "m_email" name = "m_email" placeholder="이메일" />
-      <button type="button" onclick="joinform_check();">가입하기</button>
+      <label>약관동의<input type="checkbox" value="Y" name="agree" id="agree">약관에 동의합니다.</label>
+      <button type="button" id = "singupbtn" onclick="joinform_check();">가입하기</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
@@ -290,6 +257,42 @@ $(function() {
     </div>
   </div>
 </div>
+<script type="text/javascript">
+var idck = 0;
+const target = document.getElementById('singupbtn');
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#idck").click(function() {
+        
+        //userid 를 param.
+        var id =  $("#id").val(); 
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : id,
+            url : "idCheck.wp",
+            dataType : "json",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data.cnt > 0) {
+                	alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                	target.disabled = true;
+                	
+                } else {
+                    alert("사용가능한 아이디입니다.");
+                    target.disabled = false;
+                    idck = 1;
+                }
+            },
+            error : function(error) {
+                
+                alert("error : " + error);
+            }
+        });
+    });
+});
+
+</script>
 	<script
 						src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
 						charset="utf-8"></script>

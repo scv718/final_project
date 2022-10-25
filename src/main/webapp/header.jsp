@@ -43,7 +43,7 @@
 		<li class="nav-item">
 		<a id = "menuBtn" class ="dropdown-item" href="phone.jsp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
-		<a id = "menuBtn"  class ="dropdown-item" >와인이야기</a></li>
+		<a id = "menuBtn"  class ="dropdown-item" href = "adminMain.wp" >와인이야기</a></li>
 		<li class="nav-item">	
 		<a id = "menuBtn" class="dropdown-item" href="test.jsp">와인검색</a></li>
 		<li class="nav-item">	
