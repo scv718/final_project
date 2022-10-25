@@ -21,14 +21,13 @@ public class mainController {
 		return "WEB-INF/view/winesearch.jsp";
 	}
 	
-<<<<<<< HEAD
+
 	@RequestMapping(value = "/subscribe.do")
 	public String subscribe() {
 		System.out.println("구독하기");
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
-=======
->>>>>>> 2fbd0017fc3357e3817f4d56ac16e3605c101310
+
 	
 
 	
