@@ -1,9 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%-- <% --%>
-// if(session.getAttribute("userId") == null){
-// 	response.sendRedirect("login.jsp");	
-// }else{
-<%-- %> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +29,7 @@
 			</p>
 			<span class="parent"><p class="child">와인과 떠나는 여행 궁금하다면</p></span> <span
 				class="parent"><p class="child">
-					<a href="loginForm.do" role="button" id="bookmark">'구독'</a>을 눌러주세요
+					<a href="loginForm.wp" role="button" id="bookmark">'구독'</a>을 눌러주세요
 				</p></span>
 		</div>
 	</div>
@@ -58,7 +54,7 @@
 							<li>도착일</li>
 							<li>매월 20일</li>
 						</ul>
-						<a href="loginForm.do">
+						<a href="loginForm.wp">
 							<button type="button" id="colre"
 								class="w-100 btn btn-lg btn-outline-primary">초급자로 성장하기</button>
 						</a>
@@ -84,7 +80,7 @@
 							<li>도착일</li>
 							<li>매월 20일</li>
 						</ul>
-						<a href="loginForm.do">
+						<a href="loginForm.wp">
 							<button type="button" id="colre"
 								class="w-100 btn btn-lg btn-outline-primary">중급자로 성장하기</button>
 						</a>
@@ -158,5 +154,5 @@
 
 	<%@ include file="/footer.jsp"%>
 </body>
-<%-- <%} %> --%>
+ 
 </html>
