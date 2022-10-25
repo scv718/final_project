@@ -14,6 +14,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -73,7 +74,7 @@ public class IamportController {
 	
 	@RequestMapping(value="/certification.wp" , method = RequestMethod.POST)
 	@ResponseBody
-	public int userCertification(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response, Model model ) throws IOException {
+	public int userCertification(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model ) throws IOException {
 		Map<String, String> map = new HashMap<String, String>();
 		String token = getImportToken();
 		HttpClient client = HttpClientBuilder.create().build();
@@ -97,6 +98,11 @@ public class IamportController {
 				map.put("imp_uid",resNode.get("imp_uid").asText() );
 				map.put("birth",resNode.get("birth").asText() );
 				map.put("name",resNode.get("name").asText() );
+				map.put("phone",resNode.get("phone").asText() );
+				
+				session.setAttribute("name", resNode.get("name").asText());
+				session.setAttribute("phone", resNode.get("phone").asText());
+				session.setAttribute("birthday", resNode.get("birthday").asText());
 			
 			    String birthday1 = mapper.treeToValue(resNode.path("birthday"), String.class);
 			    Calendar now = Calendar.getInstance();
@@ -116,7 +122,7 @@ public class IamportController {
 			    System.out.println(outputAge);
 			    System.out.println(age);
 			    	
-			    if(age<40) {
+			    if(age<19) {
 			    	System.out.println("나이 제한됨");
 			  
 					return -1;

@@ -33,9 +33,18 @@ public class mainController {
 	
 	@RequestMapping(value = "/userCertification.wp")
 	public String userCertification() {
-		System.out.println("로그인폼이동");
+		System.out.println("본인인증");
 		return "WEB-INF/view/user/userCertification.jsp";
 	}
+	
+	
+	@RequestMapping(value = "/singUp.wp")
+	public String singUp() {
+		System.out.println("로그인폼이동");
+		return "WEB-INF/view/user/singUp.jsp";
+	}
+	
+	
 	@RequestMapping(value = "/loginForm.wp")
 	public String loginFrom() {
 		System.out.println("로그인폼이동");

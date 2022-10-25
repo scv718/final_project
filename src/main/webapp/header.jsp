@@ -27,7 +27,7 @@
 			</c:when>
 			<c:otherwise>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="loginForm.wp">Login</a>
+					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a>
 					</li>
 				</ul>
 			</c:otherwise>
