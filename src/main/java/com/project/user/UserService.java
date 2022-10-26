@@ -12,5 +12,6 @@ public interface UserService {
 	List<UserVO> getUserList(UserVO vo);
 	UserVO getUser(UserVO vo);
 	UserVO getID(UserVO vo);
+	int getPw(UserVO vo);
 
 }

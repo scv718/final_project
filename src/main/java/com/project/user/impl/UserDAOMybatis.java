@@ -41,6 +41,10 @@ public class UserDAOMybatis {
 		
 		return mybatis.selectOne("UserDAO.getId", vo);
 	}
+	public int getPw(UserVO vo) {
+		
+		return mybatis.selectOne("UserDAO.getPw", vo);
+	}
 	
 	
 	

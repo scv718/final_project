@@ -60,6 +60,12 @@ public class UserServeImpl implements UserService{
 		return userDAO.getId(vo);
 	}
 
+	@Override
+	public int getPw(UserVO vo) {
+		// TODO Auto-generated method stub
+		return userDAO.getPw(vo);
+	}
+
 
 
 

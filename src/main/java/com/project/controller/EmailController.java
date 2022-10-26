@@ -73,16 +73,15 @@ public class EmailController {
 	}
 	
 
-	@RequestMapping(value = "/forgotid.wp", method = RequestMethod.GET)
-	public String id_Send(UserVO vo) {
+	@RequestMapping(value = "/forgotid.wp", method = RequestMethod.POST)
+	public String id_Send(UserVO vo, @RequestParam String m_email) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		System.out.println("아이디찾기");
-		System.out.println(vo.getM_email());
 		vo = userService.getId(vo);
-		System.out.println(vo.getId());
 		
+
 		
-		message.setTo(vo.getM_email());
+		message.setTo(m_email);
 		//이메일의 제목이 되는 부분
 		message.setSubject("Winery 아이디");
 		//이메일의 내용이 되는 부분
@@ -90,6 +89,7 @@ public class EmailController {
 		//이메일의 보내는 사람이 되는 부분(반드시 smtp설정한 이메일주소 입력, 다를 경우 인증 안됨) 예시: admin@gmail.com 등..
 		message.setFrom("tototo215@gmail.com");
 		sender.send(message);
+		
 		return "redirect:index.jsp";
 		
 		
