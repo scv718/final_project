@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class mainController {
+public class MainController {
 	
 	@RequestMapping(value = "/introDuce.wp")
 	public String introDuce() {
@@ -22,27 +22,14 @@ public class mainController {
 	}
 	
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	@RequestMapping(value = "/subscribe.do")
-=======
+
 	@RequestMapping(value = "/subscribe.wp")
->>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
-=======
-	@RequestMapping(value = "/subscribe.wp")
->>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
+
 	public String subscribe() {
 		System.out.println("구독하기");
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-=======
->>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
-=======
->>>>>>> ef20d685120c0b30dfb65690e3b7ed0179e45953
 
 	
 	
@@ -65,7 +52,12 @@ public class mainController {
 		System.out.println("로그인폼이동");
 		return "WEB-INF/view/user/loginform.jsp";
 	}
-	
-	
 
+	
+	@RequestMapping(value = "/forgotinfo.wp")
+	public String forgotinfo() {
+		System.out.println("유저정보찾기");
+		return "WEB-INF/view/user/userinfofind.jsp";
+	}
+	
 }

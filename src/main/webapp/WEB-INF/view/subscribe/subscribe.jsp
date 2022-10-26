@@ -1,9 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%-- <% --%>
-// if(session.getAttribute("userId") == null){
-// 	response.sendRedirect("login.jsp");	
-// }else{
-<%-- %> --%>
+
 <!DOCTYPE html>
 <html>
 <head>

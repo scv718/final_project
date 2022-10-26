@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.user.UserVO;
 import com.project.user.impl.UserDAOMybatis;
 @Controller
-public class LoginController {
+public class UserController {
 	
 	@Autowired
 	private UserDAOMybatis userService;
@@ -39,6 +39,14 @@ public class LoginController {
 			return "login.jsp?error=1";
 		}
 	}
+	
+	@RequestMapping("/logout.wp")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "index.jsp";
+	}
+
 	
 	@RequestMapping("idCheck.wp")
 	@ResponseBody
@@ -77,11 +85,6 @@ public class LoginController {
         return "index.jsp";
 	}
 	
-	@RequestMapping("/logout.wp")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		
-		return "index.jsp";
-	}
+
 
 }

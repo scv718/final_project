@@ -11,5 +11,6 @@ public interface UserService {
 	int checkUser(UserVO vo);
 	List<UserVO> getUserList(UserVO vo);
 	UserVO getUser(UserVO vo);
+	UserVO getID(UserVO vo);
 
 }

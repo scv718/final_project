@@ -24,6 +24,22 @@
 	
 	<dependencies>
 
+
+<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
+
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4.7</version>
+</dependency>
+
+		
 <!-- 아임포트 관련 -->
 		<dependency>
 			<groupId>com.github.iamport</groupId>
