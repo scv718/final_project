@@ -1,7 +1,5 @@
 package com.project.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,24 +18,15 @@ public class MainController {
 		System.out.println("소개하기");
 		return "WEB-INF/view/winesearch.jsp";
 	}
-	
-<<<<<<< HEAD
-
 
 	@RequestMapping(value = "/subscribe.wp")
-
-=======
-	@RequestMapping(value = "/subscribe.wp")
->>>>>>> dff9640922872672f282a6338905afb74be110ef
 	public String subscribe() {
 		System.out.println("구독하기");
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
-<<<<<<< HEAD
 
 
-=======
->>>>>>> dff9640922872672f282a6338905afb74be110ef
+
 	
 	
 	@RequestMapping(value = "/userCertification.wp")

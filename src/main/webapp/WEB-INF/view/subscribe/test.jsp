@@ -10,7 +10,7 @@
 <%@ include file="../../../header.jsp"%>
 <div id="t1">
 		<div id="text-p">
-					<a href="insertUser.wp" role="button" >'구독 결제'</a>
+					<a href=# role="button" >'구독 결제'</a>
 				</p></span>
 		</div>
 	</div>
