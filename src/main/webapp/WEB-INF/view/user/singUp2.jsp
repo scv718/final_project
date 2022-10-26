@@ -3,11 +3,10 @@
 <html>
 <head>
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
+ <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/singUp.css" />
-<link rel="stylesheet"
+	<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -17,14 +16,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script type="text/javascript"
+	<script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-	<script type="text/javascript">
+<body class = "d-flex flex-column min-vh-100">
+<%@ include file="/header.jsp"%>
+<script type="text/javascript">
 	$(
 			function() {
 
@@ -77,7 +77,7 @@
 			})// 카카오로그인 끝.
 </script>
 
-	<script>
+<script>
 function checkd() {
 	var url = "service.jsp";
     var name = "check";
@@ -161,7 +161,7 @@ function joinform_check() {
 </script>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 // 	$(document).ready(function(){
 // 		var IMP = window.IMP; // 생략가능
 // 		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -227,64 +227,57 @@ function joinform_check() {
 // 		});
 // 	});
 	</script>
+<div style = "text-align: center;">
+<%-- <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Winery</a> --%>
 
-	<div class="container" id="container">
-		<div class="form-container sign-up-container">
-			<form id="userInfo" name="userInfo" action="insertUser.wp"
-				method="post">
-				<h1>회원 가입</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
-						href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				</div>
-				<input type="text" id="id" name="id" placeholder="아이디"> <input
-					type="button" id="idck" value="아이디 중복 확인" /> <input
-					type="password" id="m_pw" name="m_pw" placeholder="비밀번호" /> <input
-					type="password" id="repassword" placeholder="비밀번호 확인" /> <input
-					type="email" id="m_email" name="m_email" placeholder="이메일" /> <input
-					type='hidden' id='checkservice' name='checkservice' value='' />
-				<button type="button" id="singupbtn" onclick="joinform_check();"
-					disabled>가입하기</button>
-			</form>
-		</div>
-		<div class="form-container sign-in-container">
-			<form class="form-signin" name="loginform" action="login.wp"
-				method="post">
-
-				<h1>Sign in</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="xi-kakaotalk"></i></a> <a
-						href="#" class="social"><i class="xi-kakaotalk"></i></a>
-				</div>
-<!-- 				<span>or use your account</span>  -->
-				<input name='id' placeholder="아이디" />
-				<input type="password" name='m_pw' placeholder="Password" /> <a
-					href="forgotinfo.wp">아이디/비밀번호 찾기</a>
-				<button>Sign In</button>
-			</form>
-		</div>
-		<div class="overlay-container">
-			<div class="overlay">
-				<div class="overlay-panel overlay-left">
-					<div style="text-align: center;">
-						<a class="navbar-brand"
-							href="${pageContext.request.contextPath}/index.jsp">Winery</a>
-					</div>
-			
-					<button class="ghost" id="signIn">Sign In</button>
-				</div>
-				<div class="overlay-panel overlay-right">
-					<div style="text-align: center;">
-						<a class="navbar-brand"
-							href="${pageContext.request.contextPath}/index.jsp">Winery</a>
-					</div>
-			
-					<button class="ghost" id="signUp">Sign Up</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
+</div>
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form id = "userInfo" name="userInfo" action="insertUser.wp" method="post">
+      <h1>회원 가입</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+      </div>
+      <input type="text"  id = "id" name="id" placeholder = "아이디" >
+      <input type ="button" id = "idck" value="아이디 중복 확인" />
+      <input type="password" id = "m_pw" name="m_pw" placeholder="비밀번호" />
+      <input type="password" id = "repassword" placeholder="비밀번호 확인" />
+      <input type="email" id = "m_email" name = "m_email" placeholder="이메일" />
+      <input type='hidden' id='checkservice' name='checkservice' value='' />
+      <button type="button" id = "singupbtn" onclick="joinform_check();" disabled>가입하기</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+  <form class="form-signin" name="loginform" action="login.wp" method="post">
+      <h1>Sign in</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="xi-kakaotalk"></i></a>
+        <a href="#" class="social"><i class="xi-kakaotalk"></i></a>
+      </div>
+      <span>or use your account</span>
+      <input name='id' placeholder="아이디" />
+      <input type="password" name='m_pw' placeholder="Password" />
+      <a href="#">Forgot your password?</a>
+      <button>Sign In</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
 var idck = 0;
 const target = document.getElementById('singupbtn');
 $(function() {
@@ -321,10 +314,10 @@ $(function() {
 
 </script>
 	<script
-		src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-		charset="utf-8"></script>
+						src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
+						charset="utf-8"></script>
 
-	<script>
+					<script>
 						var hostIndex = location.href.indexOf(location.host)
 								+ location.host.length;
 						var contextPath = location.href.substring(hostIndex,
@@ -392,7 +385,7 @@ $(function() {
 					</script>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
@@ -405,6 +398,6 @@ signInButton.addEventListener('click', () => {
   container.classList.remove("right-panel-active");
 });
 </script>
-<%-- 	<%@ include file="/footer.jsp"%> --%>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

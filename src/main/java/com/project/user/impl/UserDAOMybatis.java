@@ -37,6 +37,11 @@ public class UserDAOMybatis {
 		
 	}
 	
+	public UserVO getId(UserVO vo) {
+		
+		return mybatis.selectOne("UserDAO.getId", vo);
+	}
+	
 	
 	
 }

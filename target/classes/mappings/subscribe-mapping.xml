@@ -15,8 +15,12 @@
 <!-- 	SELECT * FROM SUBSCRIBE WHERE -->
 <!-- 	ID=#{id} -->
 <!-- 	</select> -->
+<<<<<<< HEAD
+	<!--구독하기 목록 조회 (조회 여러줄(=동적 커리 문)) -->  
+=======
 
 	<!--구독하기 목록 조회 (조회 여러줄(=동적 커리 문)) --> 
+>>>>>>> dff9640922872672f282a6338905afb74be110ef
 <!-- 	<select id="getSubscribe" resultType="subscribe"> -->
 <!-- 		SELECT * FROM SUBSCRIBE WHERE 1=1 -->
 <!-- 		<if test="searchCondition == 'TITLE' "> AND TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if> -->
@@ -52,7 +56,11 @@ VALUES
 <!-- 		ID = #{id}; -->
 <!-- 	</update> -->
 
+<<<<<<< HEAD
+  	<!--삭제 delete -->  
+=======
  	<!--삭제 delete --> 
+>>>>>>> dff9640922872672f282a6338905afb74be110ef
 <!-- 	<delete id="deleteSubscribe"> -->
 <!-- 		DELETE FROM SUBSCRIBE WHERE OPTION = #{option} -->
 <!-- 	</delete> -->

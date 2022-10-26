@@ -8,14 +8,24 @@
 <!-- 		<typeAlias type="com.springbook.biz.board.BoardVO" alias="board"></typeAlias> -->
 		<typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
 <!-- 		<typeAlias type="com.springbook.biz.member.MemberVO" alias="member"></typeAlias> -->
+<<<<<<< HEAD
+		<typeAlias type="com.project.subscribe.SubscribeVO" alias="subscribe"></typeAlias>
+=======
 <!-- 		<typeAlias type="com.project.subscribe.SubscribeVO" alias="subscribe"></typeAlias> -->
+>>>>>>> dff9640922872672f282a6338905afb74be110ef
 	</typeAliases>
 
 	<mappers>
 <!-- 		<mapper resource="mappings/board-mapping.xml" /> -->
 <!-- 		<mapper resource="mappings/member-mapping.xml" /> -->
+<<<<<<< HEAD
+
+<!-- 		<mapper resource="mappings/user-mapping.xml" /> -->
+		<mapper resource="mappings/subscribe-mapping.xml" />
+=======
 <!-- 		<mapper resource="mappings/user-mapping.xml" /> -->
 <!-- 		<mapper resource="mappings/subscribe-mapping.xml" /> -->
+>>>>>>> dff9640922872672f282a6338905afb74be110ef
 		<mapper resource="mappings/user-mapping.xml" />
 
 	</mappers>
