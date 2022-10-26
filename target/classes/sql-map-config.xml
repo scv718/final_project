@@ -3,23 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="config/database.properties"></properties>
-	<typeAliases>
-<!-- 		<typeAlias type="com.springbook.biz.board.BoardVO" alias="board"></typeAlias> -->
-		<typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
-<!-- 		<typeAlias type="com.springbook.biz.member.MemberVO" alias="member"></typeAlias> -->
-<!-- 		<typeAlias type="com.project.subscribe.SubscribeVO" alias="subscribe"></typeAlias> -->
-	</typeAliases>
+   <properties resource="config/database.properties"></properties>
+   <typeAliases>
+<!--       <typeAlias type="com.springbook.biz.board.BoardVO" alias="board"></typeAlias> -->
+      <typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
+      <typeAlias type="com.project.intro.IntroVO" alias="intro"></typeAlias>
+<!--       <typeAlias type="com.springbook.biz.member.MemberVO" alias="member"></typeAlias> -->
+   </typeAliases>
 
-	<mappers>
-<!-- 		<mapper resource="mappings/board-mapping.xml" /> -->
-<!-- 		<mapper resource="mappings/member-mapping.xml" /> -->
-<!-- 		<mapper resource="mappings/user-mapping.xml" /> -->
-<!-- 		<mapper resource="mappings/subscribe-mapping.xml" /> -->
-
-<!-- 		<mapper resource="mappings/user-mapping.xml" /> -->
-<!-- 		<mapper resource="mappings/subscribe-mapping.xml" /> -->
-		<mapper resource="mappings/user-mapping.xml" />
-
-	</mappers>
+   <mappers>
+<!--       <mapper resource="mappings/board-mapping.xml" /> -->
+<!--       <mapper resource="mappings/member-mapping.xml" /> -->
+      <mapper resource="mappings/user-mapping.xml" />
+      <mapper resource="mappings/intro-mapping.xml" />
+   </mappers>
 </configuration>

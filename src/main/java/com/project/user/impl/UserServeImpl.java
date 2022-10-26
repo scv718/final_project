@@ -54,6 +54,7 @@ public class UserServeImpl implements UserService{
 		return 0;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public UserVO getID(UserVO vo) {
 		// TODO Auto-generated method stub
@@ -67,6 +68,31 @@ public class UserServeImpl implements UserService{
 	}
 
 
+=======
+//	@Override
+//	public void insertUser(UserVO vo) {
+//		userDAO.insertUser(vo);
+//		
+//	}
+//
+//	@Override
+//	public void updateUser(UserVO vo) {
+//		userDAO.updateUser(vo);
+//		
+//	}
+//
+//	@Override
+//	public void deleteUser(UserVO vo) {
+//		
+//		userDAO.deleteUser(vo);
+//	}
+//
+//	@Override
+//	public List<UserVO> getUserList(UserVO vo) {
+//		
+//		return userDAO.getUserList(vo);
+//	}
+>>>>>>> 11cf3f77aee2917825bc4f77074a2254e15ce769
 
 
 }

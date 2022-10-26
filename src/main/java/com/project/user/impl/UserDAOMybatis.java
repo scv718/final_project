@@ -37,6 +37,7 @@ public class UserDAOMybatis {
 		
 	}
 	
+<<<<<<< HEAD
 	public UserVO getId(UserVO vo) {
 		
 		return mybatis.selectOne("UserDAO.getId", vo);
@@ -46,6 +47,8 @@ public class UserDAOMybatis {
 		return mybatis.selectOne("UserDAO.getPw", vo);
 	}
 	
+=======
+>>>>>>> 11cf3f77aee2917825bc4f77074a2254e15ce769
 	
 	
 }
