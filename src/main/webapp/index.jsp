@@ -2,9 +2,10 @@
 <%@ page import="java.util.Date"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-<%@ include file="header.jsp"%>
+
 
 <style>
 video {
@@ -31,7 +32,7 @@ video {
 }
 </style>
 <body class = "d-flex flex-column min-vh-100">
-
+<%@ include file="header.jsp"%>
 <div class="imgSlide">
 <div class="slider-1">
     <div class="slides">

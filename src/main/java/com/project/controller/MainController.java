@@ -1,12 +1,10 @@
 package com.project.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class mainController {
+public class MainController {
 	
 	@RequestMapping(value = "/introDuce.wp")
 	public String introDuce() {
@@ -20,7 +18,6 @@ public class mainController {
 		System.out.println("소개하기");
 		return "WEB-INF/view/winesearch.jsp";
 	}
-	
 
 	@RequestMapping(value = "/subscribe.wp")
 	public String subscribe() {
@@ -29,19 +26,34 @@ public class mainController {
 	}
 
 
+
 	
 	
 	@RequestMapping(value = "/userCertification.wp")
 	public String userCertification() {
-		System.out.println("로그인폼이동");
+		System.out.println("본인인증");
 		return "WEB-INF/view/user/userCertification.jsp";
 	}
+	
+	
+	@RequestMapping(value = "/singUp.wp")
+	public String singUp() {
+		System.out.println("로그인폼이동");
+		return "WEB-INF/view/user/singUp.jsp";
+	}
+	
+	
 	@RequestMapping(value = "/loginForm.wp")
 	public String loginFrom() {
 		System.out.println("로그인폼이동");
 		return "WEB-INF/view/user/loginform.jsp";
 	}
-	
-	
 
+	
+	@RequestMapping(value = "/forgotinfo.wp")
+	public String forgotinfo() {
+		System.out.println("유저정보찾기");
+		return "WEB-INF/view/user/userinfofind.jsp";
+	}
+	
 }

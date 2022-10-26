@@ -31,7 +31,7 @@
 			</c:when>
 			<c:otherwise>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="loginForm.wp">Login</a>
+					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a>
 					</li>
 				</ul>
 			</c:otherwise>
@@ -44,15 +44,19 @@
 
 <nav id = "header" class="navbar navbar-expand-sm  navbar-light">
 	<ul class="navbar-nav" id="upmenu">
+
 		<li class="nav-item">
 		<a id = "menuBtn" class ="dropdown-item" href="phone.jsp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
-		<a id = "menuBtn"  class ="dropdown-item" >와인이야기</a></li>
+		<a id = "menuBtn"  class ="dropdown-item" href = "adminMain.wp" >와인이야기</a></li>
 		<li class="nav-item">	
 		<a id = "menuBtn" class="dropdown-item" href="test.jsp">와인검색</a></li>
 		<li class="nav-item">	
-		<a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">구독하기</a></li>
-		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item">커뮤니티</a></li>
+
+
+		<a id = "menuBtn" class="dropdown-item" href="subscribe.wp">구독하기</a></li>
+		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">커뮤니티</a></li>
+
 	</ul>
 </nav>
 
@@ -130,7 +134,7 @@ $('#btnone').mouseover(function() {
 	$('.box').show();
 });
 
-$('.box').mouseout(function(){
+$('.box').mouseleave(function(){
 	$('.box').hide();
 });
 
@@ -139,7 +143,7 @@ $('#btntwo').mouseover(function() {
 	$('.box1').show();
 });
 
-$('.box1').mouseout(function(){
+$('.box1').mouseleave(function(){
 	$('.box1').hide();
 });
 

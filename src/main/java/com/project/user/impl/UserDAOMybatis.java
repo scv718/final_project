@@ -28,8 +28,6 @@ public class UserDAOMybatis {
 		
 	}
 	
-<<<<<<< Updated upstream
-=======
 	public int checkUser(String id) {
 		System.out.println("아이디 체크 실행");
 		return mybatis.selectOne("UserDAO.checkUser", id);
@@ -48,7 +46,6 @@ public class UserDAOMybatis {
 		return mybatis.selectOne("UserDAO.getPw", vo);
 	}
 	
->>>>>>> Stashed changes
 	
 	
 }

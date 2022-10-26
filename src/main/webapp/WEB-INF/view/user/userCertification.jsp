@@ -7,12 +7,6 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 </head>
-<body class = "d-flex flex-column min-vh-100">
-
-	<jsp:include page="/header.jsp" />
-
-	<!-- 아임포트 자바스크립트는 jQuery 기반으로 개발되었습니다 -->
-
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var IMP = window.IMP; // 생략가능
@@ -41,8 +35,7 @@
 					        		success : function(val){
 					        			console.log(val);
 					        			if (val == 1){
-					        				alert("인증 완료");
-					        				location.href = 'loginForm.wp';
+					        				location.href = 'singUp.wp';
 					        			}else{
 					        				alert("나이 제한");
 					        				location.href = 'index.jsp';
@@ -79,6 +72,14 @@
 		});
 	});
 	</script>
+
+
+<body class = "d-flex flex-column min-vh-100">
+
+	<jsp:include page="/header.jsp" />
+
+	<!-- 아임포트 자바스크립트는 jQuery 기반으로 개발되었습니다 -->
+
 
 
 	<button id="userCertification">본인인증</button>
