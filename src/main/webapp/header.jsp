@@ -40,10 +40,7 @@
 
 <nav id = "header" class="navbar navbar-expand-sm  navbar-light">
 	<ul class="navbar-nav" id="upmenu">
-<<<<<<< HEAD
 
-=======
->>>>>>> dff9640922872672f282a6338905afb74be110ef
 		<li class="nav-item">
 		<a id = "menuBtn" class ="dropdown-item" href="phone.jsp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
@@ -51,17 +48,15 @@
 		<li class="nav-item">	
 		<a id = "menuBtn" class="dropdown-item" href="test.jsp">와인검색</a></li>
 		<li class="nav-item">	
-<<<<<<< HEAD
+
 
 		<a id = "menuBtn" class="dropdown-item" href="subscribe.wp">구독하기</a></li>
 		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">커뮤니티</a></li>
 
 
-=======
 		<a id = "menuBtn" class="dropdown-item" href="subscribe.wp">구독하기</a></li>
 		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">커뮤니티</a></li>
 
->>>>>>> dff9640922872672f282a6338905afb74be110ef
 	</ul>
 </nav>
 
