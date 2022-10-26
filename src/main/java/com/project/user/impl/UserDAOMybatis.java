@@ -28,27 +28,6 @@ public class UserDAOMybatis {
 		
 	}
 	
-	public int checkUser(String id) {
-		System.out.println("아이디 체크 실행");
-		return mybatis.selectOne("UserDAO.checkUser", id);
-	}
-	public void insertUser(UserVO vo) {
-		mybatis.insert("UserDAO.insertUser", vo);
-		
-	}
-	
-<<<<<<< HEAD
-	public UserVO getId(UserVO vo) {
-		
-		return mybatis.selectOne("UserDAO.getId", vo);
-	}
-	public int getPw(UserVO vo) {
-		
-		return mybatis.selectOne("UserDAO.getPw", vo);
-	}
-	
-=======
->>>>>>> 11cf3f77aee2917825bc4f77074a2254e15ce769
 	
 	
 }

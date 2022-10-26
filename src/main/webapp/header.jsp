@@ -13,10 +13,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
@@ -31,7 +27,7 @@
 			</c:when>
 			<c:otherwise>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a>
+					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="loginForm.wp">Login</a>
 					</li>
 				</ul>
 			</c:otherwise>
@@ -45,7 +41,7 @@
 <nav id = "header" class="navbar navbar-expand-sm  navbar-light">
 	<ul class="navbar-nav" id="upmenu">
 		<li class="nav-item">
-		<a id = "menuBtn" class ="dropdown-item" href="getIntroList.wp" >Winery?</a></li>
+		<a id = "menuBtn" class ="dropdown-item" href="phone.jsp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
 		<a id = "menuBtn"  class ="dropdown-item" >와인이야기</a></li>
 		<li class="nav-item">	

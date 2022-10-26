@@ -26,7 +26,7 @@ public class UserServeImpl implements UserService{
 
 	@Override
 	public void insertUser(UserVO vo) {
-		userDAO.insertUser(vo);
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -48,27 +48,6 @@ public class UserServeImpl implements UserService{
 		return null;
 	}
 
-	@Override
-	public int checkUser(UserVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-<<<<<<< HEAD
-	@Override
-	public UserVO getID(UserVO vo) {
-		// TODO Auto-generated method stub
-		return userDAO.getId(vo);
-	}
-
-	@Override
-	public int getPw(UserVO vo) {
-		// TODO Auto-generated method stub
-		return userDAO.getPw(vo);
-	}
-
-
-=======
 //	@Override
 //	public void insertUser(UserVO vo) {
 //		userDAO.insertUser(vo);
@@ -92,7 +71,6 @@ public class UserServeImpl implements UserService{
 //		
 //		return userDAO.getUserList(vo);
 //	}
->>>>>>> 11cf3f77aee2917825bc4f77074a2254e15ce769
 
 
 }

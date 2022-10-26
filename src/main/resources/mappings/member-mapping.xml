@@ -21,7 +21,6 @@
 		<collection property="deptvo" resultMap="deptvo"></collection>
 	</resultMap>
 	
-	
 	<select id="getAll" resultMap="membervo">
 		SELECT M.*, D.DEPTNM, D.LOC FROM MEMBER M INNER JOIN DEPT D ON(M.DEPTNO=D.DEPTNO)
 	</select>
@@ -30,8 +29,6 @@
 		select * from users 
 		where id = #{id} and password = #{password}
 	</select>
-	
-	
 	
 
 </mapper>

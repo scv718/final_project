@@ -14,7 +14,7 @@
 	<script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/loginform.css" />
+	href="${pageContext.request.contextPath}/css/loginform.css" />
 <style>
 #naverIdLogin_loginButton {
 	background: url(resources/img/btnG_축약형.png);
