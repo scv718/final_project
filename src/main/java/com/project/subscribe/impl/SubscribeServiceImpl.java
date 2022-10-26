@@ -16,20 +16,17 @@ public class SubscribeServiceImpl implements SubscribeService {
 
 	@Override
 	public void insertSubscribe(SubscribeVO vo) {
-		subscribeDAO.insertSubscribe(vo);
-		
+		subscribeDAO.insertSubscribe(vo);	
 	}
 
 	@Override
 	public void updateSubscribe(SubscribeVO vo) {
 		subscribeDAO.updateSubscribe(vo);
-		
 	}
 
 	@Override
 	public void deleteSubscribe(SubscribeVO vo) {
 		subscribeDAO.deleteSubscribe(vo);
-		
 	}
 	
 	@Override
@@ -40,7 +37,6 @@ public class SubscribeServiceImpl implements SubscribeService {
 	@Override
 	public List<SubscribeVO> getSubscribeList(SubscribeVO vo) {
 		return subscribeDAO.getSubscribeList(vo);		
-		
 	}
 
 }

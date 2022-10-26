@@ -1,5 +1,8 @@
 @charset "UTF-8";
-@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+
+@import
+	url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css')
+	;
 
 .container {
 	max-width: 960px;
@@ -97,8 +100,8 @@
 	transform: translate(-50%, -50%);
 	font-weight: bolder;
 	font-size: 2.55rem;
-	color: #dee9f4;
-	text-shadow: 4px 6px 12px #272641db;
+	color: #000000;
+	text-shadow: 0px 0px 1px #333;
 }
 
 .wainT {
@@ -142,6 +145,8 @@ to {
 	align-content: space-around;
 	margin: 0 auto;
 	padding: 6.89%;
+	text-align: center;
+	letter-spacing: 2.5px;
 }
 
 #list-1, #list-2, #list-3 {
@@ -187,18 +192,29 @@ to {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%) !important;
+	transform: translate(-50%, -50%);
 	text-align: center;
 	text-shadow: 2px 5px 10px rgb(190, 162, 237);
 }
 
-#jb-text h1, h4, ul, div {
+#jb-text h1 {
 	font-weight: bolder;
 	text-align: center;
+	letter-spacing: 3px;
+	font-size: 46px;
+	padding: 15px;
 }
 
-#jb-text h4 {
+#jb-text h2 {
 	font-weight: bolder;
+	font-size: 32px;
+	padding: 3px;
+}
+
+}
+#jb-text1 {
+	font-weight: bolder;
+	font-size: 30px;
 }
 
 .blink {
@@ -212,18 +228,57 @@ keyframes blink-effect { 50% {
 }
 
 }
-.loate {
+#loate {
 	align-content: center;
 	background-color: #FCA5A5;
+	padding: 8px;
+	color: black;
+	font-size: 23px;
+	border: none;
+	font-weight: bolder;
 }
 
 #colre {
-	background-color: #FCA5A5 !important;
+	background-color: #FCA5A5; border-color : #f8f9fa;
+	font-size: 18px;
 	color: #060606;
+	border-color: #f8f9fa;
 }
 
 #fm {
 	margin: auto;
 	padding: 23%;
+	letter-spacing: 5px;
+	text-align: center;
 }
+
+#aa {
+	justify-content: space-around;
+	text-align: center;
+	line-height: 60px;
+}
+
+#aa h1 {
+	background-color: #fb5a5a;
+	padding: 2.7%;
+	text-shadow: 0px 0px 1px #333;
+}
+
+#aa h1, h2, h3 {
+	font-weight: bolder;
+	text-shadow: 0px 0px 1px #333;
+}
+
+#aa h2, h3 {
+	font-weight: bolder;
+	text-shadow: 0px 0px 1px #333;
+	line-height: 39px;
+}
+
+#aa h3 {
+	line-height: 53px;
+}
+
+.cll {
+	color: #F87171;
 }

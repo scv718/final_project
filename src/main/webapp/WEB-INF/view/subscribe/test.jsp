@@ -7,9 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-			<a href="loginForm.wp" type=bute><a>
-			<a href="loginForm.wp" type=bute><a>
-			<a href="loginForm.wp" type=bute><a>
-			<a href="loginForm.wp" type=bute><a>
+<%@ include file="../../../header.jsp"%>
+<div id="t1">
+		<div id="text-p">
+					<a href="insertUser.wp" role="button" >'구독 결제'</a>
+				</p></span>
+		</div>
+	</div>
+	<%@ include file="/footer.jsp"%>
 </body>
 </html>

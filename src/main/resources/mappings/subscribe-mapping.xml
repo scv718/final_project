@@ -40,13 +40,11 @@
 <!-- 		S_DATE,E_DATE,SUB_STATUS)VALUES(#{id},#{level},'구독O',NOW(),NOW(),'0') -->
 <!-- 	</insert> -->
 	
-<!-- 	 <insert id="insertSubscribe" keyProperty="id" keyColumn="id"> -->
-<!--         INSERT INTO SUBSCRIBE(ID, LEVEL, OPTION, -->
-<!-- 		S_DATE,E_DATE,SUB_STATUS)VALUES(#{id},#{level},'구독O',NOW(),NOW(),'0') -->
-<!--         <selectKey resultType="users" order="AFTER" keyProperty="id"> -->
-<!--             SELECT LAST_INSERT_ID() as id -->
-<!--         </selectKey> -->
-<!--     </insert> -->
+	 <insert id="insertSubscribe" keyProperty="id" keyColumn="id">    
+INSERT INTO SUBSCRIPT
+VALUES
+(${id}, #{level} , NOW(), '입금전', 0 , DATE_ADD(NOW(), INTERVAL 30 DAY),1, #{s_sweet},#{s_body},#{s_acidity},#{s_tannins})   
+    </insert>
 
 	<!--수정 update --> 
 <!-- 	<update id="updateSubscribe"> -->
