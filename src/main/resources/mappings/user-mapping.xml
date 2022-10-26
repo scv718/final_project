@@ -11,4 +11,12 @@
 	
 	
 
+	<select id="getPw" resultType="int">
+		select count(*) from member
+		where M_PHONE = #{m_phone}
+	</select>
+	<update id="updatePw">
+		update member
+		set M_PW = #{m_pw}
+	</update>
 </mapper>

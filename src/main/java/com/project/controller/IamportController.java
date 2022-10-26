@@ -24,6 +24,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +34,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.user.UserVO;
+import com.project.user.impl.UserDAOMybatis;
 
 
 @Controller
@@ -47,6 +50,9 @@ public class IamportController {
 	public static final String KEY = "5772502836676770";
 	//"아임포트 Rest Api Secret로 설정"; 
 	public static final String SECRET = "8rO0EvmfinI84PbqQ42EuuK3WRO8CMqBzsgFVXEqHwMs5VeOQETqZo9EGQwuiJIpP3izMWJmCDiInrFB";  
+	@Autowired
+	private UserDAOMybatis userService;
+	
 	
 	// 아임포트 인증(토큰)을 받아주는 함수 
 	public String getImportToken() {
@@ -138,6 +144,61 @@ public class IamportController {
 		
 	}
 	
+	@RequestMapping(value="/forgotPw.wp" , method = RequestMethod.POST)
+	@ResponseBody
+	public int forgotPw(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) throws IOException {
+		Map<String, String> map = new HashMap<String, String>();
+		String token = getImportToken();
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpGet get = new HttpGet(IMPORT_CERTIFICATION_URL+"/"+param.get("imp_uid")); 
+		System.out.println(IMPORT_CERTIFICATION_URL+"/"+param.get("imp_uid")+"?_token="+token);
+		System.out.println(token);
+		get.setHeader("Authorization", token);
+	
+		try {
+			HttpResponse res = client.execute(get);
+			ObjectMapper mapper = new ObjectMapper();
+			String body = EntityUtils.toString(res.getEntity());
+			JsonNode rootNode = mapper.readTree(body); 
+			JsonNode resNode = rootNode.get("response"); 
+			
+			System.out.println("777: " + resNode);
+			if(resNode.asText().equals("null")) {
+				System.out.println("내역이 없습니다.");
+				
+			}else {
+				session.setAttribute("phone", resNode.get("phone").asText());
+				String m_phone = mapper.treeToValue(resNode.path("phone"), String.class);
+				
+				System.out.println(m_phone);
+				vo.setM_phone(m_phone);
+				
+				int result = 0;
+				System.out.println(userService.getPw(vo));
+				result = userService.getPw(vo);
+				
+			    	
+			    if(result != 1) {
+			    	System.out.println("가입되지 않은 사용자");
+			  
+					return -1;
+			    
+			    }else {
+			    	System.out.println("비밀번호찾기 실행");
+			    	
+			    	return 1;
+			    }
+				
+					
+			}
+			
+		} catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+		
+		return 0;
+		
+	}
 	
 	
 	//결제 진행 폼=> 이곳에서 DB저장 로직도 추가하기

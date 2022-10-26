@@ -48,6 +48,7 @@ public class UserServeImpl implements UserService{
 		return null;
 	}
 
+<<<<<<< Updated upstream
 //	@Override
 //	public void insertUser(UserVO vo) {
 //		userDAO.insertUser(vo);
@@ -71,6 +72,27 @@ public class UserServeImpl implements UserService{
 //		
 //		return userDAO.getUserList(vo);
 //	}
+=======
+	@Override
+	public int checkUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public UserVO getID(UserVO vo) {
+		// TODO Auto-generated method stub
+		return userDAO.getId(vo);
+	}
+
+	@Override
+	public int getPw(UserVO vo) {
+		// TODO Auto-generated method stub
+		return userDAO.getPw(vo);
+	}
+
+
+>>>>>>> Stashed changes
 
 
 }
