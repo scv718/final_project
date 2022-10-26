@@ -14,6 +14,7 @@ public class SubscribeVO {
 	private int s_body;//선호 바디감
 	private int s_acidity;//선호 산미
 	private int s_tannins;//선호 타닌
+	
 	public String getId() {
 		return id;
 	}
