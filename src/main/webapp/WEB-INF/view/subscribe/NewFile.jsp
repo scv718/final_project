@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-			
+			<a href="loginForm.wp" type=bute><a>
+			<a href="loginForm.wp" type=bute><a>
+			<a href="loginForm.wp" type=bute><a>
+			<a href="loginForm.wp" type=bute><a>
 </body>
 </html>
