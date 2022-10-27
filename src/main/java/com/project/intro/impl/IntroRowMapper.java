@@ -18,7 +18,7 @@ public class IntroRowMapper implements RowMapper<IntroVO>{
       intro.setIntro_content(rs.getString("intro_content"));
       intro.setIntro_bg(rs.getString("intro_bg"));
       intro.setIntro_sg(rs.getString("intro_sg"));
-      intro.setFilename(rs.getString("filename"));
+//      intro.setFilename(rs.getString("filename"));
       
       
       return intro;

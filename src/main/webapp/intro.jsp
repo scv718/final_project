@@ -190,7 +190,7 @@ body {
 
                <div class="container">
                   <div class="carousel-caption text-start">
-                     <h1><c:out value="${introList[1].intro_title}"/></h1>
+                     <h1><c:out value="${introList[0].intro_title}"/></h1>
                      <p></p>
                      <p>
                         <!-- <a class="btn btn-lg btn-primary" href="#">알아보기</a> -->

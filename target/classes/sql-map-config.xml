@@ -16,7 +16,7 @@
 <!-- 		<mapper resource="mappings/member-mapping.xml" /> -->
 <!-- 		<mapper resource="mappings/user-mapping.xml" /> -->
 <!-- 		<mapper resource="mappings/subscribe-mapping.xml" /> -->
-
+	<!-- <mapper resource="mappings/search-mapping.xml" /> -->
 <!-- 		<mapper resource="mappings/user-mapping.xml" /> -->
 <!-- 		<mapper resource="mappings/subscribe-mapping.xml" /> -->
 		<mapper resource="mappings/user-mapping.xml" />

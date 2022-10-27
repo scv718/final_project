@@ -29,7 +29,8 @@
    
    <update id="updateIntro">
 	<!-- 컨트롤 시프트 X => 대문자 변환 , Y => 소문자 변환 -->
-		UPDATE INTRO SET INTRO_TITLE=#{intro_title} WHERE INTRO_NO=1
+<!-- 		UPDATE INTRO SET INTRO_TITLE=#{intro_title} WHERE INTRO_NO=1 -->
+		UPDATE INTRO SET INTRO_SG=#{intro_sg}, INTRO_BG=#{intro_bg} WHERE INTRO_NO=4;
 	</update>
 
  

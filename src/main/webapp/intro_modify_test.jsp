@@ -167,21 +167,21 @@ body {
 </style>
 
       <script>
-//                             // 이미지 업로드
-//                             $('#img').on('change', function() {
-//                             ext = $(this).val().split('.').pop().toLowerCase(); //확장자
-//                             //배열에 추출한 확장자가 존재하는지 체크
-//                             if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-//                                 resetFormElement($(this)); //폼 초기화
-//                                 window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
-//                             } else {
-//                                 file = $('#img').prop("files")[0];
-//                                 blobURL = window.URL.createObjectURL(file);
-//                                 $('#image_preview img').attr('src', blobURL);
-//                                 $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
-//                                 $(this).slideUp(); //파일 양식 감춤
-//                             }
-//                             });
+                            // 이미지 업로드
+                            $('#img').on('change', function() {
+                            ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+                            //배열에 추출한 확장자가 존재하는지 체크
+                            if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                                resetFormElement($(this)); //폼 초기화
+                                window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+                            } else {
+                                file = $('#img').prop("files")[0];
+                                blobURL = window.URL.createObjectURL(file);
+                                $('#image_preview img').attr('src', blobURL);
+                                $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
+                                $(this).slideUp(); //파일 양식 감춤
+                            }
+                            });
  </script>
 
 <!-- Custom styles for this template -->
@@ -194,9 +194,9 @@ body {
 	<main>
 
 		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-			        <form action="updateIntro.wp" method="post" enctype="multipart/form-data">
-<!-- 			<form action="updateIntro.wp"> -->
-<!-- 				<input type="hidden" name="intro_no" value="1"> -->
+			<!--         <form action="updateIntro.wp" method="post" enctype="multipart/form-data"> -->
+			<form action="updateIntro.wp">
+				<input type="hidden" name="intro_no" value="1">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 
@@ -207,7 +207,8 @@ body {
 							<div class="carousel-caption text-start">
 								<%--                      <h1><input type="text" value="${introList[1].intro_title}"/></h1> --%>
 								<h1>
-<%-- 									<input type="text" class="form-control innm" name="intro_title" value="${introList[0].intro_title}"> --%>
+									<input type="text" class="form-control innm" name="intro_title"
+										value="${introList[0].intro_title}">
 								</h1>
 								<p></p>
 								<p>
@@ -225,15 +226,6 @@ body {
 					</div>
 					<div class="f_box">
 						<label for="img">사진첨부</label> <input type="file" id="img" name="uploadFile">
-					</div>
-				</li>
-				<li class="img">
-					<div id="image_preview">
-					<img class="bd-placeholder-img " width="140" height="140" src="resources/img/${introList[3].intro_bg}">
-<!-- 						<img src="/img.png" alt="사진영역" style="width: 126px; height: 165px;"> -->
-					</div>
-					<div class="f_box">
-						<label for="img">사진첨부</label> <input type="file" id="img" name="uploadFile2">
 					</div>
 				</li>
 

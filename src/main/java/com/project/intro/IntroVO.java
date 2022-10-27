@@ -10,8 +10,9 @@ public class IntroVO {
 	private String intro_bg;
 	private String intro_sg;
 
-	private String filename;
+//	private String filename;
 	private MultipartFile uploadFile; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
+	private MultipartFile uploadFile2; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
 
 	public int getIntro_no() {
 		return intro_no;
@@ -66,17 +67,25 @@ public class IntroVO {
 		return "IntroVO [intro_no=" + intro_no + ", intro_a_no=" + intro_a_no + ", intro_title=" + intro_title
 				+ ", intro_content=" + intro_content + ", intro_bg=" + intro_bg + ", intro_sg=" + intro_sg + "]";
 	}
-	public String getFilename() {
-		return filename;
-	}
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
+//	public String getFilename() {
+//		return filename;
+//	}
+//	public void setFilename(String filename) {
+//		this.filename = filename;
+//	}
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
+	}
+
+	public MultipartFile getUploadFile2() {
+		return uploadFile2;
+	}
+
+	public void setUploadFile2(MultipartFile uploadFile2) {
+		this.uploadFile2 = uploadFile2;
 	}
 
 }
