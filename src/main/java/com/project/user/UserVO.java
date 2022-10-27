@@ -16,6 +16,11 @@ public class UserVO {
 	
 
 
+	public void setM_phone(String m_phone) {
+		this.m_phone = m_phone;
+	}
+
+
 	public int getM_no() {
 		return m_no;
 	}
@@ -41,9 +46,6 @@ public class UserVO {
 	}
 
 
-	public void setM_phone(String m_phone) {
-		this.m_phone = m_phone;
-	}
 
 
 	public String getM_birth() {

@@ -49,9 +49,9 @@ public class UserServeImpl implements UserService{
 	}
 
 	@Override
-	public int checkUser(UserVO vo) {
+	public int checkUser(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return userDAO.checkUser(id);
 	}
 
 	@Override
@@ -67,10 +67,24 @@ public class UserServeImpl implements UserService{
 	}
 
 	@Override
-	public int changePw(String m_phone) {
+	public int changePw(UserVO vo) {
 		// TODO Auto-generated method stub
-		return userDAO.changePw(m_phone);
+		return userDAO.changePw(vo);
 	}
+
+	@Override
+	public UserVO getId(UserVO vo) {
+		// TODO Auto-generated method stub
+		return userDAO.getId(vo);
+	}
+
+	@Override
+	public void kakaoInsertUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		userDAO.kakaoInsertUser(vo);
+	}
+
+	
 
 
 

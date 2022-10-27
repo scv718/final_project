@@ -118,10 +118,10 @@
 							<div class="tab-pane fade" id="contents">
 								<button id = "forgotpw" class = "btn btn-dark">비밀번호 찾기</button>
 								<div class = "pw">
-								<form action="changepw.wp" method="post">
+								<form action="changePw.wp" id="userInfo" name="userInfo" method="post">
 								<input type="password"  id="m_pw" name="m_pw" placeholder="비밀번호" /> 
 								<input type="password"  id="repassword" placeholder="비밀번호 확인" />
-								<button onclick="joinform_check();" >확인</button>
+								<button type="button" onclick="joinform_check();" >확인</button>
 								</form>
 								</div>
 							</div>

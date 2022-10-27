@@ -182,7 +182,6 @@ public class IamportController {
 				System.out.println("내역이 없습니다.");
 				
 			}else {
-				session.setAttribute("phone", resNode.get("phone").asText());
 				String m_phone = mapper.treeToValue(resNode.path("phone"), String.class);
 				
 				System.out.println(m_phone);
@@ -193,12 +192,13 @@ public class IamportController {
 				result = userService.getPw(vo);
 				
 			    	
+				System.out.println(result);
 			    if(result != 1) {
 			    	System.out.println("가입되지 않은 사용자");
-			  
 					return -1;
 			    
 			    }else {
+			    	session.setAttribute("phone", resNode.get("phone").asText());
 			    	System.out.println("비밀번호찾기 실행");
 			    	return 1;
 			    }

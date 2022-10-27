@@ -17,6 +17,7 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
@@ -25,18 +26,43 @@
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a class="nav-link">${userName}님</a> <a id = "loginLang" class="nav-link" href="logout.wp">Logout</a></li>
-					</li>
+					<li class="nav-item" id = "loginMenu"><a class="nav-link">${userName}님</a> 
+					<c:choose>
+						<c:when test="${userType eq 'kakao'}">
+								<a id = "loginLang" class="nav-link" href="#" onclick="kakaoLogout();">Logout</a>
+						</c:when>
+						<c:otherwise>
+							<a id = "loginLang" class="nav-link" href="logout.wp">Logout</a>
+						</c:otherwise>
+					</c:choose>	
+					</li>	
 				</ul>
 			</c:when>
 			<c:otherwise>
-				<ul class="navbar-nav nav-right">
+	<ul class="navbar-nav nav-right">
 					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a>
 					</li>
 				</ul>
 			</c:otherwise>
 		</c:choose>
+		
 	</ul>
+									<script>
+function kakaoLogout() {
+
+    $.ajax({
+        url: '/logOutkakaoUrl.wp',
+        type: 'get',
+        async: false,
+        dataType: 'text',
+        success: function (res) {
+            location.href = res;
+        }
+    });
+
+  }
+</script>
+			
 <div style = "text-align: center;">
 <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Winery</a>
 

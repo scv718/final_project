@@ -46,8 +46,12 @@ public class UserDAOMybatis {
 		return mybatis.selectOne("UserDAO.getPw", vo);
 	}
 	
-	public int changePw(String m_phone) {
-		return mybatis.update("UserDAO.changePw", m_phone);
+	public int changePw(UserVO vo) {
+		return mybatis.update("UserDAO.changePw", vo);
+	}
+	
+	public void kakaoInsertUser(UserVO vo) {
+		mybatis.insert("UserDAO.insertKakaoUser", vo);
 	}
 	
 	

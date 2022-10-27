@@ -25,57 +25,20 @@
 
 <body class="d-flex flex-column min-vh-100">
 	<script type="text/javascript">
-	$(
-			function() {
+	function kakaoLogin() {
 
-				$("#btn-kakao-login")
-						.click(
-								function(event) {
-									// a태그 기능 실행멈춤.
-									event.preventDefault();
-									// 카카오 로그인 실행시 오류메시지를 표시하는 경고창을 화면에 보이지 않게 한다.
-									$("alert-kakao-login").addClass("d-none");
-									// 사용자 키를 전달, 카카오 로그인 서비스 초기화.
-									Kakao.init('db6431198fa45dc73997d274adc51435');
-									// 카카오 로그인 서비스 실행하기 및 사용자 정보 가져오기.
-									Kakao.Auth
-											.login({
-												success : function(auth) {
-													Kakao.API
-															.request({
-																url : '/v2/user/me',
-																success : function(
-																		response) {
-																	// 사용자 정보를 가져와서 폼에 추가.
-																	var account = response.kakao_account;
+	    $.ajax({
+	        url: '/getAuthUrl.wp',
+	        type: 'get',
+	        async: false,
+	        dataType: 'text',
+	        success: function (res) {
+	            location.href = res;
+	        }
+	    });
 
-																	$('#form-kakao-login input[name=email]').val(
-																					account.email);
-																	$('#form-kakao-login input[name=name]').val(
-																					account.profile.nickname);
-																	// 사용자 정보가 포함된 폼을 서버로 제출한다.
-																	document.querySelector('#form-kakao-login')
-																			.submit();
-																},
-																fail : function(
-																		error) {
-																	// 경고창에 에러메시지 표시
-																	$('alert-kakao-login').removeClass("d-none").text("카카오 로그인 처리 중 오류가 발생했습니다.")
-																}
-															}); // api request
-												}, // success 결과.
-												fail : function(error) {
-													// 경고창에 에러메시지 표시
-													$('alert-kakao-login')
-															.removeClass(
-																	"d-none")
-															.text(
-																	"카카오 로그인 처리 중 오류가 발생했습니다.")
-												}
-											}); // 로그인 인증.
-								}) // 클릭이벤트
-			})// 카카오로그인 끝.
-</script>
+	  }
+	</script>
 
 	<script>
 function checkd() {
@@ -256,8 +219,9 @@ function joinform_check() {
 
 				<h1>Sign in</h1>
 				<div class="social-container">
-					<a href="#" class="social"><i class="xi-kakaotalk"></i></a> <a
-						href="#" class="social"><i class="xi-kakaotalk"></i></a>
+					<a href="#" id = "btn-kakao-login" class="social" onclick="kakaoLogin();"><i class="xi-kakaotalk"></i></a>
+
+					<a href="#" id="naverIdLogin_loginButton" class="social"><i class="xi-naver"></i></a>
 				</div>
 <!-- 				<span>or use your account</span>  -->
 				<input name='id' placeholder="아이디" />
@@ -287,6 +251,8 @@ function joinform_check() {
 			</div>
 		</div>
 	</div>
+
+					
 	<script type="text/javascript">
 var idck = 0;
 const target = document.getElementById('singupbtn');
@@ -335,8 +301,7 @@ $(function() {
 
 						var naverLogin = new naver.LoginWithNaverId({
 							clientId : "mpebH7I_1_5FrYFniKcZ", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-							callbackUrl : "http://localhost:8090/"
-									+ contextPath + "/collback.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+							callbackUrl : "http://localhost:8090/navercollback.wp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
 							isPopup : false,
 							callbackHandle : true
 						});
@@ -348,7 +313,8 @@ $(function() {
 								if (status) {
 									var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
 									var name = naverLogin.user.getName();
-									// 			var mobile = naverLogin.user.getMobile();
+									var mobile = naverLogin.user.getMobile();
+									var age = naverLogin.user.getAge();
 
 									console.log(naverLogin.user);
 
@@ -357,11 +323,16 @@ $(function() {
 										naverLogin.reprompt();
 										return;
 									}
-									//             if( mobile == undefined || mobile == null) {
-									// 				alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-									// 				naverLogin.reprompt();
-									// 				return;
-									// 			}
+									if( mobile == undefined || mobile == null) {
+													alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+													naverLogin.reprompt();
+													return;
+									}
+									if( age == undefined || age == null) {
+										alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+										naverLogin.reprompt();
+										return;
+						}
 									if (name == undefined || name == null) {
 										alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
 										naverLogin.reprompt();
