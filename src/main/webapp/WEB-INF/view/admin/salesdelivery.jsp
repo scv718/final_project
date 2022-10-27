@@ -57,7 +57,7 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                        <li>
+                       <li>
                             <a href="Notice.wp">공지사항</a>
                         </li>
                         <li>
@@ -105,7 +105,7 @@
                 </div>
             </nav>
             
-           <h2>관리자페이지(테스트)</h2>
+           <h2>판매/배송관리페이지입니다.</h2>
             
             
         </div>

@@ -66,6 +66,12 @@ public class UserServeImpl implements UserService{
 		return userDAO.getPw(vo);
 	}
 
+	@Override
+	public int changePw(String m_phone) {
+		// TODO Auto-generated method stub
+		return userDAO.changePw(m_phone);
+	}
+
 
 
 

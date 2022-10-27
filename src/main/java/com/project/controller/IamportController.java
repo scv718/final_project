@@ -80,7 +80,7 @@ public class IamportController {
 	
 	@RequestMapping(value="/certification.wp" , method = RequestMethod.POST)
 	@ResponseBody
-	public int userCertification(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model ) throws IOException {
+	public int userCertification(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) throws IOException {
 		Map<String, String> map = new HashMap<String, String>();
 		String token = getImportToken();
 		HttpClient client = HttpClientBuilder.create().build();
@@ -127,19 +127,28 @@ public class IamportController {
 			    System.out.println(birthday1);
 			    System.out.println(outputAge);
 			    System.out.println(age);
-			    	
-			    if(age<19) {
-			    	System.out.println("나이 제한됨");
-			  
-					return -1;
-			    
-			    }else {
-			    	System.out.println("나이 통과");
-			    	
-			    	return 1;
-			    }
+			    String m_phone = mapper.treeToValue(resNode.path("phone"), String.class);
 				
-					
+				System.out.println(m_phone);
+				vo.setM_phone(m_phone);
+				
+				int result = 0;
+				System.out.println(userService.getPw(vo));
+				result = userService.getPw(vo);
+				
+				if(result != 0) {
+					System.out.println("이미 가입된 사용자 입니다.");
+					return 2;
+				}else {
+					 if(age<19) {
+					    	System.out.println("나이 제한됨");
+							return -1;
+					    
+					    }else {
+					    	System.out.println("나이 통과");
+					    	return 1;
+					    }
+				}			
 			}
 			
 		} catch (Exception e) { 
@@ -191,11 +200,8 @@ public class IamportController {
 			    
 			    }else {
 			    	System.out.println("비밀번호찾기 실행");
-			    	
 			    	return 1;
 			    }
-				
-					
 			}
 			
 		} catch (Exception e) { 

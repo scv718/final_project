@@ -46,6 +46,10 @@ public class UserDAOMybatis {
 		return mybatis.selectOne("UserDAO.getPw", vo);
 	}
 	
+	public int changePw(String m_phone) {
+		return mybatis.update("UserDAO.changePw", m_phone);
+	}
+	
 	
 	
 }

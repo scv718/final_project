@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,12 +80,19 @@ public class UserController {
 		System.out.println(vo.getM_email());
 		System.out.println(vo.getM_birth());
 		userService.insertUser(vo);
-		
-		
-		
+
         return "index.jsp";
 	}
 	
-
+	@RequestMapping("changePw.wp")
+	@ResponseBody
+	public String changePw(@RequestBody String m_pw , HttpServletRequest request, HttpServletResponse response , HttpSession session) {
+		
+		String phone = (String) session.getAttribute("phone");
+		
+		
+ 
+        return null;
+	}
 
 }

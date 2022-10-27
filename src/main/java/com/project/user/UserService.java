@@ -13,5 +13,6 @@ public interface UserService {
 	UserVO getUser(UserVO vo);
 	UserVO getID(UserVO vo);
 	int getPw(UserVO vo);
+	int changePw(String m_phone);
 
 }

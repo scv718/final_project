@@ -78,9 +78,6 @@ public class EmailController {
 		SimpleMailMessage message = new SimpleMailMessage();
 		System.out.println("아이디찾기");
 		vo = userService.getId(vo);
-		
-
-		
 		message.setTo(m_email);
 		//이메일의 제목이 되는 부분
 		message.setSubject("Winery 아이디");
