@@ -5,14 +5,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<%@ include file="/header.jsp"%>
 <style>
 .select{
 	width:600px;
 	margin: 0 auto;
 }
 </style>
+<body class = "d-flex flex-column min-vh-100">
+<%@ include file="/header.jsp"%>
 <div class = "select">
 <form action="preference_setting.wp">
 <label for="customRange2" class="form-label">당도(Sweetness)</label>
@@ -30,6 +30,7 @@
 <label for="customRange2" class="form-label">탄닌(Tannin)	</label>
 <div>와인 맛의 뼈대를 이루는 중요한 요소로, 덜 익은 감을 먹을 때 느껴지는 떫은 맛을 떠올리는 것이 가장 적당할 것 같은데요.<br>
 와인에서 느껴지는 쌉싸름한 맛이 바로 탄닌입니다. <br>
+</div>
 <input type="range" class="form-range" min="1" max="5" id="s_tannins" name = "s_tannins">
 <br>
 <button type = "submit">확인</button>

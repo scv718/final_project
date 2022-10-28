@@ -52,6 +52,13 @@ public class UserController {
 		
 		return "index.jsp";
 	}
+	
+	
+	@RequestMapping("/updateUserInfo.wp")
+	public String updateUserInfo() {
+		
+		return "WEB-INF/view/user/updateUserInfo.jsp";
+	}
 
 	
 	@RequestMapping("idCheck.wp")

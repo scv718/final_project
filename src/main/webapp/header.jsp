@@ -27,12 +27,7 @@
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
 					<li class="nav-item" id = "loginMenu"><a class="nav-link" href = "preference.wp">${userName}님</a> 
-						</li>
-						</ul>
-						<ul class="navbar-nav nav-right">
-							<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="mypage.wp">MyPage</a>
-								</li>
-								</ul>
+					<a id = "loginLang" class="nav-link" href="mypage.wp">MyPage</a>
 					<c:choose>
 						<c:when test="${userType eq 'kakao'}">
 								<a id = "loginLang" class="nav-link" href="#" onclick="kakaoLogout();">Logout</a>
@@ -44,18 +39,21 @@
 							<a id = "loginLang" class="nav-link" href="logout.wp">Logout</a>
 						</c:otherwise>
 					</c:choose>	
-					</li>	
-				</ul>
-			</c:when>
-			<c:otherwise>
-	<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a>
 					</li>
+					</ul>
+						</c:when>
+						<c:otherwise>
+					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
-			</c:otherwise>
-		</c:choose>
 		
-	</ul>
+	
+					
+			
+		
+		
+	
 									<script>
 function kakaoLogout() {
 

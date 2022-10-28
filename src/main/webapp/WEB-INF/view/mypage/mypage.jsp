@@ -8,11 +8,11 @@
 
 <title>마이페이지</title>
 </head>
-<body><%@ include file="../../../header.jsp"%>
+<body class = "d-flex flex-column min-vh-100">
+<%@ include file="../../../header.jsp"%>
 	<div class="wrap">
 		<div class="greenContainer">
 		<div class=".image-box">
-		
 			<div>
 				<div>
 					<c:choose>
@@ -38,7 +38,7 @@
 			
 			<div class="status">
 			
-			<a href="payment.wp" role="button" >
+			<a href="updateUserInfo.wp" role="button" >
 				<div class="col-md-3">
 					<div>
 						<svg id="amo"xmlns="http://www.w3.org/2000/svg" width="118px"
