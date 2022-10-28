@@ -4,46 +4,66 @@
 
 <mapper namespace="BoardDAO">
 
-	<!-- <resultMap type="com.springbook.biz.board.BoardVO" id=""></resultMap> -->
 
-	<select id="getBoard" resultType="board">
-		SELECT * FROM BOARD
-		WHERE SEQ =
-		#{seq}
-	</select>
-
-	<select id="getBoardList" resultType="board">
-		SELECT * FROM BOARD WHERE 1=1
-		<if test="searchCondition == 'TITLE'">AND TITLE LIKE CONCAT('%', #{searchKeyword}, '%')</if>
-		<if test="searchCondition == 'CONTENT'">AND CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')</if>
-		ORDER BY SEQ DESC
+	<!-- 리뷰게시판(모든 상품의 리뷰) -->
+	<select id="getReviewList" resultType="review">
+		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
+		JOIN WINE W
+		ON R.W_NO =
+		W.W_NO
+		WHERE 1=1
+		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'PRODUCT'">
+			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
+			OR W_NM_E
+			LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		ORDER BY RE_NO DESC
 		LIMIT 10 OFFSET #{offset}
 	</select>
 
-	<select id="totalBoardListCnt" resultType="_int">
-		SELECT COUNT(*) FROM BOARD WHERE 1=1
-		<if test="searchCondition == 'TITLE'">AND TITLE LIKE CONCAT('%', #{searchKeyword}, '%')</if>
-		<if test="searchCondition == 'CONTENT'">AND CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')</if>
-		ORDER BY SEQ DESC
+	<!-- 리뷰게시판 글 개수 -->
+	<select id="getReviewListCnt" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW R
+		JOIN WINE W
+		ON R.W_NO = W.W_NO
+		WHERE 1=1
+		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'PRODUCT'">
+			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
+			OR W_NM_E
+			LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
 	</select>
 
+	<!-- 해당상품 리뷰작성 권한 확인(결과가 0이면 작성 불가) -->
+	<select id="confirmWriter" resultType="_int">
+		SELECT COUNT(*) FROM SAMP.ORDER O
+		JOIN SAMP.REVIEW R
+		ON O.ID = R.ID
+		WHERE O.ID = #{id} AND O.W_NO = #{w_no} AND O.ORD_STAT='배송완료';
+	</select>
 
-
-	<insert id="insertBoard">
-		INSERT INTO BOARD(TITLE, WRITER, CONTENT, FILENAME)
-		VALUES(#{title}, #{writer}, #{content}, #{filename})
+	<!-- 해당상품 리뷰작성 -->
+	<insert id="insertReview">
+		INSERT INTO REVIEW (W_NO, ID, RE_TITLE,
+		RE_CONTENT, RE_SCORE,
+		RE_PHOTO1, RE_PHOTO2, RE_PHOTO3, RE_DATE,
+		RE_LIKE)
+		VALUES
+		(#{w_no},#{id},#{re_title},#{re_content},#{re_score},#{re_photo1},#{re_photo2},#{re_photo3},now(),#{re_like});
 	</insert>
 
-	<update id="updateBoard">
-
-		UPDATE BOARD SET TITLE = #{title},
-		WRITE R= #{writer},
-		CONTENT = #{content}
-		WHERE SEQ = #{seq}
+	<!-- 해당상품 리뷰수정 -->
+	<update id="updateReview">
+		UPDATE REVIEW SET RE_COUNT=#{re_count},
+		RE_PHOTO1=#{re_photo1}, RE_PHOTO2=#{re_photo2},
+		RE_PHOTO3=#{re_photo3}, RE_CONTENT=#{re_content} WHERE RE_NO=#{re_no}
 	</update>
 
-	<delete id="deleteBoard">
-		DELETE FROM BOARD WHERE SEQ = #{seq}
+	<!-- 해당상품 리뷰삭제 -->
+	<delete id="deleteReview">
+		DELETE FROM REVIEW WHERE RE_NO=#{re_no}
 	</delete>
 
 </mapper>

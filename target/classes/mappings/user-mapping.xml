@@ -28,6 +28,11 @@
 		select id from member
 		where M_EMAIL = #{m_email}
 	</select>
+<select id="getUser1" resultType="int">
+		SELECT LEVEL FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+
 
 	<select id="getPw" resultType="int">
 		select count(*) from member

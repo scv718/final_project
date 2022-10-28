@@ -27,9 +27,18 @@
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
 					<li class="nav-item" id = "loginMenu"><a class="nav-link">${userName}님</a> 
+						</li>
+						</ul>
+						<ul class="navbar-nav nav-right">
+							<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="mypage.wp">MyPage</a>
+								</li>
+								</ul>
 					<c:choose>
 						<c:when test="${userType eq 'kakao'}">
 								<a id = "loginLang" class="nav-link" href="#" onclick="kakaoLogout();">Logout</a>
+						</c:when>
+						<c:when test="${userType eq 'naver'}">
+								<a id = "loginLang" class="nav-link" href="#" onclick="openPopUp();">Logout</a>
 						</c:when>
 						<c:otherwise>
 							<a id = "loginLang" class="nav-link" href="logout.wp">Logout</a>
@@ -61,6 +70,26 @@ function kakaoLogout() {
     });
 
   }
+  
+var testPopUp;
+function openPopUp() {
+	testPopUp = window
+			.open(
+					"https://nid.naver.com/nidlogin.logout",
+					"_blank",
+					"toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+}
+function closePopUp() {
+	testPopUp.close();
+}
+
+function naverLogout() {
+	openPopUp();
+	setTimeout(function() {
+		closePopUp();
+	}, 1000);
+
+}
 </script>
 			
 <div style = "text-align: center;">
@@ -91,9 +120,11 @@ function kakaoLogout() {
 <a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="#">QnA</a> 
 <a  id = "secondMenu"  href="#">리뷰</a> 
+<a id = "secondMenu" href="getReviewList.wp">리뷰게시판</a>
+<a id = "secondMenu" href="search/detailProduct.jsp">상품보기</a>
 </div>
 
-
+	
 <div class = "box1" id = "box">
 	<a id = "secondMenu" href="#">와인소개</a> 
 	<a id = "secondMenu" href="#">맛있게 와인 마시는법</a> 

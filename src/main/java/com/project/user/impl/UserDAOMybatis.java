@@ -6,54 +6,56 @@ import org.springframework.stereotype.Repository;
 
 import com.project.user.UserVO;
 
-
 @Repository
 public class UserDAOMybatis {
 
-	
 	@Autowired
 	SqlSessionTemplate mybatis;
-	
+
 	public UserVO getUser(UserVO vo) {
 		System.out.println("마이바티스 getUser 실행");
 
-//		Object[] args = {vo.getId(), vo.getPassword()};
-//		try {
-//			return jdbcTemplate.queryForObject(USER_GET, new UserRowMapper(),args);
-//		}catch(EmptyResultDataAccessException e) {
-//			return null;
-//		}
-		return mybatis.selectOne("UserDAO.getUser", vo);	
-		
-		
+		// Object[] args = {vo.getId(), vo.getPassword()};
+		// try {
+		// return jdbcTemplate.queryForObject(USER_GET, new UserRowMapper(),args);
+		// }catch(EmptyResultDataAccessException e) {
+		// return null;
+		// }
+		return mybatis.selectOne("UserDAO.getUser", vo);
+
 	}
-	
+
+	public int getUser1(UserVO vo) {
+		System.out.println("마이바티스 getUser1 실행");
+		return mybatis.selectOne("UserDAO.getUser1", vo);
+	}
+
 	public int checkUser(String id) {
 		System.out.println("아이디 체크 실행");
 		return mybatis.selectOne("UserDAO.checkUser", id);
 	}
+
 	public void insertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertUser", vo);
-		
+
 	}
-	
+
 	public UserVO getId(UserVO vo) {
-		
+
 		return mybatis.selectOne("UserDAO.getId", vo);
 	}
+
 	public int getPw(UserVO vo) {
-		
+
 		return mybatis.selectOne("UserDAO.getPw", vo);
 	}
-	
+
 	public int changePw(UserVO vo) {
 		return mybatis.update("UserDAO.changePw", vo);
 	}
-	
+
 	public void kakaoInsertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertKakaoUser", vo);
 	}
-	
-	
-	
+
 }

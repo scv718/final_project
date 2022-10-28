@@ -16,4 +16,6 @@ public interface UserService {
 	int changePw(UserVO vo);
 	UserVO getId(UserVO vo);
 	void kakaoInsertUser(UserVO vo);
+	int getUser1(UserVO vo);
+	
 }

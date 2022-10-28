@@ -15,20 +15,23 @@ public class SubscribeServiceImpl implements SubscribeService {
 	private SubscribeDAOMybatis subscribeDAO;
 
 	@Override
-	public void insertSubscribe(SubscribeVO vo) {
-		subscribeDAO.insertSubscribe(vo);	
+	public void insertSubscribe1(SubscribeVO vo) {
+		subscribeDAO.insertSubscribe1(vo);	
 	}
-
+	@Override
+	public void insertSubscribe2(SubscribeVO vo) {
+		subscribeDAO.insertSubscribe2(vo);	
+	}
+	@Override
+	public void insertSubscribe3(SubscribeVO vo) {
+		subscribeDAO.insertSubscribe3(vo);	
+	}
+	
 	@Override
 	public void updateSubscribe(SubscribeVO vo) {
 		subscribeDAO.updateSubscribe(vo);
 	}
 
-	@Override
-	public void deleteSubscribe(SubscribeVO vo) {
-		subscribeDAO.deleteSubscribe(vo);
-	}
-	
 	@Override
 	public SubscribeVO getSubscribe(SubscribeVO vo) {
 		return subscribeDAO.getSubscribe(vo);

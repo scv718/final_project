@@ -32,8 +32,10 @@
 			alert('로그인성공');
 			var email = naver_id_login.getProfileData('email');
 			var name = naver_id_login.getProfileData('name');
-			var mobile = naver_id_login.getProfileData('mobile');
-			var age = naver_id_login.getProfileData('age');
+
+			console.log(email);
+			console.log(name);
+
 
 // 			var mobile = naver_id_login.getProfileData('mobile');
 			

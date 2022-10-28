@@ -26,7 +26,7 @@ public class MainController {
 	}
 
 
-
+	
 	
 	
 	@RequestMapping(value = "/userCertification.wp")
@@ -54,6 +54,12 @@ public class MainController {
 	public String forgotinfo() {
 		System.out.println("유저정보찾기");
 		return "WEB-INF/view/user/userinfofind.jsp";
+	}
+	
+	@RequestMapping(value = "/mypage.wp")
+	public String mypage() {
+		System.out.println("마이페이지");
+		return "WEB-INF/view/mypage/mypage.jsp";
 	}
 	
 }
