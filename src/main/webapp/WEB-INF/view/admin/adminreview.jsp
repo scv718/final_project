@@ -61,7 +61,7 @@
                             <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>
-                            <a href="adminQa.wp">Q&A</a>
+                            <a href="adminQna.wp">Q&A</a>
                         </li>
                         <li>
                             <a href="adminReview.wp">리뷰</a>
@@ -105,7 +105,7 @@
                 </div>
             </nav>
             
-           <h2>관리자페이지(테스트)</h2>
+           <h2>리뷰관리페이지입니다.</h2>
             
             
         </div>

@@ -44,13 +44,13 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="Introduce.wp">소개페이지관리</a>
+                            <a href="adminIntroduce.wp">소개페이지관리</a>
                         </li>
                         <li>
-                            <a href="Subscription.wp">구독관리</a>
+                            <a href="adminSubscription.wp">구독관리</a>
                         </li>
                          <li>
-                            <a href="Salesdelivery.wp">판매,배송관리</a>
+                            <a href="adminSalesdelivery.wp">판매,배송관리</a>
                         </li>
                     </ul>
                 </li>
@@ -58,13 +58,13 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                          <li>
-                            <a href="Notice.wp">공지사항</a>
+                            <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>
-                            <a href="Qa.wp">Q&A</a>
+                            <a href="adminQa.wp">Q&A</a>
                         </li>
                         <li>
-                            <a href="Review.wp">리뷰</a>
+                            <a href="adminReview.wp">리뷰</a>
                         </li>
                     </ul>
                 </li>
