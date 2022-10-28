@@ -26,7 +26,7 @@
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a class="nav-link">${userName}님</a> 
+					<li class="nav-item" id = "loginMenu"><a class="nav-link" href = "preference.wp">${userName}님</a> 
 						</li>
 						</ul>
 						<ul class="navbar-nav nav-right">
@@ -70,26 +70,6 @@ function kakaoLogout() {
     });
 
   }
-  
-var testPopUp;
-function openPopUp() {
-	testPopUp = window
-			.open(
-					"https://nid.naver.com/nidlogin.logout",
-					"_blank",
-					"toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-}
-function closePopUp() {
-	testPopUp.close();
-}
-
-function naverLogout() {
-	openPopUp();
-	setTimeout(function() {
-		closePopUp();
-	}, 1000);
-
-}
 </script>
 			
 <div style = "text-align: center;">

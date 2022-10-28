@@ -16,5 +16,7 @@ public interface SubscribeService {
 	
 	//구독 정보리스트
 	List<SubscribeVO>getSubscribeList(SubscribeVO vo);
+	//취향설정
+	void preference_Setting(SubscribeVO vo);
 	
 }

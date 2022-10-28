@@ -121,7 +121,7 @@ public class NaverController {
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userType", "naver");
         		
-        		return "redirect:/";
+        		return "redirect:/preference.wp";
         	}
         
         }else {

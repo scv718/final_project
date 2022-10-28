@@ -120,7 +120,7 @@ public class KakaoLoginController {
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userType", "kakao");
         		
-        		return "redirect:/";
+        		return "redirect:/preference.wp";
         	}
         
         }else {

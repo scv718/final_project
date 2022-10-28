@@ -49,4 +49,11 @@ public class SubscribeDAOMybatis {
 		System.out.println("===>mybatis로 getSubscribeList() 기능처리 ");
 		return mybatis.selectList("SubscribeDAO.getSubscribeList", vo);
 	}
+	
+	public void preference_Setting(SubscribeVO vo) {
+		System.out.println("===>mybatis로 preferene_Setting() 기능처리 ");
+		System.out.println(vo.getId());
+		System.out.println(vo.getS_sweet());
+		 mybatis.update("SubscribeDAO.preference_Setting", vo);
+	}
 }
