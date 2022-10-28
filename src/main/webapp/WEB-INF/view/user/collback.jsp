@@ -32,12 +32,15 @@
 			alert('로그인성공');
 			var email = naver_id_login.getProfileData('email');
 			var name = naver_id_login.getProfileData('name');
-
+			var age = naver_id_login.getProfileData('age');
+			var birthday = naver_id_login.getProfileData('birthday');
 			console.log(email);
 			console.log(name);
+			console.log(age);
+			console.log(birthday);
 
 
-// 			var mobile = naver_id_login.getProfileData('mobile');
+			
 			
 			$.ajax({
 				type : 'POST',
@@ -47,7 +50,6 @@
 				data : JSON.stringify ({
 					email: naver_id_login.getProfileData('email'),   
 					name : naver_id_login.getProfileData('name'),
-					phone : naver_id_login.getProfileData('mobile'),
 					age : naver_id_login.getProfileData('age')
         		}),
 			})

@@ -37,9 +37,9 @@ public class UserController {
 			System.out.println("1234");
 			session.setAttribute("userID", userService.getUser(vo).getId());
 			session.setAttribute("userName", userService.getUser(vo).getM_name());
-			return "index.jsp";
+			return "redirect:/";
 		}else {
-			return "login.jsp?error=1";
+			return "redirect:/";
 		}
 	}
 	

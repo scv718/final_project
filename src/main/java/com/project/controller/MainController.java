@@ -25,10 +25,6 @@ public class MainController {
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 
-
-	
-	
-	
 	@RequestMapping(value = "/userCertification.wp")
 	public String userCertification() {
 		System.out.println("본인인증");
