@@ -166,23 +166,23 @@ body {
 }
 </style>
 
-      <script>
-//                             // 이미지 업로드
-//                             $('#img').on('change', function() {
-//                             ext = $(this).val().split('.').pop().toLowerCase(); //확장자
-//                             //배열에 추출한 확장자가 존재하는지 체크
-//                             if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-//                                 resetFormElement($(this)); //폼 초기화
-//                                 window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
-//                             } else {
-//                                 file = $('#img').prop("files")[0];
-//                                 blobURL = window.URL.createObjectURL(file);
-//                                 $('#image_preview img').attr('src', blobURL);
-//                                 $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
-//                                 $(this).slideUp(); //파일 양식 감춤
-//                             }
-//                             });
- </script>
+<script>
+	//                             // 이미지 업로드
+	//                             $('#img').on('change', function() {
+	//                             ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+	//                             //배열에 추출한 확장자가 존재하는지 체크
+	//                             if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+	//                                 resetFormElement($(this)); //폼 초기화
+	//                                 window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+	//                             } else {
+	//                                 file = $('#img').prop("files")[0];
+	//                                 blobURL = window.URL.createObjectURL(file);
+	//                                 $('#image_preview img').attr('src', blobURL);
+	//                                 $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
+	//                                 $(this).slideUp(); //파일 양식 감춤
+	//                             }
+	//                             });
+</script>
 
 <!-- Custom styles for this template -->
 <link href="carousel.css" rel="stylesheet">
@@ -194,20 +194,25 @@ body {
 	<main>
 
 		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-			        <form action="updateIntro.wp" method="post" enctype="multipart/form-data">
-<!-- 			<form action="updateIntro.wp"> -->
-<!-- 				<input type="hidden" name="intro_no" value="1"> -->
+			<form action="updateIntro.wp" method="post" enctype="multipart/form-data">
+			<li class="img">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-
-						<img class="bd-placeholder-img" width="100%" height="100%"
-							src="resources/img/${introList[0].intro_bg}">
+						
+<!-- 							<div id="image_preview"> -->
+								<img class="bd-placeholder-img" width="100%" height="100%"
+									src="resources/img/${intro.intro_img}">
+							
+						
 
 						<div class="container">
 							<div class="carousel-caption text-start">
-								<%--                      <h1><input type="text" value="${introList[1].intro_title}"/></h1> --%>
 								<h1>
-<%-- 									<input type="text" class="form-control innm" name="intro_title" value="${introList[0].intro_title}"> --%>
+									<input type="text" name="intro_t1" value="${intro.intro_t1}" />
+								</h1>
+								<h1>
+									<input type="text" class="form-control innm" name="intro_t1_2"
+										value="${intro.intro_t1_2}">
 								</h1>
 								<p></p>
 								<p>
@@ -215,26 +220,13 @@ body {
 								</p>
 							</div>
 						</div>
-					</div>
+<!-- 					</div> -->
 				</div>
-
-				<li class="img">
-					<div id="image_preview">
-					<img class="bd-placeholder-img " width="140" height="140" src="resources/img/${introList[3].intro_sg}">
-<!-- 						<img src="/img.png" alt="사진영역" style="width: 126px; height: 165px;"> -->
-					</div>
-					<div class="f_box">
-						<label for="img">사진첨부</label> <input type="file" id="img" name="uploadFile">
-					</div>
-				</li>
-				<li class="img">
-					<div id="image_preview">
-					<img class="bd-placeholder-img " width="140" height="140" src="resources/img/${introList[3].intro_bg}">
-<!-- 						<img src="/img.png" alt="사진영역" style="width: 126px; height: 165px;"> -->
-					</div>
-					<div class="f_box">
-						<label for="img">사진첨부</label> <input type="file" id="img" name="uploadFile2">
-					</div>
+				</div>
+							<div class="f_box">
+								<label for="img">사진첨부</label> <input type="file" id="img"
+									name="uploadFile">
+							</div>
 				</li>
 
 				<!-- Marketing messaging and featurettes
@@ -244,8 +236,8 @@ body {
 				<div class="container marketing">
 
 					<div class="">
-						<h1>와인을 경험하고 싶은데 잘 몰라서 고민이라면?</h1>
-						<h1 class="text-muted">와이너리에서 시작해보세요.</h1>
+						<h1><input type="text" name="intro_t2" value="${intro.intro_t2}" /></h1>
+						<h1 class="text-muted"><input type="text" name="intro_t2_2" value="${intro.intro_t2_2}" /></h1>
 						<br> <br> <br>
 					</div>
 					<!-- Three columns of text below the carousel -->
@@ -253,10 +245,15 @@ body {
 
 						<div class="col-lg-4">
 							<img class="bd-placeholder-img " width="140" height="140"
-								src="resources/img/${introList[3].intro_sg}">
-							<h2 class="fw-normal">나만의 커스터마이징</h2>
+								src="resources/img/${intro.intro_s_img1}">
+								<div class="f_box">
+								<label for="img">사진첨부</label> <input type="file" id="img"
+									name="uploadFile2">
+							</div>
+							<h2 class="fw-normal"><input type="text" name="intro_s_t1" value="${intro.intro_s_t1}" /></h2>
 							<p>
-								한 명을 위한 1:1 전담 소믈리에와 <br> 함께 취향을 찾아보세요.
+								<input type="text" name="intro_s_c1" value="${intro.intro_s_c1}" /> <br> 
+								<input type="text" name="intro_s_c1_2" value="${intro.intro_s_c1_2}" />
 							</p>
 							<p>
 								<a class="btn btn-secondary" href="#">오시는 길 &raquo;</a>
@@ -265,10 +262,15 @@ body {
 						<!-- /.col-lg-4 -->
 						<div class="col-lg-4">
 							<img class="bd-placeholder-img" width="140" height="140"
-								src="resources/img/${introList[4].intro_sg}">
-							<h2 class="fw-normal">상세한 필터서비스</h2>
+								src="resources/img/${intro.intro_s_img2}">
+								<div class="f_box">
+								<label for="img">사진첨부</label> 
+								<input type="file" id="img"	name="uploadFile3">
+							</div>
+							<h2 class="fw-normal"><input type="text" name="intro_s_t2" value="${intro.intro_s_t2}" /></h2>
 							<p>
-								방문 전 나만의 취향을 <br>사이트에서 검색해보세요.
+								<input type="text" name="intro_s_c2" value="${intro.intro_s_c2}" /> <br>
+								<input type="text" name="intro_s_c2_2" value="${intro.intro_s_c2_2}" />
 							</p>
 							<p>
 								<a class="btn btn-secondary" href="#">검색하기 &raquo;</a>
@@ -277,10 +279,15 @@ body {
 						<!-- /.col-lg-4 -->
 						<div class="col-lg-4">
 							<img class="bd-placeholder-img" width="140" height="140"
-								src="resources/img/${introList[5].intro_sg}">
-							<h2 class="fw-normal">와인 구독서비스</h2>
+								src="resources/img/${intro.intro_s_img3}">
+								<div class="f_box">
+								<label for="img">사진첨부</label> 
+								<input type="file" id="img"	name="uploadFile4">
+							</div>
+							<h2 class="fw-normal"><input type="text" name="intro_s_t3" value="${intro.intro_s_t3}" /></h2>
 							<p>
-								매월 새로운 나만의 와인을 <br> 다양하게 집에서 즐겨보세요.
+								<input type="text" name="intro_s_c3" value="${intro.intro_s_c3}" /> <br> 
+								<input type="text" name="intro_s_c3_2" value="${intro.intro_s_c3_2}" />
 							</p>
 							<p>
 								<a class="btn btn-secondary" href="#">구독하기 &raquo;</a>
@@ -294,8 +301,8 @@ body {
 						<div class="bg-light p-5 rounded">
 							<div class="col-sm-8 py-5 mx-auto">
 								<h1 class="display-5 fw-normal">이용안내</h1>
-								<p class="fs-5">※첫 1회 매장 방문 고객에 한해서 와인 버틀러 서비스 신청이 가능합니다.</p>
-								<p>(최초 구매 시 픽업 또는 현장 구매만 가능합니다.)</p>
+								<p class="fs-5"><input type="text" name="intro_info1" value="${intro.intro_info1}" /></p>
+								<p><input type="text" name="intro_info1_2" value="${intro.intro_info1_2}" /></p>
 								<p>
 									<!-- <a class="btn btn-primary" href="/docs/5.2/components/navbar/#offcanvas" role="button">Learn more about offcanvas navbars &raquo;</a> -->
 								</p>
@@ -315,26 +322,31 @@ body {
 					<div class="row featurette">
 						<div class="col-md-7">
 							<h2 class="featurette-heading fw-normal lh-1">
-								Key Point<span class="text-muted"></span>
+								<input type="text" name="intro_s_t4" value="${intro.intro_s_t4}" /><span class="text-muted"></span>
 							</h2>
 							<br>
-							<p class="lead">매장에서 만나보세요!</p>
-							<p class="lead">전 직원 소믈리에가 기다리고 있는 매장에서</p>
-							<p class="lead">대중적인 와인부터 내추럴, 빈티지와인까지 좀 더 깊게 취향을 경험해보세요.</p>
+							<p class="lead"><input type="text" name="intro_s_c4" value="${intro.intro_s_c4}" /></p>
+							<p class="lead"><input type="text" name="intro_s_c4_2" value="${intro.intro_s_c4_2}" /></p>
+							<p class="lead"><input type="text" name="intro_s_c4_3" value="${intro.intro_s_c4_3}" /></p>
 							<br>
-							<p class="lead">세상에는 맛있는 와인이 너무 많아!</p>
-							<p class="lead">와이너리가 직접 선별하고 유통과정까지</p>
-							<p class="lead">꼼꼼히 검수합니다.</p>
+							<p class="lead"><input type="text" name="intro_s_c4_4" value="${intro.intro_s_c4_4}" /></p>
+							<p class="lead"><input type="text" name="intro_s_c4_5" value="${intro.intro_s_c4_5}" /></p>
+							<p class="lead"><input type="text" name="intro_s_c4_6" value="${intro.intro_s_c4_6}" /></p>
 						</div>
 						<div class="col-md-5">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-								width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-								role="img" aria-label="Placeholder: 500x500"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title><rect width="100%"
-									height="100%" fill="#eee" />
-                  <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+<!-- 							<svg -->
+<!-- 								class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" -->
+<!-- 								width="500" height="500" xmlns="http://www.w3.org/2000/svg" -->
+<!-- 								role="img" aria-label="Placeholder: 500x500" -->
+<!-- 								preserveAspectRatio="xMidYMid slice" focusable="false"> -->
+<!--                   <title>Placeholder</title><rect width="100%" -->
+<!-- 									height="100%" fill="#eee" /> -->
+<!--                   </svg> -->
+                  <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="resources/img/${intro.intro_s_img4}">
+                  <div class="f_box">
+								<label for="img">사진첨부</label> <input type="file" id="img"
+									name="uploadFile5">
+							</div>
 
 						</div>
 					</div>

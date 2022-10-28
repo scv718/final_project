@@ -22,33 +22,33 @@ public class AdminController {
 		return "WEB-INF/view/admin/adminwine.jsp";
 	}
 	
-	@RequestMapping("Introduce.wp")
+	@RequestMapping("adminIntroduce.wp")
 	public String introduce() {
-		return "WEB-INF/view/admin/introduce.jsp";
+		return "WEB-INF/view/admin/adminintroduce.jsp";
 	}
 	
-	@RequestMapping("Subscription.wp")
+	@RequestMapping("adminSubscription.wp")
 	public String subscription() {
-		return "WEB-INF/view/admin/subscription.jsp";
+		return "WEB-INF/view/admin/adminsubscription.jsp";
 	}
 	
-	@RequestMapping("Salesdelivery.wp")
+	@RequestMapping("adminSalesdelivery.wp")
 	public String salesdelivery() {
-		return "WEB-INF/view/admin/salesdelivery.jsp";
+		return "WEB-INF/view/admin/adminsalesdelivery.jsp";
 	}
 	
-	@RequestMapping("Notice.wp")
+	@RequestMapping("adminNotice.wp")
 	public String notice() {
-		return "WEB-INF/view/admin/notice.jsp";
+		return "WEB-INF/view/admin/adminnotice.jsp";
 	}
 	
-	@RequestMapping("Qa.wp")
+	@RequestMapping("adminQna.wp")
 	public String qa() {
-		return "WEB-INF/view/admin/qa.jsp";
+		return "WEB-INF/view/admin/adminqna.jsp";
 	}
 	
-	@RequestMapping("Review.wp")
+	@RequestMapping("adminReview.wp")
 	public String review() {
-		return "WEB-INF/view/admin/review.jsp";
+		return "WEB-INF/view/admin/adminreview.jsp";
 	}
 }

@@ -62,9 +62,9 @@ public class IntroController {
 
 	// 인트로 수정
 	@RequestMapping("/updateIntro.wp")
-//	public String updateIntro(MultipartHttpServletRequest request, IntroVO vo, Model model) 
-//			throws IllegalStateException, IOException{
-		public String insertIntro(IntroVO vo, Model model) throws IllegalStateException, IOException {
+	public String updateIntro(MultipartHttpServletRequest request, IntroVO vo, Model model) 
+			throws IllegalStateException, IOException{
+//		public String updateIntro(IntroVO vo, Model model) throws IllegalStateException, IOException {
 
 //		if( vo.getWriter().equals(session.getAttribute("userName").toString()) ){
 //			boardService.updateBoard(vo);
@@ -76,27 +76,52 @@ public class IntroController {
 //		public String insertIntro(IntroVO vo) throws IllegalStateException, IOException {
 			MultipartFile uploadFile = vo.getUploadFile();
 			MultipartFile uploadFile2 = vo.getUploadFile2();
+			MultipartFile uploadFile3 = vo.getUploadFile3();
+			MultipartFile uploadFile4 = vo.getUploadFile4();
+			MultipartFile uploadFile5 = vo.getUploadFile5();
+			
 			System.out.println(uploadFile);
 			// realPath 추가
 //			String realPath = request.getSession().getServletContext().getRealPath("/resources/img/");
 			String realPath = "c:/swork/final_project/src/main/webapp/resources/img/" ;
-			String intro_sg = uploadFile.getOriginalFilename();
+			String intro_img = uploadFile.getOriginalFilename();
 			if (!uploadFile.isEmpty()) {
-				vo.setIntro_sg(intro_sg);
-				uploadFile.transferTo(new File(realPath + intro_sg));
+				vo.setIntro_img(intro_img);
+				uploadFile.transferTo(new File(realPath + intro_img));
 			}
 			
 			String realPath2 = "c:/swork/final_project/src/main/webapp/resources/img/" ;
-			String intro_bg = uploadFile2.getOriginalFilename();
+			String intro_s_img1 = uploadFile2.getOriginalFilename();
 			if (!uploadFile2.isEmpty()) {
-				vo.setIntro_bg(intro_bg);
-				uploadFile2.transferTo(new File(realPath2 + intro_bg));
+				vo.setIntro_s_img1(intro_s_img1);
+				uploadFile2.transferTo(new File(realPath2 + intro_s_img1));
+			}
+			
+			String realPath3 = "c:/swork/final_project/src/main/webapp/resources/img/" ;
+			String intro_s_img2 = uploadFile3.getOriginalFilename();
+			if (!uploadFile2.isEmpty()) {
+				vo.setIntro_s_img2(intro_s_img2);
+				uploadFile3.transferTo(new File(realPath3 + intro_s_img2));
+			}
+			
+			String realPath4 = "c:/swork/final_project/src/main/webapp/resources/img/" ;
+			String intro_s_img3 = uploadFile4.getOriginalFilename();
+			if (!uploadFile4.isEmpty()) {
+				vo.setIntro_s_img3(intro_s_img3);
+				uploadFile4.transferTo(new File(realPath4 + intro_s_img3));
+			}
+			
+			String realPath5 = "c:/swork/final_project/src/main/webapp/resources/img/" ;
+			String intro_s_img4 = uploadFile5.getOriginalFilename();
+			if (!uploadFile5.isEmpty()) {
+				vo.setIntro_s_img4(intro_s_img4);
+				uploadFile5.transferTo(new File(realPath5 + intro_s_img4));
 			}
 			
 			
 			
 		introService.updateIntro(vo);
-		return "getIntroList.wp";
+		return "getIntro.wp";
 	}
 
 }
