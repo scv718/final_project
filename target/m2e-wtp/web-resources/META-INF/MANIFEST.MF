@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: PC-20
+=======
+Built-By: skfnx
+>>>>>>> a6f3e8a922bb02823b26a730bab91f52fc26ee30
 Build-Jdk: 11.0.15.1
 Created-By: Maven Integration for Eclipse
 
