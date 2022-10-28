@@ -17,7 +17,7 @@
 				<div>
 					<c:choose>
 						<c:when test='${userID ne NULL}'>
-							<div class="name">등급 : ${lavel}</div>
+							<div class="name">등급 : ${UsserVO.lavel}</div>
 						</c:when>
 					</c:choose>
 				</div>
@@ -49,7 +49,7 @@
 					</div></a>
 				</div>
 				
-				<a href="payment.wp" role="button" >
+				<a href="mysubscribe.wp" role="button" >
 				<div class="col-md-3">
 					<div>
 						<svg id="amo"xmlns="http://www.w3.org/2000/svg" width="118px"
