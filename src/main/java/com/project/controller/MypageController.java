@@ -9,12 +9,8 @@ import com.project.mypage.impl.MypageDAOMybatis;
 @Controller
 public class MypageController {
 	
-	@Autowired
-	private MypageDAOMybatis mypageService;
-	
-	@RequestMapping(value = "/mysubscribe.wp")
-	public String mysubscribe() {
-		System.out.println("구독 취향 설정");
-		return "WEB-INF/view/mypage/mysubscribe.jsp";
-	}
+//	@Autowired
+//	private MypageDAOMybatis mypageService;
+//	
+
 }

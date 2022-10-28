@@ -17,7 +17,6 @@ import com.project.subscribe.impl.SubscribeDAOMybatis;
 import com.project.user.UserService;
 import com.project.user.UserVO;
 
-import model.Room;
 
 @Controller
 public class SubscribeController {
@@ -100,7 +99,7 @@ public class SubscribeController {
 		}
 }
 	
-	// 구독 취소
+		// 구독 취소
 		@RequestMapping(value = "updateSubscribe.wp", method = { RequestMethod.POST })
 		public String updateSubscribe(SubscribeVO vo, HttpServletRequest session) {
 			// 로그인 체크
@@ -114,18 +113,21 @@ public class SubscribeController {
 				return "subscribe.wp";
 			}
 		}
-		
-		@RequestMapping("getMypageList.wp")
-		public String getMypageList(SubscribeVO vo, HttpServletRequest session, Model model) {
-			String uvo = (String) session.getAttribute("userID");
+		// 구독 리스트
+//				@RequestMapping("mysubscribe.wp")
+//				public String getMypageList(SubscribeVO vo, HttpServletRequest session, Model model) {
+//					String uvo = (String) session.getAttribute("userID");
+//					
+//					try {
+//						List<MypageVO> roomList = subscribeService.getMypageList(level);
+//						model.addAttribute("list", roomList);
+//						
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//					System.out.println("구독 취향 설정");
+//					return "WEB-INF/view/mypage/mysubscribe.jsp";
+//				}
+
 			
-			try {
-				List<MypageVO> roomList = subscribeService.getMypageList(level);
-				model.addAttribute("list", roomList);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return "/view/entrepreneur/roomlist";
-		}
 }
