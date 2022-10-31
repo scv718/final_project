@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.project.mypage.MypageVO;
+//import com.project.mypage.MypageVO;
 import com.project.subscribe.SubscribeVO;
 import com.project.subscribe.impl.SubscribeDAOMybatis;
 import com.project.user.UserService;

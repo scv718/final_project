@@ -191,9 +191,7 @@ body {
 					<div class="container">
 						<div class="carousel-caption text-start">
 							<h1>
-<%-- 								<input type="text" class="form-control innm" name="intro_t1" value="${intro.intro_t1}"> --%>
-								<input type="text" class="form-control innm" name="intro_t1" value="<c:out value='${intro.intro_t1}'/>">
-								
+								<input type="text" class="form-control innm" name="intro_t1" value="${intro.intro_t1}">
 							</h1>
 							<h1>
 								<input type="text" class="form-control innm" name="intro_t1_2" value="${intro.intro_t1_2}">

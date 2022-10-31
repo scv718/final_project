@@ -19,7 +19,7 @@ import com.project.intro.IntroVO;
 import com.project.intro.impl.IntroDAOMybatis;
 
 @Controller
-//@SessionAttributes("intro")
+@SessionAttributes("intro")
 public class IntroController {
 
 	@Autowired
@@ -30,39 +30,23 @@ public class IntroController {
 	public String getIntro(IntroVO vo, Model model) {
 		System.out.println(introService.getIntro(vo));
 		model.addAttribute("intro", introService.getIntro(vo));
-		return "intro_modify.jsp";
+//		return "WEB-INF/view/intro/intro.jsp";
+		return "intro.jsp";
 	}
 
 	// 인트로 조회
-	@RequestMapping("/getIntroList.wp")
-	public String getIntroList(IntroVO vo, Model model) {
-		System.out.println("체크");
-		model.addAttribute("introList", introService.getIntroList(vo));
-		System.out.println(introService.getIntroList(vo));
-		return "intro_modify.jsp";
-	}
-
-	// 인트로 입력 "uploadFile" 추가시
-//	@PostMapping(value = "/insertIntro.wp")
-//	public String insertIntro(MultipartHttpServletRequest request, IntroVO vo)
-//			throws IllegalStateException, IOException {
-////	public String insertIntro(IntroVO vo) throws IllegalStateException, IOException {
-//		MultipartFile uplodFile = vo.getUploadFile();
-//		// realPath 추가
-//		String realPath = request.getSession().getServletContext().getRealPath("/resources/img/");
-////		String realPath = "c:/swork/eleven/src/main/webapp/img/" ;
-//		String fileName = uplodFile.getOriginalFilename();
-//		if (!uplodFile.isEmpty()) {
-//			vo.setFilename(fileName);
-//			uplodFile.transferTo(new File(realPath + fileName));
-//		}
-//		introService.insertIntro(vo);
-//		return "getIntroList.wp";
+//	@RequestMapping("/getIntroList.wp")
+//	public String getIntroList(IntroVO vo, Model model) {
+//		System.out.println("체크");
+//		model.addAttribute("introList", introService.getIntroList(vo));
+//		System.out.println(introService.getIntroList(vo));
+//		return "intro_modify.jsp";
 //	}
+
 
 	// 인트로 수정
 	@RequestMapping("/updateIntro.wp")
-	public String updateIntro(MultipartHttpServletRequest request, IntroVO vo, Model model) 
+	public String updateIntro(MultipartHttpServletRequest request, @ModelAttribute("intro") IntroVO vo, Model model) 
 			throws IllegalStateException, IOException{
 //		public String updateIntro(IntroVO vo, Model model) throws IllegalStateException, IOException {
 
@@ -73,7 +57,6 @@ public class IntroController {
 //			return "getBoard.do?error=1";
 //		}
 		
-//		public String insertIntro(IntroVO vo) throws IllegalStateException, IOException {
 			MultipartFile uploadFile = vo.getUploadFile();
 			MultipartFile uploadFile2 = vo.getUploadFile2();
 			MultipartFile uploadFile3 = vo.getUploadFile3();
@@ -81,6 +64,10 @@ public class IntroController {
 			MultipartFile uploadFile5 = vo.getUploadFile5();
 			
 			System.out.println(uploadFile);
+			System.out.println(uploadFile2);
+			System.out.println(uploadFile3);
+			System.out.println(uploadFile4);
+			System.out.println(uploadFile5);
 			// realPath 추가
 //			String realPath = request.getSession().getServletContext().getRealPath("/resources/img/");
 			String realPath = "c:/swork/final_project/src/main/webapp/resources/img/" ;
@@ -89,7 +76,7 @@ public class IntroController {
 				vo.setIntro_img(intro_img);
 				uploadFile.transferTo(new File(realPath + intro_img));
 			}
-			
+
 			String realPath2 = "c:/swork/final_project/src/main/webapp/resources/img/" ;
 			String intro_s_img1 = uploadFile2.getOriginalFilename();
 			if (!uploadFile2.isEmpty()) {
@@ -99,7 +86,7 @@ public class IntroController {
 			
 			String realPath3 = "c:/swork/final_project/src/main/webapp/resources/img/" ;
 			String intro_s_img2 = uploadFile3.getOriginalFilename();
-			if (!uploadFile2.isEmpty()) {
+			if (!uploadFile3.isEmpty()) {
 				vo.setIntro_s_img2(intro_s_img2);
 				uploadFile3.transferTo(new File(realPath3 + intro_s_img2));
 			}

@@ -4,20 +4,6 @@
 
 <mapper namespace="IntroDAO">
 
-
-<!--    <resultMap type="intro" id="introvo"> -->
-<!--       <id property="intro_no" column="INTRO_NO" /> -->
-<!--       <result property="intro_a_no" column="INTRO_A_NO" /> -->
-<!--       <result property="intro_title" column="INTRO_TITLE" /> -->
-<!--       <result property="intro_content" column="INTRO_CONTENT" /> -->
-<!--       <result property="intro_bg" column="INTRO_BG" /> -->
-<!--       <result property="intro_sg" column="INTRO_SG" /> -->
-<!--    </resultMap>  -->
-
-<!--    <select id="getIntroList" resultMap="introvo"> -->
-<!--       SELECT intro_title FROM WP.INTRO -->
-<!--    </select> -->
-   
     <select id="getIntroList" resultType="intro">
       SELECT * FROM INTRO 
    </select>
@@ -30,7 +16,8 @@
    <update id="updateIntro">
 	<!-- 컨트롤 시프트 X => 대문자 변환 , Y => 소문자 변환 -->
 <!-- 		UPDATE INTRO SET INTRO_TITLE=#{intro_title} WHERE INTRO_NO=1 -->
-		UPDATE INTRO SET INTRO_SG=#{intro_sg}, INTRO_BG=#{intro_bg} WHERE INTRO_NO=4;
+		UPDATE INTRO SET INTRO_IMG=#{intro_img}, INTRO_T1=#{intro_t1}, INTRO_T1_2=#{intro_t1_2}, INTRO_T2=#{intro_t2}, INTRO_T2_2=#{intro_t2_2}, INTRO_S_IMG1=#{intro_s_img1}, INTRO_S_T1=#{intro_s_t1}, INTRO_S_C1=#{intro_s_c1}, INTRO_S_C1_2=#{intro_s_c1_2}, INTRO_S_IMG2=#{intro_s_img2}, INTRO_S_T2=#{intro_s_t2}, INTRO_S_C2=#{intro_s_c2}, INTRO_S_C2_2=#{intro_s_c2_2}, INTRO_S_IMG3=#{intro_s_img3}, INTRO_S_T3=#{intro_s_t3}, INTRO_S_C3=#{intro_s_c3}, INTRO_S_C3_2=#{intro_s_c3_2}, INTRO_INFO1=#{intro_info1}, INTRO_INFO1_2=#{intro_info1_2}, INTRO_S_IMG4=#{intro_s_img4}, INTRO_S_T4=#{intro_s_t4}, INTRO_S_C4=#{intro_s_c4}, INTRO_S_C4_2=#{intro_s_c4_2}, INTRO_S_C4_3=#{intro_s_c4_3}, INTRO_S_C4_4=#{intro_s_c4_4}, INTRO_S_C4_5=#{intro_s_c4_5}, INTRO_S_C4_6=#{intro_s_c4_6} WHERE INTRO_NO=1
+<!-- 		UPDATE INTRO SET INTRO_T1=#{intro_t1}, INTRO_T1_2=#{intro_t1_2} WHERE INTRO_NO=1 -->
 	</update>
 
  
