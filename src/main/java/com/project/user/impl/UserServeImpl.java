@@ -12,12 +12,6 @@ import com.project.user.UserVO;
 public class UserServeImpl implements UserService{
 	@Autowired
 	private UserDAOMybatis userDAO;
-//	private UserDAODBCP userDAO;
-//	private UserDAO userDAO;
-
-//	public void setUserDAO(UserDAODBCP userDAO) {
-//		this.userDAO = userDAO;
-//	}
 
 	@Override
 	public UserVO getUser(UserVO vo) {
@@ -89,6 +83,7 @@ public class UserServeImpl implements UserService{
 		// TODO Auto-generated method stub
 		userDAO.kakaoInsertUser(vo);
 	}
+
 
 	
 

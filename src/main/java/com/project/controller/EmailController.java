@@ -87,7 +87,6 @@ public class EmailController {
 		if (vo==null) {
 			try {
 				PrintWriter script = response.getWriter();
-		
 				script.println("<script>");
 				script.println("alert('가입되지 않은 메일입니다.');");
 				script.println("location.href = 'singUp.wp'");

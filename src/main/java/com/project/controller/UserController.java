@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,11 +115,47 @@ public class UserController {
 		System.out.println("취향 페이지 이동");
 		return "WEB-INF/view/user/preference.jsp";
 	}
+	
+	@RequestMapping(value = "/confirmPassword.wp")
+	public String confirmPasswordpage(UserVO vo) {
+		System.out.println("비밀번호 확인 페이지");
+		return "WEB-INF/view/user/confirmPassword.jsp";
+	}
+	@RequestMapping(value = "/confirm.wp")
+	public String confirmPassword(UserVO vo, HttpSession session, HttpServletResponse response, Model model) {
+		System.out.println("비밀번호 확인하기");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		vo.setId((String) session.getAttribute("userID"));
+		vo = userService.getUser(vo);
+		
+
+		
+		if(userService.getUser(vo) == null) {
+			PrintWriter script;
+			try {
+				script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('비밀번호가 일치하지 않습니다.');");
+				script.println("location.href = '/'");
+				script.println("</script>");
+				script.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return "redirect:/";
+		}else {
+			
+			model.addAttribute("vo", vo);
+			return "WEB-INF/view/user/updateUserInfo.jsp";
+		}
+		
+	}
 	@RequestMapping(value = "/preference_setting.wp")
 	public String setting(SubscribeVO vo, HttpSession session) {
 		System.out.println("취향 설정");
-		
-		
 		vo.setId((String)session.getAttribute("userID"));
 		System.out.println(vo.getS_body());
 		System.out.println(vo.getS_acidity());

@@ -38,7 +38,7 @@
 			
 			<div class="status">
 			
-			<a href="updateUserInfo.wp" role="button" >
+			<a href="confirmPassword.wp" role="button" >
 				<div class="col-md-3">
 					<div>
 						<svg id="amo"xmlns="http://www.w3.org/2000/svg" width="118px"
