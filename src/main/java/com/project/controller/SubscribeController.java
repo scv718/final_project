@@ -1,17 +1,22 @@
 package com.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.mypage.MypageVO;
 import com.project.subscribe.SubscribeVO;
 import com.project.subscribe.impl.SubscribeDAOMybatis;
 import com.project.user.UserService;
 import com.project.user.UserVO;
+
 
 @Controller
 public class SubscribeController {
@@ -94,7 +99,7 @@ public class SubscribeController {
 		}
 }
 	
-	// 구독 취소
+		// 구독 취소
 		@RequestMapping(value = "updateSubscribe.wp", method = { RequestMethod.POST })
 		public String updateSubscribe(SubscribeVO vo, HttpServletRequest session) {
 			// 로그인 체크
@@ -108,4 +113,21 @@ public class SubscribeController {
 				return "subscribe.wp";
 			}
 		}
+		// 구독 리스트
+//				@RequestMapping("mysubscribe.wp")
+//				public String getMypageList(SubscribeVO vo, HttpServletRequest session, Model model) {
+//					String uvo = (String) session.getAttribute("userID");
+//					
+//					try {
+//						List<MypageVO> roomList = subscribeService.getMypageList(level);
+//						model.addAttribute("list", roomList);
+//						
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//					System.out.println("구독 취향 설정");
+//					return "WEB-INF/view/mypage/mysubscribe.jsp";
+//				}
+
+			
 }

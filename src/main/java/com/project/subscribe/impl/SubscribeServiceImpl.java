@@ -41,5 +41,10 @@ public class SubscribeServiceImpl implements SubscribeService {
 	public List<SubscribeVO> getSubscribeList(SubscribeVO vo) {
 		return subscribeDAO.getSubscribeList(vo);		
 	}
+	@Override
+	public void preference_Setting(SubscribeVO vo) {
+		subscribeDAO.preference_Setting(vo);
+		
+	}
 
 }

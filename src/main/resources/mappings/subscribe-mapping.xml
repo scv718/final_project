@@ -32,11 +32,20 @@
 
 <!--구독 취소-->
 	<update id="updateSubscribe">
-		UPDATE SUBSCRIPT SET LEVEL = 0,
+			UPDATE SUBSCRIPT SET LEVEL = 0,
 		SUB_DATE = 0,
-		E_DATE = NOW() ,
+		E_DATE = NOW(),
 		 SUB_STATUS = 2
-		WHERE ID = #{id};
+		WHERE ID = #{id}
 	</update>
 	
-</mapper>
+	<update id = "preference_Setting">
+		UPDATE SUBSCRIPT SET 
+		S_SWEET = #{s_sweet},
+		S_BODY = #{s_body},
+		S_ACIDITY = #{s_acidity},
+		S_TANNINS = #{s_tannins}
+		WHERE ID = #{id}
+	</update>
+	
+</mapper> 

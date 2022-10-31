@@ -21,6 +21,7 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -122,7 +123,12 @@ function joinform_check() {
 
 
 </script>
-
+<script type="text/javascript">
+	function nBtn(){
+		alert('호출');
+		location.href = "/getNaverAuthUrl.wp";
+	}
+</script>
 
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -221,7 +227,7 @@ function joinform_check() {
 				<div class="social-container">
 					<a href="#" id = "btn-kakao-login" class="social" onclick="kakaoLogin();"><i class="xi-kakaotalk"></i></a>
 
-					<a href="#" id="naverIdLogin_loginButton" class="social"><i class="xi-naver"></i></a>
+					<a href="#" id="naver_id_login" onclick="nBtn()" class="social"><i class="xi-naver"></i></a>
 				</div>
 <!-- 				<span>or use your account</span>  -->
 				<input name='id' placeholder="아이디" />
@@ -289,81 +295,7 @@ $(function() {
 });
 
 </script>
-	<script
-		src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-		charset="utf-8"></script>
-
-	<script>
-						var hostIndex = location.href.indexOf(location.host)
-								+ location.host.length;
-						var contextPath = location.href.substring(hostIndex,
-								location.href.indexOf('/', hostIndex + 1));
-
-						var naverLogin = new naver.LoginWithNaverId({
-							clientId : "mpebH7I_1_5FrYFniKcZ", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-							callbackUrl : "http://localhost:8090/navercollback.wp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-							isPopup : false,
-							callbackHandle : true
-						});
-
-						naverLogin.init();
-
-						window.addEventListener('load', function() {
-							naverLogin.getLoginStatus(function(status) {
-								if (status) {
-									var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
-									var name = naverLogin.user.getName();
-									var mobile = naverLogin.user.getMobile();
-									var age = naverLogin.user.getAge();
-
-									console.log(naverLogin.user);
-
-									if (email == undefined || email == null) {
-										alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-										naverLogin.reprompt();
-										return;
-									}
-									if( mobile == undefined || mobile == null) {
-													alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-													naverLogin.reprompt();
-													return;
-									}
-									if( age == undefined || age == null) {
-										alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-										naverLogin.reprompt();
-										return;
-						}
-									if (name == undefined || name == null) {
-										alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-										naverLogin.reprompt();
-										return;
-									}
-								} else {
-									console.log("callback 처리에 실패하였습니다.");
-								}
-							});
-						});
-
-						var testPopUp;
-						function openPopUp() {
-							testPopUp = window
-									.open(
-											"https://nid.naver.com/nidlogin.logout",
-											"_blank",
-											"toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-						}
-						function closePopUp() {
-							testPopUp.close();
-						}
-
-						function naverLogout() {
-							openPopUp();
-							setTimeout(function() {
-								closePopUp();
-							}, 1000);
-
-						}
-					</script>
+	
 
 
 	<script type="text/javascript">

@@ -9,20 +9,23 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.subscribe.SubscribeService;
+import com.project.subscribe.SubscribeVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
-import com.project.user.impl.UserDAOMybatis;
 @Controller
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private SubscribeService subscribeservice;
 	
 	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
 	public String loginView(UserVO vo, HttpSession session) {
@@ -37,9 +40,9 @@ public class UserController {
 			System.out.println("1234");
 			session.setAttribute("userID", userService.getUser(vo).getId());
 			session.setAttribute("userName", userService.getUser(vo).getM_name());
-			return "index.jsp";
+			return "redirect:/";
 		}else {
-			return "login.jsp?error=1";
+			return "redirect:/";
 		}
 	}
 	
@@ -48,6 +51,13 @@ public class UserController {
 		session.invalidate();
 		
 		return "index.jsp";
+	}
+	
+	
+	@RequestMapping("/updateUserInfo.wp")
+	public String updateUserInfo() {
+		
+		return "WEB-INF/view/user/updateUserInfo.jsp";
 	}
 
 	
@@ -82,7 +92,7 @@ public class UserController {
 		System.out.println(vo.getM_birth());
 		userService.insertUser(vo);
 
-        return "redirect:index.jsp";
+        return "redirect:/preference.wp";
 	}
 	
 	@RequestMapping("changePw.wp")
@@ -95,5 +105,27 @@ public class UserController {
  
         return "redirect:singUp.wp";
 	}
-
+	
+	@RequestMapping(value = "/preference.wp")
+	public String mypage() {
+		System.out.println("취향 페이지 이동");
+		return "WEB-INF/view/user/preference.jsp";
+	}
+	@RequestMapping(value = "/preference_setting.wp")
+	public String setting(SubscribeVO vo, HttpSession session) {
+		System.out.println("취향 설정");
+		
+		
+		vo.setId((String)session.getAttribute("userID"));
+		System.out.println(vo.getS_body());
+		System.out.println(vo.getS_acidity());
+		System.out.println(vo.getS_sweet());
+		System.out.println(vo.getS_tannins());
+		System.out.println(vo.getId());
+	
+		subscribeservice.preference_Setting(vo);
+		
+		return "redirect:/";
+	}
+	
 }

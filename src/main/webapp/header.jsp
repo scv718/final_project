@@ -26,36 +26,34 @@
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a class="nav-link">${userName}님</a> 
-						</li>
-						</ul>
-						<ul class="navbar-nav nav-right">
-							<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="mypage.wp">MyPage</a>
-								</li>
-								</ul>
+					<li class="nav-item" id = "loginMenu"><a class="nav-link" href = "preference.wp">${userName}님</a> 
+					<a id = "loginLang" class="nav-link" href="mypage.wp">MyPage</a>
 					<c:choose>
 						<c:when test="${userType eq 'kakao'}">
 								<a id = "loginLang" class="nav-link" href="#" onclick="kakaoLogout();">Logout</a>
 						</c:when>
 						<c:when test="${userType eq 'naver'}">
-								<a id = "loginLang" class="nav-link" href="#" onclick="openPopUp();">Logout</a>
+								<a id = "loginLang" class="nav-link" href="naverLogout.wp" >Logout</a>
 						</c:when>
 						<c:otherwise>
 							<a id = "loginLang" class="nav-link" href="logout.wp">Logout</a>
 						</c:otherwise>
 					</c:choose>	
-					</li>	
-				</ul>
-			</c:when>
-			<c:otherwise>
-	<ul class="navbar-nav nav-right">
-					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a>
 					</li>
+					</ul>
+						</c:when>
+						<c:otherwise>
+					<li class="nav-item" id = "loginMenu"><a id = "loginLang" class="nav-link" href="singUp.wp">Login</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
-			</c:otherwise>
-		</c:choose>
 		
-	</ul>
+	
+					
+			
+		
+		
+	
 									<script>
 function kakaoLogout() {
 
@@ -70,26 +68,6 @@ function kakaoLogout() {
     });
 
   }
-  
-var testPopUp;
-function openPopUp() {
-	testPopUp = window
-			.open(
-					"https://nid.naver.com/nidlogin.logout",
-					"_blank",
-					"toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-}
-function closePopUp() {
-	testPopUp.close();
-}
-
-function naverLogout() {
-	openPopUp();
-	setTimeout(function() {
-		closePopUp();
-	}, 1000);
-
-}
 </script>
 			
 <div style = "text-align: center;">

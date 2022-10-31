@@ -34,7 +34,7 @@ import com.project.user.UserService;
 import com.project.user.UserVO;
 
 @Controller
-public class SocaiLoginController {
+public class KakaoLoginController {
 	
 	public static final String KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
 	public static final String KAKAO_TOKEN_URL = "https://kauth.kakao.com/oauth/token";
@@ -50,6 +50,7 @@ public class SocaiLoginController {
 	@RequestMapping("naverLogin.wp")
 	public String naerLogin(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) {
 		System.out.println("네이버로그인");
+		System.out.println(param);
 		
 		System.out.println(param.get("email"));
 		System.out.println(param.get("name"));
@@ -119,7 +120,7 @@ public class SocaiLoginController {
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userType", "kakao");
         		
-        		return "redirect:/";
+        		return "redirect:/preference.wp";
         	}
         
         }else {
