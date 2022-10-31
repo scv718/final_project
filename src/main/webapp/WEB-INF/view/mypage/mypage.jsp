@@ -10,32 +10,45 @@
 </head>
 <body class = "d-flex flex-column min-vh-100">
 <%@ include file="../../../header.jsp"%>
+
 	<div class="wrap">
 		<div class="greenContainer">
-		<div class=".image-box">
-			<div>
-				<div>
-					<c:choose>
-						<c:when test='${userID ne NULL}'>
-							<div class="name">등급 : ${UsserVO.lavel}</div>
-						</c:when>
-					</c:choose>
-				</div>
+			<div class=".image-box">
 
-				<div class="name">
-					<c:choose>
-						<c:when test='${userID ne NULL}'>
-							<div class="name">${userName}님</div>
-						</c:when>
-					</c:choose>
+				<div>
+					<div>
+						<c:if test='${mylevel != null}'>
+							<c:if test="${mylevel eq 0}">
+								<div class="name">
+									등급 :<a href="subscribe.wp"> 찾기</a>
+								</div>
+							</c:if>
+							<c:if test="${mylevel eq 1}">
+								<div class="name">등급 : 와인 입문자</div>
+							</c:if>
+							<c:if test="${mylevel eq 2}">
+								<div class="name">등급 : 와인 마니아</div>
+							</c:if>
+							<c:if test="${mylevel eq 3}">
+								<div class="name">등급 : 와인 마스터</div>
+							</c:if>
+						</c:if>
+					</div>
+
+					<div class="name">
+						<c:choose>
+							<c:when test='${userID ne NULL}'>
+								<div class="name">${userName}님</div>
+							</c:when>
+						</c:choose>
+					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 
 		<div class="shippingStatusContainer">
 			<div class="title">마이페이지</div>
-			
+
 			<div class="status">
 			
 			<a href="confirmPassword.wp" role="button" >
@@ -60,62 +73,74 @@
 					</div></a>
 				</div>
 				
-			<a href="payment.wp" role="button" >
-				<div class="col-md-3">
-					<div>
-						<svg id="amo" xmlns="http://www.w3.org/2000/svg" width="118px"
-							height="103px" fill="currentColor" class="bi bi-basket3"
-							viewBox="0 0 16 16"><path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6h-9.21z" /></svg>
-						
-						<div class="text">장바구니</div>
-					</div></a>
+		<a href="cart.wp" role="button">
+			<div class="col-md-3">
+				<div>
+					<svg id="amo" xmlns="http://www.w3.org/2000/svg" width="118px"
+						height="103px" fill="currentColor" class="bi bi-basket3"
+						viewBox="0 0 16 16">
+						<path
+							d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6h-9.21z" /></svg>
+
+					<div class="text">장바구니</div>
 				</div>
-				
-				<a href="payment.wp" role="button">
-				<div class="col-md-3">
-					<div>
-						<svg id="amo"xmlns="http://www.w3.org/2000/svg" width="118px"
-							height="103px" fill="currentColor" class="bi bi-clipboard2-data"
-							viewBox="0 0 16 16"><path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" /><path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" /><path d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1Z" /></svg>
-						<div class="text">구매내역</div>
-					</div></a>
-				</div>
-				
+		</a>
+	</div>
+
+	<a href="payment.wp" role="button">
+		<div class="col-md-3">
+			<div>
+				<svg id="amo" xmlns="http://www.w3.org/2000/svg" width="118px"
+					height="103px" fill="currentColor" class="bi bi-clipboard2-data"
+					viewBox="0 0 16 16">
+					<path
+						d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
+					<path
+						d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
+					<path
+						d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1Z" /></svg>
+				<div class="text">구매내역</div>
 			</div>
-		</div>
+	</a>
+	</div>
+
+	</div>
+	</div>
 
 	<div class="listContainer">
 		<a href="payment.wp" class="item">
 			<div class="text">주문목록</div>
 			<div class="right">></div>
-		</a></div>
-		
-		<div class="listContainer">
+		</a>
+	</div>
+
+	<div class="listContainer">
 		<a href="payment.wp" class="item">
-			<div class="text">상품후기</div>
+			<div class="text">상품 리뷰</div>
 			<div class="right">></div>
-		</a></div> 
-		
-		<div class="listContainer">
+		</a>
+	</div>
+
+	<div class="listContainer">
 		<a href="payment.wp" class="item">
 			<div class="text">상품문의</div>
 			<div class="right">></div>
-		</a></div> 
-		
-		<div class="listContainer">
+		</a>
+	</div>
+
+	<div class="listContainer">
 		<a href="payment.wp" class="item">
-			<div class="text">단골상점</div>
+			<div class="text">???</div>
 			<div class="right">></div>
-		</a></div>
+		</a>
+	</div>
 
 
-        <div class="listContainer">
+	<div class="listContainer">
 		<a href="payment.wp" class="item">
 			<div class="text">
-				<span>내지갑</span> 
-				<span class="smallLight"> 
-				<span>|</span> 
-				<span>보유 적립금</span>
+				<span>내지갑</span> <span class="smallLight"> <span>|</span> <span>보유
+						적립금</span>
 				</span>
 			</div>
 
@@ -123,16 +148,19 @@
 				<span class="blct">175 BLCT</span> >
 			</div>
 
-		</a></div>
-		
-		 <div class="listContainer">
+		</a>
+	</div>
+
+	<div class="listContainer">
 		<a href="payment.wp" class="item">
 
 			<div class="text">설정</div>
 			<div class="right">></div>
-		</a></div>
+		</a>
 	</div>
 	</div>
+	</div>
+
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>

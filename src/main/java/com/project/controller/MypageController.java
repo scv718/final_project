@@ -9,8 +9,12 @@ import com.project.mypage.impl.MypageDAOMybatis;
 @Controller
 public class MypageController {
 	
-//	@Autowired
-//	private MypageDAOMybatis mypageService;
-//	
-
+	@Autowired
+	private MypageDAOMybatis mypageService;
+	
+	@RequestMapping(value = "/cart.wp")
+	public String cart() {
+		System.out.println("장바구니 이동");
+		return "WEB-INF/view/mypage/cart.jsp";
+	}
 }

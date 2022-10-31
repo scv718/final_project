@@ -23,7 +23,7 @@ public class UserServeImpl implements UserService{
 		System.out.println("impl getUser1");
 		return userDAO.getUser1(vo);
 	}
-	
+
 	@Override
 	public void insertUser(UserVO vo) {
 		userDAO.insertUser(vo);
@@ -84,8 +84,25 @@ public class UserServeImpl implements UserService{
 		userDAO.kakaoInsertUser(vo);
 	}
 
+<<<<<<< HEAD
 
 	
+=======
+	//구독
+	@Override
+	public int updateuserle0(UserVO vo) {
+		return userDAO.updateuserle0(vo);
+	}@Override
+	public int updateuserle1(UserVO vo) {
+		return userDAO.updateuserle1(vo);
+	}@Override
+	public int updateuserle2(UserVO vo) {
+		return userDAO.updateuserle2(vo);
+	}@Override
+	public int updateuserle3(UserVO vo) {
+		return userDAO.updateuserle3(vo);
+	}
+>>>>>>> 5b84cecc84f7afafe3964434506bf33a5924173d
 
 
 

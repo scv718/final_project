@@ -1,32 +1,22 @@
 
 <%@ page contentType="text/html; charset=utf-8"%>
 
+	<%@ include file="../../../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>사이트 구독</title>
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/subscribe.css">
-	
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subscribe.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 
 <body class="d-flex flex-column min-vh-100">
 
-	<%@ include file="../../../header.jsp"%>
 
 	<div id="t1">
 		<img class="down-arrow" src="resources/img/와인구독 test (2).jpg" />
@@ -203,7 +193,7 @@
 			와인 마스터를 위한 패키지 
 			</h1>
 			<p class="lead">
-			<h2 style="line-height: 50px;"><br><br>저희 <span class="cll">Winery</span>에서 제공하는 취향 선택 시스템을 이용하여.</h2>
+			<h2  style="line-height: 24px  !important;"><br><br>저희 <span class="cll">Winery</span>에서 제공하는 취향 선택 시스템을 이용하여.</h2>
 			<h3>구독자 여러분들의 취향을 최대한 반영해 매월 3가지의 와인을 배송해 드립니다.<br>
 			   배송 되는 와인은 레드 1개 화이트 1개 로제 1개로 구성되어 있습니다.<br>
 			와인을 사랑하고 좋아하는 분들을 위한, 다양성 있는 맛과 풍미가 준비된 패키지로<br>
