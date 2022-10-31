@@ -15,18 +15,15 @@
 
 <link rel="canonical"
 	href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
-
+<link rel="icon" href="/resources/img/파비콘3.ico">
 
 
 
 
 <link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
+	rel="stylesheet">
 
-<%-- <%@ include file="header.jsp"%> --%>
-<meta name="theme-color" content="#712cf9">
+<%@ include file="../../../header.jsp"%>
 
 
 <style>
@@ -177,7 +174,7 @@ body {
 
 					<div class="container">
 						<div class="carousel-caption text-start">
-							<h1><c:out value="${intro.intro_t1}"></c:out></h1>
+							<h1>${intro.intro_t1}</h1>
 							<h1>${intro.intro_t1_2}</h1>
 
 						</div>
@@ -286,6 +283,6 @@ body {
 	<script
 		src="https://getbootstrap.kr/docs/5.2/dist/js/bootstrap.bundle.min.js"></script>
 
-	<%-- <%@ include file="footer.jsp"--%> 
+	<%@ include file="../../../footer.jsp" %>
 </body>
 </html>
