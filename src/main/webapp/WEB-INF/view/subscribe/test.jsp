@@ -6,16 +6,14 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-
 	function check() {
-		var uid = document.getElementById("id");
-		 if (uid.lavel.value != null ) {
+		var uid = document.getElementById("userID");
+		 if (userID.LEVEL > 0) {
 			alert("이미 구독 중입니다.");
 			alert("구독 취소 후 다시 구독해 주세요.");
 			return false;
 		}			
 	}
-	
 </script>
 </head>
 

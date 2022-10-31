@@ -35,7 +35,7 @@ public class UserController {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야합니다");
 		}
 		if(userService.getUser(vo) != null) {
-			System.out.println("123");
+			System.out.println("로그인아이디: "+userService.getUser(vo).getId());
 			session.setAttribute("login", userService.getUser(vo).getId());
 			System.out.println("1234");
 			session.setAttribute("userID", userService.getUser(vo).getId());
@@ -75,7 +75,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="insertUser.wp" , method = RequestMethod.POST)
-	public String insertUser(UserVO vo, HttpSession session) {
+	public String insertUser(UserVO vo, SubscribeVO svo, HttpSession session) {
 		System.out.println("회원가입 실행");
 //		
 		vo.setM_birth((String)session.getAttribute("birthday"));
@@ -90,8 +90,17 @@ public class UserController {
 		System.out.println(vo.getM_pw());
 		System.out.println(vo.getM_email());
 		System.out.println(vo.getM_birth());
+		
 		userService.insertUser(vo);
-
+		
+	
+		
+		svo.setId(vo.getId());
+		
+		System.out.println("유저 아이디 값: "+ svo.getId());
+		
+		subscribeservice.insertSubscribe0(svo);
+		
         return "redirect:/preference.wp";
 	}
 	

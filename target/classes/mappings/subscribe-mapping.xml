@@ -4,48 +4,73 @@
 
 <mapper namespace="SubscribeDAO">
 
-	<!-- 구독-1 -->
-	<insert id="insertSubscribe1">
+	<!-- 회원 가입 시 구독 추가 -->
+	<insert id="insertSubscribe0">
 		INSERT INTO SUBSCRIPT
-		VALUES(#{id}, 1 , NOW(), '입금완료',
-		0 ,
-		DATE_ADD(NOW(), INTERVAL 30 DAY),1,0,0,0,0)
+		(ID,LEVEL,SUB_DATE,SUB_PM_STATUS,SUB_DELI,E_DATE,SUB_STATUS)
+		VALUES(#{id}, 0 , 0, '입금전', 0 , 0 ,0)
 	</insert>
-	
 
+	<!-- 구독-1 -->
+	<update id="insertSubscribe1">
+			UPDATE SUBSCRIPT SET
+	LEVEL=1,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
+	30
+	DAY),SUB_STATUS=0
+	WHERE ID = #{id}
+	</update>
 
 	<!-- 구독-2 -->
-	<insert id="insertSubscribe2">
-		INSERT INTO SUBSCRIPT
-		VALUES(#{id}, 2 , NOW(), '입금완료',
-		0 ,
-		DATE_ADD(NOW(), INTERVAL 30 DAY),1,0,0,0,0)
-	</insert>
+	<update id="insertSubscribe2">
+			UPDATE SUBSCRIPT SET
+	LEVEL=2,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
+	30
+	DAY),SUB_STATUS=0
+	WHERE ID = #{id}
+</update>
 
 	<!-- 구독-3 -->
-	<insert id="insertSubscribe3">
-		INSERT INTO SUBSCRIPT
-		VALUES(#{id}, 3 , NOW(), '입금완료',
-		0 ,
-		DATE_ADD(NOW(), INTERVAL 30 DAY),1,0,0,0,0)
-	</insert>
+	<update id="insertSubscribe3">
+	UPDATE SUBSCRIPT SET
+	LEVEL=3,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
+	30
+	DAY),SUB_STATUS=0
+	WHERE ID = #{id}
+</update>
 
-<!--구독 취소-->
+	<!--구독 취소 -->
 	<update id="updateSubscribe">
-			UPDATE SUBSCRIPT SET LEVEL = 0,
+		UPDATE SUBSCRIPT SET
+		LEVEL = 0,
 		SUB_DATE = 0,
-		E_DATE = NOW(),
-		 SUB_STATUS = 2
+		E_DATE = 0,
+		SUB_STATUS = 2
 		WHERE ID = #{id}
 	</update>
-	
-	<update id = "preference_Setting">
-		UPDATE SUBSCRIPT SET 
+
+
+	<!--select LEVEL -->
+	<select id="getSubscribe" resultType="_int">
+		select LEVEL FROM SUBSCRIPT
+		where ID = #{id}
+	</select>
+
+	<!--리스트 -->
+	<select id="getSubscribeList" resultType="subscribe">
+		select * FROM SUBSCRIPT
+		where ID = #{id}
+	</select>
+
+
+	<update id="preference_Setting">
+		UPDATE SUBSCRIPT SET
 		S_SWEET = #{s_sweet},
 		S_BODY = #{s_body},
 		S_ACIDITY = #{s_acidity},
-		S_TANNINS = #{s_tannins}
+		S_TANNINS =
+		#{s_tannins}
 		WHERE ID = #{id}
 	</update>
-	
+
 </mapper> 
+
