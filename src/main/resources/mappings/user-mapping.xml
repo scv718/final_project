@@ -46,6 +46,15 @@
 		WHERE M_PHONE = #{m_phone}
 	</update>
 	
+	<update id="updateUser">
+		UPDATE MEMBER
+		SET M_PHONE = #{m_phone},
+			M_EMAIL = #{m_email},
+			M_PW = #{m_pw}
+		WHERE id = #{id}
+	</update>
+	
+	
 <!-- 구독 -->
 <select id="getUserLevel" resultType="_int">
  <![CDATA[SELECT LEVEL FROM MEMBER WHERE LEVEL = 0 < #{LEVEL} AND ID= #{id}]]>

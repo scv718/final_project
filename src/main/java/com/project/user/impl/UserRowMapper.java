@@ -17,6 +17,8 @@ public class UserRowMapper implements RowMapper<UserVO>{
 		user.setId(rs.getString("id"));
 		user.setM_pw(rs.getString("m_pw"));
 		user.setM_name(rs.getString("m_name"));
+		user.setM_email(rs.getString("m_email"));
+		user.setM_phone(rs.getString("m_phone"));
 		user.setLevel(rs.getInt("level"));
 		return user;
 	}

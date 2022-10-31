@@ -161,7 +161,9 @@ public class IamportController {
 	
 	@RequestMapping(value="/phoneCertification.wp" , method = RequestMethod.POST)
 	@ResponseBody
-	public int userPhoneCertification(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) throws IOException {
+	public int userPhoneCertification(@RequestBody HashMap<String, Object> param , HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) throws IOException {
+		System.out.println("휴대폰 번호 변경");
+		
 		Map<String, String> map = new HashMap<String, String>();
 		String token = getImportToken();
 		HttpClient client = HttpClientBuilder.create().build();
@@ -186,46 +188,18 @@ public class IamportController {
 				session.setAttribute("name", resNode.get("name").asText());
 				session.setAttribute("phone", resNode.get("phone").asText());
 				session.setAttribute("birthday", resNode.get("birthday").asText());
-			
-			    String birthday1 = mapper.treeToValue(resNode.path("birthday"), String.class);
-			    Calendar now = Calendar.getInstance();
-			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-				Integer currentYear = now.get(Calendar.YEAR);
-				 
-			    Date start = dateFormat.parse(birthday1);
+			    String import_phone = mapper.treeToValue(resNode.path("phone"), String.class);
+				String m_phone = (String) param.get("m_phone");
+			    System.out.println(m_phone); // 회원정보 수정폼 휴대폰번호
+			    System.out.println(import_phone); // 아임포트 휴대폰번호
+			    import_phone.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
 			    
-			    String year = dateFormat.format(start);
-			    
-			    Integer birthYear = Integer.parseInt(year);
-			    
-			    int age = (currentYear - birthYear);
-			    String outputAge = Integer.toString(age);
-			    
-			    System.out.println(birthday1);
-			    System.out.println(outputAge);
-			    System.out.println(age);
-			    String m_phone = mapper.treeToValue(resNode.path("phone"), String.class);
-				
-				System.out.println(m_phone);
-				vo.setM_phone(m_phone);
-				
-				int result = 0;
-				System.out.println(userService.getPw(vo));
-				result = userService.getPw(vo);
-				
-				if(result != 0) {
-					System.out.println("이미 가입된 사용자 입니다.");
-					return 2;
-				}else {
-					 if(age<19) {
-					    	System.out.println("나이 제한됨");
-							return -1;
-					    
-					    }else {
-					    	System.out.println("나이 통과");
-					    	return 1;
-					    }
-				}			
+			    if(m_phone.equals(import_phone)) {
+			    	return 1;
+			    }else {
+			    	return 2;
+			    }
+					
 			}
 			
 		} catch (Exception e) { 

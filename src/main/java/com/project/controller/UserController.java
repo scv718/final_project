@@ -162,6 +162,19 @@ public class UserController {
 		}
 		
 	}
+	
+	@RequestMapping(value = "/userEdit.wp")
+	public String userEdit(UserVO vo, HttpSession session) {
+	
+		vo.setId((String) session.getAttribute("userID"));
+
+		System.out.println(vo.getM_pw());
+		System.out.println(vo.getM_email());
+		System.out.println(vo.getM_phone());
+		
+		userService.updateUser(vo);
+		return "redirect:/";
+	}
 	@RequestMapping(value = "/preference_setting.wp")
 	public String setting(SubscribeVO vo, HttpSession session) {
 		System.out.println("취향 설정");
