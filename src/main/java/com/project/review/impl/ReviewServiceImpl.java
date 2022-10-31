@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.project.review.ReviewService;
 import com.project.review.ReviewVO;
 
-@Service
+@Service("reviewService")
 public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired

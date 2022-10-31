@@ -84,10 +84,6 @@ public class UserServeImpl implements UserService{
 		userDAO.kakaoInsertUser(vo);
 	}
 
-<<<<<<< HEAD
-
-	
-=======
 	//구독
 	@Override
 	public int updateuserle0(UserVO vo) {
@@ -102,7 +98,10 @@ public class UserServeImpl implements UserService{
 	public int updateuserle3(UserVO vo) {
 		return userDAO.updateuserle3(vo);
 	}
->>>>>>> 5b84cecc84f7afafe3964434506bf33a5924173d
+	@Override
+	public int getUserLevel(UserVO vo) {
+		return userDAO.getUserLevel(vo);
+	}
 
 
 

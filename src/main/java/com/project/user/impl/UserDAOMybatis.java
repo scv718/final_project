@@ -59,7 +59,10 @@ public class UserDAOMybatis {
 		System.out.println("아이디 체크 실행");
 		return mybatis.selectOne("UserDAO.checkUser", id);
 	}
-	
+	public int getUserLevel(UserVO vo) {
+		System.out.println("마이바티스 getUserLevel 실행");
+		return mybatis.selectOne("UserDAO.getUserLevel", vo);
+	}
 	//=구독=
 	//구독 취소 
 	public int updateuserle0(UserVO vo) {

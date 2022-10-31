@@ -5,17 +5,15 @@
 <configuration>
 	<properties resource="config/database.properties"></properties>
 	<typeAliases>
-<!-- 		<typeAlias type="com.springbook.biz.board.BoardVO" alias="board"></typeAlias> -->
 		<typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
 		<typeAlias type="com.project.intro.IntroVO" alias="intro"></typeAlias>
 		<typeAlias type="com.project.review.ReviewVO" alias="review"></typeAlias>
 		<typeAlias type="com.project.mypage.MypageVO" alias="mypage"></typeAlias>
 		<typeAlias type="com.project.subscribe.SubscribeVO" alias="subscribe"></typeAlias>
-<!-- 		<typeAlias type="com.springbook.biz.member.MemberVO" alias="member"></typeAlias> -->
 	</typeAliases>
 
 	<mappers>
-<!-- 		<mapper resource="mappings/board-mapping.xml" /> -->
+
 		<mapper resource="mappings/subscribe-mapping.xml" />
 		<mapper resource="mappings/mypage-mapping.xml" />
 		<mapper resource="mappings/user-mapping.xml" />

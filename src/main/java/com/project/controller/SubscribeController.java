@@ -9,11 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-<<<<<<< HEAD
 import com.project.subscribe.SubscribeService;
-=======
-//import com.project.mypage.MypageVO;
->>>>>>> 50b5c880c15b00892bcf9d61ddf8e9c69c8a5303
+import com.project.mypage.MypageVO;
 import com.project.subscribe.SubscribeVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
