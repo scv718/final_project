@@ -11,7 +11,7 @@
 
 	function check() {
 
-		if (UserVO.lavel > 0) {
+		if (UsserVO.lavel > 0) {
 			alert('이미 구독 중인 계정 입니다');
 			alert('구독 취소 후 재구독이 가능합니다.');
 		}
@@ -41,6 +41,10 @@
 		<button  type="submit" class="btn btn-primary"
 			onclick='check()'>구독 취소</button>
 	</form>
+	
+	
+	<a href="../../../pay2.jsp" role="button" >'구독'</a>
+	
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>
