@@ -19,8 +19,14 @@ public class ReviewDAO {
 		System.out.println("리뷰 등록처리");
 		mybatis.insert("BoardDAO.insertReview", vo);
 	}
+	
+	//상품후기 상세 조회
+	public ReviewVO detailReview(ReviewVO vo) {
+		System.out.println("리뷰 상세보기");
+		return (ReviewVO)mybatis.selectOne("BoardDAO.detailReview", vo);
+	}
 
-	//리뷰게시판 조회
+	//상품후기 목록 조회
 	public List<ReviewVO> getReviewList(ReviewVO vo) {
 		System.out.println("리뷰게시판 목록처리");
 		return mybatis.selectList("BoardDAO.getReviewList", vo);

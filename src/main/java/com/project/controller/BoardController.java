@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,6 +40,7 @@ public class BoardController {
 		return conditionMap;
 	}
 	
+	// 리뷰작성
 	@PostMapping(value = "/insertReview.wp")
 	public String insertReview(ReviewVO vo) throws IllegalStateException, IOException {
 		MultipartFile uploadFile = vo.getUploadFile();
@@ -52,6 +54,14 @@ public class BoardController {
 		return "getReviewList.wp";
 	}
 	
+	// 상품후기 상세조회
+	@RequestMapping(value="/detailReview.wp", method=RequestMethod.GET)
+	public String detailReview(ReviewVO vo, Model model) {
+		model.addAttribute("detailReview", reviewService.detailReview(vo));
+		return "WEB-INF/board/detailReview.jsp";
+	}
+	
+	// 상품후기 게시판 목록
 	@RequestMapping("/getReviewList.wp")
 	public String getReviewListPost(HttpServletRequest request, ReviewVO vo, String nowPageBtn, Model model) {
 		System.out.println("글 목록 검색 처리");
