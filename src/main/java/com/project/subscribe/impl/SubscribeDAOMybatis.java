@@ -2,13 +2,11 @@ package com.project.subscribe.impl;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.project.subscribe.SubscribeVO;
-import com.project.user.UserService;
 import com.project.user.UserVO;
 
 @Repository
@@ -19,17 +17,24 @@ public class SubscribeDAOMybatis {
 	
 	// CRUD 기능의 메소드 구현
 	// 구독하기
+	public void insertSubscribe0(SubscribeVO vo) {
+		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
+		mybatis.insert("SubscribeDAO.insertSubscribe0", vo);
+		
+	}
 	public void insertSubscribe1(SubscribeVO vo) {
 		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe", vo);
+		mybatis.update("SubscribeDAO.insertSubscribe1", vo);
+		
 	}
 	public void insertSubscribe2(SubscribeVO vo) {
 		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe", vo);
+		mybatis.update("SubscribeDAO.insertSubscribe2", vo);
+		
 	}
 	public void insertSubscribe3(SubscribeVO vo) {
 		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe", vo);
+		mybatis.insert("SubscribeDAO.insertSubscribe3", vo);
 	}
 
 	// 구독 취소
@@ -39,12 +44,12 @@ public class SubscribeDAOMybatis {
 	}
 
 	// 구독 조회
-	public SubscribeVO getSubscribe(SubscribeVO vo) {
+	public int getSubscribe(SubscribeVO vo) {
 		System.out.println("===>mybatis로 getSubscribe() 기능처리");
-		return (SubscribeVO) mybatis.selectOne("SubscribeDAO.getSubscribe", vo);
+		return mybatis.selectOne("SubscribeDAO.getSubscribe", vo);
 	}
-
-	// 구독 조회
+	
+	// 구독 목록 조회
 	public List<SubscribeVO> getSubscribeList(SubscribeVO vo) {
 		System.out.println("===>mybatis로 getSubscribeList() 기능처리 ");
 		return mybatis.selectList("SubscribeDAO.getSubscribeList", vo);

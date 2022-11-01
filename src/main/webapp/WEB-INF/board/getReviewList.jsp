@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +14,39 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+	#reviewtab {
+		width: 900px;
+		background-color: #fff;
+		text-align: center;
+		box-shadow: 0 0 10px rgba(0,0,0,0.15);
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	tr {
+		border-bottom: 1px solid lightgray;
+	}
+	td {
+		color: black;
+	}
+	a {
+		text-decoration-line: none;
+		color: black;
+	}
+	a:hover {
+		text-decoration-line: none;
+		color: lightgray;
+	}
+	a:active {
+		color: lightgray;
+	}
+	.productlink {
+		font-size: smaller;
+	}
+</style>
 </head>
 <body>
 	<h1>리뷰게시판</h1>
-	<!-- 포토리뷰 이모지 -->
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
- 		 <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
- 		 <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
-	</svg>
 	<nav id="searchNav">
 		<form action="getReviewList.wp" method="POST">
 			<select name="searchCondition">
@@ -31,10 +58,20 @@
 			<button type="submit">검색</button>
 		</form>
 	</nav>
-	<table>
+	<table id="reviewtab">
+		<colgroup>
+			<col style="width: 50px">
+			<col style="width: 30px">
+			<col style="width: 200px">
+			<col style="width: 70px">
+			<col style="width: 70px">
+			<col style="width: 100px">
+			<col style="width: 50px">
+		</colgroup>
 		<thead>
 			<tr>
 				<th>번호</th>
+				<th></th>
 				<th>제목</th>
 				<th>평점</th>
 				<th>작성자</th>
@@ -46,9 +83,16 @@
 			<c:forEach items="${reviewList}" var="review">
 				<tr onclick="selTr(${review.w_no})" style="cursor:pointer;">
 					<td class="tdCenter">${review.re_no}</td>
-					<td>${review.re_title}</td>
+					<td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+ 		 					<path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+ 		 					<path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
+						</svg></td>
+					<td style="text-align:left"><div><a href="" class="productlink">${review.w_nm_k}</a>
+						<br><a href="detailReview.wp" class="detailreview">${review.re_title}</a></div></td>
 					<td class="tdCenter">${review.re_score}</td>
-					<td class="tdCenter">${review.id}</td>
+					<td class="tdCenter">
+						${fn:substring(review.id,0,2)}<c:forEach begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
+					</td>
 					<td class="tdCenter"><fmt:formatDate pattern="yyyy-MM-dd" value="${review.re_date}"/></td>
 					<td class="tdCenter">${review.re_like}</td>
 				</tr>

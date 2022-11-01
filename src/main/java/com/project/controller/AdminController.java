@@ -1,21 +1,22 @@
 package com.project.controller;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.user.UserService;
+
 @Controller
 public class AdminController {
-	
+	@Autowired
+	private UserService serService;
 	
 	@RequestMapping("adminMain.wp")
 	public String main() {
 		return "WEB-INF/view/admin/adminmain.jsp";
 	}
 	
-	@RequestMapping("adminUser.wp")
-	public String user() {
-		return "WEB-INF/view/admin/adminuser.jsp";
-	}
 	
 	@RequestMapping("adminWine.wp")
 	public String wine() {
@@ -43,7 +44,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("adminQna.wp")
-	public String qa() {
+	public String qna() {
 		return "WEB-INF/view/admin/adminqna.jsp";
 	}
 	
@@ -51,4 +52,6 @@ public class AdminController {
 	public String review() {
 		return "WEB-INF/view/admin/adminreview.jsp";
 	}
+	
+	
 }

@@ -23,6 +23,10 @@ div{
 
 .wrap{
   background-color: #F8F8F8;  
+<<<<<<< HEAD
+  min-height: 1000px;
+=======
+>>>>>>> c5921c4035b1069a22dd083e090d96345dcf64fb
 }
 
 .greenContainer{  

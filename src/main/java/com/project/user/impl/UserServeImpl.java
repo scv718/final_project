@@ -12,24 +12,12 @@ import com.project.user.UserVO;
 public class UserServeImpl implements UserService{
 	@Autowired
 	private UserDAOMybatis userDAO;
-//	private UserDAODBCP userDAO;
-//	private UserDAO userDAO;
-
-//	public void setUserDAO(UserDAODBCP userDAO) {
-//		this.userDAO = userDAO;
-//	}
 
 	@Override
 	public UserVO getUser(UserVO vo) {
 		return userDAO.getUser(vo);
 	}
 
-	@Override
-	public int getUser1(UserVO vo) {
-		System.out.println("impl getUser1");
-		return userDAO.getUser1(vo);
-	}
-	
 	@Override
 	public void insertUser(UserVO vo) {
 		userDAO.insertUser(vo);
@@ -38,20 +26,20 @@ public class UserServeImpl implements UserService{
 
 	@Override
 	public void updateUser(UserVO vo) {
-		// TODO Auto-generated method stub
+		userDAO.updateUser(vo);
 		
 	}
 
 	@Override
 	public void deleteUser(UserVO vo) {
-		// TODO Auto-generated method stub
+		userDAO.deleteUser(vo);
 		
 	}
 
 	@Override
 	public List<UserVO> getUserList(UserVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("유처서비스 임플까지 진행됨");
+		return userDAO.getUserList(vo);
 	}
 
 	@Override
@@ -90,6 +78,24 @@ public class UserServeImpl implements UserService{
 		userDAO.kakaoInsertUser(vo);
 	}
 
+	//구독
+	@Override
+	public int getUser1(UserVO vo) {
+		return userDAO.getUser1(vo);
+	}
+	@Override
+	public int updateuserle0(UserVO vo) {
+		return userDAO.updateuserle0(vo);
+	}@Override
+	public int updateuserle1(UserVO vo) {
+		return userDAO.updateuserle1(vo);
+	}@Override
+	public int updateuserle2(UserVO vo) {
+		return userDAO.updateuserle2(vo);
+	}@Override
+	public int updateuserle3(UserVO vo) {
+		return userDAO.updateuserle3(vo);
+	}
 	
 
 

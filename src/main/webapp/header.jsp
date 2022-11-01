@@ -3,25 +3,26 @@
 <%@ page import="java.io.PrintWriter"%>
 
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
-
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+	
 	<ul class="navbar-nav" id="loginform">
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
@@ -81,9 +82,9 @@ function kakaoLogout() {
 		<li class="nav-item">
 		<a id = "menuBtn" class ="dropdown-item" href="getNoticeList.wp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
-		<a id = "menuBtn"  class ="dropdown-item" href = "adminMain.wp" >와인이야기</a></li>
+		<a id = "menuBtn"  class ="dropdown-item" href = "wineStory.wp" >와인이야기</a></li>
 		<li class="nav-item">	
-		<a id = "menuBtn" class="dropdown-item" href="test.jsp">와인검색</a></li>
+		<a id = "menuBtn" class="dropdown-item" href="wineSearch.wp">와인검색</a></li>
 		<li class="nav-item">	
 
 
@@ -98,14 +99,15 @@ function kakaoLogout() {
 <a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="#">QnA</a> 
 <a  id = "secondMenu"  href="#">리뷰</a> 
-<a id = "secondMenu" href="getReviewList.wp">리뷰게시판</a>
+<a id = "secondMenu" href="getReviewList.wp">상품후기</a>
 <a id = "secondMenu" href="search/detailProduct.jsp">상품보기</a>
 </div>
 
 	
 <div class = "box1" id = "box">
-	<a id = "secondMenu" href="#">와인소개</a> 
-	<a id = "secondMenu" href="#">맛있게 와인 마시는법</a> 
+	<a id = "secondMenu" href="wineStory1.wp">와인이 뭐예요?</a> 
+	<a id = "secondMenu" href="wineStory2.wp">어떻게 고르죠?</a>
+	<a id = "secondMenu" href="wineStory3.wp">어떻게 먹어요?</a> 
 </div>
 
 

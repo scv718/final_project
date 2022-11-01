@@ -1,5 +1,7 @@
 package com.project.user.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,15 +27,16 @@ public class UserDAOMybatis {
 
 	}
 
-	public int getUser1(UserVO vo) {
-		System.out.println("마이바티스 getUser1 실행");
-		return mybatis.selectOne("UserDAO.getUser1", vo);
+	public List<UserVO> getUserList(UserVO vo) {
+		
+		System.out.println("유저 마이 바티스 실행");
+		List<UserVO> a = mybatis.selectList("UserDAO.getUserList");
+		for(UserVO v : a ) {
+			System.out.println("v: "+v);
+		}
+		return mybatis.selectList("UserDAO.getUserList");
 	}
 
-	public int checkUser(String id) {
-		System.out.println("아이디 체크 실행");
-		return mybatis.selectOne("UserDAO.checkUser", id);
-	}
 
 	public void insertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertUser", vo);
@@ -57,5 +60,39 @@ public class UserDAOMybatis {
 	public void kakaoInsertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertKakaoUser", vo);
 	}
+	public void updateUser(UserVO vo) {
+		mybatis.update("UserDAO.updateUser", vo);
+	}
+	
+	//아이디 체크
+	public int checkUser(String id) {
+		System.out.println("아이디 체크 실행");
+		return mybatis.selectOne("UserDAO.checkUser", id);
+	}
+	
+	
+	//구독 level 
+	public int getUser1(UserVO vo) {
+		System.out.println("마이바티스 getUser1 실행");
+		return mybatis.selectOne("UserDAO.getUser1", vo);
+	}
+	//구독 취소 
+	public int updateuserle0(UserVO vo) {
+		return mybatis.insert("UserDAO.updateuserle0", vo);
+	}
+	//구독하기 클릭시 level 수정
+	public int updateuserle1(UserVO vo) {
+		return mybatis.insert("UserDAO.updateuserle1", vo);
+	}
+	public int updateuserle2(UserVO vo) {
+		return mybatis.insert("UserDAO.updateuserle2", vo);
+	}
+	public int updateuserle3(UserVO vo) {
+		return mybatis.insert("UserDAO.updateuserle3", vo);
+	}
 
+	public void deleteUser(UserVO vo) {
+		mybatis.delete("UserDAO.deleteUser", vo);
+		
+	}
 }

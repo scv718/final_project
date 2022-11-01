@@ -35,6 +35,12 @@
 			LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
 	</select>
+	
+	<!-- 리뷰 상세조회 -->
+	<select id="detailReview" resultType="review">
+		SELECT * FROM REVIEW 
+		WHERE RE_NO=#{re_no}
+	</select>
 
 	<!-- 해당상품 리뷰작성 권한 확인(결과가 0이면 작성 불가) -->
 	<select id="confirmWriter" resultType="_int">

@@ -47,6 +47,7 @@ public class IamportController {
 	public static final String IMPORT_CANCEL_URL = "https://api.iamport.kr/payments/cancel";
 	public static final String IMPORT_PREPARE_URL = "https://api.iamport.kr/payments/prepare";
 	public static final String IMPORT_CERTIFICATION_URL = "https://api.iamport.kr/certifications";
+	
 	//"아임포트 Rest Api key로 설정";
 	public static final String KEY = "5772502836676770";
 	//"아임포트 Rest Api Secret로 설정"; 
@@ -149,6 +150,57 @@ public class IamportController {
 					    	return 1;
 					    }
 				}			
+			}
+			
+		} catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+		
+		return 0;
+		
+	}
+	
+	@RequestMapping(value="/phoneCertification.wp" , method = RequestMethod.POST)
+	@ResponseBody
+	public int userPhoneCertification(@RequestBody HashMap<String, Object> param , HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) throws IOException {
+		System.out.println("휴대폰 번호 변경");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		String token = getImportToken();
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpGet get = new HttpGet(IMPORT_CERTIFICATION_URL+"/"+param.get("imp_uid")); 
+		System.out.println(IMPORT_CERTIFICATION_URL+"/"+param.get("imp_uid")+"?_token="+token);
+		System.out.println(token);
+		get.setHeader("Authorization", token);
+	
+		try {
+			HttpResponse res = client.execute(get);
+			ObjectMapper mapper = new ObjectMapper();
+			String body = EntityUtils.toString(res.getEntity());
+			JsonNode rootNode = mapper.readTree(body); 
+			JsonNode resNode = rootNode.get("response"); 
+			
+			System.out.println("777: " + resNode);
+			if(resNode.asText().equals("null")) {
+				System.out.println("내역이 없습니다.");
+				map.put("msg","내역이 없습니다." );
+			}else {
+				
+				session.setAttribute("name", resNode.get("name").asText());
+				session.setAttribute("phone", resNode.get("phone").asText());
+				session.setAttribute("birthday", resNode.get("birthday").asText());
+			    String import_phone = mapper.treeToValue(resNode.path("phone"), String.class);
+				String m_phone = (String) param.get("m_phone");
+			    System.out.println(m_phone); // 회원정보 수정폼 휴대폰번호
+			    System.out.println(import_phone); // 아임포트 휴대폰번호
+			    import_phone.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
+			    
+			    if(m_phone.equals(import_phone)) {
+			    	return 1;
+			    }else {
+			    	return 2;
+			    }
+					
 			}
 			
 		} catch (Exception e) { 

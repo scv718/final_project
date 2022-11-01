@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import com.project.wine.WineService;
 import com.project.wine.WineVO;
 
-@Service("wineService")
-public abstract class WineServiceImpl implements WineService {
+
+@Service
+public class WineServiceImpl implements WineService {
 	
 	@Autowired
 	private WineDAOMybatis wineDAO;
@@ -39,7 +40,8 @@ public abstract class WineServiceImpl implements WineService {
 	
 	@Override
 	public List<WineVO> getWineList(WineVO vo) {
-		return wineDAO.getWineList(vo);		
+		System.out.println("겟 와인 서비스 임플까진 실행");
+		return wineDAO.getWineList(vo);	
 		
 	}
 

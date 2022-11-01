@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,22 +32,40 @@ public class UserController {
 	private SubscribeService subscribeservice;
 	
 	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
-	public String loginView(UserVO vo, HttpSession session) {
-	
+	public String loginView(UserVO vo, HttpSession session, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		System.out.println("로그인 인증 처리.....");
 		if(vo.getId() == null || vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야합니다");
 		}
 		if(userService.getUser(vo) != null) {
-			System.out.println("123");
+			System.out.println("로그인아이디: "+userService.getUser(vo).getId());
 			session.setAttribute("login", userService.getUser(vo).getId());
 			System.out.println("1234");
 			session.setAttribute("userID", userService.getUser(vo).getId());
 			session.setAttribute("userName", userService.getUser(vo).getM_name());
 			return "redirect:/";
 		}else {
-			return "redirect:/";
+			
+			
+			PrintWriter script;
+			try {
+				script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('존재하지 않는 아이디 입니다.');");
+				script.println("location.href = 'singUp.wp'");
+				script.println("</script>");
+				script.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
 		}
+		
+		return "/";
 	}
 	
 	@RequestMapping("/logout.wp")
@@ -75,7 +97,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="insertUser.wp" , method = RequestMethod.POST)
-	public String insertUser(UserVO vo, HttpSession session) {
+	public String insertUser(UserVO vo, SubscribeVO svo, HttpSession session) {
 		System.out.println("회원가입 실행");
 //		
 		vo.setM_birth((String)session.getAttribute("birthday"));
@@ -90,8 +112,17 @@ public class UserController {
 		System.out.println(vo.getM_pw());
 		System.out.println(vo.getM_email());
 		System.out.println(vo.getM_birth());
+		
 		userService.insertUser(vo);
-
+		
+	
+		
+		svo.setId(vo.getId());
+		
+		System.out.println("유저 아이디 값: "+ svo.getId());
+		
+		subscribeservice.insertSubscribe0(svo);
+		
         return "redirect:/preference.wp";
 	}
 	
@@ -111,11 +142,60 @@ public class UserController {
 		System.out.println("취향 페이지 이동");
 		return "WEB-INF/view/user/preference.jsp";
 	}
+	
+	@RequestMapping(value = "/confirmPassword.wp")
+	public String confirmPasswordpage(UserVO vo) {
+		System.out.println("비밀번호 확인 페이지");
+		return "WEB-INF/view/user/confirmPassword.jsp";
+	}
+	@RequestMapping(value = "/confirm.wp")
+	public String confirmPassword(UserVO vo, HttpSession session, HttpServletResponse response, Model model) {
+		System.out.println("비밀번호 확인하기");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		vo.setId((String) session.getAttribute("userID"));
+		vo = userService.getUser(vo);
+		
+
+		
+		if(userService.getUser(vo) == null) {
+			PrintWriter script;
+			try {
+				script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('비밀번호가 일치하지 않습니다.');");
+				script.println("location.href = '/'");
+				script.println("</script>");
+				script.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return "redirect:/";
+		}else {
+			
+			model.addAttribute("vo", vo);
+			return "WEB-INF/view/user/updateUserInfo.jsp";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/userEdit.wp")
+	public String userEdit(UserVO vo, HttpSession session) {
+	
+		vo.setId((String) session.getAttribute("userID"));
+
+		System.out.println(vo.getM_pw());
+		System.out.println(vo.getM_email());
+		System.out.println(vo.getM_phone());
+		
+		userService.updateUser(vo);
+		return "redirect:/";
+	}
 	@RequestMapping(value = "/preference_setting.wp")
 	public String setting(SubscribeVO vo, HttpSession session) {
 		System.out.println("취향 설정");
-		
-		
 		vo.setId((String)session.getAttribute("userID"));
 		System.out.println(vo.getS_body());
 		System.out.println(vo.getS_acidity());
@@ -126,6 +206,27 @@ public class UserController {
 		subscribeservice.preference_Setting(vo);
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping("deleteUser.wp")
+	public String deleteUser(UserVO vo, HttpSession session) {
+		
+		System.out.println("유저 탈퇴 진행");
+		vo.setId((String)session.getAttribute("userID"));
+		userService.deleteUser(vo);
+		
+		
+		
+		return "redirect:/";
+		
+	}
+
+@RequestMapping(value="adminUser.wp")
+	public String getUserList(UserVO vo, Model model){
+	System.out.println("유저 불러오기");
+	model.addAttribute("UserList", userService.getUserList(vo));
+	System.out.println("테스트");
+		return "WEB-INF/view/admin/adminuser.jsp";
 	}
 	
 }

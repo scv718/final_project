@@ -41,11 +41,7 @@
 			
 			
 		</div>
-		<div id="button-a">
-			
-
-		</div>
-	
+		
 	</div>
 
 	<%@ include file="/footer.jsp"%>

@@ -8,10 +8,19 @@
 		select * from member 
 		where id = #{id} and M_PW = #{m_pw}
 	</select>
+
+	<select id="getUserList" resultType="users">
+		select * from member
+	</select>
 	
 	<select id="checkUser" resultType="int">
 		select count(*) from member
 		where id = #{id}
+	</select>
+	
+	<select id="deleteUser">
+		DELETE FROM MEMBER
+		WHERE id = #{id}
 	</select>
 	
 	<insert id="insertUser">
@@ -28,11 +37,6 @@
 		select id from member
 		where M_EMAIL = #{m_email}
 	</select>
-<select id="getUser1" resultType="int">
-		SELECT LEVEL FROM MEMBER
-		WHERE ID = #{id}
-	</select>
-
 
 	<select id="getPw" resultType="int">
 		select count(*) from member
@@ -43,5 +47,34 @@
 		UPDATE MEMBER
 		SET M_PW = #{m_pw}
 		WHERE M_PHONE = #{m_phone}
+	</update>
+	
+	<update id="updateUser">
+		UPDATE MEMBER
+		SET M_PHONE = #{m_phone},
+			M_EMAIL = #{m_email},
+			M_PW = #{m_pw}
+		WHERE id = #{id}
+	</update>
+	
+	
+<!-- 구독 -->
+	<select id="getUser1" resultType="int">
+		SELECT LEVEL FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	
+	<update id="updateuserle0">
+		UPDATE MEMBER SET LEVEL = 0
+		WHERE ID = #{id}
+	</update><update id="updateuserle1">
+		UPDATE MEMBER SET LEVEL = 1
+		WHERE ID = #{id}
+	</update><update id="updateuserle2">
+		UPDATE MEMBER SET LEVEL = 2
+		WHERE ID = #{id}
+	</update><update id="updateuserle3">
+		UPDATE MEMBER SET LEVEL = 3
+		WHERE ID = #{id}
 	</update>
 </mapper>
