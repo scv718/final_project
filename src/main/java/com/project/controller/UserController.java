@@ -32,8 +32,9 @@ public class UserController {
 	private SubscribeService subscribeservice;
 	
 	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
-	public String loginView(UserVO vo, HttpSession session) {
-	
+	public String loginView(UserVO vo, HttpSession session, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		System.out.println("로그인 인증 처리.....");
 		if(vo.getId() == null || vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야합니다");
@@ -46,8 +47,25 @@ public class UserController {
 			session.setAttribute("userName", userService.getUser(vo).getM_name());
 			return "redirect:/";
 		}else {
-			return "redirect:/";
+			
+			
+			PrintWriter script;
+			try {
+				script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('존재하지 않는 아이디 입니다.');");
+				script.println("location.href = 'singUp.wp'");
+				script.println("</script>");
+				script.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
 		}
+		
+		return "/";
 	}
 	
 	@RequestMapping("/logout.wp")
@@ -188,6 +206,19 @@ public class UserController {
 		subscribeservice.preference_Setting(vo);
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping("deleteUser.wp")
+	public String deleteUser(UserVO vo, HttpSession session) {
+		
+		System.out.println("유저 탈퇴 진행");
+		vo.setId((String)session.getAttribute("userID"));
+		userService.deleteUser(vo);
+		
+		
+		
+		return "redirect:/";
+		
 	}
 	
 }

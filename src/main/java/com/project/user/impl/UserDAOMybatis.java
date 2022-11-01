@@ -81,4 +81,9 @@ public class UserDAOMybatis {
 	public int updateuserle3(UserVO vo) {
 		return mybatis.insert("UserDAO.updateuserle3", vo);
 	}
+
+	public void deleteUser(UserVO vo) {
+		mybatis.delete("UserDAO.deleteUser", vo);
+		
+	}
 }

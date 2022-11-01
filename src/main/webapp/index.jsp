@@ -124,14 +124,102 @@ $('.slider-1 > .side-btns > div').click(function(){
 
 	<div class="container" id = "btncontainer">
 		<div class="text-center">
-		<button class = "WaterBtn"><img class = "Btnimg" src = "resources/img/물방울이미지스파클링.png"><br/><p>Sparkling</p></button>
-		<button class = "WaterBtn"><img class = "Btnimg" src = "resources/img/물방울이미지화이트.png"><p>White</p></button>
-			<button class = "WaterBtn"><img class = "Btnimg" src = "resources/img/물방울이미지로제.png"><p>Rose</p></button>
-			<button class = "WaterBtn"><img class = "Btnimg" src = "resources/img/물방울이미지레드.png"><p>Red</p></button>
+		<button class = "WaterBtn" value = "2"><img class = "Btnimg" src = "resources/img/물방울이미지스파클링.png"><br/><p>Sparkling</p></button>
+		<button class = "WaterBtn" value = "1"><img class = "Btnimg" src = "resources/img/물방울이미지화이트.png"><p>White</p></button>
+		<button class = "WaterBtn" value = "3"><img class = "Btnimg" src = "resources/img/물방울이미지로제.png"><p>Rose</p></button>
+	    <button class = "WaterBtn" value = "0"><img class = "Btnimg" src = "resources/img/물방울이미지레드.png"><p>Red</p></button>
 		</div>
-	
 		<hr>
 	</div>
+	
+<script>
+//기존 버튼형 슬라이더
+$('.slider-2 > .page-btns > div').click(function(){
+    var $this = $(this);
+    var index = $this.index();
+    
+    $this.addClass('active');
+    $this.siblings('.active').removeClass('active');
+    
+    var $slider = $this.parent().parent();
+    
+    var $current = $slider.find(' > .slides > div.active');
+    
+    var $post = $slider.find(' > .slides > div').eq(index);
+    
+    $current.removeClass('active');
+    $post.addClass('active');
+});
+
+// 좌/우 버튼 추가 슬라이더
+$('.slider-2 > .side-btns > div').click(function(){
+    var $this = $(this);
+    var $slider = $this.closest('.slider-2');
+    
+    var index = $this.index();
+    var isLeft = index == 0;
+    
+  
+    var $post;
+    
+    
+    if ( $post.length == 0 ){
+        if ( isLeft ){
+            $post = $slider.find(' > .page-btns > div:last-child');
+        }
+        else {
+            $post = $slider.find(' > .page-btns > div:first-child');
+        }
+    };
+    
+    $post.click();
+});
+
+// setInterval(function(){
+//     $('.slider-1 > .side-btns > div').eq(1).click();
+// }, 3000);
+
+</script>	
+
+<script type="text/javascript">
+$('.WaterBtn').on('click', function () {
+	 var watertype = this.value
+	console.log(watertype)
+	$.ajax({
+		type : 'POST',
+		url : 'typeMenu.wp',
+		dataType : 'json',
+		data : {
+			  typeMenu: watertype        
+		},
+		success : function(val){
+			console.log('성공');
+		}
+	})
+})
+</script>
+	<div class="slider-2">
+    <div class="slides">
+        <div class="active">
+   			
+		</div>
+        <div>
+     
+		</div>
+        <div>
+  
+		</div>
+    </div>
+    <div class="side-btns">
+        <div>
+            <span><i class="fas fa-angle-left"></i></span>
+        </div>
+        <div>
+            <span><i class="fas fa-angle-right"></i></span>
+        </div>
+    </div>
+</div>
+	
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
