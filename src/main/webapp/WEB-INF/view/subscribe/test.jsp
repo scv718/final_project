@@ -42,9 +42,6 @@
 			onclick='check()'>구독 취소</button>
 	</form>
 	
-	
-	<a href="../../../pay2.jsp" role="button" >'구독'</a>
-	
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>

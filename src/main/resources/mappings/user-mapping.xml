@@ -14,6 +14,11 @@
 		where id = #{id}
 	</select>
 	
+	<select id="deleteUser">
+		DELETE FROM MEMBER
+		WHERE id = #{id}
+	</select>
+	
 	<insert id="insertUser">
 		INSERT INTO member (ID, M_PW, M_NAME, M_PHONE, M_BIRTH, M_EMAIL)
 		VALUES (#{id}, #{m_pw}, #{m_name}, #{m_phone}, #{m_birth}, #{m_email})

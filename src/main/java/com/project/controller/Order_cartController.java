@@ -51,31 +51,4 @@ public class Order_cartController {
 
 		return "/order";
 	}
-
-//	@PostMapping("/order")
-//	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
-//		
-//		System.out.println(od);		
-//		
-//		orderService.order(od);
-//		
-//		MemberVO member = new MemberVO();
-//		member.setMemberId(od.getMemberId());
-//		
-//		HttpSession session = request.getSession();
-//		
-//		try {
-//			MemberVO memberLogin = memberService.memberLogin(member);
-//			memberLogin.setMemberPw("");
-//			session.setAttribute("member", memberLogin);
-//			
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//		}
-//		
-//		return "redirect:/main";
-//	}	
-//	
-
 }
