@@ -166,7 +166,7 @@
 			</div>
 			<!-- 구매 버튼 영역 -->
 			<div class="content_btn_section">
-				<a class="order_btn">주문하기</a>
+				<a href="../../../pay2.jsp" role="button" >주문하기</a>
 			</div>
 			
 			<!-- 수량 조정 form -->

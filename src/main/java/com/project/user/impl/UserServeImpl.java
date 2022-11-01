@@ -32,14 +32,14 @@ public class UserServeImpl implements UserService{
 
 	@Override
 	public void deleteUser(UserVO vo) {
-		// TODO Auto-generated method stub
+		userDAO.deleteUser(vo);
 		
 	}
 
 	@Override
 	public List<UserVO> getUserList(UserVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("유처서비스 임플까지 진행됨");
+		return userDAO.getUserList(vo);
 	}
 
 	@Override

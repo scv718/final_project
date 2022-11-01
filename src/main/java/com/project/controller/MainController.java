@@ -11,13 +11,6 @@ public class MainController {
 		System.out.println("소개하기");
 		return "WEB-INF/view/introduce.jsp";
 	}
-	
-	
-	@RequestMapping(value = "/wineSearch.wp")
-	public String search() {
-		System.out.println("소개하기");
-		return "WEB-INF/view/winesearch.jsp";
-	}
 
 	@RequestMapping(value = "/subscribe.wp")
 	public String subscribe() {
@@ -50,5 +43,8 @@ public class MainController {
 	public String forgotinfo() {
 		System.out.println("유저정보찾기");
 		return "WEB-INF/view/user/userinfofind.jsp";
-	}	
+	}
+	
+	
+	
 }

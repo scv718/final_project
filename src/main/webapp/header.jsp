@@ -80,11 +80,11 @@ function kakaoLogout() {
 	<ul class="navbar-nav" id="upmenu">
 
 		<li class="nav-item">
-		<a id = "menuBtn" class ="dropdown-item" href="getIntro.wp" >Winery?</a></li>
+		<a id = "menuBtn" class ="dropdown-item" href="getNoticeList.wp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
-		<a id = "menuBtn"  class ="dropdown-item" href = "adminMain.wp" >와인이야기</a></li>
+		<a id = "menuBtn"  class ="dropdown-item" href = "wineStory.wp" >와인이야기</a></li>
 		<li class="nav-item">	
-		<a id = "menuBtn" class="dropdown-item" href="test.jsp">와인검색</a></li>
+		<a id = "menuBtn" class="dropdown-item" href="wineSearch.wp">와인검색</a></li>
 		<li class="nav-item">	
 
 
@@ -95,7 +95,7 @@ function kakaoLogout() {
 </nav>
 
 <div class = "box" id = "box">
-<a  id = "secondMenu" href="#">공지사항</a>
+<a  id = "secondMenu" href="getNoticeList.wp">공지사항</a>
 <a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="#">QnA</a> 
 <a id = "secondMenu" href="getReviewList.wp">상품후기</a>
@@ -103,8 +103,9 @@ function kakaoLogout() {
 
 	
 <div class = "box1" id = "box">
-	<a id = "secondMenu" href="#">와인소개</a> 
-	<a id = "secondMenu" href="#">맛있게 와인 마시는법</a> 
+	<a id = "secondMenu" href="wineStory1.wp">와인이 뭐예요?</a> 
+	<a id = "secondMenu" href="wineStory2.wp">어떻게 고르죠?</a>
+	<a id = "secondMenu" href="wineStory3.wp">어떻게 먹어요?</a> 
 </div>
 
 

@@ -125,11 +125,9 @@ function joinform_check() {
 </script>
 <script type="text/javascript">
 	function nBtn(){
-		alert('호출');
 		location.href = "/getNaverAuthUrl.wp";
 	}
 </script>
-
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var IMP = window.IMP; // 생략가능

@@ -15,33 +15,33 @@ public class WineDAOMybatis {
 	private SqlSessionTemplate mybatis;
 
 	// CRUD 기능의 메소드 구현
-	// 구독하기
+	//와인 등록
 	public void insertWine(WineVO vo) {
-		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe", vo);
+		System.out.println("===>mybatis로 insertWine() 기능처리");
+		mybatis.insert("WineDAO.insertWine", vo);
 	}
 
-	// 구독 수정
+	//와인 수정
 	public void updateWine(WineVO vo) {
-		System.out.println("===>mybatis로 updateSubscribe() 기능처리");
-		mybatis.update("SubscribeDAO.updateSubscribe", vo);
+		System.out.println("===>mybatis로 updateWine() 기능처리");
+		mybatis.update("WineDAO.updateWine", vo);
 	}
 
-	// 구독 취소
+	// 와인 삭제
 	public void deleteWine(WineVO vo) {
-		System.out.println("===>mybatis로 deleteSubscribe() 기능처리");
-		mybatis.delete("SubscribeDAO.deleteSubscribe", vo);
+		System.out.println("===>mybatis로 deleteWine() 기능처리");
+		mybatis.delete("WineDAO.deleteWine", vo);
 	}
 
-	// 구독 조회
+	// 와인 조회
 	public WineVO getWine(WineVO vo) {
-		System.out.println("===>mybatis로 getSubscribe() 기능처리");
-		return (WineVO) mybatis.selectOne("SubscribeDAO.getSubscribe", vo);
+		System.out.println("===>mybatis로 getWine() 기능처리");
+		return (WineVO) mybatis.selectOne("WineDAO.getWine", vo);
 	}
 
-	// 구독 조회
+	// 와인 리스트
 	public List<WineVO> getWineList(WineVO vo) {
-		System.out.println("===>mybatis로 getSubscribeList() 기능처리 ");
-		return mybatis.selectList("SubscribeDAO.getSubscribeList", vo);
+		System.out.println("===>mybatis로 getWineList() 기능처리 ");
+		return mybatis.selectList("WineDAO.getWineList", vo);
 	}
 }

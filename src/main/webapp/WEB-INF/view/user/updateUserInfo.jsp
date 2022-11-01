@@ -4,8 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/mypage.css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
@@ -15,6 +13,22 @@
 .btn{
 	margin-bottom: 20px;
 	margin-top: 20px;
+	background-color: #F87171 !important;
+	color: white !important;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+.btn-danger:hover {
+    color: #fff;
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+.btn:hover{
+	background-color: #ff6060 !important;
 }
 </style>
 <script type="text/javascript">
@@ -88,6 +102,7 @@
 	</script>
 
 
+<
 <body class="d-flex flex-column min-vh-100">
 	<script type="text/javascript">
 
@@ -261,6 +276,7 @@ $("#check").on("click", function() {
 });
 </script>
 
+
 	<%@ include file="/header.jsp"%>
 
 	<div class="greenContainer">
@@ -290,26 +306,40 @@ $("#check").on("click", function() {
 					value="${vo.m_pw}"> <label class="form-label">휴대폰 </label>
 				<input type="tel" class="form-control" id="m_phone" name="m_phone"
 					value="${vo.m_phone}">
-				<button type="button" class="btn btn-danger" id="phoneCertification">휴대폰
+				<button type="button" class="btn" id="phoneCertification">휴대폰
 					본인인증</button>
 				<br> <label class="form-label">이메일 </label><br> <input
 					type="tel" class="form-control" id="m_email" name="m_email"
 					value="${vo.m_email}">
-				<button type="button" class="btn btn-danger" id="sendMail">이메일
+				<button type="button" class="btn" id="sendMail">이메일
 					본인인증</button>
 				<div class="text_box" id="cert">
 					<input id='emailCheck' class='text_box' type='text' required
 						disabled>
-					<button type="button" id='check' class="btn btn-danger">인증확인</button>
+					<button type="button" id='check' class="btn">인증확인</button>
 					<input type="hidden" id="email_check" name="email_check">
 					<input type="hidden" id="phone_check" name="email_check">
 				</div>
 
-				<button type="button" id = "update"class="btn btn-danger"  style="margin-top: 23px;">확인</button>
+				<button type="button" id = "update" class="btn"  style="margin-top: 23px;">확인</button>
+				<button type="button" id = "deleteUser" class="btn btn-danger"  style="margin-top: 23px; float: right;">탈퇴하기</button>
 			</form>
 		</div>
 	</div>
+<script type="text/javascript">
 
+$('#deleteUser').on('click', function () {
+	var delete_check = confirm("탈퇴 하시겠습니까?");
+	if(delete_check == true){
+	  location.href = 'deleteUser.wp';
+	}
+	else if(delete_check == false){
+	  
+	};
+	
+});
+
+</script>
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>

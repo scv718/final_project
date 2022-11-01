@@ -1,5 +1,7 @@
 package com.project.user.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,17 @@ public class UserDAOMybatis {
 		return mybatis.selectOne("UserDAO.getUser", vo);
 
 	}
+
+	public List<UserVO> getUserList(UserVO vo) {
+		
+		System.out.println("유저 마이 바티스 실행");
+		List<UserVO> a = mybatis.selectList("UserDAO.getUserList");
+		for(UserVO v : a ) {
+			System.out.println("v: "+v);
+		}
+		return mybatis.selectList("UserDAO.getUserList");
+	}
+
 
 	public void insertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertUser", vo);
@@ -76,5 +89,10 @@ public class UserDAOMybatis {
 	}
 	public int updateuserle3(UserVO vo) {
 		return mybatis.insert("UserDAO.updateuserle3", vo);
+	}
+
+	public void deleteUser(UserVO vo) {
+		mybatis.delete("UserDAO.deleteUser", vo);
+		
 	}
 }
