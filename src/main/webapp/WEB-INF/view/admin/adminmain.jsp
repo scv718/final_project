@@ -35,7 +35,7 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
-                            <a href="adminMain.wp">프로필</a>
+                            <a href="adminMain.wp">만든사람들(메인)</a>
                         </li>
                         <li>
                             <a href="adminUser.wp">회원관리</a>
@@ -105,7 +105,27 @@
                 </div>
             </nav>
             
-           <h2>관리자페이지(테스트)</h2>
+          <table>
+        <thead>
+            <tr>
+                <th>Avatar</th>
+                <th>Group</th>
+                <th>Name</th>
+                <th>Points</th>
+                <th>Control</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="https://i.postimg.cc/yYYd1HV1/katara.jpg" alt="img"></td>
+                <td>Ninja</td>
+                <td>Asma Ad</td>
+                <td>120</td>
+                <td>
+                </td>
+            </tr>
+
+    </table>
             
             
         </div>

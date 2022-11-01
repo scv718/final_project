@@ -220,5 +220,13 @@ public class UserController {
 		return "redirect:/";
 		
 	}
+
+@RequestMapping(value="adminUser.wp")
+	public String getUserList(UserVO vo, Model model){
+	System.out.println("유저 불러오기");
+	model.addAttribute("UserList", userService.getUserList(vo));
+	System.out.println("테스트");
+		return "WEB-INF/view/admin/adminuser.jsp";
+	}
 	
 }

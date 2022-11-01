@@ -35,7 +35,7 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
-                            <a href="adminMain.wp">프로필</a>
+                            <a href="adminMain.wp">만든사람들(메인)</a>
                         </li>
                         <li>
                             <a href="adminUser.wp">회원관리</a>
@@ -50,7 +50,7 @@
                             <a href="adminSubscription.wp">구독관리</a>
                         </li>
                          <li>
-                            <a href="adminalesdelivery.wp">판매,배송관리</a>
+                            <a href="adminSalesdelivery.wp">판매,배송관리</a>
                         </li>
                     </ul>
                 </li>

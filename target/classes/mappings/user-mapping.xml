@@ -8,6 +8,10 @@
 		select * from member 
 		where id = #{id} and M_PW = #{m_pw}
 	</select>
+
+	<select id="getUserList" resultType="users">
+		select * from member
+	</select>
 	
 	<select id="checkUser" resultType="int">
 		select count(*) from member
