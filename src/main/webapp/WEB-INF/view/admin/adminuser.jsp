@@ -106,7 +106,14 @@
             </nav>
             
            <h2>유저관리페이지입니다.</h2>
-            
+            <table>
+            <tr>dd</tr>
+            <tr>dd</tr>
+            <tr>dd</tr>
+            <td>dd</td>
+            <td>dd</td>
+            <td>dd</td>
+            </table>
             
         </div>
     </div>

@@ -79,7 +79,7 @@ function kakaoLogout() {
 	<ul class="navbar-nav" id="upmenu">
 
 		<li class="nav-item">
-		<a id = "menuBtn" class ="dropdown-item" href="getIntro.wp" >Winery?</a></li>
+		<a id = "menuBtn" class ="dropdown-item" href="insertNotice.jsp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
 		<a id = "menuBtn"  class ="dropdown-item" href = "adminMain.wp" >와인이야기</a></li>
 		<li class="nav-item">	
@@ -94,7 +94,7 @@ function kakaoLogout() {
 </nav>
 
 <div class = "box" id = "box">
-<a  id = "secondMenu" href="#">공지사항</a>
+<a  id = "secondMenu" href="getNoticeList.wp">공지사항</a>
 <a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="#">QnA</a> 
 <a  id = "secondMenu"  href="#">리뷰</a> 
