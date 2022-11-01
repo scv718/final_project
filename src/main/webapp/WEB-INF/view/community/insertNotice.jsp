@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="container-fluid">
-		<form action="insertNotice_post.wp" method="post"
+		<form action="insertNotice.wp" method="post"
 			enctype="multipart/form-data">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">

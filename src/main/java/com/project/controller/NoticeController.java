@@ -50,7 +50,7 @@ public class NoticeController {
 		//"uploadFile" 추가시 
 		@PostMapping(value = "/insertNotice.wp")
 //		public String insertBoard(MultipartHttpServletRequest request, BoardVO vo) throws IllegalStateException, IOException {
-		public String insertNotice_post(CommunityVO vo) throws IllegalStateException, IOException {
+		public String insertNotice(CommunityVO vo) throws IllegalStateException, IOException {
 			MultipartFile uplodFile = vo.getUploadFile();
 			//realPath 추가
 //		    String realPath = request.getSession().getServletContext().getRealPath("/img/");
@@ -108,7 +108,6 @@ public class NoticeController {
 			public String getNotice(CommunityVO vo, Model model) {
 			
 			//조회수 증가
-			int Commu_no = 0;
 			noticeService.viewCount(vo.getCommu_no());
 //			List<CommunityVO> list = noticeService.getNotice(vo.getCommu_no());
 			System.out.println(noticeService.getNotice(vo));
