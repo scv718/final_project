@@ -5,20 +5,8 @@
 <configuration>
 	<properties resource="config/database.properties"></properties>
 	<typeAliases>
-<<<<<<< HEAD
-		<!-- <typeAlias type="com.springbook.biz.board.BoardVO" alias="board"></typeAlias> -->
-		<typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
-		<typeAlias type="com.project.intro.IntroVO" alias="intro"></typeAlias>
-		<typeAlias type="com.project.review.ReviewVO" alias="review"></typeAlias>
-		<typeAlias type="com.project.wine.WineVO" alias="wine"></typeAlias>
-		<!-- <typeAlias type="com.springbook.biz.member.MemberVO" alias="member"></typeAlias> -->
-		<!-- <typeAlias type="com.project.subscribe.SubscribeVO" alias="subscribe"></typeAlias> -->
-	</typeAliases>
 
-	<mappers>
-		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
-		<!-- <mapper resource="mappings/subscribe-mapping.xml" /> -->
-=======
+		<typeAlias type="com.project.wine.WineVO" alias="wine"/>
 		<typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
 		<typeAlias type="com.project.intro.IntroVO" alias="intro"></typeAlias>
 		<typeAlias type="com.project.review.ReviewVO" alias="review"></typeAlias>
@@ -30,7 +18,6 @@
 
 		<mapper resource="mappings/subscribe-mapping.xml" />
 		<mapper resource="mappings/mypage-mapping.xml" />
->>>>>>> origin/master
 		<mapper resource="mappings/user-mapping.xml" />
 		<mapper resource="mappings/intro-mapping.xml" />
 		<mapper resource="mappings/board-mapping.xml" />
