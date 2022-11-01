@@ -21,7 +21,7 @@
 
 <body>
 	<%@ include file="../../../header.jsp"%>
-
+	<%@ include file="../../../pay.jsp"%>
 	<form action="insertSubscribe1.wp" method="post">
 		<button  type="submit" class="btn btn-primary"
 			onclick='check()'>입문자 구독</button>
