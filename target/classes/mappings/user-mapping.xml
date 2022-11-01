@@ -34,12 +34,6 @@
 		where M_EMAIL = #{m_email}
 	</select>
 
-	<select id="getUser1" resultType="int">
-		SELECT LEVEL FROM MEMBER
-		WHERE ID = #{id}
-	</select>
-
-
 	<select id="getPw" resultType="int">
 		select count(*) from member
 		where M_PHONE = #{m_phone}
@@ -61,9 +55,11 @@
 	
 	
 <!-- 구독 -->
-<select id="getUserLevel" resultType="_int">
- <![CDATA[SELECT LEVEL FROM MEMBER WHERE LEVEL = 0 < #{LEVEL} AND ID= #{id}]]>
+	<select id="getUser1" resultType="int">
+		SELECT LEVEL FROM MEMBER
+		WHERE ID = #{id}
 	</select>
+	
 	<update id="updateuserle0">
 		UPDATE MEMBER SET LEVEL = 0
 		WHERE ID = #{id}

@@ -55,8 +55,8 @@
 			</div>
 
 <div class="mt">		
-<a href="payment.wp">			
-<button type="submit"  id="colre" class="w-100 btn btn-lg btn-outline-primary">취향수정</button></a></div>
+<a href="mypreference.wp">			
+<button type="button"  id="colre" class="w-100 btn btn-lg btn-outline-primary">취향수정</button></a></div>
 
 </div></div></form>
 

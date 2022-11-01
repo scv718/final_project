@@ -17,9 +17,7 @@ public class MainMenuController {
 	@ResponseBody
 	public void typeMenu(@RequestParam("typeMenu") String typeMenu,MenuVO vo, Model model) {
 		
-		
-		vo.setType((int)type);
-		System.out.println(type);
+	
 	}
 
 }

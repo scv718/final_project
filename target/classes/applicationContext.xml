@@ -12,8 +12,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:component-scan
-		base-package="com.project.*"></context:component-scan>
+	<context:component-scan base-package="com.project.*"></context:component-scan>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 
@@ -26,10 +25,8 @@
 
 	<!-- </bean> -->
 
-	<context:property-placeholder
-		location="classpath:config/database.properties" />
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<context:property-placeholder location="classpath:config/database.properties" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}"></property>
 		<property name="url" value="${jdbc.url}"></property>
 		<property name="username" value="${jdbc.username}"></property>

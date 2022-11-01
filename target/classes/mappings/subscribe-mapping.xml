@@ -14,9 +14,9 @@
 	<!-- 구독-1 -->
 	<update id="insertSubscribe1">
 			UPDATE SUBSCRIPT SET
-	LEVEL=1,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
+	LEVEL=1,SUB_DATE= NOW(),SUB_PM_STATUS='입금전',SUB_DELI=0 ,E_DATE=DATE_ADD(NOW(), INTERVAL
 	30
-	DAY),SUB_STATUS=0
+	DAY),SUB_STATUS=1
 	WHERE ID = #{id}
 	</update>
 
@@ -25,7 +25,7 @@
 			UPDATE SUBSCRIPT SET
 	LEVEL=2,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
 	30
-	DAY),SUB_STATUS=0
+	DAY),SUB_STATUS=1
 	WHERE ID = #{id}
 </update>
 
@@ -34,7 +34,7 @@
 	UPDATE SUBSCRIPT SET
 	LEVEL=3,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
 	30
-	DAY),SUB_STATUS=0
+	DAY),SUB_STATUS=1
 	WHERE ID = #{id}
 </update>
 
@@ -71,6 +71,6 @@
 		#{s_tannins}
 		WHERE ID = #{id}
 	</update>
-
+	
 </mapper> 
 

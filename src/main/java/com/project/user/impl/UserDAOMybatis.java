@@ -25,12 +25,6 @@ public class UserDAOMybatis {
 
 	}
 
-	public int getUser1(UserVO vo) {
-		System.out.println("마이바티스 getUser1 실행");
-		return mybatis.selectOne("UserDAO.getUser1", vo);
-	}
-
-
 	public void insertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertUser", vo);
 
@@ -62,11 +56,13 @@ public class UserDAOMybatis {
 		System.out.println("아이디 체크 실행");
 		return mybatis.selectOne("UserDAO.checkUser", id);
 	}
-	public int getUserLevel(UserVO vo) {
-		System.out.println("마이바티스 getUserLevel 실행");
-		return mybatis.selectOne("UserDAO.getUserLevel", vo);
+	
+	
+	//구독 level 
+	public int getUser1(UserVO vo) {
+		System.out.println("마이바티스 getUser1 실행");
+		return mybatis.selectOne("UserDAO.getUser1", vo);
 	}
-	//=구독=
 	//구독 취소 
 	public int updateuserle0(UserVO vo) {
 		return mybatis.insert("UserDAO.updateuserle0", vo);
