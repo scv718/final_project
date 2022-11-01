@@ -6,7 +6,7 @@
 	<properties resource="config/database.properties"></properties>
 	<typeAliases>
 
-		<typeAlias type="com.project.wine.WineVO" alias="wine"/>
+		<typeAlias type="com.project.wine.WineVO" alias="wine"></typeAlias>
 		<typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
 		<typeAlias type="com.project.intro.IntroVO" alias="intro"></typeAlias>
 		<typeAlias type="com.project.review.ReviewVO" alias="review"></typeAlias>

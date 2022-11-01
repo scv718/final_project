@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface MenuService {
 	
-	List<MenuVO> typeWine(MenuVO vo);
+	List<MenuVO> typeMenu(MenuVO vo);
 	
 }

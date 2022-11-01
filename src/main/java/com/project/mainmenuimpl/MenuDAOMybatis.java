@@ -15,7 +15,9 @@ public class MenuDAOMybatis {
 	private SqlSessionTemplate mybatis;
 
 	public List<MenuVO> typeMenu(MenuVO vo){
-		return mybatis.selectList(null);
+		System.out.println("타입별 메뉴 쿼리문실행");
+		System.out.println(vo.getType());
+		return mybatis.selectList("MenuDAO.typeMenu", vo);
 		
 	}
 	

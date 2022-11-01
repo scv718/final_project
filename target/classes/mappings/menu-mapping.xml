@@ -5,8 +5,8 @@
 <mapper namespace="MenuDAO">
 
 	<select id = "typeMenu" resultType="menu">
-		SELECT * FROM wine WHERE TYPE = #{type};
-	
+		SELECT * FROM WINE
+		WHERE TYPE = #{type}
 	</select>
 
 </mapper>

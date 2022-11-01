@@ -1,7 +1,29 @@
 	@charset "UTF-8";
 
-
-
+.typeSlider{
+	display: none;
+}
+.slides > .active{
+	display: flex !important;
+    flex-direction: row;
+    text-align: center;
+    margin: 0 auto;
+}
+#typediv{
+	margin-right: 30px;
+	margin: 0 auto;
+}
+#typeWineName{
+	font-size: 10px;
+}
+.typeWineMenu{
+	width: 500px;
+}
+#imgwine{
+	width: auto;
+    height:  200px;
+	
+}
 .slider-1 {
     height:610px;
     position:relative;
@@ -79,7 +101,7 @@
 
 /* //////////////// 슬라이드2 */
 .slider-2 {
-    height:610px;
+    height: 300px;
     position:relative;
 }
 
@@ -114,7 +136,7 @@
     right:0;
     bottom:0;
     opacity:0;
-    transition: opacity 0.3s;
+/*     transition: opacity 0.3s; */
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat;
@@ -151,4 +173,8 @@
 .slider-2 >.side-btns > div:last-child > span {
     left:auto;
     right:20px;
+}
+
+.slides >div{
+	display: none;
 }

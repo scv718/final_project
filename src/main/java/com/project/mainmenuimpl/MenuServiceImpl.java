@@ -15,9 +15,8 @@ public class MenuServiceImpl implements MenuService{
 	private MenuDAOMybatis menuDAO;
 
 	@Override
-	public List<MenuVO> typeWine(MenuVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MenuVO> typeMenu(MenuVO vo) {
+		return menuDAO.typeMenu(vo);
 	}
 
 	
