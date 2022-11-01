@@ -23,7 +23,7 @@ public class ReviewDAO {
 	//상품후기 상세 조회
 	public ReviewVO detailReview(ReviewVO vo) {
 		System.out.println("리뷰 상세보기");
-		return (ReviewVO)mybatis.selectOne("BoardDAO.detailReview", vo);
+		return mybatis.selectOne("BoardDAO.detailReview", vo);
 	}
 
 	//상품후기 목록 조회

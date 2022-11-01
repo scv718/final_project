@@ -30,6 +30,9 @@ public class ReviewVO {
 	private String searchCondition;
 	private String searchKeyword;
 	
+	//리뷰정렬
+	private String alignlist;
+	
 	//첨부파일
 	private MultipartFile uploadFile;
 	private String filename;
@@ -198,14 +201,22 @@ public class ReviewVO {
 		this.offset = offset;
 	}
 
+	public String getAlignlist() {
+		return alignlist;
+	}
+
+	public void setAlignlist(String alignlist) {
+		this.alignlist = alignlist;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewVO [re_no=" + re_no + ", w_no=" + w_no + ", id=" + id + ", re_title=" + re_title + ", re_content="
 				+ re_content + ", re_score=" + re_score + ", re_photo1=" + re_photo1 + ", re_photo2=" + re_photo2
 				+ ", re_photo3=" + re_photo3 + ", re_date=" + re_date + ", re_like=" + re_like + ", w_nm_k=" + w_nm_k
 				+ ", w_nm_e=" + w_nm_e + ", ord_code=" + ord_code + ", ord_stat=" + ord_stat + ", searchCondition="
-				+ searchCondition + ", searchKeyword=" + searchKeyword + ", uploadFile=" + uploadFile + ", filename="
-				+ filename + ", offset=" + offset + "]";
+				+ searchCondition + ", searchKeyword=" + searchKeyword + ", alignlist=" + alignlist + ", uploadFile="
+				+ uploadFile + ", filename=" + filename + ", offset=" + offset + "]";
 	}
 	
 }

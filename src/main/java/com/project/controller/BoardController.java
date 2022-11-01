@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +36,18 @@ public class BoardController {
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<String, String>();
+		conditionMap.put("제목", "TITLE");
 		conditionMap.put("내용", "CONTENTS");
 		conditionMap.put("상품", "PRODUCT");
 		return conditionMap;
+	}
+	
+	@ModelAttribute("conditionMap2")
+	public Map<String, String> searchConditionMap2() {
+		Map<String, String> conditionMap2 = new HashMap<String, String>();
+		conditionMap2.put("최신순", "NEW");
+		conditionMap2.put("추천순", "LIKE");
+		return conditionMap2;
 	}
 	
 	// 리뷰작성
@@ -57,7 +67,9 @@ public class BoardController {
 	// 상품후기 상세조회
 	@RequestMapping(value="/detailReview.wp", method=RequestMethod.GET)
 	public String detailReview(ReviewVO vo, Model model) {
-		model.addAttribute("detailReview", reviewService.detailReview(vo));
+		System.out.println("controller"+vo.getRe_no());
+		ReviewVO a =  reviewService.detailReview(vo);
+		model.addAttribute("detailReview",a);
 		return "WEB-INF/board/detailReview.jsp";
 	}
 	
@@ -88,10 +100,13 @@ public class BoardController {
 
 		// 검색어 영문 대문자 처리
 		if(vo.getSearchKeyword() != null) {
+			model.addAttribute("search", vo.getSearchKeyword());
+			model.addAttribute("category", vo.getSearchCondition());
 			String upper = vo.getSearchKeyword().toUpperCase();
 			System.out.println("검색어 : " + upper);
-			vo.setSearchCondition(upper);
+			vo.setSearchKeyword(upper);
 		}
+		System.out.println("컨트롤러:"+vo);
 		
 		return "WEB-INF/board/getReviewList.jsp";
 	}
