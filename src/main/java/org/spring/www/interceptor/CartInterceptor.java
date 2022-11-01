@@ -16,7 +16,7 @@ public class CartInterceptor implements HandlerInterceptor {
 
 		HttpSession session = request.getSession();
 		
-		UserVO mvo = (UserVO)session.getAttribute("member");
+		UserVO mvo = (UserVO)session.getAttribute("userID");
 		
 		if(mvo == null) {
 			response.sendRedirect("/main");

@@ -47,6 +47,7 @@ public class IamportController {
 	public static final String IMPORT_CANCEL_URL = "https://api.iamport.kr/payments/cancel";
 	public static final String IMPORT_PREPARE_URL = "https://api.iamport.kr/payments/prepare";
 	public static final String IMPORT_CERTIFICATION_URL = "https://api.iamport.kr/certifications";
+	
 	//"아임포트 Rest Api key로 설정";
 	public static final String KEY = "5772502836676770";
 	//"아임포트 Rest Api Secret로 설정"; 
