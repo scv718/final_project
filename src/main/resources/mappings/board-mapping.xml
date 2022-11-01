@@ -12,6 +12,7 @@
 		ON R.W_NO =
 		W.W_NO
 		WHERE 1=1
+		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
 		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
 		<if test="searchCondition == 'PRODUCT'">
 			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
@@ -28,6 +29,7 @@
 		JOIN WINE W
 		ON R.W_NO = W.W_NO
 		WHERE 1=1
+		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
 		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
 		<if test="searchCondition == 'PRODUCT'">
 			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
