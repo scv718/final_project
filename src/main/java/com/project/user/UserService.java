@@ -3,8 +3,6 @@ package com.project.user;
 import java.util.List;
 
 public interface UserService {
-
-	int getUser1(UserVO vo);
 	void insertUser(UserVO vo);
 	void updateUser(UserVO vo);
 	void deleteUser(UserVO vo);
@@ -18,7 +16,7 @@ public interface UserService {
 	void kakaoInsertUser(UserVO vo);
 	
 	//구독
-	int getUserLevel(UserVO vo);
+	int getUser1(UserVO vo);
 	int updateuserle0(UserVO vo);
 	int updateuserle1(UserVO vo);
 	int updateuserle2(UserVO vo);

@@ -19,12 +19,6 @@ public class UserServeImpl implements UserService{
 	}
 
 	@Override
-	public int getUser1(UserVO vo) {
-		System.out.println("impl getUser1");
-		return userDAO.getUser1(vo);
-	}
-
-	@Override
 	public void insertUser(UserVO vo) {
 		userDAO.insertUser(vo);
 		
@@ -86,6 +80,10 @@ public class UserServeImpl implements UserService{
 
 	//구독
 	@Override
+	public int getUser1(UserVO vo) {
+		return userDAO.getUser1(vo);
+	}
+	@Override
 	public int updateuserle0(UserVO vo) {
 		return userDAO.updateuserle0(vo);
 	}@Override
@@ -98,10 +96,7 @@ public class UserServeImpl implements UserService{
 	public int updateuserle3(UserVO vo) {
 		return userDAO.updateuserle3(vo);
 	}
-	@Override
-	public int getUserLevel(UserVO vo) {
-		return userDAO.getUserLevel(vo);
-	}
+	
 
 
 

@@ -17,7 +17,7 @@ public class SubscribeServiceImpl implements SubscribeService {
 
 	@Override
 	public void insertSubscribe0(SubscribeVO vo) {
-		subscribeDAO.insertSubscribe1(vo);
+		subscribeDAO.insertSubscribe0(vo);
 	}
 	@Override
 	public void insertSubscribe1(SubscribeVO vo) {
@@ -49,7 +49,5 @@ public class SubscribeServiceImpl implements SubscribeService {
 	@Override
 	public void preference_Setting(SubscribeVO vo) {
 		subscribeDAO.preference_Setting(vo);
-		
 	}
-
 }

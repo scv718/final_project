@@ -24,12 +24,12 @@ public class SubscribeDAOMybatis {
 	}
 	public void insertSubscribe1(SubscribeVO vo) {
 		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe1", vo);
+		mybatis.update("SubscribeDAO.insertSubscribe1", vo);
 		
 	}
 	public void insertSubscribe2(SubscribeVO vo) {
 		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe2", vo);
+		mybatis.update("SubscribeDAO.insertSubscribe2", vo);
 		
 	}
 	public void insertSubscribe3(SubscribeVO vo) {
