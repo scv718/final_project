@@ -99,7 +99,7 @@ function kakaoLogout() {
 <a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="#">QnA</a> 
 <a  id = "secondMenu"  href="#">리뷰</a> 
-<a id = "secondMenu" href="getReviewList.wp">리뷰게시판</a>
+<a id = "secondMenu" href="getReviewList.wp">상품후기</a>
 <a id = "secondMenu" href="search/detailProduct.jsp">상품보기</a>
 </div>
 

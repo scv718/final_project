@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,16 +31,19 @@ public class EmailController {
 	HttpSession session;
 	@Autowired
 	private UserService userService;
+	
+	
 	// 인증번호 이메일 전송 Ajax
 	@ResponseBody
-	@RequestMapping(value = "/email_Send", method = RequestMethod.POST)
-	public String mail_Send(@RequestParam String email) {
+	@RequestMapping(value = "/email_Send.wp", method = RequestMethod.POST)
+	public int mail_Send(@RequestBody HashMap<String, Object> param ) {
 		System.out.println("email_Send이동");
 		Random random = new Random();
 		String key = "";
 
+		String m_email = (String) param.get("m_email");
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo(email);
+		message.setTo(m_email);
 		
 		//보낼 인증번호 난수 생성 로직
 		for (int i = 0; i < 3; i++) {
@@ -50,7 +55,7 @@ public class EmailController {
 			key += numIndex;
 		}
 		//이메일의 제목이 되는 부분
-		message.setSubject("인증번호 입력을 위한 메일 전송");
+		message.setSubject("Winery - 인증번호 입력을 위한 메일 전송");
 		//이메일의 내용이 되는 부분
 		message.setText("인증 번호 : " + key);
 		//이메일의 보내는 사람이 되는 부분(반드시 smtp설정한 이메일주소 입력, 다를 경우 인증 안됨) 예시: admin@gmail.com 등..
@@ -59,12 +64,12 @@ public class EmailController {
 		
 		sender.send(message);
 		session.setAttribute("emailKey", key);
-		return "ok";
+		return 1;
 	}
 
 	// 이메일 인증번호 체크 Ajax
 	@ResponseBody
-	@RequestMapping(value = "/email_Check", method = RequestMethod.POST)
+	@RequestMapping(value = "/email_Check.wp", method = RequestMethod.POST)
 	public boolean mail_Check(String emailCheck) {
 		boolean result = false;
 		String emailKey = (String) session.getAttribute("emailKey");

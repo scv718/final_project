@@ -47,6 +47,9 @@ public class UserDAOMybatis {
 	public void kakaoInsertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertKakaoUser", vo);
 	}
+	public void updateUser(UserVO vo) {
+		mybatis.update("UserDAO.updateUser", vo);
+	}
 	
 	//아이디 체크
 	public int checkUser(String id) {
