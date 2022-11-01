@@ -19,4 +19,7 @@ public interface NoticeService {
 	// 공지사항 전체 조회
 	List<CommunityVO> getNoticeList(CommunityVO vo);
 	
+	// 공지사항 조회수
+	void viewCount(int commu_no);
+	
 }

@@ -40,4 +40,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.getNoticeList(vo);
 	}
 
+	@Override
+	public void viewCount(int commu_no) {
+		noticeDAO.viewCount(commu_no);
+	}
+
 }

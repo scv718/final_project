@@ -25,13 +25,13 @@ public class NoticeDAOMybatis {
 	// 공지사항 수정
 	public void updateNotice(CommunityVO vo) {
 		System.out.println("===> mybatis updateNotice() 기능처리");
-		mybatis.insert("NoticeDAO.updateNotice", vo);
+		mybatis.update("NoticeDAO.updateNotice", vo);
 	}
 
 	// 공지사항 삭제
 	public void deleteNotice(CommunityVO vo) {
 		System.out.println("===> mybatis deleteNotice() 기능처리");
-		mybatis.insert("NoticeDAO.deleteNotice", vo);
+		mybatis.delete("NoticeDAO.deleteNotice", vo);
 	}
 
 	// 공지사항 상세 조회(한줄)
@@ -50,5 +50,11 @@ public class NoticeDAOMybatis {
 	public int totalNoticeListCnt(CommunityVO vo) {
 		System.out.println("===> mybatis totalNoticeListCnt() 기능처리");
 		return mybatis.selectOne("NoticeDAO.totalNoticeListCnt", vo);
+	}
+
+	// 공지사항 조회수
+	public void viewCount(int commu_no) {
+		System.out.println("===> mybatis viewCount() 기능처리");
+		mybatis.update("NoticeDAO.viewCount", commu_no);
 	}
 }

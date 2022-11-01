@@ -88,6 +88,12 @@
             }
         }
     </style>
+    <script>
+    function selTr(val){
+    	location.href = "getNotice.wp?commu_no="+val;
+    }
+
+    </script>
 </head>
 
 <body>
@@ -101,12 +107,13 @@
         </ul>
 
 	<c:forEach var="notice" items="${noticeList}">
-        <ul class="li_body notice_body">
+        <ul class="li_body notice_body" onclick="selTr(${notice.commu_no})" style="cursor:pointer;" >
+<!--         <ul class="li_body notice_body" > -->
             <li class="no">${notice.commu_cat_no}</li>
             <li class="tit">
-                <a class="list_text_title _fade_link" href="#">
+<%--                 <a class="" href="getNotice.wp?commu_no=${notice.commu_no}" > --%>
                     <span>${notice.commu_title}</span>
-                </a>
+<!--                 </a> -->
             </li>
             <li class="name">${notice.id}</li>
             <li class="time">${notice.commu_date}</li>
@@ -116,6 +123,7 @@
         </ul>
 	</c:forEach>
 
+<button id="conWrite" type="button" class="btn btn-primary" onclick="location='insertNotice.jsp'">글쓰기</button>
     </div>
 </body>
 

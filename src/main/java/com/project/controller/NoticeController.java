@@ -1,6 +1,6 @@
 package com.project.controller;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,17 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.common.PagingVO;
 import com.project.community.CommunityVO;
 import com.project.community.NoticeService;
+import com.project.community.Impl.NoticeDAOMybatis;
 
 @Controller
 @SessionAttributes("community")
 public class NoticeController {
 		
 		@Autowired
-		private NoticeService noticeService;
+		private NoticeDAOMybatis noticeService;
 
 //		@ModelAttribute("conditionMap")
 //		public Map<String, String> searchConditionMap() {
@@ -39,10 +41,16 @@ public class NoticeController {
 //			return conditionMap;
 //		}
 
+		@GetMapping(value="/insertNotice.wp")
+		public String insertNotice_get(CommunityVO vo) throws IllegalStateException, IOException {
+			return "WEB-INF/view/community/insertNotice.jsp";
+		}
+		
+		
 		//"uploadFile" 추가시 
 		@PostMapping(value = "/insertNotice.wp")
 //		public String insertBoard(MultipartHttpServletRequest request, BoardVO vo) throws IllegalStateException, IOException {
-		public String insertNotice(CommunityVO vo) throws IllegalStateException, IOException {
+		public String insertNotice_post(CommunityVO vo) throws IllegalStateException, IOException {
 			MultipartFile uplodFile = vo.getUploadFile();
 			//realPath 추가
 //		    String realPath = request.getSession().getServletContext().getRealPath("/img/");
@@ -56,23 +64,28 @@ public class NoticeController {
 			return "redirect:getNoticeList.wp";
 		}
 
-//		// 글 수정
-//		@RequestMapping("/updateBoard.do")
-//		public String updateBoard(@ModelAttribute("board") BoardVO vo, HttpSession session) {
+		// 글 수정
+		@RequestMapping("/updateNotice.wp")
+//			public String updateNotice(MultipartHttpServletRequest request,@ModelAttribute("community") CommunityVO vo, Model model) 
+//					throws IllegalStateException, IOException{
+			public String updateNotice(@ModelAttribute("community") CommunityVO vo, Model model) {
 //			if( vo.getWriter().equals(session.getAttribute("userName").toString()) ){
 //				boardService.updateBoard(vo);
 //				return "getBoardList.do";
 //			}else {
 //				return "getBoard.do?error=1";
 //			}
-//			
-//		}
+			noticeService.updateNotice(vo);
+			return "getNotice.wp";
+			
+		}
 
-//		// 글 삭제
-//		@RequestMapping("/deleteBoard.do")
-//		public String deleteBoard(BoardVO vo, HttpSession session) {
+		// 공지사항 삭제
+		@RequestMapping("/deleteNotice.wp")
+		public String deleteNotice(CommunityVO vo) {
+//			public String deleteNotice(CommunityVO vo, HttpSession session) {
 //			String realPath = "c:/swork/eleven/src/main/webapp/img/" ;
-//			vo = boardService.getBoard(vo);
+//			vo = noticeService.getNotice(vo);
 //			if( vo.getWriter().equals(session.getAttribute("userName").toString()) ) {
 //				if(vo.getFilename()!=null) {
 //					System.out.println("파일삭제: "+realPath + vo.getFilename());
@@ -84,14 +97,24 @@ public class NoticeController {
 //			}else {
 //				return "getBoard.do?error=1";
 //			}
-//		}
+			
+			noticeService.deleteNotice(vo);
+			return "getNoticeList.wp";
+		}
 
-//		// 공지사항 상세 조회
-//		@RequestMapping("/getBoard.do")
-//		public String getBoard(BoardVO vo, Model model) {
-//			model.addAttribute("board", boardService.getBoard(vo));
-//			return "WEB-INF/board/getBoard.jsp";
-//		}
+		// 공지사항 상세 조회
+		@RequestMapping("/getNotice.wp")
+//		public String getNotice(@ModelAttribute("community")CommunityVO vo, Model model) {
+			public String getNotice(CommunityVO vo, Model model) {
+			
+			//조회수 증가
+			int Commu_no = 0;
+			noticeService.viewCount(vo.getCommu_no());
+//			List<CommunityVO> list = noticeService.getNotice(vo.getCommu_no());
+			System.out.println(noticeService.getNotice(vo));
+			model.addAttribute("community", noticeService.getNotice(vo));
+			return "WEB-INF/view/community/getNotice.jsp";
+		}
 
 		// 공지사항 목록 조회
 		@RequestMapping("/getNoticeList.wp")
