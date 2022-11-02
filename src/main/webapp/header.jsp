@@ -72,7 +72,7 @@ function kakaoLogout() {
 </script>
 			
 <div style = "text-align: center;">
-<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Winery</a>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/index.wp">Winery</a>
 
 </div>
 

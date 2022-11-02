@@ -72,7 +72,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "index.jsp";
+		return "index.wp";
 	}
 	
 	

@@ -1,11 +1,26 @@
 package com.project.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.mainmenu.MenuService;
+import com.project.mainmenu.MenuVO;
 
 @Controller
 public class MainController {
 	
+	@Autowired
+	MenuService menuService;
+	@RequestMapping(value = {"/", "/index.wp"})
+	public String index(Model model, MenuVO vo) {
+		System.out.println("메인페이지");
+		
+		model.addAttribute("bestMenuList", menuService.bestMenu(vo));
+		
+		return "index.jsp";	
+	}
 	@RequestMapping(value = "/introDuce.wp")
 	public String introDuce() {
 		System.out.println("소개하기");
