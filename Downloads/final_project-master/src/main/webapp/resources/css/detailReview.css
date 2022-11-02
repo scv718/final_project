@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#reviewContainer {
+    width: 1050px;
+    margin: 0 auto;
+}
+
+#comtitle {
+	margin: 25px 0;
+	text-align: center;
+}
