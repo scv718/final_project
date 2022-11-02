@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰게시판</title>
+<title>와이너리 | 상품후기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/getReviewList.css"/>
 <%@ include file="../../../header.jsp"%>
