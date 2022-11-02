@@ -134,6 +134,7 @@ $('.slider-1 > .side-btns > div').click(function(){
 	
 
 <div class="typeSlider">
+<div class = "type">
 <div class="slider-2">
     <div class="slides">
         <div class="active">
@@ -141,6 +142,7 @@ $('.slider-1 > .side-btns > div').click(function(){
           	<div id = "typediv">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
+   				<p></p>
    			</div>
   			 </c:forEach>
 		</div>
@@ -161,13 +163,13 @@ $('.slider-1 > .side-btns > div').click(function(){
   			 </c:forEach>
 		</div>
     </div>
-    <div class="page-btns" style = "display: none;">
+    <div class="page-btns">
         <div class="active"></div>
         <div></div>
         <div></div>
     </div>
     <div class="side-btns">
-        <div>
+        <div id ="leftbtn">
             <span><i class="fas fa-angle-left"></i></span>
         </div>
         <div>
@@ -175,7 +177,7 @@ $('.slider-1 > .side-btns > div').click(function(){
         </div>
     </div>
 </div>
-	
+	</div>
 	</div>
 		
 
@@ -199,7 +201,7 @@ $('.slider-2 > .page-btns > div').click(function(){
 });
 
 // 좌/우 버튼 추가 슬라이더
-$('.slider-2 > .side-btns > div').click(function(){
+$(' .slider-2 > .side-btns > div').click(function(){
     var $this = $(this);
     var $slider = $this.closest('.slider-2');
     
@@ -237,7 +239,7 @@ $('.slider-2 > .side-btns > div').click(function(){
 <script type="text/javascript">
 $('.WaterBtn').on('click', function () {
 	 var watertype = this.value;
-	 $('.typeSlider').show();
+	
 	console.log(watertype)
 	$.ajax({
 		type : 'POST',
@@ -247,7 +249,8 @@ $('.WaterBtn').on('click', function () {
 			  typeMenu: watertype        
 		},
 		success : function(val){
-			console.log(val);
+			 $('.typeSlider').show();
+			 $('.type').load(location.href+' .type');
 		}
 	})
 })
