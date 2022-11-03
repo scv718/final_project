@@ -66,6 +66,7 @@ public class Order_cartController {
 		cartService.deleteCart(cvo);
 		return "redirect:/cart.wp";
 	}
+	
 	/* 장바구니 추가 */
 		@RequestMapping(value = "/addCart.wp")
 		public String addCart(UserVO uvo, CartVO cvo, HttpSession session, Model model) {
