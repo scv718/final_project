@@ -14,24 +14,28 @@ public class CartServiceImpl implements CartService {
 	private CartDAOMybatis cartDAO;	
 
 	@Override
-	public void addCart(CartVO cart) {
-	cartDAO.checkCart(cart);	
+	public void addCart(CartVO vo) {
+	cartDAO.addCart(vo);	
 	}	
 	@Override
-	public void addcart_ORD_CART_NO(CartVO cart) {
-		 cartDAO.addcart_ORD_CART_NO(cart);
-	}	
-	
-	@Override
-//	public int deleteCart(CartVO cartId) {
-	public void deleteCart(int cartId) {
-		 cartDAO.deleteCart(cartId);
+	public void addcart_ORD_CART_NO(CartVO vo) {
+		 cartDAO.addcart_ORD_CART_NO(vo);
 	}	
 	
 	@Override
-	public List<CartVO> getCartList(String memberId) {
+	public void deleteCart(CartVO vo) {
+		 cartDAO.deleteCart(vo);
+	}	
+	
+	@Override
+	public CartVO checkCart(CartVO vo) {
+		return cartDAO.checkCart(vo);
+	}
+	
+	@Override
+	public List<CartVO> getCartList(String vo) {
 		
-		List<CartVO> cart = cartDAO.getCart(memberId);
+		List<CartVO> cart = cartDAO.getCart(vo);
 		
 		for(CartVO dto : cart) {
 			
@@ -47,9 +51,11 @@ public class CartServiceImpl implements CartService {
 	}	
 	
 	@Override
-	public void modifyCount(CartVO cart) {
-		 cartDAO.modifyCount(cart);
-	}
-	
-		
+	public void modifyCount(CartVO vo) {
+		 cartDAO.modifyCount(vo);
+	}	
+	@Override
+	public void modifyCount1(CartVO vo) {
+		 cartDAO.modifyCount(vo);
+	}		
 }

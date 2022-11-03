@@ -19,17 +19,21 @@
 	
 	<!-- 카트 삭제 -->
 	<delete id="deleteCart">
-		DELETE FROM ORDER_CART WHERE W_NO = #{w_no}
+		DELETE FROM ORDER_CART WHERE ORD_CART_NO = #{ord_cart_no}
 	</delete>
 	
 	<!-- 카트 수량 수정 -->
 	<update id="modifyCount">
-	UPDATE ORDER_CART SET ORD_QUAN = 40 WHERE ID = #{id}</update>
-	
+	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
+<!-- 	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan+1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no} -->
+	</update>
+	<update id="modifyCount1">
+	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan-1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
+	</update>
 	
 	<!-- 카트 확인 -->
 	<select id="checkCart" resultType="cart">
-	SELECT * FROM ORDER_CART WHERE ID = #{id}</select>	
+	SELECT * FROM ORDER_CART WHERE ID = #{id} AND ORD_CART_NO =#{ord_cart_no}</select>	
 	
 	<!-- 카트 목록 -->
 	<select id="getCart" resultType="cart">

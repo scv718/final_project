@@ -49,17 +49,18 @@
 					<tbody>
 						<c:forEach items="${cartInfo}" var="ci">
 							<tr>
-<!-- 								<td class="td_width_1 cart_info_td"> -->
-<!-- 									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"> -->
-<%-- 									<input type="hidden" value="#{ci.ord_cart_no}"> --%>
-<%-- 									<input type="hidden" value="#{ci.id}"> --%>
-<%-- 									<input type="hidden" value="#{ci.ord_quan}"> --%>
-<%-- 									<input type="hidden" value="#{ci.w_price}"> --%>
-<%-- 									<input type="hidden" value="#{ci.pay_stat}"> --%>
-<%-- 									<input type="hidden" value="#{ci.ord_code}"> --%>
-<%-- 									<input type="hidden" value="#{ci.w_nm_k}"> --%>
-<%-- 									<input type="hidden" value="#{ci.w_nm_e}">						 --%>
-<!-- 								</td> -->
+								<td class="td_width_1 cart_info_td">
+									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+									<input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
+									<input type="hidden" value="${ci.id}">
+									<input type="hidden" value="${ci.ord_quan}">
+									<input type="hidden" value="${ci.w_price}">
+									<input type="hidden" value="${ci.pay_stat}">
+									<input type="hidden" value="${ci.ord_code}">
+									<input type="hidden" value="${ci.w_nm_k}">
+									<input type="hidden" value="${ci.w_nm_e}">	
+									<input type="hidden" value="${ci.quantity}">							
+								</td>
 								<td class="td_width_2">
 <%-- 									<div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}"> --%>
 <!-- 										<img> -->
@@ -70,25 +71,28 @@
 									상품금액 : <fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /><br>
 								</td>
 								<td class="td_width_4 table_text_align_center">
+								<form action="modifyCount.wp" method="post" class="quantity_modify_btn">
 									<div class="table_text_align_center quantity_div">
+									<input type="hidden" value="${ci.ord_quan}">
+									<input type="hidden" value="${ci.quantity}">	
 										<input type="text" value="${ci.ord_quan}" class="quantity_input" maxlength ="${ci.quantity}">	
-										<button class="quantity_btn plus_btn">+</button>
-										<button class="quantity_btn minus_btn">-</button>
-									</div>
-									<a  href="/modifyCount.wp" class="quantity_modify_btn">변경</a>
+										<button type="submit" class="quantity_btn plus_btn">+</button>
+										<button type="submit" class="quantity_btn minus_btn">-</button>
+									</div></form>
+<!-- 									<a  href="/modifyCount.wp" class="quantity_modify_btn">변경</a> -->
 								</td>
 								<td class="td_width_4 table_text_align_center">
 									<fmt:formatNumber value="${ci.w_price * ci.ord_quan}" pattern="#,### 원" />
 								</td>
 								<td class="td_width_4 table_text_align_center">
 								<form action="deleteCart.wp" method="post">
-									<button  type="submit" class="delete_btn">삭제</button></form>
+								<input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
+									<button  type="submit" class="delete_btn">삭제</button>
+									</form>
 								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
-				</table>
-				<table class="list_table">
 				</table>
 			</div>
 			
@@ -168,25 +172,24 @@
 				<a href="../../../pay2.jsp" role="button" >주문하기</a>
 			</div>
 			
-			<!-- 수량 조정 form -->
-			<form action="/cart/update" method="post" class="quantity_update_form">
-				<input type="hidden" name="cartId" class="update_cartId">
-				<input type="hidden" name="bookCount" class="update_bookCount">
-				<input type="hidden" name="userID" value="${ci.id}">
-			</form>	
+<!-- 			<!-- 수량 조정 form --> -->
+<!-- 			<form action="modifyCount.wp" method="post" class="quantity_update_form"> -->
+<!-- 				<input type="hidden" name="cartId" class="update_cartId"> -->
+<!-- 				<input type="hidden" name="bookCount" class="update_bookCount"> -->
+<%-- 				<input type="hidden" name="cartInfo" value="${ci.id}"> --%>
+<!-- 			</form>	 -->
 			
-			<!-- 삭제 form -->
+<!-- 			<!-- 삭제 form -->
 <!-- 			<form action="deleteCart.wp" method="post" class="quantity_delete_form"> -->
-<!-- 				<input type="hidden" name="cartId" class="delete_cartId"> -->
-<%-- 				<input type="hidden" name="memberId" value="${ci.id}"> --%>
+<!-- 				<input type="hidden" name="cartId" class="update_cartId"> -->
+<!-- 				<input type="hidden" name="W_no" class="update_cartId"> -->
+<%-- 				<input type="hidden" name="cartInfo" value="${ci.id}"> --%>
 <!-- 			</form>		 -->
 			<!-- 주문 form -->
-			<form action="/order/${ci.id}" method="get" class="order_form">
-
-			</form>				
+			<form action="addCart.wp"method="post" class="order_form"></form>				
 		</div>	
 		
-		c
+		
 	</div>	<!-- class="wrap" -->
 </div>	<!-- class="wrapper" -->
 
@@ -310,13 +313,13 @@ $(".minus_btn").on("click", function(){
 
 
 /* 수량 수정 버튼 */
-$(".quantity_modify_btn").on("click", function(){
-	let cartId = $(this).data("Cid");
-	let bookCount = $(this).parent("td").find("input").val();
-	$(".update_cartId").val("Cid");
-	$(".quantity_update_form").submit();
+// $(".quantity_modify_btn").on("click", function(){
+// 	let cartId = $(this).data("Cid");
+// 	let bookCount = $(this).parent("td").find("input").val();
+// 	$(".update_cartId").val("Cid");
+// 	$(".quantity_update_form").submit();
 	
-});
+// });
 
 /* 장바구니 삭제 버튼 */
 // $(".delete_btn").on("click", function(e){
