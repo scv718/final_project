@@ -106,7 +106,6 @@ public class BoardController {
 			System.out.println("검색어 : " + upper);
 			vo.setSearchKeyword(upper);
 		}
-		System.out.println("컨트롤러:"+vo);
 		
 		return "WEB-INF/board/getReviewList.jsp";
 	}
