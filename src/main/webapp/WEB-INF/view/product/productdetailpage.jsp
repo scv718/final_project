@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -149,9 +150,18 @@ function orderList(){
     </div>
     <div class="col" id = "productthree">
     <div class = "buttondiv">
-	    <button>수량</button>
-      	<a type = "button" href = "/add.wp?w_no=${product.w_no}">장바구니</a>
+    <form action="addCart.wp">
+    <input type="hidden" id="w_no" name="w_no" value="${product.w_no}">
+    <input type="hidden" id=w_price name="w_price" value="${product.w_price}">
+    <select name="ord_quan" id="quantity">
+    <option value="">수량</option>
+    <c:forEach items="${num}" var="option"  varStatus="status">
+          	 <option value="${status.count}">${status.count}</option>
+  	</c:forEach>
+	</select>
+      	<button type = "submit">장바구니</button>
       	<a type = "button" href = "payment.wp">결제하기</a>
+      </form>
     </div>
     </div>
   </div>

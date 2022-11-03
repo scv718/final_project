@@ -6,8 +6,8 @@
 
 	<!-- 카트 추가 -->
 	<insert id="addCart">
-		 INSERT INTO ORDER_CART(ID,W_NO,ORD_QUAN,W_PRICE,PAY_STAT,ORD_CODE)
-		 values(#{id},#{w_no},#{ord_quan},#{w_price},'결제상태',#{ord_code});
+		 INSERT INTO ORDER_CART(ID,W_NO,ORD_QUAN,W_PRICE)
+		 values(#{id},#{w_no},#{ord_quan},#{w_price});
 	</insert>
 	<!-- 초기화 addcart_ORD_CART_NO -->
 	<update id="addcart_ORD_CART_NO">

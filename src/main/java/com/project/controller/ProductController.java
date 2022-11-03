@@ -1,5 +1,8 @@
 package com.project.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +31,16 @@ public class ProductController {
 		System.out.println("상품 상세페이지 이동");
 		System.out.println(productService.getProductdetail(vo));
 		uvo.setId((String) session.getAttribute("userID"));
+		List<Integer> num = new ArrayList();
+		for(int i=1; i<=productService.getProductdetail(vo).getQuantity();i++) {
+			int l = 0;
+			num.add(l,i);
+			l++;
+			
+		
+		}
 		model.addAttribute("product", productService.getProductdetail(vo));
+		model.addAttribute("num", num);
 		model.addAttribute("user", userSerivce.getUser(uvo));
 		return "WEB-INF/view/product/productdetailpage.jsp";
 		
