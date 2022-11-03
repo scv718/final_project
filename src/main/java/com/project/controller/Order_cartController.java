@@ -40,59 +40,52 @@ public class Order_cartController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println(Cid = (String) session.getAttribute("userID"));
-		System.out.println(cartService.getCartList(Cid));
-		
-	
 		model.addAttribute("cartInfo", cartService.getCartList(Cid));
 		return "WEB-INF/view/mypage/cart.jsp";
 	}
 
 	/* 장바구니 수량 수정 */
 	@RequestMapping(value = "/modifyCount.wp")
-//	public String modifyCount(CartVO cvo, UserVO uvo, HttpSession session) {
+
 		public String modifyCount(CartVO cvo) {
 		
 		System.out.println("장바구니 수량 수정 해");
 		
 		cartService.modifyCount(cvo);
+		
+//		if() {
+//			cartService.modifyCount1(cvo);
+//		}
 		return "redirect:/cart.wp";
 	}
 	
-	/* 장바구니 수량 수정 */
-//	@RequestMapping(value ="/deleteCart.wp")
-//	public String deleteCart(CartVO cvo ,  HttpSession session) {
-//		String Cid = (String) session.getAttribute("userID");
-//		
-//	    int w = (int) session.getAttribute(w);
-//	    
-//		System.out.println("장바구니 삭제");
-//		System.out.println(cvo.getId());
-//		System.out.println(cvo.getW_no());
-//		System.out.println(w);
-//		cartService.deleteCart(w);
-//		
-//		return "redirect:/cart.wp";
-//		
-//	}
+	/* 장바구니 수량 삭제 */
+	@RequestMapping(value ="/deleteCart.wp")
+	public String deleteCart(CartVO cvo ,  HttpSession session) {
+		System.out.println("장바구니 삭제");
+		cartService.deleteCart(cvo);
+		return "redirect:/cart.wp";
+	}
+	
 	/* 장바구니 추가 */
-	@PostMapping("/cart.wp/add")
-	@ResponseBody
-	public String addCartPOST(CartVO cvo, HttpServletRequest request) {
+		@RequestMapping(value = "/addCart.wp")
+		public String addCart(UserVO uvo, CartVO cvo, HttpSession session, Model model) {
 		// 로그인 체크
-		HttpSession session = request.getSession();
-		UserVO mvo = (UserVO)session.getAttribute("userID");
-		if(mvo == null) {
-			return "5";
+		String Cid = (String) session.getAttribute("userID");
+		try {
+			if (Cid == null) {
+				return "singUp.wp";
+			}else {
+				// 카트 등록
+				cartService.addCart(cvo);
+				cartService.addcart_ORD_CART_NO(cvo);
+				return "redirect:/cart.wp";
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		// 카트 등록
-		cartService.addCart(cvo);
-		cartService.addcart_ORD_CART_NO(cvo);
 		return "redirect:/cart.wp";
 	}	
 
-		
-	
 }

@@ -41,7 +41,10 @@ public class UserController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		System.out.println("로그인 인증 처리.....");
-	
+		
+		String password = vo.getM_pw();
+		String encryptPassword = passwordEncoder.encode(password);	
+		System.out.println(encryptPassword);
 
 		if(vo.getId() == null || vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야합니다");
