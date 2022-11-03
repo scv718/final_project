@@ -55,7 +55,7 @@ function joinform_check() {
 	  //변수에 담아주기
 	    
 	
-	  var uid = document.getElementById("userID");
+	  var uid = document.getElementById("id");
 	  var pwd = document.getElementById("m_pw");
 	  var repwd = document.getElementById("repassword");
 	  var email_id = document.getElementById("m_email");

@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
-
-import java.util.Set;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -27,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.subscribe.SubscribeService;
+import com.project.subscribe.SubscribeVO;
 import com.project.user.NaverVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
@@ -42,6 +43,9 @@ public class NaverController {
 	private static final String NAVER_LOGOUT_URL = "https://nid.naver.com/nidlogin.logout";
 	private String REDIRECT_URL = "";
 	private static String tokenChk;
+	@Autowired
+	SubscribeService subscribeService;
+	
 	@Autowired
 	UserService userService;
 		
@@ -78,7 +82,7 @@ public class NaverController {
 	
 	
 	@RequestMapping(value = "/naverlogin.wp")
-	public String oauthKakao(NaverVO vo ,UserVO uvo, Model model, HttpSession session) throws Exception {
+	public String oauthKakao(NaverVO vo ,UserVO uvo, Model model, HttpSession session, SubscribeVO svo) throws Exception {
 		vo.setAccess_token(getToken(vo));
         
         HashMap<String, Object> userInfo = getProfile(vo);
@@ -116,7 +120,9 @@ public class NaverController {
         		System.out.println("회원가입 후 로그인 진행");
         		uvo.setM_pw(m_email);
         		uvo.setId(m_email);
+        		svo.setId(uvo.getId());
         		userService.kakaoInsertUser(uvo);
+        		subscribeService.insertSubscribe0(svo);
         		session.setAttribute("userName", m_name);
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userType", "naver");

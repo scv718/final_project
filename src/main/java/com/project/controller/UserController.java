@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +22,8 @@ import com.project.subscribe.SubscribeService;
 import com.project.subscribe.SubscribeVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
+
+
 @Controller
 public class UserController {
 	
@@ -31,21 +33,28 @@ public class UserController {
 	@Autowired
 	private SubscribeService subscribeservice;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
 	public String loginView(UserVO vo, HttpSession session, HttpServletResponse response) {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		System.out.println("로그인 인증 처리.....");
+	
+
 		if(vo.getId() == null || vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야합니다");
 		}
 		if(userService.getUser(vo) != null) {
-			System.out.println("로그인아이디: "+userService.getUser(vo).getId());
-			session.setAttribute("login", userService.getUser(vo).getId());
-			System.out.println("1234");
-			session.setAttribute("userID", userService.getUser(vo).getId());
-			session.setAttribute("userName", userService.getUser(vo).getM_name());
-			return "redirect:/";
+			if(passwordEncoder.matches(vo.getM_pw(), userService.getUser(vo).getM_pw())){
+				System.out.println("로그인아이디: "+userService.getUser(vo).getId());
+				session.setAttribute("login", userService.getUser(vo).getId());
+				session.setAttribute("userID", userService.getUser(vo).getId());
+				session.setAttribute("userName", userService.getUser(vo).getM_name());
+				return "redirect:/";
+			}
+			
 		}else {
 			
 			
@@ -104,12 +113,14 @@ public class UserController {
 		vo.setM_name((String)session.getAttribute("name"));
 		vo.setM_phone((String)session.getAttribute("phone"));
 		
+		String password = vo.getM_pw();
+		String encryptPassword = passwordEncoder.encode(password);	
 //		
 //		vo.setM_birth("1995-07-18");
 //		vo.setM_name("박상현");
 //		vo.setM_phone("010-9618-3516");
 		System.out.println(vo.getId());
-		System.out.println(vo.getM_pw());
+		System.out.println(encryptPassword);
 		System.out.println(vo.getM_email());
 		System.out.println(vo.getM_birth());
 		
@@ -154,11 +165,13 @@ public class UserController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		vo.setId((String) session.getAttribute("userID"));
-		vo = userService.getUser(vo);
 		
-
-		
-		if(userService.getUser(vo) == null) {
+	
+		if(passwordEncoder.matches(vo.getM_pw(), userService.getUser(vo).getM_pw())) {		
+			vo = userService.getUser(vo);
+			model.addAttribute("vo", vo);
+			return "WEB-INF/view/user/updateUserInfo.jsp";
+		}else {
 			PrintWriter script;
 			try {
 				script = response.getWriter();
@@ -171,14 +184,8 @@ public class UserController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			return "redirect:/";
-		}else {
-			
-			model.addAttribute("vo", vo);
-			return "WEB-INF/view/user/updateUserInfo.jsp";
 		}
-		
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/userEdit.wp")

@@ -27,5 +27,6 @@
 		<mapper resource="mappings/notice-mapping.xml" />
 		<mapper resource="mappings/menu-mapping.xml" />
 		<mapper resource="mappings/search-mapping.xml" />
+		<mapper resource="mappings/product-mapping.xml" />
 	</mappers>
 </configuration>

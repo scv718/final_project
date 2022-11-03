@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.subscribe.SubscribeService;
+import com.project.subscribe.SubscribeVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
 
@@ -38,12 +40,15 @@ public class KakaoLoginController {
 	
 	public static final String KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
 	public static final String KAKAO_TOKEN_URL = "https://kauth.kakao.com/oauth/token";
-	public static final String KAKAO_LOGOUT_URL = "https://kapi.kakao.com/v1/user/logout";
 	public static final String KAKAO_USER_INFO_URL = "https://kapi.kakao.com/v2/user/me";
+	public static final String KAKAO_LOGOUT_URL = "https://kapi.kakao.com/v1/user/logout";
+	public static final String KAKAO_UNLINK_URL = "https://kapi.kakao.com/v1/user/unlink";
 	public static String REDIRECT_URI = "http://localhost:8090";
-     
+	private static String id ;
 	private String REST_API_KEY = "dc2fa6b3e7a1ed13915aa6e675bfc8a6";
 	
+	@Autowired
+	SubscribeService subscribeService;
 	@Autowired
 	UserService userService;
 	
@@ -73,7 +78,7 @@ public class KakaoLoginController {
 	public String getToken() {
 	
 		REDIRECT_URI = REDIRECT_URI+"/getToken.wp";
-		String result = KAKAO_AUTH_URL + "?response_type=code&scope=account_email&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
+		String result = KAKAO_AUTH_URL + "?response_type=code&scope=account_email,age_range,profile_nickname&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
 		
 		return result;
 	}
@@ -82,7 +87,7 @@ public class KakaoLoginController {
 	@RequestMapping(value = "/getToken.wp")
 	public String oauthKakao(
 			@RequestParam(value = "code", required = false) String code
-			, Model model, HttpSession session, UserVO vo) throws Exception {
+			, Model model, HttpSession session, UserVO vo, SubscribeVO svo) throws Exception {
 		System.out.println("code: " + code);
         String access_Token = getAccessToken(code);
         
@@ -115,7 +120,9 @@ public class KakaoLoginController {
         		System.out.println("회원가입 후 로그인 진행");
         		vo.setM_pw(m_email);
         		vo.setId(m_email);
+        		svo.setId(vo.getId());
         		userService.kakaoInsertUser(vo);
+        		subscribeService.insertSubscribe0(svo);
         		session.setAttribute("userName", m_name);
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userType", "kakao");
@@ -157,9 +164,9 @@ public class KakaoLoginController {
 		System.out.println("code: " + code);
 		session.invalidate();
         String access_Token = getAccessToken(code);
-
+        String addURL = "?target_id_type=user_id&target_id="+id ;
         HttpClient client = HttpClientBuilder.create().build(); 
-		HttpGet get = new HttpGet(KAKAO_LOGOUT_URL);
+        HttpGet get = new HttpGet(KAKAO_UNLINK_URL+addURL);
 		HashMap<String, Object> map = new HashMap<String, Object>();;
 		get.setHeader("Authorization", "Bearer " + access_Token); 
 		try {

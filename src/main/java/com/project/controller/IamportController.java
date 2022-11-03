@@ -266,7 +266,7 @@ public class IamportController {
 	
 	
 	//결제 진행 폼=> 이곳에서 DB저장 로직도 추가하기
-		@RequestMapping(value="/pay.wp", method=RequestMethod.GET)
+		@RequestMapping(value="/pay.wp", method=RequestMethod.POST)
 		public void payment(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 			String nm = request.getParameter("unm");
 			String amount = request.getParameter("amount");
@@ -277,18 +277,18 @@ public class IamportController {
 			System.out.println(nm);
 			System.out.println(amount);
 			System.out.println(mid);
-//			PrintWriter out = response.getWriter();
-//			response.setCharacterEncoding("utf-8");
-//			response.setContentType("text/html; charset=utf-8");
-//			out.println("<html>");
-//			out.println("<head><title>주문완료</title></head>");
-//			out.println("<body>");
-//			out.print(nm+"님의 주문이 완료 되었습니다.<br>");
-//			out.print("상점 거래ID: "+mid+"<br>");
-//			out.print("결제 금액: "+amount+"<br>");
-//			out.print("<a href='/pay'>쇼핑 계속하기</a>");
-//			out.print("<a href='javascript:(\"준비중입니다.\");'>나의 주문내역</a>");
-//			out.println("</body></html>");
+			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html; charset=utf-8");
+			out.println("<html>");
+			out.println("<head><title>주문완료</title></head>");
+			out.println("<body>");
+			out.print(nm+"님의 주문이 완료 되었습니다.<br>");
+			out.print("상점 거래ID: "+mid+"<br>");
+			out.print("결제 금액: "+amount+"<br>");
+			out.print("<a href='/pay'>쇼핑 계속하기</a>");
+			out.print("<a href='javascript:(\"준비중입니다.\");'>나의 주문내역</a>");
+			out.println("</body></html>");
 		}
 	
 	
@@ -323,7 +323,7 @@ public class IamportController {
 		} 
 	 
 	// 결제취소
-	@RequestMapping(value="/paycan" , method = RequestMethod.POST)
+	@RequestMapping(value="/paycan.wp" , method = RequestMethod.POST)
 	@ResponseBody
 	public int cancelPayment(String mid) {
 		String token = getImportToken();
@@ -364,7 +364,7 @@ public class IamportController {
 	
 	 
 	// 아임포트 결제완료건에 한하여 목록 반환 
-	@RequestMapping(value="/payamount")
+	@RequestMapping(value="/payamount.wp")
 	@ResponseBody
 	public Object getAmount(HttpServletRequest request) { 
 		String mid = request.getParameter("mid");
@@ -399,7 +399,7 @@ public class IamportController {
 	} 
 	
 	// 아임포트 전체 목록 반환 
-	@RequestMapping(value="/paylist")
+	@RequestMapping(value="/paylist.wp")
 	@ResponseBody
 	public Object getlist() { 
 		String token = getImportToken();

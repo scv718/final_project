@@ -255,7 +255,7 @@ $('.WaterBtn').on('click', function () {
     <div class="slides">
         <div class="active">
            <c:forEach items="${bestMenuList}" var="option" begin="0" end ="3">
-          	<div id = "typediv">
+          	<div id = "typediv" OnClick="location.href ='product.wp'" style="cursor:pointer;">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
    				<p></p>
@@ -264,7 +264,7 @@ $('.WaterBtn').on('click', function () {
 		</div>
         <div>
     		<c:forEach items="${bestMenuList}" var="option" begin="4" end ="7">
-          	<div id = "typediv">
+          	<div id = "typediv" OnClick="location.href ='product.wp'" style="cursor:pointer;">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
    			</div>
@@ -272,7 +272,7 @@ $('.WaterBtn').on('click', function () {
 		</div>
         <div>
   			 <c:forEach items="${bestMenuList}" var="option" begin="8" end ="11">
-          	<div id = "typediv">
+          	<div id = "typediv" OnClick="location.href ='product.wp'" style="cursor:pointer;">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
    			</div>
