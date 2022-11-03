@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@ page import="java.util.Date"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
@@ -67,11 +67,10 @@ video {
 	
 	</div>
 <script>
-//기존 버튼형 슬라이더
 $('.slider-1 > .page-btns > div').click(function(){
     var $this = $(this);
     var index = $this.index();
-    
+    console.log("하이용");
     $this.addClass('active');
     $this.siblings('.active').removeClass('active');
     
@@ -85,7 +84,6 @@ $('.slider-1 > .page-btns > div').click(function(){
     $post.addClass('active');
 });
 
-// 좌/우 버튼 추가 슬라이더
 $('.slider-1 > .side-btns > div').click(function(){
     var $this = $(this);
     var $slider = $this.closest('.slider-1');
@@ -131,9 +129,10 @@ $('.slider-1 > .side-btns > div').click(function(){
 		</div>
 		<hr>
 	</div>
-	
+
 
 <div class="typeSlider">
+<div class = "type">
 <div class="slider-2">
     <div class="slides">
         <div class="active">
@@ -141,6 +140,7 @@ $('.slider-1 > .side-btns > div').click(function(){
           	<div id = "typediv">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
+   				<p></p>
    			</div>
   			 </c:forEach>
 		</div>
@@ -161,7 +161,7 @@ $('.slider-1 > .side-btns > div').click(function(){
   			 </c:forEach>
 		</div>
     </div>
-    <div class="page-btns" style = "display: none;">
+    <div class="page-btns">
         <div class="active"></div>
         <div></div>
         <div></div>
@@ -175,13 +175,13 @@ $('.slider-1 > .side-btns > div').click(function(){
         </div>
     </div>
 </div>
-	
+	</div>
 	</div>
 		
 
 <script>
-//기존 버튼형 슬라이더
-$('.slider-2 > .page-btns > div').click(function(){
+
+$(document).on('click', '.slider-2 > .page-btns > div', function(){
     var $this = $(this);
     var index = $this.index();
     
@@ -198,8 +198,7 @@ $('.slider-2 > .page-btns > div').click(function(){
     $post.addClass('active');
 });
 
-// 좌/우 버튼 추가 슬라이더
-$('.slider-2 > .side-btns > div').click(function(){
+$(document).on('click', ' .slider-2 > .side-btns > div',function(){
     var $this = $(this);
     var $slider = $this.closest('.slider-2');
     
@@ -228,16 +227,12 @@ $('.slider-2 > .side-btns > div').click(function(){
     $post.click();
 });
 
-// setInterval(function(){
-//     $('.slider-1 > .side-btns > div').eq(1).click();
-// }, 3000);
-
 </script>
 
 <script type="text/javascript">
 $('.WaterBtn').on('click', function () {
 	 var watertype = this.value;
-	 $('.typeSlider').show();
+	
 	console.log(watertype)
 	$.ajax({
 		type : 'POST',
@@ -247,12 +242,60 @@ $('.WaterBtn').on('click', function () {
 			  typeMenu: watertype        
 		},
 		success : function(val){
-			console.log(val);
+			 $('.typeSlider').show();
+			 $('.type').load(location.href+' .type>*', "");
 		}
 	})
 })
 
 </script> 
+
+<div class="bestSlider">
+<div class="slider-2">
+    <div class="slides">
+        <div class="active">
+           <c:forEach items="${bestMenuList}" var="option" begin="0" end ="3">
+          	<div id = "typediv">
+   				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
+   				<p id = "typeWineName">${option.w_nm_k}</p>
+   				<p></p>
+   			</div>
+  			 </c:forEach>
+		</div>
+        <div>
+    		<c:forEach items="${bestMenuList}" var="option" begin="4" end ="7">
+          	<div id = "typediv">
+   				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
+   				<p id = "typeWineName">${option.w_nm_k}</p>
+   			</div>
+  			 </c:forEach>
+		</div>
+        <div>
+  			 <c:forEach items="${bestMenuList}" var="option" begin="8" end ="11">
+          	<div id = "typediv">
+   				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
+   				<p id = "typeWineName">${option.w_nm_k}</p>
+   			</div>
+  			 </c:forEach>
+		</div>
+    </div>
+    <div class="page-btns">
+        <div class="active"></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="side-btns">
+        <div>
+            <span><i class="fas fa-angle-left"></i></span>
+        </div>
+        <div>
+            <span><i class="fas fa-angle-right"></i></span>
+        </div>
+    </div>
+</div>
+</div>
+
+
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
