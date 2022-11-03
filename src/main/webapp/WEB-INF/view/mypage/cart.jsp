@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>          
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+        
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +14,7 @@
 <body>
 <%@ include file="../../../header.jsp"%>
 <div class="wrapper">
-	<div class="wrap">
-		
-		
-		
+	<div class="wrap">	
 		<div class="content_area">
 			
 			<div class="content_subject"><span>장바구니</span></div>
@@ -51,40 +49,40 @@
 					<tbody>
 						<c:forEach items="${cartInfo}" var="ci">
 							<tr>
-								<td class="td_width_1 cart_info_td">
-									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
-									<input type="hidden" class="individual_bookPrice_input" value="${ci.bookPrice}">
-									<input type="hidden" class="individual_salePrice_input" value="${ci.salePrice}">
-									<input type="hidden" class="individual_bookCount_input" value="${ci.bookCount}">
-									<input type="hidden" class="individual_totalPrice_input" value="${ci.salePrice * ci.bookCount}">
-									<input type="hidden" class="individual_point_input" value="${ci.point}">
-									<input type="hidden" class="individual_totalPoint_input" value="${ci.totalPoint}">
-									<input type="hidden" class="individual_bookId_input" value="${ci.bookId}">								
-								</td>
+<!-- 								<td class="td_width_1 cart_info_td"> -->
+<!-- 									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"> -->
+<%-- 									<input type="hidden" value="#{ci.ord_cart_no}"> --%>
+<%-- 									<input type="hidden" value="#{ci.id}"> --%>
+<%-- 									<input type="hidden" value="#{ci.ord_quan}"> --%>
+<%-- 									<input type="hidden" value="#{ci.w_price}"> --%>
+<%-- 									<input type="hidden" value="#{ci.pay_stat}"> --%>
+<%-- 									<input type="hidden" value="#{ci.ord_code}"> --%>
+<%-- 									<input type="hidden" value="#{ci.w_nm_k}"> --%>
+<%-- 									<input type="hidden" value="#{ci.w_nm_e}">						 --%>
+<!-- 								</td> -->
 								<td class="td_width_2">
-									<div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">
-										<img>
-									</div>								
+<%-- 									<div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}"> --%>
+<!-- 										<img> -->
+<!-- 									</div>								 -->
 								</td>
-								<td class="td_width_3">${ci.bookName}</td>
+								<td class="td_width_3">${ci.w_nm_k}(${ci.w_nm_e})</td>
 								<td class="td_width_4 price_td">
-									<del>정가 : <fmt:formatNumber value="${ci.bookPrice}" pattern="#,### 원" /></del><br>
-									판매가 : <span class="red_color"><fmt:formatNumber value="${ci.salePrice}" pattern="#,### 원" /></span><br>
-									마일리지 : <span class="green_color"><fmt:formatNumber value="${ci.point}" pattern="#,###" /></span>
+									상품금액 : <fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /><br>
 								</td>
 								<td class="td_width_4 table_text_align_center">
 									<div class="table_text_align_center quantity_div">
-										<input type="text" value="${ci.bookCount}" class="quantity_input">	
+										<input type="text" value="${ci.ord_quan}" class="quantity_input" maxlength ="${ci.quantity}">	
 										<button class="quantity_btn plus_btn">+</button>
 										<button class="quantity_btn minus_btn">-</button>
 									</div>
-									<a class="quantity_modify_btn" data-cartId="${ci.cartId}">변경</a>
+									<a  href="/modifyCount.wp" class="quantity_modify_btn">변경</a>
 								</td>
 								<td class="td_width_4 table_text_align_center">
-									<fmt:formatNumber value="${ci.salePrice * ci.bookCount}" pattern="#,### 원" />
+									<fmt:formatNumber value="${ci.w_price * ci.ord_quan}" pattern="#,### 원" />
 								</td>
 								<td class="td_width_4 table_text_align_center">
-									<button class="delete_btn" data-cartid="${ci.cartId}">삭제</button>
+								<form action="deleteCart.wp" method="post">
+									<button  type="submit" class="delete_btn">삭제</button></form>
 								</td>
 							</tr>
 						</c:forEach>
@@ -93,6 +91,7 @@
 				<table class="list_table">
 				</table>
 			</div>
+			
 			<!-- 가격 종합 -->
 			<div class="content_total_section">
 				<div class="total_wrap">
@@ -103,18 +102,18 @@
 									<tr>
 										<td>총 상품 가격</td>
 										<td>
-											<span class="totalPrice_span">70000</span> 원
+<%-- 											<span class="totalPrice_span"><fmt:formatNumber value="${ci.w_price * ci.ord_quan}" pattern="#,### 원" /></span>  --%>
 										</td>
 									</tr>
 									<tr>
 										<td>배송비</td>
 										<td>
-											<span class="delivery_price">3000</span>원
+											<span class="delivery_price"></span>원
 										</td>
 									</tr>									
 									<tr>
 										<td>총 주문 상품수</td>
-										<td><span class="totalKind_span"></span>종 <span class="totalCount_span"></span>권</td>
+<%-- 										<td><span class="totalKind_span"></span>와인 <span class="totalCount_span">#{ci.ord_quan}</span>병</td> --%>
 									</tr>
 								</table>
 							</td>
@@ -139,7 +138,7 @@
 												<strong>총 결제 예상 금액</strong>
 											</td>
 											<td>
-												<span class="finalTotalPrice_span">70000</span> 원
+												<span class="finalTotalPrice_span"></span> 원
 											</td>
 										</tr>
 									</tbody>
@@ -154,7 +153,7 @@
 											
 											</td>
 											<td>
-												<span class="totalPoint_span">70000</span> 원
+												<span class="totalPoint_span"></span> 원
 											</td>
 										</tr>
 									</tbody>
@@ -173,21 +172,21 @@
 			<form action="/cart/update" method="post" class="quantity_update_form">
 				<input type="hidden" name="cartId" class="update_cartId">
 				<input type="hidden" name="bookCount" class="update_bookCount">
-				<input type="hidden" name="memberId" value="${member.memberId}">
+				<input type="hidden" name="userID" value="${ci.id}">
 			</form>	
 			
 			<!-- 삭제 form -->
-			<form action="/cart/delete" method="post" class="quantity_delete_form">
-				<input type="hidden" name="cartId" class="delete_cartId">
-				<input type="hidden" name="memberId" value="${member.memberId}">
-			</form>		
+<!-- 			<form action="deleteCart.wp" method="post" class="quantity_delete_form"> -->
+<!-- 				<input type="hidden" name="cartId" class="delete_cartId"> -->
+<%-- 				<input type="hidden" name="memberId" value="${ci.id}"> --%>
+<!-- 			</form>		 -->
 			<!-- 주문 form -->
-			<form action="/order/${member.memberId}" method="get" class="order_form">
+			<form action="/order/${ci.id}" method="get" class="order_form">
 
 			</form>				
 		</div>	
 		
-		
+		c
 	</div>	<!-- class="wrap" -->
 </div>	<!-- class="wrapper" -->
 
@@ -244,7 +243,9 @@ $(".all_check_input").on("click", function(){
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
 	
-	let totalPrice = 0;				// 총 가격
+// 	 var totalPrice = document.getElementById("ci.w_price * ci.ord_quan");
+	 
+// 	let totalPrice = document.getElementById("ci.w_price * ci.ord_quan");// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
 	let totalPoint = 0;				// 총 마일리지
@@ -269,7 +270,7 @@ function setTotalInfo(){
 	
 	
 	/* 배송비 결정 */
-	if(totalPrice >= 30000){
+	if(totalPrice >= 2500){
 		deliveryPrice = 0;
 	} else if(totalPrice == 0){
 		deliveryPrice = 0;
@@ -310,21 +311,20 @@ $(".minus_btn").on("click", function(){
 
 /* 수량 수정 버튼 */
 $(".quantity_modify_btn").on("click", function(){
-	let cartId = $(this).data("cartid");
+	let cartId = $(this).data("Cid");
 	let bookCount = $(this).parent("td").find("input").val();
-	$(".update_cartId").val(cartId);
-	$(".update_bookCount").val(bookCount);
+	$(".update_cartId").val("Cid");
 	$(".quantity_update_form").submit();
 	
 });
 
 /* 장바구니 삭제 버튼 */
-$(".delete_btn").on("click", function(e){
-	e.preventDefault();
-	const cartId = $(this).data("cartid");
-	$(".delete_cartId").val(cartId);
-	$(".quantity_delete_form").submit();
-});
+// $(".delete_btn").on("click", function(e){
+// 	e.preventDefault();
+// 	const cartId = $(this).data("Cid");
+// 	$(".delete_cartId").val(Cid);
+// 	$(".quantity_delete_form").submit();
+// });
 	
 /* 주문 페이지 이동 */	
 $(".order_btn").on("click", function(){

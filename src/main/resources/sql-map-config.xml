@@ -12,12 +12,12 @@
 		<typeAlias type="com.project.review.ReviewVO" alias="review"></typeAlias>
 		<typeAlias type="com.project.mypage.MypageVO" alias="mypage"></typeAlias>
 		<typeAlias type="com.project.subscribe.SubscribeVO" alias="subscribe"></typeAlias>
-		<typeAlias type="com.project.order.OrderVO" alias="order"></typeAlias>
+		<typeAlias type="com.project.cart.CartVO" alias="cart"></typeAlias>
 		<typeAlias type="com.project.mainmenu.MenuVO" alias="menu"></typeAlias>
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mappings/order-mapping.xml" />
+		<mapper resource="mappings/cart-mapping.xml" />
 		<mapper resource="mappings/subscribe-mapping.xml" />
 		<mapper resource="mappings/mypage-mapping.xml" />
 		<mapper resource="mappings/user-mapping.xml" />
