@@ -1,0 +1,24 @@
+package com.project.user.impl;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.project.user.AddressVO;
+import com.project.user.UserVO;
+
+@Repository
+public class AddressDAOMybatis {
+
+	@Autowired
+	SqlSessionTemplate mybatis;
+
+	public AddressVO selectDefaultAddress(AddressVO vo) {
+		
+		return mybatis.selectOne("PaymentDAO.selectDefaultAddress", vo);
+	}
+	
+	
+}

@@ -22,12 +22,6 @@ public class SubscribeController {
 	@Autowired
 	private UserService userService;
 	
-	
-	@RequestMapping(value = "/payment.wp")
-	public String payment() {
-		System.out.println("결제하기");
-		return "WEB-INF/view/subscribe/test.jsp";
-	}
 
 	// 구독 결제하기-1
 	@RequestMapping(value = "insertSubscribe1.wp", method = RequestMethod.POST)

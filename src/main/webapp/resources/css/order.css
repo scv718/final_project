@@ -220,7 +220,7 @@ a{
 			padding:12px;
 			text-align: left;
 			display: none;
-			line-height: 40px;
+/* 			line-height: 40px; */
 		}
 		.addressInfo_input_div th{
 			border-color: transparent;

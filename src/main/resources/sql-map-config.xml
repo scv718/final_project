@@ -8,6 +8,7 @@
 
 		<typeAlias type="com.project.wine.WineVO" alias="wine"></typeAlias>
 		<typeAlias type="com.project.user.UserVO" alias="users"></typeAlias>
+		<typeAlias type="com.project.user.AddressVO" alias="address"></typeAlias>
 		<typeAlias type="com.project.intro.IntroVO" alias="intro"></typeAlias>
 		<typeAlias type="com.project.review.ReviewVO" alias="review"></typeAlias>
 		<typeAlias type="com.project.mypage.MypageVO" alias="mypage"></typeAlias>
@@ -28,5 +29,6 @@
 		<mapper resource="mappings/menu-mapping.xml" />
 		<mapper resource="mappings/search-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
+		<mapper resource="mappings/payment-mapping.xml" />
 	</mappers>
 </configuration>
