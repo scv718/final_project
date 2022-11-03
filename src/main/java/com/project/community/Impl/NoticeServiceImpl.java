@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.project.community.CommunityVO;
 import com.project.community.NoticeService;
-import com.project.intro.impl.IntroDAOMybatis;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
@@ -44,5 +43,11 @@ public class NoticeServiceImpl implements NoticeService {
 	public void viewCount(int commu_no) {
 		noticeDAO.viewCount(commu_no);
 	}
+	
+	@Override
+	public int totalNoticeListCnt(CommunityVO vo) {
+		return noticeDAO.totalNoticeListCnt(vo);
+	}
+
 
 }

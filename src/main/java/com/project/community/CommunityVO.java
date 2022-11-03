@@ -17,8 +17,15 @@ public class CommunityVO {
 	private String commu_photo1;
 	private String commu_photo2;
 	private String commu_photo3;
-	
+		
 	private MultipartFile uploadFile; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
+	
+	//검색
+	private String searchCondition;
+	private String searchKeyword;
+	
+	//페이징
+	private int offset;
 	
 	public int getCommu_no() {
 		return commu_no;
@@ -98,6 +105,24 @@ public class CommunityVO {
 				+ ", commu_title=" + commu_title + ", id=" + id + ", commu_content=" + commu_content + ", commu_date="
 				+ commu_date + ", commu_count=" + commu_count + ", commu_photo1=" + commu_photo1 + ", commu_photo2="
 				+ commu_photo2 + ", commu_photo3=" + commu_photo3 + ", uploadFile=" + uploadFile + "]";
+	}
+	public int getOffset() {
+		return offset;
+	}
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 	
 	

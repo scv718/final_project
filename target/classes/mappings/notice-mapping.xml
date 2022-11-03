@@ -27,15 +27,18 @@
 	</select>
 	
 	<select id="getNoticeList" resultType="community">
-	<!--SELECT * FROM BOARD ORDER BY SEQ DESC -->
-		SELECT * FROM COMMUNITY WHERE commu_cat = 0
+		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
+		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
+		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
+		ORDER BY commu_cat_no DESC
+		LIMIT 10 OFFSET #{offset}
 	</select>
-	
-<!-- 	<select id="totalNoticeListCnt" resultType="_int"> -->
- 	<!--SELECT * FROM BOARD ORDER BY SEQ DESC --> 
-<!-- 		SELECT COUNT(*) FROM BOARD WHERE 1=1 -->
-<!-- 		<if test="searchCondition == 'TITLE' "> AND TITLE LIKE CONCAT('%',#{searchKeyword},'%') </if>  -->
-<!-- 		<if test="searchCondition == 'CONTENT' "> AND CONTENT LIKE CONCAT('%',#{searchKeyword},'%') </if> -->
-<!-- 	</select> -->
 
+	
+	<select id="totalNoticeListCnt" resultType="_int">
+		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1
+		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
+		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
+		
+	</select>
 </mapper>
