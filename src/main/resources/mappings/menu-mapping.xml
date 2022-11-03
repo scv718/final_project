@@ -4,9 +4,17 @@
 
 <mapper namespace="MenuDAO">
 
-	<select id = "typeMenu" resultType="menu">
+	<select id="typeMenu" resultType="menu">
 		SELECT * FROM WINE
-		WHERE TYPE = #{type}
+		WHERE TYPE =
+		#{type}
 	</select>
+
+	<select id="bestMenu" resultType="menu">
+		SELECT * FROM WINE
+		ORDER BY W_SALES DESC
+		LIMIT 10;
+	</select>
+
 
 </mapper>

@@ -83,8 +83,8 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 body {
-	padding-top: 3rem;
-	padding-bottom: 3rem;
+/* 	padding-top: 3rem; */
+/* 	padding-bottom: 3rem; */
 	color: #5a5a5a;
 }
 
@@ -158,7 +158,7 @@ body {
 
 <!-- <link href="carousel.css" rel="stylesheet"> -->
 </head>
-<body>
+<body class = "d-flex flex-column min-vh-100">
 
 	<header> </header>
 

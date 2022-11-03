@@ -118,7 +118,7 @@ $(document).ready(function(){
 function orderList(){
 	alert('주문내역 처리할 곳. 컨트롤러 호출');
 	let fm = document.fm;
-	fm.action ="pay";
+	fm.action ="pay.wp";
 	fm.method="post";
 	fm.submit();
 }

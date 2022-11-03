@@ -72,7 +72,7 @@ function kakaoLogout() {
 </script>
 			
 <div style = "text-align: center;">
-<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Winery</a>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/index.wp">Winery</a>
 
 </div>
 
@@ -95,12 +95,10 @@ function kakaoLogout() {
 </nav>
 
 <div class = "box" id = "box">
-<a  id = "secondMenu" href="#">공지사항</a>
+<a  id = "secondMenu" href="getNoticeList.wp">공지사항</a>
 <a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="#">QnA</a> 
-<a  id = "secondMenu"  href="#">리뷰</a> 
 <a id = "secondMenu" href="getReviewList.wp">상품후기</a>
-<a id = "secondMenu" href="search/detailProduct.jsp">상품보기</a>
 </div>
 
 	

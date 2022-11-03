@@ -266,7 +266,7 @@ public class IamportController {
 	
 	
 	//결제 진행 폼=> 이곳에서 DB저장 로직도 추가하기
-		@RequestMapping(value="/pay", method=RequestMethod.POST)
+		@RequestMapping(value="/pay.wp", method=RequestMethod.GET)
 		public void payment(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 			String nm = request.getParameter("unm");
 			String amount = request.getParameter("amount");
@@ -274,18 +274,21 @@ public class IamportController {
 			String token = getImportToken();
 			setHackCheck(amount, mid, token);
 			
-			PrintWriter out = response.getWriter();
-			response.setCharacterEncoding("utf-8");
-			response.setContentType("text/html; charset=utf-8");
-			out.println("<html>");
-			out.println("<head><title>주문완료</title></head>");
-			out.println("<body>");
-			out.print(nm+"님의 주문이 완료 되었습니다.<br>");
-			out.print("상점 거래ID: "+mid+"<br>");
-			out.print("결제 금액: "+amount+"<br>");
-			out.print("<a href='/pay'>쇼핑 계속하기</a>");
-			out.print("<a href='javascript:(\"준비중입니다.\");'>나의 주문내역</a>");
-			out.println("</body></html>");
+			System.out.println(nm);
+			System.out.println(amount);
+			System.out.println(mid);
+//			PrintWriter out = response.getWriter();
+//			response.setCharacterEncoding("utf-8");
+//			response.setContentType("text/html; charset=utf-8");
+//			out.println("<html>");
+//			out.println("<head><title>주문완료</title></head>");
+//			out.println("<body>");
+//			out.print(nm+"님의 주문이 완료 되었습니다.<br>");
+//			out.print("상점 거래ID: "+mid+"<br>");
+//			out.print("결제 금액: "+amount+"<br>");
+//			out.print("<a href='/pay'>쇼핑 계속하기</a>");
+//			out.print("<a href='javascript:(\"준비중입니다.\");'>나의 주문내역</a>");
+//			out.println("</body></html>");
 		}
 	
 	
@@ -350,12 +353,12 @@ public class IamportController {
 	}
 	
 	//상품결제 폼 호출
-	@RequestMapping(value={"/pay", "/"}, method=RequestMethod.GET)
+	@RequestMapping(value={"/pay"}, method=RequestMethod.GET)
 	public String pay(HttpServletRequest request, Model model) {
 		String nm = request.getParameter("unm");
 		// 값은 아임포트의 가맹점 식별코드 입력
 		model.addAttribute("impKey", "imp86310263"); 
-		return "pay";
+		return "pay.wp";
 	}
 	
 	

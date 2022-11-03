@@ -30,8 +30,8 @@ public class IntroController {
 	public String getIntro(IntroVO vo, Model model) {
 		System.out.println(introService.getIntro(vo));
 		model.addAttribute("intro", introService.getIntro(vo));
-//		return "WEB-INF/view/intro/intro.jsp";
-		return "intro.jsp";
+		return "WEB-INF/view/intro/intro.jsp";
+//		return "intro_modify.jsp";
 	}
 
 	// 인트로 조회

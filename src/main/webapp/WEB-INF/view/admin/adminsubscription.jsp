@@ -35,7 +35,7 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
-                            <a href="adminMain.wp">프로필</a>
+                            <a href="adminMain.wp">만든사람들(메인)</a>
                         </li>
                         <li>
                             <a href="adminUser.wp">회원관리</a>
@@ -50,7 +50,7 @@
                             <a href="adminSubscription.wp">구독관리</a>
                         </li>
                          <li>
-                            <a href="adminalesdelivery.wp">판매,배송관리</a>
+                            <a href="adminSalesdelivery.wp">판매,배송관리</a>
                         </li>
                     </ul>
                 </li>
@@ -95,10 +95,10 @@
                                 <a class="nav-link" href="http://localhost:8090/user/adminmain.jsp#profile">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
