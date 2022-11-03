@@ -68,17 +68,17 @@ public class Order_cartController {
 		public String addCart(UserVO uvo, CartVO cvo, HttpSession session, Model model) {
 		// 로그인 체크
 		String Cid = (String) session.getAttribute("userID");
+		cvo.setId(Cid);
+		System.out.println(cvo.getQuantity()+"개");
+		System.out.println(cvo.getW_no());
 		try {
 			if (Cid == null) {
 				return "singUp.wp";
 			}else {
 				// 카트 등록
 				cvo.setId(Cid);
-//				cvo.setW_no(Cid);
-				System.out.println(cvo.getId());
-				System.out.println(cvo.getW_no());
 				cartService.addCart(cvo);				
-//				cartService.addcart_ORD_CART_NO(cvo);
+				return "redirect:/cart.wp";
 			}
 
 		} catch (Exception e) {

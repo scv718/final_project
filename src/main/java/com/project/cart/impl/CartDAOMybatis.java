@@ -19,6 +19,7 @@ public class CartDAOMybatis {
 
 	// 추가
 	public void addCart(CartVO vo) {
+		System.out.println(vo.getW_no());
 		 mybatis.insert("CartDAO.addCart", vo);
 	}
 
