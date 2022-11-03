@@ -5,23 +5,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript">
- 
-	
-
-	function check() {
-
-		if (UsserVO.lavel > 0) {
-			alert('이미 구독 중인 계정 입니다');
-			alert('구독 취소 후 재구독이 가능합니다.');
-		}
-	}
-</script>
 </head>
 
 <body>
 	<%@ include file="../../../header.jsp"%>
-	<%@ include file="../../../pay.jsp"%>
+	
+	<a href="/cart.wp" role="button">cart.wp 테스트</a>
+
 	<form action="insertSubscribe1.wp" method="post">
 		<button  type="submit" class="btn btn-primary"
 			onclick='check()'>입문자 구독</button>

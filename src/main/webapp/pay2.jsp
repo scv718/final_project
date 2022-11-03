@@ -16,30 +16,7 @@
 <div class="wrapper">
 
 	<div class="wrap">
-		
-		<div class="top_area">
-			
-		
-			<div class="login_area">
-			
-				<!-- 로그인 하지 않은 상태 -->
-				<c:if test = "${userID == null }">
-					<div class="login_button"><a href="singUp.wp">로그인</a></div>
-					<span><a href="/member/join">회원가입</a></span>				
-				</c:if>				
-				
-				<!-- 로그인한 상태 -->
-				<c:if test="${ userID != null }">
-					<div class="login_success_area">
-						<span>회원 : ${userName}님</span>
-						
-						<a href="logout.wp">로그아웃</a>
-					</div>
-				</c:if>
-				
-			</div>
-			<div class="clearfix"></div>			
-		</div>
+	
 		<div class="content_area">
 			
 			<div class="content_subject"><span>결제하기</span></div>
