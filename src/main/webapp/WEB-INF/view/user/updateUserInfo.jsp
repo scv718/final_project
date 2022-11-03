@@ -77,7 +77,7 @@
 								var msg = '인증에 실패하였습니다.';
 								msg += '에러내용 : ' + rsp.error_msg;
 								alert(msg);
-								location.href = 'index.jsp';
+								location.href = 'index.wp';
 								
 							}
 						})
@@ -102,7 +102,7 @@
 	</script>
 
 
-<
+
 <body class="d-flex flex-column min-vh-100">
 	<script type="text/javascript">
 

@@ -55,7 +55,7 @@ function joinform_check() {
 	  //변수에 담아주기
 	    
 	
-	  var uid = document.getElementById("userID");
+	  var uid = document.getElementById("id");
 	  var pwd = document.getElementById("m_pw");
 	  var repwd = document.getElementById("repassword");
 	  var email_id = document.getElementById("m_email");
@@ -159,10 +159,10 @@ function joinform_check() {
 					        				
 					        			}else if(val = 2){
 					        				alert("이미 가입된 사용자입니다.")
-					        				location.href = 'index.jsp';
+					        				location.href = 'index.wp';
 					        			}else{
 					        				alert("나이 제한");
-					        				location.href = 'index.jsp';
+					        				location.href = 'index.wp';
 					        			}
 					        		}
 								}).done(function() {
@@ -175,7 +175,7 @@ function joinform_check() {
 								var msg = '인증에 실패하였습니다.';
 								msg += '에러내용 : ' + rsp.error_msg;
 								alert(msg);
-								location.href = 'index.jsp';
+								location.href = 'index.wp';
 								
 							}
 						})
@@ -239,7 +239,7 @@ function joinform_check() {
 				<div class="overlay-panel overlay-left">
 					<div style="text-align: center;">
 						<a class="navbar-brand"
-							href="${pageContext.request.contextPath}/index.jsp">Winery</a>
+							href="${pageContext.request.contextPath}/index.wp">Winery</a>
 					</div>
 			
 					<button class="ghost" id="signIn">Sign In</button>
@@ -247,7 +247,7 @@ function joinform_check() {
 				<div class="overlay-panel overlay-right">
 					<div style="text-align: center;">
 						<a class="navbar-brand"
-							href="${pageContext.request.contextPath}/index.jsp">Winery</a>
+							href="${pageContext.request.contextPath}/index.wp">Winery</a>
 					</div>
 			
 					<button class="ghost" id="signUp">Sign Up</button>

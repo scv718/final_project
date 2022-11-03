@@ -92,13 +92,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="http://localhost:8090/user/adminmain.jsp#profile">관리자메인화면</a>
+                                <a class="nav-link" href="http://localhost:8090/adminmain.jsp#profile">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
+                                <a class="nav-link" href="http://localhost:8090/index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
+                                <a class="nav-link" href="http://localhost:8090/index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>

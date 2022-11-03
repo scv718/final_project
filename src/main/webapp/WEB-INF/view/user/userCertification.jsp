@@ -38,7 +38,7 @@
 					        				location.href = 'singUp.wp';
 					        			}else{
 					        				alert("나이 제한");
-					        				location.href = 'index.jsp';
+					        				location.href = 'index.wp';
 					        			}
 					        		}
 								}).done(function() {

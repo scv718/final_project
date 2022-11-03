@@ -100,26 +100,16 @@
                                 <a class="nav-link" href="http://localhost:8090/user/adminmain.jsp#profile">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            
-           <h2>유저관리페이지입니다.</h2>
-            <table>
-            <tr>dd</tr>
-            <tr>dd</tr>
-            <tr>dd</tr>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            </table>
-            
+        
            <h2 align="center">고객목록조회</h2>
            <br><br>
       <div class="table-responsive">

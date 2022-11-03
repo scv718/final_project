@@ -19,6 +19,11 @@ public class MenuServiceImpl implements MenuService{
 		return menuDAO.typeMenu(vo);
 	}
 
+	@Override
+	public List<MenuVO> bestMenu(MenuVO vo) {
+		return menuDAO.bestMenu(vo);
+	}
+
 	
 
 }

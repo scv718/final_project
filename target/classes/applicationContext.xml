@@ -14,7 +14,7 @@
 
 	<context:component-scan base-package="com.project.*"></context:component-scan>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<!-- <bean id = "dataSource" class = "org.apache.commons.dbcp.BasicDataSource" 
 		destroy-method="close"> -->
@@ -24,7 +24,7 @@
 	<!-- <property name="password" value="1111"></property> -->
 
 	<!-- </bean> -->
-
+<!-- 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
 	<context:property-placeholder location="classpath:config/database.properties" />
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}"></property>
@@ -32,7 +32,7 @@
 		<property name="username" value="${jdbc.username}"></property>
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
-
+	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
        <property name="host" value="smtp.gmail.com" />
        <property name="port" value="587" />

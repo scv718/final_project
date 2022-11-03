@@ -72,7 +72,7 @@ function kakaoLogout() {
 </script>
 			
 <div style = "text-align: center;">
-<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Winery</a>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/index.wp">Winery</a>
 
 </div>
 
@@ -89,7 +89,7 @@ function kakaoLogout() {
 
 
 		<a id = "menuBtn" class="dropdown-item" href="subscribe.wp">구독하기</a></li>
-		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item" href="ajaxFile.jsp">커뮤니티</a></li>
+		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item">커뮤니티</a></li>
 
 	</ul>
 </nav>

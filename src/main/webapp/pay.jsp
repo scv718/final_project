@@ -48,7 +48,7 @@ $(document).ready(function(){
 	
 	$("#cancel_module").click(function () {
 		$.ajax({
-			url : "paycan",
+			url : "paycan.wp",
 			data : {"mid": $("#merchant_uid").val()},
 			method : "POST",
 			success : function(val){
@@ -64,7 +64,7 @@ $(document).ready(function(){
 	
 	$("#list_module").click(function(){
 		$.ajax({
-			url : "payamount",
+			url : "payamount.wp",
 			data : {"mid": $("#merchant_uid").val()},
 			method : "GET",
 			contentType : 'application/json; charset=UTF-8',
@@ -89,7 +89,7 @@ $(document).ready(function(){
 	
 	$("#all_module").click(function(){
 		$.ajax({
-			url : "paylist",
+			url : "paylist.wp",
 			method : "GET",
 			contentType : 'application/json; charset=UTF-8',
 			success : function(val){
@@ -118,7 +118,7 @@ $(document).ready(function(){
 function orderList(){
 	alert('주문내역 처리할 곳. 컨트롤러 호출');
 	let fm = document.fm;
-	fm.action ="pay";
+	fm.action ="pay.wp";
 	fm.method="post";
 	fm.submit();
 }
