@@ -52,7 +52,7 @@
 								<td class="td_width_1 cart_info_td">
 									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 									<input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
-									<input type="hidden" value="${ci.id}">
+						
 									<input type="hidden" value="${ci.ord_quan}">
 									<input type="hidden" value="${ci.w_price}">
 									<input type="hidden" value="${ci.pay_stat}">
@@ -73,13 +73,22 @@
 								<td class="td_width_4 table_text_align_center">
 								<form action="modifyCount.wp" method="post" class="quantity_modify_btn">
 									<div class="table_text_align_center quantity_div">
+									
 									<input type="hidden" value="${ci.ord_quan}">
 									<input type="hidden" value="${ci.quantity}">	
-										<input type="text" value="${ci.ord_quan}" class="quantity_input" maxlength ="${ci.quantity}">	
-										<button type="submit" class="quantity_btn plus_btn">+</button>
-										<button type="submit" class="quantity_btn minus_btn">-</button>
-									</div></form>
-<!-- 									<a  href="/modifyCount.wp" class="quantity_modify_btn">변경</a> -->
+									
+										<input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input" maxlength ="${ci.quantity}">	
+										<button type = "button" class="quantity_btn plus_btn">+</button>
+								    	<button  type = "button"  class="quantity_btn minus_btn">-</button>
+									</div>
+<!-- 									<a href="/modifyCount.wp" class="quantity_modify_btn">변경</a> -->
+									<input type="hidden" name = "id" value="${ci.id}">
+									<input type="hidden" name = "w_no" value="${ci.w_no}">
+									<input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
+									<button type = "submit" class="quantity_modify_btn">변경</button>
+									</form>
+<!-- 										<button  class="quantity_btn minus_btn">-</button> -->
+									
 								</td>
 								<td class="td_width_4 table_text_align_center">
 									<fmt:formatNumber value="${ci.w_price * ci.ord_quan}" pattern="#,### 원" />

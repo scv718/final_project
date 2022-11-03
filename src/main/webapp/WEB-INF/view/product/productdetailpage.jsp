@@ -150,7 +150,7 @@ function orderList(){
     <div class="col" id = "productthree">
     <div class = "buttondiv">
 	    <button>수량</button>
-      	<a type = "button" href = "/add.wp?w_no=${product.w_no}">장바구니</a>
+      	<a type = "button" href = "/cart.wp?w_no=${product.w_no}">장바구니</a>
       	<a type = "button" href = "payment.wp">결제하기</a>
     </div>
     </div>
