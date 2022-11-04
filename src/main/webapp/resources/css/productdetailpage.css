@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+
+#productimg{
+	height: 280px;
+}
+
+#firstrow > .col{
+	margin-top: 56px;	
+}
+#productone{
+	text-align: center;
+}
+#producttwo{
+	margin-top: 56px;	
+	
+}
+#productthree{
+	background-color: #f6f6f6;
+	margin-left: 15px;
+	height: 500px;
+	border-radius: 14% 14% 15% 14% / 14% 14% 14% 14% ;
+}
+.buttondiv > .row{
+	margin-top: 35px;
+}
+.buttondiv{
+	margin-top: 50px;
+}
+#productinfo{
+	 margin-top: 45px;
+	 font-size: 13px;
+}
+#productprice{
+	 margin-top: 19px;
+}
+#productnm{
+}
+.knm{
+	font-size: 21px;
+	font-weight: bold;
+}

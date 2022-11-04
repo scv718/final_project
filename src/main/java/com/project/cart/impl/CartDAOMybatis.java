@@ -19,6 +19,7 @@ public class CartDAOMybatis {
 
 	// 추가
 	public void addCart(CartVO vo) {
+		System.out.println(vo.getW_no());
 		 mybatis.insert("CartDAO.addCart", vo);
 	}
 
@@ -26,14 +27,17 @@ public class CartDAOMybatis {
 		 mybatis.insert("CartDAO.addcart_ORD_CART_NO", vo);
 	}
 
-	// 취소
-	public void deleteCart(int vo) {
+	// 삭제
+	public void deleteCart(CartVO vo) {
 		 mybatis.delete("CartDAO.deleteCart", vo);
 	}
 
 	// 카트 수량 수정
 	public void modifyCount(CartVO vo) {
 		 mybatis.update("CartDAO.modifyCount", vo);
+	}
+	public void modifyCoun1t(CartVO vo) {
+		 mybatis.update("CartDAO.modifyCount1", vo);
 	}
 
 	// 카트 확인

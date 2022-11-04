@@ -158,9 +158,9 @@ h2 {
 	font-size: 15px;
 }
 
-.col img {
-	filter: drop-shadow(5px 5px 5px #000);
-}
+/* .col img { */
+/* 	filter: drop-shadow(5px 5px 5px #000); */
+/* } */
 
 #logo {
 	height: 74px;

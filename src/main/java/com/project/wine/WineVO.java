@@ -22,7 +22,9 @@ public class WineVO {
 	private String w_b_img;
 	private String w_a_img;
 	private String w_t_img;
+	private int w_sales;
 	
+
 	@Override
 	public String toString() {
 		return "WineSearchVO [w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + ", continental="
@@ -152,6 +154,11 @@ public class WineVO {
 	public void setW_t_img(String w_t_img) {
 		this.w_t_img = w_t_img;
 	}
-	
+	public int getW_sales() {
+		return w_sales;
+	}
+	public void setW_sales(int w_sales) {
+		this.w_sales = w_sales;
+	}
 	
 }
