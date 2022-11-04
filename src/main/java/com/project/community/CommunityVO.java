@@ -17,12 +17,16 @@ public class CommunityVO {
 	private String commu_photo1;
 	private String commu_photo2;
 	private String commu_photo3;
+	private String faq_cat;
 		
 	private MultipartFile uploadFile; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
 	
 	//검색
 	private String searchCondition;
 	private String searchKeyword;
+	
+	//필터
+	private String alignlist;
 	
 	//페이징
 	private int offset;
@@ -93,12 +97,15 @@ public class CommunityVO {
 	public void setCommu_photo3(String commu_photo3) {
 		this.commu_photo3 = commu_photo3;
 	}
+	
+	
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+	
 	@Override
 	public String toString() {
 		return "CommunityVO [commu_no=" + commu_no + ", commu_cat=" + commu_cat + ", commu_cat_no=" + commu_cat_no
@@ -123,6 +130,18 @@ public class CommunityVO {
 	}
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+	public String getFaq_cat() {
+		return faq_cat;
+	}
+	public void setFaq_cat(String faq_cat) {
+		this.faq_cat = faq_cat;
+	}
+	public String getAlignlist() {
+		return alignlist;
+	}
+	public void setAlignlist(String alignlist) {
+		this.alignlist = alignlist;
 	}
 	
 	
