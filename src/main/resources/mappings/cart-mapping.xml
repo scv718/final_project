@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="CartDAO">
+
+	<!-- 카트 추가 -->
+	<insert id="addCart">
+		 INSERT INTO ORDER_CART(ID,W_NO,ORD_QUAN,W_PRICE)
+		 values(#{id},#{w_no},#{ord_quan},#{w_price})
+	</insert>
+	<!-- 초기화 addcart_ORD_CART_NO -->
+	<update id="addcart_ORD_CART_NO">
+
+<!-- <![CDATA[ -->
+<!-- ALTER TABLE ORDER_CART AUTO_INCREMENT=1]]> -->
+<!-- <![CDATA[ -->
+<!-- SET @COUNT = 0 -->
+<!-- UPDATE ORDER_CART SET ORD_CART_NO = @COUNT:=@COUNT+1]]> -->
+	</update>
+	
+	
+	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		DELETE FROM ORDER_CART WHERE ORD_CART_NO = #{ord_cart_no}
+	</delete>
+	
+	<!-- 카트 수량 수정 -->
+	<update id="modifyCount">
+	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
+<!-- 	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan+1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no} -->
+	</update>
+	<update id="modifyCount1">
+	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan-1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
+	</update>
+	
+	<!-- 카트 확인 -->
+	<select id="checkCart" resultType="cart">
+	SELECT * FROM ORDER_CART WHERE ID = #{id} AND ORD_CART_NO =#{ord_cart_no}</select>	
+	
+	<!-- 카트 목록 -->
+	<select id="getCart" resultType="cart">
+			SELECT A.*,B.W_NM_K, B.W_NM_E,B.QUANTITY
+		FROM ORDER_CART A LEFT OUTER JOIN WINE B ON A.W_NO = B.W_NO AND A.W_PRICE = B.W_PRICE 
+		WHERE ID = #{id};
+	</select>
+	<!-- 카트 목록 -->
+	<select id="getCartPayment" resultType="cart">
+		SELECT A.*,B.W_NM_K, B.W_NM_E,B.QUANTITY
+		FROM ORDER_CART A LEFT OUTER JOIN WINE B ON A.W_NO = B.W_NO AND A.W_PRICE = B.W_PRICE 
+		WHERE ID = #{id} and ORD_CART_NO = #{ord_cart_no};
+	</select>
+	
+	
+  </mapper>
