@@ -11,6 +11,10 @@ public interface WineService {
 	void deleteWine(WineVO vo);
 	//구독 조회
 	WineVO getWine(WineVO vo);
-	//구독 정보리스트
+	//와인 검색 페이지 이동
 	List<WineVO> getWineList(WineVO vo);
+	
+	//와인 검색창 결과 이동
+	List<WineVO> getWineSearchList(WineVO vo);
+	
 }

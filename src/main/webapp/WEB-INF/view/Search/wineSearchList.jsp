@@ -3,7 +3,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/story.css">
+	href="${pageContext.request.contextPath}/resources/css/wineSerch.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -13,8 +13,8 @@
 </style>
 <body>
 <%@ include file="../../../header.jsp" %>
-<div class="jumbotron">
-<img src="${pageContext.request.contextPath}/resources/img/winery_farm2.jpg" style="height:75px%; width:300px; item:center">
+<div class="jumbotron1">
+<img class="img_box" src="${pageContext.request.contextPath}/resources/img/winery_farm2.jpg" style="width:100%; item:center">
   <h1>와인 톱아보기</h1>      
 </div>
 <div>
@@ -29,7 +29,7 @@
 <c:forEach items="${wineList}" var="wine">
 <tr><td class="tdCenter">
  <div class="card" style="width:300px">
-    <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}" alt="Card image" style="height: 200px; width:50px">
+    <img class="card-img-top1" src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}" alt="Card image" >
     <div class="card-body">
       <h4 class="card-title">${wine.w_nm_k}</h4>
       <p class="card-text">${wine.w_price}</p>

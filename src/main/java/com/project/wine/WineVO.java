@@ -27,13 +27,14 @@ public class WineVO {
 
 	@Override
 	public String toString() {
-		return "WineSearchVO [w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + ", continental="
-				+ continental + ", country=" + country + ", since=" + since + ", type=" + type + ", w_sweet=" + w_sweet
-				+ ", w_body=" + w_body + ", w_acidity=" + w_acidity + ", w_tannins=" + w_tannins + ", quantity="
-				+ quantity + ", w_price=" + w_price + ", w_info=" + w_info + ", w_image1=" + w_image1 + ", w_image2="
-				+ w_image2 + ", w_s_img=" + w_s_img + ", w_b_img=" + w_b_img + ", w_a_img=" + w_a_img + ", w_t_img="
-				+ w_t_img + "]";
+		return "WineVO [w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + ", continental=" + continental
+				+ ", country=" + country + ", since=" + since + ", type=" + type + ", w_sweet=" + w_sweet + ", w_body="
+				+ w_body + ", w_acidity=" + w_acidity + ", w_tannins=" + w_tannins + ", quantity=" + quantity
+				+ ", w_price=" + w_price + ", w_info=" + w_info + ", w_image1=" + w_image1 + ", w_image2=" + w_image2
+				+ ", w_s_img=" + w_s_img + ", w_b_img=" + w_b_img + ", w_a_img=" + w_a_img + ", w_t_img=" + w_t_img
+				+ ", w_sales=" + w_sales + "]";
 	}
+	
 	public int getW_no() {
 		return w_no;
 	}

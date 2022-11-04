@@ -44,4 +44,9 @@ public class WineDAOMybatis {
 		System.out.println("===>mybatis로 getWineList() 기능처리 ");
 		return mybatis.selectList("WineDAO.getWineList", vo);
 	}
+
+	public List<WineVO> getWineSearchList(WineVO vo) {
+		System.out.println("===>mybatis로 와인 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getWineSerachList", vo);
+	}
 }

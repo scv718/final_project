@@ -45,4 +45,10 @@ public class WineServiceImpl implements WineService {
 		
 	}
 
+	@Override
+	public List<WineVO> getWineSearchList(WineVO vo) {
+		System.out.println("겟 와인 서치 서비스 임플까진 실행");
+		return wineDAO.getWineSearchList(vo);	
+	}
+
 }
