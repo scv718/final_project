@@ -16,7 +16,7 @@ public class CartVO {
 
 	private int totalCount ;            // 총 갯수
 	private int totalKind ;            // 총 종류
-	private int totalPoCint;            // 총 마일리지
+
 	private int deliveryPrice;         // 배송비
 	private int finalTotalPrice;       // 최종 가격(총 가격 + 배송비)
 	
@@ -120,14 +120,6 @@ public class CartVO {
 
 	public void setTotalKind(int totalKind) {
 		this.totalKind = totalKind;
-	}
-
-	public int getTotalPoCint() {
-		return totalPoCint;
-	}
-
-	public void setTotalPoCint(int totalPoCint) {
-		this.totalPoCint = totalPoCint;
 	}
 
 	public int getDeliveryPrice() {

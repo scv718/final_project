@@ -29,10 +29,7 @@
 	<!-- 카트 수량 수정 -->
 	<update id="modifyCount">
 	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
-<!-- 	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan+1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no} -->
-	</update>
-	<update id="modifyCount1">
-	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan-1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
+<!-- UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan+1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no} -->
 	</update>
 	
 	<!-- 카트 확인 -->

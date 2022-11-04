@@ -1,18 +1,18 @@
 package com.project.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.cart.CartService;
 import com.project.cart.CartVO;
 import com.project.user.UserVO;
+import com.project.wine.ProductService;
+import com.project.wine.WineService;
+import com.project.wine.WineVO;
 
 
 
@@ -21,6 +21,14 @@ public class Order_cartController {
 
 	@Autowired
 	private CartService cartService;
+	
+	
+	@Autowired
+	private WineService wineService;
+	@Autowired
+	ProductService productService;
+	
+	
 	@RequestMapping(value = "/cart.wp")
 	public String cart(UserVO uvo, CartVO cvo, HttpSession session, Model model) {
 		System.out.println("장바구니 이동");
@@ -45,12 +53,9 @@ public class Order_cartController {
 
 		public String modifyCount(CartVO cvo) {
 		System.out.println("장바구니 수량 수정 해");
-		
 		System.out.println(cvo.getQuantity() + "재고");
-//		if(cvo.getOrd_quan <= cvo.getQuantity()){
-//		   }else{
+		System.out.println(cvo.getOrd_quan() + "수량");
 		cartService.modifyCount(cvo);
-
 		return "redirect:/cart.wp";
 	}
 	

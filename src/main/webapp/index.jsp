@@ -87,7 +87,7 @@ $('.slider-1 > .page-btns > div').click(function(){
 $('.slider-1 > .side-btns > div').click(function(){
     var $this = $(this);
     var $slider = $this.closest('.slider-1');
-    
+     
     var index = $this.index();
     var isLeft = index == 0;
     

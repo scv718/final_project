@@ -14,7 +14,6 @@ public interface CartService {
 	
 	/* 카트 수량 수정 */
 	public void modifyCount(CartVO cart);	
-	public void modifyCount1(CartVO cart);
 	
 	/* 카트 삭제 */
 //	public int deleteCart(CartVO cartId);		

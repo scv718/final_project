@@ -62,7 +62,7 @@
                            <input type="hidden" name="w_nm_k"value="${ci.w_nm_k}"/>
                            <input type="hidden" name="w_nm_e"value="${ci.w_nm_e}"/>   
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}"/>   
-                           <input type="hidden" name="quantity"value="${ci.quantity}"/>                
+                           <input type="hidden" name="quantity"value="${quantity}"/>                
                         </td>
 
 <%--   <div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].W_IMAGE1}"> --%>
@@ -79,7 +79,7 @@
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}">
                            <input type="hidden"name="quantity" value="${ci.quantity}">   
                            
-                              <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input" maxlength ="ci.quantity">   
+                              <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input" maxlength ="${status.count}">   
                               <button type = "button" class="quantity_btn plus_btn">+</button>
                                <button  type = "button"  class="quantity_btn minus_btn">-</button>
                            </div>
@@ -278,25 +278,17 @@ function setTotalInfo(){
 }
 
 /* 수량버튼 */
-
 $(".plus_btn").on("click", function(){
-	let quantity = document.getElementById('quantity');
-   let ord_quan = $(this).parent("div").find("input").val();
-   console.log('수량 버튼');
-   $(this).parent("div").find("input").val(++ord_quan);
+   let quantity = $(this).parent("div").find("input").val();
+   $(this).parent("div").find("input").val(++quantity >= );
+
 });
-
-// $(".plus_btn").on("click", function(){
-//    let quantity = $(this).parent("div").find("input").val();
-//    $(this).parent("div").find("input").val(++quantity);
-
-// });
-// $(".minus_btn").on("click", function(){
-//    let quantity = $(this).parent("div").find("input").val();
-//    if(quantity > 1){
-//       $(this).parent("div").find("input").val(--quantity);      
-//    }
-// });
+$(".minus_btn").on("click", function(){
+   let quantity = $(this).parent("div").find("input").val();
+   if(quantity > 1){
+      $(this).parent("div").find("input").val(--quantity);      
+   }
+});
 
    
 /* 주문 페이지 이동 */   

@@ -53,9 +53,6 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void modifyCount(CartVO vo) {
 		 cartDAO.modifyCount(vo);
-	}	
-	@Override
-	public void modifyCount1(CartVO vo) {
-		 cartDAO.modifyCount(vo);
-	}		
+	}					
+
 }
