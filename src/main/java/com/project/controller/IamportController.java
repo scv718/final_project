@@ -3,6 +3,8 @@ package com.project.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,8 +37,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.cart.CartService;
+import com.project.cart.CartVO;
+import com.project.order.OrderService;
+import com.project.order.OrderVO;
+import com.project.user.AddressService;
+import com.project.user.AddressVO;
+import com.project.user.UserService;
 import com.project.user.UserVO;
-import com.project.user.impl.UserDAOMybatis;
+import com.project.wine.ProductService;
+import com.project.wine.WineVO;
 
 
 @Controller
@@ -52,9 +62,18 @@ public class IamportController {
 	public static final String KEY = "5772502836676770";
 	//"아임포트 Rest Api Secret로 설정"; 
 	public static final String SECRET = "8rO0EvmfinI84PbqQ42EuuK3WRO8CMqBzsgFVXEqHwMs5VeOQETqZo9EGQwuiJIpP3izMWJmCDiInrFB";  
+
 	@Autowired
-	private UserDAOMybatis userService;
+	ProductService productService;
 	
+	@Autowired
+	AddressService addressService;
+	@Autowired
+	CartService cartService;
+	@Autowired
+	UserService userService;
+	@Autowired
+	OrderService orderService;
 	
 	// 아임포트 인증(토큰)을 받아주는 함수 
 	public String getImportToken() {
@@ -267,16 +286,51 @@ public class IamportController {
 	
 	//결제 진행 폼=> 이곳에서 DB저장 로직도 추가하기
 		@RequestMapping(value="/pay.wp", method=RequestMethod.POST)
-		public void payment(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+		public void payment(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo, AddressVO avo, CartVO voList,WineVO vo, UserVO uvo, HttpSession session) throws IOException {
+			System.out.println("결제완료폼");
 			String nm = request.getParameter("unm");
 			String amount = request.getParameter("amount");
-			String mid = request.getParameter("mid");
+			String mid = request.getParameter("merchant_uid");
+			String imp = request.getParameter("imp_uid");
 			String token = getImportToken();
+			int price = Integer.parseInt(amount);
 			setHackCheck(amount, mid, token);
+			uvo.setId((String) session.getAttribute("userID"));
+			LocalDateTime  now = LocalDateTime.now();
+			 
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+	        String formatedNow = now.format(formatter);
+	        
+	        
+	        StringBuilder stringBuilder = new StringBuilder();
+	        for (int i = 0; i < ovo.getW_noList().length; i++) {
+	        	  stringBuilder.append(ovo.getW_noList()[i]+ " ");
+	        	}
+	        String w_no = stringBuilder.toString();
+	        
+	        ovo.setW_no(w_no);
+			model.addAttribute("user", userService.getUser(uvo));
+			voList.setId(uvo.getId());
+			avo.setId(uvo.getId());
+			ovo.setOrd_code(imp);
+			ovo.setId((String) session.getAttribute("userID"));
+			ovo.setProd_price(price);
+			ovo.setOrd_t_price(price);
+			ovo.setProd_p_price(price);
+			ovo.setOrd_stat("상품준비중");
+			ovo.setOrd_date(formatedNow);
 			
+			List<CartVO> listVo = new ArrayList();
+			for(int i = 0; i < voList.getOrd_cart_noList().length; i++) {
+				voList.setOrd_cart_no(voList.getOrd_cart_noList()[i]);
+				listVo.add(cartService.getCartpay(voList));
+				System.out.println(voList.getW_no());
+				cartService.deleteCart(voList);
+			}
+			orderService.insertOrder(ovo);
 			System.out.println(nm);
 			System.out.println(amount);
-			System.out.println(mid);
+			System.out.println(mid);	
 			PrintWriter out = response.getWriter();
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("text/html; charset=utf-8");

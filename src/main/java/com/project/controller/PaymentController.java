@@ -44,6 +44,7 @@ public class PaymentController {
 		System.out.println(avo.getM_name());
 		avo.setId((String) session.getAttribute("userID"));
 		System.out.println(avo.getM_default());
+	
 		if(avo.getM_default() == 0) {
 			if(addressService.selectDefaultAddress(avo) == null) {
 				addressService.firstaddAddress(avo);
@@ -65,19 +66,18 @@ public class PaymentController {
 		System.out.println("상품 결제 이동");
 		System.out.println(voList.toString());
 		uvo.setId((String) session.getAttribute("userID"));
+
+		model.addAttribute("user", userSerivce.getUser(uvo));
 		voList.setId(uvo.getId());
 		avo.setId(uvo.getId());
 		List<CartVO> listVo = new ArrayList();
 		for(int i = 0; i < voList.getOrd_cart_noList().length; i++) {
 			voList.setOrd_cart_no(voList.getOrd_cart_noList()[i]);
 			listVo.add(cartService.getCartpay(voList));
-			System.out.println(voList.getW_no());
 			vo.setW_no(listVo.get(i).getW_no());
 			listVo.get(i).setW_nm_k(productService.getProductdetail(vo).getW_nm_k());
 			listVo.get(i).setW_nm_e(productService.getProductdetail(vo).getW_nm_e());
 			
-//			System.out.println(cartService.getCartpay(voList));
-//			System.out.println(listVo.get(i));
 		}
 		
 		System.out.println(addressService.selectDefaultAddress(avo));
