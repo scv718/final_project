@@ -13,6 +13,7 @@
 	UPDATE community SET commu_title=#{commu_title}, id=#{id}, commu_content=#{commu_content}, commu_date=NOW() where commu_no=#{commu_no}
 	</update>
 	
+	<!-- 조회수 -->
 	<update id="viewCount">
 <!-- 	UPDATE community SET commu_count=(#{commu_count}+1) where commu_no=#{commu_no} -->
 	UPDATE community SET commu_count=commu_count+1 where commu_no=#{commu_no}
@@ -36,7 +37,7 @@
 
 	
 	<select id="totalNoticeListCnt" resultType="_int">
-		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1
+		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 and COMMU_CAT = 0
 		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
 		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
 		

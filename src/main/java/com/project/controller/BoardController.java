@@ -2,14 +2,13 @@ package com.project.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.maven.shared.invoker.SystemOutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.common.PagingVO;
+import com.project.like.LikeService;
 import com.project.review.ReviewService;
 import com.project.review.ReviewVO;
 
@@ -32,6 +33,9 @@ public class BoardController {
 
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private LikeService likeService;
 	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
@@ -67,7 +71,6 @@ public class BoardController {
 	// 상품후기 상세조회
 	@RequestMapping(value="/detailReview.wp", method=RequestMethod.GET)
 	public String detailReview(ReviewVO vo, Model model) {
-		System.out.println("controller"+vo.getRe_no());
 		ReviewVO a =  reviewService.detailReview(vo);
 		model.addAttribute("detailReview",a);
 		return "WEB-INF/board/detailReview.jsp";
@@ -108,6 +111,23 @@ public class BoardController {
 		}
 		
 		return "WEB-INF/board/getReviewList.jsp";
+	}
+	
+	//리뷰 추천
+	@ResponseBody
+	@RequestMapping(value = "/likeReview.wp", method = RequestMethod.POST)
+	public int updateLike(int re_no, String id) throws Exception{
+		int likeCheck = likeService.likeCheck(re_no, id);
+		if(likeCheck == 0) {
+			likeService.insertLike(re_no, id);
+			likeService.updateLike(re_no); //게시판테이블 +1
+			System.out.println(id + "님 " + re_no + "번리뷰 추천");
+		}else if(likeCheck == 1) {
+			likeService.updateLikeCancel(re_no); // 게시판테이블 -1
+			likeService.deleteLike(re_no, id);
+			System.out.println(id + "님 " + re_no + "번리뷰 추천해제");
+		}
+		return likeCheck;
 	}
 	
 	@GetMapping(value="/download.wp")
