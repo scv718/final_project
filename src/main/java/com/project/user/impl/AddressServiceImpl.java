@@ -19,6 +19,28 @@ public class AddressServiceImpl implements AddressService{
 		return addressDAO.selectDefaultAddress(vo);
 	}
 
+	@Override
+	public void firstaddAddress(AddressVO vo) {
+		addressDAO.firstaddAddress(vo);
+		
+	}
+
+	@Override
+	public void addAddress(AddressVO vo) {
+		addressDAO.addAddress(vo);
+	}
+
+	@Override
+	public void firstUpdate(AddressVO vo) {
+		addressDAO.firstUpdate(vo);
+	}
+
+	@Override
+	public List<AddressVO> selectAddress(AddressVO vo) {
+		// TODO Auto-generated method stub
+		return addressDAO.selectAddress(vo);
+	}
+
 
 
 

@@ -11,7 +11,7 @@
    href="${pageContext.request.contextPath}/resources/css/cart.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-<body>
+<body class = "d-flex flex-column min-vh-100">
 <%@ include file="../../../header.jsp"%>
 <div class="wrapper">
    <div class="wrap">   
@@ -52,34 +52,34 @@
                      <tr>
                         <td class="td_width_1 cart_info_td">
                            <input type="checkbox" name = "product_check" class="individual_cart_checkbox input_size_20" checked="checked">
-                        <input type="hidden" name = "id" value="${ci.id}"/>
+                      	   <input type="hidden" name = "id" value="${ci.id}"/>
                            <input type="hidden" name = "w_no" value="${ci.w_no}"/>
-                           <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}"/>
+                           <input type="hidden" class = "ord_cart_no" name="ord_cart_no" value="${ci.ord_cart_no}"/>
                            <input type="hidden"  name="ord_quan"value="${ci.ord_quan}"/>
-                           <input type="hidden"name="w_price" value="${ci.w_price}"/>
+                           <input type="hidden" name="w_price" value="${ci.w_price}"/>
                            <input type="hidden" name="pay_stat"value="${ci.pay_stat}"/>
                            <input type="hidden" name="ord_code"value="${ci.ord_code}"/>
                            <input type="hidden" name="w_nm_k"value="${ci.w_nm_k}"/>
                            <input type="hidden" name="w_nm_e"value="${ci.w_nm_e}"/>   
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}"/>   
-                           <input type="hidden" name="quantity"value="${quantity}"/>                
+                           <input type="hidden" name="quantity"value="${quantity}"/>  
+                            <input type="hidden" name="w_image1"value="${w_image1}"/>              
                         </td>
 
-<%--   <div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].W_IMAGE1}"> --%>
-<!--                               <img></div>                         -->
-                        </td>
+
+   <td class="td_width_2" id="image_wrap"><img id =  "w_image1" src = "resources/img/wine/${ci.w_image1}"><img></td>
+      
                         <td class="td_width_3">${ci.w_nm_k}(${ci.w_nm_e})</td>
                         <td class="td_width_4 price_td">
                            상품금액 : <fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /><br>
                         </td>
                         <td class="td_width_4 table_text_align_center">
-                        <form action="modifyCount.wp" method="post" class="quantity_modify_btn">
+                        <form action="modifyCount.wp" method="post">
                            <div class="table_text_align_center quantity_div">
-                           
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}">
                            <input type="hidden"name="quantity" value="${ci.quantity}">   
                            
-                              <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input" maxlength ="${status.count}">   
+                              <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input">   
                               <button type = "button" class="quantity_btn plus_btn">+</button>
                                <button  type = "button"  class="quantity_btn minus_btn">-</button>
                            </div>
@@ -126,13 +126,26 @@
                                  <span class="totalPrice_span"><c:out value="${totalPrice}"/></span>원
                               </td>
                            </tr>
-                           <tr>                  
-                              <td>배송비</td>
+                           <tr>      
+                            <td>배송비</td>            
                               <td>
-                              <c:forEach var="deliveryPrice" items="${mylevel.level}">
-                              <c:set var="totalKind" value="${totalKind + ci.ord_quan}" />
-                                 <span class="delivery_price"><c:out value="${deliveryPrice}"/></span>원
-                                 	</c:forEach>
+                              <c:forEach var="ls" items="${level_shipping}">
+                              <c:set var="level" value="${ls.level}" />
+                              <c:set var="deli_price" value="${ls.deli_price}" />
+							<c:if test="${level eq 0}">
+							 <span class="delivery_price">${deli_price}</span>원	
+							</c:if>
+							<c:if test="${level eq 1}">
+							 <span class="delivery_price">${deli_price}</span>원 
+							</c:if>
+							<c:if test="${level eq 2}">
+							<span class="delivery_price">${deli_price}</span>원
+							</c:if>
+							<c:if test="${level eq 3}">
+							<span class="delivery_price">${deli_price}</span>원
+
+							</c:if>
+                             </c:forEach>
                               </td>
                               
                            </tr>                           
@@ -155,12 +168,12 @@
                <div class="boundary_div">구분선</div>
                <table>
                   <tr>
-                     <td>
+                     <td> 
                         <table>
                            <tbody>
                               <tr>
                                  <td><strong>총 결제 예상 금액</strong></td>
-                                 <td><span class="finalTotalPrice_span"><c:out value="${totalPrice}"/>원</span> </td>
+                                 <td><span class="finalTotalPrice_span"><c:out value="${totalPrice + deli_price}"/>원</span> </td>
                               </tr>
                            </tbody>
                         </table>
@@ -170,14 +183,17 @@
             </div>
          </div>
          <!-- 구매 버튼 영역 -->
-         <div class="content_btn_section">
-            <a href="payment.wp" role="button" >주문하기</a>
-         </div>
-
+    	<div class="content_btn_section">
+				<button class = "order_btn">주문하기</button>
+			</div>
+	<form action="payment.wp"method="get" class="order_form"></form>				
        </div>  
    </div>   <!-- class="wrap" -->
 </div>   <!-- class="wrapper" -->
 
+			
+			
+		
 
 <script>
 $(document).ready(function(){
@@ -231,95 +247,96 @@ $(".all_check_input").on("click", function(){
 
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
-// 	console.log(시작);
 
    let totalCount = 0;            // 총 갯수
    let totalKind = 0;            // 총 종류
-   let totalPoCint = 0;            // 총 마일리지
    let deliveryPrice = 0;         // 배송비
    let finalTotalPrice = 0;       // 최종 가격(총 가격 + 배송비)
    
-	console.log(totalPoCint);
    
-   $(".cart_info_td").each(function(index, element){
+//    $(".cart_info_td").each(function(index, element){
       
-      if($(element).find(".individual_cart_checkbox").is(":checked") === true){   //체크여부
-         // 총 가격
-         totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-         // 총 갯수
-         totalCount += parseInt($(element).find(".individual_bookCount_input").val());
-         // 총 종류
-         totalKind += 1;
-         // 총 마일리지
-         totalPoint += parseInt($(element).find(".individual_totalPoint_input").val());         
-      }
-   });
+//       if($(element).find(".individual_cart_checkbox").is(":checked") === true){   //체크여부
+//          // 총 가격
+//          totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+//          // 총 갯수
+//          totalCount += parseInt($(element).find(".individual_bookCount_input").val());
+//          // 총 종류
+//          totalKind += 1;
+//          // 총 마일리지
+//       }
+//    });
    
    
-   /* 배송비 결정 */
-   if(totalPrice >= 2500){
-      deliveryPrice = 0;
-   } else if(totalPrice == 0){
-      deliveryPrice = 0;
-   } else {
-      deliveryPrice = 3000;   
-   }
-   finalTotalPrice = totalPrice + deliveryPrice;
+//    /* 배송비 결정 */
+//    if(totalPrice >= 2500){
+//       deliveryPrice = 0;
+//    } else if(totalPrice == 0){
+//       deliveryPrice = 0;
+//    } else {
+//       deliveryPrice = 3000;   
+//    }
+//    finalTotalPrice = totalPrice + deliveryPrice;
 
    
    // 총 가격
-   $(".totalPrice_span").text(totalPrice.toLocaleString());
+//    $(".totalPrice_span").text(totalPrice);
    // 총 갯수
-   $(".totalCount_span").text(totalCount);
-   // 배송비
-   $(".delivery_price").text(deliveryPrice);   
-   // 최종 가격(총 가격 + 배송비)
-   $(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());      
+//    $(".totalCount_span").text(totalCount);
+//    // 배송비
+// //    $(".delivery_price").text(deliveryPrice);   
+//    // 최종 가격(총 가격 + 배송비)
+//    $(".finalTotalPrice_span").text(finalTotalPrice);      
 }
 
-/* 수량버튼 */
+
 $(".plus_btn").on("click", function(){
-   let quantity = $(this).parent("div").find("input").val();
-   $(this).parent("div").find("input").val(++quantity >= );
+	   let ord_quan = $(this).parent("div").find("input").val();
+	   $(this).parent("div").find("input").val(++ord_quan);
 
-});
-$(".minus_btn").on("click", function(){
-   let quantity = $(this).parent("div").find("input").val();
-   if(quantity > 1){
-      $(this).parent("div").find("input").val(--quantity);      
-   }
-});
+	});
+	$(".minus_btn").on("click", function(){
+	   let ord_quan = $(this).parent("div").find("input").val();
+	   if(ord_quan > 1){
+	      $(this).parent("div").find("input").val(--ord_quan);      
+	   }
+	});	
 
-   
-/* 주문 페이지 이동 */   
+	
+/* 주문 페이지 이동 */	
 $(".order_btn").on("click", function(){
-   
-   let form_contents ='';
-   let orderNumber = 0;
-   
-   $(".cart_info_td").each(function(index, element){
-      
-      if($(element).find(".individual_cart_checkbox").is(":checked") === true){   //체크여부
-         
-         let bookId = $(element).find(".individual_bookId_input").val();
-         let bookCount = $(element).find(".individual_bookCount_input").val();
-         
-         let bookId_input = "<input name='orders[" + orderNumber + "].bookId' type='hidden' value='" + bookId + "'>";
-         form_contents += bookId_input;
-         
-         let bookCount_input = "<input name='orders[" + orderNumber + "].bookCount' type='hidden' value='" + bookCount + "'>";
-         form_contents += bookCount_input;
-         
-         orderNumber += 1;
-         
-      }
-   });   
+	
+	let form_contents ='';
+	let orderNumber = 0;
+	
+	$(".cart_info_td").each(function(index, element){
+		
+		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+			
+// 			let id = $(element).find(".id").val();
+// 			let w_no = $(element).find(".w_no").val();
+			let ord_cart_no = $(element).find(".ord_cart_no").val();
+			
+// 			let Id_input = "<input name='id[" + orderNumber + "].id' type='hidden' value='" + id + "'>";
+// // 			let Id_input = "<input name='id' type='hidden' value='" + id + "'>";
+// 			form_contents += Id_input;
+// 			let w_no_input = "<input name='w_no[" + orderNumber + "].w_no' type='hidden' value='" + w_no + "'>";
+// // 			let w_no_input = "<input name='w_no' type='hidden' value='" + w_no + "'>";
+// 			form_contents += w_no_input;
+			
+			let ord_cart_no_input = "<input name='ord_cart_noList' type='hidden' value='" + ord_cart_no + "'>";
+// 			let ord_cart_no_input = "<input name='ord_cart_no' type='hidden' value='" + ord_cart_no + "'>";
+			form_contents += ord_cart_no_input;
+			
+			orderNumber += 1;
+			
+		}
+	});	
 
-   $(".order_form").html(form_contents);
-   $(".order_form").submit();
-   
+	$(".order_form").html(form_contents);
+	$(".order_form").submit();
+	
 });
-      
 
 </script>
 <%@ include file="/footer.jsp"%>

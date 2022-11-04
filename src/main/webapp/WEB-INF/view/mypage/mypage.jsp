@@ -116,14 +116,7 @@
 
 	<div class="listContainer">
 		<a href="payment.wp" class="item">
-			<div class="text">상품 리뷰</div>
-			<div class="right">></div>
-		</a>
-	</div>
-
-	<div class="listContainer">
-		<a href="payment.wp" class="item">
-			<div class="text">상품문의</div>
+			<div class="text">???</div>
 			<div class="right">></div>
 		</a>
 	</div>
@@ -135,31 +128,13 @@
 		</a>
 	</div>
 
-
 	<div class="listContainer">
 		<a href="payment.wp" class="item">
-			<div class="text">
-				<span>내지갑</span> <span class="smallLight"> <span>|</span> <span>보유
-						적립금</span>
-				</span>
-			</div>
-
-			<div class="right">
-				<span class="blct">175 BLCT</span> >
-			</div>
-
-		</a>
-	</div>
-
-	<div class="listContainer">
-		<a href="payment.wp" class="item">
-
-			<div class="text">설정</div>
+			<div class="text">???</div>
 			<div class="right">></div>
 		</a>
 	</div>
-	</div>
-	</div>
+
 
 	<%@ include file="/footer.jsp"%>
 </body>

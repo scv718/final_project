@@ -22,15 +22,37 @@ dt {
 }
 </style>
 <script>
-	function likebtn(){
-		let userid = "<c:out value='${userID}'/>";
-		console.log(userid);
-		if(userid == "null"){
+
+	// 추천하기
+	var re_no = ${detailReview.re_no};
+	var id = '${userID}';
+	console.log(id);
+	function updateLike(){
+		if(id == ""){
 			alert("로그인이 필요합니다.");
 			location.href = "singUp.wp";
 		} else {
-			location.href = "likeController.wp";
+			$.ajax({
+				type : "POST",
+				url : "likeReview.wp",
+				dataType : "json",
+				data : {'re_no' : re_no, 'id' : id},
+				error : function() {
+					alert("통신 에러");
+				},
+				success : function(likeCheck) {
+					if(likeCheck == 0) {
+						console.log("추천완료");
+						location.reload();
+					} else if(likeCheck == 1) {
+						console.log("추천취소");
+						location.reload();
+					}
+				}
+			});
+			
 		}
+		
 	}
 	
 	function modbtn(){
@@ -92,12 +114,12 @@ dt {
 				<div id="review-bottom">
 					<c:choose>
 						<c:when test="${userID eq detailReview.id}">
-							<button type="button" onclick="likebtn()"><i class="bi bi-hand-thumbs-up-fill"></i>추천</button>
+							<button type="button" onclick="updateLike(); return false;">추천 ${detailReview.re_like}</button>
 							<button type="button" onclick="modbtn()">수정</button>
 							<button type="button" onclick="delbtn()">삭제</button>
 						</c:when>
 						<c:otherwise>
-							<button type="button" onclick="likebtn()"><i class="bi bi-hand-thumbs-up-fill"></i>추천</button>
+							<button type="button" onclick="updateLike()">추천 ${detailReview.re_like}</button>
 						</c:otherwise>
 					</c:choose>
 				</div>

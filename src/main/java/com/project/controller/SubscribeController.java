@@ -40,6 +40,7 @@ public class SubscribeController {
 				vo.setId(uvo);
 				vo1.setId(uvo);
 				subscribeService.insertSubscribe1(vo);
+				subscribeService.liset_deli_price(vo);
 				userService.updateuserle1(vo1);
 				System.out.println("실행: "+ result); 
 				System.out.println("구독 변경: "+ userService.updateuserle1(vo1) + " 유저 변경: "+ userService.updateuserle1(vo1));
@@ -68,6 +69,7 @@ public class SubscribeController {
 				vo.setId(uvo);
 				vo1.setId(uvo);
 				subscribeService.insertSubscribe2(vo);
+				subscribeService.liset_deli_price(vo);
 				userService.updateuserle2(vo1);
 				System.out.println("실행: "+ result); 
 				System.out.println("구독 변경: "+ userService.updateuserle2(vo1) + " 유저 변경: "+ userService.updateuserle2(vo1));
@@ -98,6 +100,7 @@ public String insertSubscribe3(SubscribeVO vo, UserVO vo1, HttpSession session, 
 			vo.setId(uvo);
 			vo1.setId(uvo);
 			subscribeService.insertSubscribe3(vo);
+			subscribeService.liset_deli_price(vo);
 			userService.updateuserle3(vo1);	
 		}
 	} catch (Exception e) {
@@ -120,6 +123,7 @@ public String insertSubscribe3(SubscribeVO vo, UserVO vo1, HttpSession session, 
 				vo.setId(uvo);
 				vo1.setId(uvo);
 				subscribeService.updateSubscribe(vo);
+				subscribeService.liset_deli_price_up(vo);
 				userService.updateuserle0(vo1);
 				return "subscribe.wp";
 			}
@@ -157,4 +161,11 @@ public String insertSubscribe3(SubscribeVO vo, UserVO vo1, HttpSession session, 
 			subscribeService.preference_Setting(vo);
 			return "WEB-INF/view/user/preference.jsp";
 		}
+		
+		@RequestMapping(value = "/test.wp")
+		public String userCertification() {
+			System.out.println("본인인증");
+			return "WEB-INF/view/subscribe/test.jsp";
+		}
+		
 }
