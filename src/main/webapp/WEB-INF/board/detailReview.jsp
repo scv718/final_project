@@ -56,14 +56,14 @@ dt {
 	}
 	
 	function modbtn(){
-		location.href = "updateReview.jsp";
+		location.href = "/updateReviewPage.wp?re_no="+re_no;
 	}
 
 	function delbtn(){
 		let con = confirm("삭제하시겠습니까?");
 		if(con == true){
-			let re_no = "<c:out value='${detailReview.re_no}'/>";
-			console.log(re_no);
+// 			let re_no = "<c:out value='${detailReview.re_no}'/>";
+// 			console.log(re_no);
 			location.href = "deleteReview.wp?re_no="+re_no;
 		}
 		else if(con == false){
@@ -73,6 +73,13 @@ dt {
 </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
+<%
+	if (request.getParameter("error")!=null) {
+		out.println("<div class='alert alert-danger'>");
+		out.println("작성자만 수정 가능합니다.");
+		out.println("</div>");
+	}
+%>
 	<div id="reviewContainer">
 		<h3 id="comtitle">상품후기</h3>
 		<div id="reviewcontent">
