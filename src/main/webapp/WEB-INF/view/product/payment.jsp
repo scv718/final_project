@@ -94,7 +94,9 @@ function checkOnlyOne(element) {
 							</div>
 							</c:if>
 							<div class="addressInfo_input_div_wrap">
-							<c:if test = "${anotheradd ne null}">
+							<c:forEach items="${anotheradd}" var="addanother">
+							<c:choose>
+							<c:when test="${addanother ne null}">
 							<div class="addressInfo_input_div addressInfo_input_div_2">
 								<table>
 									<colgroup>
@@ -104,11 +106,11 @@ function checkOnlyOne(element) {
 									<tbody>
 										<tr>
 											<th>이름</th>
-											<td><a class = "m_name_sub" ></a></td>
+											<td>${addanother.m_name}</td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td><a class="m_address_sub" ></a>
+											<td>${addanother.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
 												name="add" value="${userName}" type="hidden"> <input
@@ -121,13 +123,20 @@ function checkOnlyOne(element) {
 											</td>
 										</tr>
 										<tr>
-											<th>전화번호</th>
-											<td><a class = "m_phone_sub" ></a></td>
+										<th>전화번호</th>
+										<td>${addanother.m_phone}</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
-							</c:if>
+							</c:when>
+							<c:otherwise>
+								<div class="addressInfo_input_div addressInfo_input_div_2">
+								<a>없음</a>
+								</div>
+							</c:otherwise>
+							</c:choose>
+							</c:forEach>
 							<div class="addressInfo_input_div addressInfo_input_div_3">
 								<form id = "addform" name = "addform" action = "m_add.wp">
 									<table>
@@ -136,7 +145,7 @@ function checkOnlyOne(element) {
 										<tbody>
 											<tr>
 												<th>이름</th>
-												<td><input class="m_name" name = "m_name"></td>
+												<td><input class="m_name_insert" name = "m_name"></td>
 											</tr>
 											<tr>
 												<th>주소</th>
@@ -149,9 +158,9 @@ function checkOnlyOne(element) {
 													<input class="address3_input" readonly="readonly">
 													</td>
 												<th>전화번호</th>
-												<td><input class = "m_phone" name = "m_phone"></td>
-												<td><label><input type="checkbox" name="m_default" onclick="checkOnlyOne(this)" value="0" checked="checked">기본배송지등록</label>
-													<label><input type="checkbox" name="m_default" onclick="checkOnlyOne(this)" value="1" >일반배송지등록</label>
+												<td><input class = "m_phone_insert" name = "m_phone"></td>
+												<td><label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="0" checked="checked">기본배송지등록</label>
+													<label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="1" >일반배송지등록</label>
 													<button id = "insertadd" type = "button">입력 완료</button></td>
 											</tr>
 										</tbody>
@@ -159,12 +168,24 @@ function checkOnlyOne(element) {
 								</form>
 								<script type="text/javascript">
 								$('#insertadd').on('click', function() {
+						
 									var add1 = $('.address1_input').val();
 									var add2 = $('.address2_input').val();
 									var add3 = $('.address3_input').val();
-									var addtotal = add1+add2+add3;
-									
-									$('.m_address').val(addtotal);
+									var address = add1+add2+add3;
+								
+									let chekObj = document.getElementsByClassName("m_default");
+									let lenth = chekObj.length;
+									 let checked = 0;
+									 
+									 for (i = 0; i < lenth; i++) {
+										    if (chekObj[i].checked === true) {
+										      checked += 1;
+										      checkboxTest = chekObj[i].getAttribute("value");
+										    }
+										  }
+									 
+									$('.m_address').val(address);
 									
 									if($('.m_name').val() == ''){
 										alert('이름을 입력해주세요');
@@ -183,9 +204,28 @@ function checkOnlyOne(element) {
 										return false;
 									}
 									
+									  $.ajax({
+								            async: true,
+								            type : 'POST',
+								            url : "m_add.wp",
+								            dataType : "json",
+								            data : {
+								            	m_name : $('.m_name_insert').val(),
+								            	m_address : address,								            
+								            	m_phone   :  $('.m_phone_insert').val(),
+								            	m_default : checkboxTest
+								            },
+								            success : function(data) {
+								            	history.go(0);
+								            },
+								            error : function(error) {
+								                
+								                alert("error : " + error);
+								            }
+								        });
 									
 
-									document.addform.submit();
+// 									document.addform.submit();
 									
 								})
 								</script>
@@ -295,7 +335,10 @@ function checkOnlyOne(element) {
 		</div>	
 	</div>	<!-- class="wrap" -->
 </div>	<!-- class="wrapper" -->
+</div>
+
 <%@ include file="/footer.jsp"%>
+
 <script>
 
 $(document).ready(function(){
@@ -314,7 +357,7 @@ $(document).ready(function(){
 		console.log('비정상');
 	}else{
 		
-		
+		console.log('정상');
 	}
 	 
 	

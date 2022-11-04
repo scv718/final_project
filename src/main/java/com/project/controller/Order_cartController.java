@@ -44,11 +44,11 @@ public class Order_cartController {
 	@RequestMapping(value = "/modifyCount.wp")
 
 		public String modifyCount(CartVO cvo) {
-		
 		System.out.println("장바구니 수량 수정 해");
-		System.out.println(cvo.getOrd_quan());
-		System.out.println(cvo.getId());
-		System.out.println(cvo.getW_no());
+		
+		System.out.println(cvo.getQuantity() + "재고");
+//		if(cvo.getOrd_quan <= cvo.getQuantity()){
+//		   }else{
 		cartService.modifyCount(cvo);
 
 		return "redirect:/cart.wp";

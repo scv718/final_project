@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.cart.CartService;
 import com.project.cart.CartVO;
@@ -36,10 +37,11 @@ public class PaymentController {
 	UserService userSerivce;
 	
 	@RequestMapping("m_add.wp")
+	@ResponseBody
 	public String oredr_m_add(AddressVO avo, UserVO vo, Model model, HttpSession session, HttpServletResponse response){
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		
+		System.out.println(avo.getM_name());
 		avo.setId((String) session.getAttribute("userID"));
 		System.out.println(avo.getM_default());
 		if(avo.getM_default() == 0) {
@@ -54,7 +56,7 @@ public class PaymentController {
 		}
 		
 			
-		return "WEB-INF/view/product/payment.jsp";
+		return "true";
 	}
 	
 	@RequestMapping("payment.wp")
