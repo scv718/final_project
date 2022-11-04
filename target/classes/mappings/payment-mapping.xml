@@ -4,13 +4,10 @@
 
 <mapper namespace="PaymentDAO">
 
-
-
 	<insert id = "firstaddAddress">
 	INSERT INTO M_ADD(ID, M_NAME, M_ADDRESS, M_PHONE, M_DEFAULT)
 	VALUES (#{id}, #{m_name}, #{m_address}, #{m_phone}, 0)
 	</insert>
-	
 	<update id="firstUpdate">
 		UPDATE M_ADD
 		SET M_NAME = #{m_name},
@@ -18,7 +15,6 @@
 			M_PHONE = #{m_phone}
 		WHERE ID = #{id} and M_DEFAULT = 0
 	</update>
-	
 	<insert id = "addAddress">
 	INSERT INTO M_ADD(ID, M_NAME, M_ADDRESS, M_PHONE, M_DEFAULT)
 	VALUES (#{id}, #{m_name}, #{m_address}, #{m_phone}, 1)

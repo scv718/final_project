@@ -3,16 +3,15 @@ package com.project.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.maven.shared.invoker.SystemOutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,14 +57,53 @@ public class BoardController {
 	@PostMapping(value = "/insertReview.wp")
 	public String insertReview(ReviewVO vo) throws IllegalStateException, IOException {
 		MultipartFile uploadFile = vo.getUploadFile();
-		String realPath = "c:/swork/wine2/src/main/webapp/img/";
+		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
 		String fileName = uploadFile.getOriginalFilename();
 		if(!uploadFile.isEmpty()) {
-			vo.setFilename(fileName);
+			vo.setRe_photo1(fileName);
 			uploadFile.transferTo(new File(realPath+fileName));
 		}
 		reviewService.insertReview(vo);
 		return "getReviewList.wp";
+	}
+	
+	// 리뷰 수정 페이지 이동
+	@RequestMapping("/updateReviewPage.wp")
+	public String updateReviewPage(ReviewVO vo, Model model) {
+		ReviewVO a =  reviewService.detailReview(vo);
+		model.addAttribute("detailReview",a);
+		return "WEB-INF/board/updateReview.jsp";
+	}
+	
+	// 리뷰수정
+	@ResponseBody
+	@RequestMapping(value = "/updateReview.wp", method = RequestMethod.POST)
+	public String updateReview(ReviewVO vo, HttpSession session) {
+//		@RequestParam("article_file") List<MultipartFile> multipartFile, HttpServletRequest request) {
+//			
+//		}
+		if(vo.getId().equals(session.getAttribute("userID").toString())) {
+			reviewService.updateReview(vo);
+			return "detailReview.wp";
+		} else {
+			return "detailReview.wp?error=1";
+		}
+	}
+	
+	// 리뷰삭제
+	@RequestMapping("/deleteReview.wp")
+	public String deleteReview(ReviewVO vo, HttpSession session) {
+	String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+		vo = reviewService.detailReview(vo);
+		if(vo.getId().equals(session.getAttribute("userID").toString())) {
+			if(vo.getRe_photo1() != null) {
+				System.out.println("파일삭제: " + realPath + vo.getRe_photo1());
+			}
+			reviewService.deleteReview(vo);
+			return "getReviewList.wp";
+		} else {
+			return "detailReview.wp?error=1";
+		}
 	}
 	
 	// 상품후기 상세조회
@@ -128,29 +166,5 @@ public class BoardController {
 			System.out.println(id + "님 " + re_no + "번리뷰 추천해제");
 		}
 		return likeCheck;
-	}
-	
-	@GetMapping(value="/download.wp")
-	public void fileDownLoad(@RequestParam(value="filename", required=false) String filename, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("파일 다운로드");
-		if(!(filename == null || filename.equals(""))) {
-			// 요청파일 정보 불러오기
-			String realPath = "c:/swork/wine2/src/main/webapp/img/";
-			// String realPath = request.getSession().getServletContext().getRealPath("/img/");
-			File file = new File(realPath + filename);
-			
-			// 한글은 http 헤더에 사용할 수 없기 때문에 파일명은 영문으로 인코딩하여 헤더에 적용한다.
-			String fn = new String(file.getName().getBytes(), "iso_8859_1");
-			
-			//ContentType설정
-			byte[] bytes = org.springframework.util.FileCopyUtils.copyToByteArray(file);
-			response.setHeader("Content-Disposition", "attachment; filename=\""+ fn + "\"");
-			response.setContentLength(bytes.length);
-	//			response.setContentType("image/jpeg");
-	        
-			response.getOutputStream().write(bytes);
-	        response.getOutputStream().flush();
-	        response.getOutputStream().close();
-		}
 	}
 }
