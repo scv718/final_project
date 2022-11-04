@@ -44,13 +44,21 @@ function checkOnlyOne(element) {
 				<!-- 배송지 정보 -->
 					<div class="addressInfo_div">
 						<div class="addressInfo_button_div">
-							<button class="address_btn address_btn_1"
+								<c:if test = "${defaultadd ne null}">
+								<button class="address_btn address_btn_1"
 								onclick="showAdress('1')" style="background-color: #3c3838;">기본
 								배송지</button>
-							<button class="address_btn address_btn_2"
-								onclick="showAdress('2')">직접 입력</button>
+								</c:if>
+								<c:if test = "${anotheradd ne null}">
+								<button class="address_btn address_btn_2"
+								onclick="showAdress('2')" style="background-color: #3c3838;">저장된
+								배송지</button>
+								</c:if>
+							<button class="address_btn address_btn_3"
+								onclick="showAdress('3')">직접 입력</button>
 						</div>
 						<div class="addressInfo_input_div_wrap">
+						<c:if test = "${defaultadd ne null}">
 							<div class="addressInfo_input_div addressInfo_input_div_1"
 								style="display: block">
 								<table>
@@ -61,11 +69,11 @@ function checkOnlyOne(element) {
 									<tbody>
 										<tr>
 											<th>이름</th>
-											<td>${userName}</td>
+											<td>${defaultadd.m_name}</td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td>${add.m_address_1} ${add.m_address_2}<br>${add.m_address_3}
+											<td>${defaultadd.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
 												name="add" value="${userName}" type="hidden"> <input
@@ -77,37 +85,110 @@ function checkOnlyOne(element) {
 												value="${add.m_address_3}">
 											</td>
 										</tr>
+										<tr>
+										<th>전화번호</th>
+										<td>${defaultadd.m_phone}</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
+							</c:if>
+							<div class="addressInfo_input_div_wrap">
+							<c:if test = "${anotheradd ne null}">
 							<div class="addressInfo_input_div addressInfo_input_div_2">
-								<form action="oredr_m_add.wp" method="post">
+								<table>
+									<colgroup>
+										<col width="25%">
+										<col width="*">
+									</colgroup>
+									<tbody>
+										<tr>
+											<th>이름</th>
+											<td><a class = "m_name_sub" ></a></td>
+										</tr>
+										<tr>
+											<th>주소</th>
+											<td><a class="m_address_sub" ></a>
+												<input class="selectAddress" name="add" value="T"
+												type="hidden"> <input class="addressee_input"
+												name="add" value="${userName}" type="hidden"> <input
+												class="address1_input" name="m_address_1" type="hidden"
+												value="${add.m_address_1}"> <input
+												class="address2_input" name="m_address_2" type="hidden"
+												value="${add.m_address_2}"> <input
+												class="address3_input" name="m_address_3" type="hidden"
+												value="${add.m_address_3}">
+											</td>
+										</tr>
+										<tr>
+											<th>전화번호</th>
+											<td><a class = "m_phone_sub" ></a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							</c:if>
+							<div class="addressInfo_input_div addressInfo_input_div_3">
+								<form id = "addform" name = "addform" action = "m_add.wp">
 									<table>
 										<colgroup>
 										</colgroup>
 										<tbody>
 											<tr>
 												<th>이름</th>
-												<td><input class="addressee_input"></td>
+												<td><input class="m_name" name = "m_name"></td>
 											</tr>
 											<tr>
 												<th>주소</th>
 												<td><input class="selectAddress" value="F"
 													type="hidden"> 
+													<input class="m_address" name="m_address" value="" type="hidden">
 													<input class="address1_input" readonly="readonly"> 
 													<a class="address_search_btn" onclick="execution_daum_address()">주소 찾기</a><br> <input
 													class="address2_input" readonly="readonly"><br>
 													<input class="address3_input" readonly="readonly">
 													</td>
 												<th>전화번호</th>
-												<td><input class = "phone"></td>
-												<td><label><input type="checkbox" name="m_default" onclick="checkOnlyOne(this)" value="0" >기본배송지등록</label>
+												<td><input class = "m_phone" name = "m_phone"></td>
+												<td><label><input type="checkbox" name="m_default" onclick="checkOnlyOne(this)" value="0" checked="checked">기본배송지등록</label>
 													<label><input type="checkbox" name="m_default" onclick="checkOnlyOne(this)" value="1" >일반배송지등록</label>
-													<button type="submit">입력 완료</button></td>
+													<button id = "insertadd" type = "button">입력 완료</button></td>
 											</tr>
 										</tbody>
 									</table>
 								</form>
+								<script type="text/javascript">
+								$('#insertadd').on('click', function() {
+									var add1 = $('.address1_input').val();
+									var add2 = $('.address2_input').val();
+									var add3 = $('.address3_input').val();
+									var addtotal = add1+add2+add3;
+									
+									$('.m_address').val(addtotal);
+									
+									if($('.m_name').val() == ''){
+										alert('이름을 입력해주세요');
+										return false;
+									}
+									if($('.address1_input').val() == ''){
+										alert('주소를 입력해주세요');
+										return false;
+									}
+									if($('.address2_input').val() == ''){
+										alert('주소를 입력해주세요');
+										return false;
+									}
+									if($('.m_phone').val() == ''){
+										alert('휴대폰번호를 입력해주세요');
+										return false;
+									}
+									
+									
+
+									document.addform.submit();
+									
+								})
+								</script>
 							</div>
 						</div>
 					</div>
@@ -140,24 +221,23 @@ function checkOnlyOne(element) {
 							<col width="40%">
 						</colgroup>					
 						<tbody>
-							<c:forEach items="${orderList}" var="ol">
+							<c:forEach items="${product}" var="ol">
 								<tr>
 									<td>
-										<div class="image_wrap" data-bookid="${ol.imageList[0].bookId}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-filename="${ol.imageList[0].fileName}">
-											<img>
-										</div>
+<%-- 										<div class="image_wrap" data-bookid="${ol.imageList[0].bookId}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-filename="${ol.imageList[0].fileName}"> --%>
+<!-- 											<img> -->
+<!-- 										</div> -->
 									</td>
-									<td>${ol.bookName}</td>
+									<td>${ol.w_nm_k}</td>
 									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.salePrice}" pattern="#,### 원" /> | 수량 ${ol.bookCount}개
-										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
+										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" /> | 수량 ${ol.ord_quan}개
+										<br><fmt:formatNumber value="${ol.w_price*ol.ord_quan}" pattern="#,### 원" />
 	
-										<input type="hidden" class="individual_bookPrice_input" value="${ol.bookPrice}">
-										<input type="hidden" class="individual_salePrice_input" value="${ol.salePrice}">
-										<input type="hidden" class="individual_bookCount_input" value="${ol.bookCount}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.salePrice * ol.bookCount}">
+										<input type="hidden" class="individual_bookPrice_input" value="${ol.w_price}">
+										<input type="hidden" class="individual_bookCount_input" value="${ol.ord_quan}">
+										<input type="hidden" class="individual_totalPrice_input" value="${ol.w_price * ol.ord_quan}">
 									
-										<input type="hidden" class="individual_bookId_input" value="${ol.bookId}">
+										<input type="hidden" class="individual_bookId_input" value="${ol.w_no}">
 									</td>
 								</tr>							
 							</c:forEach>
@@ -212,18 +292,31 @@ function checkOnlyOne(element) {
 				<!-- 상품 정보 -->
 			</form>
 			
-		</div>
-		
-	
-		
-		
-		
+		</div>	
 	</div>	<!-- class="wrap" -->
 </div>	<!-- class="wrapper" -->
 <%@ include file="/footer.jsp"%>
 <script>
 
 $(document).ready(function(){
+	
+	var defaultadd = '${defaultadd}'; 	
+	var anotheradd = '${anotheradd}';
+	 if(defaultadd == '[]'){
+		console.log('비정상');
+		console.log(defaultadd);
+	}else{
+		console.log('정상');
+		console.log(defaultadd);
+	}
+	 
+	 if(anotheradd == '[]'){
+		console.log('비정상');
+	}else{
+		
+		
+	}
+	 
 	
 	/* 주문 조합정보란 최신화 */
 	setTotalInfo();

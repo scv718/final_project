@@ -1,8 +1,13 @@
 package com.project.cart;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CartVO {
 	
 	private int ord_cart_no; //카트 넘버
+	private int ord_cart_noList[]; //카트 넘버
+	
 	private String id;
 	private int w_no;//와인 번호
 	private int ord_quan;
@@ -13,6 +18,14 @@ public class CartVO {
 	private String w_nm_k;
 	private String w_nm_e;
 	private int quantity;
+	
+	public int[] getOrd_cart_noList() {
+		return ord_cart_noList;
+	}
+	public void setOrd_cart_noList(int[] ord_cart_noList) {
+		this.ord_cart_noList = ord_cart_noList;
+	}
+	
 	
 	public int getOrd_cart_no() {
 		return ord_cart_no;
@@ -68,7 +81,6 @@ public class CartVO {
 	public void setW_nm_e(String w_nm_e) {
 		this.w_nm_e = w_nm_e;
 	}
-	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -77,9 +89,15 @@ public class CartVO {
 	}
 	@Override
 	public String toString() {
-		return "CartVO [ord_cart_no=" + ord_cart_no + ", id=" + id + ", w_no=" + w_no + ", ord_quan=" + ord_quan
-				+ ", w_price=" + w_price + ", pay_stat=" + pay_stat + ", ord_code=" + ord_code + ", w_nm_k=" + w_nm_k
-				+ ", w_nm_e=" + w_nm_e + ", quantity=" + quantity + "]";
+		return "CartVO [ord_cart_no=" + ord_cart_no + ", ord_cart_noList=" + Arrays.toString(ord_cart_noList) + ", id="
+				+ id + ", w_no=" + w_no + ", ord_quan=" + ord_quan + ", w_price=" + w_price + ", pay_stat=" + pay_stat
+				+ ", ord_code=" + ord_code + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + ", quantity=" + quantity
+				+ "]";
 	}
+	
+
+	
+	
+
 
 }

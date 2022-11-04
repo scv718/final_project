@@ -6,4 +6,6 @@ public interface ProductService {
 
 	WineVO getProductdetail(WineVO vo);
 	
+	List<WineVO> getProductdetailList(List<WineVO> vo);
+	
 }

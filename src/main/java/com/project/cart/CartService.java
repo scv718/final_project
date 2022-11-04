@@ -11,6 +11,8 @@ public interface CartService {
 	/* 장바구니 정보 리스트 */
 	public CartVO checkCart(CartVO cvo);	
 	public List<CartVO> getCartList(String userID);	
+	public List<CartVO> getCartList(CartVO vo);	
+	public CartVO getCartpay(CartVO vo);
 	
 	/* 카트 수량 수정 */
 	public void modifyCount(CartVO cart);	

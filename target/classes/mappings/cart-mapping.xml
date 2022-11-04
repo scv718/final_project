@@ -45,6 +45,12 @@
 		FROM ORDER_CART A LEFT OUTER JOIN WINE B ON A.W_NO = B.W_NO AND A.W_PRICE = B.W_PRICE 
 		WHERE ID = #{id};
 	</select>
+	<!-- 카트 목록 -->
+	<select id="getCartPayment" resultType="cart">
+		SELECT A.*,B.W_NM_K, B.W_NM_E,B.QUANTITY
+		FROM ORDER_CART A LEFT OUTER JOIN WINE B ON A.W_NO = B.W_NO AND A.W_PRICE = B.W_PRICE 
+		WHERE ID = #{id} and ORD_CART_NO = #{ord_cart_no};
+	</select>
 	
 	
   </mapper>

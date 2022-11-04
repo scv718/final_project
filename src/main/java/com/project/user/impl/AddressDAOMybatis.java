@@ -20,5 +20,21 @@ public class AddressDAOMybatis {
 		return mybatis.selectOne("PaymentDAO.selectDefaultAddress", vo);
 	}
 	
+	public void firstaddAddress(AddressVO vo) {
+		
+		mybatis.insert("PaymentDAO.firstaddAddress", vo);
+	}
+	public void firstUpdate(AddressVO vo) {
+		
+		mybatis.update("PaymentDAO.firstUpdate", vo);
+	}
 	
+	
+	public void addAddress(AddressVO vo) {
+		
+		mybatis.insert("PaymentDAO.addAddress", vo);
+	}
+	public List<AddressVO> selectAddress(AddressVO vo) {
+		return mybatis.selectList("PaymentDAO.selectAddress", vo);
+	}
 }

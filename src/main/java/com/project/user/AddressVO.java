@@ -6,7 +6,7 @@ public class AddressVO {
 	private String m_name;
 	private String m_address;
 	private String m_phone;
-	private String m_default;
+	private int m_default;
 	
 	
 	public String getId() {
@@ -33,12 +33,13 @@ public class AddressVO {
 	public void setM_phone(String m_phone) {
 		this.m_phone = m_phone;
 	}
-	public String getM_default() {
+	public int getM_default() {
 		return m_default;
 	}
-	public void setM_default(String m_default) {
+	public void setM_default(int m_default) {
 		this.m_default = m_default;
 	}
+	
 	
 	
 }

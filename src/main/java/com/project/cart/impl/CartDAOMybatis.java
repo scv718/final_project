@@ -49,5 +49,16 @@ public class CartDAOMybatis {
 	public List<CartVO> getCart(String vo) {
 		return mybatis.selectList("CartDAO.getCart", vo);
 	}
+	// 카트 목록
+	public List<CartVO> getCart(CartVO vo) {
+		return mybatis.selectList("CartDAO.getCartPayment", vo);
+	}
+	
+	public CartVO getCartpay(CartVO vo) {
+		System.out.println("목록가져오기");
+		System.out.println(vo.getOrd_cart_no());
+		System.out.println(vo.getId());
+		return mybatis.selectOne("CartDAO.getCartPayment", vo);
+	}
 
 }

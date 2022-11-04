@@ -57,5 +57,13 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void modifyCount1(CartVO vo) {
 		 cartDAO.modifyCount(vo);
+	}
+	@Override
+	public List<CartVO> getCartList(CartVO vo) {
+		return cartDAO.getCart(vo);
+	}
+	@Override
+	public CartVO getCartpay(CartVO vo) {
+		return cartDAO.getCartpay(vo);
 	}		
 }

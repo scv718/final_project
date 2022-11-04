@@ -44,23 +44,30 @@
 						</tr>
 					</tbody>
 				</table>
+				
 				<table class="cart_table">
 					<caption>표 내용 부분</caption>
 					<tbody>
 						<c:forEach items="${cartInfo}" var="ci">
-							<tr>
-								<td class="td_width_1 cart_info_td">
-									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
-									<input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
 						
+							<tr>	
+								
+								<td class="td_width_1 cart_info_td">
+								
+									<input type="checkbox" name = "product_check" class="individual_cart_checkbox input_size_20" checked="checked">
+									<input type="hidden" class = "id" name = "id" value="${ci.id}">
+									<input type="hidden" class = "w_no" name = "w_no" value="${ci.w_no}">
+									<input type="hidden" class = "ord_cart_no" name="ord_cart_no" value="${ci.ord_cart_no}">
 									<input type="hidden" value="${ci.ord_quan}">
 									<input type="hidden" value="${ci.w_price}">
 									<input type="hidden" value="${ci.pay_stat}">
 									<input type="hidden" value="${ci.ord_code}">
 									<input type="hidden" value="${ci.w_nm_k}">
 									<input type="hidden" value="${ci.w_nm_e}">	
-									<input type="hidden" value="${ci.quantity}">							
+									<input type="hidden" value="${ci.quantity}">
+												
 								</td>
+								
 								<td class="td_width_2">
 <%-- 									<div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}"> --%>
 <!-- 										<img> -->
@@ -72,14 +79,12 @@
 								</td>
 								<td class="td_width_4 table_text_align_center">
 								<form action="modifyCount.wp" method="post" class="quantity_modify_btn">
-									<div class="table_text_align_center quantity_div">
-									
+									<div class="table_text_align_center quantity_div">		
 									<input type="hidden" value="${ci.ord_quan}">
-									<input type="hidden" value="${ci.quantity}">	
-									
-										<input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input" maxlength ="${ci.quantity}">	
-										<button type = "button" class="quantity_btn plus_btn">+</button>
-								    	<button  type = "button"  class="quantity_btn minus_btn">-</button>
+									<input type="hidden" value="${ci.quantity}">									
+									<input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input" maxlength ="${ci.quantity}">	
+									<button type = "button" class="quantity_btn plus_btn">+</button>
+								    <button  type = "button"  class="quantity_btn minus_btn">-</button>
 									</div>
 <!-- 									<a href="/modifyCount.wp" class="quantity_modify_btn">변경</a> -->
 									<input type="hidden" name = "id" value="${ci.id}">
@@ -93,16 +98,19 @@
 								<td class="td_width_4 table_text_align_center">
 									<fmt:formatNumber value="${ci.w_price * ci.ord_quan}" pattern="#,### 원" />
 								</td>
+								
 								<td class="td_width_4 table_text_align_center">
-								<form action="deleteCart.wp" method="post">
+									<form action="deleteCart.wp" method="post">
 								<input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
 									<button  type="submit" class="delete_btn">삭제</button>
 									</form>
 								</td>
 							</tr>
 						</c:forEach>
+					
 					</tbody>
 				</table>
+				
 			</div>
 			
 			<!-- 가격 종합 -->
@@ -178,7 +186,7 @@
 			</div>
 			<!-- 구매 버튼 영역 -->
 			<div class="content_btn_section">
-				<a href="../../../pay2.jsp" role="button" >주문하기</a>
+				<button class = "order_btn">주문하기</button>
 			</div>
 			
 <!-- 			<!-- 수량 조정 form --> -->
@@ -195,7 +203,8 @@
 <%-- 				<input type="hidden" name="cartInfo" value="${ci.id}"> --%>
 <!-- 			</form>		 -->
 			<!-- 주문 form -->
-			<form action="addCart.wp"method="post" class="order_form"></form>				
+			<form action="payment.wp"method="get" class="order_form"></form>				
+<!-- 			<form class="order_form"></form>				 -->
 		</div>	
 		
 		
@@ -255,7 +264,7 @@ $(".all_check_input").on("click", function(){
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
 	
-// 	 var totalPrice = document.getElementById("ci.w_price * ci.ord_quan");
+	var totalPrice = document.getElementById("ci.w_price * ci.ord_quan");
 	 
 // 	let totalPrice = document.getElementById("ci.w_price * ci.ord_quan");// 총 가격
 	let totalCount = 0;				// 총 갯수
@@ -321,22 +330,7 @@ $(".minus_btn").on("click", function(){
 });
 
 
-/* 수량 수정 버튼 */
-// $(".quantity_modify_btn").on("click", function(){
-// 	let cartId = $(this).data("Cid");
-// 	let bookCount = $(this).parent("td").find("input").val();
-// 	$(".update_cartId").val("Cid");
-// 	$(".quantity_update_form").submit();
-	
-// });
 
-/* 장바구니 삭제 버튼 */
-// $(".delete_btn").on("click", function(e){
-// 	e.preventDefault();
-// 	const cartId = $(this).data("Cid");
-// 	$(".delete_cartId").val(Cid);
-// 	$(".quantity_delete_form").submit();
-// });
 	
 /* 주문 페이지 이동 */	
 $(".order_btn").on("click", function(){
@@ -348,14 +342,20 @@ $(".order_btn").on("click", function(){
 		
 		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
 			
-			let bookId = $(element).find(".individual_bookId_input").val();
-			let bookCount = $(element).find(".individual_bookCount_input").val();
+// 			let id = $(element).find(".id").val();
+// 			let w_no = $(element).find(".w_no").val();
+			let ord_cart_no = $(element).find(".ord_cart_no").val();
 			
-			let bookId_input = "<input name='orders[" + orderNumber + "].bookId' type='hidden' value='" + bookId + "'>";
-			form_contents += bookId_input;
+// 			let Id_input = "<input name='id[" + orderNumber + "].id' type='hidden' value='" + id + "'>";
+// // 			let Id_input = "<input name='id' type='hidden' value='" + id + "'>";
+// 			form_contents += Id_input;
+// 			let w_no_input = "<input name='w_no[" + orderNumber + "].w_no' type='hidden' value='" + w_no + "'>";
+// // 			let w_no_input = "<input name='w_no' type='hidden' value='" + w_no + "'>";
+// 			form_contents += w_no_input;
 			
-			let bookCount_input = "<input name='orders[" + orderNumber + "].bookCount' type='hidden' value='" + bookCount + "'>";
-			form_contents += bookCount_input;
+			let ord_cart_no_input = "<input name='ord_cart_noList' type='hidden' value='" + ord_cart_no + "'>";
+// 			let ord_cart_no_input = "<input name='ord_cart_no' type='hidden' value='" + ord_cart_no + "'>";
+			form_contents += ord_cart_no_input;
 			
 			orderNumber += 1;
 			
