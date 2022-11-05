@@ -50,9 +50,7 @@
 }
 </style>
 <script>
-	function selTr(val) {
-		location.href = "getFaq.wp?commu_no=" + val;
-	}
+	
 </script>
 </head>
 
@@ -63,7 +61,7 @@
 		<h3 id="comtitle">1:1 문의</h3>
 		<button type="button" onclick="location.href='insertQna.wp'">1:1
 			문의하기</button>
-		<button type="button" onclick="location.href='admin_getFaqList.wp'">관리자 1:1 목록확인</button>
+		<button type="button" onclick="location.href='admin_getQnaList.wp'">관리자 1:1 목록확인</button>
 
 <!-- 필터테스트중 -->
 		<form action="getQnaList.wp" method="POST" id="align">
@@ -90,7 +88,7 @@
 					<p>문의내용</p>
 				</div>
 			<c:forEach var="qna" items="${getQnaList}">
-				<button class="accordion">
+				<div class="accordion">
 					<c:choose>
 						<c:when test="${qna.faq_cat eq '0'}">
 							<span>[주문/결제/배송]</span>
@@ -109,15 +107,18 @@
 						</c:otherwise>
 					</c:choose>
 					<span>${qna.commu_title}</span>
-				</button>
-				<div class="panel">
-					<p>${qna.commu_content}</p>
-
 				</div>
 				<div class="panel">
 					<p>${qna.commu_content}</p>
+					<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a>
+<%-- 					<form action="deleteQna.wp?commu_no=${qna.commu_no}"> --%>
+<%-- 					<input type="hidden" class="form-control" name="commu_no" value="${qna.commu_no}"> --%>
+<!-- 					<input type="submit" id="conDel" value="삭제"> -->
+<!-- 					</form> -->
+					<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a>
 				</div>
-			</c:forEach>
+				
+				</c:forEach>
 		</div>
 
 

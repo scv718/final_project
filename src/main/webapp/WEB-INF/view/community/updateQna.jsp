@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>QNA 글쓰기</title>
+<title>1:1 문의 수정하기</title>
 <link rel="canonical"
 	href="https://getbootstrap.kr/docs/4.5.2/examples/carousel/">
 
@@ -74,11 +74,11 @@ var setting = {
 </head>
 <body>
 	<div class="jumbotron">
-		<h1>1:1 문의하기</h1>
+		<h1>1:1문의 수정</h1>
 	</div>
 
 	<div class="container-fluid">
-		<form action="insertQna.wp" method="post" enctype="multipart/form-data">
+		<form action="updateQna.wp" method="post" enctype="multipart/form-data">
 			<input type="hidden" class="form-control" name="commu_cat" value="2">
 <%-- 			<input type="hidden" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>"> --%>
 			<div class="input-group mb-3">
@@ -93,19 +93,19 @@ var setting = {
 					<legend class="col-form-label col-sm-2 pt-0">문의유형</legend>
 					<div class="col-sm-10">
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios1" value="0" checked> 
+							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios1" value="0" required> 
 							<label class="form-check-label" for="gridRadios1"> [주문/결제/배송] </label> 
 							
-							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios2" value="1"> 
+							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios2" value="1" required> 
 							<label class="form-check-label" for="gridRadios2"> [취소/교환/환불] </label> 
 							
-							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios3" value="2"> 
+							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios3" value="2" required> 
 							<label class="form-check-label" for="gridRadios3"> [구독서비스] </label>
 							
-							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios4" value="3"> 
+							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios4" value="3" required> 
 							<label class="form-check-label" for="gridRadios4"> [회원] </label>
 							
-							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios5" value="4"> 
+							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios5" value="4" required> 
 							<label class="form-check-label" for="gridRadios5"> [기타] </label>
 						</div>
 					</div>
@@ -115,14 +115,13 @@ var setting = {
 				<div class="input-group-prepend">
 					<span class="input-group-text">제목</span>
 				</div>
-				<input type="text" class="form-control" name="commu_title"
-					placeholder="제목을 입력하세요." required>
+				<input type="text" class="form-control" name="commu_title" value="${community.commu_title}" required>
 			</div>
 						<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				 <textarea id="summernote" name="commu_content"></textarea>
+				 <textarea id="summernote" name="commu_content">${community.commu_content}</textarea>
 <!-- 				<textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea> -->
 			</div>
 			<div id="footer">

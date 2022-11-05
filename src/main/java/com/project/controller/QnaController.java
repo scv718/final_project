@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.common.PagingVO;
 import com.project.community.CommunityVO;
 import com.project.community.Impl.QnaDAOMybatis;
+import com.project.review.ReviewVO;
 
 @Controller
 @SessionAttributes("community")
@@ -52,10 +53,10 @@ public class QnaController {
 	}
 
 	// 글 수정
-	@RequestMapping("/updateQna.wp")
+	@PostMapping("/updateQna.wp")
 //		public String updateNotice(MultipartHttpServletRequest request,@ModelAttribute("community") CommunityVO vo, Model model) 
 //				throws IllegalStateException, IOException{
-		public String updateNotice(@ModelAttribute("community") CommunityVO vo, Model model) {
+		public String updateQna(@ModelAttribute("community") CommunityVO vo, Model model) {
 //		if( vo.getWriter().equals(session.getAttribute("userName").toString()) ){
 //			boardService.updateBoard(vo);
 //			return "getBoardList.do";
@@ -63,8 +64,15 @@ public class QnaController {
 //			return "getBoard.do?error=1";
 //		}
 		qnaService.updateQna(vo);
-		return "getQna.wp";
+		return "getQnaList.wp";
 		
+	}
+	
+	@GetMapping(value="/updateQna.wp")
+	public String insertFaq_get(CommunityVO vo, Model model) throws IllegalStateException, IOException {
+//		ReviewVO a =  qnaService.detailReview(vo);
+//		model.addAttribute("detailReview",a);
+		return "WEB-INF/view/community/updateQna.jsp";
 	}
 
 	// 공지사항 삭제
@@ -97,7 +105,7 @@ public class QnaController {
 //		List<CommunityVO> list = noticeService.getNotice(vo.getCommu_no());
 		System.out.println(qnaService.getQna(vo));
 		model.addAttribute("community", qnaService.getQna(vo));
-		return "WEB-INF/view/community/getQna.jsp";
+		return "WEB-INF/view/community/updateQna.jsp";
 	}
 
 	// 공지사항 목록 조회
