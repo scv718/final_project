@@ -284,16 +284,18 @@ public class IamportController {
 	}
 	
 	
-	//결제 진행 폼=> 이곳에서 DB저장 로직도 추가하기
 		@RequestMapping(value="/pay.wp", method=RequestMethod.POST)
-		public void payment(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo, AddressVO avo, CartVO voList,WineVO vo, UserVO uvo, HttpSession session) throws IOException {
+		public String payment(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo, AddressVO avo, CartVO voList,WineVO vo, UserVO uvo, HttpSession session) throws IOException {
 			System.out.println("결제완료폼");
 			String nm = request.getParameter("unm");
 			String amount = request.getParameter("amount");
 			String mid = request.getParameter("merchant_uid");
 			String imp = request.getParameter("imp_uid");
 			String token = getImportToken();
-			int price = Integer.parseInt(amount);
+			System.out.println("정보출력");
+			System.out.println(mid);
+			System.out.println(imp);
+			System.out.println(amount);
 			setHackCheck(amount, mid, token);
 			uvo.setId((String) session.getAttribute("userID"));
 			LocalDateTime  now = LocalDateTime.now();
@@ -303,17 +305,26 @@ public class IamportController {
 	        
 	        
 	        StringBuilder stringBuilder = new StringBuilder();
-	        for (int i = 0; i < ovo.getW_noList().length; i++) {
-	        	  stringBuilder.append(ovo.getW_noList()[i]+ " ");
-	        	}
-	        String w_no = stringBuilder.toString();
+	        StringBuilder stringBuilder1 = new StringBuilder();
+	        StringBuilder stringBuilder2 = new StringBuilder();
+	        System.out.println(ovo);
+	        if(ovo.getW_noList() != null) {
+	        	 for (int i = 0; i < ovo.getW_noList().length; i++) {
+		        	  stringBuilder.append(ovo.getW_noList()[i]+ " ");
+		        	}
+		        String w_no = stringBuilder.toString();
+		        ovo.setW_no(w_no);
+	        }
+	       
 	        
-	        ovo.setW_no(w_no);
+	       
 			model.addAttribute("user", userService.getUser(uvo));
 			voList.setId(uvo.getId());
 			avo.setId(uvo.getId());
 			ovo.setOrd_code(imp);
+			ovo.setMerchant_uid(mid);
 			ovo.setId((String) session.getAttribute("userID"));
+			int price = Integer.parseInt(amount);
 			ovo.setProd_price(price);
 			ovo.setOrd_t_price(price);
 			ovo.setProd_p_price(price);
@@ -331,18 +342,8 @@ public class IamportController {
 			System.out.println(nm);
 			System.out.println(amount);
 			System.out.println(mid);	
-			PrintWriter out = response.getWriter();
-			response.setCharacterEncoding("utf-8");
-			response.setContentType("text/html; charset=utf-8");
-			out.println("<html>");
-			out.println("<head><title>주문완료</title></head>");
-			out.println("<body>");
-			out.print(nm+"님의 주문이 완료 되었습니다.<br>");
-			out.print("상점 거래ID: "+mid+"<br>");
-			out.print("결제 금액: "+amount+"<br>");
-			out.print("<a href='/pay'>쇼핑 계속하기</a>");
-			out.print("<a href='javascript:(\"준비중입니다.\");'>나의 주문내역</a>");
-			out.println("</body></html>");
+			
+			return "redirect:myorderList.wp";
 		}
 	
 	
@@ -379,7 +380,7 @@ public class IamportController {
 	// 결제취소
 	@RequestMapping(value="/paycan.wp" , method = RequestMethod.POST)
 	@ResponseBody
-	public int cancelPayment(String mid) {
+	public int cancelPayment(String mid, String imp, OrderVO ovo, HttpSession session) {
 		String token = getImportToken();
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost post = new HttpPost(IMPORT_CANCEL_URL); 
@@ -387,6 +388,10 @@ public class IamportController {
 		post.setHeader("Authorization", token);
 		map.put("merchant_uid", mid); 
 		String asd = ""; 
+		ovo.setOrd_code(imp);
+		ovo.setMerchant_uid(mid);
+		ovo.setId((String)session.getAttribute("userID"));
+		System.out.println(imp +",," +mid);
 		try {
 			post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
 			HttpResponse res = client.execute(post); 
@@ -398,12 +403,15 @@ public class IamportController {
 			e.printStackTrace(); 
 		}
 		if (asd.equals("null")) {
-			System.err.println("환불실패");
-			return -1;
+			System.out.println("환불실패");
+//			return "redirect:myorderList.wp";
+			return 0;
 		} else {
-			System.err.println("환불성공");
-			return 1; 
-		} 
+			orderService.cancleOrder(ovo);
+			System.out.println("환불성공");
+//			return "redirect:myorderList.wp"; 
+			return 1;
+		}
 	}
 	
 	//상품결제 폼 호출

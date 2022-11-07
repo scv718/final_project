@@ -3,6 +3,9 @@ package com.project.review;
 import java.util.List;
 
 public interface ReviewService {
+	
+	//리뷰 중복확인
+	int existReview(int w_no, String id) throws Exception;
 
 	//리뷰 작성
 	void insertReview(ReviewVO vo);
@@ -21,6 +24,18 @@ public interface ReviewService {
 	
 	//전체 글 목록 갯수
 	int totalReviewListCnt(ReviewVO vo);
+	
+	//정렬 목록
+	List<ReviewVO> getFilterList(ReviewVO vo);
 
+	//정렬 목록 갯수
+	int totalFilterListCnt(ReviewVO vo);
+
+	//상품별 리뷰목록
+	List<ReviewVO> productReviewList(ReviewVO rvo);
+
+	//상품별 리뷰목록 갯수
+	int productReviewListCnt(ReviewVO rvo);
+	
 
 }

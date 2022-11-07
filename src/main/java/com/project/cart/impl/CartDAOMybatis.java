@@ -22,11 +22,9 @@ public class CartDAOMybatis {
 		System.out.println(vo.getW_no());
 		 mybatis.insert("CartDAO.addCart", vo);
 	}
-
 	public void addcart_ORD_CART_NO(CartVO vo) {
-		 mybatis.insert("CartDAO.addcart_ORD_CART_NO", vo);
+		 mybatis.insert("CartDAO.addcart_ORD_CART_NO", vo);	
 	}
-
 	// 삭제
 	public void deleteCart(CartVO vo) {
 		 mybatis.delete("CartDAO.deleteCart", vo);
@@ -36,9 +34,6 @@ public class CartDAOMybatis {
 	public void modifyCount(CartVO vo) {
 		 mybatis.update("CartDAO.modifyCount", vo);
 	}
-	public void modifyCoun1t(CartVO vo) {
-		 mybatis.update("CartDAO.modifyCount1", vo);
-	}
 
 	// 카트 확인
 	public CartVO checkCart(CartVO vo) {
@@ -46,14 +41,14 @@ public class CartDAOMybatis {
 	}
 
 	// 카트 목록
-	public List<CartVO> getCart(String vo) {
-		return mybatis.selectList("CartDAO.getCart", vo);
-	}
-	// 카트 목록
-	public List<CartVO> getCart(CartVO vo) {
-		return mybatis.selectList("CartDAO.getCartPayment", vo);
-	}
-	
+		public List<CartVO> getCartList(String vo) {
+			return mybatis.selectList("CartDAO.getCartList", vo);
+		}
+	// 배송비 확인
+//	public List<CartVO> getCart(String vo) {
+//		return mybatis.selectList("CartDAO.getCartPayment", vo);
+//	}
+
 	public CartVO getCartpay(CartVO vo) {
 		System.out.println("목록가져오기");
 		System.out.println(vo.getOrd_cart_no());

@@ -26,10 +26,9 @@ dt {
 	// 추천하기
 	var re_no = ${detailReview.re_no};
 	var id = '${userID}';
-	console.log(id);
 	function updateLike(){
 		if(id == ""){
-			alert("로그인이 필요합니다.");
+			alert("로그인 후 이용가능합니다.");
 			location.href = "singUp.wp";
 		} else {
 			$.ajax({
@@ -56,7 +55,7 @@ dt {
 	}
 	
 	function modbtn(){
-		location.href = "/updateReviewPage.wp?re_no="+re_no;
+		location.href = "updateReviewPage.wp?re_no="+re_no;
 	}
 
 	function delbtn(){
@@ -73,13 +72,6 @@ dt {
 </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
-<%
-	if (request.getParameter("error")!=null) {
-		out.println("<div class='alert alert-danger'>");
-		out.println("작성자만 수정 가능합니다.");
-		out.println("</div>");
-	}
-%>
 	<div id="reviewContainer">
 		<h3 id="comtitle">상품후기</h3>
 		<div id="reviewcontent">
@@ -94,11 +86,10 @@ dt {
 					</dd>
 					<dt>작성일</dt>
 					<dd>
-						<fmt:formatDate pattern="yyyy-MM-dd hh:MM"
-							value="${detailReview.re_date}" />
+						<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${detailReview.re_date}" />
 					</dd>
 				</dl>
-				<a href="javascript:window.history.back();" style="float: right;"><i class="bi bi-arrow-return-left"></i>뒤로가기</a>
+				<a href="getReviewList.wp" style="float: right;"><i class="bi bi-list"></i>목록보기</a>
 			</div>
 			<form name="fm" method="post">
 				<div id="review-middle">
@@ -110,9 +101,13 @@ dt {
 					</dl>
 					<div>
 						<c:if test="${detailReview.re_photo1 ne NULL}">
-							<img id="imgBoxImg"
-								src="resources/img/review/${detailReview.re_photo1}"
-								style="width: 200px; padding: 10px 0;">
+							<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo1}" style="width: 200px; padding: 10px 0;">
+								<c:if test="${detailReview.re_photo2 ne NULL}">
+								<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo2}" style="width: 200px; padding: 10px 0;">
+									<c:if test="${detailReview.re_photo3 ne NULL}">
+									<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo3}" style="width: 200px; padding: 10px 0;">
+									</c:if>
+								</c:if>
 						</c:if>
 					</div>
 					<!-- 리뷰내용 -->

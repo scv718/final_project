@@ -6,10 +6,10 @@
 
 	<select id="getUser" resultType="users">
 		select * from member 
-		where id = #{id}
+		where id = #{id} and M_STATUS = 0
 	</select>
 	<select id="getUserPw" resultType="users">
-		select * from member 
+		select * from member and M_STATUS = 0
 	</select>
 
 	<select id="getUserList" resultType="users">
@@ -18,12 +18,19 @@
 	
 	<select id="checkUser" resultType="int">
 		select count(*) from member
-		where id = #{id}
+		where id = #{id} and M_STATUS = 0
 	</select>
 	
 	
 	<select id="deleteUser">
 		DELETE FROM MEMBER
+		WHERE id = #{id}
+	</select>
+	
+		
+	<select id="secessionUser">
+		UPDATE MEMBER
+		SET M_STATUS = 1
 		WHERE id = #{id}
 	</select>
 	
@@ -39,18 +46,18 @@
 	
 	<select id="getId" resultType="users">
 		select id from member
-		where M_EMAIL = #{m_email}
+		where M_EMAIL = #{m_email} and M_STATUS = 0
 	</select>
 
 	<select id="getPw" resultType="int">
 		select count(*) from member
-		where M_PHONE = #{m_phone}
+		where M_PHONE = #{m_phone} and M_STATUS = 0
 	</select>
 	
 	<update id="changePw">
 		UPDATE MEMBER
 		SET M_PW = #{m_pw}
-		WHERE M_PHONE = #{m_phone}
+		WHERE M_PHONE = #{m_phone} and M_STATUS = 0
 	</update>
 	
 	<update id="updateUser">
@@ -58,27 +65,27 @@
 		SET M_PHONE = #{m_phone},
 			M_EMAIL = #{m_email},
 			M_PW = #{m_pw}
-		WHERE id = #{id}
+		WHERE id = #{id} and M_STATUS = 0
 	</update>
 	
 	
 <!-- 구독 -->
 	<select id="getUser1" resultType="int">
 		SELECT LEVEL FROM MEMBER
-		WHERE ID = #{id}
+		WHERE ID = #{id} and M_STATUS = 0
 	</select>
 	
 	<update id="updateuserle0">
 		UPDATE MEMBER SET LEVEL = 0
-		WHERE ID = #{id}
+		WHERE ID = #{id} and M_STATUS = 0
 	</update><update id="updateuserle1">
 		UPDATE MEMBER SET LEVEL = 1
-		WHERE ID = #{id}
+		WHERE ID = #{id} and M_STATUS = 0
 	</update><update id="updateuserle2">
 		UPDATE MEMBER SET LEVEL = 2
-		WHERE ID = #{id}
+		WHERE ID = #{id} and M_STATUS = 0
 	</update><update id="updateuserle3">
 		UPDATE MEMBER SET LEVEL = 3
-		WHERE ID = #{id}
+		WHERE ID = #{id} and M_STATUS = 0
 	</update>
 </mapper>

@@ -17,6 +17,9 @@
 		,ORD_PHONE
 		,ORD_MEMO
 		,W_NO
+		,W_NM_K
+		,W_NM_E
+		,MERCHANT_UID
 		)VALUES(
 		#{ord_code}
 		,#{id}
@@ -29,8 +32,62 @@
 		,#{ord_phone}
 		,#{ord_memo}
 		,#{w_no}
+		,#{w_nm_k}
+		,#{w_nm_e}
+		,#{merchant_uid}
 		)
-		
 	</insert>
+	
+		<insert  id="subscribeOrder">
+			INSERT INTO ORDER_LIST (
+		ORD_CODE
+		,ID
+		,ORD_DATE
+		,ORD_STAT
+		,PROD_PRICE
+		,PROD_P_PRICE
+		,DELI_PRICE
+		,ORD_T_PRICE
+		,ORD_ADDR
+		,ORD_PHONE
+		,W_NO
+		)VALUES(
+		'OS-level.1'
+		,#{id}
+		,NOW()
+		,'준비'
+		,79000
+		,79000
+		,0
+		,79000
+		,#{ord_addr}
+		,#{ord_phone}
+		,0001
+		)
+			</insert>
+	<select id = "selectOrderList" resultType="myorder">
+	SELECT * FROM ORDER_LIST
+	WHERE ID = #{id} and ORD_DELETE = 0
+	</select>
+	<select id = "selectOrder" resultType="myorder">
+	SELECT * FROM ORDER_LIST
+	WHERE ID = #{id} and ORD_DELETE = 0
+	</select>
+	<update id="cancleOrder">
+	UPDATE ORDER_LIST
+	SET ORD_STAT = '취소',
+	CS_STAT = '취소'
+	WHERE id = #{id} and ORD_CODE = #{ord_code} 
+	</update>
+	
+	<delete id="deleteOrder">
+	DELETE FROM ORDER_LIST
+	WHERE id = #{id} and ORD_CODE = #{ord_code}
+	</delete>
+	<delete id="deleteOrderList">
+	UPDATE ORDER_LIST
+	SET ORD_DELETE = 1
+	WHERE id = #{id} and ORD_CODE = #{ord_code} 
+	</delete>
 
 </mapper>

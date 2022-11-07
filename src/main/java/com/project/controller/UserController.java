@@ -40,7 +40,6 @@ public class UserController {
 	public String loginView(UserVO vo, HttpSession session, HttpServletResponse response) {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		System.out.println("로그인 인증 처리.....");
 		
 		String password = vo.getM_pw();
 		String encryptPassword = passwordEncoder.encode(password);	
@@ -55,6 +54,14 @@ public class UserController {
 				session.setAttribute("login", userService.getUser(vo).getId());
 				session.setAttribute("userID", userService.getUser(vo).getId());
 				session.setAttribute("userName", userService.getUser(vo).getM_name());
+
+				if(userService.getUser(vo).getM_role() != null && userService.getUser(vo).getM_role().equals("admin")) {
+					session.setAttribute("userRole", userService.getUser(vo).getM_name());
+					System.out.println("어드민권한");
+					
+					return "adminMain.wp";
+				}
+				
 				return "redirect:/";
 			}
 			
@@ -223,7 +230,7 @@ public class UserController {
 		
 		System.out.println("유저 탈퇴 진행");
 		vo.setId((String)session.getAttribute("userID"));
-		userService.deleteUser(vo);
+		userService.secessionUser(vo);
 		
 		
 		
