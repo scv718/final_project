@@ -12,34 +12,34 @@
 <%@ include file="../../../header.jsp"%>
 </head>
 <body class="d-flex flex-column min-vh-100">
-	<script>
-		$(document).ready(function() {
-
-			$('#paymentone').click(function() {
-				let fm = document.fm;
-				fm.action = "payment.wp?cart=1";
-				fm.method = "post";
-				fm.submit();
-			});
+<script>
+	$(document).ready(function() {
+		$('#paymentone').click(function() {
+			let fm = document.fm;
+			fm.action = "payment.wp?cart=1";
+			fm.method = "post";
+			fm.submit();
 		});
+	});
 
-		//리뷰쓰기 중복확인(유경)
-		var userId = '${userID}';
-		var w_no = ${product.w_no};
-		function existReview() {
-
-			$.ajax({
-				type : "post",
-				url : "existReview.wp",
-				dataType : "json",
-				data : {
-					'w_no' : w_no,
-					'id' : userId
+	
+	//리뷰쓰기 중복확인(유경)
+	var userId = '${userID}';
+	var w_no = ${product.w_no};
+	function existReview() {
+	
+	$.ajax({
+		type : "post",
+		url : "existReview.wp",
+		dataType : "json",
+		data : {
+				'w_no' : w_no,
+				'id' : userId
 				},
-				error : function() {
-					alert("통신 에러");
+		error : function() {
+				alert("통신 에러");
 				},
-				success : function(check) {
+		success : function(check) {
 					if (check == 0) {
 						$('#noneDiv').show();
 					} else if (check == 1) {
@@ -187,35 +187,37 @@
 								<!-- 반복 끝 -->
 							</div>
 							<br>
-								<div id="noneDiv" style="display: none;">
+							<div id="noneDiv" style="display: none;">
 								<form action="insertReview.wp" method="post" id="myform"
 									name="myform" enctype="multipart/form-data">
 									<h4 id="comtitle">후기작성</h4>
 									<div id="writeContent">
-									<fieldset>
-										<input type="radio" name="rating" value="5" id="rate1"><label
-											for="rate1">⭐</label> <input type="radio" name="rating"
-											value="4" id="rate2"><label for="rate2">⭐</label> <input
-											type="radio" name="rating" value="3" id="rate3"><label
-											for="rate3">⭐</label> <input type="radio" name="rating"
-											value="2" id="rate4"><label for="rate4">⭐</label> <input
-											type="radio" name="rating" value="1" id="rate5"><label
-											for="rate5">⭐</label>
-									</fieldset>
-									<span style="font-size:14px;"> ※평점을 선택해 주세요.</span>
-									<div>
-										<input type="hidden" id="w_no" name="w_no" value="${product.w_no}">
-										<input type="text" name="re_title" id="inserttitle" placeholder="제목" required>
-									</div>
-									<div>
-										<input type="text" name="id" value="${userID}" readonly>
-									</div>
-									<div>
-										<textarea class="form-control" rows="10" id="comment"
-											name="content" style="resize: none" placeholder="작성할 내용을 입력하세요." required></textarea>
-									</div>
-									<button class="writebtn" onclick="">작성</button>
-									<button class="writebtn" type="button" onclick="offDisplay()">닫기</button>
+										<fieldset>
+											<input type="radio" name="rating" value="5" id="rate1"><label
+												for="rate1">⭐</label> <input type="radio" name="rating"
+												value="4" id="rate2"><label for="rate2">⭐</label> <input
+												type="radio" name="rating" value="3" id="rate3"><label
+												for="rate3">⭐</label> <input type="radio" name="rating"
+												value="2" id="rate4"><label for="rate4">⭐</label> <input
+												type="radio" name="rating" value="1" id="rate5"><label
+												for="rate5">⭐</label>
+										</fieldset>
+										<span style="font-size: 14px;"> ※평점을 선택해 주세요.</span>
+										<div>
+											<input type="hidden" id="w_no" name="w_no"
+												value="${product.w_no}"> <input type="text"
+												name="re_title" id="inserttitle" placeholder="제목" required>
+										</div>
+										<div>
+											<input type="text" name="id" value="${userID}" readonly>
+										</div>
+										<div>
+											<textarea class="form-control" rows="10" id="comment"
+												name="content" style="resize: none"
+												placeholder="작성할 내용을 입력하세요." required></textarea>
+										</div>
+										<button class="writebtn" onclick="">작성</button>
+										<button class="writebtn" type="button" onclick="offDisplay()">닫기</button>
 									</div>
 								</form>
 							</div>

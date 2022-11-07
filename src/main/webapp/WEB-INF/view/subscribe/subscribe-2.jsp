@@ -259,7 +259,8 @@ function checkOnlyOne(element) {
 				<div class="orderGoods_div">
 					<!-- 상품 종류 -->
 					<div class="goods_kind_div">
-						주문상품 <span class="goods_kind_div_kind"></span>종 <span class="goods_kind_div_count"></span>개
+					<c:forEach items="${subscribeW}" var="ol">
+						${ol.w_nm_k}</c:forEach>
 					</div>
 					<!-- 상품 테이블 -->
 					<table class="goods_subject_table">
@@ -270,7 +271,7 @@ function checkOnlyOne(element) {
 						</colgroup>
 						<tbody>
 							<tr>
-								<th>이미지</th>
+								<th></th>
 								<th>상품 정보</th>
 								<th>판매가</th>
 							</tr>
@@ -283,7 +284,7 @@ function checkOnlyOne(element) {
 							<col width="40%">
 						</colgroup>					
 						<tbody>
-							<c:forEach items="${product}" var="ol">
+							<c:forEach items="${subscribeW}" var="ol">
 								<tr>
 									<td>
 <%-- 										<div class="image_wrap" data-bookid="${ol.imageList[0].bookId}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-filename="${ol.imageList[0].fileName}"> --%>
@@ -292,12 +293,9 @@ function checkOnlyOne(element) {
 									</td>
 									<td>${ol.w_nm_k}</td>
 									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" /> | 수량 ${ol.ord_quan}개
-										<br><fmt:formatNumber value="${ol.w_price*ol.ord_quan}" pattern="#,### 원" />
-										
+										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" />
 										<input type="hidden" class="individual_bookPrice_input" value="${ol.w_price}">
-										<input type="hidden" class="individual_bookCount_input" value="${ol.ord_quan}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.w_price * ol.ord_quan}">
+										<input type="hidden" class="individual_totalPrice_input" value="${ol.w_price}">
 									
 										<input type="hidden" class="individual_bookId_input" value="${ol.w_no}">
 										<input type="hidden" name = "w_no" class="w_no" value="${ol.w_no}">
@@ -320,10 +318,7 @@ function checkOnlyOne(element) {
 								<span class="price_span_label">상품 금액</span>
 								<span class="totalPrice_span">100000</span>원
 							</li>
-							<li>
-								<span class="price_span_label">배송비</span>
-								<span class="delivery_price_span">100000</span>원
-							</li>
+							
 																				
 							<li class="price_total_li">
 								<strong class="price_span_label total_price_label">최종 결제 금액</strong>
@@ -364,10 +359,6 @@ function checkOnlyOne(element) {
 <form name="fm">
 <c:forEach items="${product}" var="ol">
 <input name='ord_cart_noList' type='hidden' value='${ol.ord_cart_no}'>
-<input name='w_nm_k_List' type='hidden' value='${ol.w_nm_k}'>
-<input name='w_nm_k' type='hidden' value='${ol.w_nm_k}'>
-<input name='w_nm_e_List' type='hidden' value='${ol.w_nm_e}'>
-<input name='w_nm_e' type='hidden' value='${ol.w_nm_e}'>
 <input name='w_noList' type='hidden' value='${ol.w_no}'>
 </c:forEach>
 	<input type="hidden" name="unm" id="unm" value = "${user.m_name}" ><br>
@@ -473,6 +464,7 @@ $("#check_module").click(function () {
 })
 
 function orderList(){
+	alert('주문내역 처리할 곳. 컨트롤러 호출');
 	let fm = document.fm;
 	fm.action ="pay.wp";
 	fm.method="post";

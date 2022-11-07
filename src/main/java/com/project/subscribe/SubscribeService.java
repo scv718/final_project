@@ -20,7 +20,11 @@ public interface SubscribeService {
 	
 	//구독 정보리스트
 	List<SubscribeVO>getSubscribeList(SubscribeVO vo);
-	
+	//구독 배송비 조회
+	List<SubscribeVO>level_shipping(String vo);
+	//구독 배송비 0 and 2500
+	void liset_deli_price(SubscribeVO vo);
+	void liset_deli_price_up(SubscribeVO vo);
 	//취향설정
 	void preference_Setting(SubscribeVO vo);
 }
