@@ -24,17 +24,17 @@
          <!-- cartInfo -->
          <div class="content_totalCount_section">
             
-            <!-- 체크박스 전체 여부 -->
-            <div class="all_check_input_div">
-               <input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
-            </div>            
+<!--             체크박스 전체 여부 -->
+<!--             <div class="all_check_input_div"> -->
+<!--                <input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span> -->
+<!--             </div>             -->
             
             <table class="subject_table">
                <caption>표 제목 부분</caption>
                <tbody>
 
                   <tr>
-                     <th class="td_width_1"></th>
+<!--                      <th class="td_width_1"></th> -->
                      <th class="td_width_6">상품명</th>
                      <th class="td_width_2">배송현황</th>
                      <th class="td_width_2">가격</th>
@@ -48,10 +48,10 @@
                <tbody>
                   <c:forEach items="${cartInfo}" var="ci">
                      <tr>
-                        <td class="td_width_1 cart_info_td">
-                           <input type="checkbox" name = "product_check" class="individual_cart_checkbox input_size_20" checked="checked">
-<%--                       	   <input type="hidden" name = "id" value="${ci.id}"/> --%>
-                        </td>
+<!--                         <td class="td_width_1 cart_info_td"> -->
+<!--                            <input type="checkbox" name = "product_check" class="individual_cart_checkbox input_size_20" checked="checked"> -->
+<%-- <%--                       	   <input type="hidden" name = "id" value="${ci.id}"/> --%> 
+<!--                         </td> -->
 
 <%--   <div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].W_IMAGE1}"> --%>
 <!--                               <img></div>                         -->
@@ -66,9 +66,19 @@
                         </td>
   
                         <td class="td_width_3 table_text_align_center">
+                      
+                      	<c:if test="${ci.cs_stat ne '취소'}">
+                      	    <form id = "cancel_module" method="post">
+                        	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
+                        	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
+                           <button  type="submit" class="delete_btn">주문취소</button>
+                           </form>
+                      	</c:if>
+                       
+                           
                            <form action="deleteOrder.wp" method="post">
-                        <input type="hidden" name="ord_code" value="${ci.ord_code}">
-                           <button  type="submit" class="delete_btn">삭제</button>
+                        	<input type="hidden" name="ord_code" value="${ci.ord_code}">
+                           <button  type="submit" class="delete_btn">주문내역삭제</button>
                            </form>
                         </td>
                      </tr>
@@ -82,8 +92,28 @@
      </div>
    </div>   <!-- class="wrap" -->
 </div>   <!-- class="wrapper" -->
-
-			
+<script type="text/javascript">
+$("#cancel_module").click(function () {
+	$.ajax({
+		url : "paycan.wp",
+		data : {"mid": $("#merchant_uid").val(),
+				"imp": $("#ord_code").val()
+		},
+		method : "POST",
+		success : function(val){
+			console.log(val);
+			if(val==1) {
+				alert("취소 완료");
+				location.reload();
+			}
+			else alert("취소 실패\n이미 취소되었거나 잘못된 정보입니다.");
+		},
+		error :  function(request, status){
+			alert("취소가 실패하였습니다.");
+		}
+	});
+});
+</script>
 
 <%@ include file="/footer.jsp"%>
 </body>

@@ -14,7 +14,6 @@ $(document).ready(function(){
 
 
 $('#paymentone').click(function () {
-	alert('주문내역 처리할 곳. 컨트롤러 호출');
 	let fm = document.fm;
 	fm.action ="payment.wp?cart=1";
 	fm.method="post";

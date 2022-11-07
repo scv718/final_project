@@ -54,7 +54,7 @@ public class Order_cartController {
 	public String deleteOrder(OrderVO ovo ,  HttpSession session) {
 		System.out.println("주문내역 삭제");
 		ovo.setId((String) session.getAttribute("userID"));
-		orderSerivce.deleteOrder(ovo);
+		orderSerivce.deleteOrderList(ovo);
 		return "redirect:/myorderList.wp";
 	}
 	

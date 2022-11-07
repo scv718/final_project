@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.cart.CartService;
 import com.project.cart.CartVO;
+import com.project.order.OrderService;
+import com.project.order.OrderVO;
 import com.project.user.AddressService;
 import com.project.user.AddressVO;
 import com.project.user.UserService;
@@ -37,7 +39,18 @@ public class PaymentController {
 	CartService cartService;
 	@Autowired
 	UserService userSerivce;
+	@Autowired
+	OrderService orderService;
 	
+	@RequestMapping("cancleOrder.wp")
+	public String cancleOrder(OrderVO ovo ,  HttpSession session) {
+		
+		ovo.setId((String) session.getAttribute("userID"));
+		System.out.println(orderService.selectOrder(ovo));
+		
+		
+		return null;
+	}
 	@RequestMapping("m_add.wp")
 	@ResponseBody
 	public String oredr_m_add(AddressVO avo, UserVO vo, Model model, HttpSession session, HttpServletResponse response){

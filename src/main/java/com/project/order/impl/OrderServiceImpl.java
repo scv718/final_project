@@ -39,6 +39,23 @@ public class OrderServiceImpl implements OrderService{
 		mybatis.deleteOrder(vo);	
 	}
 
+	@Override
+	public OrderVO selectOrder(OrderVO vo) {
+		// TODO Auto-generated method stub
+		return mybatis.selectOrder(vo);
+	}
+
+	@Override
+	public void cancleOrder(OrderVO vo) {
+		mybatis.cancleOrder(vo);
+		
+	}
+	@Override
+	public void deleteOrderList(OrderVO vo) {
+		mybatis.deleteOrderList(vo);
+		
+	}
+
 	
 
 

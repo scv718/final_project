@@ -314,6 +314,7 @@ public class IamportController {
 			voList.setId(uvo.getId());
 			avo.setId(uvo.getId());
 			ovo.setOrd_code(imp);
+			ovo.setMerchant_uid(mid);
 			ovo.setId((String) session.getAttribute("userID"));
 			ovo.setProd_price(price);
 			ovo.setOrd_t_price(price);
@@ -370,7 +371,7 @@ public class IamportController {
 	// 결제취소
 	@RequestMapping(value="/paycan.wp" , method = RequestMethod.POST)
 	@ResponseBody
-	public int cancelPayment(String mid) {
+	public int cancelPayment(String mid, String imp, OrderVO ovo, HttpSession session) {
 		String token = getImportToken();
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost post = new HttpPost(IMPORT_CANCEL_URL); 
@@ -378,6 +379,12 @@ public class IamportController {
 		post.setHeader("Authorization", token);
 		map.put("merchant_uid", mid); 
 		String asd = ""; 
+		System.out.println("111");
+		ovo.setOrd_code(imp);
+		ovo.setMerchant_uid(mid);
+		ovo.setId((String)session.getAttribute("userID"));
+//		System.out.println(orderService.selectOrder(ovo));
+		System.out.println("111");
 		try {
 			post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
 			HttpResponse res = client.execute(post); 
@@ -393,6 +400,7 @@ public class IamportController {
 			return -1;
 		} else {
 			System.err.println("환불성공");
+			orderService.cancleOrder(ovo);
 			return 1; 
 		} 
 	}

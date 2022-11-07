@@ -19,6 +19,7 @@
 		,W_NO
 		,W_NM_K
 		,W_NM_E
+		,MERCHANT_UID
 		)VALUES(
 		#{ord_code}
 		,#{id}
@@ -33,17 +34,33 @@
 		,#{w_no}
 		,#{w_nm_k}
 		,#{w_nm_e}
+		,#{merchant_uid}
 		)
 	</insert>
 	
 	<select id = "selectOrderList" resultType="myorder">
 	SELECT * FROM ORDER_LIST
-	WHERE ID = #{id}
+	WHERE ID = #{id} and ORD_DELETE = 0
 	</select>
+	<select id = "selectOrder" resultType="myorder">
+	SELECT * FROM ORDER_LIST
+	WHERE ID = #{id} and ORD_DELETE = 0
+	</select>
+	<update id="cancleOrder">
+	UPDATE ORDER_LIST
+	SET ORD_STAT = '취소',
+	CS_STAT = '취소'
+	WHERE id = #{id} and ORD_CODE = #{ord_code} 
+	</update>
 	
 	<delete id="deleteOrder">
 	DELETE FROM ORDER_LIST
 	WHERE id = #{id} and ORD_CODE = #{ord_code}
+	</delete>
+	<delete id="deleteOrderList">
+	UPDATE ORDER_LIST
+	SET ORD_DELETE = 1
+	WHERE id = #{id} and ORD_CODE = #{ord_code} 
 	</delete>
 
 </mapper>

@@ -21,6 +21,7 @@ public class OrderVO {
 	private String w_no;
 	private String w_nm_k;
 	private String w_nm_e;
+	private String merchant_uid;
 	
 	
 	
@@ -31,8 +32,16 @@ public class OrderVO {
 				+ ", pay_stat=" + pay_stat + ", cs_stat=" + cs_stat + ", prod_price=" + prod_price + ", prod_p_price="
 				+ prod_p_price + ", deli_price=" + deli_price + ", ord_t_price=" + ord_t_price + ", ord_addr="
 				+ ord_addr + ", ord_phone=" + ord_phone + ", ord_memo=" + ord_memo + ", w_noList="
-				+ Arrays.toString(w_noList) + ", w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + "]";
+				+ Arrays.toString(w_noList) + ", w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e
+				+ ", merchant_uid=" + merchant_uid + "]";
 	}
+	public String getMerchant_uid() {
+		return merchant_uid;
+	}
+	public void setMerchant_uid(String merchant_uid) {
+		this.merchant_uid = merchant_uid;
+	}
+
 	public String getW_nm_k() {
 		return w_nm_k;
 	}
