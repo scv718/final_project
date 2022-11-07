@@ -54,6 +54,14 @@ public class UserController {
 				session.setAttribute("login", userService.getUser(vo).getId());
 				session.setAttribute("userID", userService.getUser(vo).getId());
 				session.setAttribute("userName", userService.getUser(vo).getM_name());
+
+				if(userService.getUser(vo).getM_role() != null && userService.getUser(vo).getM_role().equals("admin")) {
+					session.setAttribute("userRole", userService.getUser(vo).getM_name());
+					System.out.println("어드민권한");
+					
+					return "adminMain.wp";
+				}
+				
 				return "redirect:/";
 			}
 			

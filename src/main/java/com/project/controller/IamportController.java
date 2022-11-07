@@ -292,7 +292,10 @@ public class IamportController {
 			String mid = request.getParameter("merchant_uid");
 			String imp = request.getParameter("imp_uid");
 			String token = getImportToken();
-			int price = Integer.parseInt(amount);
+			System.out.println("정보출력");
+			System.out.println(mid);
+			System.out.println(imp);
+			System.out.println(amount);
 			setHackCheck(amount, mid, token);
 			uvo.setId((String) session.getAttribute("userID"));
 			LocalDateTime  now = LocalDateTime.now();
@@ -304,18 +307,24 @@ public class IamportController {
 	        StringBuilder stringBuilder = new StringBuilder();
 	        StringBuilder stringBuilder1 = new StringBuilder();
 	        StringBuilder stringBuilder2 = new StringBuilder();
-	        for (int i = 0; i < ovo.getW_noList().length; i++) {
-	        	  stringBuilder.append(ovo.getW_noList()[i]+ " ");
-	        	}
-	        String w_no = stringBuilder.toString();
+	        System.out.println(ovo);
+	        if(ovo.getW_noList() != null) {
+	        	 for (int i = 0; i < ovo.getW_noList().length; i++) {
+		        	  stringBuilder.append(ovo.getW_noList()[i]+ " ");
+		        	}
+		        String w_no = stringBuilder.toString();
+		        ovo.setW_no(w_no);
+	        }
+	       
 	        
-	        ovo.setW_no(w_no);
+	       
 			model.addAttribute("user", userService.getUser(uvo));
 			voList.setId(uvo.getId());
 			avo.setId(uvo.getId());
 			ovo.setOrd_code(imp);
 			ovo.setMerchant_uid(mid);
 			ovo.setId((String) session.getAttribute("userID"));
+			int price = Integer.parseInt(amount);
 			ovo.setProd_price(price);
 			ovo.setOrd_t_price(price);
 			ovo.setProd_p_price(price);
@@ -334,7 +343,7 @@ public class IamportController {
 			System.out.println(amount);
 			System.out.println(mid);	
 			
-			return "myorderList.wp";
+			return "redirect:myorderList.wp";
 		}
 	
 	
@@ -379,12 +388,10 @@ public class IamportController {
 		post.setHeader("Authorization", token);
 		map.put("merchant_uid", mid); 
 		String asd = ""; 
-		System.out.println("111");
 		ovo.setOrd_code(imp);
 		ovo.setMerchant_uid(mid);
 		ovo.setId((String)session.getAttribute("userID"));
-//		System.out.println(orderService.selectOrder(ovo));
-		System.out.println("111");
+		System.out.println(imp +",," +mid);
 		try {
 			post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
 			HttpResponse res = client.execute(post); 
@@ -396,13 +403,15 @@ public class IamportController {
 			e.printStackTrace(); 
 		}
 		if (asd.equals("null")) {
-			System.err.println("환불실패");
-			return -1;
+			System.out.println("환불실패");
+//			return "redirect:myorderList.wp";
+			return 0;
 		} else {
-			System.err.println("환불성공");
 			orderService.cancleOrder(ovo);
-			return 1; 
-		} 
+			System.out.println("환불성공");
+//			return "redirect:myorderList.wp"; 
+			return 1;
+		}
 	}
 	
 	//상품결제 폼 호출
