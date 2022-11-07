@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OrderDAO">
+
+	<insert id="insertOrder">
+		INSERT INTO ORDER_LIST (
+		ORD_CODE
+		,ID
+		,ORD_DATE
+		,ORD_STAT
+		,PROD_PRICE
+		,PROD_P_PRICE
+		,ORD_T_PRICE
+		,ORD_ADDR
+		,ORD_PHONE
+		,ORD_MEMO
+		,W_NO
+		)VALUES(
+		#{ord_code}
+		,#{id}
+		,#{ord_date}
+		,#{ord_stat}
+		,#{prod_price}
+		,#{prod_p_price}
+		,#{ord_t_price}
+		,#{ord_addr}
+		,#{ord_phone}
+		,#{ord_memo}
+		,#{w_no}
+		)
+		
+	</insert>
+	
+		<insert  id="subscribeOrder">
+			INSERT INTO ORDER_LIST (
+		ORD_CODE
+		,ID
+		,ORD_DATE
+		,ORD_STAT
+		,PROD_PRICE
+		,PROD_P_PRICE
+		,DELI_PRICE
+		,ORD_T_PRICE
+		,ORD_ADDR
+		,ORD_PHONE
+		,W_NO
+		)VALUES(
+		'OS-level.1'
+		,#{id}
+		,NOW()
+		,'준비'
+		,79000
+		,79000
+		,0
+		,79000
+		,#{ord_addr}
+		,#{ord_phone}
+		,0001
+		)
+			</insert>
+</mapper>

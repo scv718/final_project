@@ -122,7 +122,7 @@
                         <table>              
                            <tr>
                               <td>총 상품 가격</td>
-                              <td>         
+                              <td>         <c:set var="totalKind" value="${totalKind + ci.ord_quan}" />
                                  <span class="totalPrice_span"><c:out value="${totalPrice}"/></span>원
                               </td>
                            </tr>
