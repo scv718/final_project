@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.cart.CartService;
 import com.project.cart.CartVO;
+import com.project.subscribe.SubscribeService;
+import com.project.subscribe.SubscribeVO;
 import com.project.order.OrderService;
 import com.project.order.OrderVO;
 import com.project.user.UserVO;
@@ -24,6 +26,9 @@ public class Order_cartController {
 
 	@Autowired
 	private CartService cartService;
+
+	@Autowired
+	private SubscribeService subscribeService;
 	
 	@Autowired
 	private OrderService orderSerivce;
@@ -60,12 +65,13 @@ public class Order_cartController {
 	
 	
 	@RequestMapping(value = "/cart.wp")
-	public String cart(UserVO uvo, CartVO cvo, HttpSession session, Model model) {
+	public String cart(UserVO uvo, CartVO cvo, SubscribeVO svo, HttpSession session, Model model) {
 		System.out.println("장바구니 이동");
 	
 		String Cid = (String) session.getAttribute("userID");
 		cvo.setId(Cid);
 		
+
 		try {
 			if (Cid == null) {
 				return "singUp.wp";
@@ -73,25 +79,21 @@ public class Order_cartController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+		model.addAttribute("level_shipping",subscribeService.level_shipping(Cid));
 		model.addAttribute("cartInfo", cartService.getCartList(Cid));
+
+		System.out.println(subscribeService.level_shipping(Cid) +"구독 배송값 리스트");
 		return "WEB-INF/view/mypage/cart.jsp";
 	}
 	
 	/* 장바구니 수량 수정 */
 	@RequestMapping(value = "/modifyCount.wp")
-
-		public String modifyCount(CartVO cvo) {
-		System.out.println("장바구니 수량 수정 해");
-		
-		System.out.println(cvo.getQuantity() + "재고");
-//		if(cvo.getOrd_quan <= cvo.getQuantity()){
-//		   }else{
+		public String modifyCount(CartVO cvo ) {
+	
 		cartService.modifyCount(cvo);
-
 		return "redirect:/cart.wp";
 	}
-	
+
 	/* 장바구니 삭제 */
 	@RequestMapping(value ="/deleteCart.wp")
 	public String deleteCart(CartVO cvo ,  HttpSession session) {

@@ -57,7 +57,12 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	
-
+	//구독 시 생성
+	@Override
+	public void subscribeOrder(OrderVO vo) {
+		mybatis.subscribeOrder(vo);
+		
+	}
 
 
 }

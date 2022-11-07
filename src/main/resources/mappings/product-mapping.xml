@@ -8,5 +8,15 @@
 		SELECT * FROM WINE
 		WHERE W_NO = #{w_no}
 	</select>
-
+	
+<!-- 구독 조회 -->
+	<select id ="subscribeW1" resultType="wine">
+	SELECT * FROM WINE WHERE W_NO = 997
+	</select>
+	<select id ="subscribeW2" resultType="wine">
+SELECT * FROM WINE WHERE W_NO = 998
+	</select>
+	<select id ="subscribeW3" resultType="wine">
+	SELECT * FROM WINE WHERE W_NO = 999
+	</select>
 </mapper>

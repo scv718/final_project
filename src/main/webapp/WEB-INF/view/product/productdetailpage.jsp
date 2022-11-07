@@ -21,6 +21,7 @@ $('#paymentone').click(function () {
 });
 });
 </script>
+<h1>123123123123123123</h1>
 <!-- <form name="fm"> -->
 <%-- <input name='w_nm_k' type='hidden' value='${product.w_nm_k}'> --%>
 <%-- <input name='w_nm_e' type='hidden' value='${ol.w_nm_e}'> --%>

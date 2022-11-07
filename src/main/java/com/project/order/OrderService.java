@@ -11,4 +11,7 @@ public interface OrderService {
 	void cancleOrder(OrderVO vo);
 	void deleteOrderList(OrderVO vo);
 	
+	//구독 시 생성
+	void subscribeOrder(OrderVO vo);
+	
 }
