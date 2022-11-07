@@ -17,7 +17,11 @@ public class CartVO {
 	private String ord_code;// 주문 코드 = 오더 테이블 참조
 
 	private String w_nm_k;
+	private String w_nm_k_List[];
+
 	private String w_nm_e;
+	private String w_nm_e_List[];
+	
 	private int quantity;
 
 	private int totalCount ;            // 총 갯수
@@ -25,6 +29,20 @@ public class CartVO {
 	private int totalPoCint;            // 총 마일리지
 	private int deliveryPrice;         // 배송비
 	private int finalTotalPrice;       // 최종 가격(총 가격 + 배송비)
+	
+	
+	public String[] getW_nm_k_List() {
+		return w_nm_k_List;
+	}
+	public void setW_nm_k_List(String[] w_nm_k_List) {
+		this.w_nm_k_List = w_nm_k_List;
+	}
+	public String[] getW_nm_e_List() {
+		return w_nm_e_List;
+	}
+	public void setW_nm_e_List(String[] w_nm_e_List) {
+		this.w_nm_e_List = w_nm_e_List;
+	}
 	public int getOrd_cart_no() {
 		return ord_cart_no;
 	}
@@ -125,10 +143,12 @@ public class CartVO {
 	public String toString() {
 		return "CartVO [ord_cart_no=" + ord_cart_no + ", ord_cart_noList=" + Arrays.toString(ord_cart_noList) + ", id="
 				+ id + ", w_no=" + w_no + ", ord_quan=" + ord_quan + ", w_price=" + w_price + ", pay_stat=" + pay_stat
-				+ ", ord_code=" + ord_code + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + ", quantity=" + quantity
+				+ ", ord_code=" + ord_code + ", w_nm_k=" + w_nm_k + ", w_nm_k_List=" + Arrays.toString(w_nm_k_List)
+				+ ", w_nm_e=" + w_nm_e + ", w_nm_e_List=" + Arrays.toString(w_nm_e_List) + ", quantity=" + quantity
 				+ ", totalCount=" + totalCount + ", totalKind=" + totalKind + ", totalPoCint=" + totalPoCint
 				+ ", deliveryPrice=" + deliveryPrice + ", finalTotalPrice=" + finalTotalPrice + "]";
 	}
+
 	
 
 

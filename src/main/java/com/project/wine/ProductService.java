@@ -8,4 +8,5 @@ public interface ProductService {
 	
 	List<WineVO> getProductdetailList(List<WineVO> vo);
 	
+	
 }

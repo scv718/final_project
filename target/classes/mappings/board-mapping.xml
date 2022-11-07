@@ -66,6 +66,17 @@
 		<if test="filter == 'null'">ORDER BY RE_NO DESC</if>
 	</select>
 	
+	<!-- 상품별 리뷰 목록조회 -->
+	<select id="productReviewList" resultType="review">
+		SELECT * FROM REVIEW
+		WHERE W_NO = #{w_no};
+	</select>
+	
+	<!-- 상품별 리뷰 개수 -->
+	<select id="productReviewListCnt" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW
+		WHERE W_NO = #{w_no};
+	</select>
 	
 	<!-- 리뷰 상세조회 -->
 	<select id="detailReview" resultType="review">

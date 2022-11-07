@@ -31,4 +31,11 @@ public interface ReviewService {
 	//정렬 목록 갯수
 	int totalFilterListCnt(ReviewVO vo);
 
+	//상품별 리뷰목록
+	List<ReviewVO> productReviewList(ReviewVO rvo);
+
+	//상품별 리뷰목록 갯수
+	int productReviewListCnt(ReviewVO rvo);
+	
+
 }

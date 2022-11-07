@@ -28,7 +28,7 @@ dt {
 	var id = '${userID}';
 	function updateLike(){
 		if(id == ""){
-			alert("로그인이 필요합니다.");
+			alert("로그인 후 이용가능합니다.");
 			location.href = "singUp.wp";
 		} else {
 			$.ajax({

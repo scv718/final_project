@@ -94,4 +94,7 @@ public class UserDAOMybatis {
 	public void deleteUser(UserVO vo) {
 		mybatis.delete("UserDAO.deleteUser", vo);
 	}
+	public void secessionUser(UserVO vo) {
+		mybatis.update("UserDAO.secessionUser", vo);
+	}
 }

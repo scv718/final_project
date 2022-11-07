@@ -1,47 +1,156 @@
 @charset "UTF-8";
 
-
-#productimg{
+#productimg {
 	height: 280px;
 }
 
-#firstrow > .col{
-	margin-top: 56px;	
+#firstrow>.col {
+	margin-top: 56px;
 }
 
-#firstrow > .col-4{
-	margin-top: 56px;	
+#firstrow>.col-4 {
+	margin-top: 56px;
 }
 
-#productone{
+#productone {
 	text-align: center;
 }
-#producttwo{
-	margin-top: 56px;	
-	
+
+#producttwo {
+	margin-top: 56px;
 }
-#productthree{
+
+#productthree {
 	background-color: #f6f6f6;
 	margin-left: 15px;
 	height: 500px;
-	border-radius: 14% 14% 15% 14% / 14% 14% 14% 14% ;
+	border-radius: 14% 14% 15% 14%/14% 14% 14% 14%;
 }
-.buttondiv > .row{
+
+.buttondiv>.row {
 	margin-top: 35px;
 }
-.buttondiv{
+
+.buttondiv {
 	margin-top: 50px;
 }
-#productinfo{
-	 margin-top: 45px;
-	 font-size: 13px;
+
+#productinfo {
+	margin-top: 45px;
+	font-size: 13px;
 }
-#productprice{
-	 margin-top: 19px;
+
+#productprice {
+	margin-top: 19px;
 }
-#productnm{
+
+#productnm {
+	
 }
-.knm{
+
+.knm {
 	font-size: 21px;
 	font-weight: bold;
 }
+
+
+/* 유경 추가 시작 */
+th {
+	background-color: #f0f0f0;
+	padding: 5px;
+}
+
+tr {
+	border-bottom: 1px solid lightgray;
+}
+
+.reviewhead {
+	border-top: 2px solid black;
+	border-bottom: none;
+}
+
+td {
+	color: black;
+}
+
+#reviewtab {
+	text-align: center;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#writebtn-div {
+	padding-bottom: 25px !important;
+}
+
+.writebtn {
+	background-color: #fff;
+	border: 1px solid lightgray;
+	color: gray;
+	padding: 5px 15px;
+}
+
+#btnBox {
+	text-align: center;
+}
+
+a {
+	text-decoration-line: none !important;
+	color: black !important;
+}
+
+a:hover {
+	text-decoration-line: none !important;
+	color: black !important;
+}
+
+a:active {
+	color: black !important;
+}
+
+#myform fieldset {
+	display: inline-block; /* 행 전체 차지하지 않고 별 영역만 사용하게끔 함. */
+	border: 0px;
+	direction: rtl; /* 이모지 순서 반전 */
+}
+
+#myform fieldset legend {
+	text-align: left;
+}
+
+#myform input[type=radio] {
+	display: none;
+}
+
+#myform input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 #f5d142; /* 마우스 클릭 체크 */
+}
+
+#myform label { /* 이모지를 투명으로 하고 텍스트 그림자 효과에 색상 부여하는 방식으로 이모지 색상 변경. */
+	font-size: 1em;
+	color: transparent;
+	text-shadow: 0 0 0 #e6e6e6;
+}
+
+#myform label:hover {
+	text-shadow: 0 0 0 #f5d142;
+}
+
+#myform label:hover ~ label {
+	text-shadow: 0 0 0 #f5d142;
+}
+
+#writeContent {
+	padding: 20px 40px;
+    margin-bottom: 30px;
+    border-top: 2px solid;
+    border-left: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+#comment {
+	margin-bottom: 10px;
+}
+
+/* 유경 끝 */
