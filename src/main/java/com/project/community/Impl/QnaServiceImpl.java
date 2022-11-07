@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.community.AnswerVO;
 import com.project.community.CommunityVO;
 import com.project.community.QnaService;
 
 @Service("qnaService")
-public class QnaServiceImple implements QnaService {
+public class QnaServiceImpl implements QnaService {
 	
 	@Autowired
 	private QnaDAOMybatis QnaDAO;
@@ -36,6 +37,11 @@ public class QnaServiceImple implements QnaService {
 	public CommunityVO getQna(CommunityVO vo) {
 		return QnaDAO.getQna(vo);
 	}
+	
+	@Override
+	public CommunityVO admin_getQna(CommunityVO vo) {
+		return QnaDAO.admin_getQna(vo);
+	}
 
 	@Override
 	public List<CommunityVO> getQnaList(CommunityVO vo) {
@@ -43,8 +49,20 @@ public class QnaServiceImple implements QnaService {
 	}
 
 	@Override
+	public List<CommunityVO> admin_getQnaList(CommunityVO vo) {
+		return QnaDAO.admin_getQnaList(vo);
+	}
+	
+	@Override
 	public int totalQnaListCnt(CommunityVO vo) {
 		return QnaDAO.totalQnaListCnt(vo);
 	}
+
+	@Override
+	public void admin_insertQna(AnswerVO vo) {
+		QnaDAO.admin_insertQna(vo);
+	}
+
+
 
 }

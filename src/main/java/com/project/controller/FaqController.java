@@ -58,6 +58,7 @@ public class FaqController {
 //		return conditionMap2;
 //	}
 
+	// 페이지만 이동
 	@GetMapping(value="/admin_insertFaq.wp")
 	public String insertFaq_get(CommunityVO vo) throws IllegalStateException, IOException {
 		return "WEB-INF/view/community/admin_insertFaq.jsp";
