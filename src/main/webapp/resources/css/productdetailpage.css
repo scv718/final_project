@@ -15,17 +15,21 @@
 	margin-top: 56px;	
 	
 }
+
 #productthree{
-	background-color: #f6f6f6;
-	margin-left: 15px;
+	border: 2px solid #A2A2A2;
+	margin-top: 30px !important;
+/* 	background-color: #F87171; */
+	margin-left: 60px;
 	height: 500px;
-	border-radius: 14% 14% 15% 14% / 14% 14% 14% 14% ;
+	border-radius: 21% 21% 21% 21%  / 10% 10% 10% 10% ;
 }
 .buttondiv > .row{
 	margin-top: 35px;
 }
 .buttondiv{
-	margin-top: 50px;
+	margin-top: 400px;
+	text-align: center;
 }
 #productinfo{
 	 margin-top: 45px;

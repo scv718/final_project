@@ -129,23 +129,14 @@
                            <tr>      
                             <td>배송비</td>            
                               <td>
-                              <c:forEach var="ls" items="${level_shipping}">
-                              <c:set var="level" value="${ls.level}" />
-                              <c:set var="deli_price" value="${ls.deli_price}" />
-							<c:if test="${level eq 0}">
-							 <span class="delivery_price">${deli_price}</span>원	
-							</c:if>
-							<c:if test="${level eq 1}">
-							 <span class="delivery_price">${deli_price}</span>원 
-							</c:if>
-							<c:if test="${level eq 2}">
-							<span class="delivery_price">${deli_price}</span>원
-							</c:if>
-							<c:if test="${level eq 3}">
-							<span class="delivery_price">${deli_price}</span>원
-
-							</c:if>
-                             </c:forEach>
+                              <c:choose>
+                              <c:when test="${level.level < 0}">
+                               <span class="delivery_price">2500</span>원	
+                              </c:when>
+                              <c:otherwise>
+                               <span class="delivery_price">0</span>원
+                              </c:otherwise>
+                              </c:choose>
                               </td>
                               
                            </tr>                           

@@ -64,4 +64,9 @@ public class SubscribeServiceImpl implements SubscribeService {
 		subscribeDAO.liset_deli_price_up(vo);
 		
 	}
+	@Override
+	public SubscribeVO getLevel(SubscribeVO vo) {
+		// TODO Auto-generated method stub
+		return subscribeDAO.getLevel(vo);
+	}
 }

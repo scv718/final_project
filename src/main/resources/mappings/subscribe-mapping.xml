@@ -68,6 +68,11 @@
 		select LEVEL FROM SUBSCRIPT
 		where ID = #{id}
 	</select>
+	
+	<select id="getLevel" resultType="subscribe">
+		select * FROM SUBSCRIPT
+		where ID = #{id}
+	</select>
 
 	<!--리스트 -->
 	<select id="getSubscribeList" resultType="subscribe">

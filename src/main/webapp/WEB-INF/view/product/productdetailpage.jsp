@@ -20,13 +20,31 @@ $('#paymentone').click(function () {
 	fm.submit();
 });
 });
+
+
+$(window).scroll(function() {
+    let scrollTop = $(this).scrollTop();
+    console.log(scrollTop)
+    
+    if ( scrollTop < 100 ) {
+        scrollTop = 100;
+    }
+    else if ( scrollTop > 9600 ) {
+        scrollTop = 9600;
+    }
+    
+    let duration = 0;
+    $('#productthree').stop().animate({top:scrollTop-100}, duration);
+    
+});
+
 </script>
-<h1>123123123123123123</h1>
 <!-- <form name="fm"> -->
 <%-- <input name='w_nm_k' type='hidden' value='${product.w_nm_k}'> --%>
 <%-- <input name='w_nm_e' type='hidden' value='${ol.w_nm_e}'> --%>
 <%-- <input name='w_noList' type='hidden' value='${product.w_no}'> --%>
 <!-- </form> -->
+
 <div class="container">
   <div class="row" id = "firstrow">
     <div class="col" id = "productone">
@@ -46,7 +64,7 @@ $('#paymentone').click(function () {
      <p>${product.w_price}</p>     
     </div>  
     </div>
-    <div class="col" id = "productthree">
+    <div class="col-md-3" id = "productthree">
     <div class = "buttondiv">
     <form action="addCart.wp" name = "fm">
     <input type="hidden" id="w_no" name="w_no" value="${product.w_no}">
@@ -57,12 +75,16 @@ $('#paymentone').click(function () {
           	 <option value="${status.count}">${status.count}</option>
   	</c:forEach>
 	</select>
-      	<button type = "submit">장바구니</button>
-      	<button type = "button" id = "paymentone">결제하기</button>
+      	<button class = "btn" type = "submit">장바구니</button>
+      	<button class = "btn" type = "button" id = "paymentone">결제하기</button>
       </form>
     </div>
     </div>
   </div>
+<div class ="row" >
+	<img style = "width: 600px;" src = "${pageContext.request.contextPath}/resources/img/예시.png">
+</div>
+
 </div>
 
 </body>

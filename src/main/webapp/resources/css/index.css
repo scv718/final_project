@@ -1,5 +1,10 @@
 	@charset "UTF-8";
 
+#menutitle{
+	font-size: 30px;
+/* 	font-family: Pretendard-Regular; */
+	margin-bottom: 10px;
+}
 .typeSlider{
 	display: none;
 }
@@ -25,6 +30,7 @@
 	
 }
 .slider-1 {
+	margin-top: 30px;
     height:610px;
     position:relative;
 }
@@ -101,6 +107,7 @@
 
 /* //////////////// 슬라이드2 */
 .slider-2 {
+	margin-top: 30px;
     height: 300px;
     position:relative;
 }

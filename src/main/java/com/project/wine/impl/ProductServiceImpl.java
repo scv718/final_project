@@ -40,6 +40,11 @@ public class ProductServiceImpl implements ProductService{
 	public List<WineVO> subscribeW3(WineVO vo) {
 		return productDAO.subscribeW3(vo);
 	}
+
+	@Override
+	public List<WineVO> subscribeproduct(WineVO vo) {
+		return productDAO.subscribeproduct(vo);
+	}
 	
 
 }

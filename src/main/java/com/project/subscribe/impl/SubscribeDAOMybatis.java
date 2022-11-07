@@ -47,6 +47,9 @@ public class SubscribeDAOMybatis {
 	public List<SubscribeVO> getSubscribeList(SubscribeVO vo) {
 		return mybatis.selectList("SubscribeDAO.getSubscribeList", vo);
 	}
+	public SubscribeVO getLevel(SubscribeVO vo) {
+		return mybatis.selectOne("SubscribeDAO.getLevel", vo);
+	}
 	
 	public void preference_Setting(SubscribeVO vo) {
 		 mybatis.update("SubscribeDAO.preference_Setting", vo);
