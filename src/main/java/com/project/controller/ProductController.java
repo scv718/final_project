@@ -36,8 +36,6 @@ public class ProductController {
 			int l = 0;
 			num.add(l,i);
 			l++;
-			
-		
 		}
 		model.addAttribute("product", productService.getProductdetail(vo));
 		model.addAttribute("num", num);

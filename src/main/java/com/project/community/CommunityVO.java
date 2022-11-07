@@ -14,7 +14,9 @@ public class CommunityVO {
 	private String commu_content;
 	private Date commu_date;
 	private int commu_count;
-	private String commu_photo1;
+	
+//	private String commu_photo1;
+//	private String files;
 	private String commu_photo2;
 	private String commu_photo3;
 	private String faq_cat;
@@ -27,6 +29,7 @@ public class CommunityVO {
 	
 	//필터
 	private String alignlist;
+	
 	
 	//페이징
 	private int offset;
@@ -79,12 +82,12 @@ public class CommunityVO {
 	public void setCommu_count(int commu_count) {
 		this.commu_count = commu_count;
 	}
-	public String getCommu_photo1() {
-		return commu_photo1;
-	}
-	public void setCommu_photo1(String commu_photo1) {
-		this.commu_photo1 = commu_photo1;
-	}
+//	public String getCommu_photo1() {
+//		return commu_photo1;
+//	}
+//	public void setCommu_photo1(String commu_photo1) {
+//		this.commu_photo1 = commu_photo1;
+//	}
 	public String getCommu_photo2() {
 		return commu_photo2;
 	}
@@ -106,13 +109,13 @@ public class CommunityVO {
 		this.uploadFile = uploadFile;
 	}
 	
-	@Override
-	public String toString() {
-		return "CommunityVO [commu_no=" + commu_no + ", commu_cat=" + commu_cat + ", commu_cat_no=" + commu_cat_no
-				+ ", commu_title=" + commu_title + ", id=" + id + ", commu_content=" + commu_content + ", commu_date="
-				+ commu_date + ", commu_count=" + commu_count + ", commu_photo1=" + commu_photo1 + ", commu_photo2="
-				+ commu_photo2 + ", commu_photo3=" + commu_photo3 + ", uploadFile=" + uploadFile + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "CommunityVO [commu_no=" + commu_no + ", commu_cat=" + commu_cat + ", commu_cat_no=" + commu_cat_no
+//				+ ", commu_title=" + commu_title + ", id=" + id + ", commu_content=" + commu_content + ", commu_date="
+//				+ commu_date + ", commu_count=" + commu_count + ", commu_photo1=" + commu_photo1 + ", commu_photo2="
+//				+ commu_photo2 + ", commu_photo3=" + commu_photo3 + ", uploadFile=" + uploadFile + "]";
+//	}
 	public int getOffset() {
 		return offset;
 	}
@@ -143,6 +146,12 @@ public class CommunityVO {
 	public void setAlignlist(String alignlist) {
 		this.alignlist = alignlist;
 	}
+//	public String getFiles() {
+//		return files;
+//	}
+//	public void setFiles(String files) {
+//		this.files = files;
+//	}
 	
 	
 	

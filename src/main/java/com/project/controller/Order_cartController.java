@@ -1,5 +1,8 @@
 package com.project.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +14,11 @@ import com.project.cart.CartService;
 import com.project.cart.CartVO;
 import com.project.subscribe.SubscribeService;
 import com.project.subscribe.SubscribeVO;
+import com.project.order.OrderService;
+import com.project.order.OrderVO;
 import com.project.user.UserVO;
-
+import com.project.wine.ProductService;
+import com.project.wine.WineVO;
 
 
 @Controller
@@ -23,6 +29,40 @@ public class Order_cartController {
 
 	@Autowired
 	private SubscribeService subscribeService;
+	
+	@Autowired
+	private OrderService orderSerivce;
+	@Autowired
+	private ProductService productService;
+	
+	@RequestMapping("myorderList.wp")
+	public String myorderList(OrderVO ovo, HttpSession session, Model model, WineVO wvo) {
+		System.out.println("주문내역");
+		
+		ovo.setId((String) session.getAttribute("userID"));
+		model.addAttribute("cartInfo", orderSerivce.selectOrderList(ovo));
+		System.out.println(orderSerivce.selectOrderList(ovo));
+		System.out.println();
+		List<WineVO> wineList = new ArrayList();
+		for(int i =0; i < orderSerivce.selectOrderList(ovo).size(); i++) {
+			wineList.add(productService.getProductdetail(wvo));
+		}
+		
+		model.addAttribute("product", wineList);
+
+		return "WEB-INF/view/mypage/myorderList.jsp";
+		
+	}
+	
+	/* 장바구니 삭제 */
+	@RequestMapping(value ="/deleteOrder.wp")
+	public String deleteOrder(OrderVO ovo ,  HttpSession session) {
+		System.out.println("주문내역 삭제");
+		ovo.setId((String) session.getAttribute("userID"));
+		orderSerivce.deleteOrderList(ovo);
+		return "redirect:/myorderList.wp";
+	}
+	
 	
 	@RequestMapping(value = "/cart.wp")
 	public String cart(UserVO uvo, CartVO cvo, SubscribeVO svo, HttpSession session, Model model) {

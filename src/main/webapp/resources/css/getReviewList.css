@@ -22,11 +22,13 @@
 		overflow: hidden;
 	}
 	
-	#align {
-		box-sizing: border-box;
-		margin-left: 980px;
+	#filterdiv {
+		width: 1050px;
+	}
+	
+	#filter {
+		float: right;
     	margin-bottom: 10px;
-    	border-radius: 10px;
 	}
 	
 	th {

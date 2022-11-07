@@ -35,6 +35,11 @@ public class UserServeImpl implements UserService{
 		userDAO.deleteUser(vo);
 		
 	}
+	@Override
+	public void secessionUser(UserVO vo) {
+		userDAO.secessionUser(vo);
+		
+	}
 
 	@Override
 	public List<UserVO> getUserList(UserVO vo) {
