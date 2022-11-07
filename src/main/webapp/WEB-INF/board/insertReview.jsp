@@ -90,12 +90,12 @@
       
       <c:if test="${userID ne null}">
 	    <div>
-    	<button onclick="onDisplay()">리뷰쓰기</button>
+    	<button class="reviewbtn" onclick="onDisplay()">리뷰쓰기</button>
       	</div>
       </c:if>
       
       <article class="blog-post" id="noneDiv" style="display:none;">
-      	<h4 class="blog-post-title mb-1">REVIEW</h4>
+      	<h4>REVIEW</h4>
 			<div>
 				<form action="insertReview.wp" method="post" id="myform" name="myform" enctype="multipart/form-data">
 					<fieldset>
@@ -111,14 +111,16 @@
 					</div>
 					<div>
 						<div><span>작성자</span></div>
-						<p>dfdfdf</p>
+						<p>${review.id}</p>
 					</div>
 					<div>
 						<div><span>내용</span></div>
 						<textarea class="form-control" rows="10" id="comment" name="content" style="resize:none" required></textarea>
 					</div>
-					<button onclick="">작성</button>
-					<button type="button" onclick="offDisplay()">닫기</button>
+					<div id="reviewbtn-div">
+					<button class="reviewbtn" onclick="">작성</button>
+					<button class="reviewbtn" type="button" onclick="offDisplay()">닫기</button>
+					</div>
 				</form>
 			</div>
       </article>
@@ -144,7 +146,6 @@
         <button type="button">구매하기</button>
       </div>
     </div>
-  </div>
 
 </body>
 </html>
