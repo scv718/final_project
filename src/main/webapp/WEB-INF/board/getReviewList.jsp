@@ -25,13 +25,13 @@
 			<button type="submit" class="searchbtn">검색</button>
 		</form>
 	</nav>
-	<form action="getReviewList.wp" method="POST" id="align">
-		<select name="alignlist" onchange="this.form.submit()">
-			<c:forEach items="${conditionMap2}" var="option">
-					<option value="${option.value}" <c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option>
-			</c:forEach>
-		</select>
+	<div id="filterdiv">
+	<form action="getfilterList.wp" method="POST" id="filter">
+		<input type="radio" name="filter" value="PHOTO" onchange="this.form.submit()" <c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰만 보기&nbsp;
+		<input type="radio" name="filter" value="NEW" onchange="this.form.submit()" <c:if test="${radiochk eq 'NEW'}">checked</c:if>>최신순&nbsp;
+		<input type="radio" name="filter" value="LIKE" onchange="this.form.submit()" <c:if test="${radiochk eq 'LIKE'}">checked</c:if>>추천순
 	</form>
+	</div>
 	<table id="reviewtab">
 		<colgroup>
 			<col style="width: 50px">

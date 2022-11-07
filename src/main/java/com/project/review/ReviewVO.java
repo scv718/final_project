@@ -31,11 +31,10 @@ public class ReviewVO {
 	private String searchKeyword;
 	
 	//리뷰정렬
-	private String alignlist;
+	private String filter;
 	
 	//첨부파일
 	private MultipartFile uploadFile;
-	private String filename;
 	
 	//페이징
 	private int offset;
@@ -185,14 +184,6 @@ public class ReviewVO {
 		this.uploadFile = uploadFile;
 	}
 
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
 	public int getOffset() {
 		return offset;
 	}
@@ -201,12 +192,12 @@ public class ReviewVO {
 		this.offset = offset;
 	}
 
-	public String getAlignlist() {
-		return alignlist;
+	public String getFilter() {
+		return filter;
 	}
 
-	public void setAlignlist(String alignlist) {
-		this.alignlist = alignlist;
+	public void setFilter(String filter) {
+		this.filter = filter;
 	}
 
 	@Override
@@ -215,8 +206,8 @@ public class ReviewVO {
 				+ re_content + ", re_score=" + re_score + ", re_photo1=" + re_photo1 + ", re_photo2=" + re_photo2
 				+ ", re_photo3=" + re_photo3 + ", re_date=" + re_date + ", re_like=" + re_like + ", w_nm_k=" + w_nm_k
 				+ ", w_nm_e=" + w_nm_e + ", ord_code=" + ord_code + ", ord_stat=" + ord_stat + ", searchCondition="
-				+ searchCondition + ", searchKeyword=" + searchKeyword + ", alignlist=" + alignlist + ", uploadFile="
-				+ uploadFile + ", filename=" + filename + ", offset=" + offset + "]";
+				+ searchCondition + ", searchKeyword=" + searchKeyword + ", filter=" + filter + ", uploadFile="
+				+ uploadFile + ", offset=" + offset + "]";
 	}
 	
 }

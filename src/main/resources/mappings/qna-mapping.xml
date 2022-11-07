@@ -2,19 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="FaqDAO">
-
+<mapper namespace="QnaDAO">
 	<!-- 등록 -->
-	<insert id="insertFaq">
+	<insert id="insertQna">
 		INSERT INTO COMMUNITY
 		(COMMU_CAT,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,FAQ_CAT)
 		VALUES(#{commu_cat},#{commu_title},#{id},#{commu_content},NOW(),#{faq_cat})
-		<!-- INSERT INTO COMMUNITY (COMMU_CAT,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,FILES,FAQ_CAT) -->
-		<!-- VALUES(#{commu_cat},#{commu_title},#{id},#{commu_content},NOW(),#{files},#{faq_cat}) -->
 	</insert>
 
 	<!-- 수정 -->
-	<update id="updateFaq">
+	<update id="updateQna">
 		UPDATE community SET commu_title=#{commu_title},
 		id=#{id},
 		commu_content=#{commu_content}, commu_date=NOW(),
@@ -23,23 +20,20 @@
 	</update>
 
 	<!-- 삭제 -->
-	<delete id="deleteFaq">
+	<delete id="deleteQna">
 		DELETE FROM COMMUNITY WHERE commu_no = #{commu_no}
 	</delete>
 
 	<!-- 상세보기 -->
-	<select id="getFaq" resultType="community">
+	<select id="getQna" resultType="community">
 		SELECT * FROM COMMUNITY WHERE
 		commu_no = #{commu_no}
 	</select>
 
 	<!-- 전체목록조회(검색) -->
-	<select id="getFaqList" resultType="community">
-		SELECT * FROM COMMUNITY WHERE commu_cat = 1
-		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
-		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
+	<select id="getQnaList" resultType="community">
+		SELECT * FROM COMMUNITY WHERE 1=1 and commu_cat = 2 and ID = #{id}
+<!-- 		SELECT * FROM COMMUNITY WHERE 1=1 and commu_cat = 2 -->
 		<if test="alignlist == 'zero' "> AND faq_cat = '0' </if>
 		<if test="alignlist == 'one' "> AND faq_cat = '1' </if>
 		<if test="alignlist == 'two' "> AND faq_cat = '2' </if>
@@ -50,12 +44,8 @@
 	</select>
 
 	<!-- 페이징처리 목록갯수 -->
-	<select id="totalFaqListCnt" resultType="_int">
-		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 and COMMU_CAT = 1
-		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
-		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
+	<select id="totalQnaListCnt" resultType="_int">
+		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 and COMMU_CAT = 2 and ID = #{id}
 		<if test="alignlist == 'zero' "> AND faq_cat = '0' </if>
 		<if test="alignlist == 'one' "> AND faq_cat = '1' </if>
 		<if test="alignlist == 'two' "> AND faq_cat = '2' </if>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>FAQ 글쓰기</title>
+<title>QNA 글쓰기</title>
 <link rel="canonical"
 	href="https://getbootstrap.kr/docs/4.5.2/examples/carousel/">
 
@@ -74,16 +74,23 @@ var setting = {
 </head>
 <body>
 	<div class="jumbotron">
-		<h1>공지사항 글쓰기</h1>
+		<h1>1:1 문의하기</h1>
 	</div>
 
 	<div class="container-fluid">
-		<form action="admin_insertFaq.wp" method="post" enctype="multipart/form-data">
-			<input type="hidden" class="form-control" name="commu_cat" value="1">
-
+		<form action="insertQna.wp" method="post" enctype="multipart/form-data">
+			<input type="hidden" class="form-control" name="commu_cat" value="2">
+<%-- 			<input type="hidden" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>"> --%>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">작성자</span>
+				</div>
+				<input type="text" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>" readonly>
+			</div>
+			
 			<fieldset class="form-group">
 				<div class="row">
-					<legend class="col-form-label col-sm-2 pt-0">카테고리</legend>
+					<legend class="col-form-label col-sm-2 pt-0">문의유형</legend>
 					<div class="col-sm-10">
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="faq_cat" id="gridRadios1" value="0" checked> 
@@ -111,14 +118,7 @@ var setting = {
 				<input type="text" class="form-control" name="commu_title"
 					placeholder="제목을 입력하세요." required>
 			</div>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">작성자</span>
-				</div>
-				<input type="text" class="form-control innm" name="id" value="관리자"
-					readonly>
-			</div>
-			<div class="input-group mb-3">
+						<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>

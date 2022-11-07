@@ -14,10 +14,23 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	private ReviewDAO reviewDAO;
 	
-	// 리뷰 작성
+	//리뷰 작성
 	@Override
 	public void insertReview(ReviewVO vo) {
 		reviewDAO.insertReview(vo);
+	}
+	
+	//리뷰 수정
+	@Override
+	public void updateReview(ReviewVO vo) {
+		reviewDAO.updateReview(vo);
+	}
+	
+	//리뷰 삭제
+	@Override
+	public void deleteReview(ReviewVO vo) {
+		reviewDAO.deleteReview(vo);
+		
 	}
 	
 	//상품후기 상세조회
@@ -38,6 +51,17 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDAO.getReviewListCnt(vo);
 	}
 
+	//정렬 목록
+	@Override
+	public List<ReviewVO> getFilterList(ReviewVO vo) {
+		return reviewDAO.getFilterList(vo);
+	}
+
+	//정렬 목록 갯수
+	@Override
+	public int totalFilterListCnt(ReviewVO vo) {
+		return reviewDAO.getFilterCnt(vo);
+	}
 
 
 }

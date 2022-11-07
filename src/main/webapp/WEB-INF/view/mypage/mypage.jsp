@@ -129,8 +129,8 @@
 	</div>
 
 	<div class="listContainer">
-		<a href="payment.wp" class="item">
-			<div class="text">???</div>
+		<a href="getQnaList.wp" class="item">
+			<div class="text">1:1 문의</div>
 			<div class="right">></div>
 		</a>
 	</div>

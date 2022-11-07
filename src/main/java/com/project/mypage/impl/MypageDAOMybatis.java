@@ -43,4 +43,6 @@ public class MypageDAOMybatis {
 		System.out.println("===>mybatis로 getMypageList() 기능처리 ");
 		return mybatis.selectList("MypageDAO.getMypageList", vo);
 	}
+	
+	
 }
