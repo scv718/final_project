@@ -82,6 +82,12 @@
 		ON O.ID = R.ID
 		WHERE O.ID = #{id} AND O.W_NO = #{w_no} AND O.ORD_STAT='배송완료';
 	</select>
+	
+	<!-- 해당상품 리뷰 작성내역이 있는지 확인 -->
+	<select id="existReview" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW
+		WHERE ID = #{id} AND W_NO = #{w_no}
+	</select>
 
 	<!-- 해당상품 리뷰작성 -->
 	<insert id="insertReview">

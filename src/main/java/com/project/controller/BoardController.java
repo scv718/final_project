@@ -50,6 +50,13 @@ public class BoardController {
 		return conditionMap;
 	}
 	
+	// 리뷰 중복확인
+	@PostMapping("/existReview.wp")
+	public int existReviewPost(int w_no, String id) throws Exception {
+		int check = reviewService.existReview(w_no, id);
+		return check;
+	}
+	
 	// 리뷰작성
 	@PostMapping(value = "/insertReview.wp")
 	public String insertReview(ReviewVO vo) throws IllegalStateException, IOException {

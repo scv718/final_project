@@ -144,7 +144,6 @@
         <button type="button">구매하기</button>
       </div>
     </div>
-  </div>
 
 </body>
 </html>

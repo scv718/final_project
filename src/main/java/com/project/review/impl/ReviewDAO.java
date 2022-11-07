@@ -1,6 +1,8 @@
 package com.project.review.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,15 @@ public class ReviewDAO {
 	
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+	public int existReview(int w_no, String id) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("w_no", w_no);
+		int a = mybatis.selectOne("BoardDAO.existReview", map);
+		System.out.println(a);
+		return a;
+	}
 	
 	//리뷰 작성
 	public void insertReview(ReviewVO vo) {

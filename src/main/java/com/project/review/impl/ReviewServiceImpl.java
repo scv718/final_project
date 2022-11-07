@@ -14,6 +14,12 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	private ReviewDAO reviewDAO;
 	
+	//리뷰 중복확인
+	@Override
+	public int existReview(int w_no, String id) throws Exception {
+		return reviewDAO.existReview(w_no, id);
+	}
+	
 	//리뷰 작성
 	@Override
 	public void insertReview(ReviewVO vo) {
@@ -62,6 +68,5 @@ public class ReviewServiceImpl implements ReviewService{
 	public int totalFilterListCnt(ReviewVO vo) {
 		return reviewDAO.getFilterCnt(vo);
 	}
-
 
 }

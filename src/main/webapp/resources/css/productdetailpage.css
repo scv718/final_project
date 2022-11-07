@@ -8,6 +8,11 @@
 #firstrow > .col{
 	margin-top: 56px;	
 }
+
+#firstrow > .col-4{
+	margin-top: 56px;	
+}
+
 #productone{
 	text-align: center;
 }

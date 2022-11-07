@@ -5,8 +5,8 @@
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/productdetailpage.css">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
-<%@ include file="../../../header.jsp"%>
+  <%@ include file="../../../header.jsp"%>
+
 </head>
 <body class = "d-flex flex-column min-vh-100">
 <script>
@@ -127,35 +127,11 @@ function orderList(){
 	fm.submit();
 }
 
-//리뷰쓰기 중복확인	
-var userId = '${userID}';
-var w_no = '${product.w_no}';
-function existReview(){
-	$('#noneDiv').show();
-	
-	$.ajax({
-		type : "post",
-		url : "existReview.wp",
-		dataType : "json",
-		data : {'w_no' : w_no, 'id' : id},
-		error : function() {
-			alert("통신 에러");
-		},
-		success : function(check) {
-			if(check == 0) {
-				console.log("");
-			} else(check == 1) {
-				alert("해당 상품에 등록된 리뷰가 존재합니다.");
-			}
-		}
-	});
-}
-
 </script>
 
 <div class="container">
   <div class="row" id = "firstrow">
-    <div class="col-4" id = "productone">
+    <div class="col" id = "productone">
       <img id =  "productimg" src = "resources/img/wine/${product.w_image1}">
     </div>
     <div class="col-5" id = "producttwo">
@@ -189,47 +165,6 @@ function existReview(){
     </div>
     </div>
   </div>
-    <!-- 추가 시작 -->
-    <div class="col-9">
-      <div class="row g-5" id="reviewdiv" style="justify-content:center;">
-      
-      <article class="blog-post">
-      	<h4 class="blog-post-title mb-1">REVIEW</h4>
-			<div id="noneDiv" style="display:none;">
-				<form action="insertReview.wp" method="post" id="myform" name="myform" enctype="multipart/form-data">
-					<fieldset>
-			          <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-			          <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-			          <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-			          <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-			          <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
-			        </fieldset>	
-					<div>
-						<div><span>제목</span></div>
-						<input type="text" name="title" required>
-					</div>
-					<div>
-						<div><span>작성자</span></div>
-						<p>dfdfdf</p>
-					</div>
-					<div>
-						<div><span>내용</span></div>
-						<textarea class="form-control" rows="10" id="comment" name="content" style="resize:none" required></textarea>
-					</div>
-					<button onclick="">작성</button>
-					<button type="button" onclick="offDisplay()">닫기</button>
-				</form>
-			</div>
-      </article>
-      
-      <c:if test="${userID ne null}">
-	    <div>
-    	<button type="button" onclick="existReview(); return false;">리뷰쓰기</button>
-      	</div>
-      </c:if>
-    </div>
-    </div>
-    <!-- 추가 끝 -->
 </div>
 
 </body>
