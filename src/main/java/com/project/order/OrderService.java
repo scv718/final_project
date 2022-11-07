@@ -6,5 +6,6 @@ public interface OrderService {
 
 	void insertOrder(OrderVO vo);
 	List<OrderVO> selectOrderList(OrderVO vo);
+	void deleteOrder(OrderVO vo);
 	
 }

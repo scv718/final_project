@@ -20,5 +20,14 @@ public class OrderDAOmybatis {
 		
 	}
 
+	public List<OrderVO> selectOrderList(OrderVO vo) {
+		return mybatis.selectList("OrderDAO.selectOrderList", vo);
+	}
+
+	public void deleteOrder(OrderVO vo) {
+		mybatis.delete("OrderDAO.deleteOrder", vo);
+		
+	}
+
 
 }

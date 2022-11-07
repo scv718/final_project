@@ -284,9 +284,8 @@ public class IamportController {
 	}
 	
 	
-	//결제 진행 폼=> 이곳에서 DB저장 로직도 추가하기
 		@RequestMapping(value="/pay.wp", method=RequestMethod.POST)
-		public void payment(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo, AddressVO avo, CartVO voList,WineVO vo, UserVO uvo, HttpSession session) throws IOException {
+		public String payment(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo, AddressVO avo, CartVO voList,WineVO vo, UserVO uvo, HttpSession session) throws IOException {
 			System.out.println("결제완료폼");
 			String nm = request.getParameter("unm");
 			String amount = request.getParameter("amount");
@@ -303,6 +302,8 @@ public class IamportController {
 	        
 	        
 	        StringBuilder stringBuilder = new StringBuilder();
+	        StringBuilder stringBuilder1 = new StringBuilder();
+	        StringBuilder stringBuilder2 = new StringBuilder();
 	        for (int i = 0; i < ovo.getW_noList().length; i++) {
 	        	  stringBuilder.append(ovo.getW_noList()[i]+ " ");
 	        	}
@@ -331,18 +332,8 @@ public class IamportController {
 			System.out.println(nm);
 			System.out.println(amount);
 			System.out.println(mid);	
-			PrintWriter out = response.getWriter();
-			response.setCharacterEncoding("utf-8");
-			response.setContentType("text/html; charset=utf-8");
-			out.println("<html>");
-			out.println("<head><title>주문완료</title></head>");
-			out.println("<body>");
-			out.print(nm+"님의 주문이 완료 되었습니다.<br>");
-			out.print("상점 거래ID: "+mid+"<br>");
-			out.print("결제 금액: "+amount+"<br>");
-			out.print("<a href='/pay'>쇼핑 계속하기</a>");
-			out.print("<a href='javascript:(\"준비중입니다.\");'>나의 주문내역</a>");
-			out.println("</body></html>");
+			
+			return "myorderList.wp";
 		}
 	
 	

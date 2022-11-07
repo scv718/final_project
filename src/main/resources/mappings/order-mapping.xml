@@ -17,6 +17,8 @@
 		,ORD_PHONE
 		,ORD_MEMO
 		,W_NO
+		,W_NM_K
+		,W_NM_E
 		)VALUES(
 		#{ord_code}
 		,#{id}
@@ -29,8 +31,19 @@
 		,#{ord_phone}
 		,#{ord_memo}
 		,#{w_no}
+		,#{w_nm_k}
+		,#{w_nm_e}
 		)
-		
 	</insert>
+	
+	<select id = "selectOrderList" resultType="myorder">
+	SELECT * FROM ORDER_LIST
+	WHERE ID = #{id}
+	</select>
+	
+	<delete id="deleteOrder">
+	DELETE FROM ORDER_LIST
+	WHERE id = #{id} and ORD_CODE = #{ord_code}
+	</delete>
 
 </mapper>
