@@ -21,6 +21,13 @@ public interface ReviewService {
 	
 	//전체 글 목록 갯수
 	int totalReviewListCnt(ReviewVO vo);
+	
+	//정렬 목록
+	List<ReviewVO> getFilterList(ReviewVO vo);
+
+	//정렬 목록 갯수
+	int totalFilterListCnt(ReviewVO vo);
+
 
 
 }

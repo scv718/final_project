@@ -10,7 +10,6 @@
 		});
 	});
 
-
   var fileCount = 0;
   var totalCount = 3;
   var fileNum = 0;
@@ -22,7 +21,7 @@
     var filesArr = Array.prototype.slice.call(files);
 
     if(fileCount + filesArr.length > totalCount) {
-      $.alert('파일은 최대 ' + totalCount + '개까지 업로드할 수 있습니다.');
+      alert('파일은 최대 ' + totalCount + '개까지 등록 가능합니다.');
       return;
     } else {
       fileCount = fileCount + filesArr.length;
@@ -35,7 +34,7 @@
         $('#articlefileChange').append(
        		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
        		+ '<font style="font-size:12px">' + f.name + '</font>'  
-       		+ '<img src="/resources/img/dash-square.svg" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>' 
+       		+ ' <img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"/>' 
        		+ '<div/>'
 		);
         fileNum ++;
@@ -57,7 +56,6 @@ function fileDelete(fileNum){
 
 
 function registerAction(){
-		
     var form = $("form")[0];        
      var formData = new FormData(form);
       for (var x = 0; x < content_files.length; x++) {
@@ -75,16 +73,14 @@ function registerAction(){
        	  data : formData,
        	  processData: false,
    	      contentType: false,
-   	      success: function (data) {
-   	    	if(JSON.parse(data)['result'] == "OK"){
-   	    		alert("파일업로드 성공");
-			    } else
-				  alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+   	      async: false,
+   	      success: function(data){
+   	      	alert("수정 완료");
+   	      	location.href="detailReview.wp?re_no="+data;
    	      },
-   	      error: function (xhr, status, error) {
-   	    	alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+   	      error: function(xhr, status, error) {
+   	    	alert("잠시 후 다시 시도해주시기 바랍니다.");
    	      return false;
    	      }
    	    });
-   	    return false;
 	}

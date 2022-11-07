@@ -9,34 +9,63 @@
 	<select id="getReviewList" resultType="review">
 		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
 		JOIN WINE W
-		ON R.W_NO =
-		W.W_NO
+		ON R.W_NO =	W.W_NO
 		WHERE 1=1
-		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
-		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
+		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
 		<if test="searchCondition == 'PRODUCT'">
 			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
 			OR W_NM_E
 			LIKE CONCAT('%',#{searchKeyword},'%')
+			ORDER BY RE_NO DESC 
 		</if>
-		ORDER BY RE_NO DESC
+		<if test="searchCondition == null">ORDER BY RE_NO DESC </if>
 		LIMIT 10 OFFSET #{offset}
 	</select>
-
+	
 	<!-- 리뷰게시판 글 개수 -->
 	<select id="getReviewListCnt" resultType="_int">
 		SELECT COUNT(*) FROM REVIEW R
 		JOIN WINE W
 		ON R.W_NO = W.W_NO
 		WHERE 1=1
-		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
-		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
+		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
 		<if test="searchCondition == 'PRODUCT'">
 			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
 			OR W_NM_E
 			LIKE CONCAT('%',#{searchKeyword},'%')
+			ORDER BY RE_NO DESC 
 		</if>
+		<if test="searchCondition == 'null'">ORDER BY RE_NO DESC </if>
 	</select>
+	
+	
+	<!-- 포토리뷰만 보기, 최신순, 추천순 정렬 목록 -->
+	<select id="reviewFilter" resultType="review">
+		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
+		JOIN WINE W
+		ON R.W_NO = W.W_NO
+		WHERE 1=1
+		<if test="filter == 'PHOTO'.toString()">AND RE_PHOTO1 IS NOT NULL ORDER BY RE_NO DESC</if>
+		<if test="filter == 'NEW'">ORDER BY RE_DATE DESC</if>
+		<if test="filter == 'LIKE'">ORDER BY RE_LIKE DESC</if>
+		<if test="filter == null">ORDER BY RE_NO DESC</if>
+		LIMIT 10 OFFSET #{offset}
+	</select>
+	
+	<!-- 정렬 글 개수 -->
+	<select id="getFilterCnt" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW R
+		JOIN WINE W
+		ON R.W_NO = W.W_NO
+		WHERE 1=1
+		<if test="filter == 'PHOTO'">AND RE_PHOTO1 IS NOT NULL ORDER BY RE_NO DESC</if>
+		<if test="filter == 'NEW'">ORDER BY RE_DATE DESC</if>
+		<if test="filter == 'LIKE'">ORDER BY RE_LIKE DESC</if>
+		<if test="filter == 'null'">ORDER BY RE_NO DESC</if>
+	</select>
+	
 	
 	<!-- 리뷰 상세조회 -->
 	<select id="detailReview" resultType="review">
@@ -48,8 +77,8 @@
 
 	<!-- 해당상품 리뷰작성 권한 확인(결과가 0이면 작성 불가) -->
 	<select id="confirmWriter" resultType="_int">
-		SELECT COUNT(*) FROM SAMP.ORDER O
-		JOIN SAMP.REVIEW R
+		SELECT COUNT(*) FROM WP.ORDER O
+		JOIN WP.REVIEW R
 		ON O.ID = R.ID
 		WHERE O.ID = #{id} AND O.W_NO = #{w_no} AND O.ORD_STAT='배송완료';
 	</select>
@@ -66,7 +95,7 @@
 	<!-- 해당상품 리뷰수정 -->
 	<update id="updateReview">
 		UPDATE REVIEW SET RE_TITLE=#{re_title}, RE_CONTENT=#{re_content}, RE_SCORE=#{re_score}, 
-		RE_PHOTO1=#{re_photo1}, RE_PHOTO2=#{re_photo2},	RE_PHOTO3=#{re_photo3},	RE_DATE=NOW() 
+		RE_PHOTO1=#{re_photo1}, RE_PHOTO2=#{re_photo2},	RE_PHOTO3=#{re_photo3} 
 		WHERE RE_NO=#{re_no}
 	</update>
 

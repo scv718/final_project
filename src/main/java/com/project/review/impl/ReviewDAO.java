@@ -56,8 +56,21 @@ public class ReviewDAO {
 	
 	//전체 글 목록 갯수
 	public int getReviewListCnt(ReviewVO vo) {
-		System.out.println("글 목록처리");
+		System.out.println("글 목록 갯수 처리");
 		return mybatis.selectOne("BoardDAO.getReviewListCnt", vo);
 	}
+
+	//정렬 목록
+	public List<ReviewVO> getFilterList(ReviewVO vo) {
+		System.out.println("필터 목록처리");
+		return mybatis.selectList("BoardDAO.reviewFilter", vo);
+	}
+
+	//정렬 목록 갯수
+	public int getFilterCnt(ReviewVO vo) {
+		System.out.println("필터 갯수처리");
+		return mybatis.selectOne("BoardDAO.getFilterCnt", vo);
+	}
+
 
 }
