@@ -13,5 +13,6 @@ public interface OrderService {
 	
 	//구독 시 생성
 	void subscribeOrder(OrderVO vo);
+	OrderVO subscribeOrderList(OrderVO vo);
 	
 }

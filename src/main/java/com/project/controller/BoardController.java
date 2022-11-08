@@ -41,6 +41,8 @@ public class BoardController {
 	@Autowired
 	private LikeService likeService;
 	
+	
+	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<String, String>();

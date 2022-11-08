@@ -97,27 +97,115 @@
 				<div class="row" id="productinfo">
 					<p>${product.w_info}</p>
 				</div>
-				<div class="row" id="productprice">
-					<p>${product.w_price}</p>
-				</div>
 			</div>
-			<div class="col" id="productthree">
+			<div class="col-3" id="productthree">
+			<div id = "wineinfo">
+			<div class = "row">
+			<p id = "winenmk">${product.w_nm_k}</p>
+			</div>
+			<div id = "winetaste"> 
+			<div class ="row">
+			<a id = "typename">당도  </a>
+			<c:forEach var = "i" begin="1" end="${product.w_sweet}">
+				<c:if test="${i == 1}">
+				<a> <i class = "xi-full-moon" id = "one"></i></a>
+			</c:if>
+			<c:if test="${i == 2}">
+				<a> <i class = "xi-full-moon" id = "two"></i></a>
+			</c:if>
+			<c:if test="${i == 3}">
+				<a> <i class = "xi-full-moon" id = "three"></i></a>
+			</c:if>
+			<c:if test="${i == 4}">
+				<a> <i class = "xi-full-moon" id = "four"></i></a>
+			</c:if>
+			<c:if test="${i == 5}">
+				<a> <i class = "xi-full-moon" id = "five"></i></a>
+			</c:if>
+			</c:forEach>
+			</div>
+			<div class ="row">
+			<a id = "typename">바디  </a>
+			<c:forEach var = "i" begin="1" end="${product.w_body}">
+					<c:if test="${i == 1}">
+				<a> <i class = "xi-full-moon" id = "one"></i></a>
+			</c:if>
+			<c:if test="${i == 2}">
+				<a> <i class = "xi-full-moon" id = "two"></i></a>
+			</c:if>
+			<c:if test="${i == 3}">
+				<a> <i class = "xi-full-moon" id = "three"></i></a>
+			</c:if>
+			<c:if test="${i == 4}">
+				<a> <i class = "xi-full-moon" id = "four"></i></a>
+			</c:if>
+			<c:if test="${i == 5}">
+				<a> <i class = "xi-full-moon" id = "five"></i></a>
+			</c:if>
+			</c:forEach>
+			</div>
+			<div class ="row">
+			<a id = "typename">산미  </a>
+			<c:forEach var = "i" begin="1" end="${product.w_acidity}">
+			<c:if test="${i == 1}">
+				<a> <i class = "xi-full-moon" id = "one"></i></a>
+			</c:if>
+			<c:if test="${i == 2}">
+				<a> <i class = "xi-full-moon" id = "two"></i></a>
+			</c:if>
+			<c:if test="${i == 3}">
+				<a> <i class = "xi-full-moon" id = "three"></i></a>
+			</c:if>
+			<c:if test="${i == 4}">
+				<a> <i class = "xi-full-moon" id = "four"></i></a>
+			</c:if>
+			<c:if test="${i == 5}">
+				<a> <i class = "xi-full-moon" id = "five"></i></a>
+			</c:if>
+			</c:forEach>
+			</div>
+			<div class ="row">
+			<a id = "typename">타닌  </a>
+			<c:forEach var = "i" begin="1" end="${product.w_tannins}">
+					<c:if test="${i == 1}">
+				<a> <i class = "xi-full-moon" id = "one"></i></a>
+			</c:if>
+			<c:if test="${i == 2}">
+				<a> <i class = "xi-full-moon" id = "two"></i></a>
+			</c:if>
+			<c:if test="${i == 3}">
+				<a> <i class = "xi-full-moon" id = "three"></i></a>
+			</c:if>
+			<c:if test="${i == 4}">
+				<a> <i class = "xi-full-moon" id = "four"></i></a>
+			</c:if>
+			<c:if test="${i == 5}">
+				<a> <i class = "xi-full-moon" id = "five"></i></a>
+			</c:if>
+			</c:forEach>
+			</div>
+			</div>
+		</div>
+		<div class ="row" id = "pricediv">
+		<p><i class = "xi-won" id = "typename"></i>${product.w_price}</p>
+		</div>
 				<div class="buttondiv">
 					<form action="addCart.wp" name="fm">
 						<input type="hidden" id="w_no" name="w_no" value="${product.w_no}">
 						<input type="hidden" id=w_price name="w_price"
 							value="${product.w_price}"> <select name="ord_quan"
-							id="quantity">
+							id="quantity" class = "pl">
 							<option value="">수량</option>
 							<c:forEach items="${num}" var="option" varStatus="status">
 								<option value="${status.count}">${status.count}</option>
 							</c:forEach>
 						</select>
-						<button type="submit">장바구니</button>
-						<button type="button" id="paymentone">결제하기</button>
+						<button  class="btn-hover color-7" type="submit"><i class ="xi-cart"></i></button>
 					</form>
 				</div>
+				<button type="button" class="btn-hover color-7" id="paymentone">	<span>결제하기</span> </button>
 			</div>
+			
 
 <div class ="row" >
 	<div class="col-9">

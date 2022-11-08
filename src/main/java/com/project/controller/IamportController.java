@@ -41,6 +41,8 @@ import com.project.cart.CartService;
 import com.project.cart.CartVO;
 import com.project.order.OrderService;
 import com.project.order.OrderVO;
+import com.project.subscribe.SubscribeService;
+import com.project.subscribe.SubscribeVO;
 import com.project.user.AddressService;
 import com.project.user.AddressVO;
 import com.project.user.UserService;
@@ -74,6 +76,8 @@ public class IamportController {
 	UserService userService;
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	private SubscribeService subscribeService;
 	
 	// 아임포트 인증(토큰)을 받아주는 함수 
 	public String getImportToken() {
@@ -345,7 +349,67 @@ public class IamportController {
 			
 			return "redirect:myorderList.wp";
 		}
-	
+		//구독 결제
+		@RequestMapping(value="/pay1.wp", method=RequestMethod.POST)
+		public String payment1(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo, AddressVO avo, SubscribeVO svo ,WineVO vo, UserVO uvo, HttpSession session) throws IOException {
+			System.out.println("구독 결제 완료");
+			String nm = request.getParameter("unm");
+			String amount = request.getParameter("amount");
+			String mid = request.getParameter("merchant_uid");
+			String imp = request.getParameter("imp_uid");
+			String token = getImportToken();
+			int price = Integer.parseInt(amount);
+			setHackCheck(amount, mid, token);
+			uvo.setId((String) session.getAttribute("userID"));
+			svo.setId((String) session.getAttribute("userID"));
+			
+			LocalDateTime  now = LocalDateTime.now();
+			 
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");        
+	        String formatedNow = now.format(formatter);
+
+	        int W = vo.getW_no(); 
+	        if(W == 999) {
+	        	ovo.setW_nm_k("와인 마스터 패키지");
+	        	subscribeService.insertSubscribe3(svo);
+				subscribeService.liset_deli_price(svo);
+				userService.updateuserle3(uvo);
+	        }else if(W == 998){
+	        	ovo.setW_nm_k("와인 마니아 패키지");
+	        	subscribeService.insertSubscribe2(svo);
+				subscribeService.liset_deli_price(svo);
+				userService.updateuserle2(uvo);
+	        }else if(W == 997){
+	        	ovo.setW_nm_k("와인 입문자 패키지");
+	        	subscribeService.insertSubscribe1(svo);
+				subscribeService.liset_deli_price(svo);
+				userService.updateuserle1(uvo);
+				System.out.println();
+				System.out.println(nm);
+				System.out.println(nm);
+	        }
+	        	
+	        
+			model.addAttribute("user", userService.getUser(uvo));
+			svo.setId(uvo.getId());
+			avo.setId(uvo.getId());
+			ovo.setOrd_code(imp);
+			ovo.setMerchant_uid(mid);
+			ovo.setId((String) session.getAttribute("userID"));
+			ovo.setProd_price(price);
+			ovo.setOrd_t_price(price);
+			ovo.setProd_p_price(price);
+			ovo.setOrd_stat("구독 완료");
+			ovo.setOrd_date(formatedNow);
+			
+			System.out.println(ovo.getW_nm_k() + "패키지 명");
+		    System.out.println(ovo.getW_no()+"와인");
+		    System.out.println(ovo.getW_nm_k()+"와인이름");
+		    System.out.println(ovo.getW_nm_e()+"와인이름 영어");
+		    
+			orderService.subscribeOrder(ovo);
+			return "index.wp";		
+		}
 	
 	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수 private
 	List<NameValuePair> convertParameter(Map<String,String> paramMap){
@@ -413,7 +477,46 @@ public class IamportController {
 			return 1;
 		}
 	}
-	
+	// 구독 취소
+		@RequestMapping(value="/paycan1.wp" , method = RequestMethod.POST)
+		@ResponseBody
+		public int cancelPayment1(String mid, UserVO uvo,SubscribeVO svo , String imp, OrderVO ovo, HttpSession session) {
+			String token = getImportToken();
+			HttpClient client = HttpClientBuilder.create().build();
+			HttpPost post = new HttpPost(IMPORT_CANCEL_URL); 
+			Map<String, String> map = new HashMap<String, String>();
+			post.setHeader("Authorization", token);
+			map.put("merchant_uid", mid); 
+			String asd = ""; 
+			ovo.setOrd_code(imp);
+			ovo.setMerchant_uid(mid);
+			ovo.setId((String)session.getAttribute("userID"));
+			svo.setId((String)session.getAttribute("userID"));
+			uvo.setId((String)session.getAttribute("userID"));
+			try {
+				post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
+				HttpResponse res = client.execute(post); 
+				ObjectMapper mapper = new ObjectMapper(); 
+				String enty = EntityUtils.toString(res.getEntity()); 
+				JsonNode rootNode = mapper.readTree(enty); 
+				asd = rootNode.get("response").asText(); 
+			} catch (Exception e) { 
+				e.printStackTrace(); 
+			}
+			if (asd.equals("null")) {
+				System.err.println("환불실패");
+				return -1;
+			} else {
+				System.err.println("환불성공");
+
+				orderService.cancleOrder(ovo);
+				subscribeService.updateSubscribe(svo);
+				subscribeService.liset_deli_price_up(svo);
+				userService.updateuserle0(uvo);
+				return 1; 
+			} 
+		}
+		
 	//상품결제 폼 호출
 	@RequestMapping(value={"/pay"}, method=RequestMethod.GET)
 	public String pay(HttpServletRequest request, Model model) {

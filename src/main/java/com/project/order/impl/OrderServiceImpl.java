@@ -64,5 +64,10 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
+	@Override
+	public OrderVO subscribeOrderList(OrderVO vo) {
+		return mybatis.subscribeOrderList(vo);
+	}
+
 
 }

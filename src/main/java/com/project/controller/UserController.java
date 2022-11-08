@@ -152,7 +152,9 @@ public class UserController {
 		
 		String m_phone = (String) session.getAttribute("phone");
 		vo.setM_phone(m_phone);
-		
+		String password = vo.getM_pw();
+		String encryptPassword = passwordEncoder.encode(password);	
+		vo.setM_pw(encryptPassword);
 		userService.changePw(vo);
  
         return "redirect:singUp.wp";
