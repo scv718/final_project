@@ -18,6 +18,7 @@
 		<typeAlias type="com.project.cart.CartVO" alias="cart"></typeAlias>
 		<typeAlias type="com.project.community.CommunityVO" alias="community"></typeAlias>
 		<typeAlias type="com.project.mainmenu.MenuVO" alias="menu"></typeAlias>
+		<typeAlias type="com.project.community.AnswerVO" alias="answer"></typeAlias>
 	</typeAliases>
 
 	<mappers>

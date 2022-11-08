@@ -71,7 +71,7 @@
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
-                           <button  type="submit" class="delete_btn">주문취소</button>
+                           <button type="button" class="delete_btn">주문취소</button>
                            </form>
                       	</c:if>
                        
@@ -96,22 +96,24 @@
 $("#cancel_module").click(function () {
 	$.ajax({
 		url : "paycan.wp",
-		data : {"mid": $("#merchant_uid").val(),
-				"imp": $("#ord_code").val()
-		},
 		method : "POST",
+    	data : {"mid": $("#merchant_uid").val(),
+				"imp": $("#ord_code").val()
+			},
 		success : function(val){
-			console.log(val);
 			if(val==1) {
 				alert("취소 완료");
-				location.reload();
+				location.href = "myorderList.wp";
+			}	
+			else {
+				alert("취소 실패\n이미 취소되었거나 잘못된 정보입니다.");
 			}
-			else alert("취소 실패\n이미 취소되었거나 잘못된 정보입니다.");
 		},
 		error :  function(request, status){
 			alert("취소가 실패하였습니다.");
 		}
 	});
+	
 });
 </script>
 

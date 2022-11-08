@@ -34,17 +34,17 @@ public class IntroController {
 //		return "intro_modify.jsp";
 	}
 
-	// 인트로 조회
-//	@RequestMapping("/getIntroList.wp")
-//	public String getIntroList(IntroVO vo, Model model) {
-//		System.out.println("체크");
-//		model.addAttribute("introList", introService.getIntroList(vo));
-//		System.out.println(introService.getIntroList(vo));
-//		return "intro_modify.jsp";
-//	}
+//	 인트로 조회
+	@RequestMapping("/getIntroList.wp")
+	public String getIntroList(IntroVO vo, Model model) {
+		System.out.println("체크");
+		model.addAttribute("introList", introService.getIntroList(vo));
+		System.out.println(introService.getIntroList(vo));
+		return "intro_modify.jsp";
+	}
 
 
-	// 인트로 수정
+	// 인트로 수정 - 관리자
 	@RequestMapping("/updateIntro.wp")
 	public String updateIntro(MultipartHttpServletRequest request, @ModelAttribute("intro") IntroVO vo, Model model) 
 			throws IllegalStateException, IOException{

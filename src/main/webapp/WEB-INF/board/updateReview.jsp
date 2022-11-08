@@ -28,8 +28,8 @@ dt {
 <body class="d-flex flex-column min-vh-100">
 		<div id="reviewContainer">
 			<h3 id="comtitle">상품후기</h3>
-<!-- 			<form action="/updateReview.wp" method="post" enctype="multipart/form-data"> -->
-			<form name="dataForm" id="dataForm" onsubmit="return registerAction()" method="post">
+<!-- 			<form name="dataForm" id="dataForm" onsubmit="return registerAction()" method="post"> -->
+			<form name="dataForm" id="dataForm" method="post">
 			<div id="reviewcontent">
 				<div id="review-top">
 					<input type="hidden" id="re_no" name="re_no" value="${detailReview.re_no}">
@@ -64,7 +64,8 @@ dt {
 				<textarea name="re_content" id="updatecontent" rows="10" style="width:100%; resize:none;" placeholder="작성할 내용을 입력하세요.">${detailReview.re_content}</textarea>
 			</div>
 			<div id="review-bottom">
-					<button type="submit">확인</button>
+<!-- 					<button type="submit">확인</button> -->
+					<button type="button" onclick="registerAction()">확인</button>
 					<button type="button" onclick="location.href='javascript:window.history.back();'">취소</button>
 			</div>
 			</form>

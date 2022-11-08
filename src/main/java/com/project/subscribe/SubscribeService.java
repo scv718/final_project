@@ -21,6 +21,7 @@ public interface SubscribeService {
 	
 	//구독 정보리스트
 	List<SubscribeVO>getSubscribeList(SubscribeVO vo);
+	SubscribeVO getLevel(SubscribeVO vo);
 	//구독 배송비 조회
 	List<SubscribeVO>level_shipping(String vo);
 	//구독 배송비 0 and 2500

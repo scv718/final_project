@@ -161,7 +161,7 @@ $('.slider-1 > .side-btns > div').click(function(){
   			 </c:forEach>
 		</div>
     </div>
-    <div class="page-btns">
+    <div class="page-btns" style = "display: none">
         <div class="active"></div>
         <div></div>
         <div></div>
@@ -250,7 +250,10 @@ $('.WaterBtn').on('click', function () {
 
 </script> 
 
-<div class="bestSlider">
+<div class="bestSlider" style= "text-align: center;">
+
+<a id = "menutitle">#BestWine</a>
+
 <div class="slider-2">
     <div class="slides">
         <div class="active">
@@ -279,7 +282,7 @@ $('.WaterBtn').on('click', function () {
   			 </c:forEach>
 		</div>
     </div>
-    <div class="page-btns">
+    <div class="page-btns" style = "display: none">
         <div class="active"></div>
         <div></div>
         <div></div>

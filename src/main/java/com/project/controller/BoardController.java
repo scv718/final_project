@@ -50,6 +50,14 @@ public class BoardController {
 		return conditionMap;
 	}
 	
+	// 리뷰 중복확인
+	@ResponseBody
+	@PostMapping("/existReview.wp")
+	public int existReviewPost(int w_no, String id) throws Exception {
+		int check = reviewService.existReview(w_no, id);
+		return check;
+	}
+	
 	// 리뷰작성
 	@PostMapping(value = "/insertReview.wp")
 	public String insertReview(ReviewVO vo) throws IllegalStateException, IOException {
@@ -75,12 +83,12 @@ public class BoardController {
 	// 리뷰수정
 	@ResponseBody
 	@RequestMapping(value = "/updateReview.wp", method = RequestMethod.POST)
-	public String updateReview(@RequestParam("article_file") List<MultipartFile> multipartFile, 
+	public int updateReview(@RequestParam("article_file") List<MultipartFile> multipartFile, 
 			HttpServletRequest request, ReviewVO vo, HttpSession session) {
 		
-		String strResult = "{ \"result\":\"FAIL\" }";
 		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
-		String re_no = request.getParameter("re_no");
+//		String re_no = request.getParameter("re_no");
+		int re_no = vo.getRe_no();
 		System.out.println("리뷰번호"+re_no);
 		try {
 			// 파일이 있을때 탄다.
@@ -116,14 +124,10 @@ public class BoardController {
 					}
 				}
 				reviewService.updateReview(vo);
-				strResult = "{ \"result\":\"OK\" }";
-				System.out.println(strResult);
 			}
 			// 파일 아무것도 첨부 안했을때 탄다.
 			else {
 				reviewService.updateReview(vo);
-				strResult = "{ \"result\":\"OK\" }";
-				System.out.println(strResult);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -170,7 +174,7 @@ public class BoardController {
 	// 상품후기 게시판 목록
 	@RequestMapping("/getReviewList.wp")
 	public String getReviewListPost(HttpServletRequest request, ReviewVO vo, String nowPageBtn, Model model) {
-		System.out.println("글 목록 검색 처리");
+		System.out.println("글 목록 처리");
 		
 		// 총 목록 수
 		int totalPageCnt = reviewService.totalReviewListCnt(vo);

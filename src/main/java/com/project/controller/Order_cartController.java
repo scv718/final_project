@@ -98,10 +98,11 @@ public class Order_cartController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("level_shipping",subscribeService.level_shipping(Cid));
+		svo.setId(Cid);
+		model.addAttribute("level",subscribeService.getLevel(svo));
 		model.addAttribute("cartInfo", cartService.getCartList(Cid));
 
-		System.out.println(subscribeService.level_shipping(Cid) +"구독 배송값 리스트");
+		System.out.println(subscribeService.getLevel(svo) +"구독 배송값 리스트");
 		return "WEB-INF/view/mypage/cart.jsp";
 	}
 	

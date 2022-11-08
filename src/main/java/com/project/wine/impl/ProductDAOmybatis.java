@@ -20,6 +20,10 @@ public class ProductDAOmybatis {
 		
 		return mybatis.selectOne("ProductDAO.productdetail", vo);
 	}
+	public List<WineVO> subscribeproduct(WineVO vo) {
+		
+		return mybatis.selectList("ProductDAO.subscribeproduct", vo);
+	}
 
 	public List<WineVO> subscribeW1(WineVO vo) {
 		return mybatis.selectList("ProductDAO.subscribeW1", vo);

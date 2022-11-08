@@ -13,14 +13,15 @@ public class CommunityVO {
 	private String id;
 	private String commu_content;
 	private Date commu_date;
-	private int commu_count;
+	private int commu_count;//조회수
 	
 //	private String commu_photo1;
 //	private String files;
 	private String commu_photo2;
 	private String commu_photo3;
 	private String faq_cat;
-		
+	private String answer_status;
+	
 	private MultipartFile uploadFile; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
 	
 	//검색
@@ -33,6 +34,12 @@ public class CommunityVO {
 	
 	//페이징
 	private int offset;
+	
+	//답변
+	private String answer_con;
+	private int answer_no;
+	private int answer_cat;
+	private Date answer_date;
 	
 	public int getCommu_no() {
 		return commu_no;
@@ -152,6 +159,36 @@ public class CommunityVO {
 //	public void setFiles(String files) {
 //		this.files = files;
 //	}
+	public String getAnswer_con() {
+		return answer_con;
+	}
+	public void setAnswer_con(String answer_con) {
+		this.answer_con = answer_con;
+	}
+	public String getAnswer_status() {
+		return answer_status;
+	}
+	public void setAnswer_status(String answer_status) {
+		this.answer_status = answer_status;
+	}
+	public int getAnswer_no() {
+		return answer_no;
+	}
+	public void setAnswer_no(int answer_no) {
+		this.answer_no = answer_no;
+	}
+	public int getAnswer_cat() {
+		return answer_cat;
+	}
+	public void setAnswer_cat(int answer_cat) {
+		this.answer_cat = answer_cat;
+	}
+	public Date getAnswer_date() {
+		return answer_date;
+	}
+	public void setAnswer_date(Date answer_date) {
+		this.answer_date = answer_date;
+	}
 	
 	
 	

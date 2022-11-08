@@ -66,6 +66,17 @@
 		<if test="filter == 'null'">ORDER BY RE_NO DESC</if>
 	</select>
 	
+	<!-- 상품별 리뷰 목록조회 -->
+	<select id="productReviewList" resultType="review">
+		SELECT * FROM REVIEW
+		WHERE W_NO = #{w_no};
+	</select>
+	
+	<!-- 상품별 리뷰 개수 -->
+	<select id="productReviewListCnt" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW
+		WHERE W_NO = #{w_no};
+	</select>
 	
 	<!-- 리뷰 상세조회 -->
 	<select id="detailReview" resultType="review">
@@ -81,6 +92,12 @@
 		JOIN WP.REVIEW R
 		ON O.ID = R.ID
 		WHERE O.ID = #{id} AND O.W_NO = #{w_no} AND O.ORD_STAT='배송완료';
+	</select>
+	
+	<!-- 해당상품 리뷰 작성내역이 있는지 확인 -->
+	<select id="existReview" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW
+		WHERE ID = #{id} AND W_NO = #{w_no}
 	</select>
 
 	<!-- 해당상품 리뷰작성 -->

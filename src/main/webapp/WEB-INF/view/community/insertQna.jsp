@@ -80,6 +80,7 @@ var setting = {
 	<div class="container-fluid">
 		<form action="insertQna.wp" method="post" enctype="multipart/form-data">
 			<input type="hidden" class="form-control" name="commu_cat" value="2">
+			<input type="hidden" class="form-control" name="answer_status" value="답변대기">
 <%-- 			<input type="hidden" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>"> --%>
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">

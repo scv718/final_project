@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.community.AnswerVO;
 import com.project.community.CommunityVO;
 
 @Repository
@@ -39,17 +40,45 @@ public class QnaDAOMybatis {
 		System.out.println("===> mybatis getQna() 기능처리");
 		return (CommunityVO) mybatis.selectOne("QnaDAO.getQna", vo);
 	}
+	
+	// QNA 상세 조회(한줄)
+		public CommunityVO admin_getQna(CommunityVO vo) {
+			System.out.println("===> mybatis admin_getQna() 기능처리");
+			return (CommunityVO) mybatis.selectOne("QnaDAO.admin_getQna", vo);
+		}
 
 	// QNA 목록 조회(여러줄)
 	public List<CommunityVO> getQnaList(CommunityVO vo) {
 		System.out.println("===> mybatis getQnaList() 기능처리");
 		return mybatis.selectList("QnaDAO.getQnaList", vo);
 	}
+	
+	// QNA 목록 조회(여러줄)
+	public List<CommunityVO> admin_getQnaList(CommunityVO vo) {
+		System.out.println("===> mybatis admin_getQnaList() 기능처리");
+		return mybatis.selectList("QnaDAO.admin_getQnaList", vo);
+	}
 
 	// 전체 글 목록 개수
 	public int totalQnaListCnt(CommunityVO vo) {
 		System.out.println("===> mybatis totalQnaListCnt() 기능처리");
 		return mybatis.selectOne("QnaDAO.totalQnaListCnt", vo);
+	}
+
+	public void admin_insertQna(AnswerVO vo) {
+		System.out.println("===> mybatis admin_insertQna() 기능처리");
+		mybatis.insert("QnaDAO.admin_insertQna", vo);
+		
+	}
+
+	public void answerCount(int commu_no) {
+		System.out.println("===> mybatis answerCount() 기능처리");
+		mybatis.update("QnaDAO.answerCount", commu_no);
+	}
+
+	public void admin_updateQna(CommunityVO vo) {
+		System.out.println("===> mybatis admin_updateQna() 기능처리");
+		mybatis.update("QnaDAO.admin_updateQna", vo);
 	}
 
 }
