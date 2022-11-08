@@ -1,6 +1,18 @@
 	@charset "UTF-8";
-
-#menutitle{
+.type{
+	text-align: center;
+}
+hr{
+	    width: 930px !impotant;
+}
+.Btnimg{
+	display: inline-block;
+}
+.type > a{
+	    display: block;
+    font-size: 26px;
+}
+#menutitle, #typetitle{
 	font-size: 30px;
 /* 	font-family: Pretendard-Regular; */
 	margin-bottom: 10px;

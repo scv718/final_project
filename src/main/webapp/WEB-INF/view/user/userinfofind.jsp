@@ -101,7 +101,7 @@
 	  document.userInfo.submit();
 	};
 	</script>
-	<ul class="nav nav-tabs nav-justified">
+	<ul class="nav nav-tabs nav-justified" id = "menu">
 							<li class="nav-item"><a id="tabfont" class="nav-link active"
 								data-toggle="tab" href="#explain">아이디 찾기</a></li>
 							<li class="nav-item"><a id="tabfont" class="nav-link"
