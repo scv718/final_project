@@ -142,8 +142,7 @@
 							<span class="delivery_price">${deli_price}</span>원
 							</c:if>
 							<c:if test="${level eq 3}">
-							<span class="delivery_price">${deli_price}</span>원
-
+							<span class="delivery_price">${deli_price}</span>
 							</c:if>
                              </c:forEach>
                               </td>

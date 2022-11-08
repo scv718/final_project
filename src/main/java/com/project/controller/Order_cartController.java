@@ -53,6 +53,25 @@ public class Order_cartController {
 		return "WEB-INF/view/mypage/myorderList.jsp";
 		
 	}
+	//구독 내역
+	@RequestMapping("subscribe-3.wp")
+	public String subscribeList(OrderVO ovo, HttpSession session, Model model, WineVO wvo) {
+		System.out.println("구독내역");
+		
+		ovo.setId((String) session.getAttribute("userID"));
+		model.addAttribute("subscribe", orderSerivce.subscribeOrderList(ovo));
+		System.out.println(orderSerivce.subscribeOrderList(ovo));
+
+		return "WEB-INF/view/subscribe/subscribe-3.jsp";
+	}
+	//구독 내역 삭제
+	@RequestMapping(value ="/deletesubscribe.wp")
+	public String deletesubscribe(OrderVO ovo ,  HttpSession session) {
+		System.out.println("구독내역 삭제");
+		ovo.setId((String) session.getAttribute("userID"));
+		orderSerivce.deleteOrderList(ovo);
+		return "subscribe.wp";
+	}
 	
 	/* 장바구니 삭제 */
 	@RequestMapping(value ="/deleteOrder.wp")
