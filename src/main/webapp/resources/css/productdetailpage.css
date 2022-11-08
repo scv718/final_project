@@ -129,7 +129,7 @@ a:active {
 }
 
 #myform label { /* 이모지를 투명으로 하고 텍스트 그림자 효과에 색상 부여하는 방식으로 이모지 색상 변경. */
-	font-size: 1em;
+	font-size: 1.2em;
 	color: transparent;
 	text-shadow: 0 0 0 #e6e6e6;
 }
@@ -153,6 +153,23 @@ a:active {
 
 #comment {
 	margin-bottom: 10px;
+}
+
+.padding-div {
+	margin-bottom: 5px;
+}
+
+#filebtn {
+	border: 1px solid #ddd;
+	outline: none;
+}
+
+#inputfile {
+	display: none;
+}
+
+.form-control {
+	border: 1px solid lightgray;
 }
 
 /* 유경 끝 */

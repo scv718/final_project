@@ -9,6 +9,7 @@
 	href="${pageContext.request.contextPath}/resources/css/productdetailpage.css">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
+<script src="resources/js/fileupload.js"></script>
 <%@ include file="../../../header.jsp"%>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -31,19 +32,24 @@
 	$.ajax({
 		type : "post",
 		url : "existReview.wp",
-		dataType : "json",
+		dataType : "text",
 		data : {
 				'w_no' : w_no,
 				'id' : userId
 				},
-		error : function() {
+		error : function(request, error) {
 				alert("통신 에러");
+				//에러 원인
+				alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 				},
 		success : function(check) {
-					if (check == 0) {
+					if (check == '01') {
 						$('#noneDiv').show();
-					} else if (check == 1) {
-						alert("상품별 리뷰작성은 한 번만 가능합니다.");
+					} else if (check == '00') {
+						alert("구매한 회원만 작성이 가능합니다.\n(구매자일 경우, 배송완료 이후 가능)")
+						location.reload();
+					} else {
+						alert("상품별 후기작성은 한 번만 가능합니다.");
 						location.reload();
 					}
 				}
@@ -69,6 +75,7 @@
 		    $('#productthree').stop().animate({top:scrollTop-100}, duration);
 		    
 		});
+		
 	</script>
 	<!-- <form name="fm"> -->
 	<%-- <input name='w_nm_k' type='hidden' value='${product.w_nm_k}'> --%>
@@ -127,14 +134,11 @@
 						<div id="reviewContainer">
 							<div id="filterdiv">
 								<form action="getfilterList.wp" method="POST" id="filter">
-									<input type="radio" name="filter" value="PHOTO"
-										onchange="this.form.submit()"
-										<c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰만
-									보기&nbsp; <input type="radio" name="filter" value="NEW"
-										onchange="this.form.submit()"
+									<input type="radio" name="filter" value="PHOTO"	onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰만 보기&nbsp; 
+									<input type="radio" name="filter" value="NEW" onchange="this.form.submit()"
 										<c:if test="${radiochk eq 'NEW'}">checked</c:if>>최신순&nbsp;
-									<input type="radio" name="filter" value="LIKE"
-										onchange="this.form.submit()"
+									<input type="radio" name="filter" value="LIKE" onchange="this.form.submit()"
 										<c:if test="${radiochk eq 'LIKE'}">checked</c:if>>추천순
 								</form>
 							</div>
@@ -161,7 +165,7 @@
 									<c:forEach items="${reviewList}" var="review">
 										<tr>
 											<td><c:if test="${review.re_photo1 ne NULL}">
-													<i class="bi bi-image"></i>
+													<i class="bi bi-image" style="color: gray;"></i>
 												</c:if></td>
 											<td style="text-align: left">
 												<div>
@@ -209,36 +213,43 @@
 								<!-- 반복 끝 -->
 							</div>
 							<br>
+							<!-- 리뷰 작성 폼 -->
 							<div id="noneDiv" style="display: none;">
-								<form action="insertReview.wp" method="post" id="myform"
-									name="myform" enctype="multipart/form-data">
-									<h4 id="comtitle">후기작성</h4>
+								<h4 id="comtitle">후기작성</h4>
+								<form method="post" id="myform" name="myform">
 									<div id="writeContent">
 										<fieldset>
-											<input type="radio" name="rating" value="5" id="rate1"><label
-												for="rate1">⭐</label> <input type="radio" name="rating"
+											<input type="radio" name="re_score" value="5" id="rate1" required><label
+												for="rate1">⭐</label> <input type="radio" name="re_score"
 												value="4" id="rate2"><label for="rate2">⭐</label> <input
-												type="radio" name="rating" value="3" id="rate3"><label
-												for="rate3">⭐</label> <input type="radio" name="rating"
+												type="radio" name="re_score" value="3" id="rate3"><label
+												for="rate3">⭐</label> <input type="radio" name="re_score"
 												value="2" id="rate4"><label for="rate4">⭐</label> <input
-												type="radio" name="rating" value="1" id="rate5"><label
+												type="radio" name="re_score" value="1" id="rate5"><label
 												for="rate5">⭐</label>
 										</fieldset>
-										<span style="font-size: 14px;"> ※평점을 선택해 주세요.</span>
-										<div>
-											<input type="hidden" id="w_no" name="w_no"
-												value="${product.w_no}"> <input type="text"
-												name="re_title" id="inserttitle" placeholder="제목" required>
+										<span style="font-size: 14px;"> 평점을 선택해 주세요.</span>
+										<div class="padding-div">
+											<input type="hidden" class="form-control" name="w_no" value="${product.w_no}"> 
+											<input type="text" class="form-control" name="re_title" placeholder="제목" required>
 										</div>
-										<div>
-											<input type="text" name="id" value="${userID}" readonly>
+										<div class="padding-div">
+											<input type="text" class="form-control" name="id" value="${userID}" readonly>
 										</div>
-										<div>
+										<div class="padding-div">
+											<button id="filebtn" type="button" name="re_photo1">파일추가</button>
+											<input id="inputfile" type="file" multiple="multiple" accept=".jpg, .png">
+											<span style="font-size:14px; color: gray;">※파일은 최대 3개까지 등록 가능합니다.</span>
+											<div class="data_file_txt" id="data_file_txt">
+												<div id="articlefileChange"></div>
+											</div>
+										</div>
+										<div class="padding-div">
 											<textarea class="form-control" rows="10" id="comment"
-												name="content" style="resize: none"
+												name="re_content" style="resize: none"
 												placeholder="작성할 내용을 입력하세요." required></textarea>
 										</div>
-										<button class="writebtn" onclick="">작성</button>
+										<button class="writebtn" type="button" onclick="insertAction()">작성</button>
 										<button class="writebtn" type="button" onclick="offDisplay()">닫기</button>
 									</div>
 								</form>

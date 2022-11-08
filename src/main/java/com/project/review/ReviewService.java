@@ -6,6 +6,9 @@ public interface ReviewService {
 	
 	//리뷰 중복확인
 	int existReview(int w_no, String id) throws Exception;
+	
+	//배송완료 회원확인
+	int orderMember(int w_no, String id);
 
 	//리뷰 작성
 	void insertReview(ReviewVO vo);
