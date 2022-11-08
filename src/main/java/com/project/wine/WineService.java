@@ -3,7 +3,7 @@ package com.project.wine;
 import java.util.List;
 
 public interface WineService {
-	//구독 생성
+	//생성
 	void insertWine(WineVO vo);
 	//구독 정보수정
 	void updateWine(WineVO vo);

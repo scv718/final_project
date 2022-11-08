@@ -87,7 +87,7 @@
 		</a>
 	</div>
 
-	<a href="payment.wp" role="button">
+	<a href="myorderList.wp" role="button">
 		<div class="col-md-3">
 			<div>
 				<svg id="amo" xmlns="http://www.w3.org/2000/svg" width="118px"
@@ -99,7 +99,8 @@
 						d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
 					<path
 						d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1Z" /></svg>
-				<div class="text">구매내역</div>
+				
+				<div class="text">주문내역</div>
 			</div>
 	</a>
 	</div>
@@ -110,7 +111,7 @@
 	<div class="listContainer">
 		<a href="payment.wp" class="item">
 			<div class="text">주문목록</div>
-			<div class="right">></div>
+			<div class="right"></div>
 		</a>
 	</div>
 
@@ -135,31 +136,6 @@
 		</a>
 	</div>
 
-
-	<div class="listContainer">
-		<a href="payment.wp" class="item">
-			<div class="text">
-				<span>내지갑</span> <span class="smallLight"> <span>|</span> <span>보유
-						적립금</span>
-				</span>
-			</div>
-
-			<div class="right">
-				<span class="blct">175 BLCT</span> >
-			</div>
-
-		</a>
-	</div>
-
-	<div class="listContainer">
-		<a href="payment.wp" class="item">
-
-			<div class="text">설정</div>
-			<div class="right">></div>
-		</a>
-	</div>
-	</div>
-	</div>
 
 	<%@ include file="/footer.jsp"%>
 </body>

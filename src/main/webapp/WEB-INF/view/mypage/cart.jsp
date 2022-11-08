@@ -11,7 +11,7 @@
    href="${pageContext.request.contextPath}/resources/css/cart.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-<body>
+<body class = "d-flex flex-column min-vh-100">
 <%@ include file="../../../header.jsp"%>
 <div class="wrapper">
    <div class="wrap">   
@@ -62,12 +62,13 @@
                            <input type="hidden" name="w_nm_k"value="${ci.w_nm_k}"/>
                            <input type="hidden" name="w_nm_e"value="${ci.w_nm_e}"/>   
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}"/>   
-                           <input type="hidden" name="quantity"value="${ci.quantity}"/>                
+                           <input type="hidden" name="quantity"value="${quantity}"/>  
+                            <input type="hidden" name="w_image1"value="${w_image1}"/>              
                         </td>
 
-<%--   <div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].W_IMAGE1}"> --%>
-<!--                               <img></div>                         -->
-<!--                         </td> -->
+
+   <td class="td_width_2" id="image_wrap"><img id =  "w_image1" src = "resources/img/wine/${ci.w_image1}"><img></td>
+      
                         <td class="td_width_3">${ci.w_nm_k}(${ci.w_nm_e})</td>
                         <td class="td_width_4 price_td">
                            상품금액 : <fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /><br>
@@ -78,7 +79,7 @@
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}">
                            <input type="hidden"name="quantity" value="${ci.quantity}">   
                            
-                              <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input" maxlength ="ci.quantity">   
+                              <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input">   
                               <button type = "button" class="quantity_btn plus_btn">+</button>
                                <button  type = "button"  class="quantity_btn minus_btn">-</button>
                            </div>
@@ -121,17 +122,21 @@
                         <table>              
                            <tr>
                               <td>총 상품 가격</td>
-                              <td>         
+                              <td>         <c:set var="totalKind" value="${totalKind + ci.ord_quan}" />
                                  <span class="totalPrice_span"><c:out value="${totalPrice}"/></span>원
                               </td>
                            </tr>
-                           <tr>                  
-                              <td>배송비</td>
+                           <tr>      
+                            <td>배송비</td>            
                               <td>
-                              <c:forEach var="deliveryPrice" items="${mylevel.level}">
-                              <c:set var="totalKind" value="${totalKind + ci.ord_quan}" />
-                                 <span class="delivery_price"><c:out value="${deliveryPrice}"/></span>원
-                                 	</c:forEach>
+                              <c:choose>
+                              <c:when test="${level.level < 0}">
+                               <span class="delivery_price">2500</span>원	
+                              </c:when>
+                              <c:otherwise>
+                               <span class="delivery_price">0</span>원
+                              </c:otherwise>
+                              </c:choose>
                               </td>
                               
                            </tr>                           
@@ -154,12 +159,12 @@
                <div class="boundary_div">구분선</div>
                <table>
                   <tr>
-                     <td>
+                     <td> 
                         <table>
                            <tbody>
                               <tr>
                                  <td><strong>총 결제 예상 금액</strong></td>
-                                 <td><span class="finalTotalPrice_span"><c:out value="${totalPrice}"/>원</span> </td>
+                                 <td><span class="finalTotalPrice_span"><c:out value="${totalPrice + deli_price}"/>원</span> </td>
                               </tr>
                            </tbody>
                         </table>
@@ -233,10 +238,6 @@ $(".all_check_input").on("click", function(){
 
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
-	
-	
-
-// 	console.log(시작);
 
    let totalCount = 0;            // 총 갯수
    let totalKind = 0;            // 총 종류
@@ -279,32 +280,16 @@ function setTotalInfo(){
 //    $(".finalTotalPrice_span").text(finalTotalPrice);      
 }
 
-/* 수량버튼 */
 
 $(".plus_btn").on("click", function(){
-	let quantity = document.getElementById('quantity');
-   let ord_quan = $(this).parent("div").find("input").val();
-   console.log('수량 버튼');
-   $(this).parent("div").find("input").val(++ord_quan);
-});
-
-$(".plus_btn").on("click", function(){
-	let quantity = document.getElementById('quantity');
-   let ord_quan = $(this).parent("div").find("input").val();
-   console.log('수량 버튼');
-   $(this).parent("div").find("input").val(++ord_quan);
-});
-
-
-$(".plus_btn").on("click", function(){
-	   let quantity = $(this).parent("div").find("input").val();
-	   $(this).parent("div").find("input").val(++quantity);
+	   let ord_quan = $(this).parent("div").find("input").val();
+	   $(this).parent("div").find("input").val(++ord_quan);
 
 	});
 	$(".minus_btn").on("click", function(){
-	   let quantity = $(this).parent("div").find("input").val();
-	   if(quantity > 1){
-	      $(this).parent("div").find("input").val(--quantity);      
+	   let ord_quan = $(this).parent("div").find("input").val();
+	   if(ord_quan > 1){
+	      $(this).parent("div").find("input").val(--ord_quan);      
 	   }
 	});	
 

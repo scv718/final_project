@@ -26,7 +26,7 @@
 			</p>
 			<span class="parent"><p class="child">와인과 떠나는 여행 궁금하다면</p></span> <span
 				class="parent"><p class="child">
-					<a href="payment.wp" role="button" >'구독'</a>을 눌러주세요
+					<a href="subscribe-1.wp" role="button" >'구독'</a>을 눌러주세요
 				</p></span>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 					<img src="resources/img/구독-2.jpg" alt="와인구독" />
 					<div class="caption">
 						<h1>
-							<br>와인 입문자를 위한 <br>패키지<br>
+							<br>와인 입문자<br>패키지<br>
 							<br>
 						</h1>
 						<h2>
@@ -51,7 +51,7 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-							<a href="payment.wp" > 
+							<a href="subscribeP.wp" > 
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 입문자로 성장하기</button>
 							</a>
@@ -66,7 +66,7 @@
 					<img src="resources/img/구독-5.jpg" alt="와인구독" />
 					<div class="caption">
 						<h1>
-							<br>와인 마니아를 위한 <br>패키지<br>
+							<br>와인 마니아<br>패키지<br>
 							<br>
 						</h1>
 						<h2>
@@ -79,7 +79,7 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-							<a href="payment.wp" > 
+							<a href="subscribeM.wp" > 
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마니아로 성장하기</button>
 							</a>
@@ -95,7 +95,7 @@
 					<img src="resources/img/구독-4.jpg" alt="와인구독" id="img-4"/>
 					<div class="caption">
 						<h1>
-							<br>와인 마스터를 위한 <br>패키지<br>
+							<br>와인 마스터<br>패키지<br>
 							<br>
 						</h1>
 						<h2>
@@ -108,7 +108,7 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-							<a href="payment.wp"> 
+							<a href="subscribeG.wp"> 
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마스터로 성장하기</button>
 							</a>

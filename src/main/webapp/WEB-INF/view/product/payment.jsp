@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
-<link rel="stylesheet" href="/resources/css/order.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- 다음주소 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
@@ -364,6 +364,10 @@ function checkOnlyOne(element) {
 <form name="fm">
 <c:forEach items="${product}" var="ol">
 <input name='ord_cart_noList' type='hidden' value='${ol.ord_cart_no}'>
+<input name='w_nm_k_List' type='hidden' value='${ol.w_nm_k}'>
+<input name='w_nm_k' type='hidden' value='${ol.w_nm_k}'>
+<input name='w_nm_e_List' type='hidden' value='${ol.w_nm_e}'>
+<input name='w_nm_e' type='hidden' value='${ol.w_nm_e}'>
 <input name='w_noList' type='hidden' value='${ol.w_no}'>
 </c:forEach>
 	<input type="hidden" name="unm" id="unm" value = "${user.m_name}" ><br>
@@ -469,7 +473,6 @@ $("#check_module").click(function () {
 })
 
 function orderList(){
-	alert('주문내역 처리할 곳. 컨트롤러 호출');
 	let fm = document.fm;
 	fm.action ="pay.wp";
 	fm.method="post";

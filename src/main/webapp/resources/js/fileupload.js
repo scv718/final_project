@@ -26,7 +26,8 @@
     } else {
       fileCount = fileCount + filesArr.length;
     }
-
+    
+   
     filesArr.forEach(function (f) {
       var reader = new FileReader();
       reader.onload = function (e) {
@@ -56,14 +57,15 @@ function fileDelete(fileNum){
 
 
 function registerAction(){
+    let renum;
     var form = $("form")[0];        
-     var formData = new FormData(form);
-      for (var x = 0; x < content_files.length; x++) {
+    var formData = new FormData(form);
+    for (var x = 0; x < content_files.length; x++) {
 
-        if(!content_files[x].is_delete){
-           formData.append("article_file", content_files[x]);
-        }
+      if(!content_files[x].is_delete){
+       formData.append("article_file", content_files[x]);
       }
+    }
 
 
       $.ajax({
@@ -76,11 +78,16 @@ function registerAction(){
    	      async: false,
    	      success: function(data){
    	      	alert("수정 완료");
-   	      	location.href="detailReview.wp?re_no="+data;
+   	      	renum = data;
    	      },
    	      error: function(xhr, status, error) {
    	    	alert("잠시 후 다시 시도해주시기 바랍니다.");
    	      return false;
    	      }
    	    });
+   	    detailRe(renum);
 	}
+	
+function detailRe(renum){
+    location.href="detailReview.wp?re_no="+renum;
+}
