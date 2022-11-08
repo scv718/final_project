@@ -36,7 +36,16 @@ public class UserDAOMybatis {
 		}
 		return mybatis.selectList("UserDAO.getUserList");
 	}
-
+	
+	public List<UserVO> getUserListod(UserVO vo) {
+		
+		System.out.println("유저 마이 바티스 실행");
+		List<UserVO> a = mybatis.selectList("UserDAO.getUserList");
+		for(UserVO v : a ) {
+			System.out.println("v: "+v);
+		}
+		return mybatis.selectList("UserDAO.getUserList");
+	}
 
 	public void insertUser(UserVO vo) {
 		mybatis.insert("UserDAO.insertUser", vo);

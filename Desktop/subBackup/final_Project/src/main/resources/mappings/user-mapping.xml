@@ -16,6 +16,11 @@
 		select * from member
 	</select>
 	
+	<select id="getUserListod" resultType="users">
+		SELECT o.ord_code, o.ord_date, m.id FROM member 
+		AS m left OUTER JOIN order_list AS o on o.ID=m.id;
+	</select>
+	
 	<select id="checkUser" resultType="int">
 		select count(*) from member
 		where id = #{id}

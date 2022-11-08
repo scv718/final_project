@@ -24,5 +24,6 @@ public class WineSearchController {
 		model.addAttribute("wineList", wineService.getWineList(vo));
 		return "WEB-INF/view/Search/wineSearchList.jsp";
 	}
-	
+
+		
 }

@@ -107,4 +107,10 @@ public class UserServeImpl implements UserService{
 		userDAO.deleteMember(vo);
 	}
 
+	@Override
+	public List<UserVO> getUserListod(UserVO vo) {
+		System.out.println("유처서비스 임플까지 진행됨");
+		return userDAO.getUserListod(vo);
+	}
+
 }

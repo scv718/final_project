@@ -15,6 +15,7 @@ public class WineVO {
 	private int w_tannins;
 	private int quantity;
 	private int w_price;
+	private int w_sales;
 	private String w_info;
 	private String w_image1;
 	private String w_image2;
@@ -23,15 +24,19 @@ public class WineVO {
 	private String w_a_img;
 	private String w_t_img;
 	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "WineSearchVO [w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + ", continental="
-				+ continental + ", country=" + country + ", since=" + since + ", type=" + type + ", w_sweet=" + w_sweet
-				+ ", w_body=" + w_body + ", w_acidity=" + w_acidity + ", w_tannins=" + w_tannins + ", quantity="
-				+ quantity + ", w_price=" + w_price + ", w_info=" + w_info + ", w_image1=" + w_image1 + ", w_image2="
-				+ w_image2 + ", w_s_img=" + w_s_img + ", w_b_img=" + w_b_img + ", w_a_img=" + w_a_img + ", w_t_img="
-				+ w_t_img + "]";
+		return "WineVO [w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e + ", continental=" + continental
+				+ ", country=" + country + ", since=" + since + ", type=" + type + ", w_sweet=" + w_sweet + ", w_body="
+				+ w_body + ", w_acidity=" + w_acidity + ", w_tannins=" + w_tannins + ", quantity=" + quantity
+				+ ", w_price=" + w_price + ", w_sales=" + w_sales + ", w_info=" + w_info + ", w_image1=" + w_image1
+				+ ", w_image2=" + w_image2 + ", w_s_img=" + w_s_img + ", w_b_img=" + w_b_img + ", w_a_img=" + w_a_img
+				+ ", w_t_img=" + w_t_img + "]";
 	}
+	
 	public int getW_no() {
 		return w_no;
 	}
@@ -110,6 +115,12 @@ public class WineVO {
 	public void setW_price(int w_price) {
 		this.w_price = w_price;
 	}
+	public int getW_sales() {
+		return w_sales;
+	}
+	public void setW_sales(int w_sales) {
+		this.w_sales = w_sales;
+	}
 	public String getW_info() {
 		return w_info;
 	}
@@ -152,6 +163,5 @@ public class WineVO {
 	public void setW_t_img(String w_t_img) {
 		this.w_t_img = w_t_img;
 	}
-	
 	
 }

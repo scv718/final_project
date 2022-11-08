@@ -25,7 +25,8 @@ public interface UserService {
 	void updateMember(UserVO vo);
 	void deleteMember(UserVO vo);
 	List<UserVO> getUserList(UserVO vo);
-
+	//oder
+	List<UserVO> getUserListod(UserVO vo);
 	
 	
 }
