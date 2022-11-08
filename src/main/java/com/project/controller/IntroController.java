@@ -44,7 +44,7 @@ public class IntroController {
 	}
 
 
-	// 인트로 수정
+	// 인트로 수정 - 관리자
 	@RequestMapping("/updateIntro.wp")
 	public String updateIntro(MultipartHttpServletRequest request, @ModelAttribute("intro") IntroVO vo, Model model) 
 			throws IllegalStateException, IOException{

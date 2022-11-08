@@ -110,14 +110,23 @@
 				</div>
 				<div class="panel">
 					<p>${qna.commu_content}</p>
-					<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a>
-<%-- 					<form action="deleteQna.wp?commu_no=${qna.commu_no}"> --%>
-<%-- 					<input type="hidden" class="form-control" name="commu_no" value="${qna.commu_no}"> --%>
-<!-- 					<input type="submit" id="conDel" value="삭제"> -->
-<!-- 					</form> -->
-					<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a>
+					<c:choose>
+						<c:when test="${qna.answer_status eq '답변대기'}">
+							<span>
+							<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a>
+							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a>
+							</span>
+						</c:when>
+						<c:when test="${qna.answer_status eq '답변완료'}">
+							<span>
+							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a>
+							</span>
+						</c:when>
+					</c:choose>
+<%-- 					<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a> --%>
+<%-- 					<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a> --%>
+					<p>${qna.answer_con}</p>
 				</div>
-				
 				</c:forEach>
 		</div>
 

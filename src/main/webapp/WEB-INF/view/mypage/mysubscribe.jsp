@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			
-<div class="mt"><a href="payment.wp" ><button type="button" id="colre" class="w-100 btn btn-lg btn-outline-primary">구독 수정</button></a></div>
+<div class="mt"><a href="subscribe-3.wp" ><button type="button" id="colre" class="w-100 btn btn-lg btn-outline-primary">구독 수정</button></a></div>
 <a href="test.wp" >test</a>
 			<div class="mb-3 mt-3">
 				<c:choose>

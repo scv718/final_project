@@ -31,7 +31,7 @@
 		</div>
 	</div>
 
-		<div id="fofo">
+	<div id="fofo">
 				<div class="row" id="bookmark">
 			<div class="col-md-4">
 				<div class="thumbnail">
@@ -84,6 +84,34 @@
 									class="w-100 btn btn-lg btn-outline-primary">와인 마니아로 성장하기</button>
 							</a>
 						</p>
+					</div>
+				</div>
+			</div>
+	
+
+	
+		<div class="col-md-4">
+				<div class="thumbnail">
+					<img src="resources/img/구독-4.jpg" alt="와인구독" id="img-4"/>
+					<div class="caption">
+						<h1>
+							<br>와인 마스터<br>패키지<br>
+							<br>
+						</h1>
+						<h2>
+							309,000원<br>
+						</h2>
+						<h2>
+							결제일 : <span>매월 1일</span>
+						</h2>
+						<h2>
+							도착일 : <span>매월 20일</span>
+						</h2>
+						<p>
+							<a href="subscribeG.wp"> 
+								<button type="button" id="colre"
+									class="w-100 btn btn-lg btn-outline-primary">와인 마스터로 성장하기</button>
+							</a>
 					</div>
 				</div>
 			</div>

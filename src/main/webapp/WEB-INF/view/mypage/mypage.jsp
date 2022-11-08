@@ -117,19 +117,15 @@
 
 	<div class="listContainer">
 		<a href="payment.wp" class="item">
-			<div class="text">???</div>
-			<div class="right">></div>
 			<div class="text">상품 리뷰</div>
-			<div class="right"></div>
+			<div class="right">></div>
 		</a>
 	</div>
 
 	<div class="listContainer">
 		<a href="payment.wp" class="item">
-			<div class="text">???</div>
-			<div class="right">></div>
 			<div class="text">상품문의</div>
-			<div class="right"></div>
+			<div class="right">></div>
 		</a>
 	</div>
 
