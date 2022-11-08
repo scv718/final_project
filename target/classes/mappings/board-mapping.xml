@@ -87,10 +87,10 @@
 	</select>
 
 	<!-- 해당상품 리뷰작성 권한 확인(결과가 0이면 작성 불가) -->
-	<select id="confirmWriter" resultType="_int">
-		SELECT COUNT(*) FROM WP.ORDER O
-		JOIN WP.REVIEW R
-		ON O.ID = R.ID
+	<select id="orderMember" resultType="_int">
+		SELECT COUNT(*) FROM ORDER_LIST O
+		JOIN REVIEW R
+		ON O.W_NO = R.W_NO
 		WHERE O.ID = #{id} AND O.W_NO = #{w_no} AND O.ORD_STAT='배송완료';
 	</select>
 	

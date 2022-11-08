@@ -64,7 +64,6 @@ dt {
 				<textarea name="re_content" id="updatecontent" rows="10" style="width:100%; resize:none;" placeholder="작성할 내용을 입력하세요.">${detailReview.re_content}</textarea>
 			</div>
 			<div id="review-bottom">
-<!-- 					<button type="submit">확인</button> -->
 					<button type="button" onclick="registerAction()">확인</button>
 					<button type="button" onclick="location.href='javascript:window.history.back();'">취소</button>
 			</div>

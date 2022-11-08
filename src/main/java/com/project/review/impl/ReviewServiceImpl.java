@@ -20,6 +20,12 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDAO.existReview(w_no, id);
 	}
 	
+	//배송완료 회원확인
+	@Override
+	public int orderMember(int w_no, String id) {
+		return reviewDAO.orderMember(w_no, id);
+	}
+	
 	//리뷰 작성
 	@Override
 	public void insertReview(ReviewVO vo) {

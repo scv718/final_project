@@ -57,7 +57,7 @@
 			<c:forEach items="${reviewList}" var="review">
 				<tr>
 					<td class="tdCenter">${review.re_no}</td>
-					<td><c:if test="${review.re_photo1 ne NULL}"><i class="bi bi-image"></i></c:if></td>
+					<td><c:if test="${review.re_photo1 ne NULL}"><i class="bi bi-image" style="color: gray;"></i></c:if></td>
 					<td style="text-align:left"><div><a href="" class="productlink">${review.w_nm_k}</a>
 						<br><a href="detailReview.wp?re_no=${review.re_no}" class="detailreview">${review.re_title}</a></div></td>
 					<td class="tdCenter">${review.re_score}</td>

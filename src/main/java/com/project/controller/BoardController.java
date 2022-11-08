@@ -41,6 +41,8 @@ public class BoardController {
 	@Autowired
 	private LikeService likeService;
 	
+	
+	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<String, String>();
@@ -50,26 +52,85 @@ public class BoardController {
 		return conditionMap;
 	}
 	
-	// 리뷰 중복확인
+	// 배송완료된 회원인지 체크 및 리뷰 중복확인
 	@ResponseBody
 	@PostMapping("/existReview.wp")
-	public int existReviewPost(int w_no, String id) throws Exception {
-		int check = reviewService.existReview(w_no, id);
-		return check;
+	public String existReviewPost(int w_no, String id) throws Exception {
+		String check = Integer.toString(reviewService.existReview(w_no, id)); //0이면 작성가능
+		String check2 = Integer.toString(reviewService.orderMember(w_no, id)); //1이면 작성가능
+		System.out.println(check + check2);
+		return check + check2;
 	}
 	
 	// 리뷰작성
-	@PostMapping(value = "/insertReview.wp")
-	public String insertReview(ReviewVO vo) throws IllegalStateException, IOException {
-		MultipartFile uploadFile = vo.getUploadFile();
+	@ResponseBody
+	@RequestMapping(value = "/insertReview.wp", method = RequestMethod.POST)
+	public int insertReview(@RequestParam("article_file") List<MultipartFile> multipartFile, HttpServletRequest request, ReviewVO vo,  HttpSession session) throws IllegalStateException, IOException {
+//		MultipartFile uploadFile = vo.getUploadFile();
+//		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+//		String fileName = uploadFile.getOriginalFilename();
+//		if(!uploadFile.isEmpty()) {
+//			vo.setRe_photo1(fileName);
+//			uploadFile.transferTo(new File(realPath+fileName));
+//		}
+//		reviewService.insertReview(vo);
+//		return "getReviewList.wp";
+		
+		System.out.println("리뷰 작성 컨트롤러");
+		String strResult = "{ \"result\":\"FAIL\" }";
+		
+		int w_no = vo.getW_no();
+		System.out.println("와인번호:"+w_no+", 회원id:"+vo.getId());
+		
+//		vo.setId((String)session.getAttribute("userID"));
 		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
-		String fileName = uploadFile.getOriginalFilename();
-		if(!uploadFile.isEmpty()) {
-			vo.setRe_photo1(fileName);
-			uploadFile.transferTo(new File(realPath+fileName));
+		try {
+			// 파일이 있을때 탄다.
+			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
+				int index = 1;
+				for(MultipartFile file:multipartFile) {
+					
+					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일명
+					System.out.println("파일명"+savedFileName);
+
+				    if(index == 1) {
+				    	vo.setRe_photo1(savedFileName);
+				    } else if(index == 2) {
+				    	vo.setRe_photo2(savedFileName);
+				    } else {
+				    	vo.setRe_photo3(savedFileName);
+				    }
+				    index++;
+					File targetFile = new File(realPath + savedFileName);	
+
+					try {
+						InputStream fileStream = file.getInputStream();
+						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+						System.out.println("파일저장");
+					} catch (Exception e) {
+						//파일삭제
+						FileUtils.deleteQuietly(targetFile); //저장된 현재 파일 삭제
+						e.printStackTrace();
+						System.out.println("파일삭제");
+						break;
+						
+					}
+				}
+				strResult = "{ \"result\":\"OK\" }";
+				reviewService.insertReview(vo);
+			}
+			// 파일 아무것도 첨부 안했을때 탄다.
+			else {
+				strResult = "{ \"result\":\"OK\" }";
+				System.out.println(strResult);
+				reviewService.insertReview(vo);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		reviewService.insertReview(vo);
-		return "getReviewList.wp";
+		return w_no;
 	}
 	
 	// 리뷰 수정 페이지 이동
@@ -83,8 +144,7 @@ public class BoardController {
 	// 리뷰수정
 	@ResponseBody
 	@RequestMapping(value = "/updateReview.wp", method = RequestMethod.POST)
-	public int updateReview(@RequestParam("article_file") List<MultipartFile> multipartFile, 
-			HttpServletRequest request, ReviewVO vo, HttpSession session) {
+	public int updateReview(@RequestParam("article_file") List<MultipartFile> multipartFile, HttpServletRequest request, ReviewVO vo) {
 		
 		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
 //		String re_no = request.getParameter("re_no");
@@ -117,7 +177,7 @@ public class BoardController {
 						System.out.println("파일저장");
 					} catch (Exception e) {
 						//파일삭제
-						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+						FileUtils.deleteQuietly(targetFile); //저장된 현재 파일 삭제
 						e.printStackTrace();
 						System.out.println("파일삭제");
 						break;

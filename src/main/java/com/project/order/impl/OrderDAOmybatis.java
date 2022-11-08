@@ -23,6 +23,11 @@ public class OrderDAOmybatis {
 	public void subscribeOrder(OrderVO vo) {
 		mybatis.insert("OrderDAO.subscribeOrder", vo);
 	}
+	//구독취소
+	public OrderVO subscribeOrderList(OrderVO vo) {
+		return mybatis.selectOne("OrderDAO.subscribeOrderList", vo);
+	}
+
 	public List<OrderVO> selectOrderList(OrderVO vo) {
 		return mybatis.selectList("OrderDAO.selectOrderList", vo);
 	}

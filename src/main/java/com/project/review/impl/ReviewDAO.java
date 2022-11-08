@@ -16,12 +16,28 @@ public class ReviewDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	//리뷰 중복확인
 	public int existReview(int w_no, String id) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("w_no", w_no);
 		int a = mybatis.selectOne("BoardDAO.existReview", map);
-		System.out.println(a);
+		if(a > 0) {
+			System.out.println("이미 작성한 회원입니다.");
+		} else System.out.println("작성 가능한 회원입니다.");
+		
+		return a;
+	}
+	
+	//배송완료 회원확인
+	public int orderMember(int w_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("w_no", w_no);
+		int a = mybatis.selectOne("BoardDAO.orderMember", map);
+		if(a > 0) {
+			System.out.println("배송완료 회원입니다.");
+		} else System.out.println("배송이 완료되지 않은 회원입니다.");
 		return a;
 	}
 	
