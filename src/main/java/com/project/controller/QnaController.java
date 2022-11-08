@@ -2,11 +2,16 @@ package com.project.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +19,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.common.PagingVO;
 import com.project.community.AnswerVO;
@@ -38,32 +47,87 @@ public class QnaController {
 			return conditionMap;
 		}
 	
-	@GetMapping(value="/insertQna.wp")
+	@GetMapping(value="/insertQna_get.wp")
 	public String insertQna_get(CommunityVO vo) throws IllegalStateException, IOException {
 		return "WEB-INF/view/community/insertQna.jsp";
 	}
 	
 	
-	//"uploadFile" 추가시 
-	@PostMapping(value = "/insertQna.wp")
-//	public String insertBoard(MultipartHttpServletRequest request, BoardVO vo) throws IllegalStateException, IOException {
-	public String insertQna(CommunityVO vo) throws IllegalStateException, IOException {
+//	//"uploadFile" 추가시 
+//	@PostMapping(value = "/insertQna.wp")
+//	public String insertQna(CommunityVO vo) throws IllegalStateException, IOException {
 //		MultipartFile uplodFile = vo.getUploadFile();
-		//realPath 추가
-//	    String realPath = request.getSession().getServletContext().getRealPath("/img/");
+//		//realPath 추가
+////	    String realPath = request.getSession().getServletContext().getRealPath("/img/");
 //		String realPath = "c:/swork/final_project/src/main/webapp/resources/img/" ;
-//	    String commu_photo1 = uplodFile.getOriginalFilename();
+//	    String fileName = uplodFile.getOriginalFilename();
 //		if(!uplodFile.isEmpty()) {
-//			vo.setCommu_photo1(commu_photo1);
-//			uplodFile.transferTo(new File(realPath+commu_photo1));
+//			vo.setCommu_photo1(fileName);
+//			uplodFile.transferTo(new File(realPath+fileName));
 //		}
-		qnaService.insertQna(vo);
-		return "redirect:getQnaList.wp";
-	}
+//		qnaService.insertQna(vo);
+//		return "redirect:getQnaList.wp";
+////		return "getQnaList.wp";
+//	}
+	
+	// 
+		@ResponseBody
+		@RequestMapping(value = "/insertQna.wp", method = RequestMethod.POST)
+		public int insertQna(@RequestParam("article_file") List<MultipartFile> multipartFile, 
+				HttpServletRequest request, CommunityVO vo, HttpSession session) {
+			
+			String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+			int commu_no = vo.getCommu_no();
+			System.out.println("vo: "+vo);
+			try {
+				// 파일이 있을때 탄다.
+				if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
+					int index = 1;
+					for(MultipartFile file:multipartFile) {
+						
+						String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+						String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+						String savedFileName = UUID.randomUUID() + extension;	//저장될 파일명
+						System.out.println("파일명"+savedFileName);
+
+					    if(index == 1) {
+					    	vo.setCommu_photo1(savedFileName);
+					    } else if(index == 2) {
+					    	vo.setCommu_photo2(savedFileName);
+					    } else {
+					    	vo.setCommu_photo3(savedFileName);
+					    }
+					    index++;
+						File targetFile = new File(realPath + savedFileName);	
+
+						try {
+							InputStream fileStream = file.getInputStream();
+							FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+							System.out.println("파일저장");
+						} catch (Exception e) {
+							//파일삭제
+							FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+							e.printStackTrace();
+							System.out.println("파일삭제");
+							break;
+						}
+					}
+					qnaService.insertQna(vo);
+				}
+				// 파일 아무것도 첨부 안했을때 탄다.
+				else {
+					qnaService.insertQna(vo);
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return commu_no;
+			
+		}
 	
 	// 관리자 1:1 답변 등록
 	@PostMapping(value = "/admin_insertQna.wp")
-	public String insertQna(AnswerVO vo) throws IllegalStateException, IOException {
+	public String insertQna(AnswerVO vo, Model model) throws IllegalStateException, IOException {
 		
 		//답변상태
 		qnaService.answerCount(vo.getCommu_no());
@@ -72,28 +136,82 @@ public class QnaController {
 		return "redirect:admin_getQnaList.wp";
 	}
 
-	// 1:1 문의 수정 - 사용자
-	@PostMapping("/updateQna.wp")
-//		public String updateNotice(MultipartHttpServletRequest request,@ModelAttribute("community") CommunityVO vo, Model model) 
-//				throws IllegalStateException, IOException{
-		public String updateQna(@ModelAttribute("community") CommunityVO vo, Model model) {
-//		if( vo.getWriter().equals(session.getAttribute("userName").toString()) ){
-//			boardService.updateBoard(vo);
-//			return "getBoardList.do";
-//		}else {
-//			return "getBoard.do?error=1";
-//		}
-		qnaService.updateQna(vo);
-		return "getQnaList.wp";
-		
-	}
+//	// 1:1 문의 수정 - 사용자
+//	@PostMapping("/updateQna.wp")
+////		public String updateNotice(MultipartHttpServletRequest request,@ModelAttribute("community") CommunityVO vo, Model model) 
+////				throws IllegalStateException, IOException{
+//		public String updateQna(@ModelAttribute("community") CommunityVO vo, Model model) {
+////		if( vo.getWriter().equals(session.getAttribute("userName").toString()) ){
+////			boardService.updateBoard(vo);
+////			return "getBoardList.do";
+////		}else {
+////			return "getBoard.do?error=1";
+////		}
+//		qnaService.updateQna(vo);
+//		return "getQnaList.wp";
+//		
+//	}
 	
 	// 1:1 문의 수정 - 사용자
-	@GetMapping(value="/updateQna.wp")
+	@GetMapping(value="/updateQna_get.wp")
 	public String updateQna_get(CommunityVO vo, Model model) throws IllegalStateException, IOException {
 //		ReviewVO a =  qnaService.detailReview(vo);
 //		model.addAttribute("detailReview",a);
 		return "WEB-INF/view/community/updateQna.jsp";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateQna.wp", method = RequestMethod.POST)
+	public int updateQna(@RequestParam("article_file") List<MultipartFile> multipartFile, 
+			HttpServletRequest request, @ModelAttribute("community") CommunityVO vo, HttpSession session) {
+		
+		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+		int commu_no = vo.getCommu_no();
+		System.out.println("vo: "+vo);
+		try {
+			// 파일이 있을때 탄다.
+			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
+				int index = 1;
+				for(MultipartFile file:multipartFile) {
+					
+					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일명
+					System.out.println("파일명"+savedFileName);
+
+				    if(index == 1) {
+				    	vo.setCommu_photo1(savedFileName);
+				    } else if(index == 2) {
+				    	vo.setCommu_photo2(savedFileName);
+				    } else {
+				    	vo.setCommu_photo3(savedFileName);
+				    }
+				    index++;
+					File targetFile = new File(realPath + savedFileName);	
+
+					try {
+						InputStream fileStream = file.getInputStream();
+						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+						System.out.println("파일저장");
+					} catch (Exception e) {
+						//파일삭제
+						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+						e.printStackTrace();
+						System.out.println("파일삭제");
+						break;
+					}
+				}
+				qnaService.updateQna(vo);
+			}
+			// 파일 아무것도 첨부 안했을때 탄다.
+			else {
+				qnaService.updateQna(vo);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return commu_no;
+		
 	}
 	
 	// 1:1 문의 수정 - 관리자
@@ -120,29 +238,34 @@ public class QnaController {
 		return "WEB-INF/view/community/admin_updateQna.jsp";
 	}
 
-	// 공지사항 삭제
-	@RequestMapping("/deleteQna.wp")
-	public String deleteQna(CommunityVO vo) {
-//		public String deleteNotice(CommunityVO vo, HttpSession session) {
-//		String realPath = "c:/swork/eleven/src/main/webapp/img/" ;
-//		vo = noticeService.getNotice(vo);
-//		if( vo.getWriter().equals(session.getAttribute("userName").toString()) ) {
-//			if(vo.getFilename()!=null) {
-//				System.out.println("파일삭제: "+realPath + vo.getFilename());
-//				File f = new File(realPath + vo.getFilename());		
-//				f.delete();
-//			}
-//			boardService.deleteBoard(vo);
-//			return "getBoardList.do";
-//		}else {
-//			return "getBoard.do?error=1";
-//		}
-		
-		qnaService.deleteQna(vo);
-		return "getQnaList.wp";
-	}
+	// 1:1 문의 삭제
+		@RequestMapping("/deleteQna.wp")
+		public String deleteReview(CommunityVO vo, HttpSession session) {
+		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+		File targetFile = null;
+			vo = qnaService.getQna(vo);
+			if(vo.getId().equals(session.getAttribute("userID").toString())) {
+				if(vo.getCommu_photo1() != null) {
+					targetFile = new File(realPath + vo.getCommu_photo1());
+					targetFile.delete();
+					System.out.println("파일1삭제: " + realPath + vo.getCommu_photo1());
+				} else if(vo.getCommu_photo2() != null) {
+					targetFile = new File(realPath + vo.getCommu_photo2());
+					targetFile.delete();
+					System.out.println("파일2삭제: " + realPath + vo.getCommu_photo2());
+				} else if(vo.getCommu_photo3() != null) {
+					targetFile = new File(realPath + vo.getCommu_photo3());
+					targetFile.delete();
+					System.out.println("파일3삭제: " + realPath + vo.getCommu_photo3());
+				}
+				qnaService.deleteQna(vo);
+				return "getQnaList.wp";
+			} else {
+				return "detailReview.wp?error=1";
+			}
+		}
 
-	// 공지사항 상세 조회 - 사용자
+	// 1:1 문의 상세 조회 - 사용자
 	@RequestMapping("/getQna.wp")
 //	public String getNotice(@ModelAttribute("community")CommunityVO vo, Model model) {
 		public String getQna(CommunityVO vo, Model model) {
@@ -153,22 +276,25 @@ public class QnaController {
 		return "WEB-INF/view/community/updateQna.jsp";
 	}
 	
-	// 공지사항 상세 조회 - 관리자
+	// 1:1 문의 상세 조회 - 관리자
 	@RequestMapping("/admin_getQna.wp")
 //	public String admin_getQna(@ModelAttribute("community")CommunityVO vo, Model model) {
 		public String admin_getQna(CommunityVO vo, Model model) {
 		
 //		List<CommunityVO> list = noticeService.getNotice(vo.getCommu_no());
 		model.addAttribute("community", qnaService.admin_getQna(vo));
-//		model.addAttribute("answer", qnaService.admin_getQna(vo));
+		System.out.println("컨트롤러qna"+qnaService.admin_getQna(vo).getAnswer_no());
+//		model.addAttribute("answer", qnaService.admin_getQna(avo));
 		return "WEB-INF/view/community/admin_insertQna.jsp";
 	}
 
-	// 공지사항 목록 조회 - 사용자
+	// 1:1 문의 목록 조회 - 사용자
 	@RequestMapping("/getQnaList.wp")
 	public String getQnaList(CommunityVO vo, String nowPageBtn, Model model, HttpSession session) {
 		System.out.println("글 목록 검색 처리");
 		
+		vo.setId((String) session.getAttribute("userID"));
+
 		//총 목록 수 
 		int totalPageCnt = qnaService.totalQnaListCnt(vo);
 		
@@ -186,7 +312,6 @@ public class QnaController {
 		vo.setOffset(pvo.getOffset());
 		
 		
-		vo.setId((String) session.getAttribute("userID"));
 		model.addAttribute("paging", pvo);
 		model.addAttribute("getQnaList", qnaService.getQnaList(vo));
 		return "WEB-INF/view/community/getQnaList.jsp";
@@ -198,7 +323,7 @@ public class QnaController {
 			System.out.println("글 목록 검색 처리");
 			
 			//총 목록 수 
-			int totalPageCnt = qnaService.totalQnaListCnt(vo);
+			int totalPageCnt = qnaService.admin_totalQnaListCnt(vo);
 			
 			//현재 페이지 설정 
 			int nowPage = Integer.parseInt(nowPageBtn==null || nowPageBtn.equals("") ? "1" :nowPageBtn);

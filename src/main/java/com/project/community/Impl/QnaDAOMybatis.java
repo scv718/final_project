@@ -59,10 +59,16 @@ public class QnaDAOMybatis {
 		return mybatis.selectList("QnaDAO.admin_getQnaList", vo);
 	}
 
-	// 전체 글 목록 개수
+	// 전체 글 목록 개수 - 사용자
 	public int totalQnaListCnt(CommunityVO vo) {
 		System.out.println("===> mybatis totalQnaListCnt() 기능처리");
 		return mybatis.selectOne("QnaDAO.totalQnaListCnt", vo);
+	}
+	
+	// 전체 글 목록 개수 - 관리자
+	public int admin_totalQnaListCnt(CommunityVO vo) {
+		System.out.println("===> mybatis admin_totalQnaListCnt() 기능처리");
+		return mybatis.selectOne("QnaDAO.admin_totalQnaListCnt", vo);
 	}
 
 	public void admin_insertQna(AnswerVO vo) {

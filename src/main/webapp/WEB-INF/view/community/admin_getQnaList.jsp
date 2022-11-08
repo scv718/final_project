@@ -35,6 +35,19 @@
 			<button type="submit" class="searchbtn">검색</button>
 		</form>
 	</nav>
+	
+	<!-- 카테고리 필터 -->
+		<form action="admin_getQnaList.wp" method="POST" id="align">
+			<ul>
+				<li>
+				<select name="alignlist" class="w-px100" onchange="$('form').submit()">
+						<option>답변상태</option>
+						<option value="waiting" ${paging.viewType eq 'zero' ? 'selected' : '' }>[답변대기]</option>
+						<option value="completed" ${paging.viewType eq 'one' ? 'selected' : '' }>[답변완료]</option>
+				</select>
+				</li>
+			</ul>
+		</form>
 
     <div class="li_board noticetab">
         <ul class="li_header hidden-xs noticehead">

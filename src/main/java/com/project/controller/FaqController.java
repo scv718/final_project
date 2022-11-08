@@ -27,7 +27,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.google.gson.JsonObject;
 import com.project.common.PagingVO;
 import com.project.community.CommunityVO;
-import com.project.community.PhotoVO;
 import com.project.community.Impl.FaqDAOMybatis;
 
 @Controller

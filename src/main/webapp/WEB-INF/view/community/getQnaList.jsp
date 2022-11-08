@@ -59,7 +59,7 @@
 	<div id="faqContainer">
 		<!-- 제목 -->
 		<h3 id="comtitle">1:1 문의</h3>
-		<button type="button" onclick="location.href='insertQna.wp'">1:1
+		<button type="button" onclick="location.href='insertQna_get.wp'">1:1
 			문의하기</button>
 		<button type="button" onclick="location.href='admin_getQnaList.wp'">관리자 1:1 목록확인</button>
 
@@ -110,6 +110,17 @@
 				</div>
 				<div class="panel">
 					<p>${qna.commu_content}</p>
+					<div>
+						<c:if test="${qna.commu_photo1 ne NULL}">
+							<img class="imgBoxImg" src="resources/img/qna/${qna.commu_photo1}" style="width: 200px; padding: 10px 0;">
+								<c:if test="${qna.commu_photo2 ne NULL}">
+								<img class="imgBoxImg" src="resources/img/qna/${qna.commu_photo2}" style="width: 200px; padding: 10px 0;">
+									<c:if test="${qna.commu_photo3 ne NULL}">
+									<img class="imgBoxImg" src="resources/img/qna/${qna.commu_photo3}" style="width: 200px; padding: 10px 0;">
+									</c:if>
+								</c:if>
+						</c:if>
+					</div>
 					<c:choose>
 						<c:when test="${qna.answer_status eq '답변대기'}">
 							<span>

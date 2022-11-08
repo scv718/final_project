@@ -63,6 +63,11 @@ public class QnaServiceImpl implements QnaService {
 		QnaDAO.admin_insertQna(vo);
 	}
 
+	@Override
+	public int admin_totalQnaListCnt(CommunityVO vo) {
+		return QnaDAO.admin_totalQnaListCnt(vo);
+	}
+
 
 
 }

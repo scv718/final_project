@@ -138,7 +138,7 @@ var setting = {
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				<input type="text" class="form-control" name="answer_con" value="${answer.answer_con}">
+				<input type="text" class="form-control" name="answer_con" value="${community.answer_con}">
 			</div>
 			<div id="footer">
 				<div id="se2_sample" style="margin: 10px 0;">

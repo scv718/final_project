@@ -87,7 +87,7 @@
 			</select>
 		</form> --%>
 
-		<!-- 필터테스트중 -->
+		<!-- 카테고리 필터 -->
 		<form action="getFaqList.wp" method="POST" id="align">
 			<ul>
 				<li>

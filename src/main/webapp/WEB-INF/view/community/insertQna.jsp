@@ -16,61 +16,10 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<script src="resources/js/qna_fileupload.js"></script>
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script>
-$(document).ready(function() {
-    
-    $('#summernote').summernote({
-          placeholder: 'Hello Bootstrap 4',
-          tabsize: 2,
-          height: 100
-        });
-  });
-
-// 툴바생략
-var setting = {
-//         height : 300,
-//         minHeight : null,
-//         maxHeight : null,
-//         focus : true,
-//         lang : 'ko-KR',
-//         toolbar : toolbar,
-        //콜백 함수
-        callbacks : { 
-        	onImageUpload : function(files, editor, welEditable) {
-        // 파일 업로드(다중업로드를 위해 반복문 사용)
-        for (var i = files.length - 1; i >= 0; i--) {
-        uploadSummernoteImageFile(files[i],
-        this);
-        		}
-        	}
-        }
-     };
-//     $('#summernote').summernote(setting);
-//     });
-    
-    function uploadSummernoteImageFile(file, el) {
-		data = new FormData();
-		data.append("file", file);
-		$.ajax({
-			data : data,
-			type : "POST",
-			url : "uploadSummernoteImageFile",
-			contentType : false,
-			enctype : 'multipart/form-data',
-			processData : false,
-			success : function(data) {
-				$(el).summernote('editor.insertImage', data.url);
-			}
-		});
-	}
-
-</script>
-
-
 </head>
 <body>
 	<div class="jumbotron">
@@ -78,7 +27,8 @@ var setting = {
 	</div>
 
 	<div class="container-fluid">
-		<form action="insertQna.wp" method="post" enctype="multipart/form-data">
+<!-- 		<form action="insertQna.wp" method="post" enctype="multipart/form-data"> -->
+			<form name="dataForm" id="dataForm"  >
 			<input type="hidden" class="form-control" name="commu_cat" value="2">
 			<input type="hidden" class="form-control" name="answer_status" value="답변대기">
 <%-- 			<input type="hidden" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>"> --%>
@@ -123,12 +73,19 @@ var setting = {
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				 <textarea id="summernote" name="commu_content"></textarea>
-<!-- 				<textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea> -->
+				<textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea>
 			</div>
+
+			<button id="filebtn" type="button" name="commu_photo1">파일추가</button>
+					<input id="inputfile" type="file" multiple="multiple">
+					<span style="font-size:14px; color: gray;">※파일은 최대 3개까지 등록 가능합니다.</span>
+					
+					<div class="data_file_txt" id="data_file_txt">
+						<div id="articlefileChange"></div>
+					</div>
 			<div id="footer">
 				<div id="se2_sample" style="margin: 10px 0;">
-					<input type="submit" value="등록하기">
+					<input type="button" value="등록하기" onclick="registerAction()">
 				</div>
 			</div>
 		</form>

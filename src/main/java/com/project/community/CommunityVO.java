@@ -14,9 +14,7 @@ public class CommunityVO {
 	private String commu_content;
 	private Date commu_date;
 	private int commu_count;//조회수
-	
-//	private String commu_photo1;
-//	private String files;
+	private String commu_photo1;
 	private String commu_photo2;
 	private String commu_photo3;
 	private String faq_cat;
@@ -30,7 +28,6 @@ public class CommunityVO {
 	
 	//필터
 	private String alignlist;
-	
 	
 	//페이징
 	private int offset;
@@ -89,12 +86,12 @@ public class CommunityVO {
 	public void setCommu_count(int commu_count) {
 		this.commu_count = commu_count;
 	}
-//	public String getCommu_photo1() {
-//		return commu_photo1;
-//	}
-//	public void setCommu_photo1(String commu_photo1) {
-//		this.commu_photo1 = commu_photo1;
-//	}
+	public String getCommu_photo1() {
+		return commu_photo1;
+	}
+	public void setCommu_photo1(String commu_photo1) {
+		this.commu_photo1 = commu_photo1;
+	}
 	public String getCommu_photo2() {
 		return commu_photo2;
 	}
@@ -107,27 +104,23 @@ public class CommunityVO {
 	public void setCommu_photo3(String commu_photo3) {
 		this.commu_photo3 = commu_photo3;
 	}
-	
-	
+	public String getFaq_cat() {
+		return faq_cat;
+	}
+	public void setFaq_cat(String faq_cat) {
+		this.faq_cat = faq_cat;
+	}
+	public String getAnswer_status() {
+		return answer_status;
+	}
+	public void setAnswer_status(String answer_status) {
+		this.answer_status = answer_status;
+	}
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
-	}
-	
-//	@Override
-//	public String toString() {
-//		return "CommunityVO [commu_no=" + commu_no + ", commu_cat=" + commu_cat + ", commu_cat_no=" + commu_cat_no
-//				+ ", commu_title=" + commu_title + ", id=" + id + ", commu_content=" + commu_content + ", commu_date="
-//				+ commu_date + ", commu_count=" + commu_count + ", commu_photo1=" + commu_photo1 + ", commu_photo2="
-//				+ commu_photo2 + ", commu_photo3=" + commu_photo3 + ", uploadFile=" + uploadFile + "]";
-//	}
-	public int getOffset() {
-		return offset;
-	}
-	public void setOffset(int offset) {
-		this.offset = offset;
 	}
 	public String getSearchCondition() {
 		return searchCondition;
@@ -141,35 +134,23 @@ public class CommunityVO {
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}
-	public String getFaq_cat() {
-		return faq_cat;
-	}
-	public void setFaq_cat(String faq_cat) {
-		this.faq_cat = faq_cat;
-	}
 	public String getAlignlist() {
 		return alignlist;
 	}
 	public void setAlignlist(String alignlist) {
 		this.alignlist = alignlist;
 	}
-//	public String getFiles() {
-//		return files;
-//	}
-//	public void setFiles(String files) {
-//		this.files = files;
-//	}
+	public int getOffset() {
+		return offset;
+	}
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
 	public String getAnswer_con() {
 		return answer_con;
 	}
 	public void setAnswer_con(String answer_con) {
 		this.answer_con = answer_con;
-	}
-	public String getAnswer_status() {
-		return answer_status;
-	}
-	public void setAnswer_status(String answer_status) {
-		this.answer_status = answer_status;
 	}
 	public int getAnswer_no() {
 		return answer_no;
@@ -188,6 +169,18 @@ public class CommunityVO {
 	}
 	public void setAnswer_date(Date answer_date) {
 		this.answer_date = answer_date;
+	}
+	
+	@Override
+	public String toString() {
+		return "CommunityVO [commu_no=" + commu_no + ", commu_cat=" + commu_cat + ", commu_cat_no=" + commu_cat_no
+				+ ", commu_title=" + commu_title + ", id=" + id + ", commu_content=" + commu_content + ", commu_date="
+				+ commu_date + ", commu_count=" + commu_count + ", commu_photo1=" + commu_photo1 + ", commu_photo2="
+				+ commu_photo2 + ", commu_photo3=" + commu_photo3 + ", faq_cat=" + faq_cat + ", answer_status="
+				+ answer_status + ", uploadFile=" + uploadFile + ", searchCondition=" + searchCondition
+				+ ", searchKeyword=" + searchKeyword + ", alignlist=" + alignlist + ", offset=" + offset
+				+ ", answer_con=" + answer_con + ", answer_no=" + answer_no + ", answer_cat=" + answer_cat
+				+ ", answer_date=" + answer_date + "]";
 	}
 	
 	
