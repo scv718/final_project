@@ -70,7 +70,7 @@ public class Order_cartController {
 		System.out.println("구독내역 삭제");
 		ovo.setId((String) session.getAttribute("userID"));
 		orderSerivce.deleteOrderList(ovo);
-		return "subscribe.wp";
+		return "redirect:/subscribe-3.wp";
 	}
 	
 	/* 장바구니 삭제 */
@@ -89,8 +89,6 @@ public class Order_cartController {
 	
 		String Cid = (String) session.getAttribute("userID");
 		cvo.setId(Cid);
-		
-
 		try {
 			if (Cid == null) {
 				return "singUp.wp";

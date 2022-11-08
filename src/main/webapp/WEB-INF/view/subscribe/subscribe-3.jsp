@@ -61,10 +61,12 @@
                            
                            <form action="deletesubscribe.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${subscribe.ord_code}">
-                           <button  type="button" class="delete_btn">구독 내역삭제</button>
+                           <button  type="submit" class="delete_btn">구독 내역삭제</button>
                            </form>
                         </td>
                      </tr>
+                     
+                     
                </tbody>
             </table>
          </div>
@@ -74,9 +76,6 @@
    </div>   <!-- class="wrap" -->
 </div>   <!-- class="wrapper" -->
 <script type="text/javascript">
-
-var msg = "<c:out value='${msg}'/>";
-alert(msg);
 
 $("#cancel_module").click(function () {
 	$.ajax({

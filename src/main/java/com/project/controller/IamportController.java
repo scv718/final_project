@@ -408,9 +408,8 @@ public class IamportController {
 		    System.out.println(ovo.getW_nm_e()+"와인이름 영어");
 		    
 			orderService.subscribeOrder(ovo);
-			return "subscribe-3.wp";
+			return "index.wp";		
 		}
-		
 	
 	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수 private
 	List<NameValuePair> convertParameter(Map<String,String> paramMap){
@@ -492,6 +491,8 @@ public class IamportController {
 			ovo.setOrd_code(imp);
 			ovo.setMerchant_uid(mid);
 			ovo.setId((String)session.getAttribute("userID"));
+			svo.setId((String)session.getAttribute("userID"));
+			uvo.setId((String)session.getAttribute("userID"));
 			try {
 				post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
 				HttpResponse res = client.execute(post); 
@@ -507,7 +508,7 @@ public class IamportController {
 				return -1;
 			} else {
 				System.err.println("환불성공");
-				
+
 				orderService.cancleOrder(ovo);
 				subscribeService.updateSubscribe(svo);
 				subscribeService.liset_deli_price_up(svo);
