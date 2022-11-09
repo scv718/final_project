@@ -97,4 +97,12 @@ public class UserDAOMybatis {
 	public void secessionUser(UserVO vo) {
 		mybatis.update("UserDAO.secessionUser", vo);
 	}
+	//관리자
+	
+	public void updateMember(UserVO vo) {
+		mybatis.update("UserDAO.updateMember", vo);
+	}
+	public void deleteMember(UserVO vo) {
+		mybatis.delete("UserDAO.deleteMember", vo);
+	}
 }

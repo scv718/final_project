@@ -33,4 +33,6 @@ public interface QnaService {
 	
 	// QNA 글목록 개수 - 관리자
 	int admin_totalQnaListCnt(CommunityVO vo);
+      //관리자리스트
+	List<QnaVO> QnaListAd(QnaVO vo);
 }

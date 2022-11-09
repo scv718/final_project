@@ -42,4 +42,7 @@
 		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
 		
 	</select>
+<select id="NoticeListAd" resultType="notice">
+		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
+	</select>
 </mapper>

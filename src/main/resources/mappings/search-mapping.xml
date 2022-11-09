@@ -7,7 +7,9 @@
 	<select id="getWineList" resultType="wine">
 		select w_no,w_nm_k,w_nm_e,country,type,w_image1 from wine
 	</select>
-	
+	<select id="WineListAd" resultType="wine">
+		select * from wine
+	</select>
 	<select id="checkUser" resultType="int">
 		select count(*) from member
 		where id = #{id}
