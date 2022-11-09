@@ -93,4 +93,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return ReviewDAO.ReviewListAd(vo);
 	}
 
+	@Override
+	public List<ReviewVO> mainreviewFilter(ReviewVO vo){
+		
+		return reviewDAO.mainreviewFilter(vo);
+	}
 }

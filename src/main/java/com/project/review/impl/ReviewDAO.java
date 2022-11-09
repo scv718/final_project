@@ -110,6 +110,10 @@ public class ReviewDAO {
 		System.out.println("상품별 리뷰 목록 개수");
 		return mybatis.selectOne("BoardDAO.productReviewListCnt", rvo);
 	}
+	
+	public List<ReviewVO> mainreviewFilter(ReviewVO vo) {
+		return mybatis.selectList("BoardDAO.mainreviewFilter", vo);
+	}
 
 	
 

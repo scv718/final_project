@@ -1,26 +1,35 @@
 package com.project.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.community.NoticeService;
+import com.project.community.NoticeVO;
 import com.project.mainmenu.MenuService;
 import com.project.mainmenu.MenuVO;
-import com.project.subscribe.SubscribeVO;
+import com.project.review.ReviewService;
+import com.project.review.ReviewVO;
 
 @Controller
 public class MainController {
 	
 	@Autowired
 	MenuService menuService;
+	@Autowired
+	ReviewService reviewService;
+	@Autowired
+	NoticeService noticeService;
 	@RequestMapping(value = {"/", "/index.wp"})
-	public String index(Model model, MenuVO vo) {
+	public String index(Model model, MenuVO vo, NoticeVO nvo, ReviewVO rvo) {
 		System.out.println("메인페이지");
 		
 		model.addAttribute("bestMenuList", menuService.bestMenu(vo));
+		model.addAttribute("notice", noticeService.getmainNoticeList(nvo));
+		model.addAttribute("review", reviewService.mainreviewFilter(rvo));;
+		
+		
 		
 		return "index.jsp";	
 	}

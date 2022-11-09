@@ -67,4 +67,9 @@ public class NoticeDAOMybatis {
 		}
 		return mybatis.selectList("NoticeDAO.NoticeListAd");
 	}
+	
+	public List<NoticeVO> getmainNoticeList(NoticeVO vo){
+		
+		return mybatis.selectList("NoticeDAO.getmainNoticeList", vo);
+	}
 }

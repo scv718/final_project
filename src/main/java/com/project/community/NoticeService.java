@@ -26,5 +26,7 @@ public interface NoticeService {
 	int totalNoticeListCnt(CommunityVO vo);
 	//관리자리스트
 	List<NoticeVO> NoticeListAd(NoticeVO vo);
+	
+	List<NoticeVO> getmainNoticeList(NoticeVO vo);
 
 }

@@ -41,5 +41,9 @@ public interface ReviewService {
 	int productReviewListCnt(ReviewVO rvo);
 	//관리자
 	List<ReviewVO> ReviewListAd(ReviewVO vo);
+	
+	
+	List<ReviewVO> mainreviewFilter(ReviewVO vo);
+	
 
 }

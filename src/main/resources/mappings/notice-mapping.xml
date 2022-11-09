@@ -34,6 +34,11 @@
 		ORDER BY commu_cat_no DESC
 		LIMIT 10 OFFSET #{offset}
 	</select>
+	<select id="getmainNoticeList" resultType="community">
+		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
+		ORDER BY commu_cat_no DESC
+		LIMIT 5;
+	</select>
 
 	
 	<select id="totalNoticeListCnt" resultType="_int">
