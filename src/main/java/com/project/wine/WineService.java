@@ -13,4 +13,6 @@ public interface WineService {
 	WineVO getWine(WineVO vo);
 	//구독 정보리스트
 	List<WineVO> getWineList(WineVO vo);
+	//관리자 와인관리
+	List<WineVO> WineListAd(WineVO wvo);
 }

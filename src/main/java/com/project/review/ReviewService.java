@@ -39,6 +39,7 @@ public interface ReviewService {
 
 	//상품별 리뷰목록 갯수
 	int productReviewListCnt(ReviewVO rvo);
-	
+	//관리자
+	List<ReviewVO> ReviewListAd(ReviewVO vo);
 
 }

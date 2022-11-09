@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.community.AnswerVO;
 import com.project.community.CommunityVO;
+import com.project.community.QnaVO;
 
 @Repository
 public class QnaDAOMybatis {
@@ -85,6 +86,15 @@ public class QnaDAOMybatis {
 	public void admin_updateQna(CommunityVO vo) {
 		System.out.println("===> mybatis admin_updateQna() 기능처리");
 		mybatis.update("QnaDAO.admin_updateQna", vo);
+	}
+	// 관리자 리스트
+	public List<QnaVO> QnaListAd(QnaVO vo) {
+		System.out.println("유저 마이 바티스 실행");
+		List<QnaVO> c = mybatis.selectList("QnaDAO.QnaListAd");
+		for(QnaVO v : c ) {
+			System.out.println("v: "+v);
+		}
+		return mybatis.selectList("QnaDAO.QnaListAd");
 	}
 
 }

@@ -109,4 +109,5 @@
 		<if test="alignlist == 'waiting' "> AND answer_status = '답변대기' </if>
 		<if test="alignlist == 'completed' "> AND answer_status = '답변완료' </if>
 	</select>
+<select id="QnaListAd" resultType="qna"> SELECT * FROM COMMUNITY WHERE commu_cat = 2 and 1=1 </select>
 </mapper>
