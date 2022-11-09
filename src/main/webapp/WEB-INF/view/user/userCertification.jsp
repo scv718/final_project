@@ -35,7 +35,7 @@
 					        		success : function(val){
 					        			console.log(val);
 					        			if (val == 1){
-					        				location.href = 'singUp.wp';
+					        				location.href = 'signUp.wp';
 					        			}else{
 					        				alert("나이 제한");
 					        				location.href = 'index.wp';

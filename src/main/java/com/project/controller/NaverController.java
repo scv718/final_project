@@ -142,7 +142,7 @@ public class NaverController {
         	}else {
         		System.out.println("자사 아이디로 로그인해주세요");
         		
-        		return "redirect:singUp.wp";
+        		return "redirect:signUp.wp";
         	}
         }
         

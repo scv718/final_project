@@ -91,7 +91,7 @@ public class Order_cartController {
 		cvo.setId(Cid);
 		try {
 			if (Cid == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,7 +131,7 @@ public class Order_cartController {
 		System.out.println(cvo.getW_no());
 		try {
 			if (Cid == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			}else {
 				// 카트 등록
 				cvo.setId(Cid);

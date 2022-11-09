@@ -37,7 +37,7 @@ public class MainController {
 	}
 	
 	
-	@RequestMapping(value = "/singUp.wp")
+	@RequestMapping(value = "/signUp.wp")
 	public String singUp() {
 		System.out.println("로그인폼이동");
 		return "WEB-INF/view/user/singUp.jsp";

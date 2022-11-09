@@ -70,7 +70,7 @@ public class SubscribeController {
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
 
 		if (id == null) {
-			return "singUp.wp";
+			return "signUp.wp";
 		}
 		return "WEB-INF/view/mypage/mysubscribe.jsp";
 	}
@@ -113,7 +113,7 @@ public class SubscribeController {
 
 		try {
 			if (id == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class SubscribeController {
 		model.addAttribute("subscribeW", productService.subscribeW1(wvo));
 		try {
 			if (id == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			} else if (result > 0) {
 				svo.setId(id);
 				uvo.setId(id);
@@ -184,7 +184,7 @@ public class SubscribeController {
 
 		try {
 			if (id == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			} else if (result > 0) {
 				svo.setId(id);
 				uvo.setId(id);
@@ -227,7 +227,7 @@ public class SubscribeController {
 		model.addAttribute("subscribeW", productService.subscribeW3(wvo));
 		try {
 			if (id == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			} else if (result > 0) {
 				svo.setId(id);
 				uvo.setId(id);

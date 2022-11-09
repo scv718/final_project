@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -270,8 +273,8 @@
 												</div>
 											</td>
 											<td class="tdCenter">${review.re_score}</td>
-											<td class="tdCenter">${fn:substring(review.id,0,2)}<c:forEach
-													begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
+											<td class="tdCenter">${fn:substring(review.id,0,2)}
+											<c:forEach begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
 											</td>
 											<td class="tdCenter"><fmt:formatDate
 													pattern="yyyy-MM-dd" value="${review.re_date}" /></td>

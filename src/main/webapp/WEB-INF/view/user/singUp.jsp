@@ -30,7 +30,6 @@
 $( document ).ready(function() {
     if(${error} === 1){
     	swal ( "로그인 후 진행해주세요" ,  "" ,  "error" );
-    	
     	 $.ajax({
  	        url: '/errorsession.wp',
  	        type: 'post'

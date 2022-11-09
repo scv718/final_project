@@ -29,7 +29,7 @@ dt {
 	function updateLike(){
 		if(id == ""){
 			alert("로그인 후 이용가능합니다.");
-			location.href = "singUp.wp";
+			location.href = "signUp.wp";
 		} else {
 			$.ajax({
 				type : "POST",
