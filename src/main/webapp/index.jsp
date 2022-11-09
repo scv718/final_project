@@ -77,7 +77,7 @@ $('.slider-1 > .page-btns > div').click(function(){
     var $slider = $this.parent().parent();
     
     var $current = $slider.find(' > .slides > div.active');
-    
+    1
     var $post = $slider.find(' > .slides > div').eq(index);
     
     $current.removeClass('active');

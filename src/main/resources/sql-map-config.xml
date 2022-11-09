@@ -16,6 +16,7 @@
 		<typeAlias type="com.project.cart.CartVO" alias="cart"></typeAlias>
 		<typeAlias type="com.project.community.CommunityVO" alias="community"></typeAlias>
 		<typeAlias type="com.project.mainmenu.MenuVO" alias="menu"></typeAlias>
+		<typeAlias type="com.project.story.StoryVO" alias="story"></typeAlias>
 	</typeAliases>
 
 	<mappers>
@@ -30,5 +31,6 @@
 		<mapper resource="mappings/menu-mapping.xml" />
 		<mapper resource="mappings/search-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
+		<mapper resource="mappings/story-mapping.xml" />
 	</mappers>
 </configuration>

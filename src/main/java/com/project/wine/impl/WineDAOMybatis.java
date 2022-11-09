@@ -47,6 +47,26 @@ public class WineDAOMybatis {
 
 	public List<WineVO> getWineSearchList(WineVO vo) {
 		System.out.println("===>mybatis로 와인 검색 기능처리 ");
-		return mybatis.selectList("WineDAO.getWineSerachList", vo);
+		return mybatis.selectList("WineDAO.getWineSearchList", vo);
+	}
+
+	public List<WineVO> detaileSearch(WineVO vo) {
+		System.out.println("===>mybatis로 와인 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.detaileSearch", vo);
+	}
+
+	public List<WineVO> getType(WineVO vo) {
+		System.out.println("===>mybatis로 타입 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getType", vo);
+	}
+
+	public List<WineVO> getContinental(WineVO vo) {
+		System.out.println("===>mybatis로 대륙 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getContinental", vo);
+	}
+
+	public List<WineVO> getCountry(WineVO vo) {
+		System.out.println("===>mybatis로 나라 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getCountry", vo);
 	}
 }
