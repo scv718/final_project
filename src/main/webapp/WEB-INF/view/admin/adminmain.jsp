@@ -18,9 +18,56 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
+	
 </head>
+<style>
+table {
+    width: 700px;
+    text-align: center;
+    border: 1px solid #fff;
+    border-spacing: 1px;
+    font-family: 'Cairo', sans-serif;
+  margin: auto;
+}
 
+caption {
+    font-weight: bold;
+}
+
+table td {
+    padding: 10px;
+    background-color: #eee;
+}
+
+table th {
+    background-color: #FCA5A5;
+    color: #000000;
+    padding: 10px;
+}
+
+img {
+    width: 90px;
+    height: 90px;
+}
+
+.view,
+.delete {
+    border: none;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.view {
+    background-color: #03A9F4;
+}
+
+.delete {
+    background-color: #E91E63;
+}
+
+
+</style>
 <body>
 
     <div class="wrapper">
@@ -61,7 +108,7 @@
                             <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>
-                            <a href="adminQa.wp">Q&A</a>
+                            <a href="adminQna.wp">Q&A</a>
                         </li>
                         <li>
                             <a href="adminReview.wp">리뷰</a>
@@ -92,42 +139,79 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="http://localhost:8090/adminmain.jsp#profile">관리자메인화면</a>
+                                <a class="nav-link" href="adminMain.wp">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/index.wp">홈페이지메인이동</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/index.wp">로그아웃</a>
+                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            
-          <table>
+            <br>
+            <h1 align="center">만든사람들(프로필)</h1>
+            <br><br>
+      <table>
         <thead>
-            <tr>
-                <th>Avatar</th>
-                <th>Group</th>
-                <th>Name</th>
-                <th>Points</th>
-                <th>Control</th>
+        	<tr>
+                <th>프로필사진</th>
+                <th>등급</th>
+                <th>이름</th>
+                <th>나이</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><img src="https://i.postimg.cc/yYYd1HV1/katara.jpg" alt="img"></td>
-                <td>Ninja</td>
-                <td>Asma Ad</td>
-                <td>120</td>
-                <td>
-                </td>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이승진.png" ></td>
+                <td>Winery팀장</td>
+                <td>이승진</td>
+                <td>34</td>
             </tr>
-
+			<tr>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김경민.png" ></td>
+                <td>Winery부팀장</td>
+                <td>김경민</td>
+                <td>32</td>
+            </tr>
+            <tr>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.png" ></td>
+                <td>언니</td>
+                <td>김지나</td>
+                <td>33</td>
+            </tr>
+            <tr>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이기진.jpg" ></td>
+                <td>팀에이스</td>
+                <td>이기진</td>
+                <td>27</td>
+            </tr>
+            <tr>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/박상현.png" ></td>
+                <td>팀에이스</td>
+                <td>박상현</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/노유경.jpg" ></td>
+                <td>디자이너</td>
+                <td>노유경</td>
+                <td>24</td>
+            </tr>
+            <tr>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/양임호.jpg" ></td>
+                <td>팀원</td>
+                <td>양임호</td>
+                <td>31</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td colspan="5" class="tablefoot"></td>
+        </tfoot>
     </table>
-            
-            
+            <br><br><br><br><br><br><br>
         </div>
     </div>
 

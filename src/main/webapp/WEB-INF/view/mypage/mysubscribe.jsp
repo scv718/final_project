@@ -7,13 +7,12 @@
 	href="${pageContext.request.contextPath}/resources/css/mysubscribe..css">
 <title>구독 확인 취향 설정</title>
 </head>
-<body>
+<body class = "d-flex flex-column min-vh-100">
 	<%@ include file="../../../header.jsp"%>
-	
+
 		<form action="${pageContext.request.contextPath}/mysubscribe.wp" method="post">
 	<div class="content_subject"><h2 style="text-align: center;">구독 및 취향 설정</h2></div>
 	<div class="container" style="width: 800px; margin-top: 32px;font-size: x-large;">
-
 			<div class="listContainer">
 				<div class="mb-3 mt-3">
 					<div class="text"><div class="greenContainer">
@@ -44,8 +43,8 @@
 				</div>
 			</div>
 			
-<div class="mt"><a href="payment.wp" ><button type="button" id="colre" class="w-100 btn btn-lg btn-outline-primary">구독 수정</button></a></div>
-	
+<div class="mt"><a href="javascript:void(0);" id ="mysubscribes" onclick="test();" type="button">구독 수정</a></div>
+
 			<div class="mb-3 mt-3">
 				<c:choose>
 					<c:when test='${userID ne NULL}'>
@@ -59,7 +58,21 @@
 <button type="button"  id="colre" class="w-100 btn btn-lg btn-outline-primary">취향수정</button></a></div>
 
 </div></div></form>
+<script type="text/javascript">
 
+function test() {
+		var level = ${mylevel};
+	   	if (level == 0){
+			alert('구독 수정은 구독 후 가능합니다.');
+			location.href  = "subscribe.wp";
+		}
+		else if (level > 0){
+			alert('이미 구독한 계정입니다.\구독 수정은 구독 취소 후 가능합니다.');
+		}if(confirm("구독 취소하겠습니까?")){
+			location.href = "subscribe-3.wp";
+		}
+}
+</script>
 <%@ include file="/footer.jsp"%>
 </body>
 </html>

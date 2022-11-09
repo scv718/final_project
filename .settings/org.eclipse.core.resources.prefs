@@ -1,12 +1,8 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=06efb26da2d0bd17554058815db54ba8c74afb40
 eclipse.preferences.version=1
-<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/board/getReviewList.jsp=UTF-8
-=======
 encoding//src/main/webapp/WEB-INF/view/Search/wineSearchList.jsp=UTF-8
-<<<<<<< HEAD
-=======
->>>>>>> de36470b1c2019998694f4a41843203b1d1e43d1
-encoding//src/main/webapp/WEB-INF/view/subscribe/subscribe.jsp=UTF-8
->>>>>>> 06efb26da2d0bd17554058815db54ba8c74afb40
 encoding//src/main/webapp/WEB-INF/view/user/userinfofind.jsp=UTF-8
 encoding/<project>=UTF-8

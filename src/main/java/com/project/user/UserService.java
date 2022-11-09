@@ -6,8 +6,8 @@ public interface UserService {
 	void insertUser(UserVO vo);
 	void updateUser(UserVO vo);
 	void deleteUser(UserVO vo);
+	void secessionUser(UserVO vo);
 	int checkUser(String id);
-	List<UserVO> getUserList(UserVO vo);
 	UserVO getUser(UserVO vo);
 	UserVO getID(UserVO vo);
 	int getPw(UserVO vo);
@@ -22,5 +22,8 @@ public interface UserService {
 	int updateuserle2(UserVO vo);
 	int updateuserle3(UserVO vo);
 	
-	
+	//관리자회원(수정/삭제)
+	void updateMember(UserVO vo);
+	void deleteMember(UserVO vo);
+	List<UserVO> getUserList(UserVO vo);
 }

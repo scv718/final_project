@@ -42,8 +42,20 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/order.do" />
-<!-- 			<mvc:exclude-mapping path="/login.do" /> -->
+			<mvc:mapping path="/adminMain.wp" />
+			<mvc:mapping path="/insertReview.wp" />
+			<mvc:mapping path="/updateReview.wp" />
+			<mvc:mapping path="/deleteReview.wp" />
+			<mvc:mapping path="/likeReview.wp" />
+			<mvc:mapping path="/myorderList.wp" />
+			<mvc:mapping path="/payment.wp" />
+			<mvc:mapping path="/updateQna.wp" />
+			<mvc:mapping path="/insertQna.wp" />
+			<mvc:mapping path="/mypage.wp" />
+			<mvc:mapping path="/preference.wp" />
+<!-- 			<mvc:exclude-mapping path="/signUp.wp" /> -->
+<!-- 			<mvc:exclude-mapping path="/index.wp" /> -->
+<!-- 			<mvc:exclude-mapping path="/" /> -->
 			<ref bean="authenticationInterceptor"></ref>
 		</mvc:interceptor>
 	</mvc:interceptors>

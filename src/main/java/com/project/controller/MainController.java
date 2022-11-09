@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.mainmenu.MenuService;
 import com.project.mainmenu.MenuVO;
+import com.project.subscribe.SubscribeVO;
 
 @Controller
 public class MainController {
@@ -27,12 +30,6 @@ public class MainController {
 		return "WEB-INF/view/introduce.jsp";
 	}
 
-	@RequestMapping(value = "/subscribe.wp")
-	public String subscribe() {
-		System.out.println("구독하기");
-		return "WEB-INF/view/subscribe/subscribe.jsp";
-	}
-
 	@RequestMapping(value = "/userCertification.wp")
 	public String userCertification() {
 		System.out.println("본인인증");
@@ -40,7 +37,7 @@ public class MainController {
 	}
 	
 	
-	@RequestMapping(value = "/singUp.wp")
+	@RequestMapping(value = "/signUp.wp")
 	public String singUp() {
 		System.out.println("로그인폼이동");
 		return "WEB-INF/view/user/singUp.jsp";

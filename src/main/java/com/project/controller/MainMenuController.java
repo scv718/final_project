@@ -27,10 +27,21 @@ public class MainMenuController {
 	public List<MenuVO> typeMenu(@RequestParam("typeMenu") String typeMenu,MenuVO vo, Model model, HttpSession session) {
 		
 		int type = Integer.parseInt(typeMenu);
+		if(type == 1) {
+			session.setAttribute("type", "White");
+		}else if (type == 2) {
+			session.setAttribute("type", "Sparkling");
+		}else if (type == 3) {
+			session.setAttribute("type", "Rose");
+		}else {
+			session.setAttribute("type", "Red");
+		}
+		
 		vo.setType((int)type);
 		Map<String, String> map = new HashMap<String, String>();
 //		model.addAttribute("typeMenuList", menuService.typeMenu(vo));
 		session.setAttribute("typeMenuList", menuService.typeMenu(vo));
+	
 		System.out.println(menuService.typeMenu(vo));
 		
 		System.out.println(type);

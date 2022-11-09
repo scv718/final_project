@@ -1,5 +1,6 @@
 package com.project.wine;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface WineService {
@@ -16,5 +17,13 @@ public interface WineService {
 	
 	//와인 검색창 결과 이동
 	List<WineVO> getWineSearchList(WineVO vo);
+	
+	List<WineVO> detaileSearch(WineVO vo);
+	
+	List<WineVO> getType(WineVO vo);
+	
+	List<WineVO> getContinental(WineVO vo);
+	List<WineVO> getCountry(WineVO vo);
+	List<WineVO> WineListAd(WineVO wvo);
 	
 }

@@ -43,4 +43,14 @@ public class StoryServiceImpl implements StoryService {
 		
 	}
 
+	@Override
+	public List<StoryVO> getStoryList1(StoryVO vo) {
+		return storyDAO.getStoryList1(vo);		
+	}
+
+	@Override
+	public StoryVO getStory1(StoryVO vo) {
+		return storyDAO.getStory1(vo);
+	}
+
 }

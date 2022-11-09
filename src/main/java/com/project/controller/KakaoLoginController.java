@@ -56,7 +56,6 @@ public class KakaoLoginController {
 	public String naerLogin(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) {
 		System.out.println("네이버로그인");
 		System.out.println(param);
-		
 		System.out.println(param.get("email"));
 		System.out.println(param.get("name"));
 		System.out.println(param.get("mobile"));
@@ -142,7 +141,7 @@ public class KakaoLoginController {
         	}else {
         		System.out.println("자사 아이디로 로그인해주세요");
         		
-        		return "redirect:singUp.wp";
+        		return "redirect:signUp.wp";
         	}
         }
 	}

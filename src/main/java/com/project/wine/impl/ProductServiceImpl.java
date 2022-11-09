@@ -26,4 +26,25 @@ public class ProductServiceImpl implements ProductService{
 		return null;
 	}
 
+	@Override
+	public List<WineVO> subscribeW1(WineVO vo) {
+		return productDAO.subscribeW1(vo);
+	}
+
+	@Override
+	public List<WineVO> subscribeW2(WineVO vo) {
+		return productDAO.subscribeW2(vo);
+	}
+
+	@Override
+	public List<WineVO> subscribeW3(WineVO vo) {
+		return productDAO.subscribeW3(vo);
+	}
+
+	@Override
+	public List<WineVO> subscribeproduct(WineVO vo) {
+		return productDAO.subscribeproduct(vo);
+	}
+	
+
 }

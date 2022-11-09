@@ -14,23 +14,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-
 <body class="d-flex flex-column min-vh-100">
-
-
+<input type="hidden" name="mylevel" value="${mylevel}"/>
+<input type="hidden" name="userID" value="${userID}"/>
 	<div id="t1">
 		<img class="down-arrow" src="resources/img/와인구독 test (2).jpg" />
 		<div id="text-p">
 			<p>
 				<br>평<br>범<br>한<br>하<br>루<br>
 			</p>
-			<span class="parent"><p class="child">와인과 떠나는 여행 궁금하다면</p></span> <span
-				class="parent"><p class="child">
-					<a href="payment.wp" role="button" >'구독'</a>을 눌러주세요
-				</p></span>
+			<span class="parent"><p class="child">와인과 떠나는 여행 궁금하다면</p></span> 
+			<span class="parent"><p class="child">
+<a href="javascript:void(0);" id ="subscribes" onclick="levelConfirm();">구독</a>을 눌러주세요</p></span>
 		</div>
 	</div>
-
 	<div id="fofo">
 				<div class="row" id="bookmark">
 			<div class="col-md-4">
@@ -38,7 +35,7 @@
 					<img src="resources/img/구독-2.jpg" alt="와인구독" />
 					<div class="caption">
 						<h1>
-							<br>와인 입문자를 위한 <br>패키지<br>
+							<br>와인 입문자<br>패키지<br>
 							<br>
 						</h1>
 						<h2>
@@ -51,7 +48,8 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-							<a href="payment.wp" > 
+
+<a href="javascript:void(0);" id ="subscribes1" onclick="levelConfirm1();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 입문자로 성장하기</button>
 							</a>
@@ -66,7 +64,7 @@
 					<img src="resources/img/구독-5.jpg" alt="와인구독" />
 					<div class="caption">
 						<h1>
-							<br>와인 마니아를 위한 <br>패키지<br>
+							<br>와인 마니아<br>패키지<br>
 							<br>
 						</h1>
 						<h2>
@@ -79,7 +77,7 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-							<a href="payment.wp" > 
+<a href="javascript:void(0);" id ="subscribes2" onclick="levelConfirm2();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마니아로 성장하기</button>
 							</a>
@@ -95,7 +93,7 @@
 					<img src="resources/img/구독-4.jpg" alt="와인구독" id="img-4"/>
 					<div class="caption">
 						<h1>
-							<br>와인 마스터를 위한 <br>패키지<br>
+							<br>와인 마스터<br>패키지<br>
 							<br>
 						</h1>
 						<h2>
@@ -108,7 +106,7 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-							<a href="payment.wp"> 
+<a href="javascript:void(0);" id ="subscribes3" onclick="levelConfirm3();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마스터로 성장하기</button>
 							</a>
@@ -223,6 +221,86 @@
 			</a>
 		</div>
 	</div>
+	
+<script type="text/javascript">
+function levelConfirm() {
+		var id = '${userID}';
+		var level = '${mylevel}';
+		
+		if(level > 0){
+			alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+		location.href = "subscribe-3.wp";
+		}
+		if(id == null){
+			alert('로그인 후 구독이 가능 합니다.');
+			location.href = "singUp.wp";
+		}else if (level == 0){
+		alert('구독 가능한 계정입니다.');
+		}if(confirm("구독하시겠습니가?")){
+			location.href = "subscribe-1.wp";
+		}else{
+			location.href = "subscribe.wp";
+		}		 
+}
+
+function levelConfirm1() {
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+	location.href = "subscribe-3.wp";
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "singUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
+		location.href = "subscribeP.wp";
+	}else{
+		location.href = "subscribe.wp";
+	}
+}
+function levelConfirm2() {
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+	location.href = "subscribe-3.wp";
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "singUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
+			location.href = "subscribeM.wp";
+		}else{
+			location.href = "subscribe.wp";
+		}
+	
+}
+function levelConfirm3() {
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+	location.href = "subscribe-3.wp";
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "singUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
+		location.href = "subscribeG.wp";
+	}else{
+		location.href = "subscribe.wp";
+	}
+}
+
+</script>
+
 
 	<%@ include file="/footer.jsp"%>
 </body>

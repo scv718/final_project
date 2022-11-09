@@ -35,10 +35,15 @@ public class UserServeImpl implements UserService{
 		userDAO.deleteUser(vo);
 		
 	}
+	@Override
+	public void secessionUser(UserVO vo) {
+		userDAO.secessionUser(vo);
+		
+	}
 
 	@Override
 	public List<UserVO> getUserList(UserVO vo) {
-		System.out.println("유처서비스 임플까지 진행됨");
+		System.out.println("유저서비스 임플까지 진행됨");
 		return userDAO.getUserList(vo);
 	}
 
@@ -98,6 +103,15 @@ public class UserServeImpl implements UserService{
 	}
 	
 
+	@Override
+	public void updateMember(UserVO vo) {
+		userDAO.updateMember(vo);
+		
+	}
+	@Override
+	public void deleteMember(UserVO vo) {
+		userDAO.deleteMember(vo);
+	}
 
 
 

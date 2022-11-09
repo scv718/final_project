@@ -11,39 +11,53 @@
 		VALUES(#{id}, 0 , 0, '입금전', 0 , 0 ,0)
 	</insert>
 
+	<!--사용자가 구독했을 때 배송비 변경 -->
+	<update id="liset_deli_price">
+		UPDATE order_list SET
+		DELI_PRICE= 0
+		WHERE ID = #{id}
+	</update>
+	<!--사용자가 구독 취소 배송비 변경 -->
+<update id="liset_deli_price_up">
+		UPDATE order_list SET
+		DELI_PRICE= 2500
+		WHERE ID = #{id}
+	</update>
+
 	<!-- 구독-1 -->
 	<update id="insertSubscribe1">
-			UPDATE SUBSCRIPT SET
-	LEVEL=1,SUB_DATE= NOW(),SUB_PM_STATUS='입금전',SUB_DELI=0 ,E_DATE=DATE_ADD(NOW(), INTERVAL
-	30
-	DAY),SUB_STATUS=1
-	WHERE ID = #{id}
+		UPDATE SUBSCRIPT SET
+		LEVEL=1,SUB_DATE= NOW(),SUB_PM_STATUS='입금완료',SUB_DELI=0 ,E_DATE=DATE_ADD(NOW(), INTERVAL
+		30
+		DAY),SUB_STATUS=1
+		WHERE ID = #{id}
 	</update>
 
 	<!-- 구독-2 -->
 	<update id="insertSubscribe2">
-			UPDATE SUBSCRIPT SET
-	LEVEL=2,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
-	30
-	DAY),SUB_STATUS=1
-	WHERE ID = #{id}
-</update>
+		UPDATE SUBSCRIPT SET
+		LEVEL=2,SUB_DATE= NOW(),SUB_PM_STATUS='입금완료',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
+		30
+		DAY),SUB_STATUS=1
+		WHERE ID = #{id}
+	</update>
 
 	<!-- 구독-3 -->
 	<update id="insertSubscribe3">
-	UPDATE SUBSCRIPT SET
-	LEVEL=3,SUB_DATE= NOW(),SUB_PM_STATUS='입근전',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
-	30
-	DAY),SUB_STATUS=1
-	WHERE ID = #{id}
-</update>
+		UPDATE SUBSCRIPT SET
+		LEVEL=3,SUB_DATE= NOW(),SUB_PM_STATUS='입금완료',SUB_DELI=0,E_DATE=DATE_ADD(NOW(), INTERVAL
+		30
+		DAY),SUB_STATUS=1
+		WHERE ID = #{id}
+	</update>
 
 	<!--구독 취소 -->
 	<update id="updateSubscribe">
 		UPDATE SUBSCRIPT SET
 		LEVEL = 0,
 		SUB_DATE = 0,
-		E_DATE = 0,
+		E_DATE =
+		0,
 		SUB_STATUS = 2
 		WHERE ID = #{id}
 	</update>
@@ -54,23 +68,41 @@
 		select LEVEL FROM SUBSCRIPT
 		where ID = #{id}
 	</select>
+	
+	<select id="getLevel" resultType="subscribe">
+		select * FROM SUBSCRIPT
+		where ID = #{id}
+	</select>
 
 	<!--리스트 -->
 	<select id="getSubscribeList" resultType="subscribe">
 		select * FROM SUBSCRIPT
 		where ID = #{id}
 	</select>
-
+	<!--구독시 배송비 확인 -->
+	<select id="level_shipping" resultType="subscribe">
+		SELECT
+		a.ID,a.LEVEL,a.SUB_DATE,a.SUB_PM_STATUS,a.SUB_DELI,a.E_DATE,a.SUB_STATUS,b.PROD_PRICE,b.DELI_PRICE
+		FROM SUBSCRIPT A LEFT OUTER JOIN order_list b ON a.id = b.id WHERE
+		a.ID = #{id}
+	</select>
 
 	<update id="preference_Setting">
 		UPDATE SUBSCRIPT SET
 		S_SWEET = #{s_sweet},
-		S_BODY = #{s_body},
+		S_BODY =
+		#{s_body},
 		S_ACIDITY = #{s_acidity},
 		S_TANNINS =
 		#{s_tannins}
-		WHERE ID = #{id}
+		WHERE ID =
+		#{id}
 	</update>
-	
+
+
+<select id="allsubscriptList" resultType="subscribe">
+		select * from subscript
+	</select>
+
 </mapper> 
 

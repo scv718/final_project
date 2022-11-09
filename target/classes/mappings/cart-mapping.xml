@@ -19,8 +19,6 @@
 <!-- UPDATE ORDER_CART SET ORD_CART_NO = @COUNT:=@COUNT+1]]> -->
 	</update>
 	
-	
-	
 	<!-- 카트 삭제 -->
 	<delete id="deleteCart">
 		DELETE FROM ORDER_CART WHERE ORD_CART_NO = #{ord_cart_no}
@@ -29,10 +27,7 @@
 	<!-- 카트 수량 수정 -->
 	<update id="modifyCount">
 	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
-<!-- 	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan+1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no} -->
-	</update>
-	<update id="modifyCount1">
-	UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan-1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no}
+<!-- UPDATE ORDER_CART SET ORD_QUAN = #{ord_quan+1} WHERE ID = #{id} and ORD_CART_NO =#{ord_cart_no} -->
 	</update>
 	
 	<!-- 카트 확인 -->
@@ -40,11 +35,13 @@
 	SELECT * FROM ORDER_CART WHERE ID = #{id} AND ORD_CART_NO =#{ord_cart_no}</select>	
 	
 	<!-- 카트 목록 -->
-	<select id="getCart" resultType="cart">
-			SELECT A.*,B.W_NM_K, B.W_NM_E,B.QUANTITY
-		FROM ORDER_CART A LEFT OUTER JOIN WINE B ON A.W_NO = B.W_NO AND A.W_PRICE = B.W_PRICE 
-		WHERE ID = #{id};
+	<select id="getCartList" resultType="cart">
+	SELECT A.*,B.W_NM_K, B.W_NM_E,B.QUANTITY,B.W_IMAGE1
+	FROM ORDER_CART A LEFT OUTER JOIN WINE B ON A.W_NO = B.W_NO AND A.W_PRICE =
+	B.W_PRICE
+	WHERE ID = #{id};
 	</select>
+	
 	<!-- 카트 목록 -->
 	<select id="getCartPayment" resultType="cart">
 		SELECT A.*,B.W_NM_K, B.W_NM_E,B.QUANTITY

@@ -11,7 +11,9 @@
     <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/notice.css"/>
     <title>공지사항</title>
     <%@ include file="../../../header.jsp"%>
-    
+    <style>
+ 
+    </style>
     <script>
     function selTr(val){
     	location.href = "getNotice.wp?commu_no="+val;
@@ -45,8 +47,8 @@
         <ul class="li_header hidden-xs noticehead">
             <li class="no">No</li>
             <li class="tit">제목</li>
-            <li class="name">작성자</li>
-            <li class="date">작성일</li>
+            <li class="name">글쓴이</li>
+            <li class="date">작성시간</li>
             <li class="read">조회수</li>
         </ul>
 
@@ -63,7 +65,6 @@
 	</c:forEach>
     </div>
     
-    <!-- 페이징처리 -->
     <div id="btnBox">
 	<!-- 반복처리할 태그 시작 -->
 	<c:if test="${paging.nowPageBtn > 1 }">

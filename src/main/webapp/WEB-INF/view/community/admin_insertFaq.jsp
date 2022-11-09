@@ -5,13 +5,70 @@
 <head>
 <meta charset="utf-8">
 <title>FAQ 글쓰기</title>
-
 <link rel="canonical"
 	href="https://getbootstrap.kr/docs/4.5.2/examples/carousel/">
 
 <link
 	href="https://getbootstrap.kr/docs/4.5.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+
+    <!-- include libraries(jQuery, bootstrap) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+$(document).ready(function() {
+    
+    $('#summernote').summernote({
+          placeholder: 'Hello Bootstrap 4',
+          tabsize: 2,
+          height: 100
+        });
+  });
+
+// 툴바생략
+var setting = {
+//         height : 300,
+//         minHeight : null,
+//         maxHeight : null,
+//         focus : true,
+//         lang : 'ko-KR',
+//         toolbar : toolbar,
+        //콜백 함수
+        callbacks : { 
+        	onImageUpload : function(files, editor, welEditable) {
+        // 파일 업로드(다중업로드를 위해 반복문 사용)
+        for (var i = files.length - 1; i >= 0; i--) {
+        uploadSummernoteImageFile(files[i],
+        this);
+        		}
+        	}
+        }
+     };
+//     $('#summernote').summernote(setting);
+//     });
+    
+    function uploadSummernoteImageFile(file, el) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "uploadSummernoteImageFile",
+			contentType : false,
+			enctype : 'multipart/form-data',
+			processData : false,
+			success : function(data) {
+				$(el).summernote('editor.insertImage', data.url);
+			}
+		});
+	}
+
+</script>
 
 
 </head>
@@ -21,8 +78,7 @@
 	</div>
 
 	<div class="container-fluid">
-		<form action="insertFaq.wp" method="post"
-			enctype="multipart/form-data">
+		<form action="admin_insertFaq.wp" method="post" enctype="multipart/form-data">
 			<input type="hidden" class="form-control" name="commu_cat" value="1">
 
 			<fieldset class="form-group">
@@ -66,8 +122,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				<textarea class="form-control" rows="10" id="comment"
-					name="commu_content"></textarea>
+				 <textarea id="summernote" name="commu_content"></textarea>
+<!-- 				<textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea> -->
 			</div>
 			<div id="footer">
 				<div id="se2_sample" style="margin: 10px 0;">

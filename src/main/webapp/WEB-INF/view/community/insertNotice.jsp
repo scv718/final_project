@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -34,12 +34,13 @@
 <!-- 		<form action="insertNotice.wp" method="post" -->
 		<form action="submit.wp" method="post" id="frm"
 			enctype="multipart/form-data">
-<!-- 			<div class="input-group mb-3"> -->
-<!-- 				<div class="input-group-prepend"> -->
-<!-- 					<span class="input-group-text">구분번호</span> -->
-<!-- 				</div> -->
-			<input type="hidden" class="form-control" name="commu_cat" value="1">
-<!-- 			</div> -->
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">구분번호</span>
+				</div>
+				<input type="text" class="form-control" name="commu_cat"
+					placeholder="구분번호를 입력하세요" required>
+			</div>
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">항목내번호</span>

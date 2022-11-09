@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.community.CommunityVO;
 import com.project.community.NoticeService;
+import com.project.community.NoticeVO;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
@@ -48,6 +49,10 @@ public class NoticeServiceImpl implements NoticeService {
 	public int totalNoticeListCnt(CommunityVO vo) {
 		return noticeDAO.totalNoticeListCnt(vo);
 	}
-
+      @Override
+	public List<NoticeVO> NoticeListAd(NoticeVO vo) {
+		System.out.println("공지서비스 임플까지 진행됨");
+		return noticeDAO.NoticeListAd(vo);
+	}
 
 }

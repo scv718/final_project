@@ -1,42 +1,372 @@
 @charset "UTF-8";
 
+#one{
+	color: #f1c0ce;
+}
+#two{
+	color: #e999b0;
+}
+#three{
+	color: #e07392;
+}
+#four{
+	color: #d5406b;
+}
+#five{
+	color: #c70039;
+}
+#typename{
+	margin-right: 15px;
+}
+.btn-hover {
+    width: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
 
-#productimg{
+.btn-hover.color-7 {
+   background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn {
+	border: none;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	text-transform: uppercase;
+	outline: none;
+	overflow: hidden;
+	position: relative;
+	font-weight: 700;
+	font-size: 15px;
+	padding: 17px 60px;
+	margin: 0 auto;
+}
+
+.btn span {
+	position: relative;
+	z-index: 1;
+}
+
+.btn:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 490%;
+	width: 150%;
+	background: #E8114E;
+	-webkit-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+	-webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+	transform: translateX(-100%) translateY(-27%) rotate(45deg);
+}
+
+.btn:hover:after {
+	-webkit-transform: translateX(-20%) translateY(-25%) rotate(45deg);
+	transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.link {
+	font-size: 20px;
+	margin-top: 30px;
+}
+
+.link a {
+	color: #000;
+	font-size: 25px;
+}
+
+.bi-heart-fill {
+	color: white;
+}
+
+.select{
+	width:600px;
+	margin: 0 auto;
+    margin-top: 35px;
+    margin-bottom: 60px;
+}
+
+#detailbtn {
+	margin-top: 25px;
+	margin-right: 20px;
+	background-color: white;
+	width: 120px;
+	box-shadow: 3px 3px 5px lightgrey;
+}
+
+
+input[type=range] {
+    -webkit-appearance: none; 
+    overflow: hidden;
+    width: 100%; 
+    height: 10px;
+    background: transparent; 
+    cursor: pointer;
+   background: #e5e4e3;
+    border-radius: 0; /* iOS */
+  }
+
+  input[type=range]:focus {
+    outline: none; 
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    box-shadow: -100vw 0 0 100vw #ab1325;
+    border: 0.1px solid #ab1325;
+    cursor: pointer;
+  }
+
+
+.pl{
+	height: 40px;
+	margin-right: 20px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 5px 7px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.pl:focus{
+    border: 1px solid tomato;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 3px solid #F8E4FF;
+    border-radius: 10px;
+}
+
+#wineinfo{
+	    margin-top: 38px;
+    margin-bottom: 50px;
+    margin-left: 5px;
+    text-align: center;
+}
+#winetaste{
+	 margin-left: 20px;
+    margin-top: 50px;
+    font-size: 18px;
+}
+#winenmk{
+	font-size: 20px;
+	    font-weight: bolder;
+	    margin: 0 auto;
+}
+#pricediv{
+	  margin-left: 20px;
+	  font-size: 25px;
+	
+} 
+#productimg {
 	height: 280px;
 }
-
-#firstrow > .col{
-	margin-top: 56px;	
+#paymentone{
+	width: 190px;
+	height: 50px;
+    margin-top: 20px;
 }
-#productone{
+
+#firstrow>.col {
+	margin-top: 56px;
+}
+
+#firstrow>.col-4 {
+	margin-top: 56px;
+}
+
+#productone {
 	text-align: center;
 }
-#producttwo{
-	margin-top: 56px;	
-	
+
+#producttwo {
+	margin-top: 56px;
 }
+
 #productthree{
-	background-color: #f6f6f6;
-	margin-left: 15px;
+	border: 2px solid #A2A2A2;
+	margin-top: 30px !important;
+/* 	background-color: #F87171; */
+    max-width: 255px;
+
+	margin-left: 30px;
 	height: 500px;
-	border-radius: 14% 14% 15% 14% / 14% 14% 14% 14% ;
+	border-radius: 21% 21% 21% 21%  / 10% 10% 10% 10% ;
+	text-align: center;
 }
-.buttondiv > .row{
+
+.buttondiv>.row {
 	margin-top: 35px;
 }
 .buttondiv{
-	margin-top: 50px;
+/* 	margin-top: 340px; */
+	text-align: center;
 }
-#productinfo{
-	 margin-top: 45px;
-	 font-size: 13px;
+
+#productinfo {
+	margin-top: 45px;
+	font-size: 13px;
 }
-#productprice{
-	 margin-top: 19px;
+
+#productprice {
+	margin-top: 19px;
 }
-#productnm{
+
+#productnm {
+	
 }
-.knm{
+
+.knm {
 	font-size: 21px;
 	font-weight: bold;
 }
+
+
+/* 유경 추가 시작 */
+th {
+	background-color: #f0f0f0;
+	padding: 5px;
+}
+
+tr {
+	border-bottom: 1px solid lightgray;
+}
+
+.reviewhead {
+	border-top: 2px solid black;
+	border-bottom: none;
+}
+
+td {
+	color: black;
+}
+
+#reviewtab {
+	text-align: center;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#writebtn-div {
+	padding-bottom: 25px !important;
+}
+
+.writebtn {
+	background-color: #fff;
+	border: 1px solid lightgray;
+	color: gray;
+	padding: 5px 15px;
+}
+
+#btnBox {
+	text-align: center;
+}
+
+a {
+	text-decoration-line: none !important;
+	color: black !important;
+}
+
+a:hover {
+	text-decoration-line: none !important;
+	color: black !important;
+}
+
+a:active {
+	color: black !important;
+}
+
+#myform fieldset {
+	display: inline-block; /* 행 전체 차지하지 않고 별 영역만 사용하게끔 함. */
+	border: 0px;
+	direction: rtl; /* 이모지 순서 반전 */
+}
+
+#myform fieldset legend {
+	text-align: left;
+}
+
+#myform input[type=radio] {
+	display: none;
+}
+
+#myform input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 #f5d142; /* 마우스 클릭 체크 */
+}
+
+#myform label { /* 이모지를 투명으로 하고 텍스트 그림자 효과에 색상 부여하는 방식으로 이모지 색상 변경. */
+	font-size: 1.2em;
+	color: transparent;
+	text-shadow: 0 0 0 #e6e6e6;
+}
+
+#myform label:hover {
+	text-shadow: 0 0 0 #f5d142;
+}
+
+#myform label:hover ~ label {
+	text-shadow: 0 0 0 #f5d142;
+}
+
+#writeContent {
+	padding: 20px 40px;
+    margin-bottom: 30px;
+    border-top: 2px solid;
+    border-left: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+#comment {
+	margin-bottom: 10px;
+}
+
+.padding-div {
+	margin-bottom: 5px;
+}
+
+#filebtn {
+	border: 1px solid #ddd;
+	outline: none;
+}
+
+#inputfile {
+	display: none;
+}
+
+.form-control {
+	border: 1px solid lightgray;
+}
+
+/* 유경 끝 */

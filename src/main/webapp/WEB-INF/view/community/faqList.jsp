@@ -61,7 +61,8 @@
 	<div id="faqContainer">
 		<!-- 제목 -->
 		<h3 id="comtitle">FAQ 자주하는질문</h3>
-		<button type="button" onclick="location.href='insertFaq.wp'">1:1 문의하기</button>
+		<button type="button" onclick="location.href='insertFaq.wp'">1:1
+			문의하기</button>
 		<button type="button" onclick="location.href='admin_getFaqList.wp'">관리자FAQ목록확인</button>
 		<!-- 검색창 -->
 		<nav id="searchNav">
@@ -77,24 +78,30 @@
 			</form>
 		</nav>
 		<!-- 카테고리필터 -->
-		 		<form action="getFaqList.wp" method="POST" id="align">
-		 		<input type="hidden" name="alignlist" value="${option2.value}">
-<!-- 					<select name="alignlist" onchange="this.form.submit()"> -->
-					<select name="alignlist" onchange="this.form.submit()">
-						<c:forEach items="${conditionMap2}" var="option2">
-							<option value="${option2.value}"
-								<c:if test="${category eq option2.value}">selected="selected"</c:if>>${option2.key}</option>
-						</c:forEach>
-					</select>
-				</form> 
+	<%-- 	<form action="getFaqList.wp" method="POST" id="align">
+			<select name="alignlist" onchange="$('form').submit()">
+				<c:forEach items="${conditionMap2}" var="option2">
+					<option value="${option2.value}"
+						<c:if test="${category eq option2.value}">selected="selected"</c:if>>${option2.key}</option>
+				</c:forEach>
+			</select>
+		</form> --%>
 
-		<!-- <select id="selectBox" name="alignlist">
-			<option value="0" selected="selected">[주문/결제/배송]</option>
-			<option value="1">[취소/교환/환불]</option>
-			<option value="2">[구독서비스]</option>
-			<option value="3">[회원]</option>
-		</select>
-		<div class="div1"></div> -->
+		<!-- 카테고리 필터 -->
+		<form action="getFaqList.wp" method="POST" id="align">
+			<ul>
+				<li>
+				<select name="alignlist" class="w-px100" onchange="$('form').submit()">
+						<option>자주 찾는 검색어</option>
+						<option value="zero" ${paging.viewType eq 'zero' ? 'selected' : '' }>[주문/결제/배송]</option>
+						<option value="one" ${paging.viewType eq 'one' ? 'selected' : '' }>[취소/교환/환불]</option>
+						<option value="two" ${paging.viewType eq 'two' ? 'selected' : '' }>[구독서비스]</option>
+						<option value="three" ${paging.viewType eq 'three' ? 'selected' : '' }>[회원]</option>
+						<option value="four" ${paging.viewType eq 'four' ? 'selected' : '' }>[기타]</option>
+				</select>
+				</li>
+			</ul>
+		</form>
 
 		<!-- 자주하는질문 보드 -->
 		<div id="accordion">
@@ -170,18 +177,4 @@
     }
 </script>
 
-<!-- <script>
-$(document).ready(function() {
-	  $('#selectBox').change(function() {
-	    var result = $('#selectBox option:selected').val();
-	    if (result == 'option2') {
-	      $('.div1').show();
-	    } else {
-	      $('.div1').hide();
-	    }
-	  }); 
-	}); 
-
-
-</script> -->
 </html>

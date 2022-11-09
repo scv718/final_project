@@ -9,33 +9,73 @@
 	<select id="getReviewList" resultType="review">
 		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
 		JOIN WINE W
-		ON R.W_NO =
-		W.W_NO
+		ON R.W_NO =	W.W_NO
 		WHERE 1=1
-		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
-		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
+		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
 		<if test="searchCondition == 'PRODUCT'">
 			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
 			OR W_NM_E
 			LIKE CONCAT('%',#{searchKeyword},'%')
+			ORDER BY RE_NO DESC 
 		</if>
-		ORDER BY RE_NO DESC
+		<if test="searchCondition == null">ORDER BY RE_NO DESC </if>
 		LIMIT 10 OFFSET #{offset}
 	</select>
-
+	
 	<!-- 리뷰게시판 글 개수 -->
 	<select id="getReviewListCnt" resultType="_int">
 		SELECT COUNT(*) FROM REVIEW R
 		JOIN WINE W
 		ON R.W_NO = W.W_NO
 		WHERE 1=1
-		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
-		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'TITLE'">AND RE_TITLE LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
+		<if test="searchCondition == 'CONTENTS'">AND RE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%') ORDER BY RE_NO DESC </if>
 		<if test="searchCondition == 'PRODUCT'">
 			AND W_NM_K LIKE CONCAT('%',#{searchKeyword},'%')
 			OR W_NM_E
 			LIKE CONCAT('%',#{searchKeyword},'%')
+			ORDER BY RE_NO DESC 
 		</if>
+		<if test="searchCondition == 'null'">ORDER BY RE_NO DESC </if>
+	</select>
+	
+	
+	<!-- 포토리뷰만 보기, 최신순, 추천순 정렬 목록 -->
+	<select id="reviewFilter" resultType="review">
+		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
+		JOIN WINE W
+		ON R.W_NO = W.W_NO
+		WHERE 1=1
+		<if test="filter == 'PHOTO'.toString()">AND RE_PHOTO1 IS NOT NULL ORDER BY RE_NO DESC</if>
+		<if test="filter == 'NEW'">ORDER BY RE_DATE DESC</if>
+		<if test="filter == 'LIKE'">ORDER BY RE_LIKE DESC</if>
+		<if test="filter == null">ORDER BY RE_NO DESC</if>
+		LIMIT 10 OFFSET #{offset}
+	</select>
+	
+	<!-- 정렬 글 개수 -->
+	<select id="getFilterCnt" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW R
+		JOIN WINE W
+		ON R.W_NO = W.W_NO
+		WHERE 1=1
+		<if test="filter == 'PHOTO'">AND RE_PHOTO1 IS NOT NULL ORDER BY RE_NO DESC</if>
+		<if test="filter == 'NEW'">ORDER BY RE_DATE DESC</if>
+		<if test="filter == 'LIKE'">ORDER BY RE_LIKE DESC</if>
+		<if test="filter == 'null'">ORDER BY RE_NO DESC</if>
+	</select>
+	
+	<!-- 상품별 리뷰 목록조회 -->
+	<select id="productReviewList" resultType="review">
+		SELECT * FROM REVIEW
+		WHERE W_NO = #{w_no};
+	</select>
+	
+	<!-- 상품별 리뷰 개수 -->
+	<select id="productReviewListCnt" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW
+		WHERE W_NO = #{w_no};
 	</select>
 	
 	<!-- 리뷰 상세조회 -->
@@ -47,28 +87,33 @@
 	</select>
 
 	<!-- 해당상품 리뷰작성 권한 확인(결과가 0이면 작성 불가) -->
-	<select id="confirmWriter" resultType="_int">
-		SELECT COUNT(*) FROM SAMP.ORDER O
-		JOIN SAMP.REVIEW R
-		ON O.ID = R.ID
+	<select id="orderMember" resultType="_int">
+		SELECT COUNT(*) FROM ORDER_LIST O
+		JOIN REVIEW R
+		ON O.W_NO = R.W_NO
 		WHERE O.ID = #{id} AND O.W_NO = #{w_no} AND O.ORD_STAT='배송완료';
+	</select>
+	
+	<!-- 해당상품 리뷰 작성내역이 있는지 확인 -->
+	<select id="existReview" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW
+		WHERE ID = #{id} AND W_NO = #{w_no}
 	</select>
 
 	<!-- 해당상품 리뷰작성 -->
 	<insert id="insertReview">
 		INSERT INTO REVIEW (W_NO, ID, RE_TITLE,
 		RE_CONTENT, RE_SCORE,
-		RE_PHOTO1, RE_PHOTO2, RE_PHOTO3, RE_DATE,
-		RE_LIKE)
+		RE_PHOTO1, RE_PHOTO2, RE_PHOTO3, RE_DATE)
 		VALUES
-		(#{w_no},#{id},#{re_title},#{re_content},#{re_score},#{re_photo1},#{re_photo2},#{re_photo3},now(),#{re_like});
+		(#{w_no},#{id},#{re_title},#{re_content},#{re_score},#{re_photo1},#{re_photo2},#{re_photo3},now());
 	</insert>
 
 	<!-- 해당상품 리뷰수정 -->
 	<update id="updateReview">
-		UPDATE REVIEW SET RE_COUNT=#{re_count},
-		RE_PHOTO1=#{re_photo1}, RE_PHOTO2=#{re_photo2},
-		RE_PHOTO3=#{re_photo3}, RE_CONTENT=#{re_content} WHERE RE_NO=#{re_no}
+		UPDATE REVIEW SET RE_TITLE=#{re_title}, RE_CONTENT=#{re_content}, RE_SCORE=#{re_score}, 
+		RE_PHOTO1=#{re_photo1}, RE_PHOTO2=#{re_photo2},	RE_PHOTO3=#{re_photo3} 
+		WHERE RE_NO=#{re_no}
 	</update>
 
 	<!-- 해당상품 리뷰삭제 -->

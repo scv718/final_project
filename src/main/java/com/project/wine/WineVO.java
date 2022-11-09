@@ -23,7 +23,15 @@ public class WineVO {
 	private String w_a_img;
 	private String w_t_img;
 	private int w_sales;
-	
+	private String searchKeyword;
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 
 	@Override
 	public String toString() {

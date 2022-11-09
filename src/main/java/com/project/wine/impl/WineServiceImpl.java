@@ -51,4 +51,36 @@ public class WineServiceImpl implements WineService {
 		return wineDAO.getWineSearchList(vo);	
 	}
 
+	@Override
+	public List<WineVO> detaileSearch(WineVO vo) {
+		System.out.println("디테일 서치 서비스 임플까진 실행");
+		return wineDAO.detaileSearch(vo);	
+	}
+
+	@Override
+	public List<WineVO> getType(WineVO vo) {
+		System.out.println("겟 타입 서비스 임플까진 실행");
+		return wineDAO.getType(vo);
+	}
+
+	@Override
+	public List<WineVO> getContinental(WineVO vo) {
+		System.out.println("겟 컨티넨탈 서비스 임플까진 실행");
+		return wineDAO.getContinental(vo);
+	}
+
+	@Override
+	public List<WineVO> WineListAd(WineVO wvo) {
+		System.out.println("와인 관리서비스 임플까진 실행");
+		return wineDAO.WineListAd(wvo);
+	}
+	
+	@Override
+	public List<WineVO> getCountry(WineVO vo) {
+		System.out.println("겟 컨츄리 서비스 임플까진 실행");
+		return wineDAO.getCountry(vo);
+	}
+
+	
+	
 }

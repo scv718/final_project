@@ -50,4 +50,26 @@ public class SubscribeServiceImpl implements SubscribeService {
 	public void preference_Setting(SubscribeVO vo) {
 		subscribeDAO.preference_Setting(vo);
 	}
+	@Override
+	public  List<SubscribeVO> level_shipping(String vo) {
+		return subscribeDAO.level_shipping(vo);
+	}
+	@Override
+	public void liset_deli_price(SubscribeVO vo) {
+		subscribeDAO.liset_deli_price(vo);
+		
+	}
+	@Override
+	public void liset_deli_price_up(SubscribeVO vo) {
+		subscribeDAO.liset_deli_price_up(vo);
+		
+	}
+	@Override
+	public SubscribeVO getLevel(SubscribeVO vo) {
+		return subscribeDAO.getLevel(vo);
+	}
+	@Override
+	public List<SubscribeVO> allsubscriptList(SubscribeVO vo) {
+		return subscribeDAO.allsubscriptList(vo);
+	}
 }

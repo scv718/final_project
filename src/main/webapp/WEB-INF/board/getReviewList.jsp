@@ -25,13 +25,13 @@
 			<button type="submit" class="searchbtn">검색</button>
 		</form>
 	</nav>
-	<form action="getReviewList.wp" method="POST" id="align">
-		<select name="alignlist" onchange="this.form.submit()">
-			<c:forEach items="${conditionMap2}" var="option">
-					<option value="${option.value}" <c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option>
-			</c:forEach>
-		</select>
+	<div id="filterdiv">
+	<form action="getfilterList.wp" method="POST" id="filter">
+		<input type="radio" name="filter" value="PHOTO" onchange="this.form.submit()" <c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰만 보기&nbsp;
+		<input type="radio" name="filter" value="NEW" onchange="this.form.submit()" <c:if test="${radiochk eq 'NEW'}">checked</c:if>>최신순&nbsp;
+		<input type="radio" name="filter" value="LIKE" onchange="this.form.submit()" <c:if test="${radiochk eq 'LIKE'}">checked</c:if>>추천순
 	</form>
+	</div>
 	<table id="reviewtab">
 		<colgroup>
 			<col style="width: 50px">
@@ -55,12 +55,9 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${reviewList}" var="review">
-				<tr onclick="selTr(${review.w_no})" style="cursor:pointer;">
+				<tr>
 					<td class="tdCenter">${review.re_no}</td>
-					<td><c:if test="${review.re_photo1 ne NULL}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
- 		 					<path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
- 		 					<path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
-						</svg></c:if></td>
+					<td><c:if test="${review.re_photo1 ne NULL}"><i class="bi bi-image" style="color: gray;"></i></c:if></td>
 					<td style="text-align:left"><div><a href="" class="productlink">${review.w_nm_k}</a>
 						<br><a href="detailReview.wp?re_no=${review.re_no}" class="detailreview">${review.re_title}</a></div></td>
 					<td class="tdCenter">${review.re_score}</td>

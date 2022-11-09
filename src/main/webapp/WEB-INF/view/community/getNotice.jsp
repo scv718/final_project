@@ -24,14 +24,7 @@
 </style>
 <script>
 $(document).ready(function(){ 
-	
-	$("#conDel").click(function(){
-		if(confirm("정말 삭제하시겠습니까?") == true){
-			let v = document.fm.commu_no.value;
-			location.href = "deleteNotice.wp?commu_no="+v;
-		}else{
-		}
-	});
+
 	
 	$("#conList").click(function(){
 		location.href = "getNoticeList.wp";
@@ -53,40 +46,22 @@ $(document).ready(function(){
       <div class="input-group-prepend">
         <span class="input-group-text">제목</span>
       </div>
-      <input type="text" class="form-control innm" name="commu_title" value="${community.commu_title}">      
+      <input type="text" class="form-control innm" name="commu_title" value="${community.commu_title}" readonly>      
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">작성자</span>
       </div>
-<%--       <input type="text" class="form-control innm" name="writer" value="${board.writer}" readonly <%=sts %>>       --%>
+
       <input type="text" class="form-control innm" value="${community.id}" readonly>      
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">내용</span>
       </div>
-      <textarea class="form-control innm" rows="10" id="comment" name="commu_content">${community.commu_content}</textarea>      
+      <textarea class="form-control innm" rows="10" id="comment" name="commu_content" readonly>${community.commu_content}</textarea>      
     </div>  
-    <%-- <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">파일</span>
-      </div>
-   		<c:if test="${board.filename ne NULL}">
-   			<span style="cursor:pointer;padding:0 20px;" onclick="seeImg()">[파일보기]</span>
-   			<script>
-	        	function seeImg(){
-	        		$("#imgBox").show();
-	        	}
-	        </script>
-   			<span style="cursor:pointer;" onclick="downloadFile('${board.filename}')">[파일다운]</span>
-   			<script>
-	   			function downloadFile(filename){
-	   			    window.location ='download.do?filename='+filename;
-	   			}
-			</script>
-   		</c:if>
-    </div> --%>
+
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">등록일</span>
@@ -100,30 +75,12 @@ $(document).ready(function(){
       <input type="text" class="form-control innm" name="commu_count" value="${community.commu_count}" readonly>      
     </div>
     <div id="footer">
-<%--     <input class="btn btn-primary" type="submit" value="글수정하기" onclick="location.href='updateNotice.wp?commu_no=${community.commu_no}'"> --%>
-    <input class="btn btn-primary" type="submit" value="글수정하기" >
-<!-- 	  	<button type="submit" class="btn btn-primary">글수정</button> -->
-	  	<button id="conWrite" type="button" class="btn btn-primary" onclick="location.href='insertNotice.wp'">글쓰기</button>
-	  	<button id="conDel" type="button" class="btn btn-primary" >글삭제</button>
+
 	  	<button id="conList" type="button" class="btn btn-primary">글목록</button>
 	</div>
   </form>  
 </div>
-<!-- 클릭시 보이는 이미지 start -->
-<div id="imgBox" class="container-fluid">
-	<div id="imgContentBox">
-		<div id="imgBoxTitleBar">
-			<span id="closeX" onclick="closeX()">X</span>
-			 <script>
-        	function closeX(){
-        		$("#imgBox").hide();
-        	}
-        </script>
-		</div>
-		<img id="imgBoxImg" src="img/${board.filename}">
-	</div>
-</div>
-<!-- 클릭시 보이는 이미지 end -->
+
 <%@ include file="../../../footer.jsp" %>
 </body>
 </html>

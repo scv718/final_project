@@ -1,160 +1,232 @@
 package com.project.controller;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.cart.CartService;
 import com.project.subscribe.SubscribeService;
 import com.project.subscribe.SubscribeVO;
+import com.project.user.AddressService;
+import com.project.user.AddressVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
+import com.project.wine.ProductService;
+import com.project.wine.WineVO;
 
 @Controller
 public class SubscribeController {
-	
+
 	@Autowired
 	private SubscribeService subscribeService;
-	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	AddressService addressService;
+	@Autowired
+	CartService cartService;
+	@Autowired
+	UserService userSerivce;
+	@Autowired
+	ProductService productService;
 	
-
-	// 구독 결제하기-1
-	@RequestMapping(value = "insertSubscribe1.wp", method = RequestMethod.POST)
-	public String insertSubscribe1(SubscribeVO vo, UserVO vo1, HttpSession session, Model model) {
-		// 로그인 체크
-		String uvo = (String) session.getAttribute("userID");
-		vo1.setId(uvo);
-		session.setAttribute("level", userService.getUser1(vo1));
-		int result = userService.getUser1(vo1);
-		try {
-			if (uvo == null) {
-				return "singUp.wp";
-			} else if (result > 0) {
-				return "payment.wp";
-			} else {
-				vo.setId(uvo);
-				vo1.setId(uvo);
-				subscribeService.insertSubscribe1(vo);
-				userService.updateuserle1(vo1);
-				System.out.println("실행: "+ result); 
-				System.out.println("구독 변경: "+ userService.updateuserle1(vo1) + " 유저 변경: "+ userService.updateuserle1(vo1));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+	//구독페이지
+	@RequestMapping(value = "/subscribe.wp")
+	public String subscribe(UserVO uvo,SubscribeVO svo, HttpSession session,Model model) {
+		System.out.println("구독하기");
+		uvo.setId((String) session.getAttribute("userID"));
+		svo.setId((String) session.getAttribute("userID"));
+		if(uvo.getId() != null){
+		model.addAttribute("user", userSerivce.getUser(uvo));
+		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
 		}
-		return "subscribe.wp";
+		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 
-	// 구독 결제하기-2
-	@RequestMapping(value = "insertSubscribe2.wp", method = RequestMethod.POST)
-	public String insertSubscribe2(SubscribeVO vo, UserVO vo1, HttpSession session, Model model) {
-		// 로그인 체크
-		String uvo = (String) session.getAttribute("userID");
-		vo1.setId(uvo);
-		session.setAttribute("level", userService.getUser1(vo1));
-		int result = userService.getUser1(vo1);
-		try {
-			if (uvo == null) {
-				return "singUp.wp";
-			} else if (result > 0) {
-				return "payment.wp";
-			} else {
-				vo.setId(uvo);
-				vo1.setId(uvo);
-				subscribeService.insertSubscribe2(vo);
-				userService.updateuserle2(vo1);
-				System.out.println("실행: "+ result); 
-				System.out.println("구독 변경: "+ userService.updateuserle2(vo1) + " 유저 변경: "+ userService.updateuserle2(vo1));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "subscribe.wp";
+	// 마이페이지
+	@RequestMapping(value = "/mypage.wp")
+	public String getSubscribe1(SubscribeVO vo, HttpSession session, Model model) {
+		System.out.println("마이페이지");
+		String id = (String) session.getAttribute("userID");
+		vo.setId(id);
+		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
+		return "WEB-INF/view/mypage/mypage.jsp";
 	}
-	
-	
-	
-	// 구독 결제하기-3
-@RequestMapping(value = "insertSubscribe3.wp", method = RequestMethod.POST)
-public String insertSubscribe3(SubscribeVO vo, UserVO vo1, HttpSession session, Model model) {
-	// 로그인 체크
-	String uvo = (String) session.getAttribute("userID");
-	vo1.setId(uvo);
-	session.setAttribute("level", userService.getUser1(vo1));
-	int result = userService.getUser1(vo1);
-	try {
-		if (uvo == null) {
+
+	// 마이페이지 구독 조회
+	@RequestMapping("/mysubscribe.wp")
+	public String getSubscribe(SubscribeVO vo, HttpSession session, Model model) {
+		System.out.println("구독/취향 설정");
+		String id = (String) session.getAttribute("userID");
+		vo.setId(id);
+		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
+
+		if (id == null) {
 			return "singUp.wp";
-		} else if (result > 0) {
-			return "payment.wp";
-		} else {
-			vo.setId(uvo);
-			vo1.setId(uvo);
-			subscribeService.insertSubscribe3(vo);
-			userService.updateuserle3(vo1);	
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
+		return "WEB-INF/view/mypage/mysubscribe.jsp";
 	}
-	return "subscribe.wp";
-}
-
 	
-		// 구독 취소
-		@RequestMapping(value = "updateSubscribe.wp", method = { RequestMethod.POST })
-		public String updateSubscribe(SubscribeVO vo, UserVO vo1, HttpSession session) {
-			// 로그인 체크
-			String uvo = (String) session.getAttribute("userID");
-			System.out.println(uvo);
+	// 마이페이지 구독 설정
+	@RequestMapping("/mysubscribes.wp")
+	public String mysubscribes(SubscribeVO vo, HttpSession session, Model model) {
+		System.out.println("구독 설정");
+		vo.setId((String) session.getAttribute("userID"));
+		int result = subscribeService.getSubscribe(vo);
+		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
+
+		if (result == 0) {
+			System.out.println("구독X");
+			return "subscribe.wp";
+			// 구독 O
+		} else if (result > 0) {
+			System.out.println("구독O");
+			return "subscribe-3.wp";
+		}
+		return "subscribe.wp";
+	}
+	// 마이페이지 취향 설정
+	@RequestMapping("/mypreference.wp")
+	public String setting(SubscribeVO vo, HttpSession session, Model model) {
+		System.out.println("취향 설정");
+		vo.setId((String) session.getAttribute("userID"));
+		subscribeService.preference_Setting(vo);
 		
-			if (uvo == null) {
+		return "WEB-INF/view/user/preference.jsp";
+	}
+
+	// 구독 결제 -1
+	@RequestMapping(value = "/subscribe-1.wp")
+	public String subscribePayment1(UserVO uvo,SubscribeVO vo,HttpSession session) {
+		System.out.println("구독 결제 폼 -1");
+
+		String id = (String) session.getAttribute("userID");
+		uvo.setId(id);
+		vo.setId(id);
+	
+		try {
+			if (id == null) {
 				return "singUp.wp";
-			} else {
-				vo.setId(uvo);
-				vo1.setId(uvo);
-				subscribeService.updateSubscribe(vo);
-				userService.updateuserle0(vo1);
-				return "subscribe.wp";
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return "WEB-INF/view/subscribe/subscribe-1.jsp";
+	}
+
+	// 결제1
+	@RequestMapping(value = "/subscribeP.wp")
+	public String subscribePayment1(AddressVO avo, UserVO uvo, WineVO wvo, SubscribeVO svo, Model model,
+			HttpSession session, HttpServletResponse response) {
+		System.out.println("구독 결제 폼 -2");
+		String id = (String) session.getAttribute("userID");
+		uvo.setId(id);
+		avo.setId(uvo.getId());
+		svo.setId(uvo.getId());
 		
-		//마이페이지
-		@RequestMapping(value = "/mypage.wp")
-		public String getSubscribe1(SubscribeVO vo , HttpSession session, Model model) {
-			System.out.println("마이페이지");
-			vo.setId((String) session.getAttribute("userID"));
-			
-			System.out.println("id: "+session.getAttribute("userID"));
-			System.out.println("vo: "+subscribeService.getSubscribe(vo));
-			
-			model.addAttribute("mylevel",subscribeService.getSubscribe(vo));		
-			return "WEB-INF/view/mypage/mypage.jsp";
-		}	
+		model.addAttribute("product", productService.subscribeW1(wvo));
+		model.addAttribute("subscribeW", productService.subscribeW1(wvo));
+		AddressVO add = addressService.selectDefaultAddress(avo);
+		if (add != null) {
+			model.addAttribute("defaultadd", add);
+		}
+		if (addressService.selectAddress(avo) != null) {
+			model.addAttribute("anotheradd", addressService.selectAddress(avo));
+		}
+		if(uvo.getId() == null){
+			return "singUp.wp";
+			}else{
+				model.addAttribute("user", userSerivce.getUser(uvo));
+				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+				System.out.println(subscribeService.getSubscribe(svo) + "오류");
+
+				subscribeService.getSubscribe(svo);
+				return "WEB-INF/view/subscribe/subscribe-2.jsp";
+			}
+	
+	}
+
+	// 결제2
+	@RequestMapping(value = "/subscribeM.wp")
+	public String subscribePayment2(AddressVO avo, UserVO uvo, WineVO wvo, SubscribeVO svo, Model model,
+			HttpSession session, HttpServletResponse response) {
+		System.out.println("구독 결제 폼 -2");
+		String id = (String) session.getAttribute("userID");
+
+		uvo.setId(id);
+		avo.setId(uvo.getId());
+		svo.setId(uvo.getId());
+
+
+		model.addAttribute("product", productService.subscribeW2(wvo));
+		model.addAttribute("subscribeW", productService.subscribeW2(wvo));
 		
-		//마이페이지 구독 조회
-		@RequestMapping("/mysubscribe.wp")
-		public String getSubscribe(SubscribeVO vo , HttpSession session, Model model) {
-			vo.setId((String) session.getAttribute("userID"));
-			
-			System.out.println("id: "+session.getAttribute("userID"));
-			System.out.println("vo: "+subscribeService.getSubscribe(vo));
-			
-			model.addAttribute("mylevel",subscribeService.getSubscribe(vo));		
-			return "WEB-INF/view/mypage/mysubscribe.jsp";		
+		AddressVO add = addressService.selectDefaultAddress(avo);
+		if (add != null) {
+			model.addAttribute("defaultadd", add);
 		}
-		//마이페이지 취향 설정
-		@RequestMapping("/mypreference.wp")
-		public String setting(SubscribeVO vo, HttpSession session) {
-			System.out.println("취향 설정");
-			vo.setId((String)session.getAttribute("userID"));
-			subscribeService.preference_Setting(vo);
-			return "WEB-INF/view/user/preference.jsp";
+		if (addressService.selectAddress(avo) != null) {
+			model.addAttribute("anotheradd", addressService.selectAddress(avo));
 		}
+		if(uvo.getId() == null){
+			return "singUp.wp";
+			}else{
+				model.addAttribute("user", userSerivce.getUser(uvo));
+				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+				System.out.println(subscribeService.getSubscribe(svo) + "오류");
+
+				subscribeService.getSubscribe(svo);
+				return "WEB-INF/view/subscribe/subscribe-2.jsp";
+			}
+	
+	}
+
+	// 결제3
+	@RequestMapping(value = "/subscribeG.wp")
+	public String subscribePayment3(AddressVO avo, UserVO uvo, WineVO wvo, SubscribeVO svo, Model model,
+			HttpSession session, HttpServletResponse response) {
+		System.out.println("구독 결제 폼 -2");
+		String id = (String) session.getAttribute("userID");
+
+		uvo.setId(id);
+		avo.setId(uvo.getId());
+		svo.setId(uvo.getId());
+		model.addAttribute("user", userSerivce.getUser(uvo));
+		session.setAttribute("level", userService.getUser(uvo));
+		
+		int result = subscribeService.getSubscribe(svo);
+
+		model.addAttribute("product", productService.subscribeW3(wvo));
+		model.addAttribute("subscribeW", productService.subscribeW3(wvo));
+		AddressVO add = addressService.selectDefaultAddress(avo);
+		if (add != null) {
+			model.addAttribute("defaultadd", add);
+		}
+		if (addressService.selectAddress(avo) != null) {
+			model.addAttribute("anotheradd", addressService.selectAddress(avo));
+		}
+		if(uvo.getId() == null){
+			return "singUp.wp";
+			}else{
+				model.addAttribute("user", userSerivce.getUser(uvo));
+				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+				System.out.println(subscribeService.getSubscribe(svo) + "오류");
+
+				subscribeService.getSubscribe(svo);
+				return "WEB-INF/view/subscribe/subscribe-2.jsp";
+			}
+	}
+	
+	//관리자
+	@RequestMapping(value="/adminSubscription.wp")
+	public String getUserList(SubscribeVO svo, Model model){
+	System.out.println("구독 리스트");
+//	model.addAttribute("UserList", userService.getUserList(vo));
+	model.addAttribute("AllList", subscribeService.allsubscriptList(svo));
+	System.out.println("테스트");
+	return "WEB-INF/view/admin/adminsubscription.jsp";
+	}
 }

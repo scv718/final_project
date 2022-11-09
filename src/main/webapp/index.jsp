@@ -122,22 +122,23 @@ $('.slider-1 > .side-btns > div').click(function(){
 
 	<div class="container" id = "btncontainer">
 		<div class="text-center">
-		<button class = "WaterBtn" value = "2"><img class = "Btnimg" src = "resources/img/물방울이미지스파클링.png"><br/><p>Sparkling</p></button>
-		<button class = "WaterBtn" value = "1"><img class = "Btnimg" src = "resources/img/물방울이미지화이트.png"><p>White</p></button>
-		<button class = "WaterBtn" value = "3"><img class = "Btnimg" src = "resources/img/물방울이미지로제.png"><p>Rose</p></button>
-	    <button class = "WaterBtn" value = "0"><img class = "Btnimg" src = "resources/img/물방울이미지레드.png"><p>Red</p></button>
+		<button class = "WaterBtn" value = "2"><img class = "Btnimg" src = "resources/img/Sparkling.png"><br/><p>Sparkling</p></button>
+		<button class = "WaterBtn" value = "1"><img class = "Btnimg" src = "resources/img/White.png"><p>White</p></button>
+		<button class = "WaterBtn" value = "3"><img class = "Btnimg" src = "resources/img/Rose.png"><p>Rose</p></button>
+	    <button class = "WaterBtn" value = "0"><img class = "Btnimg" src = "resources/img/Red.png"><p>Red</p></button>
 		</div>
 		<hr>
 	</div>
 
 
 <div class="typeSlider">
+
 <div class = "type">
 <div class="slider-2">
     <div class="slides">
         <div class="active">
            <c:forEach items="${typeMenuList}" var="option" begin="0" end ="3">
-          	<div id = "typediv">
+          	<div id = "typediv"  OnClick="location.href ='product.wp?w_no=${option.w_no}'" style="cursor:pointer;">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
    				<p></p>
@@ -146,7 +147,7 @@ $('.slider-1 > .side-btns > div').click(function(){
 		</div>
         <div>
     		<c:forEach items="${typeMenuList}" var="option" begin="4" end ="7">
-          	<div id = "typediv">
+          	<div id = "typediv"  OnClick="location.href ='product.wp?w_no=${option.w_no}'" style="cursor:pointer;">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
    			</div>
@@ -154,14 +155,14 @@ $('.slider-1 > .side-btns > div').click(function(){
 		</div>
         <div>
   			 <c:forEach items="${typeMenuList}" var="option" begin="8" end ="11">
-          	<div id = "typediv">
+          	<div id = "typediv"  OnClick="location.href ='product.wp?w_no=${option.w_no}'" style="cursor:pointer;">
    				<img id = "imgwine" src= "resources/img/wine/${option.w_image1}">
    				<p id = "typeWineName">${option.w_nm_k}</p>
    			</div>
   			 </c:forEach>
 		</div>
     </div>
-    <div class="page-btns">
+    <div class="page-btns" style = "display: none">
         <div class="active"></div>
         <div></div>
         <div></div>
@@ -176,6 +177,8 @@ $('.slider-1 > .side-btns > div').click(function(){
     </div>
 </div>
 	</div>
+	
+	<hr>
 	</div>
 		
 
@@ -233,24 +236,34 @@ $(document).on('click', ' .slider-2 > .side-btns > div',function(){
 $('.WaterBtn').on('click', function () {
 	 var watertype = this.value;
 	
-	console.log(watertype)
-	$.ajax({
-		type : 'POST',
-		url : 'typeMenu.wp',
-		dataType : 'json',
-		data : {
-			  typeMenu: watertype        
-		},
-		success : function(val){
-			 $('.typeSlider').show();
-			 $('.type').load(location.href+' .type>*', "");
-		}
-	})
+	 if($('.typeSlider').is(':visible')){
+		 $('.typeSlider').hide();
+	 }else{
+			console.log(watertype)
+			$.ajax({
+				type : 'POST',
+				url : 'typeMenu.wp',
+				dataType : 'json',
+				data : {
+					  typeMenu: watertype        
+				},
+				success : function(val){
+					 $('.typeSlider').show();
+					 $('.type').load(location.href+' .type>*', "");
+				
+				}
+			})
+	 }
+	
+
 })
 
 </script> 
 
-<div class="bestSlider">
+<div class="bestSlider" style= "text-align: center;">
+
+<a id = "menutitle">#BestWine</a>
+
 <div class="slider-2">
     <div class="slides">
         <div class="active">
@@ -279,7 +292,7 @@ $('.WaterBtn').on('click', function () {
   			 </c:forEach>
 		</div>
     </div>
-    <div class="page-btns">
+    <div class="page-btns" style = "display: none">
         <div class="active"></div>
         <div></div>
         <div></div>
@@ -295,6 +308,9 @@ $('.WaterBtn').on('click', function () {
 </div>
 </div>
 
+<div class = "boardlist">
+
+</div>
 
 	<%@ include file="footer.jsp"%>
 </body>

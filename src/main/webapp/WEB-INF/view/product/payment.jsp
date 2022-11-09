@@ -6,12 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
-<link rel="stylesheet" href="/resources/css/order.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- 다음주소 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <%@ include file="../../../header.jsp"%>
 <script type="text/javascript">
 function checkOnlyOne(element) {
@@ -76,7 +77,14 @@ function checkOnlyOne(element) {
 											<td>${defaultadd.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
-												name="add" value="${userName}" type="hidden"> <input
+												name="add" value="${userName}" type="hidden"> 
+												<input
+												class="m_add" name="m_add" type="hidden"
+												value="${defaultadd.m_address}"> 
+												<input
+												class="m_phone" name="m_phone" type="hidden"
+												value="${defaultadd.m_phone}"> 
+												<input
 												class="address1_input" name="m_address_1" type="hidden"
 												value="${add.m_address_1}"> <input
 												class="address2_input" name="m_address_2" type="hidden"
@@ -113,7 +121,14 @@ function checkOnlyOne(element) {
 											<td>${addanother.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
-												name="add" value="${userName}" type="hidden"> <input
+												name="add" value="${userName}" type="hidden">
+												 <input
+												class="m_add" name="m_add" type="hidden"
+												value="${addanother.m_address}">	
+												 <input
+												class="m_phone" name="m_phone" type="hidden"
+												value="${addanother.m_phone}">							
+												 <input
 												class="address1_input" name="m_address_1" type="hidden"
 												value="${add.m_address_1}"> <input
 												class="address2_input" name="m_address_2" type="hidden"
@@ -167,12 +182,13 @@ function checkOnlyOne(element) {
 									</table>
 								</form>
 								<script type="text/javascript">
+								
 								$('#insertadd').on('click', function() {
 						
 									var add1 = $('.address1_input').val();
 									var add2 = $('.address2_input').val();
 									var add3 = $('.address3_input').val();
-									var address = add1+add2+add3;
+									var address = add1+"-"+add2+add3;
 								
 									let chekObj = document.getElementsByClassName("m_default");
 									let lenth = chekObj.length;
@@ -187,7 +203,9 @@ function checkOnlyOne(element) {
 									 
 									$('.m_address').val(address);
 									
-									if($('.m_name').val() == ''){
+									var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/
+											
+									if($('.m_name_insert').val() == ''){
 										alert('이름을 입력해주세요');
 										return false;
 									}
@@ -199,8 +217,13 @@ function checkOnlyOne(element) {
 										alert('주소를 입력해주세요');
 										return false;
 									}
-									if($('.m_phone').val() == ''){
+									if($('.m_phone_insert').val() == ''){
 										alert('휴대폰번호를 입력해주세요');
+										return false;
+									}
+									if(!regPhone.test($('.m_phone_insert').val())){
+										console.log($('.m_phone_insert').val());
+										alert('휴대폰번호를 다시 입력해주세요.');
 										return false;
 									}
 									
@@ -272,14 +295,17 @@ function checkOnlyOne(element) {
 									<td class="goods_table_price_td">
 										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" /> | 수량 ${ol.ord_quan}개
 										<br><fmt:formatNumber value="${ol.w_price*ol.ord_quan}" pattern="#,### 원" />
-	
+										
 										<input type="hidden" class="individual_bookPrice_input" value="${ol.w_price}">
 										<input type="hidden" class="individual_bookCount_input" value="${ol.ord_quan}">
 										<input type="hidden" class="individual_totalPrice_input" value="${ol.w_price * ol.ord_quan}">
 									
 										<input type="hidden" class="individual_bookId_input" value="${ol.w_no}">
+										<input type="hidden" name = "w_no" class="w_no" value="${ol.w_no}">
 									</td>
 								</tr>							
+								
+								
 							</c:forEach>
 
 						</tbody>
@@ -336,9 +362,127 @@ function checkOnlyOne(element) {
 	</div>	<!-- class="wrap" -->
 </div>	<!-- class="wrapper" -->
 </div>
-
+<form name="fm">
+<c:forEach items="${product}" var="ol">
+<input name='ord_cart_noList' type='hidden' value='${ol.ord_cart_no}'>
+<input name='w_nm_k_List' type='hidden' value='${ol.w_nm_k}'>
+<input name='w_nm_k' type='hidden' value='${ol.w_nm_k}'>
+<input name='w_nm_e_List' type='hidden' value='${ol.w_nm_e}'>
+<input name='w_nm_e' type='hidden' value='${ol.w_nm_e}'>
+<input name='w_noList' type='hidden' value='${ol.w_no}'>
+</c:forEach>
+	<input type="hidden" name="unm" id="unm" value = "${user.m_name}" ><br>
+    <input type="hidden" name="amount" id="amount" value="" ><br>	
+    <input type="hidden" name="imp_uid" id="imp_uid"><br>
+    <input type="hidden" name="merchant_uid" id="merchant_uid"><br>
+    <input type="hidden" name="ord_addr" id="ord_addr"><br>
+    <input type="hidden" name="ord_phone" id="ord_phone"><br>
+</form>
 <%@ include file="/footer.jsp"%>
 
+<script type="text/javascript">
+var chk = false;
+$(document).ready(function(){
+	var IMP = window.IMP; // 생략가능
+	IMP.init('imp86310263');
+	let totalPrice = 0;				// 총 가격
+	let totalCount = 0;				// 총 갯수
+	let totalKind = 0;				// 총 종류
+	let deliveryPrice = 0;			// 배송비
+
+	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
+	
+	$(".goods_table_price_td").each(function(index, element){
+		// 총 가격
+		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+		// 총 갯수
+		totalCount += parseInt($(element).find(".individual_bookCount_input").val());
+		// 총 종류
+		totalKind += 1;
+	});	
+
+	/* 배송비 결정 */
+	if(totalPrice >= 30000){
+		deliveryPrice = 0;
+	} else if(totalPrice == 0){
+		deliveryPrice = 0;
+	} else {
+		deliveryPrice = 3000;	
+	}
+	
+	finalTotalPrice = totalPrice + deliveryPrice;	
+	
+
+	
+	finalTotalPrice = totalPrice;
+	
+	
+$("#check_module").click(function () {
+	
+	var m_address;
+	var postcode;
+	var phone;
+	$('#amount').val(finalTotalPrice);
+	$(".addressInfo_input_div").each(function(i, obj){
+		if($(obj).find(".selectAddress").val() == 'T'){
+			m_address = $(obj).find(".m_add").val();
+			postcode =  m_address.split('-');
+			phone = $(obj).find(".m_phone").val();
+			$('#ord_addr').val(m_address);
+			$('#ord_phone').val(phone);
+// 			m_address = $('.m_add').val();
+// 			postcode = $('.address1_input').val();
+		}
+	});	
+	
+	console.log(m_address);
+	console.log(phone);
+	console.log(postcode[0]);
+	console.log(finalTotalPrice);
+	IMP.request_pay({
+		pg: 'html5_inicis', // 자신이 설정한 pg사 설정
+		pay_method: 'card',
+		merchant_uid: 'merchant_' + new Date().getTime(),
+		name: '주문명:결제테스트',
+		amount: finalTotalPrice,
+		buyer_email: '${user.m_email}',
+		buyer_name: '${user.m_name}',
+		buyer_tel: phone,
+		buyer_addr: m_address,
+		buyer_postcode: postcode[0],
+		m_redirect_url: 'http://localhost:8090/payments/complete'
+		}, function (rsp) {
+			console.log(rsp);
+			if (rsp.success) {
+				
+				var msg = '결제가 완료되었습니다.';
+				msg += '\n고유ID : ' + rsp.imp_uid;
+				msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+				msg += '\n결제 금액 : ' + rsp.paid_amount;
+				msg += '\n카드 승인번호 : ' + rsp.apply_num;
+				
+				$("#imp_uid").val(rsp.imp_uid);
+				$("#merchant_uid").val(rsp.merchant_uid);
+				chk = true;
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '\n에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+			if(chk==true) orderList();
+	})
+})
+
+function orderList(){
+	let fm = document.fm;
+	fm.action ="pay.wp";
+	fm.method="post";
+	fm.submit();
+}
+
+
+});
+</script>
 <script>
 
 $(document).ready(function(){

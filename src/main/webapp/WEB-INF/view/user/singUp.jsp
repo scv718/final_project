@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
 <link rel="stylesheet"
@@ -25,6 +26,21 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+<script>
+$( document ).ready(function() {
+	var error = '${error}';
+	console.log(error);
+    if(error != '' && error === '1'){
+    	swal ( "로그인 후 진행해주세요" ,  "" ,  "error" );
+    	 $.ajax({
+ 	        url: '/errorsession.wp',
+ 	        type: 'post'
+ 	    });
+    }
+
+});
+</script>
+
 	<script type="text/javascript">
 	function kakaoLogin() {
 
@@ -62,7 +78,7 @@ function joinform_check() {
 	  var agree = document.getElementById("agree");
 	  console.log(uid);
 	  console.log(pwd);
-
+c
 	  var idCheck = /^[a-zA-Z0-9_!?@]{4,11}$/;
 		
 	  
@@ -79,6 +95,10 @@ function joinform_check() {
 		  };
 		  
 
+		  if(idck == '0')
+			  swal ( "아이디 중복 체크 후 진행해주세요." ,  "" ,  "error" );
+			  return false;
+		  }
 	  if (pwd.value == "") {
 	    alert("비밀번호를 입력하세요.");
 	    pwd.focus();
@@ -111,7 +131,7 @@ function joinform_check() {
 	  
 	  var check = document.getElementById("checkservice").value;
 	  
-	  if(!check){
+	  if(!check){	  
 		  checkd();
 	  }
 		  if(check=='true'){
@@ -129,92 +149,87 @@ function joinform_check() {
 	}
 </script>
 	<script type="text/javascript">
-	$(document).ready(function(){
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-		$("#signUp").click(function(){
-		IMP.certification(
-						{
-							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
-						},
-						function(rsp) {
+// 	$(document).ready(function(){
+// 		var IMP = window.IMP; // 생략가능
+// 		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+// 		$("#signUp").click(function(){
+// 		IMP.certification(
+// 						{
+// 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+// 						},
+// 						function(rsp) {
 
-							if (rsp.success) {
-								// 인증성공
+// 							if (rsp.success) {
+// 								// 인증성공
 
-								console.log(rsp.imp_uid);
-								console.log(rsp.merchant_uid);
-								console.log('인증성공');
-								$.ajax({
-									type : 'POST',
-									url : 'certification.wp',
-									dataType : 'json',
-									contentType: 'application/json',
-									data : JSON.stringify ({
-					        			  imp_uid: rsp.imp_uid	                
-					        		}),
-					        		success : function(val){
-					        			console.log(val);
-					        			if (val == 1){
+// 								console.log(rsp.imp_uid);
+// 								console.log(rsp.merchant_uid);
+// 								console.log('인증성공');
+// 								$.ajax({
+// 									type : 'POST',
+// 									url : 'certification.wp',
+// 									dataType : 'json',
+// 									contentType: 'application/json',
+// 									data : JSON.stringify ({
+// 					        			  imp_uid: rsp.imp_uid	                
+// 					        		}),
+// 					        		success : function(val){
+// 					        			console.log(val);
+// 					        			if (val == 1){
 					        				
-					        			}else if(val = 2){
-					        				alert("이미 가입된 사용자입니다.")
-					        				location.href = 'index.wp';
-					        			}else{
-					        				alert("나이 제한");
-					        				location.href = 'index.wp';
-					        			}
-					        		}
-								}).done(function() {
-									takeResponseAndHandle(rsp)
-								});
+// 					        			}else if(val = 2){
+// 					        				alert("이미 가입된 사용자입니다.")
+// 					        				location.href = 'index.wp';
+// 					        			}else{
+// 					        				alert("나이 제한");
+// 					        				location.href = 'index.wp';
+// 					        			}
+// 					        		}
+// 								}).done(function() {
+// 									takeResponseAndHandle(rsp)
+// 								});
 								
 
-							} else {
-								// 인증취소 또는 인증실패
-								var msg = '인증에 실패하였습니다.';
-								msg += '에러내용 : ' + rsp.error_msg;
-								alert(msg);
-								location.href = 'index.wp';
+// 							} else {
+// 								// 인증취소 또는 인증실패
+// 								var msg = '인증에 실패하였습니다.';
+// 								msg += '에러내용 : ' + rsp.error_msg;
+// 								alert(msg);
+// 								location.href = 'index.wp';
 								
-							}
-						})
+// 							}
+// 						})
 	
 
-		function takeResponseAndHandle(rsp) {
-			if (rsp.success) {
-				// 인증성공
-				console.log(rsp.imp_uid);
-				console.log(rsp.merchant_uid);
-			} else {
-				// 인증취소 또는 인증실패
-				var msg = '인증에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
+// 		function takeResponseAndHandle(rsp) {
+// 			if (rsp.success) {
+// 				// 인증성공
+// 				console.log(rsp.imp_uid);
+// 				console.log(rsp.merchant_uid);
+// 			} else {
+// 				// 인증취소 또는 인증실패
+// 				var msg = '인증에 실패하였습니다.';
+// 				msg += '에러내용 : ' + rsp.error_msg;
 
-				alert(msg);
-			}
-		}
-		});
-	});
+// 				alert(msg);
+// 			}
+// 		}
+// 		});
+// 	});
 	</script>
 
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
 			<form id="userInfo" name="userInfo" action="insertUser.wp"
 				method="post">
-				<h1>회원 가입</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
-						href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				</div>
-				<input type="text" id="id" name="id" placeholder="아이디"> <input
-					type="button" id="idck" value="아이디 중복 확인" /> <input
+				<h1>Sign Up</h1>
+				<input type="text" id="id" name="id" placeholder="아이디">  <input
 					type="password" id="m_pw" name="m_pw" placeholder="비밀번호" /> <input
 					type="password" id="repassword" placeholder="비밀번호 확인" /> <input
 					type="email" id="m_email" name="m_email" placeholder="이메일" /> <input
-					type='hidden' id='checkservice' name='checkservice' value='' />
-				<button type="button" id="singupbtn" onclick="joinform_check();"
-					disabled>가입하기</button>
+					type='hidden' id='checkservice' name='checkservice' value='' />					
+					<button type="button" id="idck" value="아이디 중복 확인" >아이디 중복 확인</button>
+					<button type="button" id="singupbtn" onclick="joinform_check();">가입하기</button>
 			</form>
 		</div>
 		<div class="form-container sign-in-container">

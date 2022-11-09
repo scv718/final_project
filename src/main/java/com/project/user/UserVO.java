@@ -12,8 +12,18 @@ public class UserVO {
 	private String m_email;
 	private int login;
 	private int level;
+	private String m_role;
 	
-	
+
+
+	public String getM_role() {
+		return m_role;
+	}
+
+
+	public void setM_role(String m_role) {
+		this.m_role = m_role;
+	}
 
 
 	public void setM_phone(String m_phone) {

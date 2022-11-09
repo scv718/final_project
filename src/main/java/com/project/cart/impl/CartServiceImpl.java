@@ -34,36 +34,21 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public List<CartVO> getCartList(String vo) {
-		
-		List<CartVO> cart = cartDAO.getCart(vo);
-		
-		for(CartVO dto : cart) {
-			
-			/* 종합 정보 초기화 */
-//			dto.initSaleTotal();
-			
-			/* 이미지 정보 얻기 */
-//			int bookId = dto.getBookId();			
-//			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);	
-//			dto.setImageList(imageList);
-		}
-		return cart;	
+		return cartDAO.getCartList(vo);	
 	}	
 	
 	@Override
 	public void modifyCount(CartVO vo) {
 		 cartDAO.modifyCount(vo);
-	}	
-	@Override
-	public void modifyCount1(CartVO vo) {
-		 cartDAO.modifyCount(vo);
-	}
-	@Override
-	public List<CartVO> getCartList(CartVO vo) {
-		return cartDAO.getCart(vo);
-	}
+	}					
+
+//	@Override
+//	public List<CartVO> level_shipping(String vo) {
+//		return cartDAO.level_shipping(vo);
+//	}
 	@Override
 	public CartVO getCartpay(CartVO vo) {
 		return cartDAO.getCartpay(vo);
 	}		
+
 }

@@ -18,47 +18,59 @@ public class SubscribeDAOMybatis {
 	// CRUD 기능의 메소드 구현
 	// 구독하기
 	public void insertSubscribe0(SubscribeVO vo) {
-		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
 		mybatis.insert("SubscribeDAO.insertSubscribe0", vo);
 		
 	}
 	public void insertSubscribe1(SubscribeVO vo) {
-		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
 		mybatis.update("SubscribeDAO.insertSubscribe1", vo);
 		
 	}
 	public void insertSubscribe2(SubscribeVO vo) {
-		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
 		mybatis.update("SubscribeDAO.insertSubscribe2", vo);
 		
 	}
 	public void insertSubscribe3(SubscribeVO vo) {
-		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe3", vo);
+		mybatis.update("SubscribeDAO.insertSubscribe3", vo);
 	}
 
 	// 구독 취소
 	public void updateSubscribe(SubscribeVO vo) {
-		System.out.println("===>mybatis로 updateSubscribe() 기능처리");
 		mybatis.update("SubscribeDAO.updateSubscribe", vo);
 	}
 
 	// 구독 조회
 	public int getSubscribe(SubscribeVO vo) {
-		System.out.println("===>mybatis로 getSubscribe() 기능처리");
 		return mybatis.selectOne("SubscribeDAO.getSubscribe", vo);
 	}
 	
 	// 구독 목록 조회
 	public List<SubscribeVO> getSubscribeList(SubscribeVO vo) {
-		System.out.println("===>mybatis로 getSubscribeList() 기능처리 ");
 		return mybatis.selectList("SubscribeDAO.getSubscribeList", vo);
+	}
+	public SubscribeVO getLevel(SubscribeVO vo) {
+		return mybatis.selectOne("SubscribeDAO.getLevel", vo);
 	}
 	
 	public void preference_Setting(SubscribeVO vo) {
-		System.out.println("===>mybatis로 preferene_Setting() 기능처리 ");
-		System.out.println(vo.getId());
-		System.out.println(vo.getS_sweet());
 		 mybatis.update("SubscribeDAO.preference_Setting", vo);
+	}
+	//구독시 배송비 조회
+	public List<SubscribeVO> level_shipping(String vo) {
+		return mybatis.selectList("SubscribeDAO.level_shipping", vo);
+	}
+	public void liset_deli_price(SubscribeVO vo) {
+		mybatis.update("SubscribeDAO.liset_deli_price", vo);
+	}
+	public void liset_deli_price_up(SubscribeVO vo) {
+		mybatis.update("SubscribeDAO.liset_deli_price_up", vo);
+	}
+
+	//조회
+	public List<SubscribeVO> allsubscriptList(SubscribeVO vo) {
+		List<SubscribeVO> a = mybatis.selectList("SubscribeDAO.allsubscriptList");
+		for (SubscribeVO v : a) {
+			System.out.println("v: " + v);
+		}
+		return mybatis.selectList("SubscribeDAO.allsubscriptList");
 	}
 }
