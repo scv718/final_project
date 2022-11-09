@@ -27,4 +27,10 @@ public interface NoticeService {
    // 공지사항 글 목록 개수 -> 페이징 - 공통
    int totalNoticeListCnt(CommunityVO vo);
 
+
+	//관리자리스트
+	List<NoticeVO> NoticeListAd(NoticeVO vo);
+	
+	List<NoticeVO> getmainNoticeList(NoticeVO vo);
+
 }

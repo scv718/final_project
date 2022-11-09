@@ -52,5 +52,22 @@
       <if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
          #{searchKeyword}, '%'),' ','')</if>
    </select>
-   
+
+	<delete id="deleteNotice">
+		DELETE FROM COMMUNITY WHERE commu_no = #{commu_no}
+	</delete>
+	
+
+
+
+	<select id="getmainNoticeList" resultType="community">
+		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
+		ORDER BY commu_cat_no DESC
+		LIMIT 5;
+	</select>
+
+
+<select id="NoticeListAd" resultType="notice">
+		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
+	</select>
 </mapper>

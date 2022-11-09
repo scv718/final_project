@@ -1,9 +1,4 @@
 package com.project.controller;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.cart.CartService;
 import com.project.subscribe.SubscribeService;
@@ -41,12 +35,13 @@ public class SubscribeController {
 	
 	//구독페이지
 	@RequestMapping(value = "/subscribe.wp")
-	public String subscribe(UserVO uvo,SubscribeVO vo, HttpSession session,Model model) {
+	public String subscribe(UserVO uvo,SubscribeVO svo, HttpSession session,Model model) {
 		System.out.println("구독하기");
-		
+		uvo.setId((String) session.getAttribute("userID"));
+		svo.setId((String) session.getAttribute("userID"));
 		if(uvo.getId() != null){
-		vo.setId((String) session.getAttribute("userID"));
-		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
+		model.addAttribute("user", userSerivce.getUser(uvo));
+		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
 		}
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
@@ -105,12 +100,13 @@ public class SubscribeController {
 
 	// 구독 결제 -1
 	@RequestMapping(value = "/subscribe-1.wp")
-	public String subscribePayment1(HttpSession session) {
+	public String subscribePayment1(UserVO uvo,SubscribeVO vo,HttpSession session) {
 		System.out.println("구독 결제 폼 -1");
 
 		String id = (String) session.getAttribute("userID");
-		System.out.println(id);
-
+		uvo.setId(id);
+		vo.setId(id);
+	
 		try {
 			if (id == null) {
 				return "singUp.wp";
@@ -127,41 +123,30 @@ public class SubscribeController {
 			HttpSession session, HttpServletResponse response) {
 		System.out.println("구독 결제 폼 -2");
 		String id = (String) session.getAttribute("userID");
-
 		uvo.setId(id);
 		avo.setId(uvo.getId());
 		svo.setId(uvo.getId());
-		model.addAttribute("user", userSerivce.getUser(uvo));
-
-		session.setAttribute("level", userService.getUser1(uvo));
-		int result = userService.getUser1(uvo);
-
+		
 		model.addAttribute("product", productService.subscribeW1(wvo));
 		model.addAttribute("subscribeW", productService.subscribeW1(wvo));
-		try {
-			if (id == null) {
-				return "singUp.wp";
-			} else if (result > 0) {
-				svo.setId(id);
-				uvo.setId(id);
-
-				System.out.println("id: " + session.getAttribute("userID"));
-				System.out.println("vo: " + subscribeService.getSubscribe(svo));
-				subscribeService.getSubscribe(svo);
-
-				return "subscribe-1.wp";
-			}
-
-			if (addressService.selectDefaultAddress(avo) != null) {
-				model.addAttribute("defaultadd", addressService.selectDefaultAddress(avo));
-			}
-			if (addressService.selectAddress(avo) != null) {
-				model.addAttribute("anotheradd", addressService.selectAddress(avo));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		AddressVO add = addressService.selectDefaultAddress(avo);
+		if (add != null) {
+			model.addAttribute("defaultadd", add);
 		}
-		return "WEB-INF/view/subscribe/subscribe-2.jsp";
+		if (addressService.selectAddress(avo) != null) {
+			model.addAttribute("anotheradd", addressService.selectAddress(avo));
+		}
+		if(uvo.getId() == null){
+			return "singUp.wp";
+			}else{
+				model.addAttribute("user", userSerivce.getUser(uvo));
+				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+				System.out.println(subscribeService.getSubscribe(svo) + "오류");
+
+				subscribeService.getSubscribe(svo);
+				return "WEB-INF/view/subscribe/subscribe-2.jsp";
+			}
+	
 	}
 
 	// 결제2
@@ -174,38 +159,29 @@ public class SubscribeController {
 		uvo.setId(id);
 		avo.setId(uvo.getId());
 		svo.setId(uvo.getId());
-		model.addAttribute("user", userSerivce.getUser(uvo));
 
-		session.setAttribute("level", userService.getUser1(uvo));
-		int result = userService.getUser1(uvo);
 
 		model.addAttribute("product", productService.subscribeW2(wvo));
 		model.addAttribute("subscribeW", productService.subscribeW2(wvo));
-
-		try {
-			if (id == null) {
-				return "singUp.wp";
-			} else if (result > 0) {
-				svo.setId(id);
-				uvo.setId(id);
-
-				System.out.println("id: " + session.getAttribute("userID"));
-				System.out.println("vo: " + subscribeService.getSubscribe(svo));
-				subscribeService.getSubscribe(svo);
-
-				return "subscribe-1.wp";
-			}
-
-			if (addressService.selectDefaultAddress(avo) != null) {
-				model.addAttribute("defaultadd", addressService.selectDefaultAddress(avo));
-			}
-			if (addressService.selectAddress(avo) != null) {
-				model.addAttribute("anotheradd", addressService.selectAddress(avo));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+		AddressVO add = addressService.selectDefaultAddress(avo);
+		if (add != null) {
+			model.addAttribute("defaultadd", add);
 		}
-		return "WEB-INF/view/subscribe/subscribe-2.jsp";
+		if (addressService.selectAddress(avo) != null) {
+			model.addAttribute("anotheradd", addressService.selectAddress(avo));
+		}
+		if(uvo.getId() == null){
+			return "singUp.wp";
+			}else{
+				model.addAttribute("user", userSerivce.getUser(uvo));
+				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+				System.out.println(subscribeService.getSubscribe(svo) + "오류");
+
+				subscribeService.getSubscribe(svo);
+				return "WEB-INF/view/subscribe/subscribe-2.jsp";
+			}
+	
 	}
 
 	// 결제3
@@ -219,36 +195,38 @@ public class SubscribeController {
 		avo.setId(uvo.getId());
 		svo.setId(uvo.getId());
 		model.addAttribute("user", userSerivce.getUser(uvo));
-
 		session.setAttribute("level", userService.getUser(uvo));
-		int result = userService.getUser1(uvo);
+		
+		int result = subscribeService.getSubscribe(svo);
 
 		model.addAttribute("product", productService.subscribeW3(wvo));
 		model.addAttribute("subscribeW", productService.subscribeW3(wvo));
-		try {
-			if (id == null) {
-				return "singUp.wp";
-			} else if (result > 0) {
-				svo.setId(id);
-				uvo.setId(id);
-
-				System.out.println("id: " + session.getAttribute("userID"));
-				System.out.println("vo: " + subscribeService.getSubscribe(svo));
-				subscribeService.getSubscribe(svo);
-
-				return "subscribe-1.wp";
-			}
-
-			if (addressService.selectDefaultAddress(avo) != null) {
-				model.addAttribute("defaultadd", addressService.selectDefaultAddress(avo));
-			}
-			if (addressService.selectAddress(avo) != null) {
-				model.addAttribute("anotheradd", addressService.selectAddress(avo));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		AddressVO add = addressService.selectDefaultAddress(avo);
+		if (add != null) {
+			model.addAttribute("defaultadd", add);
 		}
-		return "WEB-INF/view/subscribe/subscribe-2.jsp";
-	}
+		if (addressService.selectAddress(avo) != null) {
+			model.addAttribute("anotheradd", addressService.selectAddress(avo));
+		}
+		if(uvo.getId() == null){
+			return "singUp.wp";
+			}else{
+				model.addAttribute("user", userSerivce.getUser(uvo));
+				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+				System.out.println(subscribeService.getSubscribe(svo) + "오류");
 
+				subscribeService.getSubscribe(svo);
+				return "WEB-INF/view/subscribe/subscribe-2.jsp";
+			}
+	}
+	
+	//관리자
+	@RequestMapping(value="/adminSubscription.wp")
+	public String getUserList(SubscribeVO svo, Model model){
+	System.out.println("구독 리스트");
+//	model.addAttribute("UserList", userService.getUserList(vo));
+	model.addAttribute("AllList", subscribeService.allsubscriptList(svo));
+	System.out.println("테스트");
+	return "WEB-INF/view/admin/adminsubscription.jsp";
+	}
 }

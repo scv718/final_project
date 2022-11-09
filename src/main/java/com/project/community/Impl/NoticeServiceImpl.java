@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.community.CommunityVO;
 import com.project.community.NoticeService;
+import com.project.community.NoticeVO;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
@@ -55,4 +56,16 @@ public class NoticeServiceImpl implements NoticeService {
    public int totalNoticeListCnt(CommunityVO vo) {
       return noticeDAO.totalNoticeListCnt(vo);
    }
+
+@Override
+public List<NoticeVO> NoticeListAd(NoticeVO vo) {
+	// TODO Auto-generated method stub
+	return noticeDAO.NoticeListAd(vo);
+}
+
+@Override
+public List<NoticeVO> getmainNoticeList(NoticeVO vo) {
+	// TODO Auto-generated method stub
+	return noticeDAO.getmainNoticeList(vo);
+}
 }

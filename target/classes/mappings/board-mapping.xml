@@ -54,6 +54,15 @@
 		LIMIT 10 OFFSET #{offset}
 	</select>
 	
+	<select id="mainreviewFilter" resultType="review">
+		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
+		JOIN WINE W
+		ON R.W_NO = W.W_NO
+		WHERE 1=1
+		AND RE_PHOTO1 IS NOT NULL ORDER BY RE_LIKE DESC
+		LIMIT 10
+	</select>
+	
 	<!-- 정렬 글 개수 -->
 	<select id="getFilterCnt" resultType="_int">
 		SELECT COUNT(*) FROM REVIEW R

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.project.community.AnswerVO;
 import com.project.community.CommunityVO;
 import com.project.community.QnaService;
+import com.project.community.QnaVO;
 
 @Service("qnaService")
 public class QnaServiceImpl implements QnaService {
@@ -67,5 +68,10 @@ public class QnaServiceImpl implements QnaService {
 		return QnaDAO.admin_totalQnaListCnt(vo);
 	}
 
+	@Override
+	public List<QnaVO> QnaListAd(QnaVO vo) {
+		System.out.println("qna까지 진행됨");
+		return QnaDAO.QnaListAd(vo);
+	}
 
 }

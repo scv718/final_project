@@ -100,5 +100,9 @@
 	</update>
 
 
+<select id="allsubscriptList" resultType="subscribe">
+		select * from subscript
+	</select>
+
 </mapper> 
 

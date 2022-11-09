@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.community.CommunityVO;
+import com.project.community.NoticeVO;
 
 @Repository
 public class NoticeDAOMybatis {
@@ -59,4 +60,18 @@ public class NoticeDAOMybatis {
       return mybatis.selectOne("NoticeDAO.totalNoticeListCnt", vo);
    }
 
+
+   public List<NoticeVO> getmainNoticeList(NoticeVO vo){
+	   return mybatis.selectList("NoticeDAO.getmainNoticeList", vo);
+   }
+
+	// 관리자 리스트
+	public List<NoticeVO> NoticeListAd(NoticeVO vo) {
+		System.out.println("유저 마이 바티스 실행");
+		List<NoticeVO> b = mybatis.selectList("NoticeDAO.NoticeListAd");
+		for(NoticeVO v : b ) {
+			System.out.println("v: "+v);
+		}
+		return mybatis.selectList("NoticeDAO.NoticeListAd");
+	}
 }

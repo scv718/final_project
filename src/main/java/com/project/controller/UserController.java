@@ -36,32 +36,36 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	
+	@RequestMapping("errorsession.wp")
+	public void errorsession(HttpServletResponse response, HttpSession session) {
+		System.out.println("에러세션");
+		session.setAttribute("error", 0);
+	}
 	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
 	public String loginView(UserVO vo, HttpSession session, HttpServletResponse response) {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		
-		String password = vo.getM_pw();
-		String encryptPassword = passwordEncoder.encode(password);	
-		System.out.println(encryptPassword);
+		System.out.println("로그인 인증 처리.....");
+	
 
 		if(vo.getId() == null || vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야합니다");
 		}
 		if(userService.getUser(vo) != null) {
 			if(passwordEncoder.matches(vo.getM_pw(), userService.getUser(vo).getM_pw())){
+				if(userService.getUser(vo).getM_role().equals("admin")) {
+					System.out.println("로그인아이디: "+userService.getUser(vo).getId());
+					session.setAttribute("login", userService.getUser(vo).getId());
+					session.setAttribute("userID", userService.getUser(vo).getId());
+					session.setAttribute("userName", userService.getUser(vo).getM_name());
+					session.setAttribute("userRole", userService.getUser(vo).getM_role());
+					return "redirect:/adminMain.wp";
+				}
 				System.out.println("로그인아이디: "+userService.getUser(vo).getId());
 				session.setAttribute("login", userService.getUser(vo).getId());
 				session.setAttribute("userID", userService.getUser(vo).getId());
 				session.setAttribute("userName", userService.getUser(vo).getM_name());
-
-				if(userService.getUser(vo).getM_role() != null && userService.getUser(vo).getM_role().equals("admin")) {
-					session.setAttribute("userRole", userService.getUser(vo).getM_name());
-					System.out.println("어드민권한");
-					
-					return "adminMain.wp";
-				}
-				
 				return "redirect:/";
 			}
 			
@@ -73,7 +77,7 @@ public class UserController {
 				script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('존재하지 않는 아이디 입니다.');");
-				script.println("location.href = 'singUp.wp'");
+				script.println("location.href = 'signUp.wp'");
 				script.println("</script>");
 				script.close();
 			} catch (IOException e) {
@@ -152,12 +156,10 @@ public class UserController {
 		
 		String m_phone = (String) session.getAttribute("phone");
 		vo.setM_phone(m_phone);
-		String password = vo.getM_pw();
-		String encryptPassword = passwordEncoder.encode(password);	
-		vo.setM_pw(encryptPassword);
+		
 		userService.changePw(vo);
  
-        return "redirect:singUp.wp";
+        return "redirect:signUp.wp";
 	}
 	
 	@RequestMapping(value = "/preference.wp")
@@ -231,21 +233,13 @@ public class UserController {
 	public String deleteUser(UserVO vo, HttpSession session) {
 		
 		System.out.println("유저 탈퇴 진행");
-		vo.setId((String)session.getAttribute("userID"));
-		userService.secessionUser(vo);
-		
-		
-		
+		vo.setId((String)session.getAttribute("name"));
+		System.out.println(vo.getId());
+		userService.deleteUser(vo);
 		return "redirect:/";
 		
 	}
 
-@RequestMapping(value="adminUser.wp")
-	public String getUserList(UserVO vo, Model model){
-	System.out.println("유저 불러오기");
-	model.addAttribute("UserList", userService.getUserList(vo));
-	System.out.println("테스트");
-		return "WEB-INF/view/admin/adminuser.jsp";
-	}
+
 	
 }

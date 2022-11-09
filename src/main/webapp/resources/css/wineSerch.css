@@ -1,0 +1,309 @@
+@charset "UTF-8";
+
+@import
+	url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css')
+	;
+
+.container {
+	max-width: 960px;
+}
+
+.pricing-header {
+	max-width: 700px;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.b-example-divider {
+	height: 3rem;
+	background-color: rgba(0, 0, 0, .1);
+	border: solid rgba(0, 0, 0, .15);
+	border-width: 1px 0;
+	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em
+		rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+	flex-shrink: 0;
+	width: 1.5rem;
+	height: 100vh;
+}
+
+.bi {
+	vertical-align: -.125em;
+	fill: currentColor;
+}
+
+.nav-scroller {
+	position: relative;
+	z-index: 2;
+	height: 2.75rem;
+	overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+	display: flex;
+	flex-wrap: nowrap;
+	padding-bottom: 1rem;
+	margin-top: -1px;
+	overflow-x: auto;
+	text-align: center;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
+}
+
+.bold {
+	vertical-align: top;
+	font-weight: bold;
+}
+
+.scroll-to-detail-margin {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-top: 31px;
+}
+
+#t1 {
+	text-align: center;
+	width: 100%;
+	position: relative;
+}
+
+#t1 img {
+	width: 100%;
+	height: 810px;
+	font-weight: bolder;
+	display: block;
+	vertical-align: middle;
+	opacity: 0.9;
+	margin: 0px auto;
+	background-size: 50%;
+}
+
+#text-p {
+	position: absolute;
+	top: 51.9%;
+	left: 50%;
+	width: 100%;
+	transform: translate(-50%, -50%);
+	font-weight: bolder;
+	font-size: 2.55rem;
+	color: #000000;
+	text-shadow: 0px 0px 1px #333;
+}
+
+.wainT {
+	font-weight: 900;
+	font-weight: bolder;
+}
+
+.parent {
+	height: 1em; /* 애니메이션 높이 */
+	overflow-y: hidden;
+	display: block;
+}
+
+.parent .child {
+	font-size: 1em; /* 애니메이션 높이 */
+	font-weight: bold;
+	line-height: 1;
+	animation-name: grow;
+	animation-duration: 2.5s; /* 애니메이션 시간 */
+}
+/* 키프레임 애니메이션 */
+@
+keyframes grow {from { transform:translateY(1em)
+	
+}
+
+}
+
+/* 애니메이션 높이 */
+to {
+	transform: translateY(0)
+}
+
+#fofo {
+	width: 100%;
+	border-top-left-radius: 29px 30px !important;
+	border-top-right-radius: 40px 25px !important;
+	border-bottom-right-radius: 52px 19px !important;
+	border-bottom-left-radius: 43px 28px !important;
+	background-color: #fff7fc;
+	align-content: space-around;
+	margin: 0 auto;
+	padding: 6.89%;
+	text-align: center;
+	letter-spacing: 2.5px;
+}
+
+#list-1, #list-2, #list-3 {
+	border: none;
+	background-color: #ffb80b;
+	text-align: center;
+	text-shadow: 0 1px 0 rgb(4, 0, 255);
+}
+
+#cbo {
+	text-align: center;
+}
+
+#cbo h1 {
+	color: #dee9f4;
+	color: #829ebb;
+	text-shadow: 0px 0px 1px #9998b3db;
+}
+
+#cbo small {
+	color: #0087ff !important;
+}
+
+#jb-wrap {
+	width: 90%;
+	margin: 10px auto !important;
+	position: relative;
+	padding: 3%;
+	overflow: hidden;
+}
+
+#jb-wrap img {
+	width: 50%;
+	font-weight: bolder;
+	display: block;
+	vertical-align: middle;
+	opacity: 0.9 .5;
+	margin: 0px auto;
+	background-size: 100%;
+}
+
+#jb-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	text-shadow: 2px 5px 10px rgb(190, 162, 237);
+}
+
+#jb-text h1 {
+	font-weight: bolder;
+	text-align: center;
+	letter-spacing: 3px;
+	font-size: 46px;
+	padding: 15px;
+}
+
+#jb-text h2 {
+	font-weight: bolder;
+	font-size: 32px;
+	padding: 3px;
+}
+
+}
+#jb-text1 {
+	font-weight: bolder;
+	font-size: 30px;
+}
+
+.blink {
+	color: azure;
+	animation: blink-effect 1s step-end infinite;
+}
+
+@
+keyframes blink-effect { 50% {
+	opacity: 0;
+}
+
+}
+#loate {
+	align-content: center;
+	background-color: #FCA5A5;
+	padding: 8px;
+	color: black;
+	font-size: 23px;
+	border: none;
+	font-weight: bolder;
+}
+
+#colre {
+	background-color: #FCA5A5;
+	border-color: #f8f9fa;
+	font-size: 18px;
+	color: #060606;
+	border-color: #f8f9fa;
+}
+
+#fm {
+	margin: auto;
+	padding: 23%;
+	letter-spacing: 5px;
+	text-align: center;
+}
+
+#aa {
+	justify-content: space-around;
+	text-align: center;
+	line-height: 60px;
+}
+
+#aa h1 {
+	background-color: #fb5a5a;
+	padding: 2.7%;
+	text-shadow: 0px 0px 1px #333;
+}
+
+#aa h1, h2, h3 {
+	font-weight: bolder;
+	text-shadow: 0px 0px 1px #333;
+}
+
+#aa h2, h3 {
+	font-weight: bolder;
+	text-shadow: 0px 0px 1px #333;
+	line-height: 39px;
+}
+
+#aa h3 {
+	line-height: 53px;
+}
+
+.cll {
+	color: #F87171;
+}
+
+.jumbotron1 {
+	padding: 0;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: 0.3rem;
+}
+
+.jumbotron-fluid {
+	padding-right: 0;
+	padding-left: 0;
+	@
+	include
+	border-radius(0);
+}
+
+.card-img, .card-img-top1 {
+	vertical-align: middle;
+	border-style: none;
+	flex-shrink: 0;
+	align-self: center !important;
+	height: 200px;
+	width: 50px
+}

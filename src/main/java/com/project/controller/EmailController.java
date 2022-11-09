@@ -94,7 +94,7 @@ public class EmailController {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('가입되지 않은 메일입니다.');");
-				script.println("location.href = 'singUp.wp'");
+				script.println("location.href = 'signUp.wp'");
 				script.println("</script>");
 				script.close();
 			} catch (IOException e) {
@@ -117,7 +117,7 @@ public class EmailController {
 		
 				script.println("<script>");
 				script.println("alert('메일로 아이디를 전송했습니다.');");
-				script.println("location.href = 'singUp.wp'");
+				script.println("location.href = 'signUp.wp'");
 				script.println("</script>");
 				script.close();
 			} catch (IOException e) {

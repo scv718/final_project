@@ -64,4 +64,13 @@ public class SubscribeDAOMybatis {
 	public void liset_deli_price_up(SubscribeVO vo) {
 		mybatis.update("SubscribeDAO.liset_deli_price_up", vo);
 	}
+
+	//조회
+	public List<SubscribeVO> allsubscriptList(SubscribeVO vo) {
+		List<SubscribeVO> a = mybatis.selectList("SubscribeDAO.allsubscriptList");
+		for (SubscribeVO v : a) {
+			System.out.println("v: " + v);
+		}
+		return mybatis.selectList("SubscribeDAO.allsubscriptList");
+	}
 }

@@ -55,11 +55,12 @@ public class Order_cartController {
 	}
 	//구독 내역
 	@RequestMapping("subscribe-3.wp")
-	public String subscribeList(OrderVO ovo, HttpSession session, Model model, WineVO wvo) {
+	public String subscribeList(OrderVO ovo, SubscribeVO svo,HttpSession session, Model model, WineVO wvo) {
 		System.out.println("구독내역");
-		
+		svo.setId((String) session.getAttribute("userID"));
 		ovo.setId((String) session.getAttribute("userID"));
 		model.addAttribute("subscribe", orderSerivce.subscribeOrderList(ovo));
+		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
 		System.out.println(orderSerivce.subscribeOrderList(ovo));
 
 		return "WEB-INF/view/subscribe/subscribe-3.jsp";
@@ -91,7 +92,7 @@ public class Order_cartController {
 		cvo.setId(Cid);
 		try {
 			if (Cid == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,7 +132,7 @@ public class Order_cartController {
 		System.out.println(cvo.getW_no());
 		try {
 			if (Cid == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			}else {
 				// 카트 등록
 				cvo.setId(Cid);
