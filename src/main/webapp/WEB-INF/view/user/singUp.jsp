@@ -28,7 +28,9 @@
 <body class="d-flex flex-column min-vh-100">
 <script>
 $( document ).ready(function() {
-    if(${error} === 1){
+	var error = '${error}';
+	console.log(error);
+    if(error != '' && error === '1'){
     	swal ( "로그인 후 진행해주세요" ,  "" ,  "error" );
     	 $.ajax({
  	        url: '/errorsession.wp',
@@ -40,7 +42,6 @@ $( document ).ready(function() {
 
 	<script type="text/javascript">
 	function kakaoLogin() {
-
 	    $.ajax({
 	        url: '/getAuthUrl.wp',
 	        type: 'get',
@@ -50,7 +51,6 @@ $( document ).ready(function() {
 	            location.href = res;
 	        }
 	    });
-
 	  }
 	</script>
 
@@ -60,10 +60,8 @@ function checkd() {
     var name = "check";
     var option = "width = 500, height = 500, top = 100, left = 200, location = no"
     window.open(url, name, option);
-
     var check = document.getElementById("sumbitcheck");
 }
-
 function joinform_check() {
 	  //변수에 담아주기
 	    
@@ -91,31 +89,28 @@ function joinform_check() {
 		    return false;
 		  };
 		  
-
+      if(idck == '0')
+			  swal ( "아이디 중복 체크 후 진행해주세요." ,  "" ,  "error" );
+			  return false;
+	   }  
 	  if (pwd.value == "") {
 	    alert("비밀번호를 입력하세요.");
 	    pwd.focus();
 	    return false;
 		  };
-
 	  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
 	  var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-
 	  if (!pwdCheck.test(pwd.value)) {
 	    alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
 	    pwd.focus();
 	    return false;
 	  };
-
 	  if (repwd.value !== pwd.value) {
 	    alert("비밀번호가 일치하지 않습니다.");
 	    repwd.focus();
 	    return false;
 	  };
-
 	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
-
-
 	  if (email_id.value == "") {
 	    alert("이메일 주소를 입력하세요.");
 	    email_id.focus();
@@ -124,7 +119,7 @@ function joinform_check() {
 	  
 	  var check = document.getElementById("checkservice").value;
 	  
-	  if(!check){
+	  if(!check){	  
 		  checkd();
 	  }
 		  if(check=='true'){
@@ -133,8 +128,6 @@ function joinform_check() {
 	
 	 	
 	}
-
-
 </script>
 <script type="text/javascript">
 	function nBtn(){
@@ -151,10 +144,8 @@ function joinform_check() {
 // 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
 // 						},
 // 						function(rsp) {
-
 // 							if (rsp.success) {
 // 								// 인증성공
-
 // 								console.log(rsp.imp_uid);
 // 								console.log(rsp.merchant_uid);
 // 								console.log('인증성공');
@@ -182,7 +173,6 @@ function joinform_check() {
 // 									takeResponseAndHandle(rsp)
 // 								});
 								
-
 // 							} else {
 // 								// 인증취소 또는 인증실패
 // 								var msg = '인증에 실패하였습니다.';
@@ -193,7 +183,6 @@ function joinform_check() {
 // 							}
 // 						})
 	
-
 // 		function takeResponseAndHandle(rsp) {
 // 			if (rsp.success) {
 // 				// 인증성공
@@ -203,7 +192,6 @@ function joinform_check() {
 // 				// 인증취소 또는 인증실패
 // 				var msg = '인증에 실패하였습니다.';
 // 				msg += '에러내용 : ' + rsp.error_msg;
-
 // 				alert(msg);
 // 			}
 // 		}
@@ -215,20 +203,14 @@ function joinform_check() {
 		<div class="form-container sign-up-container">
 			<form id="userInfo" name="userInfo" action="insertUser.wp"
 				method="post">
-				<h1>회원 가입</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
-						href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				</div>
+				<h1>Sign Up</h1>
 				<input type="text" id="id" name="id" placeholder="아이디">  <input
 					type="password" id="m_pw" name="m_pw" placeholder="비밀번호" /> <input
 					type="password" id="repassword" placeholder="비밀번호 확인" /> <input
 					type="email" id="m_email" name="m_email" placeholder="이메일" /> <input
-					type='hidden' id='checkservice' name='checkservice' value='' />
-					
-					<button type="button" id="idck" value="아이디 중복 확인" ></button>
-					<button type="button" id="singupbtn" onclick="joinform_check();"
-					disabled>가입하기</button>
+					type='hidden' id='checkservice' name='checkservice' value='' />					
+					<button type="button" id="idck" value="아이디 중복 확인" >아이디 중복 확인</button>
+					<button type="button" id="singupbtn" onclick="joinform_check();">가입하기</button>
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
@@ -305,7 +287,6 @@ $(function() {
         });
     });
 });
-
 </script>
 	
 
@@ -314,11 +295,9 @@ $(function() {
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
-
 signUpButton.addEventListener('click', () => {
   container.classList.add("right-panel-active");
 });
-
 signInButton.addEventListener('click', () => {
   container.classList.remove("right-panel-active");
 });

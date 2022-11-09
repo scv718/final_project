@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.project.review.ReviewService;
 import com.project.review.ReviewVO;
 
@@ -13,7 +12,8 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
 	private ReviewDAO reviewDAO;
-	
+	@Autowired
+	private ReviewDAOMybatis ReviewDAO;
 	//리뷰 중복확인
 	@Override
 	public int existReview(int w_no, String id) throws Exception {
@@ -86,5 +86,16 @@ public class ReviewServiceImpl implements ReviewService{
 	public int productReviewListCnt(ReviewVO rvo) {
 		return reviewDAO.productReviewListCnt(rvo);
 	}
+	//관리자
+	@Override
+	public List<ReviewVO> ReviewListAd(ReviewVO vo) {
+		System.out.println("review까지 진행됨");
+		return ReviewDAO.ReviewListAd(vo);
+	}
 
+	@Override
+	public List<ReviewVO> mainreviewFilter(ReviewVO vo){
+		
+		return reviewDAO.mainreviewFilter(vo);
+	}
 }

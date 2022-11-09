@@ -18,7 +18,6 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-	
 }
 
 .b-example-divider {
@@ -82,14 +81,6 @@
 	position: relative;
 }
 
-.s_c_i1{
-	float:left
-	  
-}
-.s_c_t1{
-	float:left
-	
-}
 #t1 img {
 	width: 100%;
 	height: 810px;
@@ -206,12 +197,6 @@ to {
 	text-shadow: 2px 5px 10px rgb(190, 162, 237);
 }
 
-.carousel {
-    position: relative;
-    width: 80%;
-    align-self: center;
-}
-
 #jb-text h1 {
 	font-weight: bolder;
 	text-align: center;
@@ -254,7 +239,8 @@ keyframes blink-effect { 50% {
 }
 
 #colre {
-	background-color: #FCA5A5; border-color : #f8f9fa;
+	background-color: #FCA5A5;
+	border-color: #f8f9fa;
 	font-size: 18px;
 	color: #060606;
 	border-color: #f8f9fa;
@@ -294,15 +280,30 @@ keyframes blink-effect { 50% {
 	line-height: 53px;
 }
 
-.row1 {
-    display: flex;
-    margin-right: -15px;
-    margin-left: -15px;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-
 .cll {
 	color: #F87171;
+}
+
+.jumbotron1 {
+	padding: 0;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: 0.3rem;
+}
+
+.jumbotron-fluid {
+	padding-right: 0;
+	padding-left: 0;
+	@
+	include
+	border-radius(0);
+}
+
+.card-img, .card-img-top1 {
+	vertical-align: middle;
+	border-style: none;
+	flex-shrink: 0;
+	align-self: center !important;
+	height: 200px;
+	width: 50px
 }

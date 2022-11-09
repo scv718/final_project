@@ -54,6 +54,14 @@ public class UserController {
 		}
 		if(userService.getUser(vo) != null) {
 			if(passwordEncoder.matches(vo.getM_pw(), userService.getUser(vo).getM_pw())){
+				if(userService.getUser(vo).getM_role().equals("admin")) {
+					System.out.println("로그인아이디: "+userService.getUser(vo).getId());
+					session.setAttribute("login", userService.getUser(vo).getId());
+					session.setAttribute("userID", userService.getUser(vo).getId());
+					session.setAttribute("userName", userService.getUser(vo).getM_name());
+					session.setAttribute("userRole", userService.getUser(vo).getM_role());
+					return "redirect:/adminMain.wp";
+				}
 				System.out.println("로그인아이디: "+userService.getUser(vo).getId());
 				session.setAttribute("login", userService.getUser(vo).getId());
 				session.setAttribute("userID", userService.getUser(vo).getId());

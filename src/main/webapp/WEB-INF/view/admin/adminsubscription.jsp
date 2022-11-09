@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -26,6 +25,80 @@
 [type=search] {
     outline-offset: 0;
 }
+/*목록버튼*/
+.myButton {
+	background:linear-gradient(to bottom, #e0e0e0 5%, #fffaff 100%);
+	background-color:#e0e0e0;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#2496b3;
+	font-family:Trebuchet MS;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #fffaff 5%, #e0e0e0 100%);
+	background-color:#fffaff;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.myButton1 {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Impact;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+.myButton1:hover {
+	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color:#1e62d0;
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+.myButton2 {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Impact;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.myButton2:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
+}
+
 </style>
 <body>
 
@@ -98,26 +171,26 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="http://localhost:8090/user/adminmain.jsp#profile">관리자메인화면</a>
+                                <a class="nav-link" href="adminMain.wp">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.wp">홈페이지메인이동</a>
+                                <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.wp">로그아웃</a>
+                                <a class="nav-link" href="index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-        
-           <h2 align="center">고객목록조회</h2>
+            
+           <h2 align="center">구독 관리</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
         <thead>  
-              <tr>
-			<th>아이디</th>
+         <tr style="background-color: #FCA5A5" align="center">
+	        <th>회원 아이디</th>
 			<th>회원 등급</th>
 			<th>구독 시작일자</th>
 			<th>결제여부</th>
@@ -133,59 +206,30 @@
         <tbody> 
          
        <c:forEach items="${AllList}" var="all">                
-       <tr>
-								<td>${all.id}</td>
-								<td>${all.level}</td>
-								<td>${all.sub_date}</td>
-								<td>${all.sub_pm_status}</td>
-								<td>${all.sub_deli}</td>
-								<td>${all.e_date}</td>
-								<td>${all.sub_status}</td>
-								<td>${all.s_sweet}</td>
-								<td>${all.s_body}</td>
-								<td>${all.s_acidity}</td>
-								<td>${all.s_tannins}</td>
-		</tr>            
-       </c:forEach>
-       </tbody>
-    </table>
-    </div>
-            <br><br><hr> <br><br>
-            <h2 align="center">수정/삭제(공사중)임시적용</h2>
-             <table class="member" align="center">
-        <tr>
-	    <th>아이디</th>
-			<th>회원 등급</th>
-			<th>구독 시작일자</th>
-			<th>결제여부</th>
-			<th>구독 배송 확인</th>
-			<th>구독 종료일자</th>
-			<th>구독 상태</th>
-			<th>선호 당도</th>
-			<th>선호 바디감</th>
-			<th>선호 산미</th>
-			<th>선호 타닌</th>
-        </tr>
-		<tbody>
-        <c:forEach items="${AllList}" var="all">                
-       <tr>
-     <td>${all.id}</td>
-								<td>${all.level}</td>
-								<td>${all.sub_date}</td>
-								<td>${all.sub_pm_status}</td>
-								<td>${all.sub_deli}</td>
-								<td>${all.e_date}</td>
-								<td>${all.sub_status}</td>
-								<td>${all.s_sweet}</td>
-								<td>${all.s_body}</td>
-								<td>${all.s_acidity}</td>
-								<td>${all.s_tannins}</td>
+       <tr align="center">
+         <td>${all.id}</td>
+      	 <td>${all.level}</td>
+      	 <td>${all.sub_date}</td>
+      	 <td>${all.sub_pm_status}</td>
+      	 <td>${all.sub_deli}</td>
+     	 <td>${all.e_date}</td>
+      	 <td>${all.sub_status}</td>
+      	 <td>${all.s_sweet}</td>
+      	 <td>${all.s_body}</td>
+      	 <td>${all.s_acidity}</td>
+      	 <td>${all.s_tannins}</td>
        </tr>            
        </c:forEach>
        </tbody>
     </table>
-    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">수정</a>
-    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">삭제</a>
+    <br>
+    <div class='btnSet' align="center">
+		<a class='myButton' href="adminSubscription.wp">전체 목록</a>
+		<a class='myButton' href="adminSubscription.wp">구독 관리</a>
+            <br><br><hr> <br><br>
+	</div>
+    </div>
+    
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
@@ -209,6 +253,20 @@
         $(document).ready(function(){
             $('#myTable').dataTable();
         });
+        
+//     function updateAd(param){
+//     	var m_name = $('#m_name'+param).val();
+//     	var id =  $('#id'+param).val();
+//     	console.log('testad');
+//     	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
+//     	document.userInfo.submit();
+//     }
+//     function deleteAd(param){
+//     	var id = param;
+//     	console.log('testad');
+//     	location.href = 'deleteAd.wp?id='+id;
+//     	document.userInfo.submit();
+//     }
     </script>
 </body>
 </html>

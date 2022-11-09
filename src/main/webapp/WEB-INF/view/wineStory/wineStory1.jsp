@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,23 +16,63 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+</head>	
 
 <body class="d-flex flex-column min-vh-100">
 
 	<%@ include file="../../../header.jsp"%>
 
-	<div id="t1">
-		<img class="down-arrow" src="resources/img/바쿠스.jpg" />
-		<div id="text-p">
-			<p>
-				와인은 이런 겁니다.
-			</p>
+	
+				<div>
+<c:forEach items="${story1_t}" var="story" varStatus="status">
+					<img class="bd-placeholder-img" id="t1"  
+						src="${pageContext.request.contextPath}/resources/img/story/${story.story_back_img}">
+					<p>무언가가 되길 바람.</p>
+					<div class="container">
+						<div class="carousel-caption text-start">
+							<h1>${story.story_title}</h1>
+							</div>
+							</div>
+</c:forEach>
+						</div><br><br><hr>
+	
+	
+	<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+
+	
+		
+
+
 			
-		</div>
-	</div>
 
+				<div class="row">
+<c:forEach items="${story1_c}" var="story1" varStatus="status">
+					<div>
+					<h2 class="fw-normal">${story1.story_semi_title}</h2><br><hr>
+					<div class="s_c_i1 col-lg-4">
+						<img class="bd-placeholder-img " width="200px" height="auto"
+							src="${pageContext.request.contextPath}/resources/img/story/${story1.story_add_img}">
+							</div>
+							<div class="s_c_t1 col-lg-8">
+						<p>${story1.story_content}</p>
+						</div>
+					</div> <br><hr>
+	</c:forEach>				
 
+				</div>
+<div class="row row1">
+	<a href="https://terms.naver.com/list.naver?cid=58884&categoryId=58901">
+				<button type="button" id="colre"
+					class="btn btn-lg btn-outline-primary">와인 더 알아보기</button>
+			</a> <a href="wineStory2.wp">
+				<button type="button" id="colre"
+					class="btn btn-lg btn-outline-primary">4가지 구분하기</button>
+			</a> <a href="wineStory3.wp">
+				<button type="button" id="colre"
+					class="btn btn-lg btn-outline-primary">곁들일 레시피</button>
+			</a>
+</div>
+</div>
 	<%@ include file="/footer.jsp"%>
 </body>
  
