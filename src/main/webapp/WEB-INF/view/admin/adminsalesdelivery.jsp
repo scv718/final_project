@@ -174,10 +174,10 @@
                                 <a class="nav-link" href="adminMain.wp">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
+                                <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
+                                <a class="nav-link" href="index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
@@ -202,19 +202,19 @@
         </thead>  
         <tbody> 
          
-       <c:forEach items="${allsubscriptList}" var="order">                
-       <tr align="center">
-        	<th>주문코드(PK)${order.}</th>
-			<th>주문일자${order.}</th>
-			<th>주문자(ID)${order.}</th>
-			<th>배송상태${order.}</th>
-			<th>주문상태${order.}</th>
-			<th>총 상품 금액${order.}</th>
-			<th>총 주문 금액${order.}</th>
-			<th>주문상품이름(K)${order.}</th>
-			<th>주문상품이름(E)${order.}</th>
-       </tr>            
-       </c:forEach>
+<%--        <c:forEach items="${OrderListAd}" var="order">                 --%>
+<!--        <tr align="center"> -->
+<%--         	<th>주문코드(PK)${order.}</th> --%>
+<%-- 			<th>주문일자${order.}</th> --%>
+<%-- 			<th>주문자(ID)${order.}</th> --%>
+<%-- 			<th>배송상태${order.}</th> --%>
+<%-- 			<th>주문상태${order.}</th> --%>
+<%-- 			<th>총 상품 금액${order.}</th> --%>
+<%-- 			<th>총 주문 금액${order.}</th> --%>
+<%-- 			<th>주문상품이름(K)${order.}</th> --%>
+<%-- 			<th>주문상품이름(E)${order.}</th> --%>
+<!--        </tr>             -->
+<%--        </c:forEach> --%>
        </tbody>
     </table>
     <br>
