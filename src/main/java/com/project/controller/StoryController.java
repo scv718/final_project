@@ -1,13 +1,21 @@
 package com.project.controller;
 
-import javax.servlet.http.HttpSession;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.project.story.StoryService;
+import com.project.story.StoryVO;
 
 @Controller
+@SessionAttributes("story")
 public class StoryController {
 	
+	
+	@Autowired
+	private StoryService storyService;
 	
 	@RequestMapping(value = "/wineStory.wp")
 	public String wineStory() {
@@ -16,8 +24,12 @@ public class StoryController {
 	}
 	
 	@RequestMapping(value = "/wineStory1.wp")
-	public String wineStory1() {
+	public String wineStory1(StoryVO vo, Model model) {
 		System.out.println("와인이야기1");
+		
+		model.addAttribute("Story1_t",storyService.getStory1(vo));
+		System.out.println(storyService.getStory1(vo).toString());
+		model.addAttribute("story1_c",storyService.getStoryList1(vo));
 		return "WEB-INF/view/wineStory/wineStory1.jsp";
 	}
 	
