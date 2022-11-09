@@ -28,11 +28,6 @@ public class AdminController {
 		return "WEB-INF/view/admin/adminintroduce.jsp";
 	}
 	
-	@RequestMapping("adminSubscription.wp")
-	public String subscription() {
-		return "WEB-INF/view/admin/adminsubscription.jsp";
-	}
-	
 	@RequestMapping("adminSalesdelivery.wp")
 	public String salesdelivery() {
 		return "WEB-INF/view/admin/adminsalesdelivery.jsp";

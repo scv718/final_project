@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>관리자페이지</title>
-
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -20,7 +22,11 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 </head>
-
+<style>
+[type=search] {
+    outline-offset: 0;
+}
+</style>
 <body>
 
     <div class="wrapper">
@@ -57,7 +63,7 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                        <li>
+                         <li>
                             <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>
@@ -104,20 +110,95 @@
                     </div>
                 </div>
             </nav>
-            
-           <h2>구독관리페이지</h2>
-            
-            
+        
+           <h2 align="center">고객목록조회</h2>
+           <br><br>
+      <div class="table-responsive">
+    <table id="myTable" class="display table" width="100%">
+        <thead>  
+              <tr>
+			<th>아이디</th>
+			<th>회원 등급</th>
+			<th>구독 시작일자</th>
+			<th>결제여부</th>
+			<th>구독 배송 확인</th>
+			<th>구독 종료일자</th>
+			<th>구독 상태</th>
+			<th>선호 당도</th>
+			<th>선호 바디감</th>
+			<th>선호 산미</th>
+			<th>선호 타닌</th>
+        </tr> 
+        </thead>  
+        <tbody> 
+         
+       <c:forEach items="${AllList}" var="all">                
+       <tr>
+								<td>${all.id}</td>
+								<td>${all.level}</td>
+								<td>${all.sub_date}</td>
+								<td>${all.sub_pm_status}</td>
+								<td>${all.sub_deli}</td>
+								<td>${all.e_date}</td>
+								<td>${all.sub_status}</td>
+								<td>${all.s_sweet}</td>
+								<td>${all.s_body}</td>
+								<td>${all.s_acidity}</td>
+								<td>${all.s_tannins}</td>
+		</tr>            
+       </c:forEach>
+       </tbody>
+    </table>
+    </div>
+            <br><br><hr> <br><br>
+            <h2 align="center">수정/삭제(공사중)임시적용</h2>
+             <table class="member" align="center">
+        <tr>
+	    <th>아이디</th>
+			<th>회원 등급</th>
+			<th>구독 시작일자</th>
+			<th>결제여부</th>
+			<th>구독 배송 확인</th>
+			<th>구독 종료일자</th>
+			<th>구독 상태</th>
+			<th>선호 당도</th>
+			<th>선호 바디감</th>
+			<th>선호 산미</th>
+			<th>선호 타닌</th>
+        </tr>
+		<tbody>
+        <c:forEach items="${AllList}" var="all">                
+       <tr>
+     <td>${all.id}</td>
+								<td>${all.level}</td>
+								<td>${all.sub_date}</td>
+								<td>${all.sub_pm_status}</td>
+								<td>${all.sub_deli}</td>
+								<td>${all.e_date}</td>
+								<td>${all.sub_status}</td>
+								<td>${all.s_sweet}</td>
+								<td>${all.s_body}</td>
+								<td>${all.s_acidity}</td>
+								<td>${all.s_tannins}</td>
+       </tr>            
+       </c:forEach>
+       </tbody>
+    </table>
+    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">수정</a>
+    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">삭제</a>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
-
+    
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -125,7 +206,9 @@
 //                 $(this).toggleClass('active');
             });
         });
-     
+        $(document).ready(function(){
+            $('#myTable').dataTable();
+        });
     </script>
 </body>
 </html>
