@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/faq.css" />
-<title>1:1 문의 목록</title>
+<title>FAQ</title>
 <%@ include file="../../../header.jsp"%>
 <style>
 .accordion {
@@ -50,7 +50,9 @@
 }
 </style>
 <script>
-	
+	function selTr(val) {
+		location.href = "getFaq.wp?commu_no=" + val;
+	}
 </script>
 </head>
 
@@ -58,13 +60,25 @@
 
 	<div id="faqContainer">
 		<!-- 제목 -->
-		<h3 id="comtitle">1:1 문의</h3>
-		<button type="button" onclick="location.href='insertQna_get.wp'">1:1
-			문의하기</button>
-		<button type="button" onclick="location.href='admin_getQnaList.wp'">관리자 1:1 목록확인</button>
+		<h3 id="comtitle">FAQ 자주하는질문</h3>
+		<button type="button" onclick="location.href='insertQna_get.wp'">1:1 문의하기</button>
+		<button type="button" onclick="location.href='admin_getFaqList.wp'">관리자FAQ목록확인</button>
+		<!-- 검색창 -->
+		<nav id="searchNav">
+			<form action="getFaqList.wp" method="POST" id="faqform">
+				<select name="searchCondition" class="searchsel">
+					<c:forEach items="${conditionMap}" var="option">
+						<option value="${option.value}"
+							<c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option>
+					</c:forEach>
+				</select> <input type="text" class="searchinput" name="searchKeyword"
+					placeholder="검색어를 입력하세요." value="${search}">
+				<button type="submit" class="searchbtn">검색</button>
+			</form>
+		</nav>
 
-		<!-- 필터 -->
-		<form action="getQnaList.wp" method="POST" id="align">
+		<!-- 카테고리 필터 -->
+		<form action="getFaqList.wp" method="POST" id="align">
 			<ul>
 				<li>
 				<select name="alignlist" class="w-px100" onchange="$('form').submit()">
@@ -78,65 +92,35 @@
 				</li>
 			</ul>
 		</form>
-		
+
 		<!-- 자주하는질문 보드 -->
 		<div id="accordion">
-				<div class="">
-					<p>유형</p>
-				</div>
-				<div class="">
-					<p>문의내용</p>
-				</div>
-			<c:forEach var="qna" items="${getQnaList}">
-				<div class="accordion">
+			<c:forEach var="faq" items="${FaqList}">
+				<button class="accordion">
 					<c:choose>
-						<c:when test="${qna.faq_cat eq '0'}">
+						<c:when test="${faq.faq_cat eq '0'}">
 							<span>[주문/결제/배송]</span>
 						</c:when>
-						<c:when test="${qna.faq_cat eq '1'}">
+						<c:when test="${faq.faq_cat eq '1'}">
 							<span>[취소/교환/환불]</span>
 						</c:when>
-						<c:when test="${qna.faq_cat eq '2'}">
+						<c:when test="${faq.faq_cat eq '2'}">
 							<span>[구독서비스]</span>
 						</c:when>
-						<c:when test="${qna.faq_cat eq '3'}">
+						<c:when test="${faq.faq_cat eq '3'}">
 							<span>[회원]</span>
 						</c:when>
 						<c:otherwise>
 							<span>[기타]</span>
 						</c:otherwise>
 					</c:choose>
-					<span>${qna.commu_title}</span>
-				</div>
+					<span>${faq.commu_title}</span>
+				</button>
 				<div class="panel">
-					<p>${qna.commu_content}</p>
-					<div>
-						<c:if test="${qna.commu_photo1 ne NULL}">
-							<img class="imgBoxImg" src="resources/img/qna/${qna.commu_photo1}" style="width: 200px; padding: 10px 0;">
-								<c:if test="${qna.commu_photo2 ne NULL}">
-								<img class="imgBoxImg" src="resources/img/qna/${qna.commu_photo2}" style="width: 200px; padding: 10px 0;">
-									<c:if test="${qna.commu_photo3 ne NULL}">
-									<img class="imgBoxImg" src="resources/img/qna/${qna.commu_photo3}" style="width: 200px; padding: 10px 0;">
-									</c:if>
-								</c:if>
-						</c:if>
-					</div>
-					<c:choose>
-						<c:when test="${qna.answer_status eq '답변대기'}">
-							<span>
-							<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a>
-							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">삭제</a>
-							</span>
-						</c:when>
-						<c:when test="${qna.answer_status eq '답변완료'}">
-							<span>
-							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">삭제</a>
-							</span>
-						</c:when>
-					</c:choose>
-					<p>${qna.answer_con}</p>
+					<p>${faq.commu_content}</p>
+
 				</div>
-				</c:forEach>
+			</c:forEach>
 		</div>
 
 
@@ -144,7 +128,7 @@
 		<div id="btnBox">
 			<!-- 반복처리할 태그 시작 -->
 			<c:if test="${paging.nowPageBtn > 1 }">
-				<a href="getQnaList.wp?nowPageBtn=${paging.nowPageBtn - 1}">&lt;</a>
+				<a href="getFaqList.wp?nowPageBtn=${paging.nowPageBtn - 1}">&lt;</a>
 			</c:if>
 			<c:forEach begin="${paging.startBtn}" end="${paging.endBtn}" step="1"
 				var="i">
@@ -153,12 +137,12 @@
 						<a class="aSel">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="getQnaList.wp?nowPageBtn=${i}">${i}</a>
+						<a href="getFaqList.wp?nowPageBtn=${i}">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${paging.nowPageBtn < paging.totalBtnCnt}">
-				<a href="getQnaList.wp?nowPageBtn=${paging.nowPageBtn + 1}">&gt;</a>
+				<a href="getFaqList.wp?nowPageBtn=${paging.nowPageBtn + 1}">&gt;</a>
 			</c:if>
 			<!-- 끝 -->
 		</div>

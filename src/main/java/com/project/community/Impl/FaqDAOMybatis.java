@@ -14,32 +14,7 @@ public class FaqDAOMybatis {
 	@Autowired // 자료형주입
 	private SqlSessionTemplate mybatis;
 
-	// CRUD 기능의 메소드 구현
-	// FAQ 등록
-	public void insertFaq(CommunityVO vo) {
-		System.out.println("===> mybatis insertFaq() 기능처리");
-		mybatis.insert("FaqDAO.insertFaq", vo);
-		// namespace명.객체명
-	}
-
-	// FAQ 수정
-	public void updateFaq(CommunityVO vo) {
-		System.out.println("===> mybatis updateFaq() 기능처리");
-		mybatis.update("FaqDAO.updateFaq", vo);
-	}
-
-	// FAQ 삭제
-	public void deleteFaq(CommunityVO vo) {
-		System.out.println("===> mybatis deleteFaq() 기능처리");
-		mybatis.delete("FaqDAO.deleteFaq", vo);
-	}
-
-	// FAQ 상세 조회(한줄)
-	public CommunityVO getFaq(CommunityVO vo) {
-		System.out.println("===> mybatis getFaq() 기능처리");
-		return (CommunityVO) mybatis.selectOne("FaqDAO.getFaq", vo);
-	}
-
+	// ========공통========
 	// FAQ 목록 조회(여러줄)
 	public List<CommunityVO> getFaqList(CommunityVO vo) {
 		System.out.println("===> mybatis getFaqList() 기능처리");
@@ -50,6 +25,33 @@ public class FaqDAOMybatis {
 	public int totalFaqListCnt(CommunityVO vo) {
 		System.out.println("===> mybatis totalFaqListCnt() 기능처리");
 		return mybatis.selectOne("FaqDAO.totalFaqListCnt", vo);
+	}
+
+	// =======관리자========
+
+	// FAQ 등록
+	public void admin_insertFaq(CommunityVO vo) {
+		System.out.println("===> mybatis admin_insertFaq() 기능처리");
+		mybatis.insert("FaqDAO.admin_insertFaq", vo);
+		// namespace명.객체명
+	}
+
+	// FAQ 수정
+	public void admin_updateFaq(CommunityVO vo) {
+		System.out.println("===> mybatis admin_updateFaq() 기능처리");
+		mybatis.update("FaqDAO.admin_updateFaq", vo);
+	}
+
+	// FAQ 삭제
+	public void admin_deleteFaq(CommunityVO vo) {
+		System.out.println("===> mybatis admin_deleteFaq() 기능처리");
+		mybatis.delete("FaqDAO.admin_deleteFaq", vo);
+	}
+
+	// FAQ 상세 조회(한줄)
+	public CommunityVO admin_getFaq(CommunityVO vo) {
+		System.out.println("===> mybatis admin_getFaq() 기능처리");
+		return (CommunityVO) mybatis.selectOne("FaqDAO.admin_getFaq", vo);
 	}
 
 }

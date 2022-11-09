@@ -4,63 +4,59 @@
 
 <mapper namespace="FaqDAO">
 
-	<!-- 등록 -->
-	<insert id="insertFaq">
-		INSERT INTO COMMUNITY
-		(COMMU_CAT,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,FAQ_CAT)
-		VALUES(#{commu_cat},#{commu_title},#{id},#{commu_content},NOW(),#{faq_cat})
-		<!-- INSERT INTO COMMUNITY (COMMU_CAT,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,FILES,FAQ_CAT) -->
-		<!-- VALUES(#{commu_cat},#{commu_title},#{id},#{commu_content},NOW(),#{files},#{faq_cat}) -->
-	</insert>
-
-	<!-- 수정 -->
-	<update id="updateFaq">
-		UPDATE community SET commu_title=#{commu_title},
-		id=#{id},
-		commu_content=#{commu_content}, commu_date=NOW(),
-		faq_cat=#{faq_cat}
-		where commu_no=#{commu_no}
-	</update>
-
-	<!-- 삭제 -->
-	<delete id="deleteFaq">
-		DELETE FROM COMMUNITY WHERE commu_no = #{commu_no}
-	</delete>
-
-	<!-- 상세보기 -->
-	<select id="getFaq" resultType="community">
-		SELECT * FROM COMMUNITY WHERE
-		commu_no = #{commu_no}
-	</select>
-
-	<!-- 전체목록조회(검색) -->
+	<!-- ====== 공통 ====== -->
+		<!-- 전체목록조회(검색) -->
 	<select id="getFaqList" resultType="community">
-		SELECT * FROM COMMUNITY WHERE commu_cat = 1
-		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
-		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
-		<if test="alignlist == 'zero' "> AND faq_cat = '0' </if>
-		<if test="alignlist == 'one' "> AND faq_cat = '1' </if>
-		<if test="alignlist == 'two' "> AND faq_cat = '2' </if>
-		<if test="alignlist == 'three' "> AND faq_cat = '3' </if>
-		<if test="alignlist == 'four' "> AND faq_cat = '4' </if>
-		ORDER BY commu_date
+		SELECT * FROM COMMUNITY WHERE COMMU_CAT = 1
+		<if test="searchCondition == 'TITLE' "> AND COMMU_TITLE LIKE REPLACE(CONCAT('%',#{searchKeyword}, '%'),' ','')</if>
+		<if test="searchCondition == 'CONTENT' "> AND COMMU_CONTENT LIKE REPLACE(CONCAT('%',#{searchKeyword}, '%'),' ','')</if>
+		<if test="alignlist == 'zero' "> AND FAQ_CAT = '0' </if>
+		<if test="alignlist == 'one' "> AND FAQ_CAT = '1' </if>
+		<if test="alignlist == 'two' "> AND FAQ_CAT = '2' </if>
+		<if test="alignlist == 'three' "> AND FAQ_CAT = '3' </if>
+		<if test="alignlist == 'four' "> AND FAQ_CAT = '4' </if>
+		ORDER BY COMMU_DATE
 		LIMIT 10 OFFSET #{offset}
 	</select>
 
 	<!-- 페이징처리 목록갯수 -->
 	<select id="totalFaqListCnt" resultType="_int">
-		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 and COMMU_CAT = 1
-		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
-		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
-			#{searchKeyword}, '%'),' ','')</if>
-		<if test="alignlist == 'zero' "> AND faq_cat = '0' </if>
-		<if test="alignlist == 'one' "> AND faq_cat = '1' </if>
-		<if test="alignlist == 'two' "> AND faq_cat = '2' </if>
-		<if test="alignlist == 'three' "> AND faq_cat = '3' </if>
-		<if test="alignlist == 'four' "> AND faq_cat = '4' </if>
+		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 AND COMMU_CAT = 1
+		<if test="searchCondition == 'TITLE' "> AND COMMU_TITLE LIKE REPLACE(CONCAT('%',#{searchKeyword}, '%'),' ','')</if>
+		<if test="searchCondition == 'CONTENT' "> AND COMMU_CONTENT LIKE REPLACE(CONCAT('%',#{searchKeyword}, '%'),' ','')</if>
+		<if test="alignlist == 'zero' "> AND FAQ_CAT = '0' </if>
+		<if test="alignlist == 'one' "> AND FAQ_CAT = '1' </if>
+		<if test="alignlist == 'two' "> AND FAQ_CAT = '2' </if>
+		<if test="alignlist == 'three' "> AND FAQ_CAT = '3' </if>
+		<if test="alignlist == 'four' "> AND FAQ_CAT = '4' </if>
+	</select>
+	
+	<!-- ====== 관리자 ====== -->
+	<!-- 등록 -->
+	<insert id="admin_insertFaq">
+		INSERT INTO COMMUNITY (COMMU_CAT,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,FAQ_CAT)
+		VALUES(#{commu_cat},#{commu_title},#{id},#{commu_content},NOW(),#{faq_cat})
+	</insert>
+
+	<!-- 수정 -->
+	<update id="admin_updateFaq">
+		UPDATE COMMUNITY SET 
+		COMMU_TITLE=#{commu_title},
+		ID=#{id},
+		COMMU_CONTENT=#{commu_content}, 
+		COMMU_DATE=NOW(),
+		FAQ_CAT=#{faq_cat}
+		WHERE COMMU_NO=#{commu_no}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="admin_deleteFaq">
+		DELETE FROM COMMUNITY WHERE COMMU_NO = #{commu_no}
+	</delete>
+
+	<!-- 상세보기 -->
+	<select id="admin_getFaq" resultType="community">
+		SELECT * FROM COMMUNITY WHERE COMMU_NO = #{commu_no}
 	</select>
 
 </mapper>

@@ -15,76 +15,79 @@ public class QnaDAOMybatis {
 	@Autowired // 자료형주입
 	private SqlSessionTemplate mybatis;
 
-	// CRUD 기능의 메소드 구현
-	// QNA 등록
+	// ===== 사용자 =====
+	// 1:1 문의 등록
 	public void insertQna(CommunityVO vo) {
 		System.out.println("===> mybatis insertQna() 기능처리");
 		mybatis.insert("QnaDAO.insertQna", vo);
 		// namespace명.객체명
 	}
 
-	// QNA 수정
+	// 1:1 문의 수정
 	public void updateQna(CommunityVO vo) {
 		System.out.println("===> mybatis updateQna() 기능처리");
 		mybatis.update("QnaDAO.updateQna", vo);
 	}
 
-	// QNA 삭제
+	// 1:1 문의 삭제
 	public void deleteQna(CommunityVO vo) {
 		System.out.println("===> mybatis deleteQna() 기능처리");
 		mybatis.delete("QnaDAO.deleteQna", vo);
 	}
 
-	// QNA 상세 조회(한줄)
+	// 1:1 문의 상세 조회(한줄)
 	public CommunityVO getQna(CommunityVO vo) {
 		System.out.println("===> mybatis getQna() 기능처리");
 		return (CommunityVO) mybatis.selectOne("QnaDAO.getQna", vo);
 	}
-	
-	// QNA 상세 조회(한줄)
-		public CommunityVO admin_getQna(CommunityVO vo) {
-			System.out.println("===> mybatis admin_getQna() 기능처리");
-			return (CommunityVO) mybatis.selectOne("QnaDAO.admin_getQna", vo);
-		}
 
-	// QNA 목록 조회(여러줄)
+	// 1:1 문의 목록 조회(여러줄)
 	public List<CommunityVO> getQnaList(CommunityVO vo) {
 		System.out.println("===> mybatis getQnaList() 기능처리");
 		return mybatis.selectList("QnaDAO.getQnaList", vo);
 	}
-	
-	// QNA 목록 조회(여러줄)
+
+	// 1:1 문의 전체 글 목록 개수 - 사용자
+	public int totalQnaListCnt(CommunityVO vo) {
+		System.out.println("===> mybatis totalQnaListCnt() 기능처리");
+		return mybatis.selectOne("QnaDAO.totalQnaListCnt", vo);
+	}
+
+	// ===== 관리자 =====
+	// 1:1 문의 등록 - 관리자
+	public void admin_insertQna(AnswerVO vo) {
+		System.out.println("===> mybatis admin_insertQna() 기능처리");
+		mybatis.insert("QnaDAO.admin_insertQna", vo);
+	}
+
+	// 1:1 문의 수정 - 관리자
+	public void admin_updateQna(CommunityVO vo) {
+		System.out.println("===> mybatis admin_updateQna() 기능처리");
+		mybatis.update("QnaDAO.admin_updateQna", vo);
+	}
+
+	// 1:1 문의 상세 조회(한줄)
+	public CommunityVO admin_getQna(CommunityVO vo) {
+		System.out.println("===> mybatis admin_getQna() 기능처리");
+		return (CommunityVO) mybatis.selectOne("QnaDAO.admin_getQna", vo);
+	}
+
+	// 1:1 문의 목록 조회(여러줄)
 	public List<CommunityVO> admin_getQnaList(CommunityVO vo) {
 		System.out.println("===> mybatis admin_getQnaList() 기능처리");
 		return mybatis.selectList("QnaDAO.admin_getQnaList", vo);
 	}
 
-	// 전체 글 목록 개수 - 사용자
-	public int totalQnaListCnt(CommunityVO vo) {
-		System.out.println("===> mybatis totalQnaListCnt() 기능처리");
-		return mybatis.selectOne("QnaDAO.totalQnaListCnt", vo);
-	}
-	
-	// 전체 글 목록 개수 - 관리자
+	// 1:1 문의 전체 글 목록 개수 - 관리자
 	public int admin_totalQnaListCnt(CommunityVO vo) {
 		System.out.println("===> mybatis admin_totalQnaListCnt() 기능처리");
 		return mybatis.selectOne("QnaDAO.admin_totalQnaListCnt", vo);
 	}
 
-	public void admin_insertQna(AnswerVO vo) {
-		System.out.println("===> mybatis admin_insertQna() 기능처리");
-		mybatis.insert("QnaDAO.admin_insertQna", vo);
-		
-	}
-
+	// 1:1 답변여부
 	public void answerCount(int commu_no) {
 		System.out.println("===> mybatis answerCount() 기능처리");
 		mybatis.update("QnaDAO.answerCount", commu_no);
-	}
-
-	public void admin_updateQna(CommunityVO vo) {
-		System.out.println("===> mybatis admin_updateQna() 기능처리");
-		mybatis.update("QnaDAO.admin_updateQna", vo);
 	}
 
 }
