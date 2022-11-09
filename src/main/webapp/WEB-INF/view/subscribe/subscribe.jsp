@@ -16,6 +16,7 @@
 
 <body class="d-flex flex-column min-vh-100">
 <input type="hidden" name="mylevel" value="${mylevel}"/>
+<input type="hidden" name="userID" value="${userID}"/>
 	<div id="t1">
 		<img class="down-arrow" src="resources/img/와인구독 test (2).jpg" />
 		<div id="text-p">
@@ -47,7 +48,7 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-<!-- 							<a href="subscribeP.wp" >  -->
+
 <a href="javascript:void(0);" id ="subscribes1" onclick="levelConfirm1();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 입문자로 성장하기</button>
@@ -76,7 +77,6 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-<!-- 							<a href="subscribeM.wp" >  -->
 <a href="javascript:void(0);" id ="subscribes2" onclick="levelConfirm2();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마니아로 성장하기</button>
@@ -106,7 +106,6 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-<!-- 							<a href="subscribeG.wp">  -->
 <a href="javascript:void(0);" id ="subscribes3" onclick="levelConfirm3();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마스터로 성장하기</button>
@@ -225,54 +224,81 @@
 	
 <script type="text/javascript">
 function levelConfirm() {
-	
-// 		var id = ${userID};
-// 		alert('1');
-// 		if(){
-// 		}else if (level == 0){
-// 			alert('구독 가능한 계정입니다.');
-// 			location.href = "subscribe-1.wp";
-// 		}
-// 		else(level > 0){
-// 			alert('이미 구독한 계정입니다.');
-// 		location.href = "subscribe-3.wp";
-// 		}	
+		var id = '${userID}';
+		var level = '${mylevel}';
+		
+		if(level > 0){
+			alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+		location.href = "subscribe-3.wp";
+		}
+		if(id == null){
+			alert('로그인 후 구독이 가능 합니다.');
+			location.href = "singUp.wp";
+		}else if (level == 0){
+		alert('구독 가능한 계정입니다.');
+		}if(confirm("구독하시겠습니가?")){
+			location.href = "subscribe-1.wp";
+		}else{
+			location.href = "subscribe.wp";
+		}		 
 }
 
 function levelConfirm1() {
-	var level = ${mylevel};
-	if (level == 0){
-		alert('구독 가능한 계정입니다.');
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+	location.href = "subscribe-3.wp";
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "singUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
 		location.href = "subscribeP.wp";
+	}else{
+		location.href = "subscribe.wp";
 	}
-	else if (level > 0){
-		alert('이미 구독한 계정입니다.');
-	location.href = "subscribe-3.wp";
-	}	
 }
-
 function levelConfirm2() {
-	var level = ${mylevel};
-	if (level == 0){
-		alert('구독 가능한 계정입니다.');
-		location.href = "subscribeM.wp";
-	}
-	else if (level > 0){
-		alert('이미 구독한 계정입니다.');
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
 	location.href = "subscribe-3.wp";
-	}	
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "singUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
+			location.href = "subscribeM.wp";
+		}else{
+			location.href = "subscribe.wp";
+		}
+	
 }
 function levelConfirm3() {
-	var level = ${mylevel};
-	if (level == 0){
-		alert('구독 가능한 계정입니다.');
-		location.href = "subscribeG.wp";
-	}
-	else if (level > 0){
-		alert('이미 구독한 계정입니다.');
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
 	location.href = "subscribe-3.wp";
-	}	
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "singUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
+		location.href = "subscribeG.wp";
+	}else{
+		location.href = "subscribe.wp";
+	}
 }
+
 </script>
 
 

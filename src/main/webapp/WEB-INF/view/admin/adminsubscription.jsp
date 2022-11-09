@@ -1,6 +1,8 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -25,6 +27,7 @@
 [type=search] {
     outline-offset: 0;
 }
+
 /*목록버튼*/
 .myButton {
 	background:linear-gradient(to bottom, #e0e0e0 5%, #fffaff 100%);
@@ -98,6 +101,8 @@
 	position:relative;
 	top:1px;
 }
+
+=======
 
 </style>
 <body>
@@ -183,12 +188,18 @@
                     </div>
                 </div>
             </nav>
+
             
            <h2 align="center">구독 관리</h2>
+
+        
+           <h2 align="center">고객목록조회</h2>
+
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
         <thead>  
+
          <tr style="background-color: #FCA5A5" align="center">
 	        <th>회원 아이디</th>
 			<th>회원 등급</th>
@@ -196,6 +207,16 @@
 			<th>구독 종료일자</th>
 			<th>결제여부</th>
 			<th>구독 배송 확인</th>
+
+              <tr>
+			<th>아이디</th>
+			<th>회원 등급</th>
+			<th>구독 시작일자</th>
+			<th>결제여부</th>
+			<th>구독 배송 확인</th>
+			<th>구독 종료일자</th>
+			<th>구독 상태</th>
+
 			<th>선호 당도</th>
 			<th>선호 바디감</th>
 			<th>선호 산미</th>
@@ -204,6 +225,7 @@
         </thead>  
         <tbody> 
          
+
 <%--        <c:forEach items="${UserList}" var="users">                 --%>
 <!--        <tr align="center"> -->
 <%--          <td>${users.m_no}</td> --%>
@@ -227,7 +249,62 @@
             <br><br><hr> <br><br>
 	</div>
     </div>
-    
+
+       <c:forEach items="${AllList}" var="all">                
+       <tr>
+								<td>${all.id}</td>
+								<td>${all.level}</td>
+								<td>${all.sub_date}</td>
+								<td>${all.sub_pm_status}</td>
+								<td>${all.sub_deli}</td>
+								<td>${all.e_date}</td>
+								<td>${all.sub_status}</td>
+								<td>${all.s_sweet}</td>
+								<td>${all.s_body}</td>
+								<td>${all.s_acidity}</td>
+								<td>${all.s_tannins}</td>
+		</tr>            
+       </c:forEach>
+       </tbody>
+    </table>
+    </div>
+            <br><br><hr> <br><br>
+            <h2 align="center">수정/삭제(공사중)임시적용</h2>
+             <table class="member" align="center">
+        <tr>
+	    <th>아이디</th>
+			<th>회원 등급</th>
+			<th>구독 시작일자</th>
+			<th>결제여부</th>
+			<th>구독 배송 확인</th>
+			<th>구독 종료일자</th>
+			<th>구독 상태</th>
+			<th>선호 당도</th>
+			<th>선호 바디감</th>
+			<th>선호 산미</th>
+			<th>선호 타닌</th>
+        </tr>
+		<tbody>
+        <c:forEach items="${AllList}" var="all">                
+       <tr>
+     <td>${all.id}</td>
+								<td>${all.level}</td>
+								<td>${all.sub_date}</td>
+								<td>${all.sub_pm_status}</td>
+								<td>${all.sub_deli}</td>
+								<td>${all.e_date}</td>
+								<td>${all.sub_status}</td>
+								<td>${all.s_sweet}</td>
+								<td>${all.s_body}</td>
+								<td>${all.s_acidity}</td>
+								<td>${all.s_tannins}</td>
+       </tr>            
+       </c:forEach>
+       </tbody>
+    </table>
+    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">수정</a>
+    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">삭제</a>
+
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
@@ -251,6 +328,7 @@
         $(document).ready(function(){
             $('#myTable').dataTable();
         });
+
         
     function updateAd(param){
     	var m_name = $('#m_name'+param).val();
@@ -265,6 +343,7 @@
     	location.href = 'deleteAd.wp?id='+id;
     	document.userInfo.submit();
     }
+
     </script>
 </body>
 </html>

@@ -29,4 +29,5 @@ public interface SubscribeService {
 	void liset_deli_price_up(SubscribeVO vo);
 	//취향설정
 	void preference_Setting(SubscribeVO vo);
+	List<SubscribeVO> allsubscriptList(SubscribeVO vo);
 }

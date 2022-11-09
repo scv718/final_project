@@ -66,7 +66,10 @@ public class SubscribeServiceImpl implements SubscribeService {
 	}
 	@Override
 	public SubscribeVO getLevel(SubscribeVO vo) {
-		// TODO Auto-generated method stub
 		return subscribeDAO.getLevel(vo);
+	}
+	@Override
+	public List<SubscribeVO> allsubscriptList(SubscribeVO vo) {
+		return subscribeDAO.allsubscriptList(vo);
 	}
 }

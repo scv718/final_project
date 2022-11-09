@@ -67,10 +67,10 @@ function test() {
 			location.href  = "subscribe.wp";
 		}
 		else if (level > 0){
-			alert('구독 수정은 구독 취소 후 가능합니다.');
-		location.href = "subscribe-3.wp";
+			alert('이미 구독한 계정입니다.\구독 수정은 구독 취소 후 가능합니다.');
+		}if(confirm("구독 취소하겠습니까?")){
+			location.href = "subscribe-3.wp";
 		}
-		
 }
 </script>
 <%@ include file="/footer.jsp"%>
