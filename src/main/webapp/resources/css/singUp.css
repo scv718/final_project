@@ -25,7 +25,11 @@
 	margin-bottom: 50px;
 }
 
-
+#idck{
+	width: 100% !important ;
+    margin-bottom: 15px !important;
+    margin-top: 15px !important;
+}
 /* body { */
 /*   background: #f6f5f7; */
 /*   display: flex; */

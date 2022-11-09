@@ -28,13 +28,16 @@
 <body class="d-flex flex-column min-vh-100">
 <script>
 $( document ).ready(function() {
-    if(${error} === 1){
+	var error = '${error}';
+	console.log(error);
+    if(error != '' && error === '1'){
     	swal ( "로그인 후 진행해주세요" ,  "" ,  "error" );
     	 $.ajax({
  	        url: '/errorsession.wp',
  	        type: 'post'
  	    });
     }
+
 });
 </script>
 
@@ -75,7 +78,7 @@ function joinform_check() {
 	  var agree = document.getElementById("agree");
 	  console.log(uid);
 	  console.log(pwd);
-
+c
 	  var idCheck = /^[a-zA-Z0-9_!?@]{4,11}$/;
 		
 	  
@@ -92,6 +95,10 @@ function joinform_check() {
 		  };
 		  
 
+		  if(idck == '0')
+			  swal ( "아이디 중복 체크 후 진행해주세요." ,  "" ,  "error" );
+			  return false;
+		  }
 	  if (pwd.value == "") {
 	    alert("비밀번호를 입력하세요.");
 	    pwd.focus();
@@ -124,7 +131,7 @@ function joinform_check() {
 	  
 	  var check = document.getElementById("checkservice").value;
 	  
-	  if(!check){
+	  if(!check){	  
 		  checkd();
 	  }
 		  if(check=='true'){
@@ -215,20 +222,14 @@ function joinform_check() {
 		<div class="form-container sign-up-container">
 			<form id="userInfo" name="userInfo" action="insertUser.wp"
 				method="post">
-				<h1>회원 가입</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
-						href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				</div>
+				<h1>Sign Up</h1>
 				<input type="text" id="id" name="id" placeholder="아이디">  <input
 					type="password" id="m_pw" name="m_pw" placeholder="비밀번호" /> <input
 					type="password" id="repassword" placeholder="비밀번호 확인" /> <input
 					type="email" id="m_email" name="m_email" placeholder="이메일" /> <input
-					type='hidden' id='checkservice' name='checkservice' value='' />
-					
-					<button type="button" id="idck" value="아이디 중복 확인" ></button>
-					<button type="button" id="singupbtn" onclick="joinform_check();"
-					disabled>가입하기</button>
+					type='hidden' id='checkservice' name='checkservice' value='' />					
+					<button type="button" id="idck" value="아이디 중복 확인" >아이디 중복 확인</button>
+					<button type="button" id="singupbtn" onclick="joinform_check();">가입하기</button>
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
