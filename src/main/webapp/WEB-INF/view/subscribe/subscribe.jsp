@@ -18,15 +18,15 @@
 <input type="hidden" name="mylevel" value="${mylevel}"/>
 <input type="hidden" name="userID" value="${userID}"/>
 	<div id="t1">
-		<img class="down-arrow" src="resources/img/와인구독 test (2).jpg" />
+		<img class="down-arrow" src="resources/img/구독 메인-4-2.png" />
 		<div id="text-p">
-			<p>
-				<br>평<br>범<br>한<br>하<br>루<br>
-			</p>
-			<span class="parent"><p class="child">와인과 떠나는 여행 궁금하다면</p></span> 
-			<span class="parent"><p class="child">
-<a href="javascript:void(0);" id ="subscribes" onclick="levelConfirm();">구독</a>을 눌러주세요</p></span>
-		</div>
+			<p style="text-align: left;padding: 85px;vertical-align: top;vertical-align: text-top;line-height: 42px;vertical-align: top;">
+<h4 style="font-size: 29px;">와인 한 잔의 여유</h4> <br><h4 style="font-size: 29px;">그 한 잔이 안겨주는 즐거움</h4><br><h4 style="font-size: 29px;">그 또 다른 여행이 아닐까?</h4></p></div>
+			<div id="btnan">
+			<span class="parent"><p class="child">와인과 떠나는 미각 여행 궁금하다면.</p></span> 
+</div>
+		<div id="btnann"><a href="javascript:void(0);" id ="subscribes" onclick="levelConfirm();"><button type="button" id="colre"
+									class="btn-hover color-7">구독하기</button></a></div>
 	</div>
 	<div id="fofo">
 				<div class="row" id="bookmark">
@@ -117,7 +117,7 @@
 		</div>
 
 	<div class="col-md-12" id="jb-wrap">
-		<img src="resources/img/구독-원.png" />
+		<img src="resources/img/베너-23.png" />
 		<div id="jb-text">
 			<div>
 				<h1 class="my-0 fw-normal">패키지 구성</h1>
@@ -233,7 +233,7 @@ function levelConfirm() {
 		}
 		if(id == null){
 			alert('로그인 후 구독이 가능 합니다.');
-			location.href = "singUp.wp";
+			location.href = "signUp.wp";
 		}else if (level == 0){
 		alert('구독 가능한 계정입니다.');
 		}if(confirm("구독하시겠습니가?")){
@@ -253,7 +253,7 @@ function levelConfirm1() {
 	}
 	if(id == null){
 		alert('로그인 후 구독이 가능 합니다.');
-		location.href = "singUp.wp";
+		location.href = "signUp.wp";
 	}else if (level == 0){
 	}if(confirm("구독하시겠습니가?")){
 		location.href = "subscribeP.wp";
@@ -271,7 +271,7 @@ function levelConfirm2() {
 	}
 	if(id == null){
 		alert('로그인 후 구독이 가능 합니다.');
-		location.href = "singUp.wp";
+		location.href = "signUp.wp";
 	}else if (level == 0){
 	}if(confirm("구독하시겠습니가?")){
 			location.href = "subscribeM.wp";
@@ -290,7 +290,7 @@ function levelConfirm3() {
 	}
 	if(id == null){
 		alert('로그인 후 구독이 가능 합니다.');
-		location.href = "singUp.wp";
+		location.href = "signUp.wp";
 	}else if (level == 0){
 	}if(confirm("구독하시겠습니가?")){
 		location.href = "subscribeG.wp";
