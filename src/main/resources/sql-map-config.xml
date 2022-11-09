@@ -21,6 +21,7 @@
 		<typeAlias type="com.project.community.QnaVO" alias="qna"></typeAlias>
 		<typeAlias type="com.project.mainmenu.MenuVO" alias="menu"></typeAlias>
 		<typeAlias type="com.project.community.AnswerVO" alias="answer"></typeAlias>
+		<typeAlias type="com.project.story.StoryVO" alias="story"></typeAlias>
 	</typeAliases>
 
 	<mappers>
@@ -40,5 +41,6 @@
 		<mapper resource="mappings/search-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/faq-mapping.xml"/>
+		<mapper resource="mappings/story-mapping.xml" />
 	</mappers>
 </configuration>

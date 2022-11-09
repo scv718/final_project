@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: IMHO
 Build-Jdk: 11.0.16.1
+=======
+Built-By: PC-24
+Build-Jdk: 11.0.15.1
+>>>>>>> f0e81eee90ed018c0f4fc1e0bfa6c1b6b9fee3eb
 Created-By: Maven Integration for Eclipse
 

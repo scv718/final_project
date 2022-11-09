@@ -5,19 +5,42 @@
 <mapper namespace="WineDAO">
 
 	<select id="getWineList" resultType="wine">
-		select w_no,w_nm_k,w_nm_e,country,type,w_image1 from wine
-	</select>
-	<select id="WineListAd" resultType="wine">
 		select * from wine
 	</select>
-	<select id="checkUser" resultType="int">
-		select count(*) from member
-		where id = #{id}
+	
+	
+	<select id="getWineSearchList" resultType="wine">
+		select * from wine where 1=1 
+		<if test="searchKeyword != null">and w_nm_k LIKE CONCAT('%',#{searchKeyword},'%') or w_nm_e LIKE CONCAT('%',#{searchKeyword},'%')
+		or continental LIKE CONCAT('%',#{searchKeyword},'%') or country LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
 	</select>
 	
-	<insert id="insertUser">
-		INSERT INTO member (ID, M_PW, M_NAME, M_PHONE, M_BIRTH, M_EMAIL)
-		VALUES (#{id}, #{m_pw}, #{m_name}, #{m_phone}, #{m_birth}, #{m_email})
-	</insert>
+	
+	<select id="detaileSearch" resultType="wine">
+		select * from wine where 1=1 
+		<if test="type != 5"> and type = #{type}</if>
+		<if test="continental != null">and  continental = #{continental}</if>
+		<if test="country != null"> and  country = #{country}</if>
+		<if test="w_sweet != 0">  and  w_sweet = #{w_sweet}</if>
+		<if test="w_body != 0">  and  w_body = #{w_body}</if>
+		<if test="w_acidity != 0">  and  w_acidity = #{w_acidity}</if>
+		<if test="w_tannins != 0">  and  w_tannins = #{w_tannins}</if>
+	</select>	
+	<select id="WineListAd" resultType="wine">
+      select * from wine
+   </select>
+
+<select id="getType" resultType="wine">
+		select * from wine where type = #{type}
+</select>
+
+<select id="getContinental" resultType="wine">
+		select * from wine where continental = #{continental}
+</select>
+
+<select id="getCountry" resultType="wine">
+		select * from wine where country = #{country}
+</select>
 
 </mapper>

@@ -1,0 +1,8 @@
+diff a/src/main/java/com/project/controller/StoryController.java b/src/main/java/com/project/controller/StoryController.java	(rejected hunks)
+@@ -1,5 +1,6 @@
+ package com.project.controller;
+ 
++import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Controller;
+ import org.springframework.ui.Model;
+ import org.springframework.web.bind.annotation.RequestMapping;

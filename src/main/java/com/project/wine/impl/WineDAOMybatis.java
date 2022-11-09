@@ -44,14 +44,41 @@ public class WineDAOMybatis {
 		System.out.println("===>mybatis로 getWineList() 기능처리 ");
 		return mybatis.selectList("WineDAO.getWineList", vo);
 	}
-	//관리자 와인관리리스트
-	public List<WineVO> WineListAd(WineVO vo) {
-		
-		System.out.println("유저 마이 바티스 실행");
-		List<WineVO> a = mybatis.selectList("WineDAO.WineListAd");
-		for(WineVO v : a ) {
-			System.out.println("v: "+v);
-		}
-		return mybatis.selectList("WineDAO.WineListAd");
+
+	public List<WineVO> getWineSearchList(WineVO vo) {
+		System.out.println("===>mybatis로 와인 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getWineSearchList", vo);
 	}
+
+	public List<WineVO> detaileSearch(WineVO vo) {
+		System.out.println("===>mybatis로 와인 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.detaileSearch", vo);
+	}
+
+	public List<WineVO> getType(WineVO vo) {
+		System.out.println("===>mybatis로 타입 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getType", vo);
+	}
+
+	public List<WineVO> getContinental(WineVO vo) {
+		System.out.println("===>mybatis로 대륙 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getContinental", vo);
+	}
+
+	public List<WineVO> getCountry(WineVO vo) {
+		System.out.println("===>mybatis로 나라 검색 기능처리 ");
+		return mybatis.selectList("WineDAO.getCountry", vo);
+	}
+	//관리자 와인관리리스트
+		public List<WineVO> WineListAd(WineVO vo) {
+			
+			System.out.println("유저 마이 바티스 실행");
+			List<WineVO> a = mybatis.selectList("WineDAO.WineListAd");
+			for(WineVO v : a ) {
+				System.out.println("v: "+v);
+			}
+			return mybatis.selectList("WineDAO.WineListAd");
+
+		}
+		
 }
