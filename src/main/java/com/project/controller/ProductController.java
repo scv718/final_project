@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.project.common.PagingVO;
 import com.project.review.ReviewService;
 import com.project.review.ReviewVO;
+import com.project.review.impl.ReviewServiceImpl;
 import com.project.user.UserService;
 import com.project.user.UserVO;
 import com.project.wine.ProductService;
@@ -71,8 +72,26 @@ public class ProductController {
 		model.addAttribute("paging", pvo);
 		model.addAttribute("reviewList", reviewService.productReviewList(rvo));
 		
+		//평점평균 가져오기
+		model.addAttribute("getRating", reviewService.getRatingAvg(rvo.getW_no()));
+		
+		
 		return "WEB-INF/view/product/productdetailpage.jsp";
 		
+	}
+	
+	//평점평균반영
+	public void setRating(int w_no) {
+		Double rating_avg = reviewService.getRatingAvg(w_no);
+		
+		if(rating_avg == null)
+			rating_avg = 0.0;
+		
+		ReviewVO rvo = new ReviewVO();
+		rvo.setW_no(w_no);
+		rvo.setRating_avg(rating_avg);
+		
+		reviewService.updateRating(rvo);
 	}
 	
 }

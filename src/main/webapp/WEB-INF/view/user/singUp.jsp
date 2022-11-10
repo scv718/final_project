@@ -37,13 +37,11 @@ $( document ).ready(function() {
  	        type: 'post'
  	    });
     }
-
 });
 </script>
 
 	<script type="text/javascript">
 	function kakaoLogin() {
-
 	    $.ajax({
 	        url: '/getAuthUrl.wp',
 	        type: 'get',
@@ -53,7 +51,6 @@ $( document ).ready(function() {
 	            location.href = res;
 	        }
 	    });
-
 	  }
 	</script>
 
@@ -63,10 +60,8 @@ function checkd() {
     var name = "check";
     var option = "width = 500, height = 500, top = 100, left = 200, location = no"
     window.open(url, name, option);
-
     var check = document.getElementById("sumbitcheck");
 }
-
 function joinform_check() {
 	  //변수에 담아주기
 	    
@@ -78,7 +73,7 @@ function joinform_check() {
 	  var agree = document.getElementById("agree");
 	  console.log(uid);
 	  console.log(pwd);
-c
+
 	  var idCheck = /^[a-zA-Z0-9_!?@]{4,11}$/;
 		
 	  
@@ -94,35 +89,28 @@ c
 		    return false;
 		  };
 		  
-
-		  if(idck == '0')
+      if(idck == '0')
 			  swal ( "아이디 중복 체크 후 진행해주세요." ,  "" ,  "error" );
 			  return false;
-		  }
+	   }  
 	  if (pwd.value == "") {
 	    alert("비밀번호를 입력하세요.");
 	    pwd.focus();
 	    return false;
 		  };
-
 	  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
 	  var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-
 	  if (!pwdCheck.test(pwd.value)) {
 	    alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
 	    pwd.focus();
 	    return false;
 	  };
-
 	  if (repwd.value !== pwd.value) {
 	    alert("비밀번호가 일치하지 않습니다.");
 	    repwd.focus();
 	    return false;
 	  };
-
 	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
-
-
 	  if (email_id.value == "") {
 	    alert("이메일 주소를 입력하세요.");
 	    email_id.focus();
@@ -140,8 +128,6 @@ c
 	
 	 	
 	}
-
-
 </script>
 <script type="text/javascript">
 	function nBtn(){
@@ -158,10 +144,8 @@ c
 // 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
 // 						},
 // 						function(rsp) {
-
 // 							if (rsp.success) {
 // 								// 인증성공
-
 // 								console.log(rsp.imp_uid);
 // 								console.log(rsp.merchant_uid);
 // 								console.log('인증성공');
@@ -189,7 +173,6 @@ c
 // 									takeResponseAndHandle(rsp)
 // 								});
 								
-
 // 							} else {
 // 								// 인증취소 또는 인증실패
 // 								var msg = '인증에 실패하였습니다.';
@@ -200,7 +183,6 @@ c
 // 							}
 // 						})
 	
-
 // 		function takeResponseAndHandle(rsp) {
 // 			if (rsp.success) {
 // 				// 인증성공
@@ -210,7 +192,6 @@ c
 // 				// 인증취소 또는 인증실패
 // 				var msg = '인증에 실패하였습니다.';
 // 				msg += '에러내용 : ' + rsp.error_msg;
-
 // 				alert(msg);
 // 			}
 // 		}
@@ -306,7 +287,6 @@ $(function() {
         });
     });
 });
-
 </script>
 	
 
@@ -315,11 +295,9 @@ $(function() {
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
-
 signUpButton.addEventListener('click', () => {
   container.classList.add("right-panel-active");
 });
-
 signInButton.addEventListener('click', () => {
   container.classList.remove("right-panel-active");
 });

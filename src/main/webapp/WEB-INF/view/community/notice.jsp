@@ -9,14 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/notice.css"/>
-    <title>공지사항</title>
+    <title>관리자-FAQ목록</title>
     <%@ include file="../../../header.jsp"%>
-    <style>
- 
-    </style>
+    
     <script>
     function selTr(val){
-    	location.href = "getNotice.wp?commu_no="+val;
+    	location.href = "admin_getFaq.wp?commu_no="+val;
     }
 
     </script>
@@ -24,9 +22,9 @@
 
 <body class = "d-flex flex-column min-vh-100">
 	<div id="noticeContainer">
-	<h3 id="comtitle">공지사항</h3>
+	<h3 id="comtitle">FAQ목록</h3>
 	<nav id="searchNav">
-		<form action="getNoticeList.wp" method="POST" id="noticeform">
+		<form action="getFaqList.wp" method="POST" id="noticeform">
 			<select name="searchCondition" class="searchsel" >
 				<c:forEach items="${conditionMap}" var="option">
 					<option value="${option.value}" <c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option>
@@ -36,39 +34,48 @@
 			<button type="submit" class="searchbtn">검색</button>
 		</form>
 	</nav>
-<!-- 	<form action="getReviewList.wp" method="POST" id="align"> -->
-<!-- 		<select name="alignlist" onchange="this.form.submit()"> -->
-<%-- 			<c:forEach items="${conditionMap2}" var="option"> --%>
-<%-- 					<option value="${option.value}" <c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</select> -->
-<!-- 	</form> -->
+<button id="conWrite" type="button" class="btn btn-primary" onclick="location.href='admin_insertFaq.wp'">글쓰기</button>
     <div class="li_board noticetab">
         <ul class="li_header hidden-xs noticehead">
-            <li class="no">No</li>
+            <li class="no">카테고리</li>
             <li class="tit">제목</li>
-            <li class="name">글쓴이</li>
-            <li class="date">작성시간</li>
-            <li class="read">조회수</li>
+            <li class="name">작성자</li>
+            <li class="date">작성일</li>
         </ul>
 
-	<c:forEach var="notice" items="${noticeList}">
-        <ul class="li_body notice_body" onclick="selTr(${notice.commu_no})" style="cursor:pointer;" >
-            <li class="no">${notice.commu_cat_no}</li>
-            <li class="tit">${notice.commu_title}</li>
-            <li class="name">${notice.id}</li>
-            <li class="date">${notice.commu_date}</li>
-            <li class="read">
-             <span class="hidden-lg hidden-md hidden-sm ">조회수</span>${notice.commu_count}
-             </li>
+	<c:forEach var="faq" items="${FaqList}">
+        <ul class="li_body notice_body" onclick="selTr(${faq.commu_no})" style="cursor:pointer;" >
+            <li class="no">
+            <c:choose>
+						<c:when test="${faq.faq_cat eq '0'}">
+							<span>[주문/결제/배송]</span>
+						</c:when>
+						<c:when test="${faq.faq_cat eq '1'}">
+							<span>[취소/교환/환불]</span>
+						</c:when>
+						<c:when test="${faq.faq_cat eq '2'}">
+							<span>[구독서비스]</span>
+						</c:when>
+						<c:when test="${faq.faq_cat eq '3'}">
+							<span>[회원]</span>
+						</c:when>
+						<c:otherwise>
+							<span>[기타]</span>
+						</c:otherwise>
+					</c:choose>
+            </li>
+            <li class="tit">${faq.commu_title}</li>
+            <li class="name">${faq.id}</li>
+            <li class="date">${faq.commu_date}</li>
             </ul>
 	</c:forEach>
     </div>
     
+    <!-- 페이징처리 -->
     <div id="btnBox">
 	<!-- 반복처리할 태그 시작 -->
 	<c:if test="${paging.nowPageBtn > 1 }">
-		<a href="getNoticeList.wp?nowPageBtn=${paging.nowPageBtn - 1}">&lt;</a>
+		<a href="admin_getFaqList.wp?nowPageBtn=${paging.nowPageBtn - 1}">&lt;</a>
 	</c:if>
 	<c:forEach begin="${paging.startBtn}" end="${paging.endBtn}" step="1" var="i">
 		<c:choose>
@@ -76,12 +83,12 @@
 				<a class="aSel">${i}</a>
 			</c:when>
 			<c:otherwise>
-				<a href="getNoticeList.wp?nowPageBtn=${i}">${i}</a>
+				<a href="admin_getFaqList.wp?nowPageBtn=${i}">${i}</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	<c:if test="${paging.nowPageBtn < paging.totalBtnCnt}">
-		<a href="getNoticeList.wp?nowPageBtn=${paging.nowPageBtn + 1}">&gt;</a>
+		<a href="admin_getFaqList.wp?nowPageBtn=${paging.nowPageBtn + 1}">&gt;</a>
 	</c:if>
 	<!-- 끝 -->
 	</div><br><br>

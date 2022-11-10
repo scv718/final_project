@@ -93,4 +93,21 @@ public class ReviewServiceImpl implements ReviewService{
 		return ReviewDAO.ReviewListAd(vo);
 	}
 
+	//상품별 평점평균
+	@Override
+	public Double getRatingAvg(int w_no) {
+		return reviewDAO.getRatingAvg(w_no);
+	}
+
+	//평점평균 반영
+	@Override
+	public void updateRating(ReviewVO vo) {
+		reviewDAO.updateRating(vo);
+	}
+
+	@Override
+	public List<ReviewVO> mainreviewFilter(ReviewVO vo){
+		
+		return reviewDAO.mainreviewFilter(vo);
+	}
 }
