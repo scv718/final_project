@@ -55,4 +55,24 @@ public class StoryDAOMybatis {
 		return (StoryVO) mybatis.selectOne("StoryDAO.getStory1", vo);
 	
 	}
+
+	public StoryVO getStory2(StoryVO vo) {
+		System.out.println("===>mybatis로 getStory() 기능처리");
+		return (StoryVO) mybatis.selectOne("StoryDAO.getStory2", vo);
+	}
+
+	public List<StoryVO> getStoryList2(StoryVO vo) {
+		System.out.println("===>mybatis로 getStoryList() 기능처리 ");
+		return mybatis.selectList("StoryDAO.getStoryList2", vo);
+	}
+	
+	public StoryVO getStory3(StoryVO vo) {
+		System.out.println("===>mybatis로 getStory() 기능처리");
+		return (StoryVO) mybatis.selectOne("StoryDAO.getStory3", vo);
+	}
+
+	public List<StoryVO> getStoryList3(StoryVO vo) {
+		System.out.println("===>mybatis로 getStoryList() 기능처리 ");
+		return mybatis.selectList("StoryDAO.getStoryList3", vo);
+	}
 }

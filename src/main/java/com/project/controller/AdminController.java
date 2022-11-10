@@ -45,6 +45,7 @@ public class AdminController {
 	@RequestMapping("adminSalesdelivery.wp")
 	public String order(OrderVO vo, Model model) {
 		model.addAttribute("OrderListAd", orderService.OrderListAd(vo));
+		System.out.println("이동");
 		return "WEB-INF/view/admin/adminsalesdelivery.jsp";
 	}
 	

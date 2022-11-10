@@ -63,7 +63,7 @@
 			문의하기</button>
 		<button type="button" onclick="location.href='admin_getQnaList.wp'">관리자 1:1 목록확인</button>
 
-<!-- 필터테스트중 -->
+		<!-- 필터 -->
 		<form action="getQnaList.wp" method="POST" id="align">
 			<ul>
 				<li>
@@ -125,17 +125,15 @@
 						<c:when test="${qna.answer_status eq '답변대기'}">
 							<span>
 							<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a>
-							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a>
+							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">삭제</a>
 							</span>
 						</c:when>
 						<c:when test="${qna.answer_status eq '답변완료'}">
 							<span>
-							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a>
+							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">삭제</a>
 							</span>
 						</c:when>
 					</c:choose>
-<%-- 					<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a> --%>
-<%-- 					<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">a태그삭제</a> --%>
 					<p>${qna.answer_con}</p>
 				</div>
 				</c:forEach>

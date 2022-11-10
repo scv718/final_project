@@ -86,3 +86,7 @@
 	.productlink {
 		font-size: smaller;
 	}
+
+	svg {
+		margin-bottom: 5px !important;
+	}

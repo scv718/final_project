@@ -120,12 +120,14 @@ public class BoardController {
 				}
 				strResult = "{ \"result\":\"OK\" }";
 				reviewService.insertReview(vo);
+				setRating(vo.getW_no());
 			}
 			// 파일 아무것도 첨부 안했을때 탄다.
 			else {
 				strResult = "{ \"result\":\"OK\" }";
 				System.out.println(strResult);
 				reviewService.insertReview(vo);
+				setRating(vo.getW_no());
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -138,6 +140,7 @@ public class BoardController {
 	public String updateReviewPage(ReviewVO vo, Model model) {
 		ReviewVO a =  reviewService.detailReview(vo);
 		model.addAttribute("detailReview",a);
+		model.addAttribute("rating", a.getRe_score());
 		return "WEB-INF/board/updateReview.jsp";
 	}
 	
@@ -150,6 +153,9 @@ public class BoardController {
 //		String re_no = request.getParameter("re_no");
 		int re_no = vo.getRe_no();
 		System.out.println("리뷰번호"+re_no);
+		System.out.println("기존1:"+vo.getRe_photo1());
+		System.out.println("기존2:"+vo.getRe_photo2());
+		System.out.println("기존3:"+vo.getRe_photo3());
 		try {
 			// 파일이 있을때 탄다.
 			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
@@ -184,10 +190,12 @@ public class BoardController {
 					}
 				}
 				reviewService.updateReview(vo);
+				setRating(vo.getW_no());
 			}
 			// 파일 아무것도 첨부 안했을때 탄다.
 			else {
 				reviewService.updateReview(vo);
+				setRating(vo.getW_no());
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -217,6 +225,7 @@ public class BoardController {
 				System.out.println("파일3삭제: " + realPath + vo.getRe_photo3());
 			}
 			reviewService.deleteReview(vo);
+			setRating(vo.getW_no());
 			return "getReviewList.wp";
 		} else {
 			return "detailReview.wp?error=1";
@@ -317,5 +326,19 @@ public class BoardController {
 			System.out.println(id + "님 " + re_no + "번리뷰 추천해제");
 		}
 		return likeCheck;
+	}
+	
+	//평점평균반영
+	public void setRating(int w_no) {
+		Double rating_avg = reviewService.getRatingAvg(w_no);
+		
+		if(rating_avg == null)
+			rating_avg = 0.0;
+		
+		ReviewVO rvo = new ReviewVO();
+		rvo.setW_no(w_no);
+		rvo.setRating_avg(rating_avg);
+		
+		reviewService.updateRating(rvo);
 	}
 }
