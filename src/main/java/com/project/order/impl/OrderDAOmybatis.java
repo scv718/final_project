@@ -47,5 +47,8 @@ public class OrderDAOmybatis {
 	public void deleteOrderList(OrderVO vo) {
 		mybatis.update("OrderDAO.deleteOrderList", vo);
 	}
-
+	// 관리자 리스트
+	public List<OrderVO> OrderListAd(OrderVO vo) {
+		return mybatis.selectList("OrderDAO.OrderListAd", vo);
+	}
 }

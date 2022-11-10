@@ -106,5 +106,7 @@
 	SET ORD_DELETE = 1
 	WHERE id = #{id} and ORD_CODE = #{ord_code} 
 	</delete>
-
+<select id = "OrderListAd" resultType="order">
+	SELECT * FROM ORDER_LIST
+	</select>
 </mapper>
