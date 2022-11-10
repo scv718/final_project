@@ -339,7 +339,7 @@ function checkOnlyOne(element) {
 					</div>
 					<!-- 버튼 영역 -->
 					<div class="total_info_btn_div">
-						<button id="check_module" type="button">결제하기</button>
+						<button id="check_module" class = "btn-hover color-9"type="button">결제하기</button>
 					</div>
 				</div>				
 				
