@@ -18,9 +18,12 @@
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		$("#forgotpw").click(function(){
-		IMP.certification(
+			console.log('${signup}');
+			if('${signup}' != 1){
+				IMP.certification(
 						{
 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+							m_redirect_url: "http://localhost:8090/forgotPwget.wp"
 						},
 						function(rsp) {
 
@@ -61,6 +64,19 @@
 								
 							}
 						})
+			}else{
+				$.ajax({
+		 	        url: '/passsession.wp',
+		 	        type: 'post'
+		 	    }),
+		 	    console.log("세션초기화");
+		 	  	 $('#contents').addClass('active show');
+				  $('#explain').siblings('.active').removeClass('active show');
+				  $('#explain').addClass('fade');
+	 	    	  $('.pw').show();
+	 	    	 $('.pw').load(location.href+' .pw>*', "");
+			}
+		
 	
 
 		function takeResponseAndHandle(rsp) {
