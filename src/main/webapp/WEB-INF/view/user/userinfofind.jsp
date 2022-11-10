@@ -43,7 +43,7 @@
 					        				$('.pw').show();
 					        			}else{
 					        				alert("회원가입 후 진행해주세요");
-					        				location.href = 'singUp.wp';
+					        				location.href = 'signUp.wp';
 					        			}
 					        		}
 								}).done(function() {

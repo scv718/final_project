@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class AnswerVO {
 
-	private int commu_no;
-	private int answer_no;
-	private int answer_cat;
-	private String id;
-	private String answer_con;
-	private Date answer_date;
+	private int commu_no; // 게시판 번호
+	private int answer_no; // 답변 번호
+	private int answer_cat; // 항목번호
+	private String id; // 작성자 id
+	private String answer_con; // 답변 내용
+	private Date answer_date; // 작성일자
 	
 	public int getCommu_no() {
 		return commu_no;
@@ -52,9 +52,4 @@ public class AnswerVO {
 		return "AnswerVO [commu_no=" + commu_no + ", answer_no=" + answer_no + ", answer_cat=" + answer_cat + ", id="
 				+ id + ", answer_con=" + answer_con + ", answer_date=" + answer_date + "]";
 	}
-	
-
-	
-	
-	
 }

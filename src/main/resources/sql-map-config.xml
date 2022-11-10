@@ -17,8 +17,11 @@
 		<typeAlias type="com.project.subscribe.SubscribeVO" alias="subscribe"></typeAlias>
 		<typeAlias type="com.project.cart.CartVO" alias="cart"></typeAlias>
 		<typeAlias type="com.project.community.CommunityVO" alias="community"></typeAlias>
+		<typeAlias type="com.project.community.NoticeVO" alias="notice"></typeAlias>
+		<typeAlias type="com.project.community.QnaVO" alias="qna"></typeAlias>
 		<typeAlias type="com.project.mainmenu.MenuVO" alias="menu"></typeAlias>
 		<typeAlias type="com.project.community.AnswerVO" alias="answer"></typeAlias>
+		<typeAlias type="com.project.story.StoryVO" alias="story"></typeAlias>
 	</typeAliases>
 
 	<mappers>
@@ -32,10 +35,12 @@
 		<mapper resource="mappings/board-mapping.xml" />
 		<mapper resource="mappings/like-mapping.xml" />
 		<mapper resource="mappings/notice-mapping.xml" />
+		<mapper resource="mappings/qna-mapping.xml"/>
+		<mapper resource="mappings/review-mapping.xml" />
 		<mapper resource="mappings/menu-mapping.xml" />
 		<mapper resource="mappings/search-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/faq-mapping.xml"/>
-		<mapper resource="mappings/qna-mapping.xml"/>
+		<mapper resource="mappings/story-mapping.xml" />
 	</mappers>
 </configuration>

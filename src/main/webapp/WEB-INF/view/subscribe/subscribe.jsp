@@ -16,16 +16,17 @@
 
 <body class="d-flex flex-column min-vh-100">
 <input type="hidden" name="mylevel" value="${mylevel}"/>
+<input type="hidden" name="userID" value="${userID}"/>
 	<div id="t1">
-		<img class="down-arrow" src="resources/img/와인구독 test (2).jpg" />
+		<img class="down-arrow" src="resources/img/구독 메인-4-2.png" />
 		<div id="text-p">
-			<p>
-				<br>평<br>범<br>한<br>하<br>루<br>
-			</p>
-			<span class="parent"><p class="child">와인과 떠나는 여행 궁금하다면</p></span> 
-			<span class="parent"><p class="child">
-<a href="javascript:void(0);" id ="subscribes" onclick="levelConfirm();">구독</a>을 눌러주세요</p></span>
-		</div>
+			<p style="text-align: left;padding: 85px;vertical-align: top;vertical-align: text-top;line-height: 42px;vertical-align: top;">
+<h4 style="font-size: 29px;">와인 한 잔의 여유</h4> <br><h4 style="font-size: 29px;">그 한 잔이 안겨주는 즐거움</h4><br><h4 style="font-size: 29px;">그 또 다른 여행이 아닐까?</h4></p></div>
+			<div id="btnan">
+			<span class="parent"><p class="child">와인과 떠나는 미각 여행 궁금하다면.</p></span> 
+</div>
+		<div id="btnann"><a href="javascript:void(0);" id ="subscribes" onclick="levelConfirm();"><button type="button" id="colre"
+									class="btn-hover color-7">구독하기</button></a></div>
 	</div>
 	<div id="fofo">
 				<div class="row" id="bookmark">
@@ -47,7 +48,7 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-<!-- 							<a href="subscribeP.wp" >  -->
+
 <a href="javascript:void(0);" id ="subscribes1" onclick="levelConfirm1();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 입문자로 성장하기</button>
@@ -76,7 +77,6 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-<!-- 							<a href="subscribeM.wp" >  -->
 <a href="javascript:void(0);" id ="subscribes2" onclick="levelConfirm2();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마니아로 성장하기</button>
@@ -106,7 +106,6 @@
 							도착일 : <span>매월 20일</span>
 						</h2>
 						<p>
-<!-- 							<a href="subscribeG.wp">  -->
 <a href="javascript:void(0);" id ="subscribes3" onclick="levelConfirm3();">
 								<button type="button" id="colre"
 									class="w-100 btn btn-lg btn-outline-primary">와인 마스터로 성장하기</button>
@@ -118,7 +117,7 @@
 		</div>
 
 	<div class="col-md-12" id="jb-wrap">
-		<img src="resources/img/구독-원.png" />
+		<img src="resources/img/베너-23.png" />
 		<div id="jb-text">
 			<div>
 				<h1 class="my-0 fw-normal">패키지 구성</h1>
@@ -225,54 +224,81 @@
 	
 <script type="text/javascript">
 function levelConfirm() {
-	
-// 		var id = ${userID};
-// 		alert('1');
-// 		if(){
-// 		}else if (level == 0){
-// 			alert('구독 가능한 계정입니다.');
-// 			location.href = "subscribe-1.wp";
-// 		}
-// 		else(level > 0){
-// 			alert('이미 구독한 계정입니다.');
-// 		location.href = "subscribe-3.wp";
-// 		}	
+		var id = '${userID}';
+		var level = '${mylevel}';
+		
+		if(level > 0){
+			alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+		location.href = "subscribe-3.wp";
+		}
+		if(id == null){
+			alert('로그인 후 구독이 가능 합니다.');
+			location.href = "signUp.wp";
+		}else if (level == 0){
+		alert('구독 가능한 계정입니다.');
+		}if(confirm("구독하시겠습니가?")){
+			location.href = "subscribe-1.wp";
+		}else{
+			location.href = "subscribe.wp";
+		}		 
 }
 
 function levelConfirm1() {
-	var level = ${mylevel};
-	if (level == 0){
-		alert('구독 가능한 계정입니다.');
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
+	location.href = "subscribe-3.wp";
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "signUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
 		location.href = "subscribeP.wp";
+	}else{
+		location.href = "subscribe.wp";
 	}
-	else if (level > 0){
-		alert('이미 구독한 계정입니다.');
-	location.href = "subscribe-3.wp";
-	}	
 }
-
 function levelConfirm2() {
-	var level = ${mylevel};
-	if (level == 0){
-		alert('구독 가능한 계정입니다.');
-		location.href = "subscribeM.wp";
-	}
-	else if (level > 0){
-		alert('이미 구독한 계정입니다.');
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
 	location.href = "subscribe-3.wp";
-	}	
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "signUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
+			location.href = "subscribeM.wp";
+		}else{
+			location.href = "subscribe.wp";
+		}
+	
 }
 function levelConfirm3() {
-	var level = ${mylevel};
-	if (level == 0){
-		alert('구독 가능한 계정입니다.');
-		location.href = "subscribeG.wp";
-	}
-	else if (level > 0){
-		alert('이미 구독한 계정입니다.');
+	var id = '${userID}';
+	var level = '${mylevel}';
+	
+	if(level > 0){
+		alert('이미 구독한 계정입니다.\ 구독은 취소 후 재구독 가능합니다.');
 	location.href = "subscribe-3.wp";
-	}	
+	}
+	if(id == null){
+		alert('로그인 후 구독이 가능 합니다.');
+		location.href = "signUp.wp";
+	}else if (level == 0){
+	}if(confirm("구독하시겠습니가?")){
+		location.href = "subscribeG.wp";
+	}else{
+		location.href = "subscribe.wp";
+	}
 }
+
 </script>
 
 

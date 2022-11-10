@@ -3,43 +3,71 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="NoticeDAO">
+   <!-- 사용자 -->
+   <select id="getNotice" resultType="community">
+      SELECT * FROM COMMUNITY WHERE
+      commu_no = #{commu_no}
+   </select>
 
-	<insert id="insertNotice" >
-		INSERT INTO COMMUNITY (COMMU_CAT,COMMU_CAT_NO,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,COMMU_COUNT) 
-		VALUES(#{commu_cat},#{commu_cat_no},#{commu_title},#{id},#{commu_content},NOW(),#{commu_count})
-	</insert>
-	
-	<update id="updateNotice">
-	UPDATE community SET commu_title=#{commu_title}, id=#{id}, commu_content=#{commu_content}, commu_date=NOW() where commu_no=#{commu_no}
-	</update>
-	
-	<!-- 조회수 -->
-	<update id="viewCount">
-<!-- 	UPDATE community SET commu_count=(#{commu_count}+1) where commu_no=#{commu_no} -->
-	UPDATE community SET commu_count=commu_count+1 where commu_no=#{commu_no}
-	</update>
+   <select id="getNoticeList" resultType="community">
+      SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
+      <if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',
+         #{searchKeyword}, '%'),' ','')</if>
+      <if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
+         #{searchKeyword}, '%'),' ','')</if>
+      ORDER BY commu_cat_no DESC
+      LIMIT 10 OFFSET #{offset}
+   </select>
+
+   
+   <!-- 관리자 -->
+   <insert id="admin_insertNotice">
+      INSERT INTO COMMUNITY
+      (COMMU_CAT,COMMU_CAT_NO,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,COMMU_COUNT)
+      VALUES(#{commu_cat},#{commu_cat_no},#{commu_title},#{id},#{commu_content},NOW(),#{commu_count})
+   </insert>
+
+   <update id="admin_updateNotice">
+      UPDATE community SET commu_title=#{commu_title}, id=#{id},
+      commu_content=#{commu_content}, commu_date=NOW() where
+      commu_no=#{commu_no}
+   </update>
+
+   <delete id="admin_deleteNotice">
+      DELETE FROM COMMUNITY WHERE commu_no = #{commu_no}
+   </delete>
+
+   <!-- 공통 - 조회수 -->
+   <update id="viewCount">
+      <!-- UPDATE community SET commu_count=(#{commu_count}+1) where commu_no=#{commu_no} -->
+      UPDATE community SET commu_count=commu_count+1 where
+      commu_no=#{commu_no}
+   </update>
+   
+   <!-- 공통 - 페이징 -->
+   <select id="totalNoticeListCnt" resultType="_int">
+      SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 and COMMU_CAT = 0
+      <if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',
+         #{searchKeyword}, '%'),' ','')</if>
+      <if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
+         #{searchKeyword}, '%'),' ','')</if>
+   </select>
 
 	<delete id="deleteNotice">
 		DELETE FROM COMMUNITY WHERE commu_no = #{commu_no}
 	</delete>
 	
-	<select id="getNotice" resultType="community">
-		SELECT * FROM COMMUNITY WHERE commu_no = #{commu_no}
-	</select>
-	
-	<select id="getNoticeList" resultType="community">
+
+
+
+	<select id="getmainNoticeList" resultType="community">
 		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
-		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
-		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
 		ORDER BY commu_cat_no DESC
-		LIMIT 10 OFFSET #{offset}
+		LIMIT 5;
 	</select>
 
-	
-	<select id="totalNoticeListCnt" resultType="_int">
-		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 and COMMU_CAT = 0
-		<if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
-		<if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
-		
+
+<select id="NoticeListAd" resultType="notice">
+		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
 	</select>
 </mapper>

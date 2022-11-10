@@ -1,5 +1,6 @@
 package org.spring.www.interceptor;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +24,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor{
 		System.out.println("path: " +path);
 		System.out.println("로그인세션없음");
 		if(obj == null) {
-			response.sendRedirect("login.jsp");
+			session.setAttribute("error", 1);
+			response.sendRedirect("signUp.wp");
 			return false;
 		}else if (path.contains("/updateBoard.do") || path.contains("/deleteBoard.do")) {
 			

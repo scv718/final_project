@@ -39,6 +39,11 @@ public interface ReviewService {
 
 	//상품별 리뷰목록 갯수
 	int productReviewListCnt(ReviewVO rvo);
+	//관리자
+	List<ReviewVO> ReviewListAd(ReviewVO vo);
+	
+	
+	List<ReviewVO> mainreviewFilter(ReviewVO vo);
 	
 	//상품별 평점평균
 	Double getRatingAvg(int w_no);

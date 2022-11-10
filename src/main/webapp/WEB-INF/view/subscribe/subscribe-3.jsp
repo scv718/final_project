@@ -49,7 +49,12 @@
                         </td>
   
                         <td class="td_width_3 table_text_align_center">
+                         <form action="deletesubscribe.wp" method="post">
+                        	<input type="hidden" name="ord_code" value="${subscribe.ord_code}">
+                           <button  type="submit" class="delete_btn">구독 내역삭제</button>
+                           </form>
                       
+                
                       	<c:if test="${subscribe.cs_stat ne '취소'}">
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${subscribe.ord_code}">
@@ -57,26 +62,34 @@
                            <button  type="button" class="delete_btn">구독 취소</button>
                            </form>
                       	</c:if>
-                       
-                           
-                           <form action="deletesubscribe.wp" method="post">
-                        	<input type="hidden" name="ord_code" value="${subscribe.ord_code}">
-                           <button  type="submit" class="delete_btn">구독 내역삭제</button>
-                           </form>
                         </td>
                      </tr>
-                     
-                     
                </tbody>
             </table>
          </div>
-         
-     
      </div>
    </div>   <!-- class="wrap" -->
+   <a href="javascript:void(0);" id ="subscribes2" onclick="cancellation();">
+								<button type="button" id="colre"
+									class="w-100 btn btn-lg btn-outline-primary">재구독</button>
+							</a>
 </div>   <!-- class="wrapper" -->
-<script type="text/javascript">
 
+<script type="text/javascript">
+function cancellation() {
+	var level = ${mylevel};
+	 if (level > 0){
+		alert('구독 내역 삭제 후 구독 가능 합니다.');
+	}else if (level == 0){
+		alert('재구독 가능 합니다.');
+		confirm("구독하겠습니까?")
+		if(confirm("구독하겠습니까?")){
+			location.href = "subscribe-1.wp";
+		}else{
+			location.href = "subscribe-3.wp";
+		}
+	}
+}
 $("#cancel_module").click(function () {
 	$.ajax({
 		url : "paycan1.wp",

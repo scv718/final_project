@@ -6,6 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>1:1 문의 수정하기</title>
+ <%@ include file="../../../header.jsp"%>
 <link rel="canonical"
 	href="https://getbootstrap.kr/docs/4.5.2/examples/carousel/">
 
@@ -18,19 +19,18 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="resources/js/qna_update_fileupload.js"></script>
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/detailReview.css" />
 
 </head>
-<body>
-	<div class="jumbotron">
-		<h1>1:1문의 수정</h1>
-	</div>
+<body class="d-flex flex-column min-vh-100">
+		<div id="reviewContainer">
+		<h3 id="comtitle">1:1문의 수정</h3>
 
 	<div class="container-fluid">
-<!-- 		<form action="updateQna.wp" method="post" enctype="multipart/form-data"> -->
 			<form name="dataForm" id="dataForm"  >
 			<input type="hidden" class="form-control" name="commu_cat" value="2">
 			<input type="hidden" class="form-control" name="commu_no" value="${community.commu_no}">
-<%-- 			<input type="hidden" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>"> --%>
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">작성자</span>
@@ -137,7 +137,8 @@
 			</div>
 		</form>
 	</div>
+	</div>
 
-
+ <%@ include file="../../../footer.jsp" %>
 </body>
 </html>
