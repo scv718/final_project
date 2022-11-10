@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/notice.css"/>
-    <title>공지사항</title>
+    <title>1:1 문의</title>
     <%@ include file="../../../header.jsp"%>
     
     <script>
@@ -25,7 +25,7 @@
 	<h3 id="comtitle">관리자 1:1 문의 답변</h3>
 	<nav id="searchNav">
 		<form action="admin_getQnaList.wp" method="POST" id="noticeform">
-		<!-- 아이디 검색 기능 (보류) -->
+		<!-- 아이디 검색 기능 -->
 			<select name="searchCondition" class="searchsel" >
 				<c:forEach items="${conditionMap}" var="option">
 					<option value="${option.value}" <c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option>

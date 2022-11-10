@@ -53,4 +53,24 @@ public class StoryServiceImpl implements StoryService {
 		return storyDAO.getStory1(vo);
 	}
 
+	@Override
+	public StoryVO getStory2(StoryVO vo) {
+		return storyDAO.getStory2(vo);
+	}
+
+	@Override
+	public List<StoryVO> getStoryList2(StoryVO vo) {
+		return storyDAO.getStoryList2(vo);		
+	}
+
+	@Override
+	public StoryVO getStory3(StoryVO vo) {
+		return storyDAO.getStory3(vo);
+	}
+
+	@Override
+	public List<StoryVO> getStoryList3(StoryVO vo) {
+		return storyDAO.getStoryList3(vo);		
+	}
+
 }

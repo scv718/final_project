@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+if(session.getAttribute("userID") == null){
+	response.sendRedirect("singUp.wp");	
+}else{
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>QNA 글쓰기</title>
+ <%@ include file="../../../header.jsp"%>
 <link rel="canonical"
 	href="https://getbootstrap.kr/docs/4.5.2/examples/carousel/">
 
@@ -17,21 +23,16 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="resources/js/qna_fileupload.js"></script>
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div class="jumbotron">
 		<h1>1:1 문의하기</h1>
 	</div>
 
 	<div class="container-fluid">
-<!-- 		<form action="insertQna.wp" method="post" enctype="multipart/form-data"> -->
 			<form name="dataForm" id="dataForm"  >
 			<input type="hidden" class="form-control" name="commu_cat" value="2">
 			<input type="hidden" class="form-control" name="answer_status" value="답변대기">
-<%-- 			<input type="hidden" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>"> --%>
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">작성자</span>
@@ -91,6 +92,7 @@
 		</form>
 	</div>
 
-
+ <%@ include file="../../../footer.jsp" %>
 </body>
+<%} %>
 </html>

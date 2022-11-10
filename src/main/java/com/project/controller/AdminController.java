@@ -10,6 +10,8 @@ import com.project.community.NoticeService;
 import com.project.community.NoticeVO;
 import com.project.community.QnaService;
 import com.project.community.QnaVO;
+import com.project.order.OrderService;
+import com.project.order.OrderVO;
 import com.project.review.ReviewService;
 import com.project.review.ReviewVO;
 import com.project.user.UserService;
@@ -27,6 +29,8 @@ public class AdminController {
 	@Autowired
 	private WineService wineService;
 	@Autowired
+	private OrderService orderService;
+	@Autowired
 	private NoticeService noticeService;
 	@Autowired
 	private QnaService qnaService;
@@ -39,7 +43,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping("adminSalesdelivery.wp")
-	public String order() {
+	public String order(OrderVO vo, Model model) {
+		model.addAttribute("OrderListAd", orderService.OrderListAd(vo));
+		System.out.println("이동");
 		return "WEB-INF/view/admin/adminsalesdelivery.jsp";
 	}
 	

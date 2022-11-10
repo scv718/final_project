@@ -14,5 +14,6 @@ public interface OrderService {
 	//구독 시 생성
 	void subscribeOrder(OrderVO vo);
 	OrderVO subscribeOrderList(OrderVO vo);
-	
+	//관리자 실행
+	List<OrderVO> OrderListAd(OrderVO vo);
 }
