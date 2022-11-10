@@ -15,6 +15,9 @@ public interface StoryService {
 	//구독 정보리스트
 	List<StoryVO> getStoryList(StoryVO vo);
 	List<StoryVO> getStoryList1(StoryVO vo);
-	
+	StoryVO getStory2(StoryVO vo);
+	List<StoryVO> getStoryList2(StoryVO vo);
+	StoryVO getStory3(StoryVO vo);
+	List<StoryVO> getStoryList3(StoryVO vo);
 	
 }
