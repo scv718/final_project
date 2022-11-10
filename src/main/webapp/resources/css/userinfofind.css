@@ -22,3 +22,17 @@
 #userInfo{
 	    margin-top: 35px;
 }
+
+
+@media screen and (max-width: 768px) {
+	#menu{
+	    width: 100% !important;
+	}
+	#idbtn{
+	    margin-top: 20px;
+	   }
+	.tab-content{
+		width: 68% !important;
+	}
+	
+}

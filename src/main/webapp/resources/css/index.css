@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+.page-btns{
+	display: none;
+}
 #reviewphoto {
 	    width: 70px;
 	display: inline-block;

@@ -54,7 +54,7 @@ video {
         <div></div>
         <div></div>
     </div>
-    <div class="side-btns">
+    <div class="side-btns" style = "display: none;">
         <div>
             <span><i class="fas fa-angle-left"></i></span>
         </div>
@@ -118,7 +118,7 @@ $('.slider-1 > .side-btns > div').click(function(){
 
 
 	<div class="container" id = "btncontainer">
-		<div class="text-center">
+		<div class="text-center" id = "typebtn">
 		<button class = "WaterBtn" value = "2"><img class = "Btnimg" src = "resources/img/Sparkling.png"><br/><p>Sparkling</p></button>
 		<button class = "WaterBtn" value = "1"><img class = "Btnimg" src = "resources/img/White.png"><p>White</p></button>
 		<button class = "WaterBtn" value = "3"><img class = "Btnimg" src = "resources/img/Rose.png"><p>Rose</p></button>
@@ -129,7 +129,6 @@ $('.slider-1 > .side-btns > div').click(function(){
 
 
 <div class="typeSlider">
-
 <div class = "type">
 <div class="slider-2">
     <div class="slides">
@@ -309,7 +308,7 @@ $('.WaterBtn').on('click', function () {
 
 <div class = "container">
 <div class = "row" style = "margin-bottom: 150px;">
-<div class = "col">
+<div class = "col" id = "noticecol">
 <p id = "boardtitle">공지사항</p>
 <div class ="col" id = "notice">
 <c:forEach items="${notice}" var = "notice"> 

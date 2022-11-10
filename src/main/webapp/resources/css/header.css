@@ -1,9 +1,41 @@
 @charset "UTF-8";
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
+	#textbox{
+    margin-left: 0px !important; 
+	}
+	#typebtn{
+	 display: flex;
+    flex-direction: row;
+    width: 100%;
+    }
+	.WaterBtn{
+	    margin-right: 23px  !important;
+	    }
+	#noticecol{
+	    margin-bottom: 60px;
+	    }
+	#loginMenu{
+	margin-right: 0 !important;
+	}
+	#loginform{
+	margin: 0 0 0 auto !important;
+	}
+	.slider-1>.slides>div {
+    position: inherit !important;
+	}
+	.imgSlide{
+	height: 27%;
+	}
+	.slider-1{
+	height: 111% !important;
+	}
+	video{
+	  height: 100%;
+	    }
 	.nav-item {
 /* 		width: 50px; */
-		margin-right: 0 !important;
+/* 		margin-right: 0 !important; */
 	margin-left: 20px;
 	}
 	#btntwo{
@@ -16,39 +48,15 @@
 	#upmenu {
 		flex-direction: row;
 		margin: 0 !important;
+		width: 100%;
 	}
 	#header {
 		padding: 0;
+		    position: inherit;
 	}
 	#memberbtn {
 		justify-content: flex-end;
 		margin: 0 auto;
-	}
-	#titlename h2 {
-		color: rgb(34, 52, 102);
-		display: block;
-		font-family: '양진체';
-	}
-	#searchcontainer {
-		position: relative;
-		top: 35%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	#titlename h2 {
-		display: block;
-	}
-	.div {
-		display: none !important;
-	}
-	.mobilemain {
-		display: block !important;
-	}
-	#bookDetail {
-		margin-top: 40px;
-	}
-	#bookmenu {
-		display: none;
 	}
 	.navbar-brand {
 		margin-left: 45px;

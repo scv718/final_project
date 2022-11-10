@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
@@ -135,68 +136,68 @@ function joinform_check() {
 	}
 </script>
 	<script type="text/javascript">
-// 	$(document).ready(function(){
-// 		var IMP = window.IMP; // 생략가능
-// 		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-// 		$("#signUp").click(function(){
-// 		IMP.certification(
-// 						{
-// 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
-// 						},
-// 						function(rsp) {
-// 							if (rsp.success) {
-// 								// 인증성공
-// 								console.log(rsp.imp_uid);
-// 								console.log(rsp.merchant_uid);
-// 								console.log('인증성공');
-// 								$.ajax({
-// 									type : 'POST',
-// 									url : 'certification.wp',
-// 									dataType : 'json',
-// 									contentType: 'application/json',
-// 									data : JSON.stringify ({
-// 					        			  imp_uid: rsp.imp_uid	                
-// 					        		}),
-// 					        		success : function(val){
-// 					        			console.log(val);
-// 					        			if (val == 1){
+	$(document).ready(function(){
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		$("#signUp").click(function(){
+		IMP.certification(
+						{
+							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+						},
+						function(rsp) {
+							if (rsp.success) {
+								// 인증성공
+								console.log(rsp.imp_uid);
+								console.log(rsp.merchant_uid);
+								console.log('인증성공');
+								$.ajax({
+									type : 'POST',
+									url : 'certification.wp',
+									dataType : 'json',
+									contentType: 'application/json',
+									data : JSON.stringify ({
+					        			  imp_uid: rsp.imp_uid	                
+					        		}),
+					        		success : function(val){
+					        			console.log(val);
+					        			if (val == 1){
 					        				
-// 					        			}else if(val = 2){
-// 					        				alert("이미 가입된 사용자입니다.")
-// 					        				location.href = 'index.wp';
-// 					        			}else{
-// 					        				alert("나이 제한");
-// 					        				location.href = 'index.wp';
-// 					        			}
-// 					        		}
-// 								}).done(function() {
-// 									takeResponseAndHandle(rsp)
-// 								});
+					        			}else if(val = 2){
+					        				alert("이미 가입된 사용자입니다.")
+					        				location.href = 'index.wp';
+					        			}else{
+					        				alert("나이 제한");
+					        				location.href = 'index.wp';
+					        			}
+					        		}
+								}).done(function() {
+									takeResponseAndHandle(rsp)
+								});
 								
-// 							} else {
-// 								// 인증취소 또는 인증실패
-// 								var msg = '인증에 실패하였습니다.';
-// 								msg += '에러내용 : ' + rsp.error_msg;
-// 								alert(msg);
-// 								location.href = 'index.wp';
+							} else {
+								// 인증취소 또는 인증실패
+								var msg = '인증에 실패하였습니다.';
+								msg += '에러내용 : ' + rsp.error_msg;
+								alert(msg);
+								location.href = 'index.wp';
 								
-// 							}
-// 						})
+							}
+						})
 	
-// 		function takeResponseAndHandle(rsp) {
-// 			if (rsp.success) {
-// 				// 인증성공
-// 				console.log(rsp.imp_uid);
-// 				console.log(rsp.merchant_uid);
-// 			} else {
-// 				// 인증취소 또는 인증실패
-// 				var msg = '인증에 실패하였습니다.';
-// 				msg += '에러내용 : ' + rsp.error_msg;
-// 				alert(msg);
-// 			}
-// 		}
-// 		});
-// 	});
+		function takeResponseAndHandle(rsp) {
+			if (rsp.success) {
+				// 인증성공
+				console.log(rsp.imp_uid);
+				console.log(rsp.merchant_uid);
+			} else {
+				// 인증취소 또는 인증실패
+				var msg = '인증에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+				alert(msg);
+			}
+		}
+		});
+	});
 	</script>
 
 	<div class="container" id="container">

@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/userinfofind.css" />
 	<script type="text/javascript"
@@ -112,7 +113,7 @@
 								<p>가입시 등록한 e-mail을 입력해주세요</p>
 								<form action="forgotid.wp" method="post">
 									<input type = "text" name = "m_email" placeholder="이메일 입력">
-								<button class = "btn btn-dark" type ="submit" >아이디찾기</button>
+								<button class = "btn btn-dark" id = "idbtn" type ="submit" >아이디찾기</button>
 								</form>
 							</div>
 							<div class="tab-pane fade" id="contents">
