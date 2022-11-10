@@ -101,7 +101,7 @@ public class NoticeController {
       public String admin_updateNotice(@ModelAttribute("community") CommunityVO vo, Model model) {
       
          noticeService.admin_updateNotice(vo);
-         return "admin_getNotice.wp";
+         return "adminNotice.wp";
       
       }
       
