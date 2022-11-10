@@ -121,7 +121,7 @@
 								<form action="changePw.wp" id="userInfo" name="userInfo" method="post">
 								<input type="password"  id="m_pw" name="m_pw" placeholder="비밀번호" /> 
 								<input type="password"  id="repassword" placeholder="비밀번호 확인" />
-								<button type="button" onclick="joinform_check();" >확인</button>
+								<button type="button" class = "btn btn-dark" onclick="joinform_check();" >확인</button>
 								</form>
 								</div>
 							</div>

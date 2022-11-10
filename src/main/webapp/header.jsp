@@ -83,7 +83,7 @@ function kakaoLogout() {
 		<li class="nav-item">
 		<a id = "menuBtn" class ="dropdown-item" href="getIntro.wp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
-		<a id = "menuBtn"  class ="dropdown-item" href = "wineStory.wp" >와인이야기</a></li>
+		<a id = "menuBtn"  class ="dropdown-item" >와인이야기</a></li>
 		<li class="nav-item">	
 		<a id = "menuBtn" class="dropdown-item" href="wineSearch.wp">와인검색</a></li>
 		<li class="nav-item">	

@@ -35,6 +35,10 @@
 #textbox{
 	   text-align: left;
     margin-left: 20px;
+     width: 419px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .type {
 	text-align: center;
