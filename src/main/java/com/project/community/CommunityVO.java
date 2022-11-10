@@ -6,19 +6,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CommunityVO {
 
-	private int commu_no;
-	private int commu_cat;
-	private int commu_cat_no;
-	private String commu_title;
-	private String id;
-	private String commu_content;
-	private Date commu_date;
+	private int commu_no;// 전체 글 번호
+	private int commu_cat;// 구분 번호 공지사항(0), 자주하는 질문FAQ (1),  QnA(2) 
+	private int commu_cat_no;// 구분 번호 내 항목번호
+	private String commu_title;// 제목
+	private String id;// 작성자
+	private String commu_content; // 내용
+	private Date commu_date;//작성일자
 	private int commu_count;//조회수
-	private String commu_photo1;
-	private String commu_photo2;
-	private String commu_photo3;
-	private String faq_cat;
-	private String answer_status;
+	private String commu_photo1;//첨부사진1
+	private String commu_photo2;//첨부사진2
+	private String commu_photo3;//첨부사진3
+	private String faq_cat;//faq 분류 주문/결제/배송(0), 취소/교환/환불(1), 구독서비스(2), 회원(3), 기타(4)
+	private String answer_status;//답변상태 답변대기, 답변완료
 	
 	private MultipartFile uploadFile; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
 	

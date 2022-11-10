@@ -7,7 +7,7 @@
 
 	<!-- 리뷰게시판(모든 상품의 리뷰) -->
 	<select id="getReviewList" resultType="review">
-		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
+		SELECT R.*, W.W_NM_K, W.W_NM_E, W.W_IMAGE1 FROM REVIEW R
 		JOIN WINE W
 		ON R.W_NO =	W.W_NO
 		WHERE 1=1
@@ -43,7 +43,7 @@
 	
 	<!-- 포토리뷰만 보기, 최신순, 추천순 정렬 목록 -->
 	<select id="reviewFilter" resultType="review">
-		SELECT R.*, W.W_NM_K, W.W_NM_E FROM REVIEW R
+		SELECT R.*, W.W_NM_K, W.W_NM_E, W.W_IMAGE1 FROM REVIEW R
 		JOIN WINE W
 		ON R.W_NO = W.W_NO
 		WHERE 1=1
@@ -89,7 +89,7 @@
 	
 	<!-- 리뷰 상세조회 -->
 	<select id="detailReview" resultType="review">
-		SELECT R.*, W.W_NM_K FROM REVIEW R 
+		SELECT R.*, W.W_NM_K, W.W_IMAGE1, W_PRICE FROM REVIEW R 
 		JOIN WINE W
 		ON R.W_NO = W.W_NO
 		WHERE RE_NO=#{re_no}
@@ -129,5 +129,18 @@
 	<delete id="deleteReview">
 		DELETE FROM REVIEW WHERE RE_NO=#{re_no}
 	</delete>
+	
+	<!-- 해당상품 평점평균 -->
+	<select id="getRatingAvg" resultType="double">
+		SELECT AVG(RE_SCORE)
+		FROM REVIEW
+		WHERE W_NO = #{w_no};
+	</select>
+	
+	<update id="updateRating">
+		UPDATE WINE 
+		SET RATING_AVG = #{rating_avg} 
+		WHERE W_NO = #{w_no}
+	</update>
 
 </mapper>

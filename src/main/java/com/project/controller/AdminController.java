@@ -40,6 +40,7 @@ public class AdminController {
 	
 	@RequestMapping("adminSalesdelivery.wp")
 	public String order() {
+		System.out.println("이동");
 		return "WEB-INF/view/admin/adminsalesdelivery.jsp";
 	}
 	

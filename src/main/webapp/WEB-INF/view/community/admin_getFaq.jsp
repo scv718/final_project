@@ -40,9 +40,9 @@ $(document).ready(function(){
 
 </script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <div class="jumbotron">
-   <h1>공지사항 글 상세 보기</h1>      
+   <h1>FAQ 자주하는 질문 목록</h1>      
 </div>
 
 <div class="container-fluid">
@@ -60,7 +60,6 @@ $(document).ready(function(){
       <div class="input-group-prepend">
         <span class="input-group-text">작성자</span>
       </div>
-<%--       <input type="text" class="form-control innm" name="writer" value="${board.writer}" readonly <%=sts %>>       --%>
       <input type="text" class="form-control innm" value="${community.id}" readonly>      
     </div>
     <div class="input-group mb-3">
@@ -69,25 +68,6 @@ $(document).ready(function(){
       </div>
       <textarea class="form-control innm" rows="10" id="comment" name="commu_content">${community.commu_content}</textarea>      
     </div>  
-    <%-- <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">파일</span>
-      </div>
-   		<c:if test="${board.filename ne NULL}">
-   			<span style="cursor:pointer;padding:0 20px;" onclick="seeImg()">[파일보기]</span>
-   			<script>
-	        	function seeImg(){
-	        		$("#imgBox").show();
-	        	}
-	        </script>
-   			<span style="cursor:pointer;" onclick="downloadFile('${board.filename}')">[파일다운]</span>
-   			<script>
-	   			function downloadFile(filename){
-	   			    window.location ='download.do?filename='+filename;
-	   			}
-			</script>
-   		</c:if>
-    </div> --%>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">등록일</span>
@@ -96,30 +76,12 @@ $(document).ready(function(){
     </div>
   
     <div id="footer">
-<%--     <input class="btn btn-primary" type="submit" value="글수정하기" onclick="location.href='updateNotice.wp?commu_no=${community.commu_no}'"> --%>
     <input class="btn btn-primary" type="submit" value="글수정하기" >
-<!-- 	  	<button type="submit" class="btn btn-primary">글수정</button> -->
-	  	<button id="conWrite" type="button" class="btn btn-primary" onclick="location.href='admin_insertFaq.wp'">글쓰기</button>
 	  	<button id="conDel" type="button" class="btn btn-primary" >글삭제</button>
 	  	<button id="conList" type="button" class="btn btn-primary">글목록</button>
 	</div>
   </form>  
 </div>
-<!-- 클릭시 보이는 이미지 start -->
-<%-- <div id="imgBox" class="container-fluid">
-	<div id="imgContentBox">
-		<div id="imgBoxTitleBar">
-			<span id="closeX" onclick="closeX()">X</span>
-			 <script>
-        	function closeX(){
-        		$("#imgBox").hide();
-        	}
-        </script>
-		</div>
-		<img id="imgBoxImg" src="img/${board.filename}">
-	</div>
-</div> --%>
-<!-- 클릭시 보이는 이미지 end -->
 <%@ include file="../../../footer.jsp" %>
 </body>
 </html>

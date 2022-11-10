@@ -45,5 +45,11 @@ public interface ReviewService {
 	
 	List<ReviewVO> mainreviewFilter(ReviewVO vo);
 	
+	//상품별 평점평균
+	Double getRatingAvg(int w_no);
+	
+	//평점평균 반영
+	void updateRating(ReviewVO vo);
+	
 
 }

@@ -14,27 +14,7 @@ public class FaqServiceImpl implements FaqService{
 	@Autowired
 	private FaqDAOMybatis FaqDAO;
 	
-	@Override
-	public void insertFaq(CommunityVO vo) {
-		FaqDAO.insertFaq(vo);	
-		
-	}
-
-	@Override
-	public void updateFaq(CommunityVO vo) {
-		FaqDAO.updateFaq(vo);	
-	}
-
-	@Override
-	public void deleteFaq(CommunityVO vo) {
-		FaqDAO.deleteFaq(vo);	
-	}
-
-	@Override
-	public CommunityVO getFaq(CommunityVO vo) {
-		return FaqDAO.getFaq(vo);
-	}
-
+	//=====공통======
 	@Override
 	public List<CommunityVO> getFaqList(CommunityVO vo) {
 		return FaqDAO.getFaqList(vo);	
@@ -44,5 +24,27 @@ public class FaqServiceImpl implements FaqService{
 	public int totalFaqListCnt(CommunityVO vo) {
 		return FaqDAO.totalFaqListCnt(vo);	
 	}
+
+	//======관리자======
+	@Override
+	public void admin_insertFaq(CommunityVO vo) {
+		FaqDAO.admin_insertFaq(vo);	
+	}
+
+	@Override
+	public void admin_updateFaq(CommunityVO vo) {
+		FaqDAO.admin_updateFaq(vo);	
+	}
+
+	@Override
+	public void admin_deleteFaq(CommunityVO vo) {
+		FaqDAO.admin_deleteFaq(vo);	
+	}
+
+	@Override
+	public CommunityVO admin_getFaq(CommunityVO vo) {
+		return FaqDAO.admin_getFaq(vo);
+	}
+
 
 }
