@@ -12,6 +12,8 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
 	private ReviewDAO reviewDAO;
+	@Autowired
+	private ReviewDAOMybatis ReviewDAO;
 	//리뷰 중복확인
 	@Override
 	public int existReview(int w_no, String id) throws Exception {
