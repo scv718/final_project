@@ -69,6 +69,16 @@ dt {
 		  	return false;
 		}
 	}
+	
+	$(function(){
+		var rating = $('.rating');
+		
+		rating.each(function(){
+			var targetScore = $(this).attr('data-rate');
+			console.log(targetScore);
+			$(this).find('svg:nth-child(-n+'+targetScore+')').css({color:'#f5d142'});
+		});
+	});
 </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -77,9 +87,25 @@ dt {
 		<div id="reviewcontent">
 			<div id="review-top">
 				<h5>${detailReview.re_title}</h5>
+					<span style="font-weight:700; padding-right: 20px;">평점</span>
+					<span class="rating" data-rate="${detailReview.re_score}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+						  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+						  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+						  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+						  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+						  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+					</span>
 				<dl class="review-info">
-					<dt>평점</dt>
-					<dd>${detailReview.re_score}</dd>
 					<dt>작성자</dt>
 					<dd>${fn:substring(detailReview.id,0,2)}<c:forEach begin="3"
 							end="${fn:length(detailReview.id)}" step="1">*</c:forEach>
@@ -93,12 +119,17 @@ dt {
 			</div>
 			<form name="fm" method="post">
 				<div id="review-middle">
-					<dl class="product">
-						<dt>상품보기</dt>
-						<dd>
-							<a href="" class="productlink">${detailReview.w_nm_k}</a>
-						</dd>
-					</dl>
+					<div class="product">
+						<div class="product-title">
+							<div class="img-box">
+								<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">
+									<img src="../../resources/img/wine/${detailReview.w_image1}" class="img-thumbnail">
+								</a>
+							</div>
+							<span style="font-weight:700;">상품명</span>
+							<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">${detailReview.w_nm_k}</a>
+						</div>
+					</div>
 					<div>
 						<c:if test="${detailReview.re_photo1 ne NULL}">
 							<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo1}" style="width: 200px; padding: 10px 0;">

@@ -43,8 +43,10 @@
         content_files.push(f);
         $('#articlefileChange').append(
        		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
-       		+ '<font style="font-size:12px">' + f.name + '</font>'  
-       		+ ' <img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"/>' 
+//       		+ '<font style="font-size:12px">' + f.name + '</font>'
+//       		+ ' <img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"/>' 
+			+ ' <img src="' + e.target.result + '" title="' + f.name + '" width=80px height=80px>'
+			+ ' <img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn">' 
        		+ '<div/>'
 		);
         fileNum ++;
@@ -63,6 +65,11 @@ function fileDelete(fileNum){
 	$('#' + fileNum).remove();
 	fileCount --;
     console.log(content_files);
+}
+
+// 기존 파일 view에서 지워지게끔 하기
+function exfileDelete(fileNum){
+	$('#' + fileNum).remove();
 }
 
 // 수정하기 폼 서브밋 로직

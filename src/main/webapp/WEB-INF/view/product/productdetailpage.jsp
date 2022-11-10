@@ -76,6 +76,16 @@
 		    
 		});
 		
+		//별점 표시
+		$(function(){
+			var rating = $('.rating');
+			
+			rating.each(function(){
+				var targetScore = $(this).attr('data-rate');
+				console.log(targetScore);
+				$(this).find('svg:nth-child(-n+'+targetScore+')').css({color:'#f5d142'});
+			});
+		});
 	</script>
 	<!-- <form name="fm"> -->
 	<%-- <input name='w_nm_k' type='hidden' value='${product.w_nm_k}'> --%>
@@ -219,6 +229,7 @@
 
 					<article class="blog-post">
 						<h4 class="blog-post-title mb-1">REVIEW</h4>
+						<p>${getRating}</p>
 						<div id="reviewContainer">
 							<div id="filterdiv">
 								<form action="getfilterList.wp" method="POST" id="filter">
@@ -261,7 +272,25 @@
 														class="detailreview">${review.re_title}</a>
 												</div>
 											</td>
-											<td class="tdCenter">${review.re_score}</td>
+											<td class="tdCenter">
+												<span class="rating" data-rate="${review.re_score}" style="color: #e6e6e6;">
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+												</span>	
+											</td>
 											<td class="tdCenter">${fn:substring(review.id,0,2)}<c:forEach
 													begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
 											</td>
