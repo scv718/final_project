@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+     background-image: linear-gradient(120deg, #white 0%, #fee2e2 100%);
 }
 
 p {

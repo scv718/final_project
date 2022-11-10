@@ -98,7 +98,36 @@
 	position:relative;
 	top:1px;
 }
-
+/*공지 글 등록*/
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
+/*등록*/
+.input-group-text {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #fee2e2;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+/*작성자*/
+.form-control:disabled, .form-control[readonly] {
+    background-color: #fee2e2;
+    opacity: 1;
+}
 </style>
 <body>
 
@@ -200,8 +229,8 @@
         </thead>  
         <tbody> 
          
-       <c:forEach items="${NoticeListAd}" var="notice">                
-       <tr align="center">
+       <c:forEach items="${NoticeListAd}" var="notice" >                
+       <tr align="center"onclick="selTr(${notice.commu_no})">
          <td>${notice.commu_no}</td>
       	 <td>${notice.commu_title}</td>
       	 <td>${notice.id}</td>
@@ -221,7 +250,7 @@
 	</div>
     </div>
        <div class="jumbotron" id="insert">
-      <h1>공지사항 글 등록</h1>
+      <h1 align="center">공지사항 글 등록</h1>
    </div>
 
    <div class="container-fluid">
@@ -258,9 +287,10 @@
          
          <div id="footer">
             <div id="se2_sample" style="margin: 10px 0;">
-               <input type="submit" value="등록하기">
+               <input class='myButton' type="submit" value="등록하기">
             </div>
          </div>
+         <hr>
          
       </form>
    </div>
@@ -301,6 +331,9 @@
     	location.href = 'deleteAd.wp?id='+id;
     	document.userInfo.submit();
     }
+    function selTr(val){
+    	   location.href = "admin_getNotice.wp?commu_no="+val;
+    	}
     </script>
 </body>
 </html>

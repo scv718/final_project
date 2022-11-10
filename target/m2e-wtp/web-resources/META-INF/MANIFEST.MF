@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: skfnx
-Build-Jdk: 11.0.15.1
-=======
 Built-By: IMHO
 Build-Jdk: 11.0.16.1
->>>>>>> b9181fbdf6878173d77e9f53e97700aea252e213
 Created-By: Maven Integration for Eclipse
 
