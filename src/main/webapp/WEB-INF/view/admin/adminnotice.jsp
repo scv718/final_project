@@ -123,7 +123,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">소개페이지관리</a>
+                            <a href="adminIntroduce.wp">와이너리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -215,11 +215,55 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminNotice.wp">전체 목록</a>
-		<a class='myButton' href="adminNotice.wp">공지 관리</a>
+		<a class='myButton' href="#insert">공지 등록</a>
+		<a class='myButton' href="admin_getNoticeList.wp">공지 수정</a>
             <br><br><hr> <br><br>
 	</div>
     </div>
-    
+       <div class="jumbotron" id="insert">
+      <h1>공지사항 글 등록</h1>
+   </div>
+
+   <div class="container-fluid">
+      <form action="admin_insertNotice.wp" method="post">
+         <input type="hidden" class="form-control" name="commu_cat" value="0">
+
+         <!-- <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">항목내번호</span>
+            </div>
+            <input type="text" class="form-control" name="commu_cat_no" placeholder="항목내번호를 입력하세요" required>
+         </div> -->
+         
+         <div  class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">제목</span>
+            </div>
+            <input type="text" class="form-control" name="commu_title" placeholder="제목을 입력하세요." required>
+         </div>
+         
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">작성자</span>
+            </div>
+            <input type="text" class="form-control innm" name="id" value="관리자" readonly>
+         </div>
+         
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">내용</span>
+            </div>
+            <textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea>
+         </div>
+         
+         <div id="footer">
+            <div id="se2_sample" style="margin: 10px 0;">
+               <input type="submit" value="등록하기">
+            </div>
+         </div>
+         
+      </form>
+   </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>

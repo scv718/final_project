@@ -93,7 +93,7 @@ public class NoticeController {
       public String admin_insertNotice(CommunityVO vo) throws IllegalStateException, IOException {
       
          noticeService.admin_insertNotice(vo);
-         return "redirect:admin_getNoticeList.wp";
+         return "redirect:adminNotice.wp";
       }
       
       // 공지사항 수정 - 관리자
