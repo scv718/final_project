@@ -38,6 +38,29 @@
 			fm.submit();
 		});
 		
+		$('#paymentonemobile').click(function() {
+			if($('#quantitym').val() == ''){
+				swal ( "수량을 선택해주세요" ,  "" ,  "error" )
+				return false;
+			}
+			
+			let fmm = document.fmm;
+			fmm.action = "payment.wp?cart=1";
+			fmm.method = "post";
+			fmm.submit();
+		});
+		$('#cartm').click(function() {
+			if($('#quantitym').val() == ''){
+				swal ( "수량을 선택해주세요" ,  "" ,  "error" )
+				return false;
+			}
+			
+			let fm = document.fmm;
+			fmm.action = "addCart.wp";
+			fmm.method = "post";
+			fmm.submit();
+		});
+		
 		//리뷰내용 표시 (유경)
 		$('#viewhidden').click(function(){
 			status = $('#reviewblock').css("display");
@@ -107,7 +130,6 @@
 		//별점 표시
 		$(function(){
 			var rating = $('.rating');
-			
 			rating.each(function(){
 				var targetScore = $(this).attr('data-rate');
 				console.log(targetScore);
@@ -122,12 +144,12 @@
 	<!-- </form> -->
 	<div class="container">
 		<div class="row" id="firstrow">
-			<div class="col-4">
+			<div class="col-lg-4 col-sm-2" id = "productimgdiv">
 				<div id="productone">
 					<img id="productimg" src="${pageContext.request.contextPath}/resources/img/wine/${product.w_image1}">
 				</div>
 			</div>
-			<div class="col-4" id="producttwo">
+			<div class="col-lg-4 col-md-6" id="producttwo">
 				<div class="row" id="productnm">
 					<p class="knm">${product.w_nm_k}
 					<a href="#reviewdiv" style="color: #e2373f !important; font-size:12px;">[ 리뷰 ${reviewCount} ]</a>
@@ -253,6 +275,35 @@
 				<button type="button" class="btn-hover color-7" id="paymentone">	<span>결제하기</span> </button>
 			</div>
 		</div>
+		
+		   <div class="col-12" id = "mobilepayment">
+			<div id = "wineinfo">
+			<div class="row" id="priceinfo">
+			<p style="margin:0;">판매가격</p>
+			</div>
+			<div class ="row" id = "pricediv">
+			<p style="margin:0;"><fmt:formatNumber value="${product.w_price}" pattern="#,###"/>원</p>
+			</div>
+			<div class="row" id="shipping">
+			<p>배송비 2,500원 별도</p>
+			</div>
+				<div class="buttondiv">
+					<form action="addCart.wp" name="fmm">
+						<input type="hidden" id="w_no" name="w_no" value="${product.w_no}">
+						<input type="hidden" id=w_price name="w_price"
+							value="${product.w_price}"> <select name="ord_quan"
+							id="quantitym" class = "pl">
+							<option value="">수량을 선택하세요.</option>
+							<c:forEach items="${num}" var="option" varStatus="status">
+								<option value="${status.count}">${status.count}</option>
+							</c:forEach>
+						</select>
+						<button  class="btn-hover color-7" id = "cartm" type="button"><i class ="xi-cart"></i> 장바구니</button>
+					</form>
+				</div>
+				<button type="button" class="btn-hover color-7" id="paymentonemobile">	<span>결제하기</span> </button>
+			</div>
+		</div>
 		</div>
 
 			<!-- nav 바 1 -->
@@ -268,7 +319,7 @@
 			<!-- 상품정보 이미지 -->
 			<div class ="row" id="detailcontents">
 				<div class="col-8">
-				<img style = "width:100%; padding:20px;" src = "${pageContext.request.contextPath}/resources/img/예시.png">
+				<img id = "productimginfo" src = "${pageContext.request.contextPath}/resources/img/예시.png">
 				</div>
 			</div>
 			
