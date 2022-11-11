@@ -307,3 +307,40 @@ keyframes blink-effect { 50% {
 	height: 200px;
 	width: 50px
 }
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> New Document </title>
+</head>
+<body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<table>
+    <tr>
+        <th scope="row">tr 메뉴 숨김 처리</th>
+        <td><a href="#" id="viewhidden" onclick="return false;" class="button">클릭</a></td>
+    </tr>
+    <tr id="hidden" style="display:none;">
+        <th>숨김메뉴</th>
+        <td><input type="text"/></td>
+    </tr>
+    <tr>
+        <th>하단</th>
+        <td>하단</td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () { // 페이지 document 로딩 완료 후 스크립트 실행
+        $("#viewhidden").click(function () {
+            status = $("#hidden").css("display");
+            if (status == "none") {
+                $("#hidden").css("display", "");
+            } else {
+                $("#hidden").css("display", "none");
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>

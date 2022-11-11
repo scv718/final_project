@@ -40,32 +40,25 @@
    <!-- 공통 - 조회수 -->
    <update id="viewCount">
       <!-- UPDATE community SET commu_count=(#{commu_count}+1) where commu_no=#{commu_no} -->
-      UPDATE community SET commu_count=commu_count+1 where
-      commu_no=#{commu_no}
+      UPDATE COMMUNITY SET COMMU_COUNT=COMMU_COUNT+1 WHERE COMMU_NO=#{commu_no}
    </update>
    
    <!-- 공통 - 페이징 -->
    <select id="totalNoticeListCnt" resultType="_int">
       SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 and COMMU_CAT = 0
-      <if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',
-         #{searchKeyword}, '%'),' ','')</if>
-      <if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
-         #{searchKeyword}, '%'),' ','')</if>
+      <if test="searchCondition == 'TITLE' "> AND commu_title LIKE replace(CONCAT('%',#{searchKeyword}, '%'),' ','')</if>
+      <if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',#{searchKeyword}, '%'),' ','')</if>
    </select>
 
 	<delete id="deleteNotice">
 		DELETE FROM COMMUNITY WHERE commu_no = #{commu_no}
 	</delete>
-	
-
-
 
 	<select id="getmainNoticeList" resultType="community">
 		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1
 		ORDER BY commu_cat_no DESC
 		LIMIT 5;
 	</select>
-
 
 <select id="NoticeListAd" resultType="notice">
 		SELECT * FROM COMMUNITY WHERE commu_cat = 0 and 1=1

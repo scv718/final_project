@@ -91,6 +91,7 @@ img {
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
+                            <a href="/admin_updateIntro.wp">와이너리 관리</a>
                             <a href="adminIntroduce.wp">와이너리</a>
                         </li>
                         <li>
