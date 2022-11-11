@@ -10,6 +10,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/getReviewList.css"/>
 <%@ include file="../../../header.jsp"%>
+<script>
+	$(function(){
+		var rating = $('.rating');
+		
+		rating.each(function(){
+			var targetScore = $(this).attr('data-rate');
+			console.log(targetScore);
+			$(this).find('svg:nth-child(-n+'+targetScore+')').css({color:'#f5d142'});
+		});
+	});
+</script>
 </head>
 <body class = "d-flex flex-column min-vh-100">
 	<div id="reviewContainer">
@@ -27,9 +38,9 @@
 	</nav>
 	<div id="filterdiv">
 	<form action="getfilterList.wp" method="POST" id="filter">
-		<input type="radio" name="filter" value="PHOTO" onchange="this.form.submit()" <c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰만 보기&nbsp;
-		<input type="radio" name="filter" value="NEW" onchange="this.form.submit()" <c:if test="${radiochk eq 'NEW'}">checked</c:if>>최신순&nbsp;
-		<input type="radio" name="filter" value="LIKE" onchange="this.form.submit()" <c:if test="${radiochk eq 'LIKE'}">checked</c:if>>추천순
+		<input type="radio" name="filter" id="PHOTO" value="PHOTO" onchange="this.form.submit()" <c:if test="${radiochk eq 'PHOTO'}">checked</c:if>><label for="PHOTO">포토리뷰만 보기</label>&nbsp;
+		<input type="radio" name="filter" id="NEW" value="NEW" onchange="this.form.submit()" <c:if test="${radiochk eq 'NEW'}">checked</c:if>><label for="NEW">최신순</label>&nbsp;
+		<input type="radio" name="filter" id="LIKE" value="LIKE" onchange="this.form.submit()" <c:if test="${radiochk eq 'LIKE'}">checked</c:if>><label for="LIKE">추천순</label>
 	</form>
 	</div>
 	<table id="reviewtab">
@@ -58,9 +69,27 @@
 				<tr>
 					<td class="tdCenter">${review.re_no}</td>
 					<td><c:if test="${review.re_photo1 ne NULL}"><i class="bi bi-image" style="color: gray;"></i></c:if></td>
-					<td style="text-align:left"><div><a href="" class="productlink">${review.w_nm_k}</a>
+					<td style="text-align:left"><div><a href="product.wp?w_no=${review.w_no}" class="productlink">${review.w_nm_k}</a>
 						<br><a href="detailReview.wp?re_no=${review.re_no}" class="detailreview">${review.re_title}</a></div></td>
-					<td class="tdCenter">${review.re_score}</td>
+					<td class="tdCenter">
+						<span class="rating" data-rate="${review.re_score}" style="color: #e6e6e6;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+							</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+							</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+							</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+							</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+							</svg>
+						</span>
+					</td>
 					<td class="tdCenter">
 						${fn:substring(review.id,0,2)}<c:forEach begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
 					</td>

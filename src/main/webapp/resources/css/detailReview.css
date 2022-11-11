@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #reviewContainer {
-    width: 1050px;
+    width: 55%;
     margin: 0 auto;
 }
 
@@ -19,7 +19,7 @@ h5{
 .product {
 	margin-bottom: 35px !important;
 	border-top: 1px solid lightgray;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 dl {
@@ -64,8 +64,9 @@ a:active {
 }
 
 p {
-	border-top: 1px solid lightgray;
-    padding-top: 30px;
+	border-bottom: 1px solid lightgray;
+    padding: 30px 0;
+    font-size: 18px;
 }
 
 #review-bottom {
@@ -122,4 +123,42 @@ p {
 
 #starRate label:hover ~ label {
     text-shadow: 0 0 0 #f5d142;
+}
+
+.delBtn{
+	width: 15px;
+	position: absolute;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+}
+
+.rating {
+	color: #e6e6e6;
+}
+
+svg {
+	margin-bottom: 5px !important;
+}
+
+.img-box {
+    width:120px;
+    height:120px;
+    overflow:hidden;
+    margin:0;
+    border: 1px solid lightgray;
+}
+
+.img-thumbnail {
+	padding: 5px 43px !important;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    border: none !important;
+    height: 100% !important;
+}
+
+.product-title {
+	border: solid 1px lightgray;
+	padding: 15px;
 }

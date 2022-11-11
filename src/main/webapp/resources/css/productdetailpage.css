@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+html {
+	scroll-behavior: smooth;
+}
+
 #one{
 	color: #f1c0ce;
 }
@@ -19,12 +23,12 @@
 	margin-right: 15px;
 }
 .btn-hover {
-    width: 100px;
+    width: 88%;
     font-size: 16px;
     font-weight: 600;
     color: #fff;
     cursor: pointer;
-    height: 40px;
+    height: 47px;
     text-align:center;
     border: none;
     background-size: 300% 100%;
@@ -148,7 +152,6 @@ input[type=range] {
 
 .pl{
 	height: 40px;
-	margin-right: 20px;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 10px;
@@ -158,6 +161,8 @@ input[type=range] {
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
+    width: 88%;
+    margin-bottom: 25px;
 }
 
 .pl:focus{
@@ -171,26 +176,25 @@ input[type=range] {
 #wineinfo{
 	    margin-top: 38px;
     margin-bottom: 50px;
-    margin-left: 5px;
     text-align: center;
 }
 #winetaste{
-	 margin-left: 20px;
-    margin-top: 50px;
+    margin-top: 40px;
     font-size: 18px;
 }
 #winenmk{
 	font-size: 20px;
 	    font-weight: bolder;
 	    margin: 0 auto;
+	    padding: 0 15px;
 }
 #pricediv{
-	  margin-left: 20px;
-	  font-size: 25px;
-	
+    margin-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
 } 
 #productimg {
-	height: 280px;
+	height: 415px;
 }
 #paymentone{
 	width: 190px;
@@ -199,19 +203,29 @@ input[type=range] {
 }
 
 #firstrow>.col {
-	margin-top: 56px;
+	margin-top: 40px;
 }
 
 #firstrow>.col-4 {
-	margin-top: 56px;
+	margin-top: 40px;
+}
+
+.col-4 {
+    text-align:center;
+    display:table;
+    width:300px;
+    height:530px;
 }
 
 #productone {
-	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 #producttwo {
-	margin-top: 56px;
+	padding: 0 36px !important;
+	margin-top: 69px !important;
+	height: 500px;
 }
 
 #productthree{
@@ -224,6 +238,7 @@ input[type=range] {
 	height: 500px;
 	border-radius: 21% 21% 21% 21%  / 10% 10% 10% 10% ;
 	text-align: center;
+	box-shadow: 4px 5px 4px lightgrey;
 }
 
 .buttondiv>.row {
@@ -235,8 +250,9 @@ input[type=range] {
 }
 
 #productinfo {
+	text-align: left !important;
 	margin-top: 45px;
-	font-size: 13px;
+	font-size: 15px;
 }
 
 #productprice {
@@ -248,15 +264,19 @@ input[type=range] {
 }
 
 .knm {
+	text-align: left !important;
 	font-size: 21px;
 	font-weight: bold;
 }
 
+.enm {
+	text-align: left !important;
+}
 
 /* 유경 추가 시작 */
 th {
 	background-color: #f0f0f0;
-	padding: 5px;
+	padding: 15px;
 }
 
 tr {
@@ -270,6 +290,12 @@ tr {
 
 td {
 	color: black;
+	padding: 10px 0;
+}
+
+#reviewdiv {
+	padding: 20px;
+	margin-bottom: 50px;
 }
 
 #reviewtab {
@@ -287,6 +313,7 @@ td {
 	border: 1px solid lightgray;
 	color: gray;
 	padding: 5px 15px;
+	float: right;
 }
 
 #btnBox {
@@ -369,4 +396,74 @@ a:active {
 	border: 1px solid lightgray;
 }
 
+#notexist {
+	font-size: 17px;
+	color: gray;
+	text-align: center;
+}
+
+.ultag {
+	list-style-type: none;
+	width: 100%;
+	padding: 0;
+}
+
+.litag {
+	width: 341px;
+    text-align: center;
+    line-height: 30px;
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin: 0px 3px;
+}
+
+#navtag {
+	padding: 10px 33px;
+}
+
+#navtag2 {
+	padding: 10px 33px;
+}
+
+li > .nava:hover {
+	font-size: 21px;
+}
+
+#filter {
+	float: right;
+}
+
+#priceinfo {
+	margin-left: 20px;
+    margin-top: 60px;
+}
+
+#shipping {
+	margin-left: 20px;
+	font-size: 13px;
+	color: gray;
+}
+
+@media ( max-width : 1200px) {
+	.litag {
+		width: 280px;
+		float: left;
+	}
+}
+
+.left-div {
+	text-align: left;
+}
+
+.content-div {
+	padding: 0px 60px;
+}
+
+#reviewblock {
+	background-color: #f7f7f7;
+}
 /* 유경 끝 */

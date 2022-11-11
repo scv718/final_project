@@ -4,8 +4,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 video {
@@ -55,7 +54,7 @@ video {
         <div></div>
         <div></div>
     </div>
-    <div class="side-btns">
+    <div class="side-btns" style = "display: none;">
         <div>
             <span><i class="fas fa-angle-left"></i></span>
         </div>
@@ -119,7 +118,7 @@ $('.slider-1 > .side-btns > div').click(function(){
 
 
 	<div class="container" id = "btncontainer">
-		<div class="text-center">
+		<div class="text-center" id = "typebtn">
 		<button class = "WaterBtn" value = "2"><img class = "Btnimg" src = "resources/img/Sparkling.png"><br/><p>Sparkling</p></button>
 		<button class = "WaterBtn" value = "1"><img class = "Btnimg" src = "resources/img/White.png"><p>White</p></button>
 		<button class = "WaterBtn" value = "3"><img class = "Btnimg" src = "resources/img/Rose.png"><p>Rose</p></button>
@@ -130,7 +129,6 @@ $('.slider-1 > .side-btns > div').click(function(){
 
 
 <div class="typeSlider">
-
 <div class = "type">
 <div class="slider-2">
     <div class="slides">
@@ -309,12 +307,12 @@ $('.WaterBtn').on('click', function () {
 
 
 <div class = "container">
-<div class = "row">
-<div class = "col">
+<div class = "row" style = "margin-bottom: 150px;">
+<div class = "col" id = "noticecol">
 <p id = "boardtitle">공지사항</p>
 <div class ="col" id = "notice">
 <c:forEach items="${notice}" var = "notice"> 
-<p>${notice.commu_title}</p>
+<p><a  onclick="location.href = 'getNotice.wp?commu_no=${notice.commu_no}'" style = "cursor:pointer;">${notice.commu_title}</a></p>
 </c:forEach>
 </div>
 </div>
@@ -327,7 +325,7 @@ $('.WaterBtn').on('click', function () {
  <div class="slides3">
  <div class="active">
 <c:forEach items="${review}" var = "review" begin = "0" end ="2"> 
-<div id = "reviewmain" class = "row">
+<div id = "reviewmain" class = "row" OnClick="location.href ='detailReview.wp?re_no=${review.re_no}'" style="cursor:pointer;" >
 <img id = "reviewphoto" src = "resources/img/review/${review.re_photo1}">
 <div id = "textbox">
 <p id = "titlename">${review.re_title}</p>
@@ -338,7 +336,7 @@ $('.WaterBtn').on('click', function () {
 </div>
 <div>
 <c:forEach items="${review}" var = "review" begin = "3" end ="5"> 
-<div id = "reviewmain" class = "row">
+<div id = "reviewmain" class = "row" OnClick="location.href ='detailReview.wp?re_no=${review.re_no}'" style="cursor:pointer;" >
 <img id = "reviewphoto" src = "resources/img/review/${review.re_photo1}">
 <div id = "textbox">
 <p id = "titlename">${review.re_title}</p>
@@ -349,7 +347,7 @@ $('.WaterBtn').on('click', function () {
 </div>
 <div>
 <c:forEach items="${review}" var = "review" begin = "6" end ="9"> 
-<div id = "reviewmain" class = "row">
+<div id = "reviewmain" class = "row" OnClick="location.href ='detailReview.wp?re_no=${review.re_no}'" style="cursor:pointer;" >
 <img id = "reviewphoto" src = "resources/img/review/${review.re_photo1}">
 <div id = "textbox">
 <p id = "titlename">${review.re_title}</p>
@@ -381,7 +379,7 @@ $('.WaterBtn').on('click', function () {
         <div></div>
         </c:forEach>
     </div>
-    <div class="side-btns">
+    <div class="side-btns" style = "display : none">
         <div>
             <span><i class="fas fa-angle-left"></i></span>
         </div>

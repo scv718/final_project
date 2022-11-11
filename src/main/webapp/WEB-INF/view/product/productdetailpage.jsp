@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/productdetailpage.css">
-<title>Insert title here</title>
+<title>와이너리 | 와인검색</title>
   <%@ include file="../../../header.jsp"%>
 
 </head>
@@ -37,6 +37,17 @@
 			fm.method = "post";
 			fm.submit();
 		});
+		
+		//리뷰내용 표시 (유경)
+		$('#viewhidden').click(function(){
+			status = $('#reviewblock').css("display");
+			if(status == 'none') {
+				$('#reviewblock').css('display', '');
+			} else {
+				$('#reviewblock').css('display', 'none');
+			}
+		});
+		
 	});
 
 	
@@ -48,24 +59,31 @@
 	$.ajax({
 		type : "post",
 		url : "existReview.wp",
-		dataType : "json",
+		dataType : "text",
 		data : {
 				'w_no' : w_no,
 				'id' : userId
 				},
-		error : function() {
+		error : function(request, error) {
 				alert("통신 에러");
+				//에러 원인
+				alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 				},
 		success : function(check) {
-					if (check == 0) {
+					if (check == '01') {
 						$('#noneDiv').show();
-					} else if (check == 1) {
-						alert("상품별 리뷰작성은 한 번만 가능합니다.");
+					} else if (check == '00') {
+						alert("구매한 회원만 작성가능합니다.\n(구매자일 경우, 배송완료 이후 가능)")
+						location.reload();
+					} else {
+						alert("상품별 후기작성은 한 번만 가능합니다.");
 						location.reload();
 					}
 				}
 			});
 		}
+	
+	
 		//리뷰작성 닫기
 		function offDisplay() {
 			$('#noneDiv').hide();
@@ -85,6 +103,17 @@
 		    $('#productthree').stop().animate({top:scrollTop-100}, duration);
 		    
 		});
+		
+		//별점 표시
+		$(function(){
+			var rating = $('.rating');
+			
+			rating.each(function(){
+				var targetScore = $(this).attr('data-rate');
+				console.log(targetScore);
+				$(this).find('svg:nth-child(-n+'+targetScore+')').css({color:'#f5d142'});
+			});
+		});
 	</script>
 	<!-- <form name="fm"> -->
 	<%-- <input name='w_nm_k' type='hidden' value='${product.w_nm_k}'> --%>
@@ -93,12 +122,16 @@
 	<!-- </form> -->
 	<div class="container">
 		<div class="row" id="firstrow">
-			<div class="col-4" id="productone">
-				<img id="productimg" src="${pageContext.request.contextPath}/resources/img/wine/${product.w_image1}">
+			<div class="col-4">
+				<div id="productone">
+					<img id="productimg" src="${pageContext.request.contextPath}/resources/img/wine/${product.w_image1}">
+				</div>
 			</div>
-			<div class="col-5" id="producttwo">
+			<div class="col-4" id="producttwo">
 				<div class="row" id="productnm">
-					<p class="knm">${product.w_nm_k}</p>
+					<p class="knm">${product.w_nm_k}
+					<a href="#reviewdiv" style="color: #e2373f !important; font-size:12px;">[ 리뷰 ${reviewCount} ]</a>
+					</p>
 				</div>
 				<div class="row" id="productnm">
 					<p class="enm">${product.w_nm_e}</p>
@@ -106,127 +139,160 @@
 				<div class="row" id="productinfo">
 					<p>${product.w_info}</p>
 				</div>
+				<div id = "winetaste"> 
+				<div class ="row">
+				<a id = "typename">당도  </a>
+				<c:forEach var = "i" begin="1" end="${product.w_sweet}">
+					<c:if test="${i == 1}">
+					<a> <i class = "xi-full-moon" id = "one"></i></a>
+				</c:if>
+				<c:if test="${i == 2}">
+					<a> <i class = "xi-full-moon" id = "two"></i></a>
+				</c:if>
+				<c:if test="${i == 3}">
+					<a> <i class = "xi-full-moon" id = "three"></i></a>
+				</c:if>
+				<c:if test="${i == 4}">
+					<a> <i class = "xi-full-moon" id = "four"></i></a>
+				</c:if>
+				<c:if test="${i == 5}">
+					<a> <i class = "xi-full-moon" id = "five"></i></a>
+				</c:if>
+				</c:forEach>
+				</div>
+				<div class ="row">
+				<a id = "typename">바디  </a>
+				<c:forEach var = "i" begin="1" end="${product.w_body}">
+						<c:if test="${i == 1}">
+					<a> <i class = "xi-full-moon" id = "one"></i></a>
+				</c:if>
+				<c:if test="${i == 2}">
+					<a> <i class = "xi-full-moon" id = "two"></i></a>
+				</c:if>
+				<c:if test="${i == 3}">
+					<a> <i class = "xi-full-moon" id = "three"></i></a>
+				</c:if>
+				<c:if test="${i == 4}">
+					<a> <i class = "xi-full-moon" id = "four"></i></a>
+				</c:if>
+				<c:if test="${i == 5}">
+					<a> <i class = "xi-full-moon" id = "five"></i></a>
+				</c:if>
+				</c:forEach>
+				</div>
+				<div class ="row">
+				<a id = "typename">산미  </a>
+				<c:forEach var = "i" begin="1" end="${product.w_acidity}">
+				<c:if test="${i == 1}">
+					<a> <i class = "xi-full-moon" id = "one"></i></a>
+				</c:if>
+				<c:if test="${i == 2}">
+					<a> <i class = "xi-full-moon" id = "two"></i></a>
+				</c:if>
+				<c:if test="${i == 3}">
+					<a> <i class = "xi-full-moon" id = "three"></i></a>
+				</c:if>
+				<c:if test="${i == 4}">
+					<a> <i class = "xi-full-moon" id = "four"></i></a>
+				</c:if>
+				<c:if test="${i == 5}">
+					<a> <i class = "xi-full-moon" id = "five"></i></a>
+				</c:if>
+				</c:forEach>
+				</div>
+				<div class ="row">
+				<a id = "typename">타닌  </a>
+				<c:forEach var = "i" begin="1" end="${product.w_tannins}">
+						<c:if test="${i == 1}">
+					<a> <i class = "xi-full-moon" id = "one"></i></a>
+				</c:if>
+				<c:if test="${i == 2}">
+					<a> <i class = "xi-full-moon" id = "two"></i></a>
+				</c:if>
+				<c:if test="${i == 3}">
+					<a> <i class = "xi-full-moon" id = "three"></i></a>
+				</c:if>
+				<c:if test="${i == 4}">
+					<a> <i class = "xi-full-moon" id = "four"></i></a>
+				</c:if>
+				<c:if test="${i == 5}">
+					<a> <i class = "xi-full-moon" id = "five"></i></a>
+				</c:if>
+				</c:forEach>
+				</div>
 			</div>
-			<div class="col-3" id="productthree">
+			</div>
+			<div class="col-4" id="productthree">
 			<div id = "wineinfo">
 			<div class = "row">
 			<p id = "winenmk">${product.w_nm_k}</p>
 			</div>
-			<div id = "winetaste"> 
-			<div class ="row">
-			<a id = "typename">당도  </a>
-			<c:forEach var = "i" begin="1" end="${product.w_sweet}">
-				<c:if test="${i == 1}">
-				<a> <i class = "xi-full-moon" id = "one"></i></a>
-			</c:if>
-			<c:if test="${i == 2}">
-				<a> <i class = "xi-full-moon" id = "two"></i></a>
-			</c:if>
-			<c:if test="${i == 3}">
-				<a> <i class = "xi-full-moon" id = "three"></i></a>
-			</c:if>
-			<c:if test="${i == 4}">
-				<a> <i class = "xi-full-moon" id = "four"></i></a>
-			</c:if>
-			<c:if test="${i == 5}">
-				<a> <i class = "xi-full-moon" id = "five"></i></a>
-			</c:if>
-			</c:forEach>
+			<div class="row" id="priceinfo">
+			<p style="margin:0;">판매가격</p>
 			</div>
-			<div class ="row">
-			<a id = "typename">바디  </a>
-			<c:forEach var = "i" begin="1" end="${product.w_body}">
-					<c:if test="${i == 1}">
-				<a> <i class = "xi-full-moon" id = "one"></i></a>
-			</c:if>
-			<c:if test="${i == 2}">
-				<a> <i class = "xi-full-moon" id = "two"></i></a>
-			</c:if>
-			<c:if test="${i == 3}">
-				<a> <i class = "xi-full-moon" id = "three"></i></a>
-			</c:if>
-			<c:if test="${i == 4}">
-				<a> <i class = "xi-full-moon" id = "four"></i></a>
-			</c:if>
-			<c:if test="${i == 5}">
-				<a> <i class = "xi-full-moon" id = "five"></i></a>
-			</c:if>
-			</c:forEach>
+			<div class ="row" id = "pricediv">
+			<p style="margin:0;"><fmt:formatNumber value="${product.w_price}" pattern="#,###"/>원</p>
 			</div>
-			<div class ="row">
-			<a id = "typename">산미  </a>
-			<c:forEach var = "i" begin="1" end="${product.w_acidity}">
-			<c:if test="${i == 1}">
-				<a> <i class = "xi-full-moon" id = "one"></i></a>
-			</c:if>
-			<c:if test="${i == 2}">
-				<a> <i class = "xi-full-moon" id = "two"></i></a>
-			</c:if>
-			<c:if test="${i == 3}">
-				<a> <i class = "xi-full-moon" id = "three"></i></a>
-			</c:if>
-			<c:if test="${i == 4}">
-				<a> <i class = "xi-full-moon" id = "four"></i></a>
-			</c:if>
-			<c:if test="${i == 5}">
-				<a> <i class = "xi-full-moon" id = "five"></i></a>
-			</c:if>
-			</c:forEach>
+			<div class="row" id="shipping">
+			<p>배송비 2,500원 별도</p>
 			</div>
-			<div class ="row">
-			<a id = "typename">타닌  </a>
-			<c:forEach var = "i" begin="1" end="${product.w_tannins}">
-					<c:if test="${i == 1}">
-				<a> <i class = "xi-full-moon" id = "one"></i></a>
-			</c:if>
-			<c:if test="${i == 2}">
-				<a> <i class = "xi-full-moon" id = "two"></i></a>
-			</c:if>
-			<c:if test="${i == 3}">
-				<a> <i class = "xi-full-moon" id = "three"></i></a>
-			</c:if>
-			<c:if test="${i == 4}">
-				<a> <i class = "xi-full-moon" id = "four"></i></a>
-			</c:if>
-			<c:if test="${i == 5}">
-				<a> <i class = "xi-full-moon" id = "five"></i></a>
-			</c:if>
-			</c:forEach>
-			</div>
-			</div>
-		</div>
-		<div class ="row" id = "pricediv">
-		<p><i class = "xi-won" id = "typename"></i>${product.w_price}</p>
-		</div>
 				<div class="buttondiv">
 					<form action="addCart.wp" name="fm">
 						<input type="hidden" id="w_no" name="w_no" value="${product.w_no}">
 						<input type="hidden" id=w_price name="w_price"
 							value="${product.w_price}"> <select name="ord_quan"
 							id="quantity" class = "pl">
-							<option value="">수량</option>
+							<option value="">수량을 선택하세요.</option>
 							<c:forEach items="${num}" var="option" varStatus="status">
 								<option value="${status.count}">${status.count}</option>
 							</c:forEach>
 						</select>
-						<button  class="btn-hover color-7" id = "cart" type="button"><i class ="xi-cart"></i></button>
+						<button  class="btn-hover color-7" id = "cart" type="button"><i class ="xi-cart"></i> 장바구니</button>
 					</form>
 				</div>
 				<button type="button" class="btn-hover color-7" id="paymentone">	<span>결제하기</span> </button>
 			</div>
-			
+		</div>
+		</div>
 
-<div class ="row" >
-	<div class="col-9">
-	<img style = "width: 600px;" src = "${pageContext.request.contextPath}/resources/img/예시.png">
-	</div>
-</div>
+			<!-- nav 바 1 -->
+			<div class ="row">
+				<nav class="col-8" id="navtag2">
+					<ul class="ultag">
+						<li class="litag"><a href="#detailcontents" class="nava">상품정보</a></li>
+						<li class="litag"><a href="#reviewdiv" class="nava">상품후기</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- 상품정보 이미지 -->
+			<div class ="row" id="detailcontents">
+				<div class="col-8">
+				<img style = "width:100%; padding:20px;" src = "${pageContext.request.contextPath}/resources/img/예시.png">
+				</div>
+			</div>
+			
+			<!-- nav 바 2 -->
+			<div class ="row">
+				<nav class="col-8" id="navtag2">
+					<ul class="ultag">
+						<li class="litag"><a href="#detailcontents" class="nava">상품정보</a></li>
+						<li class="litag"><a href="#reviewdiv" class="nava">상품후기</a></li>
+					</ul>
+				</nav>
+			</div>
+			
 			<!-- 유경 추가 시작 -->
-			<div class="col-9">
+			<div class="row">
+			<div class="col-8">
 				<div id="reviewdiv">
 
 					<article class="blog-post">
-						<h4 class="blog-post-title mb-1">REVIEW</h4>
+						<h4 class="blog-post-title mb-1" style="font-weight: bold;">REVIEW(${reviewCount})</h4>
+						<div style="font-size: 30px; font-weight: bold;">
+						<i class="bi bi-star-fill" style="color: #f5d142;"></i>
+						${getRating}<c:if test="${getRating eq null}">-</c:if>
+						</div>
 						<div id="reviewContainer">
 							<div id="filterdiv">
 								<form action="getfilterList.wp" method="POST" id="filter">
@@ -244,11 +310,11 @@
 							<table id="reviewtab">
 								<colgroup>
 									<col style="width: 20px">
-									<col style="width: 200px">
-									<col style="width: 70px">
-									<col style="width: 70px">
 									<col style="width: 100px">
+									<col style="width: 40px">
+									<col style="width: 40px">
 									<col style="width: 50px">
+									<col style="width: 20px">
 								</colgroup>
 								<thead>
 									<tr class="reviewhead">
@@ -268,21 +334,63 @@
 												</c:if></td>
 											<td style="text-align: left">
 												<div>
-													<a href="detailReview.wp?re_no=${review.re_no}"
+													<a href="#" id="viewhidden" onclick="return false;"
 														class="detailreview">${review.re_title}</a>
 												</div>
 											</td>
-											<td class="tdCenter">${review.re_score}</td>
-											<td class="tdCenter">${fn:substring(review.id,0,2)}
-											<c:forEach begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
+											<td class="tdCenter">
+												<span class="rating" data-rate="${review.re_score}" style="color: #e6e6e6;">
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+												</span>	
+											</td>
+											<td class="tdCenter">${fn:substring(review.id,0,2)}<c:forEach begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
 											</td>
 											<td class="tdCenter"><fmt:formatDate
 													pattern="yyyy-MM-dd" value="${review.re_date}" /></td>
 											<td class="tdCenter">${review.re_like}</td>
 										</tr>
+										<tr class="review_content_box" id="reviewblock" style="display: none;">
+											<td colspan="6">
+												<div class="left-div">
+												<div class="content-div">
+												<div style="padding: 15px 0;">
+													<div style="text-align:center; margin-bottom: 10px;">
+														<c:if test="${review.re_photo1 ne NULL}">
+														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo1}" style="width: 200px; padding: 10px 0;">
+														<c:if test="${review.re_photo2 ne NULL}">
+														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo2}" style="width: 200px; padding: 10px 0;">
+														<c:if test="${review.re_photo3 ne NULL}">
+														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo3}" style="width: 200px; padding: 10px 0;">
+														</c:if>
+														</c:if>
+														</c:if>
+													</div>
+													<p>${review.re_content}</p>
+												</div>
+												</div>
+												</div>
+											</td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
+							<c:if test="${getRating eq null}">
+								<div class="col" id="notexist">작성된 후기가 없습니다.</div>
+							</c:if>
 							<c:if test="${userID ne null}">
 								<div id="writebtn-div">
 									<button type="button" class="writebtn"
@@ -350,11 +458,10 @@
 					</article>
 				</div>
 			</div>
+			</div>
 			<!-- 추가 끝 -->
-		</div>
+
 	</div>
 	<%@ include file="../../../footer.jsp"%>
-<body class = "d-flex flex-column min-vh-100">
-
 </body>
 </html>

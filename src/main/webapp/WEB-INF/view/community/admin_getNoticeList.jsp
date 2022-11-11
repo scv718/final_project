@@ -32,6 +32,7 @@ function selTr(val){
          </select>
          <input type="text" class="searchinput" name="searchKeyword" placeholder="검색어를 입력하세요." value="${search}">
          <button type="submit" class="searchbtn">검색</button>
+         
       </form>
    </nav>
 
@@ -39,6 +40,9 @@ function selTr(val){
    
     <div class="li_board communitytab">
         <ul class="li_header hidden-xs communityhead">
+   <a class='myButton' href="adminNotice.wp">되돌아가기</a>
+    <div class="li_board noticetab">
+        <ul class="li_header hidden-xs noticehead">
             <li class="no"></li>
             <li class="tit">제목</li>
             <li class="name">작성자</li>
@@ -81,7 +85,6 @@ function selTr(val){
       </c:if>
       <!-- 끝 -->
    </div><br><br>
-    
     </div>
     <%@ include file="../../../footer.jsp" %>
 </body>

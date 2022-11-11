@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>cart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/cart.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -71,14 +72,14 @@
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
-                           <button type="button" class="delete_btn">주문취소</button>
+                           <button type="button" class="btn-hover color-9"  id="delete_btn">주문취소</button>
                            </form>
                       	</c:if>
                        
                            
                            <form action="deleteOrder.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${ci.ord_code}">
-                           <button  type="submit" class="delete_btn">주문내역삭제</button>
+                           <button  type="submit" class="btn-hover color-9" id="delete_btn">주문내역삭제</button>
                            </form>
                         </td>
                      </tr>

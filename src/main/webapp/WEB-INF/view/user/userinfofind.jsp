@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/userinfofind.css" />
 	<script type="text/javascript"
@@ -17,9 +18,12 @@
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		$("#forgotpw").click(function(){
-		IMP.certification(
+			console.log('${signup}');
+			if('${signup}' != 1){
+				IMP.certification(
 						{
 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+							m_redirect_url: "http://localhost:8090/forgotPwget.wp"
 						},
 						function(rsp) {
 
@@ -60,6 +64,19 @@
 								
 							}
 						})
+			}else{
+				$.ajax({
+		 	        url: '/passsession.wp',
+		 	        type: 'post'
+		 	    }),
+		 	    console.log("세션초기화");
+		 	  	 $('#contents').addClass('active show');
+				  $('#explain').siblings('.active').removeClass('active show');
+				  $('#explain').addClass('fade');
+	 	    	  $('.pw').show();
+	 	    	 $('.pw').load(location.href+' .pw>*', "");
+			}
+		
 	
 
 		function takeResponseAndHandle(rsp) {
@@ -112,7 +129,7 @@
 								<p>가입시 등록한 e-mail을 입력해주세요</p>
 								<form action="forgotid.wp" method="post">
 									<input type = "text" name = "m_email" placeholder="이메일 입력">
-								<button class = "btn btn-dark" type ="submit" >아이디찾기</button>
+								<button class = "btn btn-dark" id = "idbtn" type ="submit" >아이디찾기</button>
 								</form>
 							</div>
 							<div class="tab-pane fade" id="contents">
@@ -121,7 +138,7 @@
 								<form action="changePw.wp" id="userInfo" name="userInfo" method="post">
 								<input type="password"  id="m_pw" name="m_pw" placeholder="비밀번호" /> 
 								<input type="password"  id="repassword" placeholder="비밀번호 확인" />
-								<button type="button" onclick="joinform_check();" >확인</button>
+								<button type="button" class = "btn btn-dark" onclick="joinform_check();" >확인</button>
 								</form>
 								</div>
 							</div>

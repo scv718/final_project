@@ -11,3 +11,28 @@
 .pw{
 	display: none;
 }
+#forgotpw{
+	margin-top: 50px;
+}
+
+#explain{
+	    text-align: center;
+    margin-top: 50px;
+}
+#userInfo{
+	    margin-top: 35px;
+}
+
+
+@media screen and (max-width: 768px) {
+	#menu{
+	    width: 100% !important;
+	}
+	#idbtn{
+	    margin-top: 20px;
+	   }
+	.tab-content{
+		width: 68% !important;
+	}
+	
+}

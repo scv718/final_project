@@ -123,7 +123,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">소개페이지관리</a>
+                            <a href="adminIntroduce.wp">와이너리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -184,22 +184,22 @@
                 </div>
             </nav>
             
-           <h2 align="center">소개글 관리</h2>
+           <h2 align="center">와이너리관리</h2>
            <br><br>
-      <div class="table-responsive">
-    <table id="myTable" class="display table" width="100%">
-        <thead>  
-         <tr style="background-color: #FCA5A5" align="center">
-	        <th>고유 번호</th>
-			<th>위치 번호</th>
-			<th>구역 번호</th>
-			<th>제목</th>
-			<th>내용</th>
-			<th>로그인</th>
-			<th>등급</th>
-        </tr> 
-        </thead>  
-        <tbody> 
+<!--       <div class="table-responsive"> -->
+<!--     <table id="myTable" class="display table" width="100%"> -->
+<!--         <thead>   -->
+<!--          <tr style="background-color: #FCA5A5" align="center"> -->
+<!-- 	        <th>고유 번호</th> -->
+<!-- 			<th>위치 번호</th> -->
+<!-- 			<th>구역 번호</th> -->
+<!-- 			<th>제목</th> -->
+<!-- 			<th>내용</th> -->
+<!-- 			<th>로그인</th> -->
+<!-- 			<th>등급</th> -->
+<!--         </tr>  -->
+<!--         </thead>   -->
+<!--         <tbody>  -->
          
 <%--        <c:forEach items="${UserList}" var="users">                 --%>
 <!--        <tr align="center"> -->
@@ -220,8 +220,8 @@
     </table>
     <br>
     <div class='btnSet' align="center">
-		<a class='myButton' href="adminIntroduce.wp">전체 목록</a>
-		<a class='myButton' href="adminIntroduce.wp">소개글 등록</a>
+<!-- 		<a class='myButton' href="adminIntroduce.wp">전체 목록</a> -->
+		<a class='myButton' href="getIntro.wp">와이너리관리</a>
             <br><br><hr> <br><br>
 	</div>
     </div>
@@ -246,23 +246,23 @@
 //                 $(this).toggleClass('active');
             });
         });
-        $(document).ready(function(){
-            $('#myTable').dataTable();
-        });
+//         $(document).ready(function(){
+//             $('#myTable').dataTable();
+//         });
         
-    function updateAd(param){
-    	var m_name = $('#m_name'+param).val();
-    	var id =  $('#id'+param).val();
-    	console.log('testad');
-    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
-    	document.userInfo.submit();
-    }
-    function deleteAd(param){
-    	var id = param;
-    	console.log('testad');
-    	location.href = 'deleteAd.wp?id='+id;
-    	document.userInfo.submit();
-    }
+//     function updateAd(param){
+//     	var m_name = $('#m_name'+param).val();
+//     	var id =  $('#id'+param).val();
+//     	console.log('testad');
+//     	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
+//     	document.userInfo.submit();
+//     }
+//     function deleteAd(param){
+//     	var id = param;
+//     	console.log('testad');
+//     	location.href = 'deleteAd.wp?id='+id;
+//     	document.userInfo.submit();
+//     }
     </script>
 </body>
 </html>

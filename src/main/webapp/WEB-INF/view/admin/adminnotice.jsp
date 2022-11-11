@@ -98,7 +98,36 @@
 	position:relative;
 	top:1px;
 }
-
+/*공지 글 등록*/
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
+/*등록*/
+.input-group-text {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #fee2e2;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+/*작성자*/
+.form-control:disabled, .form-control[readonly] {
+    background-color: #fee2e2;
+    opacity: 1;
+}
 </style>
 <body>
 
@@ -124,6 +153,7 @@
                         </li>
                         <li>
                             <a href="/admin_updateIntro.wp">와이너리 관리</a>
+                            <a href="adminIntroduce.wp">와이너리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -200,8 +230,8 @@
         </thead>  
         <tbody> 
          
-       <c:forEach items="${NoticeListAd}" var="notice">                
-       <tr align="center">
+       <c:forEach items="${NoticeListAd}" var="notice" >                
+       <tr align="center"onclick="selTr(${notice.commu_no})">
          <td>${notice.commu_no}</td>
       	 <td>${notice.commu_title}</td>
       	 <td>${notice.id}</td>
@@ -215,11 +245,56 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminNotice.wp">전체 목록</a>
-		<a class='myButton' href="adminNotice.wp">공지 관리</a>
+		<a class='myButton' href="#insert">공지 등록</a>
+		<a class='myButton' href="admin_getNoticeList.wp">공지 수정</a>
             <br><br><hr> <br><br>
 	</div>
     </div>
-    
+       <div class="jumbotron" id="insert">
+      <h1 align="center">공지사항 글 등록</h1>
+   </div>
+
+   <div class="container-fluid">
+      <form action="admin_insertNotice.wp" method="post">
+         <input type="hidden" class="form-control" name="commu_cat" value="0">
+
+         <!-- <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">항목내번호</span>
+            </div>
+            <input type="text" class="form-control" name="commu_cat_no" placeholder="항목내번호를 입력하세요" required>
+         </div> -->
+         
+         <div  class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">제목</span>
+            </div>
+            <input type="text" class="form-control" name="commu_title" placeholder="제목을 입력하세요." required>
+         </div>
+         
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">작성자</span>
+            </div>
+            <input type="text" class="form-control innm" name="id" value="관리자" readonly>
+         </div>
+         
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <span class="input-group-text">내용</span>
+            </div>
+            <textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea>
+         </div>
+         
+         <div id="footer">
+            <div id="se2_sample" style="margin: 10px 0;">
+               <input class='myButton' type="submit" value="등록하기">
+            </div>
+         </div>
+         <hr>
+         
+      </form>
+   </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
@@ -257,6 +332,9 @@
     	location.href = 'deleteAd.wp?id='+id;
     	document.userInfo.submit();
     }
+    function selTr(val){
+    	   location.href = "admin_getNotice.wp?commu_no="+val;
+    	}
     </script>
 </body>
 </html>

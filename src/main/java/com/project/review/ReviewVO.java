@@ -21,7 +21,26 @@ public class ReviewVO {
 	//wine 컬럼
 	private String w_nm_k;
 	private String w_nm_e;
+	private String w_image1;
+	private int w_price;
+	private double rating_avg;
 	
+	public int getW_price() {
+		return w_price;
+	}
+
+	public void setW_price(int w_price) {
+		this.w_price = w_price;
+	}
+
+	public double getRating_avg() {
+		return rating_avg;
+	}
+
+	public void setRating_avg(double rating_avg) {
+		this.rating_avg = rating_avg;
+	}
+
 	//order 컬럼
 	private String ord_code;
 	private String ord_stat;
@@ -199,13 +218,22 @@ public class ReviewVO {
 	public void setFilter(String filter) {
 		this.filter = filter;
 	}
+	
+	public String getW_image1() {
+		return w_image1;
+	}
+
+	public void setW_image1(String w_image1) {
+		this.w_image1 = w_image1;
+	}
 
 	@Override
 	public String toString() {
 		return "ReviewVO [re_no=" + re_no + ", w_no=" + w_no + ", id=" + id + ", re_title=" + re_title + ", re_content="
 				+ re_content + ", re_score=" + re_score + ", re_photo1=" + re_photo1 + ", re_photo2=" + re_photo2
 				+ ", re_photo3=" + re_photo3 + ", re_date=" + re_date + ", re_like=" + re_like + ", w_nm_k=" + w_nm_k
-				+ ", w_nm_e=" + w_nm_e + ", ord_code=" + ord_code + ", ord_stat=" + ord_stat + ", searchCondition="
+				+ ", w_nm_e=" + w_nm_e + ", w_image1=" + w_image1 + ", w_price=" + w_price + ", rating_avg="
+				+ rating_avg + ", ord_code=" + ord_code + ", ord_stat=" + ord_stat + ", searchCondition="
 				+ searchCondition + ", searchKeyword=" + searchKeyword + ", filter=" + filter + ", uploadFile="
 				+ uploadFile + ", offset=" + offset + "]";
 	}

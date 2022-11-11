@@ -29,7 +29,6 @@
                <tbody>
 
                   <tr>
-<!--                      <th class="td_width_1"></th> -->
                      <th class="td_width_6">구독명</th>
                      <th class="td_width_2">배송현황</th>
                      <th class="td_width_2">가격</th>

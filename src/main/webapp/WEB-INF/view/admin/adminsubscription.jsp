@@ -123,7 +123,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">소개페이지관리</a>
+                            <a href="adminIntroduce.wp">와이너리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -225,7 +225,7 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminSubscription.wp">전체 목록</a>
-		<a class='myButton' href="adminSubscription.wp">구독 관리</a>
+		<a class='myButton' href="mysubscribes.wp">구독 관리</a>
             <br><br><hr> <br><br>
 	</div>
     </div>

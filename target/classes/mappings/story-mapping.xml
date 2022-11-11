@@ -16,12 +16,22 @@
 	
 	<select id="getStoryList2" resultType="story">
 		select * from story
-		where story_p_no = 2
+		where story_p_no = 2 and story_a_no not in (1)
+	</select>
+	
+	<select id="getStory2" resultType="story">
+		select * from story
+		where story_p_no = 2 and story_a_no = 1
 	</select>
 	
 	<select id="getStoryList3" resultType="story">
 		select * from story
-		where story_p_no = 3
+		where story_p_no = 3 and story_a_no not in (1)
+	</select>
+	
+	<select id="getStory3" resultType="story">
+		select * from story
+		where story_p_no = 3 and story_a_no = 1
 	</select>
 
 </mapper>

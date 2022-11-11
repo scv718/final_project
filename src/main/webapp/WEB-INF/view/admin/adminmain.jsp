@@ -92,6 +92,7 @@ img {
                         </li>
                         <li>
                             <a href="/admin_updateIntro.wp">와이너리 관리</a>
+                            <a href="adminIntroduce.wp">와이너리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -154,7 +155,7 @@ img {
             <br>
             <h1 align="center">만든사람들(프로필)</h1>
             <br><br>
-      <table>
+      <table style="background: #white;">
         <thead>
         	<tr>
                 <th>프로필사진</th>
@@ -164,20 +165,20 @@ img {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이승진.png" ></td>
+            <tr >
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이승진.jpg" ></td>
                 <td>Winery팀장</td>
                 <td>이승진</td>
                 <td>34</td>
             </tr>
 			<tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김경민.png" ></td>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김경민.jpg" ></td>
                 <td>Winery부팀장</td>
                 <td>김경민</td>
                 <td>32</td>
             </tr>
             <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.png" ></td>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.jpg" ></td>
                 <td>언니</td>
                 <td>김지나</td>
                 <td>33</td>
