@@ -72,14 +72,14 @@
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
-                           <button type="button" class="btn-hover color-9"  id="delete_btn">주문취소</button>
+                           <button type="button" class="btn-hover color-9"  id="delete_btn" style="width: 75px;">주문취소</button>
                            </form>
                       	</c:if>
                        
                            
                            <form action="deleteOrder.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${ci.ord_code}">
-                           <button  type="submit" class="btn-hover color-9" id="delete_btn">주문내역삭제</button>
+                           <button  type="submit" class="btn-hover color-9" id="delete_btn"style="width: 75px;">내역삭제</button>
                            </form>
                         </td>
                      </tr>

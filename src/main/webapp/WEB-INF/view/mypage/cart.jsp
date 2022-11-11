@@ -89,7 +89,7 @@
                            <input type="hidden" name = "id" value="${ci.id}">
                            <input type="hidden" name = "w_no" value="${ci.w_no}">
                            <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
-                           <button type = "submit" class="quantity_modify_btn">변경</button>
+                           <button type = "submit" class="quantity_modify_btn" style="width: 75px;">변경</button>
                            </form>                  
                         </td>
                         
@@ -100,7 +100,7 @@
                         <td class="td_width_4 table_text_align_center">
                            <form action="deleteCart.wp" method="post">
                         <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
-                           <button type="submit" class = "btn-hover color-9" id = "delete_btn">삭제</button>
+                           <button type="submit" class = "btn-hover color-9" id = "delete_btn" style="width: 75px;">삭제</button>
                            </form>
                         </td>
                      </tr>
