@@ -196,6 +196,7 @@
 	/*     white-space: nowrap; */
 	/*     background-color: transparent; */
 	/*     border: 0; */
+	font-family: MICEMyungjo !important;
 	
 }
 
@@ -206,7 +207,7 @@
 .navbar {
 	background-color: white !important;
 	position: relative;
-	font-size: 15px;
+	font-size: 19px;
 	height: 70px;
 	padding: 0;
 	margin: 0;
@@ -217,7 +218,6 @@
 .navbar-light .navbar-nav .nav-link {
 	color: black;
 	font-size: 13px;
-	font-family: 'S-CoreDream-4Regular';
 	font-weight: bold;
 }
 

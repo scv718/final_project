@@ -47,7 +47,8 @@
 		<colgroup>
 			<col style="width: 50px">
 			<col style="width: 20px">
-			<col style="width: 200px">
+			<col style="width: 50px">
+			<col style="width: 150px">
 			<col style="width: 70px">
 			<col style="width: 70px">
 			<col style="width: 100px">
@@ -56,6 +57,7 @@
 		<thead>
 			<tr class="reviewhead">
 				<th>번호</th>
+				<th></th>
 				<th></th>
 				<th>제목</th>
 				<th>평점</th>
@@ -69,6 +71,13 @@
 				<tr>
 					<td class="tdCenter">${review.re_no}</td>
 					<td><c:if test="${review.re_photo1 ne NULL}"><i class="bi bi-image" style="color: gray;"></i></c:if></td>
+					<td>
+<!-- 						<div class="img-box" style="float: left;"> -->
+<%-- 							<a href="product.wp?w_no=${review.w_no}" class="productlink"> --%>
+<%-- 								<img src="../../resources/img/wine/${review.w_image1}" class="img-thumbnail"> --%>
+<!-- 							</a> -->
+<!-- 						</div> -->
+					</td>
 					<td style="text-align:left"><div><a href="product.wp?w_no=${review.w_no}" class="productlink">${review.w_nm_k}</a>
 						<br><a href="detailReview.wp?re_no=${review.re_no}" class="detailreview">${review.re_title}</a></div></td>
 					<td class="tdCenter">
@@ -98,7 +107,12 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table><br><br>
+	</table>
+	<c:if test="${search ne null and getCount eq '0'}">
+		<div class="col" id="notexist">검색한 내용이 없습니다.</div>
+	</c:if>
+	
+	<br><br>
 	
 	<div id="btnBox">
 	<!-- 반복처리할 태그 시작 -->
