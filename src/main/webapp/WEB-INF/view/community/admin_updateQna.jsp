@@ -71,8 +71,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				 <textarea id="summernote" name="commu_content" readonly>${community.commu_content}</textarea>
-<!-- 				<textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea> -->
+<%-- 				 <textarea id="summernote" name="commu_content" readonly>${community.commu_content}</textarea> --%>
+				<textarea class="form-control" rows="10" id="comment" name="commu_content" disabled></textarea>
 			</div>
 			<form action="admin_updateQna.wp" method="post" enctype="multipart/form-data">
 			<input type="hidden" class="form-control" name="commu_no" value="${community.commu_no}">

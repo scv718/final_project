@@ -7,52 +7,24 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/faq.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/faq_qna_List.css" />
 <title>FAQ</title>
 <%@ include file="../../../header.jsp"%>
-<style>
-.accordion {
-	background-color: #ffffff;
-	cursor: pointer;
-	padding: 16px;
-	width: 100%;
-	outline: none;
-	border: none;
-	text-align: left;
-	font-size: 16px;
-	transition: 0.4s;
-}
 
-.active, .accordion:hover {
-	background-color: #f5f5f5;
-	font-weight: bold;
-}
-
-.accordion:after {
-	content: '\002B';
-	font-weight: bold;
-	float: right;
-	margin-left: 5px;
-}
-
-.active:after {
-	content: "\2212";
-}
-
-.panel {
-	padding: 0 16px;
-	background-color: #ffffff;
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.2s ease-out;
-	border-bottom: 1px solid #eeeeee;
-}
-</style>
 <script>
 	function selTr(val) {
 		location.href = "getFaq.wp?commu_no=" + val;
 	}
+	var id = '${userID}';
+	console.log(id)
+	function logincheck(){
+		if(id == ""){
+			alert("로그인 후 이용가능합니다.");
+			location.href = "signUp.wp";
+		}else{
+		location.href = "insertQna_get.wp";
+			}
+		}
 </script>
 </head>
 
@@ -60,9 +32,10 @@
 
 	<div id="faqContainer">
 		<!-- 제목 -->
-		<h3 id="comtitle">FAQ 자주하는질문</h3>
-		<button type="button" onclick="location.href='insertQna_get.wp'">1:1 문의하기</button>
-		<button type="button" onclick="location.href='admin_getFaqList.wp'">관리자FAQ목록확인</button>
+		<h3 id="comtitle">FAQ</h3>
+		<p>고객들이 자주 물어보는 여러가지 질문에 대한 답변을 모아두었습니다.</p>
+		
+<!-- 		<button type="button" onclick="location.href='admin_getFaqList.wp'">관리자FAQ목록확인</button> -->
 		<!-- 검색창 -->
 		<nav id="searchNav">
 			<form action="getFaqList.wp" method="POST" id="faqform">
@@ -76,27 +49,33 @@
 				<button type="submit" class="searchbtn">검색</button>
 			</form>
 		</nav>
-
+		
 		<!-- 카테고리 필터 -->
+		<div id="aligndiv">
 		<form action="getFaqList.wp" method="POST" id="align">
-			<ul>
-				<li>
-				<select name="alignlist" class="w-px100" onchange="$('form').submit()">
-						<option>자주 찾는 검색어</option>
-						<option value="zero" ${paging.viewType eq 'zero' ? 'selected' : '' }>[주문/결제/배송]</option>
-						<option value="one" ${paging.viewType eq 'one' ? 'selected' : '' }>[취소/교환/환불]</option>
-						<option value="two" ${paging.viewType eq 'two' ? 'selected' : '' }>[구독서비스]</option>
-						<option value="three" ${paging.viewType eq 'three' ? 'selected' : '' }>[회원]</option>
-						<option value="four" ${paging.viewType eq 'four' ? 'selected' : '' }>[기타]</option>
-				</select>
-				</li>
-			</ul>
+			<nav>
+<!--         <div id="horizontal-underline"></div> -->
+<!--         <span id="serched">자주찾는 검색어</span> -->
+        <label><input type="radio" name="alignlist" value="zero" id="zero" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>주문/결제/배송&nbsp;│</label>
+        <label><input type="radio" name="alignlist" value="one" id="one" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>취소/교환/환불&nbsp;│</label>
+        <label><input type="radio" name="alignlist" value="two" id="two" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>구독서비스&nbsp;│</label>
+        <label><input type="radio" name="alignlist" value="three" id="three" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>회원&nbsp;│</label>
+        <label><input type="radio" name="alignlist" value="four" id="four" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>기타&nbsp;│</label>
+        <button type="button" class="searchbtn" onclick="logincheck()">1:1 문의하기</button>
+    		</nav>
 		</form>
-
+		</div>
+		
+		
 		<!-- 자주하는질문 보드 -->
+			<div class="li_title">
+				<ul>
+				<li class="title_1">문의내용</li>
+				</ul>
+			</div>
 		<div id="accordion">
 			<c:forEach var="faq" items="${FaqList}">
-				<button class="accordion">
+				<div class="accordion">
 					<c:choose>
 						<c:when test="${faq.faq_cat eq '0'}">
 							<span>[주문/결제/배송]</span>
@@ -115,10 +94,10 @@
 						</c:otherwise>
 					</c:choose>
 					<span>${faq.commu_title}</span>
-				</button>
+				</div>
 				<div class="panel">
-					<p>${faq.commu_content}</p>
-
+<%-- 					<p>${faq.commu_content}</p> --%>
+					<textarea class="addr" disabled>${faq.commu_content}</textarea>
 				</div>
 			</c:forEach>
 		</div>
@@ -163,6 +142,13 @@
             } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
+        });
+    } 
+    
+    var txtArea = $(".addr");
+    if (txtArea) {
+        txtArea.each(function(){
+            $(this).height(this.scrollHeight);
         });
     }
 </script>

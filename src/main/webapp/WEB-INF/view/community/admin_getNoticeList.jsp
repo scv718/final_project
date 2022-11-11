@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"   href="${pageContext.request.contextPath}/resources/css/notice.css"/>
+<link rel="stylesheet"   href="${pageContext.request.contextPath}/resources/css/communityList.css"/>
 <title>공지사항 목록 - 관리자</title>
 <%@ include file="../../../header.jsp"%>
 
@@ -18,13 +18,13 @@ function selTr(val){
 </head>
 
 <body class = "d-flex flex-column min-vh-100">
-   <div id="noticeContainer">
+   <div id="communityContainer">
    
    <h3 id="comtitle">공지사항</h3>
    
    <!-- 검색창 - 공통 -->
    <nav id="searchNav">
-      <form action="admin_getNoticeList.wp" method="POST" id="noticeform">
+      <form action="admin_getNoticeList.wp" method="POST" id="communityform">
          <select name="searchCondition" class="searchsel" >
             <c:forEach items="${conditionMap}" var="option">
                <option value="${option.value}" <c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option>
@@ -37,8 +37,8 @@ function selTr(val){
 
    <button id="conWrite" type="button" class="btn btn-primary" onclick="location.href='admin_insertNotice.wp'">글쓰기</button>
    
-    <div class="li_board noticetab">
-        <ul class="li_header hidden-xs noticehead">
+    <div class="li_board communitytab">
+        <ul class="li_header hidden-xs communityhead">
             <li class="no"></li>
             <li class="tit">제목</li>
             <li class="name">작성자</li>
@@ -47,7 +47,7 @@ function selTr(val){
         </ul>
 
       <c:forEach var="notice" items="${noticeList}">
-           <ul class="li_body notice_body" onclick="selTr(${notice.commu_no})" style="cursor:pointer;" >
+           <ul class="li_body community_body" onclick="selTr(${notice.commu_no})" style="cursor:pointer;" >
                <li class="no">[안내]</li>
                <li class="tit">${notice.commu_title}</li>
                <li class="name">${notice.id}</li>

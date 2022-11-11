@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"   href="${pageContext.request.contextPath}/resources/css/notice.css"/>
+    <link rel="stylesheet"   href="${pageContext.request.contextPath}/resources/css/communityList.css"/>
     <title>공지사항 목록 - 사용자</title>
     <%@ include file="../../../header.jsp"%>
     
@@ -18,11 +18,12 @@
 </head>
 
 <body class = "d-flex flex-column min-vh-100">
-   <div id="noticeContainer">
+   <div id="communityContainer">
    <h3 id="comtitle">공지사항</h3>
+   <p>와이너리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요</p>
    <!-- 검색창 - 공통 -->
    <nav id="searchNav">
-      <form action="getNoticeList.wp" method="POST" id="noticeform">
+      <form action="getNoticeList.wp" method="POST" id="communityform">
          <select name="searchCondition" class="searchsel" >
             <c:forEach items="${conditionMap}" var="option">
                <option value="${option.value}" <c:if test="${category eq option.value}">selected="selected"</c:if>>${option.key}</option>
@@ -33,8 +34,8 @@
       </form>
    </nav>
 
-    <div class="li_board noticetab">
-        <ul class="li_header hidden-xs noticehead">
+    <div class="li_board communitytab">
+        <ul class="li_header hidden-xs communityhead">
             <li class="no"></li>
             <li class="tit">제목</li>
             <li class="name">작성자</li>
@@ -43,10 +44,14 @@
         </ul>
 
    <c:forEach var="notice" items="${noticeList}">
-        <ul class="li_body notice_body" onclick="selTr(${notice.commu_no})" style="cursor:pointer;" >
+        <ul class="li_body community_body" onclick="selTr(${notice.commu_no})" style="cursor:pointer;" >
             <li class="no">[안내]</li>
             <li class="tit">${notice.commu_title}</li>
-            <li class="name">${notice.id}</li>
+            <li class="name">
+          		<c:choose>
+						<c:when test="${notice.id eq 'admin'}">관리자</c:when>
+						<c:otherwise>${notice.id}</c:otherwise>
+				</c:choose>
             <li class="date">${notice.commu_date}</li>
             <li class="read">
              <span class="hidden-lg hidden-md hidden-sm ">조회수</span>${notice.commu_count}
