@@ -74,12 +74,12 @@ img {
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
-                <h3>관리자페이지</h3>
+                <h3><strong>관리자페이지</strong></h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>데이터정보</strong></a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
                             <a href="adminMain.wp">만든사람들(메인)</a>
@@ -91,7 +91,7 @@ img {
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">와이너리</a>
+                           <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -102,7 +102,7 @@ img {
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                         <li>
                             <a href="adminNotice.wp">공지사항</a>
@@ -226,7 +226,7 @@ img {
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
-//                 $(this).toggleClass('active');
+                 $(this).toggleClass('active');
             });
         });
      

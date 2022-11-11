@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/notice.css"/>
+    <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/communityList.css"/>
     <title>1:1 문의</title>
     <%@ include file="../../../header.jsp"%>
     
@@ -21,10 +21,10 @@
 </head>
 
 <body class = "d-flex flex-column min-vh-100">
-	<div id="noticeContainer">
+	<div id="communityContainer">
 	<h3 id="comtitle">관리자 1:1 문의 답변</h3>
 	<nav id="searchNav">
-		<form action="admin_getQnaList.wp" method="POST" id="noticeform">
+		<form action="admin_getQnaList.wp" method="POST" id="communityform">
 		<!-- 아이디 검색 기능 -->
 			<select name="searchCondition" class="searchsel" >
 				<c:forEach items="${conditionMap}" var="option">
@@ -36,21 +36,20 @@
 		</form>
 	</nav>
 	
-	<!-- 카테고리 필터 -->
+		<!-- 카테고리 필터 -->
+		<div id="aligndiv">
 		<form action="admin_getQnaList.wp" method="POST" id="align">
-			<ul>
-				<li>
-				<select name="alignlist" class="w-px100" onchange="$('form').submit()">
-						<option>답변상태</option>
-						<option value="waiting" ${paging.viewType eq 'zero' ? 'selected' : '' }>[답변대기]</option>
-						<option value="completed" ${paging.viewType eq 'one' ? 'selected' : '' }>[답변완료]</option>
-				</select>
-				</li>
-			</ul>
+			<nav>
+<!--         <div id="horizontal-underline"></div> -->
+<!--         <span id="serched">자주찾는 검색어</span> -->
+        <label><input type="radio" name="alignlist" value="waiting" id="zero" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>답변대기&nbsp;│</label>
+        <label><input type="radio" name="alignlist" value="completed" id="one" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'one'}">checked</c:if>>답변완료&nbsp;</label>
+    		</nav>
 		</form>
+		</div>
 
-    <div class="li_board noticetab">
-        <ul class="li_header hidden-xs noticehead">
+    <div class="li_board communitytab">
+        <ul class="li_header hidden-xs communityhead">
             <li class="no">문의유형</li>
             <li class="tit">제목</li>
             <li class="name">작성자</li>
@@ -59,7 +58,7 @@
         </ul>
 
 	<c:forEach var="qna" items="${admin_getQnaList}">
-        <ul class="li_body notice_body" onclick="selTr(${qna.commu_no})" style="cursor:pointer;" >
+        <ul class="li_body community_body" onclick="selTr(${qna.commu_no})" style="cursor:pointer;" >
             <li class="no">
             <c:choose>
 						<c:when test="${qna.faq_cat eq '0'}">

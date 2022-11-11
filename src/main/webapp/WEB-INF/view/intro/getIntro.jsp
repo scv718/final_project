@@ -28,7 +28,8 @@
 		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 
 			<div class="carousel-inner">
-				<div class="carousel-item active">
+				<div class="bg">
+<!-- 					<div class="carousel-item active"> -->
 
 					<img class="bd-placeholder-img" width="100%" height="100%"
 						src="resources/img/intro/${intro.intro_img}">
@@ -60,7 +61,7 @@
 						<p>${intro.intro_s_c1}</p>
 						<p>${intro.intro_s_c1_2}</p>
 						<p>
-							<a class="btn btn-secondary" href="#">오시는 길</a>
+							<a class="btn btn-secondary" href="${pageContext.request.contextPath}/location.jsp">오시는 길</a>
 						</p>
 					</div>
 
@@ -71,7 +72,7 @@
 						<p>${intro.intro_s_c2}</p>
 						<p>${intro.intro_s_c2_2}</p>
 						<p>
-							<a class="btn btn-secondary" href="#">검색하기</a>
+							<a class="btn btn-secondary" href="${pageContext.request.contextPath}/wineSearch.wp">검색하기</a>
 						</p>
 					</div>
 
@@ -82,7 +83,7 @@
 						<p>${intro.intro_s_c3}</p>
 						<p>${intro.intro_s_c3_2}</p>
 						<p>
-							<a class="btn btn-secondary" href="#">구독하기</a>
+							<a class="btn btn-secondary" href="${pageContext.request.contextPath}/subscribe.wp">구독하기</a>
 						</p>
 					</div>
 
@@ -107,7 +108,7 @@
 
 				<div class="row featurette">
 					<div class="col-md-7">
-						<h2 class="featurette-heading fw-normal lh-1">
+						<h2 class="fw-normal lh-1">
 							${intro.intro_s_t4}</h2>
 						<br>
 						<p class="lead">${intro.intro_s_c4}</p>
@@ -120,8 +121,8 @@
 					</div>
 					<div class="col-md-5">
 						<img
-							class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-							width="500" height="500"
+							class="bd-placeholder-img bd-placeholder-img-lg featurette-image mx-auto"
+							width="500" height="400"
 							src="resources/img/intro/${intro.intro_s_img4}">
 
 
