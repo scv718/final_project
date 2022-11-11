@@ -152,7 +152,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">와이너리</a>
+                            <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -245,7 +245,6 @@
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminNotice.wp" href="#UpDel">전체 목록</a>
 		<a class='myButton' href="#insert">공지 등록</a>
-		<a class='myButton' href="admin_getNoticeList.wp">공지 수정</a>
             <br><br><hr> <br><br>
 	</div>
     </div>

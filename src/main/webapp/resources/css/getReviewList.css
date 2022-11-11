@@ -16,19 +16,18 @@
  	}
  	
 	#reviewtab {
-		width: 1050px;
+		width: 55%;
 		background-color: #fff;
 		text-align: center;
 		overflow: hidden;
 	}
 	
 	#filterdiv {
-		width: 1050px;
+		width: 55%;
 	}
 	
 	#filter {
 		float: right;
-    	margin-bottom: 10px;
 	}
 	
 	th {
@@ -89,4 +88,14 @@
 
 	svg {
 		margin-bottom: 5px !important;
+	}
+	
+	@media ( max-width : 720px) {
+		#reviewtab {
+	    width: 90%;
+		}
+		
+		#filterdiv {
+		width: 90%;
+		}
 	}

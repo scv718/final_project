@@ -44,7 +44,8 @@
 				</div>
 			</div>
 			
-<div class="mt"><a href="javascript:void(0);" id ="mysubscribes" onclick="test();" type="button">구독 수정</a></div>
+<div class="mt"><a href="javascript:void(0);" id ="mysubscribes" onclick="test();">
+<button type="button"  id="colre" class="w-100 btn btn-lg btn-outline-primary">구독 수정</button></a></div>
 
 			<div class="mb-3 mt-3">
 				<c:choose>
@@ -69,9 +70,9 @@ function test() {
 		}
 		else if (level > 0){
 			alert('이미 구독한 계정입니다.\구독 수정은 구독 취소 후 가능합니다.');
-		}if(confirm("구독 취소하겠습니까?")){
 			location.href = "subscribe-3.wp";
 		}
+	   	
 }
 </script>
 <%@ include file="/footer.jsp"%>

@@ -138,11 +138,16 @@ function joinform_check() {
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var IMP = window.IMP; // 생략가능
+		var pass = '${signup}';
 		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		$("#signUp").click(function(){
-		IMP.certification(
+			
+			console.log('${signup}');
+			if('${signup}' == 0){
+				IMP.certification(
 						{
-							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연8090/certificationget.wp"
+							m_redirect_url: "http://localhost:8090/certificationget.wp"
 						},
 						function(rsp) {
 							if (rsp.success) {
@@ -183,6 +188,13 @@ function joinform_check() {
 								
 							}
 						})
+			}else{
+				 $.ajax({
+			 	        url: '/passsession.wp',
+			 	        type: 'post'
+			 	    });
+			}
+		
 	
 		function takeResponseAndHandle(rsp) {
 			if (rsp.success) {

@@ -127,7 +127,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">와이너리</a>
+                            <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>

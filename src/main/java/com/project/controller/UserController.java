@@ -42,6 +42,11 @@ public class UserController {
 		System.out.println("에러세션");
 		session.setAttribute("error", 0);
 	}
+	@RequestMapping("passsession.wp")
+	public void passsession(HttpServletResponse response, HttpSession session) {
+		System.out.println("패스세션");
+		session.setAttribute("signup", 0);
+	}
 	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
 	public String loginView(UserVO vo, HttpSession session, HttpServletResponse response) {
 		response.setCharacterEncoding("utf-8");
@@ -156,7 +161,9 @@ public class UserController {
 		
 		String m_phone = (String) session.getAttribute("phone");
 		vo.setM_phone(m_phone);
-		
+		String password = vo.getM_pw();
+		String encryptPassword = passwordEncoder.encode(password);
+		vo.setM_pw(encryptPassword);
 		userService.changePw(vo);
  
         return "redirect:signUp.wp";

@@ -73,9 +73,12 @@ public class ProductController {
 		model.addAttribute("reviewList", reviewService.productReviewList(rvo));
 		
 		//평점평균 가져오기
-		model.addAttribute("getRating", reviewService.getRatingAvg(rvo.getW_no()));
+		Double d = reviewService.getRatingAvg(rvo.getW_no());
+		model.addAttribute("getRating", d);
+		System.out.println("리뷰평점평균:" + d);
 		
-		
+		//리뷰 갯수
+		model.addAttribute("reviewCount", totalPageCnt);
 		return "WEB-INF/view/product/productdetailpage.jsp";
 		
 	}

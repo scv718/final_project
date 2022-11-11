@@ -29,7 +29,6 @@
                <tbody>
 
                   <tr>
-<!--                      <th class="td_width_1"></th> -->
                      <th class="td_width_6">구독명</th>
                      <th class="td_width_2">배송현황</th>
                      <th class="td_width_2">가격</th>
@@ -51,28 +50,29 @@
                         <td class="td_width_3 table_text_align_center">
                          <form action="deletesubscribe.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${subscribe.ord_code}">
-                           <button  type="submit" class="delete_btn">구독 내역삭제</button>
-                           </form>
-                      
+                           <button  type="submit" id="delete_btn" class = "btn-hover color-9" style="width: 75px;">내역삭제</button>
+                           </form> 
+                       
                 
                       	<c:if test="${subscribe.cs_stat ne '취소'}">
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${subscribe.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${subscribe.merchant_uid}">
-                           <button  type="button" class="delete_btn">구독 취소</button>
+                           <button  type="button" id="delete_btn" class = "btn-hover color-9" style="width: 75px;">구독취소</button>
                            </form>
                       	</c:if>
                         </td>
-                     </tr>
+                     </tr>  
                </tbody>
             </table>
+            <div>
+               <a href="javascript:void(0);" id ="subscribes2" onclick="cancellation();">
+								<button type="button" id="colre"
+									class = "btn-hover color-9">재구독</button>
+						</a>  </div>
          </div>
      </div>
    </div>   <!-- class="wrap" -->
-   <a href="javascript:void(0);" id ="subscribes2" onclick="cancellation();">
-								<button type="button" id="colre"
-									class="w-100 btn btn-lg btn-outline-primary">재구독</button>
-							</a>
 </div>   <!-- class="wrapper" -->
 
 <script type="text/javascript">

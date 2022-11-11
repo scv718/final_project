@@ -14,7 +14,7 @@ a {
 }
 /* content 랩 */
 .wrap {
-	width: 1080px;
+/* 	width: 1080px; */
 	margin: auto;
 }
 /* 홈페이지 기능 네비 */
@@ -117,8 +117,12 @@ caption {
 	line-height: 20px;
 	width: 100%;
 	text-align: center;
+    border-spacing: 0 10px;
+	
 }
-
+.subject_table > tbody> tr{
+	border-bottom: 1px solid #e7e7e7;
+}
 th {
 	text-align: center;
 	color: #333;
@@ -280,11 +284,13 @@ th {
 	font-size: 20px;
 	font-weight: bold;
 }
-
+td{
+	text-align: center;
+}
 /* 이미지 */
 
 		#image_wrap{
-		
+			text-align: center;
 			height: 100%;
 		}
 		#image_wrap img{
@@ -334,3 +340,80 @@ th {
 .clearfix {
 	clear: both;
 }
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    width: 75px;
+}
+
+#ordername{
+	width:50%;
+}
+#orderstatus{
+	width: 10%;
+}
+#orderprice{
+	width: 10%;
+}
+#orderbtn{
+	width: 20%
+}
+@media screen and (max-width: 768px) {
+	.btn-hover{
+	
+	     height: 31px;
+	         width: 53px !important;
+	             font-size: 9px;
+	             margin: 0;
+	              margin-top: 15px;
+	              margin-bottom: 15px;
+	             
+	 }
+	 #engwinename{
+	 display: none;
+	 
+	 }
+	 
+	 #ordername{
+	width:40%;
+}
+#orderstatus{
+	width: 20%;
+}
+#orderprice{
+	width: 20%;
+}
+#orderbtn{
+	width: 20%
+}
+}
+
+
+   
