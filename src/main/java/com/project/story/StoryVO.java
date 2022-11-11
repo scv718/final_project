@@ -1,5 +1,7 @@
 package com.project.story;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class StoryVO {
 	
 	private int story_no;
@@ -11,8 +13,32 @@ public class StoryVO {
 	private String story_back_img;
 	private String story_add_img;
 	
+	private MultipartFile uploadFile; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
+	private MultipartFile uploadFile2; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
 	
 	
+	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+
+	public MultipartFile getUploadFile2() {
+		return uploadFile2;
+	}
+
+
+	public void setUploadFile2(MultipartFile uploadFile2) {
+		this.uploadFile2 = uploadFile2;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "StoryVO [story_no=" + story_no + ", story_p_no=" + story_p_no + ", story_a_no=" + story_a_no
@@ -31,8 +57,7 @@ public class StoryVO {
 		this.story_semi_title = story_semi_title;
 	}
 	
-	
-	public void setStory_no(int story_no) {
+		public void setStory_no(int story_no) {
 		this.story_no = story_no;
 	}
 	public int getStory_p_no() {
@@ -72,6 +97,5 @@ public class StoryVO {
 		this.story_add_img = story_add_img;
 	}
 	
-	
-	
+		
 }

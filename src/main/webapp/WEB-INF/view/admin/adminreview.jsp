@@ -126,6 +126,9 @@
                             <a href="adminIntroduce.wp">소개페이지관리</a>
                         </li>
                         <li>
+                            <a href="adminStory.wp">와인이야기 페이지 관리</a>
+                        </li>
+                        <li>
                             <a href="adminSubscription.wp">구독관리</a>
                         </li>
                          <li>

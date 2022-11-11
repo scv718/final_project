@@ -126,7 +126,7 @@
                             <a href="adminIntroduce.wp">소개페이지관리</a>
                         </li>
                         <li>
-                            <a href="adminStory.wp">와인이야기 페이지 관리</a>
+                            <a href="adminIntroduce.wp">와인이야기 페이지 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -187,38 +187,46 @@
                 </div>
             </nav>
             
-           <h2 align="center">공지사항</h2>
+           <h2 align="center">소개글 관리</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
         <thead>  
          <tr style="background-color: #FCA5A5" align="center">
-	     	<th>구분 번호</th>
+	        <th>고유 번호</th>
+			<th>위치 번호</th>
+			<th>구역 번호</th>
 			<th>제목</th>
-			<th>작성자</th>
 			<th>내용</th>
-			<th>작성 일자</th>
-			<th>조회수</th>
+			<th>로그인</th>
+			<th>등급</th>
         </tr> 
         </thead>  
         <tbody> 
          
-       <c:forEach items="${NoticeListAd}" var="notice">                
-       <tr align="center">
-         <td>${notice.commu_no}</td>
-      	 <td>${notice.commu_title}</td>
-      	 <td>${notice.id}</td>
-      	 <td>${notice.commu_content}</td>
-      	 <td>${notice.commu_date}</td>
-     	 <td>${notice.commu_count}</td>
-       </tr>            
-       </c:forEach>
+<%--        <c:forEach items="${UserList}" var="users">                 --%>
+<!--        <tr align="center"> -->
+<%--          <td>${users.m_no}</td> --%>
+<%--       	 <td>${users.id}<input type="hidden" id="id${users.m_no}" value="${users.id}"></td> --%>
+<%--       	 <td>${users.m_birth}</td> --%>
+<%--       	 <td><input id="m_name${users.m_no}" value="${users.m_name}"></td> --%>
+<%--       	 <td>${users.m_email}</td> --%>
+<%--      	 <td>${users.login}</td> --%>
+<%--       	 <td>${users.level}</td> --%>
+<!-- 	  <td> -->
+<%-- 	  	<a style="color: white" class="myButton1" onclick="if(confirm('정말 수정하시겠습니까?')){updateAd('${users.m_no}')}">수정</a> --%>
+<%--       	<a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteAd('${users.id}')}">삭제</a> --%>
+<!--       </td> -->
+<!--        </tr>             -->
+<%--        </c:forEach> --%>
        </tbody>
     </table>
     <br>
     <div class='btnSet' align="center">
-		<a class='myButton' href="adminNotice.wp">전체 목록</a>
-		<a class='myButton' href="adminNotice.wp">공지 관리</a>
+		<a class='myButton' href="adminMain.wp">메인이동</a>
+		<a class='myButton' href="admin_Story1.wp">스토리1 페이지 관리</a>
+		<a class='myButton' href="admin_Story2.wp">스토리2 페이지 관리</a>
+		<a class='myButton' href="admin_Story3.wp">스토리3 페이지 관리</a>
             <br><br><hr> <br><br>
 	</div>
     </div>

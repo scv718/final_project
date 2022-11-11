@@ -75,4 +75,12 @@ public class StoryDAOMybatis {
 		System.out.println("===>mybatis로 getStoryList() 기능처리 ");
 		return mybatis.selectList("StoryDAO.getStoryList3", vo);
 	}
+
+	
+
+	public void admin_updateStory1(StoryVO vo) {
+		  System.out.println("===> mybatis admin_updateStory1() 기능처리");
+	      mybatis.update("StoryDAO.admin_updateStory1", vo);
+		
+	}
 }

@@ -73,4 +73,11 @@ public class StoryServiceImpl implements StoryService {
 		return storyDAO.getStoryList3(vo);		
 	}
 
+	@Override
+	public void admin_updateStory1(StoryVO vo) {
+	
+		storyDAO.admin_updateStory1(vo);		
+		
+	}
+
 }
