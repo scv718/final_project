@@ -21,7 +21,7 @@
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/intro.css"/> 
 
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" style="padding:0;">
 
 	<main>
 
