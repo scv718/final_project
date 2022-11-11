@@ -130,7 +130,6 @@
 		//별점 표시
 		$(function(){
 			var rating = $('.rating');
-			
 			rating.each(function(){
 				var targetScore = $(this).attr('data-rate');
 				console.log(targetScore);

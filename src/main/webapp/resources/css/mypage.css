@@ -23,10 +23,7 @@ div{
 
 .wrap{
   background-color: #F8F8F8;  
-<<<<<<< HEAD
   min-height: 1000px;
-=======
->>>>>>> c5921c4035b1069a22dd083e090d96345dcf64fb
 }
 
 .greenContainer{  
@@ -198,3 +195,19 @@ background-color: #F87171;
 }
 /* t1{text-align: center; */
 /*     background: #e9ecef00;} */
+@media screen and (max-width: 768px) {
+	svg{
+	    height: 56px;
+	}	
+	.title{
+	display: none;
+	}
+	.shippingStatusContainer .status {
+    display: flex;
+    margin-bottom: 21px;
+    flex-direction: column;
+     
+}
+}
+
+

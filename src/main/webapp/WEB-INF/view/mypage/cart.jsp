@@ -28,8 +28,10 @@
             <!-- 체크박스 전체 여부 -->
             <div class="all_check_input_div">
                <input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
-            </div>            
-            
+            </div>        
+            <div class ="container">    
+            <div class = "row">
+            <div class = "col-lg-12 col-sm-6">
             <table class="subject_table">
                <caption>표 제목 부분</caption>
                <tbody>
@@ -37,7 +39,7 @@
                   <tr>
                      <th class="td_width_1"></th>
                      <th class="td_width_2"></th>
-                     <th class="td_width_3">상품명</th>
+                     <th class="td_width_4">상품명</th>
                      <th class="td_width_4">가격</th>
                      <th class="td_width_4">수량</th>
                      <th class="td_width_4">합계</th>
@@ -68,9 +70,9 @@
                         </td>
 
 
-   <td class="td_width_2" id="image_wrap"><img id =  "w_image1" src = "resources/img/wine/${ci.w_image1}"><img></td>
+   <td class="td_width_2" id="image_wrap"><img id =  "w_image1" src = "resources/img/wine/${ci.w_image1}"></td>
       
-                        <td class="td_width_3">${ci.w_nm_k}(${ci.w_nm_e})</td>
+                        <td class="td_width_4">${ci.w_nm_k}<p id = "engwinename">(${ci.w_nm_e})</p></td>
                         <td class="td_width_4 price_td">
                            상품금액 : <fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /><br>
                         </td>
@@ -107,6 +109,9 @@
                   </c:forEach>
                </tbody>
             </table>
+            </div>
+            </div>
+            </div>
             
          </div>
          
