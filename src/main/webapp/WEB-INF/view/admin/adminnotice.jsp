@@ -25,6 +25,7 @@
 [type=search] {
     outline-offset: 0;
 }
+
 /*목록버튼*/
 .myButton {
 	background:linear-gradient(to bottom, #e0e0e0 5%, #fffaff 100%);
@@ -119,28 +120,27 @@
     color: #495057;
     text-align: center;
     white-space: nowrap;
-    background-color: #fee2e2;
+    background-color: ##f1f1f1;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
 }
 /*작성자*/
 .form-control:disabled, .form-control[readonly] {
-    background-color: #fee2e2;
+    background-color: ##f1f1f1;
     opacity: 1;
 }
 </style>
 <body>
-
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
-                <h3>관리자페이지</h3>
+                <h3><strong>관리자페이지</strong></h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>데이터정보</strong></a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
                             <a href="adminMain.wp">만든사람들(메인)</a>
@@ -163,7 +163,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                          <li>
                             <a href="adminNotice.wp">공지사항</a>
@@ -213,7 +213,7 @@
                 </div>
             </nav>
             
-           <h2 align="center">공지사항</h2>
+           <h2 class="jumbotron" align="center">공지사항리스트</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
@@ -243,7 +243,7 @@
     </table>
     <br>
     <div class='btnSet' align="center">
-		<a class='myButton' href="adminNotice.wp">전체 목록</a>
+		<a class='myButton' href="adminNotice.wp" href="#UpDel">전체 목록</a>
 		<a class='myButton' href="#insert">공지 등록</a>
 		<a class='myButton' href="admin_getNoticeList.wp">공지 수정</a>
             <br><br><hr> <br><br>
@@ -252,7 +252,7 @@
        <div class="jumbotron" id="insert">
       <h1 align="center">공지사항 글 등록</h1>
    </div>
-
+<br><br><br><br>
    <div class="container-fluid">
       <form action="admin_insertNotice.wp" method="post">
          <input type="hidden" class="form-control" name="commu_cat" value="0">
@@ -289,11 +289,13 @@
             <div id="se2_sample" style="margin: 10px 0;">
                <input class='myButton' type="submit" value="등록하기">
             </div>
+              
          </div>
-         <hr>
-         
+         <hr><br>
+         <a align="center" href="#" class="top"><h4>Top▲</h4></a>
       </form>
    </div>
+   
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
@@ -308,32 +310,33 @@
     <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+     //관리자 페이지 사이드바
+    $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
-//                 $(this).toggleClass('active');
+                 $(this).toggleClass('active');
             });
         });
-        $(document).ready(function(){
+    //그리드 데이터테이블  
+    $(document).ready(function(){
             $('#myTable').dataTable();
         });
-        
-    function updateAd(param){
-    	var m_name = $('#m_name'+param).val();
-    	var id =  $('#id'+param).val();
-    	console.log('testad');
-    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
-    	document.userInfo.submit();
-    }
-    function deleteAd(param){
-    	var id = param;
-    	console.log('testad');
-    	location.href = 'deleteAd.wp?id='+id;
-    	document.userInfo.submit();
-    }
+//공지 리스트
     function selTr(val){
     	   location.href = "admin_getNotice.wp?commu_no="+val;
     	}
+	//top버튼
+	$( window ).scroll( function() {
+		if ( $( this ).scrollTop() > 200 ) {
+			$( '.top' ).fadeIn();
+		} else {
+			$( '.top' ).fadeOut();
+		}
+	} );
+	$( '.top' ).click( function() {
+		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+		return false;
+	} );
     </script>
 </body>
 </html>
