@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+.page-btns{
+	display: none;
+}
 #reviewphoto {
 	    width: 70px;
 	display: inline-block;
@@ -35,6 +37,10 @@
 #textbox{
 	   text-align: left;
     margin-left: 20px;
+     width: 419px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .type {
 	text-align: center;

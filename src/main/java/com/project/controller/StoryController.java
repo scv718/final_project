@@ -26,22 +26,24 @@ public class StoryController {
 	@RequestMapping(value = "/wineStory1.wp")
 	public String wineStory1(StoryVO vo, Model model) {
 		System.out.println("와인이야기1");
-		
-		model.addAttribute("Story1_t",storyService.getStory1(vo));
-		System.out.println(storyService.getStory1(vo).toString());
+		model.addAttribute("story1_t",storyService.getStory1(vo));
 		model.addAttribute("story1_c",storyService.getStoryList1(vo));
 		return "WEB-INF/view/wineStory/wineStory1.jsp";
 	}
 	
 	@RequestMapping(value = "/wineStory2.wp")
-	public String wineStory2() {
+	public String wineStory2(StoryVO vo, Model model) {
 		System.out.println("와인이야기2");
+		model.addAttribute("story2_t",storyService.getStory2(vo));
+		model.addAttribute("story2_c",storyService.getStoryList2(vo));
 		return "WEB-INF/view/wineStory/wineStory2.jsp";
 	}
 	
 	@RequestMapping(value = "/wineStory3.wp")
-	public String wineStory3() {
+	public String wineStory3(StoryVO vo, Model model) {
 		System.out.println("와인이야기3");
+		model.addAttribute("story3_t",storyService.getStory3(vo));
+		model.addAttribute("story3_c",storyService.getStoryList3(vo));
 		return "WEB-INF/view/wineStory/wineStory3.jsp";
 	}
 	

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/productdetailpage.css">
 <title>와이너리 | 와인검색</title>

@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>결제페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -339,7 +340,7 @@ function checkOnlyOne(element) {
 					</div>
 					<!-- 버튼 영역 -->
 					<div class="total_info_btn_div">
-						<button id="check_module" type="button">결제하기</button>
+						<button id="check_module" class = "btn-hover color-9"type="button">결제하기</button>
 					</div>
 				</div>				
 				
@@ -372,7 +373,7 @@ function checkOnlyOne(element) {
 <input name='w_noList' type='hidden' value='${ol.w_no}'>
 </c:forEach>
 	<input type="hidden" name="unm" id="unm" value = "${user.m_name}" ><br>
-    <input type="hidden" name="amount" id="amount" value="" ><br>	
+    <input type="hidden" name="amount" id="amount"><br>	
     <input type="hidden" name="imp_uid" id="imp_uid"><br>
     <input type="hidden" name="merchant_uid" id="merchant_uid"><br>
     <input type="hidden" name="ord_addr" id="ord_addr"><br>
@@ -416,13 +417,15 @@ $(document).ready(function(){
 	
 	finalTotalPrice = totalPrice;
 	
-	
 $("#check_module").click(function () {
-	
 	var m_address;
 	var postcode;
 	var phone;
+	
+	
 	$('#amount').val(finalTotalPrice);
+	console.log($('#amount').val());
+	console.log(finalTotalPrice);
 	$(".addressInfo_input_div").each(function(i, obj){
 		if($(obj).find(".selectAddress").val() == 'T'){
 			m_address = $(obj).find(".m_add").val();
@@ -439,6 +442,8 @@ $("#check_module").click(function () {
 	console.log(phone);
 	console.log(postcode[0]);
 	console.log(finalTotalPrice);
+	var formValues = $("form[name=fm]").serialize() ;
+	console.log(formValues);
 	IMP.request_pay({
 		pg: 'html5_inicis', // 자신이 설정한 pg사 설정
 		pay_method: 'card',
@@ -450,7 +455,7 @@ $("#check_module").click(function () {
 		buyer_tel: phone,
 		buyer_addr: m_address,
 		buyer_postcode: postcode[0],
-		m_redirect_url: 'http://localhost:8090/payments/complete'
+		m_redirect_url: "http://localhost:8090/mobilepay.wp?formValues="+formValues
 		}, function (rsp) {
 			console.log(rsp);
 			if (rsp.success) {

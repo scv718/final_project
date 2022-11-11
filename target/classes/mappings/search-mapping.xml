@@ -30,6 +30,9 @@
 	<select id="WineListAd" resultType="wine">
       select * from wine
    </select>
+   
+   
+   
 
 <select id="getType" resultType="wine">
 		select * from wine where type = #{type}

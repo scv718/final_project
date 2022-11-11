@@ -69,5 +69,10 @@ public class OrderServiceImpl implements OrderService{
 		return mybatis.subscribeOrderList(vo);
 	}
 
-
+	//관리자
+		@Override
+		public List<OrderVO> OrderListAd(OrderVO vo) {
+			System.out.println("Order까지 진행됨");
+			return mybatis.OrderListAd(vo);
+		}
 }

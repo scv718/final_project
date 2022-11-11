@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>cart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/cart.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -99,7 +100,7 @@
                         <td class="td_width_4 table_text_align_center">
                            <form action="deleteCart.wp" method="post">
                         <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
-                           <button  type="submit" class="delete_btn">삭제</button>
+                           <button type="submit" class = "btn-hover color-9" id = "delete_btn">삭제</button>
                            </form>
                         </td>
                      </tr>
@@ -175,7 +176,7 @@
          </div>
          <!-- 구매 버튼 영역 -->
     	<div class="content_btn_section">
-				<button class = "order_btn">주문하기</button>
+				<button id = "order_btn" class = "btn-hover color-9">주문하기</button>
 			</div>
 	<form action="payment.wp"method="get" class="order_form"></form>				
        </div>  
@@ -295,7 +296,7 @@ $(".plus_btn").on("click", function(){
 
 	
 /* 주문 페이지 이동 */	
-$(".order_btn").on("click", function(){
+$("#order_btn").on("click", function(){
 	
 	let form_contents ='';
 	let orderNumber = 0;

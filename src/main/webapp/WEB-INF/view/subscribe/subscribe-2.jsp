@@ -36,7 +36,7 @@ function checkOnlyOne(element) {
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${userName} | ${memberInfo.m_email}</td>
+								<td style="width: *">${userName}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -333,7 +333,7 @@ function checkOnlyOne(element) {
 					</div>
 					<!-- 버튼 영역 -->
 					<div class="total_info_btn_div">
-						<button id="check_module" type="button">결제하기</button>
+						<button id="check_module" type="button" class ="btn-hover color-8">결제하기</button>
 					</div>
 				</div>				
 				
