@@ -48,7 +48,6 @@
 
 	#aligndiv {
 		width: 1050px;
-		margin-top: 40px;
 	}
 	
 	#align {
@@ -82,11 +81,11 @@ input{
 }
 
 .li_board ul li.no {
-	width: 10%;
+	width: 20%;
 }
 
 .li_board ul li.tit {
-	width: 50%;
+	width: 40%;
 }
 
 .li_board ul li.name {
@@ -105,10 +104,13 @@ input{
 	display: none;
 }
 
-ul.community_body li.name, ul.community_body li.date, ul.community_body li.read {
+ul.community_body li.name, ul.community_body li.date {
 	color: rgba(0, 0, 0, 0.4);
 }
 
+ul.community_body li.read{
+	font-weight: bold;
+}
 /* 페이징 */
 a {
 	text-decoration-line: none !important;

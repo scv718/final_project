@@ -61,7 +61,7 @@
         <label><input type="radio" name="alignlist" value="two" id="two" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>구독서비스&nbsp;│</label>
         <label><input type="radio" name="alignlist" value="three" id="three" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>회원&nbsp;│</label>
         <label><input type="radio" name="alignlist" value="four" id="four" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>기타&nbsp;│</label>
-        <button type="button" class="searchbtn" onclick="logincheck()">1:1 문의하기</button>
+        <button type="button" class="qna_btn" onclick="logincheck()">1:1 문의하기</button>
     		</nav>
 		</form>
 		</div>
@@ -97,12 +97,13 @@
 				</div>
 				<div class="panel">
 <%-- 					<p>${faq.commu_content}</p> --%>
+					<br>
 					<textarea class="addr" disabled>${faq.commu_content}</textarea>
 				</div>
 			</c:forEach>
 		</div>
 
-
+		<br>
 		<!-- 페이징처리 -->
 		<div id="btnBox">
 			<!-- 반복처리할 태그 시작 -->
@@ -151,6 +152,7 @@
             $(this).height(this.scrollHeight);
         });
     }
+  
 </script>
 
 </html>

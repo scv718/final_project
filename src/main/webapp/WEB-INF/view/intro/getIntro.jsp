@@ -36,19 +36,19 @@
 
 					<div class="container">
 						<div class="carousel-caption text-start">
-							<h1>${intro.intro_t1}</h1>
-							<h1>${intro.intro_t1_2}</h1>
-
+							<h1 class="t1">${intro.intro_t1}</h1>
+							<h1 class="t1">${intro.intro_t1_2}</h1>
 						</div>
 					</div>
+						
 				</div>
 			</div><br>
 
 
 			<div class="container marketing">
 				<div>
-					<h1>${intro.intro_t2}</h1>
-					<h1 class="text-muted">${intro.intro_t2_2}</h1>
+					<h1 class="t2">${intro.intro_t2}</h1>
+					<h1 class="text-muted t2">${intro.intro_t2_2}</h1>
 					<br> <br> <br>
 				</div>
 

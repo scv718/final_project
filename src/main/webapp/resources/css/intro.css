@@ -1,3 +1,18 @@
+/* 1구역 */
+
+h1.t1 {
+	font-size: 36px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 4px 2px 2px gray;
+}
+
+/* 2구역 */
+h1.t2 {
+    text-align: center;
+    margin-top: 10px;
+}
+
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;

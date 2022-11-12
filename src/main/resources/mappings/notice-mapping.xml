@@ -15,7 +15,7 @@
          #{searchKeyword}, '%'),' ','')</if>
       <if test="searchCondition == 'CONTENT' "> AND commu_content LIKE replace(CONCAT('%',
          #{searchKeyword}, '%'),' ','')</if>
-      ORDER BY commu_cat_no DESC
+      ORDER BY COMMU_DATE DESC
       LIMIT 10 OFFSET #{offset}
    </select>
 
