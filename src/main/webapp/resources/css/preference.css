@@ -95,4 +95,13 @@ input[type=range] {
   }
 
 
+@media screen and (max-width: 768px) {
+	.select {
+    width: auto;
+    margin: 0 auto;
+    margin-top: 35px;
+    margin-bottom: 60px;
+       padding: 10px;
+}
+}
 

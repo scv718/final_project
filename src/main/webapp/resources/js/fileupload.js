@@ -46,7 +46,7 @@
 //       		+ '<font style="font-size:12px">' + f.name + '</font>'
 //       		+ ' <img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"/>' 
 			+ ' <img src="' + e.target.result + '" title="' + f.name + '" width=80px height=80px>'
-			+ ' <img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn">' 
+			+ '<img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn" style="width:16px; vertical-align: top;">' 
        		+ '<div/>'
 		);
         fileNum ++;

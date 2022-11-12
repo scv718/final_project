@@ -30,21 +30,29 @@
 <!--                <input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span> -->
 <!--             </div>             -->
             
+            
+            <div class ="container">
+        	<div class = "row">
+            <div class = "col-lg-12 col-sm-6">
             <table class="subject_table">
+          		  <colgroup>
+										<col id = "ordername" />
+										<col id = "orderstatus"/>
+										<col id = "orderprice" />
+										<col id ="orderbtn" />
+									</colgroup>
                <caption>표 제목 부분</caption>
                <tbody>
 
                   <tr>
 <!--                      <th class="td_width_1"></th> -->
-                     <th class="td_width_6">상품명</th>
-                     <th class="td_width_2">배송현황</th>
-                     <th class="td_width_2">가격</th>
-                     <th class="td_width_3">삭제</th>
+                     <th >상품명</th>
+                     <th >배송현황</th>
+                     <th >가격</th>
+                     <th >삭제</th>
                   </tr>
                </tbody>
-            </table>
-            
-            <table class="cart_table">
+    
                <caption>표 내용 부분</caption>
                <tbody>
                   <c:forEach items="${cartInfo}" var="ci">
@@ -58,15 +66,15 @@
 <!--                               <img></div>                         -->
 <!--                         </td> -->
 <%-- 						<c:forEach items="${product}" var="product"> --%>
-                        <td class="td_width_6" style="text-align: center
+                        <td  style="text-align: center
                         ">${ci.w_nm_k}</td>
 <%--                         </c:forEach> --%>
-                        <td class="td_width_2" style = "text-align: center">${ci.ord_stat}</td>
-                        <td class="td_width_2 price_td" style = "text-align: center">
+                        <td  style = "text-align: center">${ci.ord_stat}</td>
+                        <td  style = "text-align: center">
                           <fmt:formatNumber value="${ci.ord_t_price}" pattern="#,### 원" /><br>
                         </td>
   
-                        <td class="td_width_3 table_text_align_center">
+                        <td >
                       
                       	<c:if test="${ci.cs_stat ne '취소'}">
                       	    <form id = "cancel_module" method="post">
@@ -79,14 +87,16 @@
                            
                            <form action="deleteOrder.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${ci.ord_code}">
-                           <button  type="submit" class="btn-hover color-9" id="delete_btn">주문내역삭제</button>
+                           <button  type="submit" class="btn-hover color-9" id="delete_btn">내역삭제</button>
                            </form>
                         </td>
                      </tr>
                   </c:forEach>
                </tbody>
             </table>
-            
+                </div>
+                </div>
+            </div>
          </div>
          
      
