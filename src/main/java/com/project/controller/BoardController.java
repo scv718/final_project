@@ -230,9 +230,12 @@ public class BoardController {
 	
 	// 상품후기 상세조회
 	@RequestMapping(value="/detailReview.wp", method=RequestMethod.GET)
-	public String detailReview(ReviewVO vo, Model model) {
+	public String detailReview(ReviewVO vo, Model model, HttpSession session) throws Exception {
+		String id = (String) session.getAttribute("userID"); 
 		ReviewVO a =  reviewService.detailReview(vo);
+		int likeCheck = likeService.likeCheck(a.getRe_no(), id);
 		model.addAttribute("detailReview",a);
+		model.addAttribute("likeCheck", likeCheck);
 		return "WEB-INF/board/detailReview.jsp";
 	}
 	
@@ -312,7 +315,7 @@ public class BoardController {
 	//리뷰 추천
 	@ResponseBody
 	@RequestMapping(value = "/likeReview.wp", method = RequestMethod.POST)
-	public int updateLike(int re_no, String id) throws Exception{
+	public int updateLike(int re_no, String id, HttpServletRequest request) throws Exception{
 		int likeCheck = likeService.likeCheck(re_no, id);
 		if(likeCheck == 0) {
 			likeService.insertLike(re_no, id);

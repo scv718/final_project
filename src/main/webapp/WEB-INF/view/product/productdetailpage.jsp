@@ -130,24 +130,6 @@
 		    
 		});
 		
-		//리뷰 수정
-		function modbtn(){
-// 			var valueReno = $(this).closest('tr').children('#inputreno').val();
-// 			alert(valueReno);
-		};
-		
-		//리뷰 삭제
-		function delbtn(){
-			let con = confirm("삭제하시겠습니까?");
-			if(con == true){
-			location.href = "deleteReview.wp?re_no="+re_no;
-			alert("삭제 완료");
-			} else if(con == false){
-		  		return false;
-				}
-			location.reload();
-		}
-		
 		//별점 표시
 		$(function(){
 			var rating = $('.rating');
@@ -155,6 +137,64 @@
 				var targetScore = $(this).attr('data-rate');
 				$(this).find('svg:nth-child(-n+'+targetScore+')').css({color:'#f5d142'});
 			});
+		});
+		
+		//리뷰 수정, 삭제
+		$(function(){
+			$('.modBtn').on('click', function() {
+// 				alert($(this).prop('tagName'));
+				var trNum = $(this).closest('tr').prevAll().length;
+				console.log('trNum : ' + trNum);
+				var re_no = $(this).closest('tr').prevAll().attr('data-value');
+				location.href = "updateReviewPage.wp?re_no="+re_no;
+			});
+			
+			$('.delBtn').on('click', function() {
+				var trNum = $(this).closest('tr').prevAll().length;
+				console.log('trNum : ' + trNum);
+				var re_no = $(this).closest('tr').prevAll().attr('data-value');
+				
+				let con = confirm("삭제하시겠습니까?");
+				if(con == true){
+					location.href = "deleteReview.wp?re_no="+re_no;
+					alert("삭제 완료");
+					} else if(con == false){
+				  		return false;
+						}
+					location.reload();
+			});
+			
+			// 추천하기
+			$('.likeBtn').click(function() {
+				var trNum = $(this).closest('tr').prevAll().length;
+				console.log('trNum : ' + trNum);
+				var re_no = $(this).closest('tr').prevAll().attr('data-value');
+	 			
+				if(userId == ""){
+				alert("로그인 후 이용가능합니다.");
+				location.href = "signUp.wp";
+				} else {
+					$.ajax({
+						type : "POST",
+						url : "likeReview.wp",
+						dataType : "json",
+						data : {'re_no' : re_no, 'id' : userId},
+						error : function() {
+							alert("잠시 후 다시 시도해 주세요.");
+						},
+						success : function(likeCheck) {
+							if(likeCheck == 0) {
+							alert("추천 완료");
+							location.reload();
+							} else if(likeCheck == 1) {
+							alert("추천 취소");
+							location.reload();
+							}
+						}
+					});
+				}
+			});
+			
 		});
 	</script>
 	<!-- <form name="fm"> -->
@@ -354,7 +394,7 @@
 			</div>
 			
 			<!-- 유경 추가 시작 -->
-			<div class="row">
+			<div class="row re-wrap">
 			<div class="col-8">
 				<div id="reviewdiv">
 
@@ -366,16 +406,16 @@
 						</div>
 						<div id="reviewContainer">
 							<div id="filterdiv">
-								<form action="getfilterList.wp" method="POST" id="filter">
-									<input type="radio" name="filter" value="PHOTO"
-										onchange="this.form.submit()"
-										<c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰만
-									보기&nbsp; <input type="radio" name="filter" value="NEW"
-										onchange="this.form.submit()"
+								<form action="productReviewFilter.wp" method="POST" id="filter">
+									<input type="hidden" name="w_no" value="${product.w_no}">
+									<input type="radio" name="filter" value="PHOTO" onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰순&nbsp; 
+									<input type="radio" name="filter" value="NEW" onchange="this.form.submit()"
 										<c:if test="${radiochk eq 'NEW'}">checked</c:if>>최신순&nbsp;
-									<input type="radio" name="filter" value="LIKE"
-										onchange="this.form.submit()"
-										<c:if test="${radiochk eq 'LIKE'}">checked</c:if>>추천순
+									<input type="radio" name="filter" value="LIKE" onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'LIKE'}">checked</c:if>>추천순&nbsp;
+									<input type="radio" name="filter" value="SCORE"	onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'SCORE'}">checked</c:if>>별점순
 								</form>
 							</div>
 							<table id="reviewtab">
@@ -399,7 +439,7 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${reviewList}" var="review">
-										<tr>
+										<tr data-value="${review.re_no}">
 											<td><c:if test="${review.re_photo1 ne NULL}">
 													<i class="bi bi-image" style="color: gray;"></i>
 												</c:if></td>
@@ -432,18 +472,17 @@
 											<td class="tdCenter">${review.re_like}</td>
 										</tr>
 										<tr class="review_content_box reviewblock" style="display: none;">
-											<input type="hidden" value="${review.re_no}" id="inputreno">
 											<td colspan="6">
 												<div class="left-div">
 												<div class="content-div">
 												<div style="padding: 15px 0;">
 													<div style="text-align:center; margin-bottom: 10px;">
 														<c:if test="${review.re_photo1 ne NULL}">
-														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo1}" style="width: 200px; padding: 10px 0;">
+														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo1}">
 														<c:if test="${review.re_photo2 ne NULL}">
-														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo2}" style="width: 200px; padding: 10px 0;">
+														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo2}">
 														<c:if test="${review.re_photo3 ne NULL}">
-														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo3}" style="width: 200px; padding: 10px 0;">
+														<img class="imgBoxImg" src="${pageContext.request.contextPath}/resources/img/review/${review.re_photo3}">
 														</c:if>
 														</c:if>
 														</c:if>
@@ -455,12 +494,15 @@
 												<div id="review-bottom">
 													<c:choose>
 														<c:when test="${userID eq review.id}">
-															<button type="button" onclick="updateLike(); return false;"><i class="bi bi-hand-thumbs-up"></i>추천 ${review.re_like}</button>
-															<button type="button" onclick="modbtn()">수정</button>
-															<button type="button" onclick="delbtn()">삭제</button>
+															<button type="button" class="likeBtn">추천 ${review.re_like}</button>
+															<button type="button" class="modBtn">수정</button>
+															<button type="button" class="delBtn">삭제</button>
+<%-- 															<button type="button" class="clickBtn" onclick="updateLike(); return false;"><i class="bi bi-hand-thumbs-up"></i>추천 ${review.re_like}</button> --%>
+<!-- 															<button type="button" class="clickBtn" onclick="modbtn()">수정</button> -->
+<!-- 															<button type="button" class="clickBtn" onclick="delbtn()">삭제</button> -->
 														</c:when>
 														<c:otherwise>
-															<button type="button" onclick="updateLike()"><i class="bi bi-hand-thumbs-up"></i>추천 ${review.re_like}</button>
+															<button type="button" class="likeBtn">추천 ${review.re_like}</button>
 														</c:otherwise>
 													</c:choose>
 												</div>
@@ -537,8 +579,10 @@
 												name="re_content" style="resize: none"
 												placeholder="작성할 내용을 입력하세요." required></textarea>
 										</div>
+										<div class="btn-div">
 										<button class="writebtn" type="button" onclick="insertAction()">작성</button>
 										<button class="writebtn" type="button" onclick="offDisplay()">닫기</button>
+										</div>
 									</div>
 								</form>
 							</div>
