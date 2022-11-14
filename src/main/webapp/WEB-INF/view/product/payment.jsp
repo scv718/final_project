@@ -38,7 +38,7 @@ function checkOnlyOne(element) {
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${userName} | ${memberInfo.m_email}</td>
+								<td style="width: *">${userName}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -324,7 +324,16 @@ function checkOnlyOne(element) {
 							</li>
 							<li>
 								<span class="price_span_label">배송비</span>
-								<span class="delivery_price_span">100000</span>원
+<!-- 								<span class="delivery_price_span">   -->
+                              <c:choose>
+                              <c:when test="${level.level < 0}">
+                               <span class="deliveryPrice">2500</span>원	
+                              </c:when>
+                              <c:otherwise>
+                               <span class=deliveryPrice>0</span>원
+                              </c:otherwise>
+                              </c:choose>
+<!--                             </span>원 -->
 							</li>
 																				
 							<li class="price_total_li">

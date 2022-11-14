@@ -10,16 +10,11 @@
 <body class = "d-flex flex-column min-vh-100">
 <%@ include file="/header.jsp"%>
 
-	<div class="greenContainer">
+	<div class="greenContainer1">
 		<div class=".image-box">
-			<div>
 				<div>
-					<div class="name">등급 : ${UsserVO.lavel}</div>
+					<div class="name">정보수정</div>
 				</div>
-				<div class="name">
-					<div class="name">${userName}님</div>
-				</div>
-			</div>
 		</div>
 		</div>
 		

@@ -78,7 +78,7 @@
                         </td>
                         <td class="td_width_4 table_text_align_center">
                         <form action="modifyCount.wp" method="post">
-                           <div class="table_text_align_center quantity_div">
+                           <div class="table_text_align_center quantity_div" id="text_cen">
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}">
                            <input type="hidden"name="quantity" value="${ci.quantity}">   
                            
@@ -115,7 +115,7 @@
             
          </div>
          
-         <!-- 가격 종합 -->
+         <!-- 가격 종합 --><div class = "col-lg-12 col-sm-6" id="cp12">
          <div class="content_total_section">
             <div class="total_wrap">	
             <c:forEach var="ci" items="${cartInfo}">
@@ -178,9 +178,9 @@
                   </tr>
                </table>            
             </div>
-         </div>
+         </div></div>
          <!-- 구매 버튼 영역 -->
-    	<div class="content_btn_section">
+    	<div class="content_btn_section1">
 				<button id = "order_btn" class = "btn-hover color-9">주문하기</button>
 			</div>
 	<form action="payment.wp"method="get" class="order_form"></form>				
