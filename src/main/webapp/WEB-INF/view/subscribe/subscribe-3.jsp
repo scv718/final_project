@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>cart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/cart.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -24,7 +25,7 @@
          <!-- cartInfo -->
          <div class="content_totalCount_section">
 
-            <table class="subject_table">
+            <table class="subject_table1">
                <caption>표 제목 부분</caption>
                <tbody>
 
@@ -37,7 +38,7 @@
                </tbody>
             </table>
             
-            <table class="cart_table">
+            <table class="cart_table1">
                <caption>표 내용 부분</caption>
                <tbody>
                      <tr><td class="td_width_6" style="text-align:center">${subscribe.w_nm_k}</td>
@@ -50,7 +51,7 @@
                         <td class="td_width_3 table_text_align_center">
                          <form action="deletesubscribe.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${subscribe.ord_code}">
-                           <button  type="submit" id="delete_btn" class = "btn-hover color-9" style="width: 75px;">내역삭제</button>
+                           <button  type="submit" id="delete_btn" class = "btn-hover color-90">내역삭제</button>
                            </form> 
                        
                 
@@ -58,17 +59,17 @@
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${subscribe.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${subscribe.merchant_uid}">
-                           <button  type="button" id="delete_btn" class = "btn-hover color-9" style="width: 75px;">구독취소</button>
+                           <button  type="button" id="delete_btn" class = "btn-hover color-90" >구독취소</button>
                            </form>
                       	</c:if>
                         </td>
                      </tr>  
                </tbody>
             </table>
-            <div>
+            <div id="wwit">
                <a href="javascript:void(0);" id ="subscribes2" onclick="cancellation();">
 								<button type="button" id="colre"
-									class = "btn-hover color-9">재구독</button>
+									class = "btn-hover color-90">재구독</button>
 						</a>  </div>
          </div>
      </div>

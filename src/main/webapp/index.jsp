@@ -310,6 +310,7 @@ $('.WaterBtn').on('click', function () {
 <div class = "row" style = "margin-bottom: 150px;">
 <div class = "col" id = "noticecol">
 <p id = "boardtitle">공지사항</p>
+<a href = "getNoticeList.wp" id = "plus">더보기</a>
 <div class ="col" id = "notice">
 <c:forEach items="${notice}" var = "notice"> 
 <p><a  onclick="location.href = 'getNotice.wp?commu_no=${notice.commu_no}'" style = "cursor:pointer;">${notice.commu_title}</a></p>

@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.community.QnaVO;
 import com.project.review.ReviewVO;
 
 @Repository
@@ -24,5 +23,7 @@ public class ReviewDAOMybatis {
 		}
 		return mybatis.selectList("ReviewDAO.ReviewListAd");
 	}
-	
+	public void deleteReviewAd(ReviewVO vo) {
+		mybatis.delete("ReviewDAO.deleteReviewAd", vo);
+	}
 }

@@ -229,4 +229,5 @@ public class SubscribeController {
 	System.out.println("테스트");
 	return "WEB-INF/view/admin/adminsubscription.jsp";
 	}
+
 }

@@ -8,5 +8,9 @@
 <select id="ReviewListAd" resultType="review">
 		SELECT * FROM review 
 	</select>
+<update id="deleteReviewAd">
+		DELETE FROM REVIEW
+		WHERE id=#{id}
+	</update>
 </mapper>
 
