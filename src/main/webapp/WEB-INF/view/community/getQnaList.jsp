@@ -7,86 +7,48 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/faq.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/faq_qna_List.css" />
 <title>1:1 문의 목록</title>
 <%@ include file="../../../header.jsp"%>
-<style>
-.accordion {
-	background-color: #ffffff;
-	cursor: pointer;
-	padding: 16px;
-	width: 100%;
-	outline: none;
-	border: none;
-	text-align: left;
-	font-size: 16px;
-	transition: 0.4s;
-}
 
-.active, .accordion:hover {
-	background-color: #f5f5f5;
-	font-weight: bold;
-}
-
-.accordion:after {
-	content: '\002B';
-	font-weight: bold;
-	float: right;
-	margin-left: 5px;
-}
-
-.active:after {
-	content: "\2212";
-}
-
-.panel {
-	padding: 0 16px;
-	background-color: #ffffff;
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.2s ease-out;
-	border-bottom: 1px solid #eeeeee;
-}
-</style>
-<script>
-	
-</script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
-	<div id="faqContainer">
+	<div id="qnaContainer">
 		<!-- 제목 -->
-		<h3 id="comtitle">1:1 문의</h3>
-		<button type="button" onclick="location.href='insertQna_get.wp'">1:1
-			문의하기</button>
-		<button type="button" onclick="location.href='admin_getQnaList.wp'">관리자 1:1 목록확인</button>
+		<h3 id="comtitle">1:1 문의게시판</h3>
+		<p>자주 묻는 질문에서 답을 찾기 어려우시거나, 궁금한점을 남겨주세요.</p>
+		<p>운영시간에 빠르게 확인하여 답변드리도록 하겠습니다.</p>
+		
+		<button type="button" class="qna_btn" onclick="location.href='insertQna_get.wp'">1:1 문의글 작성</button>
+		<br>
+<!-- 		<button type="button" onclick="location.href='admin_getQnaList.wp'">관리자 1:1 목록확인</button> -->
 
 		<!-- 필터 -->
-		<form action="getQnaList.wp" method="POST" id="align">
-			<ul>
-				<li>
-				<select name="alignlist" class="w-px100" onchange="$('form').submit()">
-						<option>자주 찾는 검색어</option>
-						<option value="zero" ${paging.viewType eq 'zero' ? 'selected' : '' }>[주문/결제/배송]</option>
-						<option value="one" ${paging.viewType eq 'one' ? 'selected' : '' }>[취소/교환/환불]</option>
-						<option value="two" ${paging.viewType eq 'two' ? 'selected' : '' }>[구독서비스]</option>
-						<option value="three" ${paging.viewType eq 'three' ? 'selected' : '' }>[회원]</option>
-						<option value="four" ${paging.viewType eq 'four' ? 'selected' : '' }>[기타]</option>
-				</select>
-				</li>
-			</ul>
-		</form>
+<!-- 		<form action="getQnaList.wp" method="POST" id="align"> -->
+<!-- 			<ul> -->
+<!-- 				<li> -->
+<!-- 				<select name="alignlist" class="w-px100" onchange="$('form').submit()"> -->
+<!-- 						<option>자주 찾는 검색어</option> -->
+<%-- 						<option value="zero" ${paging.viewType eq 'zero' ? 'selected' : '' }>[주문/결제/배송]</option> --%>
+<%-- 						<option value="one" ${paging.viewType eq 'one' ? 'selected' : '' }>[취소/교환/환불]</option> --%>
+<%-- 						<option value="two" ${paging.viewType eq 'two' ? 'selected' : '' }>[구독서비스]</option> --%>
+<%-- 						<option value="three" ${paging.viewType eq 'three' ? 'selected' : '' }>[회원]</option> --%>
+<%-- 						<option value="four" ${paging.viewType eq 'four' ? 'selected' : '' }>[기타]</option> --%>
+<!-- 				</select> -->
+<!-- 				</li> -->
+<!-- 			</ul> -->
+<!-- 		</form> -->
 		
 		<!-- 자주하는질문 보드 -->
+			<div class="li_title">
+				<ul>
+				<li class="title_1">문의내용</li>
+				</ul>
+			</div>
 		<div id="accordion">
-				<div class="">
-					<p>유형</p>
-				</div>
-				<div class="">
-					<p>문의내용</p>
-				</div>
 			<c:forEach var="qna" items="${getQnaList}">
 				<div class="accordion">
 					<c:choose>
@@ -109,6 +71,7 @@
 					<span>${qna.commu_title}</span>
 				</div>
 				<div class="panel">
+					<br>
 					<p>${qna.commu_content}</p>
 					<div>
 						<c:if test="${qna.commu_photo1 ne NULL}">
@@ -123,23 +86,35 @@
 					</div>
 					<c:choose>
 						<c:when test="${qna.answer_status eq '답변대기'}">
-							<span>
-							<a href="getQna.wp?commu_no=${qna.commu_no}">수정</a>
-							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">삭제</a>
-							</span>
+							<br>
+						<span>
+							<a href="getQna.wp?commu_no=${qna.commu_no}"><span class="material-symbols-outlined">edit</span>수정</a>
+							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">
+							<span class="material-symbols-outlined">delete</span>삭제</a>
+						</span>
 						</c:when>
 						<c:when test="${qna.answer_status eq '답변완료'}">
+							<br>
 							<span>
-							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">삭제</a>
+							<a id="#conDel" href="deleteQna.wp?commu_no=${qna.commu_no}" onClick="alert('삭제하시겠습니까?')">
+							<span class="material-symbols-outlined">delete</span>삭제</a>
 							</span>
 						</c:when>
 					</c:choose>
-					<p>${qna.answer_con}</p>
+<%-- 					<p>${qna.answer_con}</p> --%>
+<%-- 					<textarea class="addr" disabled>${faq.commu_content}</textarea> --%>
+					<c:choose>
+						<c:when test="${qna.answer_status eq '답변완료'}">
+							<hr>
+							<span>관리자&nbsp;│</span><span>${qna.answer_date}</span>
+							<p>${qna.answer_con}</p>
+						</c:when>
+					</c:choose>
 				</div>
 				</c:forEach>
 		</div>
 
-
+		<br>
 		<!-- 페이징처리 -->
 		<div id="btnBox">
 			<!-- 반복처리할 태그 시작 -->
@@ -181,6 +156,7 @@
             }
         });
     }
-</script>
+    
+  </script>
 
 </html>

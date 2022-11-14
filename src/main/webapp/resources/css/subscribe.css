@@ -37,7 +37,8 @@
    padding: 9px;
    color: #333;
 }
-
+.sfbp{font-size: 20px;font-weight: bolder;padding: 6px;}
+.sfbp1 span{font-size: 20px;font-weight: bolder;}
 .bd-placeholder-img {
    font-size: 1.125rem;
    text-anchor: middle;
@@ -119,20 +120,19 @@
 }
 
 #text-p {
-       position: absolute;
+          position: absolute;
     top: 28.9%;
-    left: 39.7%;
+    left: 37.7%;
     width: -50%;
     transform: translate(-50%, -50%);
     font-weight: bolder;
-    text-shadow: 0px 0px 1px #333;
     font-size: 24px;
     text-align: left;
     padding: 85px;
-    line-height: 42px;
+    line-height: 43px;
     vertical-align: top;
 }
-
+#text-p p{style="font-size: 24px;text-align: left;padding: 85px;vertical-align: top;vertical-align: text-top;line-height: 42px;vertical-align: top;"}
 #btnan {
    position: absolute;
    top: 62%;
@@ -215,11 +215,11 @@ to {
 }
 
 #jb-wrap {
-   width: 96%;
-   margin: 0 auto;
-   position: relative;
-   /*    padding: 3%; */
-   overflow: hidden;
+width: 96%;
+    margin: 0 auto;
+    position: relative;
+    padding: 3%;
+    overflow: hidden;
 }
 
 #jb-wrap1 {
@@ -241,14 +241,14 @@ to {
 }
 
 #jb-text {
-   position: absolute;
-   font-weight: bolder;
-   text-align: center;
-   font-size: 50px;
-   top: 6%;
-   color: rgb(237, 0, 140);
-   font-family: "Permanent Marker";
-   left: 52%;
+ position: absolute;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 50px;
+    top: 11%;
+    color: rgb(237, 0, 140);
+    font-family: "Permanent Marker";
+    left: 57%;
 }
 
 .blink {
@@ -295,7 +295,7 @@ to {
 #aa h1 {
    border-radius: 35px;
    background-color: #fb5a5a;
-   padding: 20px;
+   padding: 18px;
    height: 13%;
    width: 50%;
    text-shadow: 0px 0px 1px #333;
@@ -303,18 +303,26 @@ to {
    font-size: 26px;
 }
 
-.lead {
+.leadM {
    position: absolute;
    font-weight: bolder;
    text-shadow: 0px 0px 1px #000;
-   top: 30%;
-   left: 19%;
-   font-size: 22px;
+ top: 61%;
+    left: 22%;
+    font-size: 25px;
    text-align-last: left;
 }
-
+.lead{
+    position: absolute;
+    font-weight: bolder;
+    text-shadow: 0px 0px 1px #000;
+        top: 26%;
+    left: 2%;
+    font-size: 12px;
+    text-align-last: left;;
+}
 #wirow {
-   width: 97%;
+   width: 97%;    padding: 7%;
 }
 
 #aa h2, h3 {
@@ -389,16 +397,38 @@ to {
 .container {
    max-width: 960px;
 }
+#pack{padding: 2%;}
 
 /* 768 */
 @media screen and (max-width: 768px) {
-   #text-p {
-   top: 28.9% !important;
-   left: 41.7%;
-   line-height: 25px;
-   font-size: 14px;
-   line-height: 24px;
-   }
-    #btnan {top: 62%;left: 30%;font-weight: bolder;font-size: 24px;}
+#t1 img {height: 99%;}
+#text-p {top: 29.9%;left: 41.7%;line-height: 25px;font-size: 14px;line-height: 22px;}
+#btnan {top: 65%;left: 30%;font-weight: bolder;font-size: 15px;}
+#colre {font-size: 13px;}
+#btnann {top:71%; left:36%;}
+.btn-hover {width: 94px;height:30px;}
+#fofo {width: 95%;padding: 4.6%;letter-spacing: 0;}
+#jb-wrap img {width: 95%;}
+#jb-text {top: 1%;left: 58%;}
+.sfbp {font-size: 20px;}
+ .win {font-size: 47px;}
+.win1 {font-size: 17px;}
+.leadM {top: 59%;left: 22%;font-size: 14px;text-shadow: 0px 0px 1px #fff;}
+#aa {top: 101px;}
+#aa h1 {border-radius: 49%;background-color: #fb9898;padding: 8px; height: 12%;width: 27%;text-shadow: 0px 0px 1px #333;text-align: center;font-size: 14px;}
+#aa h2{font-size: 21px;text-shadow: 0px 0px 1px #fff;}
+#aa h3 {text-shadow: 0px 0px 1px #fff;line-height: 38px;
+    font-size: 13px;}
+#wirow {height: 90%;}
+#wirow{display: none;}
+#pack{height: 50%;}
+#imgsubcss{ max-width: 100%;height: 60%;width: 100%;}
+.lead {top: 12%;}
+#col-D-5{top:21%;}
+#tople{position: absolute;top: 303%;left: 23%;}
+#fm {padding: 0%;}
+.cll1 {font-size: 14px;}
+#foooooootetetetetet{position: relative;transform: translateY(1000%);}
 }
 
+@media screen and (min-width: 769px) {#wirow1{display: none;}}

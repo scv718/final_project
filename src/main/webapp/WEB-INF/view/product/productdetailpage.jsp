@@ -9,7 +9,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/productdetailpage.css">
 <title>와이너리 | 와인검색</title>
-  <%@ include file="../../../header.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
+<script src="resources/js/fileupload.js"></script>
+<%@ include file="../../../header.jsp"%>
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -62,12 +64,13 @@
 		});
 		
 		//리뷰내용 표시 (유경)
-		$('#viewhidden').click(function(){
-			status = $('#reviewblock').css("display");
-			if(status == 'none') {
-				$('#reviewblock').css('display', '');
+		$('#reviewtab .viewhidden').on('click', function(){
+			var currentRow = $(this).closest('tr');
+			var detail = currentRow.next('tr');
+			if(detail.is(":visible")){
+				detail.hide();
 			} else {
-				$('#reviewblock').css('display', 'none');
+				detail.show();
 			}
 		});
 		
@@ -127,12 +130,29 @@
 		    
 		});
 		
+		//리뷰 수정
+		function modbtn(){
+// 			var valueReno = $(this).closest('tr').children('#inputreno').val();
+// 			alert(valueReno);
+		};
+		
+		//리뷰 삭제
+		function delbtn(){
+			let con = confirm("삭제하시겠습니까?");
+			if(con == true){
+			location.href = "deleteReview.wp?re_no="+re_no;
+			alert("삭제 완료");
+			} else if(con == false){
+		  		return false;
+				}
+			location.reload();
+		}
+		
 		//별점 표시
 		$(function(){
 			var rating = $('.rating');
 			rating.each(function(){
 				var targetScore = $(this).attr('data-rate');
-				console.log(targetScore);
 				$(this).find('svg:nth-child(-n+'+targetScore+')').css({color:'#f5d142'});
 			});
 		});
@@ -360,12 +380,12 @@
 							</div>
 							<table id="reviewtab">
 								<colgroup>
-									<col style="width: 20px">
-									<col style="width: 100px">
-									<col style="width: 40px">
+									<col style="width: 10px">
+									<col style="width: 90px">
+									<col style="width: 50px">
 									<col style="width: 40px">
 									<col style="width: 50px">
-									<col style="width: 20px">
+									<col style="width: 15px">
 								</colgroup>
 								<thead>
 									<tr class="reviewhead">
@@ -381,13 +401,10 @@
 									<c:forEach items="${reviewList}" var="review">
 										<tr>
 											<td><c:if test="${review.re_photo1 ne NULL}">
-													<i class="bi bi-image"></i>
+													<i class="bi bi-image" style="color: gray;"></i>
 												</c:if></td>
 											<td style="text-align: left">
-												<div>
-													<a href="#" id="viewhidden" onclick="return false;"
-														class="detailreview">${review.re_title}</a>
-												</div>
+													<a href="#" class="viewhidden" onclick="return false;">${review.re_title}</a>
 											</td>
 											<td class="tdCenter">
 												<span class="rating" data-rate="${review.re_score}" style="color: #e6e6e6;">
@@ -414,7 +431,8 @@
 													pattern="yyyy-MM-dd" value="${review.re_date}" /></td>
 											<td class="tdCenter">${review.re_like}</td>
 										</tr>
-										<tr class="review_content_box" id="reviewblock" style="display: none;">
+										<tr class="review_content_box reviewblock" style="display: none;">
+											<input type="hidden" value="${review.re_no}" id="inputreno">
 											<td colspan="6">
 												<div class="left-div">
 												<div class="content-div">
@@ -430,9 +448,21 @@
 														</c:if>
 														</c:if>
 													</div>
-													<p>${review.re_content}</p>
+													<div style="white-space:pre;"><c:out value="${review.re_content}"/></div>
 												</div>
 												</div>
+												</div>
+												<div id="review-bottom">
+													<c:choose>
+														<c:when test="${userID eq review.id}">
+															<button type="button" onclick="updateLike(); return false;"><i class="bi bi-hand-thumbs-up"></i>추천 ${review.re_like}</button>
+															<button type="button" onclick="modbtn()">수정</button>
+															<button type="button" onclick="delbtn()">삭제</button>
+														</c:when>
+														<c:otherwise>
+															<button type="button" onclick="updateLike()"><i class="bi bi-hand-thumbs-up"></i>추천 ${review.re_like}</button>
+														</c:otherwise>
+													</c:choose>
 												</div>
 											</td>
 										</tr>
@@ -471,36 +501,43 @@
 								<!-- 반복 끝 -->
 							</div>
 							<br>
+							<!-- 리뷰 작성 폼 -->
 							<div id="noneDiv" style="display: none;">
-								<form action="insertReview.wp" method="post" id="myform"
-									name="myform" enctype="multipart/form-data">
-									<h4 id="comtitle">후기작성</h4>
+								<h4 id="comtitle">후기작성</h4>
+								<form method="post" id="myform" name="myform">
 									<div id="writeContent">
 										<fieldset>
-											<input type="radio" name="rating" value="5" id="rate1"><label
-												for="rate1">⭐</label> <input type="radio" name="rating"
+											<input type="radio" name="re_score" value="5" id="rate1" required><label
+												for="rate1">⭐</label> <input type="radio" name="re_score"
 												value="4" id="rate2"><label for="rate2">⭐</label> <input
-												type="radio" name="rating" value="3" id="rate3"><label
-												for="rate3">⭐</label> <input type="radio" name="rating"
+												type="radio" name="re_score" value="3" id="rate3"><label
+												for="rate3">⭐</label> <input type="radio" name="re_score"
 												value="2" id="rate4"><label for="rate4">⭐</label> <input
-												type="radio" name="rating" value="1" id="rate5"><label
+												type="radio" name="re_score" value="1" id="rate5"><label
 												for="rate5">⭐</label>
 										</fieldset>
-										<span style="font-size: 14px;"> ※평점을 선택해 주세요.</span>
-										<div>
-											<input type="hidden" id="w_no" name="w_no"
-												value="${product.w_no}"> <input type="text"
-												name="re_title" id="inserttitle" placeholder="제목" required>
+										<span style="font-size: 14px;"> 평점을 선택해 주세요.</span>
+										<div class="padding-div">
+											<input type="hidden" class="form-control" name="w_no" value="${product.w_no}"> 
+											<input type="text" class="form-control" name="re_title" placeholder="제목" required>
 										</div>
-										<div>
-											<input type="text" name="id" value="${userID}" readonly>
+										<div class="padding-div">
+											<input type="text" class="form-control" name="id" value="${userID}" readonly>
 										</div>
-										<div>
+										<div class="padding-div">
+											<button id="filebtn" type="button" name="re_photo1">파일추가</button>
+											<input id="inputfile" type="file" multiple="multiple" accept=".jpg, .png">
+											<span style="font-size:14px; color: gray;">※파일은 최대 3개까지 등록 가능합니다.</span>
+											<div class="data_file_txt" id="data_file_txt">
+												<div id="articlefileChange"></div>
+											</div>
+										</div>
+										<div class="padding-div">
 											<textarea class="form-control" rows="10" id="comment"
-												name="content" style="resize: none"
+												name="re_content" style="resize: none"
 												placeholder="작성할 내용을 입력하세요." required></textarea>
 										</div>
-										<button class="writebtn" onclick="">작성</button>
+										<button class="writebtn" type="button" onclick="insertAction()">작성</button>
 										<button class="writebtn" type="button" onclick="offDisplay()">닫기</button>
 									</div>
 								</form>
@@ -509,10 +546,17 @@
 					</article>
 				</div>
 			</div>
-			</div>
 			<!-- 추가 끝 -->
-
+			</div>
 	</div>
 	<%@ include file="../../../footer.jsp"%>
+	<%    
+response.setHeader("Cache-Control","no-store");    
+response.setHeader("Pragma","no-cache");    
+response.setDateHeader("Expires",0);    
+if (request.getProtocol().equals("HTTP/1.1"))  
+        response.setHeader("Cache-Control", "no-cache");  
+%>
+
 </body>
 </html>

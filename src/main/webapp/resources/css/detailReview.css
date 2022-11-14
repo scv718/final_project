@@ -159,6 +159,12 @@ svg {
 }
 
 .product-title {
+	height: 153px;
 	border: solid 1px lightgray;
 	padding: 15px;
+}
+
+.product-content {
+	padding-left: 130px;
+    font-size: 18px;
 }

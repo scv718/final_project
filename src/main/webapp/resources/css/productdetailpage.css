@@ -287,8 +287,8 @@ input[type=range] {
 
 /* 유경 추가 시작 */
 th {
-	background-color: #f0f0f0;
-	padding: 15px;
+	padding: 15px 5px;
+	border-bottom: 1px solid black;
 }
 
 tr {
@@ -472,50 +472,41 @@ li > .nava:hover {
 }
 
 .content-div {
-	padding: 0px 60px;
+	padding: 0px 27px;
 }
 
-#reviewblock {
+.reviewblock {
 	background-color: #f7f7f7;
 }
+
+#review-bottom {
+	float: right;
+	padding-right: 13px;
+	font-size: 14px;
+}
+
+#review-bottom button {
+    background-color: #f7f7f7;
+    border-top: none;
+    border-bottom: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
+    color: gray;
+    margin: 0 5px;
+    padding: 0;
+}
+
+#review-bottom button:focus {
+	border-bottom: 1px solid lightgray;
+	outline: none;
+}
 /* 유경 끝 */
+
 @media screen and (max-width: 990px) {
 	#productthree{
 	display: none;
 
 	}
-
-  #productimg{
-  height: 159px;
-  }
-  
-  #productimgdiv {
-	margin-top: 40px;
-	text-align:center;
-    display:table;
-    width:384px !important;
-    height:159px !important;
-   }
-   .litag{
-   width: 650px !important;
-
-   }
-   #paymentonemobile{
-       width: 88% !important;
-       height: 47px !important;
-        margin-top: 20px;
-   }
-   #productimginfo{
-       width: 156% !important;;
-   }
-   #producttwo{
-   height: auto !important;
-   }
-   #mobilepayment{
-   display: block;
-   }
-	
-}
 
 @media screen and (max-width: 768px) {
 	#productthree{
@@ -553,5 +544,3 @@ li > .nava:hover {
    display: block;
    }
 }
-	
-	

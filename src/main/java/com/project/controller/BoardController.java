@@ -206,11 +206,10 @@ public class BoardController {
 	
 	// 리뷰삭제
 	@RequestMapping("/deleteReview.wp")
-	public String deleteReview(ReviewVO vo, HttpSession session) {
+	public void deleteReview(ReviewVO vo, HttpSession session) {
 	String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
 	File targetFile = null;
 		vo = reviewService.detailReview(vo);
-		if(vo.getId().equals(session.getAttribute("userID").toString())) {
 			if(vo.getRe_photo1() != null) {
 				targetFile = new File(realPath + vo.getRe_photo1());
 				targetFile.delete();
@@ -226,10 +225,7 @@ public class BoardController {
 			}
 			reviewService.deleteReview(vo);
 			setRating(vo.getW_no());
-			return "getReviewList.wp";
-		} else {
-			return "detailReview.wp?error=1";
-		}
+//			return "getReviewList.wp";
 	}
 	
 	// 상품후기 상세조회
@@ -264,6 +260,8 @@ public class BoardController {
 		
 		model.addAttribute("paging", pvo);
 		model.addAttribute("reviewList", reviewService.getReviewList(vo));
+		
+		model.addAttribute("getCount", totalPageCnt);
 
 		// 검색어 영문 대문자 처리
 		if(vo.getSearchKeyword() != null) {
