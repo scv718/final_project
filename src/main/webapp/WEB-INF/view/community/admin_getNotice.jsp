@@ -508,7 +508,6 @@ a:active {
           <input class="myButton" type="submit" value="글수정하기" >
           
            <button id="conDel" type="button" class="myButton" >글삭제</button>
-           <button id="conList" type="button" class="myButton">사용자목록</button>
       </div>
       
      </form>  

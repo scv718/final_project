@@ -135,6 +135,7 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
+            	<h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -245,6 +246,7 @@
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminNotice.wp" href="#UpDel">전체 목록</a>
 		<a class='myButton' href="#insert">공지 등록</a>
+		<a class='myButton' href="getNoticeList.wp" href="#UpDel">사용자목록</a>
             <br><br><hr> <br><br>
 	</div>
     </div>

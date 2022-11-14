@@ -45,6 +45,7 @@ h6 {
 	text-align: center;
 }
 </style>
+<html>
 <body class = "d-flex flex-column min-vh-100">
 	<%@ include file="../../../header.jsp"%>
 	<div class="jumbotron1">
@@ -85,6 +86,98 @@ h6 {
 								</div>
 							</div>
 						</td>
+						<td class="tdCenter">
+							<div class="card" style="width: 150px">
+								<img class="card-img-top1"
+									src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}"
+									alt="wine image">
+								<div class="card-body">
+									<h4 class="card-title">${wine.w_nm_k}</h4>
+									<p class="card-text">${wine.w_price}</p>
+									<a href="product.wp?w_no=${wine.w_no}"
+										class="btn btn-primary stretched-link">상세보기</a>
+								</div>
+							</div>
+						</td>
+						<td class="tdCenter">
+							<div class="card" style="width: 150px">
+								<img class="card-img-top1"
+									src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}"
+									alt="wine image">
+								<div class="card-body">
+									<h4 class="card-title">${wine.w_nm_k}</h4>
+									<p class="card-text">${wine.w_price}</p>
+									<a href="product.wp?w_no=${wine.w_no}"
+										class="btn btn-primary stretched-link">상세보기</a>
+								</div>
+							</div>
+						</td>
+						<td class="tdCenter">
+							<div class="card" style="width: 150px">
+								<img class="card-img-top1"
+									src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}"
+									alt="wine image">
+								<div class="card-body">
+									<h4 class="card-title">${wine.w_nm_k}</h4>
+									<p class="card-text">${wine.w_price}</p>
+									<a href="product.wp?w_no=${wine.w_no}"
+										class="btn btn-primary stretched-link">상세보기</a>
+								</div>
+							</div>
+						</td>
+						<td class="tdCenter">
+							<div class="card" style="width: 150px">
+								<img class="card-img-top1"
+									src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}"
+									alt="wine image">
+								<div class="card-body">
+									<h4 class="card-title">${wine.w_nm_k}</h4>
+									<p class="card-text">${wine.w_price}</p>
+									<a href="product.wp?w_no=${wine.w_no}"
+										class="btn btn-primary stretched-link">상세보기</a>
+								</div>
+							</div>
+						</td>
+						<td class="tdCenter">
+							<div class="card" style="width: 150px">
+								<img class="card-img-top1"
+									src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}"
+									alt="wine image">
+								<div class="card-body">
+									<h4 class="card-title">${wine.w_nm_k}</h4>
+									<p class="card-text">${wine.w_price}</p>
+									<a href="product.wp?w_no=${wine.w_no}"
+										class="btn btn-primary stretched-link">상세보기</a>
+								</div>
+							</div>
+						</td>
+						<td class="tdCenter">
+							<div class="card" style="width: 150px">
+								<img class="card-img-top1"
+									src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}"
+									alt="wine image">
+								<div class="card-body">
+									<h4 class="card-title">${wine.w_nm_k}</h4>
+									<p class="card-text">${wine.w_price}</p>
+									<a href="product.wp?w_no=${wine.w_no}"
+										class="btn btn-primary stretched-link">상세보기</a>
+								</div>
+							</div>
+						</td>
+						<td class="tdCenter">
+							<div class="card" style="width: 150px">
+								<img class="card-img-top1"
+									src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}"
+									alt="wine image">
+								<div class="card-body">
+									<h4 class="card-title">${wine.w_nm_k}</h4>
+									<p class="card-text">${wine.w_price}</p>
+									<a href="product.wp?w_no=${wine.w_no}"
+										class="btn btn-primary stretched-link">상세보기</a>
+								</div>
+							</div>
+						</td>
+						
 					</tr>
 				</c:forEach>
 			</table>
