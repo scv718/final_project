@@ -20,6 +20,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 	
 </head>
+
 <style>
 table {
     width: 700px;
@@ -66,7 +67,12 @@ img {
     background-color: #E91E63;
 }
 
-
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -74,6 +80,7 @@ img {
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
+            	<h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -152,7 +159,7 @@ img {
                 </div>
             </nav>
             <br>
-            <h1 align="center">만든사람들(프로필)</h1>
+            <h2 class="jumbotron" align="center">메인프로필(만든사람들)</h2>
             <br><br>
       <table style="background: #white;">
         <thead>
