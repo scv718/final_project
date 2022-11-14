@@ -64,10 +64,12 @@ dt {
 // 			let re_no = "<c:out value='${detailReview.re_no}'/>";
 // 			console.log(re_no);
 			location.href = "deleteReview.wp?re_no="+re_no;
+			alert("삭제 완료");
 		}
 		else if(con == false){
 		  	return false;
 		}
+		location.href = "getReviewList.wp";
 	}
 	
 	$(function(){
@@ -121,13 +123,19 @@ dt {
 				<div id="review-middle">
 					<div class="product">
 						<div class="product-title">
-							<div class="img-box">
+							<div class="img-box" style="float: left;">
 								<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">
 									<img src="../../resources/img/wine/${detailReview.w_image1}" class="img-thumbnail">
 								</a>
 							</div>
-							<span style="font-weight:700;">상품명</span>
-							<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">${detailReview.w_nm_k}</a>
+							<div class="product-content">
+								<div>
+									<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">${detailReview.w_nm_k}(${detailReview.w_nm_e})</a>
+								</div>
+								<div>
+									<span><fmt:formatNumber value="${detailReview.w_price}" pattern="#,###"/>원</span>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div>
@@ -142,23 +150,31 @@ dt {
 						</c:if>
 					</div>
 					<!-- 리뷰내용 -->
-					<p>${detailReview.re_content}</p>
+					<p style="white-space:pre;"><c:out value="${detailReview.re_content}"/></p>
 				</div>
 				<div id="review-bottom">
 					<c:choose>
 						<c:when test="${userID eq detailReview.id}">
-							<button type="button" onclick="updateLike(); return false;">추천 ${detailReview.re_like}</button>
+							<button type="button" onclick="updateLike(); return false;"><i class="bi bi-hand-thumbs-up"></i>추천 ${detailReview.re_like}</button>
 							<button type="button" onclick="modbtn()">수정</button>
 							<button type="button" onclick="delbtn()">삭제</button>
 						</c:when>
 						<c:otherwise>
-							<button type="button" onclick="updateLike()">추천 ${detailReview.re_like}</button>
+							<button type="button" onclick="updateLike()"><i class="bi bi-hand-thumbs-up"></i>추천 ${detailReview.re_like}</button>
 						</c:otherwise>
 					</c:choose>
 				</div>
 			</form>
 		</div>
 	</div>
+	<%    
+response.setHeader("Cache-Control","no-store");    
+response.setHeader("Pragma","no-cache");    
+response.setDateHeader("Expires",0);    
+if (request.getProtocol().equals("HTTP/1.1"))  
+        response.setHeader("Cache-Control", "no-cache");  
+%>
+
 	<%@ include file="../../../footer.jsp"%>
 </body>
 </html>

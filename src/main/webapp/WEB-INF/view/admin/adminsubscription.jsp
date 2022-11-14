@@ -99,6 +99,12 @@
 	top:1px;
 }
 
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -106,6 +112,7 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
+            <h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -184,7 +191,7 @@
                 </div>
             </nav>
             
-           <h2 align="center">구독 관리</h2>
+           <h2 class="jumbotron" align="center">구독자목록</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">

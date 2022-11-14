@@ -282,6 +282,7 @@ z-index
 	margin: 0 5px;
 	height: 40px;
 	width: 40px;
+	text-decoration: none !important;
 }
 .xi-kakaotalk {
     color: #f9e000;

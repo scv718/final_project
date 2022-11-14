@@ -120,7 +120,11 @@ public class AdminController {
 		userService.deleteMember(vo); 
 		model.addAttribute("UserList", userService.getUserList(vo));
 		return "WEB-INF/view/admin/adminuser.jsp";
-		
 	}
-
+	@RequestMapping(value="delReview.wp")
+	public String DeleteReview(ReviewVO vo, Model model) {
+		reviewService.deleteReviewAd(vo); 
+		model.addAttribute("deleteReviewAd");
+		return "WEB-INF/view/admin/adminreview.jsp";
+	}
 }

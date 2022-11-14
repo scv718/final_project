@@ -13,8 +13,6 @@
 <meta name="generator" content="Hugo 0.104.2">
 <title>Winery - 사용자</title>
 
-<link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
-<link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css"rel="stylesheet">
 <link rel="icon" href="/resources/img/파비콘3.ico">
 
 <%@ include file="../../../header.jsp"%>
@@ -36,19 +34,19 @@
 
 					<div class="container">
 						<div class="carousel-caption text-start">
-							<h1>${intro.intro_t1}</h1>
-							<h1>${intro.intro_t1_2}</h1>
-
+							<h1 class="t1">${intro.intro_t1}</h1>
+							<h1 class="t1">${intro.intro_t1_2}</h1>
 						</div>
 					</div>
+						
 				</div>
 			</div><br>
 
 
 			<div class="container marketing">
 				<div>
-					<h1>${intro.intro_t2}</h1>
-					<h1 class="text-muted">${intro.intro_t2_2}</h1>
+					<h1 class="t2">${intro.intro_t2}</h1>
+					<h1 class="text-muted t2">${intro.intro_t2_2}</h1>
 					<br> <br> <br>
 				</div>
 

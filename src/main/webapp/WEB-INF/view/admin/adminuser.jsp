@@ -74,6 +74,7 @@
 	position:relative;
 	top:1px;
 }
+
 .myButton2 {
 	box-shadow:inset 0px 1px 0px 0px #f5978e;
 	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
@@ -99,6 +100,12 @@
 	top:1px;
 }
 
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -106,6 +113,7 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
+            <h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -184,7 +192,7 @@
                 </div>
             </nav>
             
-           <h2 align="center">회원목록조회(정보변경/삭제)</h2>
+           <h2 class="jumbotron" align="center">회원관리</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">

@@ -6,19 +6,23 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 1050px;
-	margin: 0 auto;
+/* 	width: 1050px; */
+/* 	margin: 0 auto; */
 }
 
 /* 제목 */
 #comtitle {
-	margin: 25px 0;
+	margin: 50px 0 25px 0;
 }
 
 /* 검색창 */
 #communityform {
-	margin-bottom: 10px;
+	    margin-bottom: 2em;
 }
+
+/* nav#searchNav { */
+/*     margin-bottom: 20px; */
+/* } */
 
 .searchsel {
 	padding: 3px;
@@ -73,7 +77,8 @@ input{
 
 .li_board {
 	display: table;
-	width: 100%;
+/* 	width: 100%; */
+	width: 1050px;
 }
 
 .li_board ul li.no {

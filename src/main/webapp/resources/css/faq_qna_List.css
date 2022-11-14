@@ -9,9 +9,18 @@
 /* 	margin : 0 auto; */
 }
 
+#qnaContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+/* 	width : 1050px; */
+/* 	margin : 0 auto; */
+}
+
 /* 제목 */
 #comtitle {
-	margin: 25px 0;
+	margin: 50px 0 25px 0;
 }
 
 /* 검색창 */
@@ -39,6 +48,13 @@
 	padding: 5px 15px;
 }
 
+.qna_btn{
+	background-color: #707070;
+	border: none;
+	color: white;
+	padding: 5px 15px;
+}
+
 /* 필터 */
 
 	#aligndiv {
@@ -54,14 +70,13 @@ input{
 	appearance: none;
 }
 
-
-
 /* 리스트 타이틀 */
 .li_title {
     display: table;
     width: 1050px;
     border-top: 2px solid black;
     border-bottom: none;
+/*     margin-top: 20px; */
 }
 
 .li_title ul {
@@ -133,6 +148,9 @@ input{
 	content: "\2212";
 }
 
+.checked {
+	font-weight: bold;
+}
 .panel {
  	padding: 0 5px; 
 	background-color: #ffffff;
@@ -151,6 +169,11 @@ input{
  textarea:focus{
  	outline: none;
  }
+
+/* 수정 삭제 아이콘정렬 */
+span.material-symbols-outlined {
+    vertical-align: text-bottom;
+}
 
 /* 페이징 */
 a {
@@ -172,38 +195,37 @@ a:active {
 
 @media(max-width:1100px){
 	#faqContainer {
-	width: 100%;
-	margin : 0 auto;
+		width: 100%;
+		margin: 0 auto;
 	}
-	
+	#qnaContainer {
+		width: 100%;
+		margin: 0 auto;
+	}
 	#accordion {
-	width: 90%;
+		width: 90%;
 	}
- .li_title {
-    width: 90%;
-}
-
-#aligndiv{
-	   width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-}
-
-@media(max-width:768px){
-#accordion {
-	width: 100%;
+	.li_title {
+		width: 90%;
 	}
+	#aligndiv {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+}
 
-.li_title{
-	display: none;
-    width: 90%;
-}
-#aligndiv{
-	display: none;
-}
-}
+@media ( max-width :768px) {
+	#accordion {
+		width: 100%;
+	}
+	.li_title {
+		display: none;
+		width: 90%;
+	}
+	#aligndiv {
+		display: none;
+	}}
 
 

@@ -3,6 +3,7 @@
 
 
 /* parisienne-regular - latin */
+
 @font-face {
 	font-family: 'Parisienne';
 	font-style: normal;
@@ -87,7 +88,7 @@
 
 .navbar-brand {
 	font-family: Parisienne !important;
-	font-size: 50px !important;
+	font-size: 59px !important;
 	margin: 0 auto;
 	color: black;
 }
@@ -126,15 +127,17 @@
 }
 
 #menuBtn {
-	/* 	display: block; */
-	/*     padding: 0.25rem 1.5rem; */
-	/*     clear: both; */
-	/*     font-weight: 400; */
-	/*     color: #212529; */
-	/*     text-align: inherit; */
-	/*     white-space: nowrap; */
-	/*     background-color: transparent; */
-	/*     border: 0; */
+		display: block;
+	    padding: 0.25rem 1.5rem;
+	    clear: both;
+	    font-weight: 400;
+	    color: #212529;
+	    text-align: inherit;
+	    white-space: nowrap;
+	    background-color: transparent;
+	    border: 0;
+	    cursor: Default;	
+/* 	font-family: MICEMyungjo !important; */
 	
 }
 
@@ -145,7 +148,7 @@
 .navbar {
 	background-color: white !important;
 	position: relative;
-	font-size: 15px;
+	font-size: 19px;
 	height: 70px;
 	padding: 0;
 	margin: 0;
@@ -156,7 +159,6 @@
 .navbar-light .navbar-nav .nav-link {
 	color: black;
 	font-size: 13px;
-	font-family: 'S-CoreDream-4Regular';
 	font-weight: bold;
 }
 
@@ -199,6 +201,7 @@ h2 {
 
 #upmenu {
 	margin: 0 auto;
+	font-size: 17px;
 }
 
 /* .dropdown-toggle:hover { */
@@ -276,6 +279,7 @@ h2 {
 		flex-direction: row;
 		margin: 0 !important;
 		width: 100%;
+		font-size: 15px;
 	}
 	#header {
 		padding: 0;
@@ -286,6 +290,9 @@ h2 {
 		margin: 0 auto;
 	}
 	.navbar-brand {
-		margin-left: 45px;
+/* 		margin-left: 45px; */
+	}
+	#box{
+		position: inherit;
 	}
 }
