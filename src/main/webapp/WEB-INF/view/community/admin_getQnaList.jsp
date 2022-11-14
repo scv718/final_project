@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/communityList.css"/>
+    <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/admin_getQnaList.css"/>
     <title>1:1 문의</title>
     <%@ include file="../../../header.jsp"%>
     
@@ -81,10 +81,11 @@
             <li class="tit">${qna.commu_title}</li>
             <li class="name">${qna.id}</li>
             <li class="date">${qna.commu_date}</li>
-            <li class="read">${qna.answer_status}</li>
+            <li class="read" id="answer_status">${qna.answer_status}</li>
          </ul>
 	</c:forEach>
     </div>
+    <br>
     
     <!-- 페이징처리 -->
     <div id="btnBox">

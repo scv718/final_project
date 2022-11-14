@@ -98,7 +98,12 @@
 	position:relative;
 	top:1px;
 }
-
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -185,7 +190,7 @@
                 </div>
             </nav>
             
-           <h2 align="center">리뷰</h2>
+           <h2 class="jumbotron" align="center">리뷰</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
@@ -199,6 +204,7 @@
 			<th>평점</th>
 			<th>리뷰등록일</th>
 			<th>추천 수</th>
+			<th>삭제</th>
         </tr> 
         </thead>  
         <tbody> 
@@ -213,6 +219,9 @@
       	 <td>${review.re_score}</td>
       	 <td>${review.re_date}</td>
       	 <td>${review.re_like}</td>
+      	  <td>
+      	<a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){delReview('${review.id}')}">삭제</a>
+      </td>
 	  <td>
       </td>
        </tr>            
@@ -222,8 +231,6 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminReview.wp">전체목록</a>
-		<a class='myButton' href="adminReview.wp">리뷰관리</a>
-		
             <br><br><hr> <br><br>
 	</div>
     </div>
@@ -252,18 +259,11 @@
             $('#myTable').dataTable();
         });
         
-    function updateAd(param){
-    	var m_name = $('#m_name'+param).val();
-    	var id =  $('#id'+param).val();
-    	console.log('testad');
-    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
-    	document.userInfo.submit();
-    }
-    function deleteAd(param){
+    function delReview(param){
     	var id = param;
     	console.log('testad');
-    	location.href = 'deleteAd.wp?id='+id;
-    	document.userInfo.submit();
+    	location.href = 'delReview.wp?id='+id;
+    	document.reviewInfo.submit();
     }
     </script>
 </body>

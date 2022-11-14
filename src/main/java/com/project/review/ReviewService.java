@@ -41,7 +41,8 @@ public interface ReviewService {
 	int productReviewListCnt(ReviewVO rvo);
 	//관리자
 	List<ReviewVO> ReviewListAd(ReviewVO vo);
-	
+	// 삭제
+	void deleteReviewAd(ReviewVO vo);
 	
 	List<ReviewVO> mainreviewFilter(ReviewVO vo);
 	

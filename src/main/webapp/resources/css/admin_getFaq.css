@@ -1,0 +1,169 @@
+
+@charset "UTF-8";
+
+
+#communityContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 1050px;
+	margin: 0 auto;
+}
+
+/* 제목 */
+#comtitle {
+	/* margin: 25px 0; */
+	margin: 50px 0 25px 0;
+}
+
+/* li_board */
+.name{
+	border: none;
+	width: 100%;
+}
+
+.form-content{
+	border: 1px solid #D7D7D7;
+	border-radius: 3px;
+	width: 100%;
+	background-color: #f0f0f0;
+}
+
+#dataForm{
+	width: 100%;
+	padding: 20px 40px;
+  margin-bottom: 30px;
+  border-top: 2px solid;
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+}  
+
+/* textarea */
+#comment {
+ resize: none;
+ border: none;
+/*  overflow: hidden; */
+}
+
+.li_board {
+	display: table;
+	width: 100%;
+}
+
+ul{
+	list-style: none;
+	margin-bottom: 0;
+	clear: both;
+	display: table-row-group;
+	padding-left: 0;
+}
+
+.li_board ul li {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+.li_board ul li {
+	border: 1px solid #D7D7D7;
+}
+
+.li_board ul li {
+	/* text-align: center; */
+	display: table-cell;
+	vertical-align: middle;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+}
+
+.li_board ul li.col1 {
+	width: 20%;
+}
+
+.li_board ul li.col2 {
+	width: 80%;
+}
+
+/* 버튼 스타일 */
+div#bottom_btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+input.updatebtn  {
+	background-color: #fff;
+	border: 1px solid #707070;
+	color: black;
+	padding: 5px 15px;
+	margin-right: 20px;
+}
+
+button#conDel {
+	background-color: #fff;
+	border: 1px solid #707070;
+	color: black;
+	padding: 5px 15px;
+	margin-right: 20px;
+}
+
+button#conList {
+	background-color: #707070;
+	border: none;
+	color: white;
+	padding: 5px 15px;
+	margin-right: 20px;
+}
+
+/* 반응형 */
+/* 1100 */
+@media ( max-width :1100px) {
+#communityContainer {
+	width: 90%;
+}
+
+/* #dataForm {
+	width: 90%;
+	margin: 0 auto;
+	} */
+
+/* .li_board {
+	width: 90%;
+}	 */
+	
+}
+
+/* 768 */
+@media ( max-width :768px) {
+#communityContainer {
+	width: 90%;
+}
+	
+/* #dataForm {
+	width: 90%;
+	} */
+	
+/* .li_board {
+	width: 90%;
+}	 */
+		
+}
+
+/* 430 */
+@media ( max-width :430px) {
+	
+	div#bottom_btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	}
+	
+	.updatebtn,.delbtn,.listbtn {
+		 margin: 10px 0 0 0;
+	}
+}

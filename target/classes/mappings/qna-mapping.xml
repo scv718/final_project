@@ -51,7 +51,7 @@
 		<if test="alignlist == 'two' "> AND FAQ_CAT = '2' </if>
 		<if test="alignlist == 'three' "> AND FAQ_CAT = '3' </if> 
 		<if test="alignlist == 'four' "> AND FAQ_CAT = '4' </if> 
- 		ORDER BY commu_date 
+ 		ORDER BY COMMU_DATE DESC
  		LIMIT 10 OFFSET #{offset} 
  	</select> 
 	
@@ -94,7 +94,7 @@
 		<if test="searchCondition == 'ID' "> AND ID LIKE REPLACE(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
 		<if test="alignlist == 'waiting' "> AND ANSWER_STATUS = '답변대기' </if>
 		<if test="alignlist == 'completed' "> AND ANSWER_STATUS = '답변완료' </if>
-		ORDER BY COMMU_DATE
+		ORDER BY COMMU_DATE DESC
 		LIMIT 10 OFFSET #{offset}
 	</select>
 	

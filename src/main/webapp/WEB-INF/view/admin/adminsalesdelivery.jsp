@@ -103,6 +103,12 @@
 	top:1px;
 }
 
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -189,7 +195,7 @@
                 </div>
             </nav>
             
-           <h2 align="center">판매,배송관리</h2>
+           <h2 class="jumbotron" align="center">판매,주문상태</h2>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
         <thead>  

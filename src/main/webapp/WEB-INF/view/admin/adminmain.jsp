@@ -67,7 +67,12 @@ img {
     background-color: #E91E63;
 }
 
-
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -154,7 +159,7 @@ img {
                 </div>
             </nav>
             <br>
-            <h1 align="center">만든사람들(프로필)</h1>
+            <h2 class="jumbotron" align="center">메인프로필(만든사람들)</h2>
             <br><br>
       <table style="background: #white;">
         <thead>

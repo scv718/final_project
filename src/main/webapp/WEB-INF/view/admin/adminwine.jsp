@@ -100,6 +100,12 @@
 	top:1px;
 }
 
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -187,7 +193,7 @@
             </nav>
             
             <div>
-            <h2 align="center">와인관리</h2>
+            <h2 class="jumbotron" align="center">와인관리</h2>
             </div>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
