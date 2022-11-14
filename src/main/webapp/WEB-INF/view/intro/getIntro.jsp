@@ -13,8 +13,6 @@
 <meta name="generator" content="Hugo 0.104.2">
 <title>Winery - 사용자</title>
 
-<link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
-<link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css"rel="stylesheet">
 <link rel="icon" href="/resources/img/파비콘3.ico">
 
 <%@ include file="../../../header.jsp"%>

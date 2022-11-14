@@ -4,7 +4,12 @@
 		url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css')
 		;
 
-
+#mobilemenu{
+	display: none;
+}
+#mobilemenubtn{
+	display: none;
+}
 #one{
 	color: #f1c0ce;
 }
@@ -344,7 +349,10 @@ keyframes blink-effect { 50% {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     overflow: hidden;
 }
-
+.typeoption{
+	position: static;
+    width: 100%;
+}
 #js-btn-wrap{
 	text-align: center;
 	font-size: 20px;
@@ -385,8 +393,7 @@ keyframes blink-effect { 50% {
     outline: none;
 }
 .btn-hover.color-9 {
-    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+	 background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
     width: 58px;
 }
 .btn-hover.color-8 {
@@ -403,7 +410,13 @@ keyframes blink-effect { 50% {
 	font-size: 35px;
 	margin-bottom: 20px;
 }
-
+#topbtn{
+	cursor: pointer;
+    position: sticky;
+    margin: 0 40 50 auto;
+    justify-content : center;
+    height: auto;
+}
 .left {
 	width: 70%;
 	float: left;
@@ -458,7 +471,7 @@ keyframes blink-effect { 50% {
 label{
 	display: inline-block !important;
 }
-input[type=radio]:checked + label
+input[type=radio]:checked + label .xi-full-moon
 {
   border: 1px solid black;
 }
@@ -478,6 +491,23 @@ input[type=radio]:checked + label
 #productlist{
 	padding: 0;
 	    margin: 0 auto;
+}
+#mobilemenubtn{
+	display: block;
+	    margin: 0 0 0 auto;
+	    font-size: 25px;
+}
+.xi-full-moon {
+    font-size: 25px;
+    margin-right: 20px;
+}
+.typeoption{
+	text-align: center;
+	position: static;
+    width: 100%;
+}
+.option{
+	margin-left: 35px;
 }
 
 }
