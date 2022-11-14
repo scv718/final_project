@@ -135,6 +135,7 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
+            	<h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -213,7 +214,7 @@
                 </div>
             </nav>
             
-           <h2 class="jumbotron" align="center">공지사항리스트</h2>
+           <h2 class="jumbotron" align="center">공지목록</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
@@ -243,57 +244,13 @@
     </table>
     <br>
     <div class='btnSet' align="center">
-		<a class='myButton' href="adminNotice.wp" href="#UpDel">전체 목록</a>
-		<a class='myButton' href="#insert">공지 등록</a>
+		<a class='myButton' href="admin_getNotice.wp" href="#UpDel">전체 목록</a>
+		<a class='myButton' href="admin_getNoticeList.wp">관리자목록 </a>
+		<a class='myButton' href="getNoticeList.wp" href="#UpDel">사용자목록</a>
             <br><br><hr> <br><br>
 	</div>
     </div>
-       <div class="jumbotron" id="insert">
-      <h1 align="center">공지사항 글 등록</h1>
-   </div>
-<br><br><br><br>
-   <div class="container-fluid">
-      <form action="admin_insertNotice.wp" method="post">
-         <input type="hidden" class="form-control" name="commu_cat" value="0">
-
-         <!-- <div class="input-group mb-3">
-            <div class="input-group-prepend">
-               <span class="input-group-text">항목내번호</span>
-            </div>
-            <input type="text" class="form-control" name="commu_cat_no" placeholder="항목내번호를 입력하세요" required>
-         </div> -->
-         
-         <div  class="input-group mb-3">
-            <div class="input-group-prepend">
-               <span class="input-group-text">제목</span>
-            </div>
-            <input type="text" class="form-control" name="commu_title" placeholder="제목을 입력하세요." required>
-         </div>
-         
-         <div class="input-group mb-3">
-            <div class="input-group-prepend">
-               <span class="input-group-text">작성자</span>
-            </div>
-            <input type="text" class="form-control innm" name="id" value="관리자" readonly>
-         </div>
-         
-         <div class="input-group mb-3">
-            <div class="input-group-prepend">
-               <span class="input-group-text">내용</span>
-            </div>
-            <textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea>
-         </div>
-         
-         <div id="footer">
-            <div id="se2_sample" style="margin: 10px 0;">
-               <input class='myButton' type="submit" value="등록하기">
-            </div>
-              
-         </div>
-         <hr><br>
-         <a align="center" href="#" class="top"><h4>Top▲</h4></a>
-      </form>
-   </div>
+ 
    
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
@@ -320,22 +277,7 @@
     $(document).ready(function(){
             $('#myTable').dataTable();
         });
-//공지 리스트
-    function selTr(val){
-    	   location.href = "admin_getNotice.wp?commu_no="+val;
-    	}
-	//top버튼
-	$( window ).scroll( function() {
-		if ( $( this ).scrollTop() > 200 ) {
-			$( '.top' ).fadeIn();
-		} else {
-			$( '.top' ).fadeOut();
-		}
-	} );
-	$( '.top' ).click( function() {
-		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-		return false;
-	} );
+
     </script>
 </body>
 </html>

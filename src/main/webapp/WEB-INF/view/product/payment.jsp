@@ -38,7 +38,7 @@ function checkOnlyOne(element) {
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${userName} | ${memberInfo.m_email}</td>
+								<td style="width: *">${userName}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -157,6 +157,9 @@ function checkOnlyOne(element) {
 								<form id = "addform" name = "addform" action = "m_add.wp">
 									<table>
 										<colgroup>
+										<col id = "ordername" />
+										<col id = "orderstatus"/>
+										<col id = "orderprice" />
 										</colgroup>
 										<tbody>
 											<tr>
@@ -172,12 +175,17 @@ function checkOnlyOne(element) {
 													<a class="address_search_btn" onclick="execution_daum_address()">주소 찾기</a><br> <input
 													class="address2_input" readonly="readonly"><br>
 													<input class="address3_input" readonly="readonly">
-													</td>
-												<th>전화번호</th>
+													</td>		
+											</tr>
+											<tr>
+											<th>전화번호</th>
 												<td><input class = "m_phone_insert" name = "m_phone"></td>
-												<td><label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="0" checked="checked">기본배송지등록</label>
+												
+											</tr>
+											<tr>
+											<td id= "btncheck"><label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="0" checked="checked">기본배송지등록</label>
 													<label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="1" >일반배송지등록</label>
-													<button id = "insertadd" type = "button">입력 완료</button></td>
+													<button id = "insertadd" class="btn btn-secondary" type = "button">입력 완료</button></td>
 											</tr>
 										</tbody>
 									</table>
@@ -324,7 +332,16 @@ function checkOnlyOne(element) {
 							</li>
 							<li>
 								<span class="price_span_label">배송비</span>
-								<span class="delivery_price_span">100000</span>원
+<!-- 								<span class="delivery_price_span">   -->
+                              <c:choose>
+                              <c:when test="${level.level < 0}">
+                               <span class="deliveryPrice">2500</span>원	
+                              </c:when>
+                              <c:otherwise>
+                               <span class=deliveryPrice>0</span>원
+                              </c:otherwise>
+                              </c:choose>
+<!--                             </span>원 -->
 							</li>
 																				
 							<li class="price_total_li">
@@ -703,6 +720,12 @@ $(".order_btn").on("click", function(){
 
 
 </script>
-
+<%    
+response.setHeader("Cache-Control","no-store");    
+response.setHeader("Pragma","no-cache");    
+response.setDateHeader("Expires",0);    
+if (request.getProtocol().equals("HTTP/1.1"))  
+        response.setHeader("Cache-Control", "no-cache");  
+%>
 </body>
 </html>

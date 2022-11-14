@@ -23,22 +23,35 @@ div{
 
 .wrap{
   background-color: #F8F8F8;  
-  min-height: 1000px;
+/*   min-height: 1000px; */
 }
 
 .greenContainer{  
-  height: 89px;
-background-color: #F87171;  
-  
-  display: flex;
-  align-items: flex-end;
-  padding: 16px;
+ height: 95px;
+    background-color: #F87171;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
 }
-
+.greenContainer1{ 
+width: 1080px;
+    margin: 0 auto;
+    height: 89px;
+    background-color: #F87171;height: 110px;
+    line-height: 110px;
+}
 .greenContainer .name{
-   font-size: 20px;
+   font-size: 22px;
   font-weight: bold;
   color: #ffffff;
+} 
+.greenContainer1 .name{
+    text-align: center;
+    display: inline-block;
+    color: white;
+    font-size: 50px;
+    padding: 5px 17px;
+    font-weight: bolder;
 } 
 .greenContainer .modify{
   margin-left: auto;
@@ -205,9 +218,23 @@ background-color: #F87171;
 	.shippingStatusContainer .status {
     display: flex;
     margin-bottom: 21px;
-    flex-direction: column;
-     
+    flex-direction: column; 
+}
+		.greenContainer .name {font-size: 18px;}
+.greenContainer {
+    height: 75px;
+    padding: 13px;
 }
 }
 
 
+
+
+@media screen and (min-width: 768px) {
+.shippingStatusContainer {
+    padding: 31px 2px;
+    background-color: white;
+    margin-bottom: 10px;
+    text-align: center;
+		}
+}

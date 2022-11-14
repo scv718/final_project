@@ -13,7 +13,7 @@
 
 		<form action="${pageContext.request.contextPath}/mysubscribe.wp" method="post">
 	<div class="content_subject"><h2 style="text-align: center;">구독 및 취향 설정</h2></div>
-	<div class="container" style="width: 800px; margin-top: 32px;font-size: x-large;">
+	<div class="container" id="coner">
 			<div class="listContainer">
 				<div class="mb-3 mt-3">
 					<div class="text"><div class="greenContainer">
@@ -55,6 +55,7 @@
 				</c:choose>
 			</div>
 
+	
 <div class="mt">		
 <a href="mypreference.wp">			
 <button type="button"  id="colre" class="w-100 btn btn-lg btn-outline-primary">취향수정</button></a></div>

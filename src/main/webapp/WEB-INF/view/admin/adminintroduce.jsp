@@ -65,7 +65,12 @@ img {
 .delete {
     background-color: #E91E63;
 }
-
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 
 </style>
 <body>
@@ -74,6 +79,7 @@ img {
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
+            	<h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -152,7 +158,7 @@ img {
                 </div>
             </nav>
             <br>
-            <h1 align="center">와이너리</h1>
+            <h2 class="jumbotron" align="center">winery</h2>
             <br><br>
      
             <br><br><br><br><br><br><br>
