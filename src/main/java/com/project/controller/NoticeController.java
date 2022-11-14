@@ -110,7 +110,7 @@ public class NoticeController {
       public String admin_deleteNotice(CommunityVO vo) {
       
          noticeService.admin_deleteNotice(vo);
-         return "admin_getNotice.wp";
+         return "admin_getNoticeList.wp";
       }
       
       // 공지사항 상세 조회 - 관리자
