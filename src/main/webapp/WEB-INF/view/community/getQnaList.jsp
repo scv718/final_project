@@ -26,22 +26,6 @@
 		<br>
 <!-- 		<button type="button" onclick="location.href='admin_getQnaList.wp'">관리자 1:1 목록확인</button> -->
 
-		<!-- 필터 -->
-<!-- 		<form action="getQnaList.wp" method="POST" id="align"> -->
-<!-- 			<ul> -->
-<!-- 				<li> -->
-<!-- 				<select name="alignlist" class="w-px100" onchange="$('form').submit()"> -->
-<!-- 						<option>자주 찾는 검색어</option> -->
-<%-- 						<option value="zero" ${paging.viewType eq 'zero' ? 'selected' : '' }>[주문/결제/배송]</option> --%>
-<%-- 						<option value="one" ${paging.viewType eq 'one' ? 'selected' : '' }>[취소/교환/환불]</option> --%>
-<%-- 						<option value="two" ${paging.viewType eq 'two' ? 'selected' : '' }>[구독서비스]</option> --%>
-<%-- 						<option value="three" ${paging.viewType eq 'three' ? 'selected' : '' }>[회원]</option> --%>
-<%-- 						<option value="four" ${paging.viewType eq 'four' ? 'selected' : '' }>[기타]</option> --%>
-<!-- 				</select> -->
-<!-- 				</li> -->
-<!-- 			</ul> -->
-<!-- 		</form> -->
-		
 		<!-- 자주하는질문 보드 -->
 			<div class="li_title">
 				<ul>
@@ -101,13 +85,11 @@
 							</span>
 						</c:when>
 					</c:choose>
-<%-- 					<p>${qna.answer_con}</p> --%>
-<%-- 					<textarea class="addr" disabled>${faq.commu_content}</textarea> --%>
 					<c:choose>
 						<c:when test="${qna.answer_status eq '답변완료'}">
 							<hr>
 							<span>관리자&nbsp;│</span><span>${qna.answer_date}</span>
-							<p>${qna.answer_con}</p>
+							<textarea class="addr" disabled>${qna.answer_con}</textarea>
 						</c:when>
 					</c:choose>
 				</div>
@@ -154,6 +136,13 @@
             } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
+        });
+    }
+    
+    var txtArea = $(".addr");
+    if (txtArea) {
+        txtArea.each(function(){
+            $(this).height(this.scrollHeight);
         });
     }
     
