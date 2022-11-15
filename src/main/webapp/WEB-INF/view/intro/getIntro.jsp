@@ -31,8 +31,8 @@
 
 					<div class="container">
 						<div class="carousel-caption text-start">
-							<h1 class="t1">${intro.intro_t1}</h1>
-							<h1 class="t1">${intro.intro_t1_2}</h1>
+							<h1 class="t1" id="media_type" >${intro.intro_t1}</h1>
+							<h1 class="t1" id="media_type">${intro.intro_t1_2}</h1>
 						</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 
 			<div class="container marketing">
 				<div>
-					<h1 class="t2">${intro.intro_t2}</h1>
+					<h1 class="t2" id="media_type">${intro.intro_t2}</h1>
 					<h1 class="text-muted t2">${intro.intro_t2_2}</h1>
 					<br>
 					<br>
@@ -97,9 +97,9 @@
 
 				<hr class="featurette-divider">
 
+						<h2 class="fw-normal lh-1">${intro.intro_s_t4}</h2>
 				<div class="row featurette">
 					<div class="col-md-7">
-						<h2 class="fw-normal lh-1">${intro.intro_s_t4}</h2>
 						<br>
 						<p class="lead">${intro.intro_s_c4}</p>
 						<p class="lead">${intro.intro_s_c4_2}</p>
@@ -111,7 +111,7 @@
 					</div>
 
 					<div class="col-md-5">
-						<img class="bd-placeholder-img bd-placeholder-img-lg featurette-image mx-auto" width="430"  src="resources/img/intro/${intro.intro_s_img4}">
+						<img class="bd-placeholder-img bd-placeholder-img-lg featurette-image mx-auto" width="90%"  src="resources/img/intro/${intro.intro_s_img4}">
 					</div>
 
 				</div>

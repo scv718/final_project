@@ -16,6 +16,8 @@
 	margin: 50px 0 25px 0;
 }
 
+
+
 /* 검색창 */
 #communityform {
 	margin-bottom: 2em;
@@ -209,6 +211,8 @@ div.btn_ali {
 
 /* 768 */
 @media ( max-width :768px) {
+	
+
 .hidden-lg {
 	display: inline;
 	color: rgba(0, 0, 0, 0.4);
