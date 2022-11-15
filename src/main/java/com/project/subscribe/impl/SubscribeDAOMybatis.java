@@ -73,4 +73,7 @@ public class SubscribeDAOMybatis {
 		}
 		return mybatis.selectList("SubscribeDAO.allsubscriptList");
 	}
+	public void insertProduct(SubscribeVO vo) {
+		mybatis.update("SubscribeDAO.insertProduct", vo);
+	}
 }

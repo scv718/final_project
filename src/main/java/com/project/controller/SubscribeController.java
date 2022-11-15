@@ -33,6 +33,8 @@ public class SubscribeController {
 	@Autowired
 	ProductService productService;
 	
+	
+	
 	//구독페이지
 	@RequestMapping(value = "/subscribe.wp")
 	public String subscribe(UserVO uvo,SubscribeVO svo, HttpSession session,Model model) {
@@ -43,6 +45,9 @@ public class SubscribeController {
 		model.addAttribute("user", userSerivce.getUser(uvo));
 		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
 		}
+		
+		
+	
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 

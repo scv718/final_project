@@ -20,6 +20,7 @@ public class AddressDAOMybatis {
 		return mybatis.selectOne("PaymentDAO.selectDefaultAddress", vo);
 	}
 	
+	
 	public void firstaddAddress(AddressVO vo) {
 		
 		mybatis.insert("PaymentDAO.firstaddAddress", vo);

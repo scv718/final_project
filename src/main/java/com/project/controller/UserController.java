@@ -42,6 +42,11 @@ public class UserController {
 		System.out.println("에러세션");
 		session.setAttribute("error", 0);
 	}
+	@RequestMapping("loginerrorsession.wp")
+	public void loginerrorsession(HttpServletResponse response, HttpSession session) {
+		System.out.println("에러세션");
+		session.setAttribute("loginerror", 0);
+	}
 	@RequestMapping("passsession.wp")
 	public void passsession(HttpServletResponse response, HttpSession session) {
 		System.out.println("패스세션");
@@ -55,7 +60,8 @@ public class UserController {
 	
 
 		if(vo.getId() == null || vo.getId().equals("")) {
-			throw new IllegalArgumentException("아이디는 반드시 입력해야합니다");
+			session.setAttribute("loginerror", 1);
+			return "redirect:signUp.wp";
 		}
 		if(userService.getUser(vo) != null) {
 			if(passwordEncoder.matches(vo.getM_pw(), userService.getUser(vo).getM_pw())){
@@ -72,28 +78,16 @@ public class UserController {
 				session.setAttribute("userID", userService.getUser(vo).getId());
 				session.setAttribute("userName", userService.getUser(vo).getM_name());
 				return "redirect:/";
+			}else {
+				session.setAttribute("loginerror", 1);
+				return "redirect:signUp.wp";
 			}
 			
 		}else {
-			
-			
-			PrintWriter script;
-			try {
-				script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('존재하지 않는 아이디 입니다.');");
-				script.println("location.href = 'signUp.wp'");
-				script.println("</script>");
-				script.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		
+			session.setAttribute("loginerror", 1);
+			return "redirect:signUp.wp";	
 		}
 		
-		return "/";
 	}
 	
 	@RequestMapping("/logout.wp")

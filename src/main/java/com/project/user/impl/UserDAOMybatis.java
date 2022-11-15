@@ -27,6 +27,9 @@ public class UserDAOMybatis {
 		return mybatis.selectOne("UserDAO.getUser", vo);
 
 	}
+	public List<UserVO> getUserListDefault(UserVO vo){
+		return mybatis.selectList("UserDAO.getUserPw", vo);
+	}
 
 	public List<UserVO> getUserList(UserVO vo) {
 		

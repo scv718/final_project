@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.cart.CartVO;
+import com.project.subscribe.SubscribeVO;
 import com.project.wine.WineVO;
 
 @Repository
@@ -20,7 +21,7 @@ public class ProductDAOmybatis {
 		
 		return mybatis.selectOne("ProductDAO.productdetail", vo);
 	}
-	public List<WineVO> subscribeproduct(WineVO vo) {
+	public List<WineVO> subscribeproduct(SubscribeVO vo) {
 		
 		return mybatis.selectList("ProductDAO.subscribeproduct", vo);
 	}

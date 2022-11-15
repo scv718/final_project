@@ -39,6 +39,18 @@ $( document ).ready(function() {
  	    });
     }
 });
+
+$( document ).ready(function() {
+	var loginerror = '${loginerror}';
+	console.log(loginerror);
+    if(loginerror != '' && loginerror === '1'){
+    	swal ( "아이디 및 비밀번호를 확인해주세요" ,  "" ,  "error" );
+    	 $.ajax({
+ 	        url: '/loginerrorsession.wp',
+ 	        type: 'post'
+ 	    });
+    }
+});
 </script>
 
 	<script type="text/javascript">
@@ -79,13 +91,13 @@ function joinform_check() {
 		
 	  
 	  if (uid.value == "") { 
-	    alert("아이디를 입력하세요.");
+		  swal ( "아이디를 입력하세요. ,  "" ,  "error" );
 	    uid.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
 	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
 	  };
 	  
 	  if (!idCheck.test(uid.value)) {
-		    alert("아이디는 영문자 + 숫자, 특수문자(!?@_) 만 가능합니다.");
+		  swal ( "아이디는 영문자 + 숫자, 특수문자(!?@_) 만 가능합니다." ,  "" ,  "error" );
 		    uid.focus();
 		    return false;
 		  };
@@ -95,25 +107,25 @@ function joinform_check() {
 			  return false;
 	   }  
 	  if (pwd.value == "") {
-	    alert("비밀번호를 입력하세요.");
+		  swal ( "비밀번호를 입력하세요" ,  "" ,  "error" );
 	    pwd.focus();
 	    return false;
 		  };
 	  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
 	  var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 	  if (!pwdCheck.test(pwd.value)) {
-	    alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+		  swal ( "비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다." ,  "" ,  "error" );
 	    pwd.focus();
 	    return false;
 	  };
 	  if (repwd.value !== pwd.value) {
-	    alert("비밀번호가 일치하지 않습니다.");
+		  swal ( "비밀번호가 일치하지 않습니다." ,  "" ,  "error" );
 	    repwd.focus();
 	    return false;
 	  };
 	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
 	  if (email_id.value == "") {
-	    alert("이메일 주소를 입력하세요.");
+		  swal ( "이메일 주소를 입력하세요." ,  "" ,  "error" );
 	    email_id.focus();
 	    return false;
 	  }
