@@ -21,8 +21,6 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-	<input class="address1_input" name="level" type="text"
-		value="${mylevel}">
 	<input type="hidden" name="mylevel" value="${mylevel}" />
 	<input type="hidden" name="userID" value="${userID}" />
 	<div id="t1">
