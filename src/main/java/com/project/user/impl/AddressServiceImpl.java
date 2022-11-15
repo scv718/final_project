@@ -36,9 +36,15 @@ public class AddressServiceImpl implements AddressService{
 	}
 
 	@Override
-	public List<AddressVO> selectAddress(AddressVO vo) {
+	public AddressVO selectAddress(AddressVO vo) {
 		// TODO Auto-generated method stub
 		return addressDAO.selectAddress(vo);
+	}
+
+	@Override
+	public void selectUpdate(AddressVO vo) {
+		// TODO Auto-generated method stub
+		 addressDAO.selectAddress(vo);
 	}
 
 

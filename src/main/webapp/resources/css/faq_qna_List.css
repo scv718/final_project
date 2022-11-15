@@ -23,6 +23,10 @@
 	margin: 50px 0 25px 0;
 }
 
+/* 제목 설명 */
+p#media_type {
+	display: none;
+}
 /* 검색창 */
 #faqform {
 	margin-bottom: 10px;
@@ -217,6 +221,14 @@ a:active {
 }
 
 @media ( max-width :768px) {
+	p#original_type {
+		display: none;
+	}
+	p#media_type {
+		display: block;
+		text-align: center;
+	}
+	
 	#accordion {
 		width: 100%;
 	}

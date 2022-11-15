@@ -185,7 +185,7 @@ img {
             </tr>
             <tr>
                 <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.jpg" ></td>
-                <td>언니</td>
+                <td>소믈리에</td>
                 <td>김지나</td>
                 <td>33</td>
             </tr>

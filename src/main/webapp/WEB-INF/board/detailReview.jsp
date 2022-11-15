@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/detailReview.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
 <%@ include file="../../../header.jsp"%>
 <style>
 dd {
@@ -53,6 +54,16 @@ dt {
 		}
 		
 	}
+	
+	//추천 표시
+	var likeCheck = ${likeCheck};
+	$(function(){
+		if(likeCheck == 1) {
+			$(".bi-hand-thumbs-up").attr("class", "bi-hand-thumbs-up-fill");
+		} else {
+			$(".bi-hand-thumbs-up-fill").attr("class", "bi-hand-thumbs-up");
+		}
+	});
 	
 	function modbtn(){
 		location.href = "updateReviewPage.wp?re_no="+re_no;
@@ -117,7 +128,7 @@ dt {
 						<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${detailReview.re_date}" />
 					</dd>
 				</dl>
-				<a href="getReviewList.wp" style="float: right;"><i class="bi bi-list"></i>목록보기</a>
+				<a href="getReviewList.wp" style="float: right;" class="alist"><i class="bi bi-list"></i>목록보기</a>
 			</div>
 			<form name="fm" method="post">
 				<div id="review-middle">
@@ -125,12 +136,12 @@ dt {
 						<div class="product-title">
 							<div class="img-box" style="float: left;">
 								<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">
-									<img src="../../resources/img/wine/${detailReview.w_image1}" class="img-thumbnail">
+									<img src="${pageContext.request.contextPath}/resources/img/wine/${detailReview.w_image1}" class="img-thumbnail">
 								</a>
 							</div>
 							<div class="product-content">
 								<div>
-									<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">${detailReview.w_nm_k}(${detailReview.w_nm_e})</a>
+									<a href="product.wp?w_no=${detailReview.w_no}" class="productlink">${detailReview.w_nm_k}<span style="font-size:14px;">(${detailReview.w_nm_e})</span></a>
 								</div>
 								<div>
 									<span><fmt:formatNumber value="${detailReview.w_price}" pattern="#,###"/>원</span>
@@ -140,11 +151,17 @@ dt {
 					</div>
 					<div>
 						<c:if test="${detailReview.re_photo1 ne NULL}">
-							<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo1}" style="width: 200px; padding: 10px 0;">
+							<div class="img-div">
+							<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo1}">
+							</div>
 								<c:if test="${detailReview.re_photo2 ne NULL}">
-								<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo2}" style="width: 200px; padding: 10px 0;">
+								<div class="img-div">
+								<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo2}">
+								</div>	
 									<c:if test="${detailReview.re_photo3 ne NULL}">
-									<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo3}" style="width: 200px; padding: 10px 0;">
+									<div class="img-div">
+									<img class="imgBoxImg" src="resources/img/review/${detailReview.re_photo3}">
+									</div>
 									</c:if>
 								</c:if>
 						</c:if>
@@ -155,12 +172,12 @@ dt {
 				<div id="review-bottom">
 					<c:choose>
 						<c:when test="${userID eq detailReview.id}">
-							<button type="button" onclick="updateLike(); return false;"><i class="bi bi-hand-thumbs-up"></i>추천 ${detailReview.re_like}</button>
-							<button type="button" onclick="modbtn()">수정</button>
-							<button type="button" onclick="delbtn()">삭제</button>
+							<button class="btn-radius" type="button" onclick="updateLike(); return false;"><i class="bi bi-hand-thumbs-up"></i>추천 ${detailReview.re_like}</button>
+							<button class="btn-radius" type="button" onclick="modbtn()">수정</button>
+							<button class="btn-radius" type="button" onclick="delbtn()">삭제</button>
 						</c:when>
 						<c:otherwise>
-							<button type="button" onclick="updateLike()"><i class="bi bi-hand-thumbs-up"></i>추천 ${detailReview.re_like}</button>
+							<button class="btn-radius" type="button" onclick="updateLike()"><i class="bi bi-hand-thumbs-up"></i>추천 ${detailReview.re_like}</button>
 						</c:otherwise>
 					</c:choose>
 				</div>

@@ -115,8 +115,6 @@ public class ReviewDAO {
 		return mybatis.selectList("BoardDAO.mainreviewFilter", vo);
 	}
 
-	
-
 	//상품별 평점평균
 	public Double getRatingAvg(int w_no) {
 		System.out.println("상품별 평점평균");
@@ -127,6 +125,12 @@ public class ReviewDAO {
 	public void updateRating(ReviewVO vo) {
 		System.out.println("평점평균 반영");
 		mybatis.update("BoardDAO.updateReview", vo);
+	}
+
+	//상품페이지 정렬
+	public List<ReviewVO> productReviewFilter(ReviewVO rvo) {
+		System.out.println("DAO 상품페이지 정렬");
+		return mybatis.selectList("BoardDAO.productReviewFilter", rvo);
 	}
 
 

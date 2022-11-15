@@ -1,16 +1,40 @@
-/* 1구역 */
 
+/* top버튼 */
+a#MOVE_TOP_BTN {
+	color: gray;
+	text-decoration: none;
+    font-size: xxx-large;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    display: none;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+/* 1구역 */
 h1.t1 {
 	font-size: 36px;
 	font-weight: bold;
 	color: #ffffff;
 	text-shadow: 4px 2px 2px gray;
+/* 	z-index: -1; */
 }
 
 /* 2구역 */
 h1.t2 {
     text-align: center;
     margin-top: 10px;
+}
+
+/*  */
+.col-md-5 {
+    text-align: center;
+}
+
+
+.row{
+	align-items: center;
 }
 
 .bd-placeholder-img {
@@ -82,8 +106,7 @@ body {
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
 	bottom: 3rem;
-	z-index: 10;
-	text-align: left!important;
+	z-index: 1;
 }
 
 /* Declare heights because of positioning of img element */
@@ -144,4 +167,35 @@ body {
 	.bg{
 	height: 20rem;
 	}	
+	
+	h1#media_type{
+	display: none;
+	}
+}
+
+/* 추가 */
+
+.h1, h1 {
+    font-size: 2rem;
+}
+
+h1.display-5.fw-normal {
+    font-size: 2.5rem;
+}
+
+.col-md-7 {
+    padding: 0 0 0 50px !important;
+}
+
+img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.mx-auto {
+    border-radius: 10px;
+}
+
+p.lead {
+    font-size: 1.2rem;
+}
+
+
+.featurette-divider {
+    border-color: #6c757d;
 }

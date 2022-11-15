@@ -418,6 +418,7 @@ keyframes blink-effect { 50% {
     height: auto;
 }
 .left {
+	margin-left: 60px;
 	width: 70%;
 	float: left;
 	box-sizing: border-box;
@@ -429,7 +430,7 @@ keyframes blink-effect { 50% {
     width: 100%;
 }
 .right {
-	width: 30%;
+	width: 26%;
 	float: right;
 	background: #fff;
 	
@@ -487,6 +488,7 @@ input[type=radio]:checked + label .xi-full-moon
 }	
 .left{
 	width: 100%;
+	margin: 0;
 }
 #productlist{
 	padding: 0;

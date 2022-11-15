@@ -214,22 +214,17 @@ public class UserController {
 	
 		vo.setId((String) session.getAttribute("userID"));
 
-		System.out.println(vo.getM_pw());
-		System.out.println(vo.getM_email());
-		System.out.println(vo.getM_phone());
+	
+		String password = vo.getM_pw();
+		String encryptPassword = passwordEncoder.encode(password);
+		vo.setM_pw(encryptPassword);
 		
 		userService.updateUser(vo);
 		return "redirect:/";
 	}
 	@RequestMapping(value = "/preference_setting.wp")
 	public String setting(SubscribeVO vo, HttpSession session) {
-		System.out.println("취향 설정");
 		vo.setId((String)session.getAttribute("userID"));
-		System.out.println(vo.getS_body());
-		System.out.println(vo.getS_acidity());
-		System.out.println(vo.getS_sweet());
-		System.out.println(vo.getS_tannins());
-		System.out.println(vo.getId());
 	
 		subscribeservice.preference_Setting(vo);
 		
@@ -239,9 +234,7 @@ public class UserController {
 	@RequestMapping("deleteUser.wp")
 	public String deleteUser(UserVO vo, HttpSession session) {
 		
-		System.out.println("유저 탈퇴 진행");
 		vo.setId((String)session.getAttribute("name"));
-		System.out.println(vo.getId());
 		userService.deleteUser(vo);
 		return "redirect:/";
 		

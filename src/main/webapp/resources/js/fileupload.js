@@ -114,7 +114,7 @@ function registerAction(){
 // 리뷰작성
 	function insertAction(){
 	    let w_no;
-	    var form = $("form")[2];
+	    var form = $("form")[3];
 	  //  alert($(form).children().children("div.padding-div").eq(1).children().val());
 	    console.log(form);
 	    var formData = new FormData(form);

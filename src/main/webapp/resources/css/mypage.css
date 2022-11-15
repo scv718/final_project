@@ -1,240 +1,262 @@
 @charset "UTF-8";
 
-body{
-  padding: 0;
-  margin: 0;
+body {
+	padding: 0;
+	margin: 0;
 }
-div{
-  box-sizing: border-box;
+
+div {
+	box-sizing: border-box;
 }
-#amo{    color: #6f42c1!important;}
+
+#updateform {
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#amo {
+	color: #6f42c1 !important;
+}
 /* alert badge */
-.circle{
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  border-radius: 2.5px;
-  background-color: #ff0000;
-  position: absolute;
-  top: -5px;
-  left: 110%;
+.circle {
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	border-radius: 2.5px;
+	background-color: #ff0000;
+	position: absolute;
+	top: -5px;
+	left: 110%;
 }
 
-
-.wrap{
-  background-color: #F8F8F8;  
-/*   min-height: 1000px; */
+.wrap {
+	background-color: #F8F8F8;
+	/*   min-height: 1000px; */
 }
 
-.greenContainer{  
- height: 95px;
-    background-color: #F87171;
-    display: flex;
-    align-items: flex-end;
-    padding: 16px;
+.greenContainer {
+	height: 95px;
+	background-color: #F87171;
+	display: flex;
+	align-items: flex-end;
+	padding: 16px;
 }
-.greenContainer1{ 
-width: 1080px;
-    margin: 0 auto;
-    height: 89px;
-    background-color: #F87171;height: 110px;
-    line-height: 110px;
+
+.greenContainer1 {
+	width: 1080px;
+	margin: 0 auto;
+	height: 89px;
+	background-color: #F87171;
+	height: 110px;
+	line-height: 110px;
 }
-.greenContainer .name{
-   font-size: 22px;
-  font-weight: bold;
-  color: #ffffff;
-} 
-.greenContainer1 .name{
-    text-align: center;
-    display: inline-block;
-    color: white;
-    font-size: 50px;
-    padding: 5px 17px;
-    font-weight: bolder;
-} 
-.greenContainer .modify{
-  margin-left: auto;
+
+.greenContainer .name {
+	font-size: 22px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.greenContainer1 .name {
+	text-align: center;
+	display: inline-block;
+	color: white;
+	font-size: 50px;
+	padding: 5px 17px;
+	font-weight: bolder;
+}
+
+.greenContainer .modify {
+	margin-left: auto;
 }
 
 /* 단골상점 , 상품후기 , 적립금 박스 */
-.summaryContainer{
-  background-color: white;  
-  display: flex;  
-  padding: 21px 16px;  
-  height: 90px;
-  margin-bottom: 10px;
+.summaryContainer {
+	background-color: white;
+	display: flex;
+	padding: 21px 16px;
+	height: 90px;
+	margin-bottom: 10px;
 }
 /* 단골상점 , 상품후기 , 적립금 */
-.summaryContainer .item{
-  flex-grow: 1
+.summaryContainer .item {
+	flex-grow: 1
 }
 /* 녹색 숫자 */
-.summaryContainer .number{
-  font-size: 19px;
-  font-weight: bold;
-  color: #24855b;
+.summaryContainer .number {
+	font-size: 19px;
+	font-weight: bold;
+	color: #24855b;
 }
 /* 텍스트 */
-.summaryContainer .item > div:nth-child(2){
-  font-size: 13px;
+.summaryContainer .item>div:nth-child(2) {
+	font-size: 13px;
 }
 
 .shippingStatusContainer {
-    padding: 31px 2px;
-    background-color: white;
-    margin-bottom: 10px;
-    text-align: center;
+	padding: 31px 2px;
+	background-color: white;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
-.shippingStatusContainer .title{
-       font-size: 24px;
-    margin: 13px;
-    font-weight: bolder;
+.shippingStatusContainer .title {
+	font-size: 24px;
+	margin: 13px;
+	font-weight: bolder;
 }
 
-.t2{background:#F87171;
-     height: 89px;
-    border:0;}
+.t2 {
+	background: #F87171;
+	height: 89px;
+	border: 0;
+}
 
 /* 장바구니 결제완료 배송중 구매확정 [로우] */
-.shippingStatusContainer .status{
-  display: flex;
-
-  margin-bottom: 21px;
+.shippingStatusContainer .status {
+	display: flex;
+	margin-bottom: 21px;
 }
 /* 장바구니 결제완료 배송중 구매확정 [아이템]  */
-.shippingStatusContainer .item{
-  display: flex;
+.shippingStatusContainer .item {
+	display: flex;
 }
 
-.shippingStatusContainer .number{
-  font-size: 31px;
-  font-weight: 500;
-  text-align: center;
+.shippingStatusContainer .number {
+	font-size: 31px;
+	font-weight: 500;
+	text-align: center;
 }
-
 
 .shippingStatusContainer .text {
-    font-size: 22px;
-    font-weight: normal;
-    color: #040404;
-    text-align: center;
-    padding: 25px;
-    font-weight: bolder;
-}
-.shippingStatusContainer .icon{
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  width: 16px;
-  height: 16px;
+	font-size: 22px;
+	font-weight: normal;
+	color: #040404;
+	text-align: center;
+	padding: 25px;
+	font-weight: bolder;
 }
 
+.shippingStatusContainer .icon {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	width: 16px;
+	height: 16px;
+}
 
 /*=================== 주문목록 ~ 찜한상품 리스트 ==================*/
-.listContainer{  
-  padding: 0;
-  background-color: #ffffff;
-  margin-bottom: 10px;
-}
-.listContainer .item{  
-  display: flex;
-  align-items: center;
-  padding: 41px;
-  color: black;
-  text-decoration: none;  
-  height: 56px;
-  box-sizing: border-box;
-}
-.listContainer .icon{  
-  margin-right: 14px;
-}
-.listContainer .text{
-  font-size: 16px;
-  position: relative;
-}
-.listContainer .right{
-  margin-left: auto;
+.listContainer {
+	padding: 0;
+	background-color: #ffffff;
+	margin-bottom: 10px;
 }
 
+.listContainer .item {
+	display: flex;
+	align-items: center;
+	padding: 41px;
+	color: black;
+	text-decoration: none;
+	height: 56px;
+	box-sizing: border-box;
+}
+
+.listContainer .icon {
+	margin-right: 14px;
+}
+
+.listContainer .text {
+	font-size: 16px;
+	position: relative;
+}
+
+.listContainer .right {
+	margin-left: auto;
+}
 
 /*=================== 내지갑의 보유 적립금 들어가는 부분 ================*/
-.listContainer .smallLight{
-  font-size: 14px;
-  color: #c2c2c2;  
-}
-.listContainer .smallLight > span{
-  margin-left: 10px;
+.listContainer .smallLight {
+	font-size: 14px;
+	color: #c2c2c2;
 }
 
-.listContainer .right .blct{
-  font-size: 14px;
-  font-weight: bold;
-  margin-right: 5px;
+.listContainer .smallLight>span {
+	margin-left: 10px;
 }
 
-
+.listContainer .right .blct {
+	font-size: 14px;
+	font-weight: bold;
+	margin-right: 5px;
+}
 
 /* 공지사항 이용안내 고객센터 */
-.infoContainer{
-  background-color: white; 
-  display: flex;
-  height: 100px;
-  margin-bottom: 10px;    
+.infoContainer {
+	background-color: white;
+	display: flex;
+	height: 100px;
+	margin-bottom: 10px;
 }
 
-.infoContainer .item{
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 13px;
-  text-decoration: none;
-  color: black;
-}
-.infoContainer .item > div:first-child{
-  margin-bottom: 2px;
+.infoContainer .item {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-size: 13px;
+	text-decoration: none;
+	color: black;
 }
 
+.infoContainer .item>div:first-child {
+	margin-bottom: 2px;
+}
 
 /*  */
-.listContainer .item:hover{
-/*   background-color: #f8f8f8; */
+.listContainer .item:hover {
+	/*   background-color: #f8f8f8; */
+	
 }
-.infoContainer .item:hover{
-/*   background-color: #f8f8f8; */
+
+.infoContainer .item:hover {
+	/*   background-color: #f8f8f8; */
+	
 }
 /* t1{text-align: center; */
 /*     background: #e9ecef00;} */
 @media screen and (max-width: 768px) {
-	svg{
-	    height: 56px;
-	}	
-	.title{
-	display: none;
+	svg {
+		height: 56px;
+	}
+	.title {
+		display: none;
 	}
 	.shippingStatusContainer .status {
-    display: flex;
-    margin-bottom: 21px;
-    flex-direction: column; 
+		display: flex;
+		margin-bottom: 21px;
+		flex-direction: column;
+	}
+	.greenContainer .name {
+		font-size: 18px;
+	}
+	.greenContainer {
+		height: 75px;
+		padding: 13px;
+	}
 }
-		.greenContainer .name {font-size: 18px;}
-.greenContainer {
-    height: 75px;
-    padding: 13px;
-}
-}
 
-
-
-
-@media screen and (min-width: 768px) {
-.shippingStatusContainer {
-    padding: 31px 2px;
-    background-color: white;
-    margin-bottom: 10px;
-    text-align: center;
-		}
+@media screen and (max-width: 768px) {
+	.shippingStatusContainer {
+		padding: 31px 2px;
+		background-color: white;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+	#updateform {
+		width: auto;
+	}
 }
