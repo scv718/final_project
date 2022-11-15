@@ -34,7 +34,10 @@ public class AddressDAOMybatis {
 		
 		mybatis.insert("PaymentDAO.addAddress", vo);
 	}
-	public List<AddressVO> selectAddress(AddressVO vo) {
-		return mybatis.selectList("PaymentDAO.selectAddress", vo);
+	public AddressVO selectAddress(AddressVO vo) {
+		return mybatis.selectOne("PaymentDAO.selectAddress", vo);
+	}
+	public void selectUpdate(AddressVO vo) {
+		 mybatis.selectOne("PaymentDAO.selectUpdate", vo);
 	}
 }

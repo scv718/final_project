@@ -54,8 +54,6 @@
 		<div id="aligndiv">
 		<form action="getFaqList.wp" method="POST" id="align">
 			<nav>
-<!--         <div id="horizontal-underline"></div> -->
-<!--         <span id="serched">자주찾는 검색어</span> -->
         <label><input type="radio" name="alignlist" value="zero" id="zero" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>주문/결제/배송&nbsp;│</label>
         <label><input type="radio" name="alignlist" value="one" id="one" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>취소/교환/환불&nbsp;│</label>
         <label><input type="radio" name="alignlist" value="two" id="two" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>구독서비스&nbsp;│</label>
@@ -65,7 +63,6 @@
     		</nav>
 		</form>
 		</div>
-		
 		
 		<!-- 자주하는질문 보드 -->
 			<div class="li_title">

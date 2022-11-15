@@ -43,6 +43,7 @@
 		<input type="radio" name="filter" id="LIKE" value="LIKE" onchange="this.form.submit()" <c:if test="${radiochk eq 'LIKE'}">checked</c:if>><label for="LIKE">추천순</label>
 	</form>
 	</div>
+	<div class="table-wrap">
 	<table id="reviewtab">
 		<colgroup>
 			<col style="width: 50px">
@@ -50,8 +51,8 @@
 			<col style="width: 50px">
 			<col style="width: 150px">
 			<col style="width: 70px">
-			<col style="width: 70px">
-			<col style="width: 100px">
+			<col style="width: 60px">
+			<col style="width: 60px">
 			<col style="width: 50px">
 		</colgroup>
 		<thead>
@@ -69,18 +70,20 @@
 		<tbody>
 			<c:forEach items="${reviewList}" var="review">
 				<tr>
-					<td class="tdCenter">${review.re_no}</td>
-					<td><c:if test="${review.re_photo1 ne NULL}"><i class="bi bi-image" style="color: gray;"></i></c:if></td>
-					<td>
-<!-- 						<div class="img-box" style="float: left;"> -->
-<%-- 							<a href="product.wp?w_no=${review.w_no}" class="productlink"> --%>
-<%-- 								<img src="../../resources/img/wine/${review.w_image1}" class="img-thumbnail"> --%>
-<!-- 							</a> -->
-<!-- 						</div> -->
+					<td class="tdCenter tdno">${review.re_no}</td>
+					<td data-label=""><c:if test="${review.re_photo1 ne NULL}"><i class="bi bi-image" style="color: gray;"></i></c:if></td>
+					<td class="tdpdimg" data-label="">
+						<div class="img-box">
+							<div class="img-box-inner">
+							<a href="product.wp?w_no=${review.w_no}" class="productlink">
+								<img src="../../resources/img/wine/${review.w_image1}" class="img-thumbnail">
+							</a>
+							</div>
+						</div>
 					</td>
-					<td style="text-align:left"><div><a href="product.wp?w_no=${review.w_no}" class="productlink">${review.w_nm_k}</a>
+					<td style="text-align:left" data-label="제목"><div class="re-title"><a href="product.wp?w_no=${review.w_no}" class="productlink">${review.w_nm_k}</a>
 						<br><a href="detailReview.wp?re_no=${review.re_no}" class="detailreview">${review.re_title}</a></div></td>
-					<td class="tdCenter">
+					<td class="tdCenter" data-label="평점">
 						<span class="rating" data-rate="${review.re_score}" style="color: #e6e6e6;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
 							  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -99,21 +102,20 @@
 							</svg>
 						</span>
 					</td>
-					<td class="tdCenter">
+					<td class="tdCenter" data-label="작성자">
 						${fn:substring(review.id,0,2)}<c:forEach begin="3" end="${fn:length(review.id)}" step="1">*</c:forEach>
 					</td>
-					<td class="tdCenter"><fmt:formatDate pattern="yyyy-MM-dd" value="${review.re_date}"/></td>
-					<td class="tdCenter">${review.re_like}</td>
+					<td class="tdCenter" data-label="작성일"><fmt:formatDate pattern="yyyy-MM-dd" value="${review.re_date}"/></td>
+					<td class="tdCenter" data-label="추천수">${review.re_like}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 	<c:if test="${search ne null and getCount eq '0'}">
 		<div class="col" id="notexist">검색한 내용이 없습니다.</div>
 	</c:if>
-	
 	<br><br>
-	
 	<div id="btnBox">
 	<!-- 반복처리할 태그 시작 -->
 	<c:if test="${paging.nowPageBtn > 1 }">

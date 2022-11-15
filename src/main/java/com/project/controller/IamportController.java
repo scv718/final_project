@@ -619,7 +619,7 @@ public class IamportController {
 		    System.out.println(ovo.getW_nm_e()+"와인이름 영어");
 		    
 			orderService.subscribeOrder(ovo);
-			return "index.wp";		
+			return "WEB-INF/view/subscribe/subscribe-4.jsp";
 		}
 	
 	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수 private

@@ -394,6 +394,18 @@ $('.WaterBtn').on('click', function () {
 </div>
 </div>
 <script>
+$( document ).ready(function() {
+	var error = '${error}';
+	console.log(error);
+    if(error != '' && error === '1'){
+    	swal ( "장바구니에 제품이 없습니다." ,  "" ,  "error" );
+    	 $.ajax({
+ 	        url: '/errorsession.wp',
+ 	        type: 'post'
+ 	    });
+    }
+});
+
 setInterval(function(){
     $('.slider-3 > .side-btns > div').eq(1).click();
 }, 5000);

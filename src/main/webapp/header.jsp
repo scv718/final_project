@@ -97,7 +97,6 @@ function kakaoLogout() {
 
 <div class = "box" id = "box">
 <a  id = "secondMenu" href="getNoticeList.wp">공지사항</a>
-<a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="getFaqList.wp">FAQ</a> 
 <a id = "secondMenu" href="getReviewList.wp">상품후기</a>
 </div>

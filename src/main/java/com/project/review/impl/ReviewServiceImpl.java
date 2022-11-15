@@ -87,6 +87,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public int productReviewListCnt(ReviewVO rvo) {
 		return reviewDAO.productReviewListCnt(rvo);
 	}
+	
 	//관리자
 	@Override
 	public List<ReviewVO> ReviewListAd(ReviewVO vo) {
@@ -112,10 +113,15 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewDAO.updateRating(vo);
 	}
 
+
 	@Override
 	public List<ReviewVO> mainreviewFilter(ReviewVO vo){
-		
 		return reviewDAO.mainreviewFilter(vo);
 	}
-	
+
+	//상품페이지 정렬
+	@Override
+	public List<ReviewVO> productReviewFilter(ReviewVO rvo) {
+		return reviewDAO.productReviewFilter(rvo);
+	}
 }
