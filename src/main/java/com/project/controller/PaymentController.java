@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,16 +60,25 @@ public class PaymentController {
 		System.out.println(avo.getM_name());
 		avo.setId((String) session.getAttribute("userID"));
 		System.out.println(avo.getM_default());
+		System.out.println(avo.toString());
 	
 		if(avo.getM_default() == 0) {
+			System.out.println("기본주소");
 			if(addressService.selectDefaultAddress(avo) == null) {
 				addressService.firstaddAddress(avo);
 			}else {
 				addressService.firstUpdate(avo);
 			}
 			
-		}else {
-			addressService.addAddress(avo);
+		}
+		if(avo.getM_default() == 1){
+			System.out.println("예비주소");
+			if(addressService.selectAddress(avo) == null) {
+				addressService.addAddress(avo);
+			}else {
+				addressService.selectUpdate(avo);
+			}
+			
 		}
 		
 			

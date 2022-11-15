@@ -70,7 +70,7 @@ p {
 }
 
 #review-bottom {
-	padding-bottom: 25px !important;
+	text-align: end;
 }
 
 #review-bottom button {
@@ -167,4 +167,40 @@ svg {
 .product-content {
 	padding-left: 130px;
     font-size: 18px;
+}
+
+.img-div {
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.imgBoxImg {
+	width: 50%;
+}
+
+.btn-radius {
+	border-radius: 20px;
+}
+
+@media screen and (max-width : 1300px) {
+	#reviewContainer {
+	width: 60%;
+	}
+}
+
+@media screen and (max-width : 768px) {
+	#reviewContainer {
+    width: 90%;
+    margin: 0 auto;
+	}
+	
+	.imgBoxImg {
+	width: 90%;
+	}
+}	
+
+@media screen and (max-width : 414px) {
+	.alist {
+	margin-top: -97px;
+	}
 }

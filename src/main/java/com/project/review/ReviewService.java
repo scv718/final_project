@@ -39,6 +39,7 @@ public interface ReviewService {
 
 	//상품별 리뷰목록 갯수
 	int productReviewListCnt(ReviewVO rvo);
+	
 	//관리자
 	List<ReviewVO> ReviewListAd(ReviewVO vo);
 	// 삭제
@@ -51,6 +52,8 @@ public interface ReviewService {
 	
 	//평점평균 반영
 	void updateRating(ReviewVO vo);
-	
+
+	//상품페이지 정렬
+	List<ReviewVO> productReviewFilter(ReviewVO rvo);
 
 }

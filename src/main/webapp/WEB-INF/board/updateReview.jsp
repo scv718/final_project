@@ -33,6 +33,7 @@ dt {
 			<div id="reviewcontent">
 				<div id="review-top">
 					<input type="hidden" id="re_no" name="re_no" value="${detailReview.re_no}">
+					<input type="hidden" id="re_photo1" name="re_photo1" value="${detailReview.re_photo1}">
 					<h5>
 						<input type="text" name="re_title" id="updatetitle" placeholder="제목" value="${detailReview.re_title}">
 					</h5>
@@ -62,14 +63,14 @@ dt {
 								<div id="exfile1" onclick="exfileDelete('exfile1')">
 <%-- 									<font style="font-size:12px">${detailReview.re_photo1}</font> --%>
 	<!-- 								<img src="마이너스사진" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"> -->
-									<img src="../resources/img/review/${detailReview.re_photo1}" title="${detailReview.re_photo1}" style="width:80px; height:80px;">
+									<img src="${pageContext.request.contextPath}/resources/img/review/${detailReview.re_photo1}" title="${detailReview.re_photo1}" style="width:80px; height:80px;">
 									<img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn">
 								</div>
 								<c:if test="${detailReview.re_photo2 ne NULL}">
 									<div id="exfile2" onclick="exfileDelete(exfile2)">
 <%-- 									<font style="font-size:12px">${detailReview.re_photo1}</font> --%>
 	<!-- 								<img src="마이너스사진" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"> -->
-										<img src="../resources/img/review/${detailReview.re_photo2}" title="${detailReview.re_photo3}" style="width:80px; height:80px;">
+										<img src="${pageContext.request.contextPath}/resources/img/review/${detailReview.re_photo2}" title="${detailReview.re_photo3}" style="width:80px; height:80px;">
 										<img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn">
 									</div>
 								</c:if>
@@ -79,11 +80,11 @@ dt {
 					</div>
 				</div>
 				<!-- 리뷰내용 -->
-				<textarea name="re_content" id="updatecontent" rows="10" style="width:100%; margin-top:10px; resize:none;" placeholder="작성할 내용을 입력하세요.">${detailReview.re_content}</textarea>
-			</div>
+				<textarea name="re_content" id="updatecontent" rows="10" style="width:100%; margin:10px 0; resize:none;" placeholder="작성할 내용을 입력하세요.">${detailReview.re_content}</textarea>
 			<div id="review-bottom">
-					<button type="button" onclick="registerAction()">확인</button>
-					<button type="button" onclick="location.href='javascript:window.history.back();'">취소</button>
+					<button class="btn-radius" type="button" onclick="registerAction()">확인</button>
+					<button class="btn-radius" type="button" onclick="location.href='javascript:window.history.back();'">취소</button>
+			</div>
 			</div>
 			</form>
 		</div>

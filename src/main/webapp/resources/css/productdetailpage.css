@@ -318,6 +318,7 @@ td {
 
 #writebtn-div {
 	padding-bottom: 25px !important;
+	text-align: end;
 }
 
 .writebtn {
@@ -325,7 +326,6 @@ td {
 	border: 1px solid lightgray;
 	color: gray;
 	padding: 5px 15px;
-	float: right;
 }
 
 #btnBox {
@@ -393,6 +393,10 @@ a:active {
 
 .padding-div {
 	margin-bottom: 5px;
+}
+
+.btn-div {
+	text-align: end;
 }
 
 #filebtn {
@@ -500,6 +504,11 @@ li > .nava:hover {
 	border-bottom: 1px solid lightgray;
 	outline: none;
 }
+
+.imgBoxImg {
+	width: 50%;
+	padding: 10px 0;
+}
 /* 유경 끝 */
 
 @media screen and (max-width: 990px) {
@@ -543,4 +552,16 @@ li > .nava:hover {
    #mobilepayment{
    display: block;
    }
+   
+	.re-wrap {
+		width: 161%;
+	}
+   
+	#reviewContainer table col {
+		width: 1% !important;
+	}
+	
+	#writeContent {
+		padding: 20px 15px;
+	}
 }

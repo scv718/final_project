@@ -648,9 +648,19 @@ table {
     box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
-
 @media screen and (max-width: 768px) {
-.total_info_div {top: 78%;right: 37%;width: 65%;}
-.content_main {margin: 0 auto;width: 87%;min-height: 699px;}
-
-}
+	.content_main{
+	padding-right: 0;
+	}
+	.total_info_div {
+    position: inherit;
+    width: auto;
+	}
+	.addressInfo_input_div_wrap {
+    height: auto;
+	}
+	#btncheck{
+	width: 200px;
+	}
+	
+	}
