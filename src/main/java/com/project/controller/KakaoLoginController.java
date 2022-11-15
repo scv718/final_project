@@ -43,8 +43,8 @@ public class KakaoLoginController {
 	public static final String KAKAO_USER_INFO_URL = "https://kapi.kakao.com/v2/user/me";
 	public static final String KAKAO_LOGOUT_URL = "https://kapi.kakao.com/v1/user/logout";
 	public static final String KAKAO_UNLINK_URL = "https://kapi.kakao.com/v1/user/unlink";
-	public static String REDIRECT_URI = "http://winerycop.tk";
-//	public static String REDIRECT_URI = "http://localhost:8090";
+//	public static String REDIRECT_URI = "http://winerycop.tk";
+	public static String REDIRECT_URI = "http://localhost:8090";
 	private static String id ;
 	private String REST_API_KEY = "dc2fa6b3e7a1ed13915aa6e675bfc8a6";
 	
@@ -111,8 +111,8 @@ public class KakaoLoginController {
         vo.setM_name(m_name);
         String id = null;
 
-        REDIRECT_URI = "http://winerycop.tk";
-//        REDIRECT_URI = "http://localhost:8090";
+//        REDIRECT_URI = "http://winerycop.tk";
+        REDIRECT_URI = "http://localhost:8090";
         if(userService.getId(vo) == null) {
         	if(age < 20) {
         		System.out.println("나이 제한");
@@ -179,8 +179,8 @@ public class KakaoLoginController {
 		}catch (Exception e) { 
 			e.printStackTrace(); 
 		}
-		REDIRECT_URI = "http://winerycop.tk";
-//		REDIRECT_URI = "http://localhost:8090";
+//		REDIRECT_URI = "http://winerycop.tk";
+		REDIRECT_URI = "http://localhost:8090";
         return "redirect:/";
 	}
 	
