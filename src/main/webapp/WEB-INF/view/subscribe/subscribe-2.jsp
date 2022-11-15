@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>구독 결제</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- 다음주소 -->
@@ -28,7 +29,7 @@ function checkOnlyOne(element) {
 <div class="wrapper">
 	<div class="wrap">
 		<div class="content_area">
-			<div class="content_subject"><span>결제하기</span></div>
+			<div class="content_subject"><span>구독결제</span></div>
 			<div class="content_main">
 				<!-- 회원 정보 -->
 				<div class="member_info_div">

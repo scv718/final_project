@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>사이트 구독</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/subscribe.css">
 </head>

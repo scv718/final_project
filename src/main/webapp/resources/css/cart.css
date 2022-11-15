@@ -96,9 +96,9 @@ caption {
 }
 
 .content_btn_section1 {
-	margin-right: 19%;
-	padding: 2px;
-	text-align: right;
+	    margin-right: 0%;
+    padding: 2px;
+    text-align: right;
 }
 
 .content_btn_section a {
@@ -435,8 +435,8 @@ td {
 }
 
 #cp12 {
-	max-width: 66%;
-	left: 17%;
+	    max-width: 102%;
+    left: 0%;
 }
 
 #wwit {

@@ -719,7 +719,7 @@ public class IamportController {
 				return -1;
 			} else {
 				System.err.println("환불성공");
-
+				orderService.deleteOrderList(ovo);	
 				orderService.cancleOrder(ovo);
 				subscribeService.updateSubscribe(svo);
 				subscribeService.liset_deli_price_up(svo);
