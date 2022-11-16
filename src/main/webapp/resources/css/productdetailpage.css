@@ -508,8 +508,6 @@ li > .nava:hover {
 	width: 50%;
 	padding: 10px 0;
 }
-<<<<<<< HEAD
-=======
 
 #filter input[type=radio] {
 	accent-color: #e2373f;
@@ -518,7 +516,6 @@ li > .nava:hover {
 a.viewhidden:hover {
 	color: gray !important;
 }
->>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
 /* 유경 끝 */
 
 @media screen and (max-width: 990px) {
@@ -534,18 +531,13 @@ a.viewhidden:hover {
 	}
 
   #productimg{
-<<<<<<< HEAD
-  height: 159px;
-=======
   height: 340px;
->>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
   }
   
   #productimgdiv {
 	margin-top: 40px;
 	text-align:center;
     display:table;
-<<<<<<< HEAD
     width:384px !important;
     height:159px !important;
    }
@@ -553,7 +545,6 @@ a.viewhidden:hover {
    width: 341px !important;
     margin: 0px -5px;
    }
-=======
     width:415px !important;
     height:159px !important;
    }
@@ -569,7 +560,6 @@ a.viewhidden:hover {
 	font-size: 18px;
 	}
 	
->>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
    #paymentonemobile{
        width: 88% !important;
        height: 47px !important;
