@@ -383,7 +383,7 @@
 			<!-- 상품정보 이미지 -->
 			<div class ="row" id="detailcontents">
 				<div class="col-8">
-				<img id = "productimginfo" src = "${pageContext.request.contextPath}/resources/img/예시.png">
+				<img id = "productimginfo" src = "${pageContext.request.contextPath}/resources/img/상세설명.png">
 				</div>
 			</div>
 			
