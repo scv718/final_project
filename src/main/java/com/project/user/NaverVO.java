@@ -3,8 +3,8 @@ package com.project.user;
 public class NaverVO {
 	//네이버 기본 정보
 	private String client_id = "TVGpgMhXQzgpUQXbIPCW";
-	private String service_url = "http://localhost:8090/";
-	private String callback_url = "http://localhost:8090";
+	private String service_url = "http://winerycop.tk/";
+	private String callback_url = "http://winerycop.tk";
 	private String client_secret ="fJLF8dkHJ4";
 	
 	

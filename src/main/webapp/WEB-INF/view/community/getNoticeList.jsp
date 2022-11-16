@@ -20,7 +20,8 @@
 <body class = "d-flex flex-column min-vh-100">
 	<div id="communityContainer">
 		<h3 id="comtitle">공지사항</h3>
-		<p>와이너리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요</p>
+		<p id="original_type">와이너리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요</p>
+		<p id="media_type">와이너리의 새로운 소식들과 <br> 유용한 정보들을 한곳에서 확인하세요</p>
 		<br>
 
 		<!-- 검색창 - 공통 -->

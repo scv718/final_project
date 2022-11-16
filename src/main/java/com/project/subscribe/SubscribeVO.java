@@ -17,8 +17,34 @@ public class SubscribeVO {
 	
 	private int prod_price;//상품 금액
 	private int deli_price;//배송비
+	private String s_product;
+	private String s_product2;
+	private String s_product3;
 	
-	
+	public String getS_product() {
+		return s_product;
+	}
+
+	public void setS_product(String s_product) {
+		this.s_product = s_product;
+	}
+
+	public String getS_product2() {
+		return s_product2;
+	}
+
+	public void setS_product2(String s_product2) {
+		this.s_product2 = s_product2;
+	}
+
+	public String getS_product3() {
+		return s_product3;
+	}
+
+	public void setS_product3(String s_product3) {
+		this.s_product3 = s_product3;
+	}
+
 	@Override
 	public String toString() {
 		return "SubscribeVO [id=" + id + ", level=" + level + ", sub_date=" + sub_date + ", sub_pm_status="

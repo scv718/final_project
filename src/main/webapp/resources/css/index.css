@@ -6,6 +6,11 @@
 	    width: 70px;
 	display: inline-block;
 }
+#closetype{
+	float: right;
+    margin-right: 50px;
+    font-size: 25px;
+}
 #boardtitle{
 	font-size :30px;
 	display: inline-block;

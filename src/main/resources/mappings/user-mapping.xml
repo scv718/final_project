@@ -9,7 +9,7 @@
 		where id = #{id} and M_STATUS = 0
 	</select>
 	<select id="getUserPw" resultType="users">
-		select * from member and M_STATUS = 0
+		select * from member WHERE M_STATUS = 0 AND M_ROLE = 'user'
 	</select>
 
 	<select id="getUserList" resultType="users">

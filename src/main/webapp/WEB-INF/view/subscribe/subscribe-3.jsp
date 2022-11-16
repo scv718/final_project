@@ -47,21 +47,21 @@
                         <td class="td_width_2 price_td" style = "text-align: center">
                           <fmt:formatNumber value="${subscribe.ord_t_price}" pattern="#,### 원" /><br>
                         </td>
-  
-                        <td class="td_width_3 table_text_align_center">
-                         <form action="deletesubscribe.wp" method="post">
-                        	<input type="hidden" name="ord_code" value="${subscribe.ord_code}">
-                           <button  type="submit" id="delete_btn" class = "btn-hover color-90">내역삭제</button>
-                           </form> 
-                       
-                
-                      	<c:if test="${subscribe.cs_stat ne '취소'}">
+                        
+    <td class="td_width_3 table_text_align_center">
+  							<c:if test="${subscribe.cs_stat ne '취소'}">
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${subscribe.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${subscribe.merchant_uid}">
                            <button  type="button" id="delete_btn" class = "btn-hover color-90" >구독취소</button>
                            </form>
                       	</c:if>
+                      	
+                      
+<!--                          <form action="deletesubscribe.wp" method="post"> -->
+<%--                         	<input type="hidden" name="ord_code" value="${subscribe.ord_code}"> --%>
+<!--                            <button  type="submit" id="delete_btn" class = "btn-hover color-90">내역삭제</button> -->
+<!--                            </form>  -->
                         </td>
                      </tr>  
                </tbody>
@@ -80,10 +80,9 @@
 function cancellation() {
 	var level = ${mylevel};
 	 if (level > 0){
-		alert('구독 내역 삭제 후 구독 가능 합니다.');
+		alert('구독 취소 후 구독 가능 합니다.');
 	}else if (level == 0){
 		alert('재구독 가능 합니다.');
-		confirm("구독하겠습니까?")
 		if(confirm("구독하겠습니까?")){
 			location.href = "subscribe-1.wp";
 		}else{

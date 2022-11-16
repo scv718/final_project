@@ -129,6 +129,7 @@ $('.slider-1 > .side-btns > div').click(function(){
 
 
 <div class="typeSlider">
+<a id = "closetype"><i class = "xi-close-min"></i></a>
 <div class = "type">
 <div class="slider-2">
     <div class="slides">
@@ -230,12 +231,14 @@ $(document).on('click', ' .slider-2 > .side-btns > div',function(){
 </script>
 
 <script type="text/javascript">
+$('#closetype').on('click', function () {
+	 $('.typeSlider').hide();
+})
+
 $('.WaterBtn').on('click', function () {
 	 var watertype = this.value;
-	
-	 if($('.typeSlider').is(':visible')){
-		 $('.typeSlider').hide();
-	 }else{
+
+			
 			console.log(watertype)
 			$.ajax({
 				type : 'POST',
@@ -250,10 +253,9 @@ $('.WaterBtn').on('click', function () {
 				
 				}
 			})
-	 }
+	 })
 	
 
-})
 
 </script> 
 
@@ -394,6 +396,18 @@ $('.WaterBtn').on('click', function () {
 </div>
 </div>
 <script>
+$( document ).ready(function() {
+	var error = '${error}';
+	console.log(error);
+    if(error != '' && error === '1'){
+    	swal ( "장바구니에 제품이 없습니다." ,  "" ,  "error" );
+    	 $.ajax({
+ 	        url: '/errorsession.wp',
+ 	        type: 'post'
+ 	    });
+    }
+});
+
 setInterval(function(){
     $('.slider-3 > .side-btns > div').eq(1).click();
 }, 5000);

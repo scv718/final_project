@@ -84,6 +84,8 @@
 
 #loginMenu a {
 	margin-right: 20px;
+	color: black !important;
+	
 }
 
 .navbar-brand {

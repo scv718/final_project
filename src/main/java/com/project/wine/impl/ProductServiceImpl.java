@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.subscribe.SubscribeVO;
 import com.project.wine.ProductService;
 import com.project.wine.WineVO;
 
@@ -42,7 +43,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<WineVO> subscribeproduct(WineVO vo) {
+	public List<WineVO> subscribeproduct(SubscribeVO vo) {
 		return productDAO.subscribeproduct(vo);
 	}
 	

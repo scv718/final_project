@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,10 +88,17 @@ public class Order_cartController {
 	@RequestMapping(value = "/cart.wp")
 	public String cart(UserVO uvo, CartVO cvo, SubscribeVO svo, HttpSession session, Model model) {
 		System.out.println("장바구니 이동");
-	
 		String Cid = (String) session.getAttribute("userID");
 		cvo.setId(Cid);
+		
+		boolean nullListEmpty = CollectionUtils.isEmpty(cartService.getCartList(Cid));
+			if(nullListEmpty) {
+				session.setAttribute("error", 1);
+				return "redirect:/";
+			}
+
 		try {
+			
 			if (Cid == null) {
 				return "signUp.wp";
 			}

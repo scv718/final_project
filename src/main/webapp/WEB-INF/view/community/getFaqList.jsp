@@ -33,7 +33,8 @@
 	<div id="faqContainer">
 		<!-- 제목 -->
 		<h3 id="comtitle">FAQ</h3>
-		<p>고객들이 자주 물어보는 여러가지 질문에 대한 답변을 모아두었습니다.</p>
+		<p id="original_type">고객들이 자주 물어보는 여러가지 질문에 대한 답변을 모아두었습니다.</p>
+		<p id="media_type">고객들이 자주 물어보는 여러가지<br>질문에 대한 답변을 모아두었습니다.</p>
 		
 <!-- 		<button type="button" onclick="location.href='admin_getFaqList.wp'">관리자FAQ목록확인</button> -->
 		<!-- 검색창 -->

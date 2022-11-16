@@ -181,7 +181,7 @@
          </div></div>
          <!-- 구매 버튼 영역 -->
     	<div class="content_btn_section1">
-				<button id = "order_btn" class = "btn-hover color-9">주문하기</button>
+				<button id = "order_btn" class = "btn-hover color-9" onclick="nullclick();">주문하기</button>
 			</div>
 	<form action="payment.wp"method="get" class="order_form"></form>				
        </div>  

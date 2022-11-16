@@ -8,6 +8,6 @@ public interface AddressService {
 	void firstUpdate(AddressVO vo);
 	void addAddress(AddressVO vo);
 	AddressVO selectDefaultAddress(AddressVO vo);
-	List<AddressVO> selectAddress(AddressVO vo);
-	
+	AddressVO selectAddress(AddressVO vo);
+	void selectUpdate(AddressVO vo);
 }

@@ -8,17 +8,24 @@
 		SELECT * FROM WINE
 		WHERE W_NO = #{w_no}
 	</select>
-	<select id ="subscribeproduct" resultType="wine">
+<!-- 	<select id ="subscribeproduct" resultType="wine"> -->
+<!-- 		SELECT b.* FROM subscript A INNER JOIN WINE b ON   -->
+<!-- 		<![CDATA[ -->
+<!-- 		(a.s_sweet-1 <= b.W_SWEET AND a.s_sweet+1 >= b.w_sweet)  AND -->
+<!-- 		(a.S_BODY-1 <= b.w_BODY AND a.S_BODY+1 >= b.w_BODY) and -->
+<!-- 			(a.s_ACIDITY-1 <= b.w_ACIDITY AND a.S_ACIDITY+1 >= b.w_ACIDITY) and -->
+<!-- 			(a.S_TANNINS-1 <= b.w_TANNINS AND a.S_TANNINS+1 >= b.w_TANNINS) -->
+<!-- 			]]> -->
+<!-- 	WHERE a.ID = #{id} -->
+<!-- 	</select> -->
+		<select id ="subscribeproduct" resultType="wine">
 		SELECT b.* FROM subscript A INNER JOIN WINE b ON  
 		<![CDATA[
 		(a.s_sweet-1 <= b.W_SWEET AND a.s_sweet+1 >= b.w_sweet)  AND
-		(a.S_BODY-1 <= b.w_BODY AND a.S_BODY+1 >= b.w_BODY) and
-			(a.s_ACIDITY-1 <= b.w_ACIDITY AND a.S_ACIDITY+1 >= b.w_ACIDITY) and
-			(a.S_TANNINS-1 <= b.w_TANNINS AND a.S_TANNINS+1 >= b.w_TANNINS)
-			]]>
-	WHERE a.ID = #{id}
-	</select>
-	
+		(a.S_BODY-1 <= b.w_BODY AND a.S_BODY+1 >= b.w_BODY)
+		]]> 
+		WHERE a.ID = #{id}
+		</select>
 <!-- 구독 조회 -->
 	<select id ="subscribeW1" resultType="wine">
 	SELECT * FROM WINE WHERE W_NO = 997

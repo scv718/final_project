@@ -100,6 +100,13 @@
 	</update>
 
 
+<update id="insertProduct">
+		UPDATE SUBSCRIPT SET
+		S_PRODUCT = #{s_product},
+		S_PRODUCT2 = #{s_product2},
+		S_PRODUCT3 = #{s_product3}
+		WHERE ID = #{id}
+</update>
 <select id="allsubscriptList" resultType="subscribe">
 		select * from subscript
 	</select>
