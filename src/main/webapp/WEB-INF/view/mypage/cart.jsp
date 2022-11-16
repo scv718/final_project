@@ -82,11 +82,10 @@
                            <input type="hidden" name="ord_quan"value="${ci.ord_quan}">
                            <input type="hidden"name="quantity" value="${ci.quantity}">   
                            
-                              <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input">   
+                                <input type="number" value="${ci.ord_quan}"  class="quantity_input"  disabled>      
                               <button type = "button" class="quantity_btn plus_btn">+</button>
                                <button  type = "button"  class="quantity_btn minus_btn">-</button>
                            </div>
-
 
                            <input type="hidden" name = "id" value="${ci.id}">
                            <input type="hidden" name = "w_no" value="${ci.w_no}">
@@ -287,17 +286,7 @@ function setTotalInfo(){
 }
 
 
-$(".plus_btn").on("click", function(){
-	   let ord_quan = $(this).parent("div").find("input").val();
-	   $(this).parent("div").find("input").val(++ord_quan);
 
-	});
-	$(".minus_btn").on("click", function(){
-	   let ord_quan = $(this).parent("div").find("input").val();
-	   if(ord_quan > 1){
-	      $(this).parent("div").find("input").val(--ord_quan);      
-	   }
-	});	
 
 	
 /* 주문 페이지 이동 */	
