@@ -36,7 +36,7 @@ video {
 <div class="slider-1">
     <div class="slides">
         <div class="active">
-        <video muted autoplay loop>
+        <video autoplay loop muted playsinline>
 			<source src="resources/img/와인메인3.mp4" type="video/mp4">
 		</video>
 		</div>
