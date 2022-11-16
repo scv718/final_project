@@ -1,6 +1,5 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html;"    pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -100,6 +99,21 @@
 	top:1px;
 }
 
+
+    div.left {
+        width: 50%;
+        float: center;
+        box-sizing: border-box;
+        
+    
+    }
+    div.right {
+        width: 50%;
+        float: center;
+        box-sizing: border-box;
+        
+    }
+
 </style>
 <body>
 
@@ -188,81 +202,105 @@
                 </div>
             </nav>
             
-            <div>
-            <h2 align="center">와인관리</h2>
-            </div>
-            <br><br>
-            <div class='btnSet' align="center">
-		<a class='myButton' href="adminWine.wp">전체목록</a>
-		<a class='myButton' href="addWine.wp">와인등록</a>
-            <br><br><hr>
-        </div>
+			
 
-    <table id="myTable" class="display table" style="width:100%">
-        <thead>  
-         <tr style="background-color: #FCA5A5;" align="center">
-	        <th>와인등록번호</th>
-			<th>와인이름(한글)</th>
-			<th>와인이름(영문)</th>
-			<th>원산지</th>
-			<th>생산년도</th>
-			<th>재고</th>
-			<th>가격</th>
-			<th>판매수량</th>
-			<th>판매수량</th>
-        </tr> 
-        </thead>  
-        <tbody> 
-         <c:forEach items="${WineListAd}" var="wine">   
-         <tr style="text-align:center">
-         <td>${wine.w_no}</td>
-      	 <td>${wine.w_nm_k}</td>
-      	 <td>${wine.w_nm_e}</td>
-      	 <td>${wine.country}</td>
-      	 <td>${wine.since}</td>
-     	 <td>${wine.quantity}</td>
-      	 <td>${wine.w_price}</td>
-      	 <td>${wine.w_sales}</td>
-      	 <td><a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteWine('${wine.w_no}')}">삭제</a></td>
-       </tr>   
-        </c:forEach>
-       </tbody>
-    </table>
-  
-    
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
- 
- 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-//                 $(this).toggleClass('active');
-            });
-        });
-        $(document).ready(function(){
-            $('#myTable').dataTable();
-        });
-    function updateWine(param){
-    	var m_name = $('#m_name'+param).val();
-    	var id =  $('#id'+param).val();
-    	console.log('testad');
-    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
-    	document.userInfo.submit();
-    }
-    function deleteWine(w_no){
-    	var w_no = w_no;
-    	location.href = 'deleteWine.wp?w_no='+w_no;
-    	document.userInfo.submit();
-    }
-    </script>
+         <div class="input-form col-md-12 mx-auto"  style="width: 100%;">
+            <h4 class="mb-3 add">와인 등록</h4>
+            <br>
+            <form action="insertWine.wp" method="post" enctype="multipart/form-data">
+            <div class="left" >
+               <div class="mb-3">
+                  <label for="w_nm_k">와인명(한)</label> <input type="text"
+                     class="form-control addb-input" name="w_nm_k" id="w_nm_k" placeholder="와인명(한국어)" required>
+               </div>
+
+               <div class="mb-3">
+                  <label for="w_nm_e">와인명(영)</label> <input type="text"
+                     class="form-control addb-input" name="w_nm_e" id="w_nm_e"
+                     placeholder="와인명(알파벳)" required>
+               </div>
+
+               <div class="mb-3">
+                  <label for="continental">대륙</label> <input type="text"
+                     class="form-control addb-input" name="continental" id="continental"
+                     placeholder="유럽, 북아메리카, 남아메리카 등" required>
+               </div>
+               
+               <div class="mb-3">
+                  <label for="country">생산 국가</label> <input type="text"
+                     class="form-control addb-input" id="country" name="country"
+                     placeholder="프랑스, 이탈리아, 미국, 칠레 등" required>
+               </div>
+               <div class="mb-3">
+                  <label for="since">생산 년도</label> <input type="number"
+                     class="form-control addb-input" id="since" name="since" placeholder="4자리 숫자를 입력해주세요" required>
+               </div>
+                <div class="mb-3">
+                  <label for="quantity">입고 수량</label> <input type="number"
+                     class="form-control addb-input" id="quantity" name="quantity" required>
+               </div>
+                  <div class="mb-3">
+                  <label for="w_price">가격 설정</label> <input type="number"
+                     class="form-control addb-input" id="w_price" name="w_price" required>
+               </div>
+               
+               </div>
+                 <div class="right">
+				    <div class="mb-3 option">
+                 <h6> <label for="type">타입</label></h6><hr>
+                    <input type="radio" id="type1" name="type" value="0" required>레드
+					<input type="radio" id="type2" name="type" value="1">화이트
+					<input type="radio" id="type3" name="type" value="2">스파클링
+					<input type="radio" id="type4" name="type" value="3">로제
+               </div>
+
+				  <div class="mb-3 option">
+                 <h6> <label for="type">당도</label></h6><hr>
+                    <input type="radio" name="w_sweet" value="1" required>1 
+					<input type="radio" name="w_sweet" value="2">2 
+					<input type="radio" name="w_sweet" value="3">3 
+					<input type="radio" name="w_sweet" value="4">4 
+					<input type="radio" name="w_sweet" value="5">5 <br>
+               </div>
+
+					  <div class="mb-3 option">
+                 <h6> <label for="type">바디감</label></h6><hr>
+                    <input type="radio" name="w_body" value="1" required>1 
+					<input type="radio" name="w_body" value="2">2 
+					<input type="radio" name="w_body" value="3">3 
+					<input type="radio" name="w_body" value="4">4 
+					<input type="radio" name="w_body" value="5">5 <br>
+               </div>
+               	  <div class="mb-3 option">
+                 <h6> <label for="type">산미</label></h6><hr>
+                    <input type="radio" name="w_acidity" value="1" required>1 
+					<input type="radio" name="w_acidity" value="2">2 
+					<input type="radio" name="w_acidity" value="3">3 
+					<input type="radio" name="w_acidity" value="4">4 
+					<input type="radio" name="w_acidity" value="5">5 <br>
+               </div>
+               	  <div class="mb-3 option">
+                 <h6> <label for="type">타닌</label></h6><hr>
+                    <input type="radio" name="w_tannins" value="1" required>1 
+					<input type="radio" name="w_tannins" value="2">2 
+					<input type="radio" name="w_tannins" value="3">3 
+					<input type="radio" name="w_tannins" value="4">4 
+					<input type="radio" name="w_tannins" value="5">5 <br>
+               </div>
+					   
+				 <div class="mb-3">
+                  <label for="uploadFile"> 파일 첨부 </label>
+					<input name="uploadFile" type="file"
+						 id="uploadFile" multiple="multiple" required="required" />
+               </div>
+               </div>
+           
+               <button class="btn btn-lg btn-block" type="submit"
+                  >등록 완료</button>
+            </form>
+         </div>
+</div>
+</div>
+
 </body>
 </html>

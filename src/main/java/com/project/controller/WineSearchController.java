@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.cart.CartVO;
+import com.project.story.StoryVO;
+import com.project.user.UserVO;
 import com.project.wine.WineService;
 import com.project.wine.WineVO;
 
@@ -137,4 +143,39 @@ public class WineSearchController {
 
 	}
 
+	//와인 등록 페이지 이동
+	@RequestMapping(value = "/addWine.wp")
+	public String insertWine(WineVO vo, Model model) {
+		System.out.println("와인 등록 페이지 이동");
+		return "WEB-INF/view/admin/addWine.jsp";
+	}
+	
+	@RequestMapping("/insertWine.wp")
+	public String insertWine(MultipartHttpServletRequest request, WineVO vo, Model model)
+			throws IllegalStateException, IOException {
+
+		MultipartFile uploadFile = vo.getUploadFile();
+		String wine_img = uploadFile.getOriginalFilename();
+		vo.setW_image1(wine_img);
+		String realPath = "C:\\Users\\PC-24\\Desktop\\WineProject\\final_project\\src\\main\\webapp\\resources\\img\\wine";
+		// 절대 경로 변경할 위치
+		System.out.println(wine_img);
+		if (!uploadFile.isEmpty()) {
+			uploadFile.transferTo(new File(realPath + wine_img));
+		}
+		wineService.insertWine(vo);
+		return "adminWine.wp";
+	}
+	
+	@RequestMapping(value="deleteWine.wp")
+	public String adminDelete(WineVO vo, Model model) {
+		System.out.println("유저 삭제 받아오기");
+		System.out.println(vo.toString());
+		wineService.deleteWine(vo); 
+		return "adminWine.wp";
+		
+	}
+
+	
+	
 }

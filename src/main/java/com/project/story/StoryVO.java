@@ -39,14 +39,17 @@ public class StoryVO {
 
 
 
+	
+	
+	
 	@Override
 	public String toString() {
 		return "StoryVO [story_no=" + story_no + ", story_p_no=" + story_p_no + ", story_a_no=" + story_a_no
-				+ ", story_title=" + story_title + ", story_content=" + story_content + ", story_back_img="
-				+ story_back_img + ", story_add_img=" + story_add_img + "]";
+				+ ", story_title=" + story_title + ", story_semi_title=" + story_semi_title + ", story_content="
+				+ story_content + ", story_back_img=" + story_back_img + ", story_add_img=" + story_add_img +"]";
 	}
-	
-	
+
+
 	public int getStory_no() {
 		return story_no;
 	}

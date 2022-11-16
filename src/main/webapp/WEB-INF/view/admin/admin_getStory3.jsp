@@ -39,12 +39,12 @@
 				<div class="s_t col-sm-12">
 					<div class="s_t_i">
 						<img class="bd-placeholder-img" id="t1"
-							src="${pageContext.request.contextPath}/resources/img/story/${story1_t.story_back_img}">
+							src="${pageContext.request.contextPath}/resources/img/story/${story3_t.story_back_img}">
 					</div>
 					
 					<div class="s_t_c">
 						<h1>
-						${story1_t.story_title}  페이지 수정하기
+						${story3_t.story_title}  페이지 수정하기
 						</h1>
 					</div>
 					<hr>
@@ -57,7 +57,7 @@
     <table id="myTable" class="display table"  style="width=80%">
         <thead>  
          <tr style="background-color: #FCA5A5" align="center">
-	       	<th width="15%">페이지 번호</th>
+	    	<th width="15%">페이지 번호</th>
 	        <th width="50%">페이지 타이틀</th>
 			<th width="20%">타이틀 이미지</th>
 			<th width="15%">타이틀 수정</th>		
@@ -65,11 +65,11 @@
         </thead>  
         <tbody> 
        <tr align="center">
-        	<td style="vertical-align:middle;"><input type="number"  style="width:50%; text-align:center;" id="s1_t" name="story_p_no" value="${story1_t.story_p_no}" readonly></td>
-         <td style="vertical-align:middle;"><input type="text" id="s1_t" name="story_title" value="${story1_t.story_title}"></td>
+       	<td style="vertical-align:middle;"><input type="number"  style="width:50%; text-align:center;" id="s1_t" name="story_p_no" value="${story3_t.story_p_no}" readonly></td>
+         <td style="vertical-align:middle;"><input type="text"  style="width:90%" id="s1_t" name="story_title" value="${story3_t.story_title}"></td>
       	 <td style="vertical-align:middle;"><label for="s1_t_img"> 
       	 <input type="file" class="form-control innm" id="s1_t_img" name="uploadFile">
-							</label><br>현재 선택 파일 : ${story1_t.story_back_img}</td>
+							</label><br>현재 선택 파일 : ${story3_t.story_back_img}</td>
 	  <td style="vertical-align:middle;">
 	  	<button type="submit" style="background-color:#FCA5A5" class="myButton1 btn btn-lg" onclick="if(confirm('수정하시겠습니까?'))">수정</button>
       </td>
@@ -80,23 +80,23 @@
     <table id="myTable" class="display table" style="width=80%">
         <thead>  
          <tr style="background-color: #FCA5A5" align="center">
-	       	<th width="10%">항목 번호</th>
-			<th width="15%">항목 타이틀</th>
-			<th width="50%">항목 컨텐츠</th>
-			<th width="15%">항목 이미지</th>
+	       	<th width="15%">메뉴이름</th>
+			<th width="15%">재료들</th>
+			<th width="50%">레시피</th>
+			<th width="10%">이미지명</th>
 			<th width="10%">항목 수정</th> </tr>
         </thead>  
         <tbody> 
          
-       <c:forEach items="${story1_c}" var="story1" varStatus="status"> 
+       <c:forEach items="${story3_c}" var="story3" varStatus="status"> 
                   
        <tr align="center" >
-       	 <td style="vertical-align:middle;">${story1.story_a_no}</td>
-      	 <td style="vertical-align:middle;"><p>${story1.story_semi_title}</p></td>
-      	 <td style="vertical-align:middle;"><textarea style="width:90%" readonly>${story1.story_content}</textarea></td>
-      	 <td style="vertical-align:middle;">현재 선택 파일 : ${story1.story_add_img}</td>
+       	 <td style="vertical-align:middle;">${story3.story_title}</td>
+      	 <td style="vertical-align:middle;"><p>${story3.story_semi_title}</p></td>
+      	 <td style="vertical-align:middle;"><textarea style="width:90%" readonly>${story3.story_content}</textarea></td>
+      	 <td style="vertical-align:middle;">현재 선택 파일 : ${story3.story_add_img}</td>
 	  <td>
-	  	<button type="button" style="background-color:#FCA5A5" class="myButton1 btn btn-lg" onclick="conno(${story1.story_p_no},${story1.story_a_no})">수정</button>
+	  	<button type="button" style="background-color:#FCA5A5" class="myButton1 btn btn-lg" onclick="conno(${story3.story_p_no},${story3.story_a_no})">수정</button>
       </td>
        </tr>            
        </c:forEach>
@@ -107,15 +107,15 @@
 	
 	<div class="row row1">
 		<a
-			href="wineStory1.wp">
+			href="admin_Story1.wp">
 			<button type="button" id="colre"
-				class="btn btn-lg btn-outline-primary">해당 페이지변경 확인</button>
+				class="btn btn-lg btn-outline-primary">1번 페이지 변경</button>
 		</a> <a href="admin_Story2.wp">
 			<button type="button" id="colre"
 				class="btn btn-lg btn-outline-primary">2번 페이지 변경</button>
-		</a> <a href="admin_Story3.wp">
+		</a> <a href="wineStory3.wp">
 			<button type="button" id="colre"
-				class="btn btn-lg btn-outline-primary">3번 페이지 변경</button>
+				class="btn btn-lg btn-outline-primary">해당 페이지변경 확인</button>
 		</a>
 	</div>
 	<hr class="featurette-divider">
@@ -124,7 +124,7 @@
 
 function conno(val1, val2){
 	alert("수정 페이지로 이동합니다.")
-	location.href  ="/admin_updateStory1_c_m.wp?val1=" + val1 + "&val2="+val2;
+	location.href  ="/admin_updateStory3_c_m.wp?val1=" + val1 + "&val2="+val2;
 	
 }
 

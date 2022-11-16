@@ -1,5 +1,7 @@
 package com.project.wine;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class WineVO {
 	
 	private int w_no;
@@ -24,6 +26,19 @@ public class WineVO {
 	private String w_t_img;
 	private int w_sales;
 	private String searchKeyword;
+	private MultipartFile uploadFile; // 웹서버 물리적 경로에 저장=> 데이터 테이블에는 없음
+	
+	
+	
+	
+	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	public String getSearchKeyword() {
 		return searchKeyword;

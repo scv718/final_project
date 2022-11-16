@@ -39,10 +39,10 @@
 					<br>
 					<hr>
 					<div class="s_c_i1 col-lg-4">
-						<img class="bd-placeholder-img " width="200px" height="auto"
+						<img class="bd-placeholder-img " width="100%" height="auto"
 							src="${pageContext.request.contextPath}/resources/img/story/${story1.story_add_img}">
 					</div>
-					<div class="s_c_t1 col-lg-8">
+					<div class="s_c_t1 col-lg-8" >
 						<p>${story1.story_content}</p>
 					</div>
 				</div>
