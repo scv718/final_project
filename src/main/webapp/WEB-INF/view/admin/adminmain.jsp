@@ -156,7 +156,7 @@ img {
                                 <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.wp">로그아웃</a>
+                                <a class="nav-link" href="logout.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>

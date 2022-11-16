@@ -24,6 +24,28 @@
     -webkit-overflow-scrolling: touch;
     align-self: center;
 }
+.myButton {
+	background:linear-gradient(to bottom, #e0e0e0 5%, #fffaff 100%);
+	background-color:#e0e0e0;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#2496b3;
+	font-family:Trebuchet MS;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #fffaff 5%, #e0e0e0 100%);
+	background-color:#fffaff;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
 </style>
 </head>
 
@@ -76,7 +98,7 @@
 </tr>
 </tbody>
     </table></form>
-   
+   <hr>
     <table id="myTable" class="display table" style="width=80%">
         <thead>  
          <tr style="background-color: #FCA5A5" align="center">
@@ -105,17 +127,17 @@
     <br>
        </div>
 	
-	<div class="row row1">
+	<div align="center">
 		<a
 			href="admin_Story1.wp">
 			<button type="button" id="colre"
-				class="btn btn-lg btn-outline-primary">1번 페이지 변경</button>
+				class='myButton'>1번 페이지 변경</button>
 		</a> <a href="admin_Story2.wp">
 			<button type="button" id="colre"
-				class="btn btn-lg btn-outline-primary">2번 페이지 변경</button>
+				class='myButton'>2번 페이지 변경</button>
 		</a> <a href="wineStory3.wp">
 			<button type="button" id="colre"
-				class="btn btn-lg btn-outline-primary">해당 페이지변경 확인</button>
+				class='myButton'>해당 페이지변경 확인</button>
 		</a>
 	</div>
 	<hr class="featurette-divider">

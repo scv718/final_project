@@ -28,7 +28,11 @@
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
 				<ul class="navbar-nav nav-right">
+					
 					<li class="nav-item" id = "loginMenu"><a class="nav-link" href = "preference.wp">${userName}님</a> 
+					<c:if test ="${userRole eq 'admin' }">
+					<a class="nav-link" href = "adminMain.wp">관리페이지</a> 
+					</c:if>
 					<a id = "loginLang" class="nav-link" href="mypage.wp">MyPage</a>
 					<c:choose>
 						<c:when test="${userType eq 'kakao'}">
