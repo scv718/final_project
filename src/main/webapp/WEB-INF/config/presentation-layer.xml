@@ -42,7 +42,7 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/adminMain.wp" />
+			<mvc:mapping path="/adminMain.wp"/>
 			<mvc:mapping path="/insertReview.wp" />
 			<mvc:mapping path="/updateReview.wp" />
 			<mvc:mapping path="/deleteReview.wp" />

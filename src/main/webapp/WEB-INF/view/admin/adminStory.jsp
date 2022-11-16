@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>관리자페이지</title>
-
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -18,61 +19,86 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-	
+
 </head>
-
 <style>
-table {
-    width: 700px;
-    text-align: center;
-    border: 1px solid #fff;
-    border-spacing: 1px;
-    font-family: 'Cairo', sans-serif;
-  margin: auto;
+[type=search] {
+    outline-offset: 0;
+}
+/*목록버튼*/
+.myButton {
+	background:linear-gradient(to bottom, #e0e0e0 5%, #fffaff 100%);
+	background-color:#e0e0e0;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#2496b3;
+	font-family:Trebuchet MS;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #fffaff 5%, #e0e0e0 100%);
+	background-color:#fffaff;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
 }
 
-caption {
-    font-weight: bold;
+
+.myButton1 {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Impact;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+.myButton1:hover {
+	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color:#1e62d0;
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+.myButton2 {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Impact;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.myButton2:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
 }
 
-table td {
-    padding: 10px;
-    background-color: #eee;
-}
-
-table th {
-    background-color: #FCA5A5;
-    color: #000000;
-    padding: 10px;
-}
-
-img {
-    width: 90px;
-    height: 90px;
-}
-
-.view,
-.delete {
-    border: none;
-    padding: 5px 10px;
-    color: #fff;
-    font-weight: bold;
-}
-
-.view {
-    background-color: #03A9F4;
-}
-
-.delete {
-    background-color: #E91E63;
-}
-
-.jumbotron {
-    padding: 2rem 1rem;
-    margin-bottom: 2rem;
-    background-color: #FCA5A5;
-    border-radius: 0.3rem;
-}
 </style>
 <body>
 
@@ -80,13 +106,12 @@ img {
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
-            	<h3><strong>winery</strong></h3>
-                <h3><strong>관리자페이지</strong></h3>
+                <h3>관리자페이지</h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>데이터정보</strong></a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
                             <a href="adminMain.wp">만든사람들(메인)</a>
@@ -98,8 +123,7 @@ img {
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                           <a href="adminIntroduce.wp">와이너리 관리</a>
-                            <a href="admin_getIntro.wp">소개페이지관리</a>
+                            <a href="adminIntroduce.wp">소개페이지관리</a>
                         </li>
                         <li>
                             <a href="adminStory.wp">와인이야기 페이지 관리</a>
@@ -113,9 +137,9 @@ img {
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                        <li>
+                         <li>
                             <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>
@@ -162,85 +186,55 @@ img {
                     </div>
                 </div>
             </nav>
-            <br>
-            <h2 class="jumbotron" align="center">메인프로필(만든사람들)</h2>
-            <br><br>
-      <table style="background: #white;">
-        <thead>
-        	<tr>
-                <th>프로필사진</th>
-                <th>등급</th>
-                <th>이름</th>
-                <th>나이</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr >
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이승진.jpg" ></td>
-                <td>Winery팀장</td>
-                <td>이승진</td>
-                <td>34</td>
-            </tr>
-			<tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김경민.jpg" ></td>
-                <td>Winery부팀장</td>
-                <td>김경민</td>
-                <td>32</td>
-            </tr>
-            <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.jpg" ></td>
-                <td>소믈리에</td>
-                <td>김지나</td>
-                <td>33</td>
-            </tr>
-            <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이기진.jpg" ></td>
-                <td>팀에이스</td>
-                <td>이기진</td>
-                <td>27</td>
-            </tr>
-            <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/박상현.png" ></td>
-                <td>팀에이스</td>
-                <td>박상현</td>
-                <td>28</td>
-            </tr>
-            <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/노유경.jpg" ></td>
-                <td>디자이너</td>
-                <td>노유경</td>
-                <td>24</td>
-            </tr>
-            <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/양임호.jpg" ></td>
-                <td>팀원</td>
-                <td>양임호</td>
-                <td>31</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <td colspan="5" class="tablefoot"></td>
-        </tfoot>
+          <div> 
+           <h2 align="center">스토리 페이지 관리</h2>
+           <br><br>
+    <table id="myTable" class="display table" style="width:80%;">
+         <tr style="background-color: #FCA5A5" align="center">
+	        <th><a class='myButton' href="admin_Story1.wp">스토리1 페이지 관리</a></th>
+			<th><a class='myButton' href="admin_Story2.wp">스토리2 페이지 관리</a></th>
+			<th><a class='myButton' href="admin_Story3.wp">스토리3 페이지 관리</a></th>
+        </tr> 
     </table>
-            <br><br><br><br><br><br><br>
-        </div>
+    <br>
+    </div> 
+   
     </div>
-
+    </div>
+    
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
-                 $(this).toggleClass('active');
+//                 $(this).toggleClass('active');
             });
         });
-     
+        $(document).ready(function(){
+            $('#myTable').dataTable();
+        });
+        
+    function updateAd(param){
+    	var m_name = $('#m_name'+param).val();
+    	var id =  $('#id'+param).val();
+    	console.log('testad');
+    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
+    	document.userInfo.submit();
+    }
+    function deleteAd(param){
+    	var id = param;
+    	console.log('testad');
+    	location.href = 'deleteAd.wp?id='+id;
+    	document.userInfo.submit();
+    }
     </script>
 </body>
 </html>

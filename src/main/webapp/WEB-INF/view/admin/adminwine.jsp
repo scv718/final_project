@@ -133,6 +133,9 @@
                         <li>
                             <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
+                       <li>
+                            <a href="adminStory.wp">와인이야기 페이지 관리</a>
+                        </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
                         </li>
@@ -195,10 +198,16 @@
             <div>
             <h2 class="jumbotron" align="center">와인관리</h2>
             </div>
-      <div class="table-responsive">
-    <table id="myTable" class="display table" width="100%">
+            <br><br>
+            <div class='btnSet' align="center">
+		<a class='myButton' href="adminWine.wp">전체목록</a>
+		<a class='myButton' href="addWine.wp">와인등록</a>
+            <br><br><hr>
+        </div>
+
+    <table id="myTable" class="display table" style="width:100%">
         <thead>  
-         <tr style="background-color: #FCA5A5" align="center">
+         <tr style="background-color: #FCA5A5;" align="center">
 	        <th>와인등록번호</th>
 			<th>와인이름(한글)</th>
 			<th>와인이름(영문)</th>
@@ -207,12 +216,12 @@
 			<th>재고</th>
 			<th>가격</th>
 			<th>판매수량</th>
+			<th>판매수량</th>
         </tr> 
         </thead>  
         <tbody> 
-         
-       <c:forEach items="${WineListAd}" var="wine">                
-       <tr align="center">
+         <c:forEach items="${WineListAd}" var="wine">   
+         <tr style="text-align:center">
          <td>${wine.w_no}</td>
       	 <td>${wine.w_nm_k}</td>
       	 <td>${wine.w_nm_e}</td>
@@ -221,17 +230,12 @@
      	 <td>${wine.quantity}</td>
       	 <td>${wine.w_price}</td>
       	 <td>${wine.w_sales}</td>
-       </tr>            
-       </c:forEach>
+      	 <td><a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteWine('${wine.w_no}')}">삭제</a></td>
+       </tr>   
+        </c:forEach>
        </tbody>
     </table>
-    <br>
-    <div class='btnSet' align="center">
-		<a class='myButton' href="adminWine.wp">전체목록</a>
-		<a class='myButton' href="wineSearch.wp">판매등록</a>
-            <br><br><hr> <br><br>
-        </div>
-    </div>
+  
     
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -242,6 +246,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ 
+ 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -252,17 +258,16 @@
         $(document).ready(function(){
             $('#myTable').dataTable();
         });
-    function updateAd(param){
+    function updateWine(param){
     	var m_name = $('#m_name'+param).val();
     	var id =  $('#id'+param).val();
     	console.log('testad');
     	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
     	document.userInfo.submit();
     }
-    function deleteAd(param){
-    	var id = param;
-    	console.log('testad');
-    	location.href = 'deleteAd.wp?id='+id;
+    function deleteWine(w_no){
+    	var w_no = w_no;
+    	location.href = 'deleteWine.wp?w_no='+w_no;
     	document.userInfo.submit();
     }
     </script>

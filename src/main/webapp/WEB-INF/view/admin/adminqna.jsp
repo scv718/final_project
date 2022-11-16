@@ -135,6 +135,9 @@
                             <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
                         <li>
+                            <a href="adminStory.wp">와인이야기 페이지 관리</a>
+                        </li>
+                        <li>
                             <a href="adminSubscription.wp">구독관리</a>
                         </li>
                          <li>
