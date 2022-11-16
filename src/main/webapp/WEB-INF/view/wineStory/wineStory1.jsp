@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>와인이 들려주는 이야기를 들어보세요.</title>
+<title>와이너리 | 와인이야기</title>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/story.css">
@@ -17,52 +17,53 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<script>
+	$(document).ready(function(){
+		$(window).scroll(function(){
+			$('.semi-img, .semi-content').each(function(i){
+				var bottom_of_element = $(this).offset().top + $(this).outerHeight() / 5;
+				var bottom_of_window = $(window).scrollTop() + $(window).height();
+				
+				if(bottom_of_window > bottom_of_element) {
+					$(this).animate({'opacity':'1'}, 700);
+				}
+			});
+		});
+	});
+</script>
 
 <body class="d-flex flex-column min-vh-100">
 
 	<%@ include file="../../../header.jsp"%>
 	
-	<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-
-		<div class="row">
-		<div class="s_t col-sm-12">
-				<div class="s_t_i">
-				<img class="bd-placeholder-img" id="t1"
-					src="${pageContext.request.contextPath}/resources/img/story/${story1_t.story_back_img}"></div>
-				<div class="s_t_c">
-				<h1>${story1_t.story_title}</h1>
-				</div><br><br><hr>
-			</div>
+	<div id="wineStoryContainer">
+		<div class="top-background-img">
+		<div class="image-box">
+			<img class="image-background" id="t1" src="${pageContext.request.contextPath}/resources/img/story/${story1_t.story_back_img}">
+		</div>
+		</div>
+		<div class="middle-contents">
 			<c:forEach items="${story1_c}" var="story1" varStatus="status">
-				<div>
-					<h2 class="fw-normal">${story1.story_semi_title}</h2>
-					<br>
-					<hr>
-					<div class="s_c_i1 col-lg-4">
-						<img class="bd-placeholder-img " width="200px" height="auto"
-							src="${pageContext.request.contextPath}/resources/img/story/${story1.story_add_img}">
+				<div class="col">
+					<h4 class="semititle">${story1.story_semi_title}</h4>
+					<div class="semi-img">
+						<img class="" width="200px" height="auto" title="와인 잔 아이콘  제작자: iconixar - Flaticon"
+						src="${pageContext.request.contextPath}/resources/img/story/${story1.story_add_img}">
 					</div>
-					<div class="s_c_t1 col-lg-8">
-						<p>${story1.story_content}</p>
+					<div class="semi-content">
+						<div class="inner-content">
+						<p style="white-space:pre;"><c:out value="${story1.story_content}"/></p>
+						</div>
 					</div>
 				</div>
-				<br>
-				<hr>
 			</c:forEach>
-
 		</div>
-		<div class="row row1">
-			<a
-				href="https://terms.naver.com/list.naver?cid=58884&categoryId=58901">
-				<button type="button" id="colre"
-					class="btn btn-lg btn-outline-primary">와인 더 알아보기</button>
-			</a> <a href="wineStory2.wp">
-				<button type="button" id="colre"
-					class="btn btn-lg btn-outline-primary">4가지 구분하기</button>
-			</a> <a href="wineStory3.wp">
-				<button type="button" id="colre"
-					class="btn btn-lg btn-outline-primary">곁들일 레시피</button>
-			</a>
+		<div class="col">
+			<h5 class="semititle">더 알아보기</h5>
+			<div class="end-buttons">
+				<button class="btn-hover color-7" type="button" onclick="location.href = 'wineStory2.wp'">와인종류</button>
+				<button class="btn-hover color-7" type="button" onclick="location.href = 'wineStory3.wp'">곁들이 레시피</button>
+			</div>
 		</div>
 	</div>
 	<%@ include file="/footer.jsp"%>
