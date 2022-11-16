@@ -12,6 +12,7 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> 
 <style>
 #searchNav {
 	-webkit-justify-content: flex-end;
@@ -298,14 +299,33 @@ h6 {
 					<button class="btn-hover color-9" type="reset">초기화</button>
 				</div>
 			</form>
-
+	
 		</div>
+		
 		</div>
+		<a id="MOVE_TOP_BTN" href="#" onclick="window.scrollTo(0,0);" class="material-symbols-outlined">arrow_circle_up</a>
 	</div>
 	<div>
-	<div class = "btn-hover color-9" id = "topbtn"  onclick="window.scrollTo(0,0);">
-	<a>TOP</a></div>
+
 		<%@ include file="../../../footer.jsp"%>
 	</div>
+	<script type="text/javascript">
+	$(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('#MOVE_TOP_BTN').fadeIn();
+            } else {
+                $('#MOVE_TOP_BTN').fadeOut();
+            }
+        });
+        
+        $("#MOVE_TOP_BTN").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
+	</script>
 </body>
 </html>

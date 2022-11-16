@@ -22,6 +22,7 @@ public class WineVO {
 	private String w_b_img;
 	private String w_a_img;
 	private String w_t_img;
+	private String rating_avg;
 	private int w_sales;
 	private String searchKeyword;
 
@@ -168,6 +169,14 @@ public class WineVO {
 	}
 	public void setW_sales(int w_sales) {
 		this.w_sales = w_sales;
+	}
+
+	public String getRating_avg() {
+		return rating_avg;
+	}
+
+	public void setRating_avg(String rating_avg) {
+		this.rating_avg = rating_avg;
 	}
 	
 }

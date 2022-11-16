@@ -10,5 +10,4 @@ public interface AddressService {
 	AddressVO selectDefaultAddress(AddressVO vo);
 	AddressVO selectAddress(AddressVO vo);
 	void selectUpdate(AddressVO vo);
-	
 }

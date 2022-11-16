@@ -113,6 +113,12 @@ public class UserServeImpl implements UserService{
 		userDAO.deleteMember(vo);
 	}
 
+	@Override
+	public List<UserVO> getUserListDefault(UserVO vo) {
+		// TODO Auto-generated method stub
+		return userDAO.getUserListDefault(vo);
+	}
+
 
 
 }
