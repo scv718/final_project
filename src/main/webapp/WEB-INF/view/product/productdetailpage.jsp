@@ -166,10 +166,7 @@
 			
 			// 추천하기
 			$('.likeBtn').click(function() {
-<<<<<<< HEAD
-=======
 				var scroll = $(window).scrollTop();
->>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
 				var trNum = $(this).closest('tr').prevAll().length;
 				console.log('trNum : ' + trNum);
 				var re_no = $(this).closest('tr').prevAll().attr('data-value');
@@ -189,12 +186,10 @@
 						success : function(likeCheck) {
 							if(likeCheck == 0) {
 							alert("추천 완료");
-<<<<<<< HEAD
 							location.reload();
 							} else if(likeCheck == 1) {
 							alert("추천 취소");
 							location.reload();
-=======
 // 							$('#reviewContainer').load(location.href + ' #reviewContainer');
 							location.reload(true);
 							$('#reviewdiv').scrollTop(scroll);
@@ -202,7 +197,6 @@
 							alert("추천 취소");
 // 							$('#reviewContainer').load(location.href + ' #reviewContainer');
 							location.reload(true);
->>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
 							}
 						}
 					});
