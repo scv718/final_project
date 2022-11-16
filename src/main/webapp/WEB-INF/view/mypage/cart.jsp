@@ -78,16 +78,11 @@
                         <td class="td_width_4 table_text_align_center">
                         <form action="modifyCount.wp" method="post">
                            <div class="table_text_align_center quantity_div" id="text_cen">
-                           <input type="hidden" name="ord_quan"value="${ci.ord_quan}">
-                           <input type="hidden" name="quantity" value="${ci.quantity}">   
-                           <input type="hidden" class = "quantity_max" value="${ci.quantity}">   
-                           
+                           <input type="hidden" name="quantity" class = "quantity_max" value="${ci.quantity}">   
                               <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input">   
                               <button type = "button" class="quantity_btn plus_btn">+</button>
                                <button  type = "button"  class="quantity_btn minus_btn">-</button>
                            </div>
-
-
                            <input type="hidden" name = "id" value="${ci.id}">
                            <input type="hidden" name = "w_no" value="${ci.w_no}">
                            <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">

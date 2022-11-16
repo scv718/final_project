@@ -23,7 +23,7 @@
 				IMP.certification(
 						{
 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
-							m_redirect_url: "http://localhost:8090/forgotPwget.wp"
+							m_redirect_url: "http://winerycop.tk/forgotPwget.wp"
 						},
 						function(rsp) {
 

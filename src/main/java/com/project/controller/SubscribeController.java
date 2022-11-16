@@ -53,11 +53,26 @@ public class SubscribeController {
 
 	// 마이페이지
 	@RequestMapping(value = "/mypage.wp")
-	public String getSubscribe1(SubscribeVO vo, HttpSession session, Model model) {
+	public String getSubscribe1(SubscribeVO vo, HttpSession session, Model model, WineVO wvo) {
 		System.out.println("마이페이지");
 		String id = (String) session.getAttribute("userID");
 		vo.setId(id);
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
+		model.addAttribute("sub", subscribeService.getLevel(vo));
+		if(subscribeService.getLevel(vo).getS_product() != null) {
+			wvo.setW_no(Integer.parseInt(subscribeService.getLevel(vo).getS_product()));
+			productService.getProductdetail(wvo);
+			model.addAttribute("product", productService.getProductdetail(wvo));
+			wvo.setW_no(Integer.parseInt(subscribeService.getLevel(vo).getS_product2()));
+			productService.getProductdetail(wvo);
+			model.addAttribute("product2", productService.getProductdetail(wvo));
+			wvo.setW_no(Integer.parseInt(subscribeService.getLevel(vo).getS_product3()));
+			productService.getProductdetail(wvo);
+			model.addAttribute("product3", productService.getProductdetail(wvo));
+		}
+	
+		
+		
 		return "WEB-INF/view/mypage/mypage.jsp";
 	}
 
@@ -93,6 +108,7 @@ public class SubscribeController {
 		}
 		return "subscribe.wp";
 	}
+	
 	// 마이페이지 취향 설정
 	@RequestMapping("/mypreference.wp")
 	public String setting(SubscribeVO vo, HttpSession session, Model model) {
