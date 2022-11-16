@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#locationContainer {
+	display: flex; 
+   	justify-content: center;
+} 
+
+#comtitle {
+	margin: 25px 0 !important;
+}
+
+#map {
+	width: 700px;
+	height: 400px;
+}
+
+#map-div {
+	text-align: center;
+}
+
+.col img {
+	filter: brightness(100%) !important;
+}
+
+.location {
+	margin-top: 10px;
+}
