@@ -209,4 +209,16 @@
 		text-align: center;
 		border-right: 1px solid lightgray;
 		}
+		
+	}
+	#filter input[type=radio] {
+	accent-color: #e2373f;
+	}
+	
+	a.productlink:hover {
+	color: gray !important;
+	}
+	
+	a.detailreview:hover {
+	color: gray !important;
 	}

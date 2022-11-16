@@ -1,10 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>와인이 들려주는 이야기를 들어보세요.</title>
-
+<title>와이너리 | 와인이야기</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/story.css">
 <link rel="stylesheet"

@@ -124,7 +124,7 @@ public class ReviewDAO {
 	//평점평균 반영
 	public void updateRating(ReviewVO vo) {
 		System.out.println("평점평균 반영");
-		mybatis.update("BoardDAO.updateReview", vo);
+		mybatis.update("BoardDAO.updateRating", vo);
 	}
 
 	//상품페이지 정렬
