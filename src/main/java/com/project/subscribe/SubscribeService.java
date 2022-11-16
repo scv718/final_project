@@ -2,8 +2,8 @@ package com.project.subscribe;
 
 import java.util.List;
 
-import com.project.order.OrderVO;
 import com.project.user.UserVO;
+import com.project.wine.WineVO;
 
 public interface SubscribeService {
 	
@@ -12,6 +12,7 @@ public interface SubscribeService {
 	public void insertSubscribe1(SubscribeVO vo);
 	public void insertSubscribe2(SubscribeVO vo);
 	public void insertSubscribe3(SubscribeVO vo);
+	void insertProduct(SubscribeVO vo);
 	
 	//구독 취소수정
 	void updateSubscribe(SubscribeVO vo);
@@ -30,4 +31,6 @@ public interface SubscribeService {
 	//취향설정
 	void preference_Setting(SubscribeVO vo);
 	List<SubscribeVO> allsubscriptList(SubscribeVO vo);
+	
+	List<SubscribeVO> product(SubscribeVO vo, UserVO uvo, WineVO wvo);
 }

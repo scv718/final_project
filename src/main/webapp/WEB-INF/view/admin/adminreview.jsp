@@ -98,7 +98,12 @@
 	position:relative;
 	top:1px;
 }
-
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -106,12 +111,13 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
-                <h3>관리자페이지</h3>
+            <h3><strong>winery</strong></h3>
+                <h3><strong>관리자페이지</strong></h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>데이터정보</strong></a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
                             <a href="adminMain.wp">만든사람들(메인)</a>
@@ -123,7 +129,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">소개페이지관리</a>
+                            <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -134,7 +140,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                          <li>
                             <a href="adminNotice.wp">공지사항</a>
@@ -174,17 +180,17 @@
                                 <a class="nav-link" href="adminMain.wp">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
+                                <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
+                                <a class="nav-link" href="index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
             
-           <h2 align="center">리뷰</h2>
+           <h2 class="jumbotron" align="center">리뷰</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
@@ -198,6 +204,7 @@
 			<th>평점</th>
 			<th>리뷰등록일</th>
 			<th>추천 수</th>
+			<th>삭제</th>
         </tr> 
         </thead>  
         <tbody> 
@@ -212,6 +219,9 @@
       	 <td>${review.re_score}</td>
       	 <td>${review.re_date}</td>
       	 <td>${review.re_like}</td>
+      	  <td>
+      	<a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){delReview('${review.id}')}">삭제</a>
+      </td>
 	  <td>
       </td>
        </tr>            
@@ -221,8 +231,6 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminReview.wp">전체목록</a>
-		<a class='myButton' href="adminReview.wp">리뷰관리</a>
-		
             <br><br><hr> <br><br>
 	</div>
     </div>
@@ -244,25 +252,18 @@
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
-//                 $(this).toggleClass('active');
+                $(this).toggleClass('active');
             });
         });
         $(document).ready(function(){
             $('#myTable').dataTable();
         });
         
-    function updateAd(param){
-    	var m_name = $('#m_name'+param).val();
-    	var id =  $('#id'+param).val();
-    	console.log('testad');
-    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
-    	document.userInfo.submit();
-    }
-    function deleteAd(param){
+    function delReview(param){
     	var id = param;
     	console.log('testad');
-    	location.href = 'deleteAd.wp?id='+id;
-    	document.userInfo.submit();
+    	location.href = 'delReview.wp?id='+id;
+    	document.reviewInfo.submit();
     }
     </script>
 </body>

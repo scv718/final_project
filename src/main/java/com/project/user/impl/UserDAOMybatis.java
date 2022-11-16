@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.user.AddressVO;
 import com.project.user.UserVO;
 
 @Repository
@@ -25,6 +26,9 @@ public class UserDAOMybatis {
 		// }
 		return mybatis.selectOne("UserDAO.getUser", vo);
 
+	}
+	public List<UserVO> getUserListDefault(UserVO vo){
+		return mybatis.selectList("UserDAO.getUserPw", vo);
 	}
 
 	public List<UserVO> getUserList(UserVO vo) {
@@ -97,8 +101,8 @@ public class UserDAOMybatis {
 	public void secessionUser(UserVO vo) {
 		mybatis.update("UserDAO.secessionUser", vo);
 	}
-	//관리자
 	
+	//관리자
 	public void updateMember(UserVO vo) {
 		mybatis.update("UserDAO.updateMember", vo);
 	}

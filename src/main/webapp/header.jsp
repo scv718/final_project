@@ -23,7 +23,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-	
+	<link rel="icon" href="/resources/img/파비콘3.ico">
 	<ul class="navbar-nav" id="loginform">
 		<c:choose>
 			<c:when test='${userID ne NULL}'>
@@ -83,21 +83,20 @@ function kakaoLogout() {
 		<li class="nav-item">
 		<a id = "menuBtn" class ="dropdown-item" href="getIntro.wp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
-		<a id = "menuBtn"  class ="dropdown-item" href = "wineStory.wp" >와인이야기</a></li>
+		<a id = "menuBtn" >와인이야기</a></li>
 		<li class="nav-item">	
 		<a id = "menuBtn" class="dropdown-item" href="wineSearch.wp">와인검색</a></li>
 		<li class="nav-item">	
 
 
 		<a id = "menuBtn" class="dropdown-item" href="subscribe.wp">구독하기</a></li>
-		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class="dropdown-item">커뮤니티</a></li>
+		<li class="nav-item"  id = "btnone"><a id = "menuBtn" >커뮤니티</a></li>
 
 	</ul>
 </nav>
 
 <div class = "box" id = "box">
 <a  id = "secondMenu" href="getNoticeList.wp">공지사항</a>
-<a  id = "secondMenu"  href="#">이벤트</a>
 <a  id = "secondMenu" href="getFaqList.wp">FAQ</a> 
 <a id = "secondMenu" href="getReviewList.wp">상품후기</a>
 </div>

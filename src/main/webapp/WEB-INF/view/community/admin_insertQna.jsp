@@ -5,99 +5,27 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>QNA 글쓰기</title>
-<link rel="canonical"
-	href="https://getbootstrap.kr/docs/4.5.2/examples/carousel/">
-
-<link
-	href="https://getbootstrap.kr/docs/4.5.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-
-    <!-- include libraries(jQuery, bootstrap) -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script>
-$(document).ready(function() {
-    
-    $('#summernote').summernote({
-          placeholder: 'Hello Bootstrap 4',
-          tabsize: 2,
-          height: 100
-        });
-  });
-
-// 툴바생략
-var setting = {
-//         height : 300,
-//         minHeight : null,
-//         maxHeight : null,
-//         focus : true,
-//         lang : 'ko-KR',
-//         toolbar : toolbar,
-        //콜백 함수
-        callbacks : { 
-        	onImageUpload : function(files, editor, welEditable) {
-        // 파일 업로드(다중업로드를 위해 반복문 사용)
-        for (var i = files.length - 1; i >= 0; i--) {
-        uploadSummernoteImageFile(files[i],
-        this);
-        		}
-        	}
-        }
-     };
-//     $('#summernote').summernote(setting);
-//     });
-    
-    function uploadSummernoteImageFile(file, el) {
-		data = new FormData();
-		data.append("file", file);
-		$.ajax({
-			data : data,
-			type : "POST",
-			url : "uploadSummernoteImageFile",
-			contentType : false,
-			enctype : 'multipart/form-data',
-			processData : false,
-			success : function(data) {
-				$(el).summernote('editor.insertImage', data.url);
-			}
-		});
-	}
-
-</script>
-
+<title>1:1 답변</title>
+ <%@ include file="../../../header.jsp"%>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin_insertQna.css" />
 
 </head>
-<body>
-	<div class="jumbotron">
-		<h1>1:1 문의하기</h1>
-	</div>
-
-	<div class="container-fluid">
-<!-- 		<form action="admin_insertQna.wp" method="post" enctype="multipart/form-data"> -->
-		<div>
-			<input type="hidden" class="form-control" name="commu_cat" value="2">
-<%-- 			<input type="hidden" class="form-control" name="id" value="<%=session.getAttribute("userID").toString() %>"> --%>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">작성자</span>
-				</div>
-				<input type="text" class="form-control" name="id" value="${community.id}" readonly>
-			</div>
-			
-			<fieldset class="form-group">
-				<div class="row">
-					<legend class="col-form-label col-sm-2 pt-0">문의유형</legend>
-					<div class="col-sm-10">
-						<div class="form-check">
-				<!-- 11/5 여기서 일시정지 -->
-				
-						 <c:choose>
+<body class="d-flex flex-column min-vh-100">
+	<div id="communityContainer">
+		<h1 id="comtitle">1:1 답변등록</h1>
+	
+	<form action="admin_insertQna.wp" method="post" enctype="multipart/form-data" id="dataForm">
+			<input type="hidden" name="commu_no" value="${community.commu_no}">
+	<div class="li_board">
+<!-- 			<input type="hidden" class="form-control" name="commu_cat" value="2"> -->
+		<ul>
+			<li class="col1">문의자</li>
+			<li class="col2">${community.id}</li>
+		</ul>
+			<ul>
+                    <li class="col1">문의유형</li>
+                    <li class="col2">
+                     <c:choose>
 						<c:when test="${community.faq_cat eq '0'}">
 							<span>[주문/결제/배송]</span>
 						</c:when>
@@ -114,42 +42,51 @@ var setting = {
 							<span>[기타]</span>
 						</c:otherwise>
 					</c:choose>
-						</div>	
-					</div>
-				</div>
-			</fieldset>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">제목</span>
-				</div>
-				<input type="text" class="form-control" name="commu_title" value="${community.commu_title}" required>
+                    </li>
+                </ul>
+				 <ul>
+                    <li class="col1">제목</li>
+                    <li class="col2">${community.commu_title}</li>
+                </ul>
+				<ul>
+                    <li class="col1">문의내용</li>
+                    <li class="col2"><textarea class="form-none" rows="10" disabled>${community.commu_content}</textarea></li>
+                </ul>
+			
+				 <ul>
+                    <li class="col1">파일첨부</li>
+                    <li class="col2">
+                    <c:if test="${community.commu_photo1 ne NULL}">
+							<img class="imgBoxImg" src="resources/img/qna/${community.commu_photo1}" style="width: 200px; padding: 10px 0;">
+								<c:if test="${community.commu_photo2 ne NULL}">
+								<img class="imgBoxImg" src="resources/img/qna/${community.commu_photo2}" style="width: 200px; padding: 10px 0;">
+									<c:if test="${community.commu_photo3 ne NULL}">
+									<img class="imgBoxImg" src="resources/img/qna/${community.commu_photo3}" style="width: 200px; padding: 10px 0;">
+									</c:if>
+								</c:if>
+						</c:if>
+                    </li>
+                 </ul>
+                
+			
+			<ul>
+			 <li class="col1">작성자</li>
+			  <li class="col2"><input type="text" class="form-none" name="id" value="<%=session.getAttribute("userID").toString() %>" readonly></li>
+			</ul>
+				 <ul>
+                    <li class="col1">답변내용</li>
+                    <li class="col2">
+                    <textarea class="form-content" rows="10" name="answer_con" placeholder="답변을 입력하세요." required>${community.answer_con}</textarea>
+                    <li>
+                    </ul>
 			</div>
-						<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">내용</span>
-				</div>
-				 <textarea id="summernote" name="commu_content">${community.commu_content}</textarea>
-<!-- 				<textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea> -->
-			</div>
-			<form action="admin_insertQna.wp" method="post" enctype="multipart/form-data">
-			<input type="hidden" class="form-control" name="commu_no" value="${community.commu_no}">
-			<input type="text" class="form-control innm" name="id" value="<%=session.getAttribute("userID").toString() %>" readonly>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">내용</span>
-				</div>
-				<input type="text" class="form-control" name="answer_con" value="${community.answer_con}">
-			</div>
-			<div id="footer">
-				<div id="se2_sample" style="margin: 10px 0;">
-					<input type="submit" value="등록하기">
-				</div>
-			</div>
-				<button id="conWrite" type="button" class="btn btn-primary" onclick="location.href='admin_updateQna.wp'">수정하기</button>				
+				<div id="bottom_btn">
+				<button type="button" class="updatebtn" onclick="location.href='admin_updateQna.wp'">답변수정</button>
+				<button type="submit" class="insertbtn" onclick="registerAction()">등록하기</button>
+				</div>				
 			</form>
-		</div>
 	</div>
 
-
+  <%@ include file="../../../footer.jsp" %>
 </body>
 </html>

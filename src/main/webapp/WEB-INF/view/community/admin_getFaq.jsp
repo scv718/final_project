@@ -1,27 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상세보기</title>
-<link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>상세보기</title>
+<!-- <link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
   <%@ include file="../../../header.jsp"%>
-<style>
-	#imgBox {display:none;position:absolute;top:0;left:0;height:100vh!important;background-color:rgba(0,0,0,0.5);z-index:9999999;}
-	#imgContentBox {width:600px;max-height:550px;overflow:auto;position:absolute;top:30%;left:30%;border-radius:5px;z-index:9999999;}
-	#imgBoxTitleBar {border-bottom:1px solid #777;border-radius:5px 5px 0 0;background-color:#ddd;width:100%;padding:10px;text-align:right;font-size:20px;font-weight:bolder;}
-	#imgBoxImg {width:100%;border-radius: 0 0 5px 5px;}
-	#closeX {padding:5px 20px;border-radius:5px;border:1px solid #777;background-color:red;color:#fff;}
-	#closeX:hover {background-color:#777;cursor:pointer;}
-</style>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin_getFaq.css" />
 <script>
 $(document).ready(function(){ 
 	
@@ -37,89 +27,56 @@ $(document).ready(function(){
 		location.href = "admin_getFaqList.wp";
 	});
 });
-
 </script>
 </head>
-<body>
-<div class="jumbotron">
-   <h1>공지사항 글 상세 보기</h1>      
-</div>
 
-<div class="container-fluid">
+<body class="d-flex flex-column min-vh-100">
 
-  <form name="fm" action="admin_updateFaq.wp" method="post">
-  <input type="hidden" name="commu_no" value="${community.commu_no}">
-  <input type="hidden" name="faq_cat" value="${community.faq_cat}">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">제목</span>
-      </div>
-      <input type="text" class="form-control innm" name="commu_title" value="${community.commu_title}">      
-    </div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">작성자</span>
-      </div>
-<%--       <input type="text" class="form-control innm" name="writer" value="${board.writer}" readonly <%=sts %>>       --%>
-      <input type="text" class="form-control innm" value="${community.id}" readonly>      
-    </div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">내용</span>
-      </div>
-      <textarea class="form-control innm" rows="10" id="comment" name="commu_content">${community.commu_content}</textarea>      
-    </div>  
-    <%-- <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">파일</span>
-      </div>
-   		<c:if test="${board.filename ne NULL}">
-   			<span style="cursor:pointer;padding:0 20px;" onclick="seeImg()">[파일보기]</span>
-   			<script>
-	        	function seeImg(){
-	        		$("#imgBox").show();
-	        	}
-	        </script>
-   			<span style="cursor:pointer;" onclick="downloadFile('${board.filename}')">[파일다운]</span>
-   			<script>
-	   			function downloadFile(filename){
-	   			    window.location ='download.do?filename='+filename;
-	   			}
-			</script>
-   		</c:if>
-    </div> --%>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">등록일</span>
-      </div>
-      <input type="text" class="form-control innm" name="commu_date" value="${community.commu_date}" readonly >      
-    </div>
-  
-    <div id="footer">
-<%--     <input class="btn btn-primary" type="submit" value="글수정하기" onclick="location.href='updateNotice.wp?commu_no=${community.commu_no}'"> --%>
-    <input class="btn btn-primary" type="submit" value="글수정하기" >
-<!-- 	  	<button type="submit" class="btn btn-primary">글수정</button> -->
-	  	<button id="conWrite" type="button" class="btn btn-primary" onclick="location.href='admin_insertFaq.wp'">글쓰기</button>
-	  	<button id="conDel" type="button" class="btn btn-primary" >글삭제</button>
-	  	<button id="conList" type="button" class="btn btn-primary">글목록</button>
-	</div>
-  </form>  
-</div>
-<!-- 클릭시 보이는 이미지 start -->
-<%-- <div id="imgBox" class="container-fluid">
-	<div id="imgContentBox">
-		<div id="imgBoxTitleBar">
-			<span id="closeX" onclick="closeX()">X</span>
-			 <script>
-        	function closeX(){
-        		$("#imgBox").hide();
-        	}
-        </script>
+	<div id="communityContainer">
+		<h1 id="comtitle">FAQ 상세조회</h1>
+		<div class="container-fluid">
+
+			<form name="fm" id="dataForm" action="admin_updateFaq.wp" method="post">
+				<input type="hidden" name="commu_no" value="${community.commu_no}">
+				<input type="hidden" name="faq_cat" value="${community.faq_cat}">
+
+				<div class="li_board">
+					<ul>
+						<li class="col1">작성자</li>
+						<li class="col2"><input type="text" class="name" name="id" value="${community.id}" readonly></li>
+					</ul>
+
+					<ul>
+						<li class="col1">제목</li>
+						<li class="col2"><input type="text" class="form-content" name="commu_title" value="${community.commu_title}" required></li>
+					</ul>
+
+					<ul>
+						<li class="col1">내용</li>
+						<li class="col2"><textarea class="form-content" rows="10" id="comment" name="commu_content" required>${community.commu_content}</textarea></li>
+					</ul>
+
+					<ul>
+						<li class="col1">등록일</li>
+						<li class="col2"><input type="text" class="form-content" name="commu_date" value="${community.commu_date}" style="background-color: Transparent; border: none;" readonly></li>
+					</ul>
+
+					<ul>
+						<li class="col1">조회수</li>
+						<li class="col2"><input type="text" class="form-content" name="commu_count" value="${community.commu_count}" style="background-color: Transparent; border: none;" readonly></li>
+					</ul>
+				</div>
+				
+				<div id="bottom_btn">
+					<input class="updatebtn" type="submit" value="글 수정">
+					<button type="button" class="delbtn" id="conDel">글 삭제</button>
+					<button type="button" class="listbtn" id="conList">글 목록</button>
+				</div>
+				
+			</form>
 		</div>
-		<img id="imgBoxImg" src="img/${board.filename}">
 	</div>
-</div> --%>
-<!-- 클릭시 보이는 이미지 end -->
-<%@ include file="../../../footer.jsp" %>
+
+	<%@ include file="../../../footer.jsp" %>
 </body>
 </html>

@@ -182,6 +182,89 @@ public class IamportController {
 		return 0;
 		
 	}
+	@RequestMapping(value="/certificationget.wp" , method = RequestMethod.GET)
+	public String userCertificationget(HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) throws IOException {
+		Map<String, String> map = new HashMap<String, String>();
+		String token = getImportToken();
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpGet get = new HttpGet(IMPORT_CERTIFICATION_URL+"/"+request.getParameter("imp_uid")); 
+		System.out.println(IMPORT_CERTIFICATION_URL+"/"+request.getParameter("imp_uid")+"?_token="+token);
+		System.out.println(token);
+		get.setHeader("Authorization", token);
+		
+		try {
+			HttpResponse res = client.execute(get);
+			ObjectMapper mapper = new ObjectMapper();
+			String body = EntityUtils.toString(res.getEntity());
+			JsonNode rootNode = mapper.readTree(body); 
+			JsonNode resNode = rootNode.get("response"); 
+			
+			System.out.println("777: " + resNode);
+			if(resNode.asText().equals("null")) {
+				System.out.println("내역이 없습니다.");
+				map.put("msg","내역이 없습니다." );
+			}else {
+				map.put("imp_uid",resNode.get("imp_uid").asText() );
+				map.put("birth",resNode.get("birth").asText() );
+				map.put("name",resNode.get("name").asText() );
+				map.put("phone",resNode.get("phone").asText() );
+				
+				session.setAttribute("name", resNode.get("name").asText());
+				session.setAttribute("phone", resNode.get("phone").asText());
+				session.setAttribute("birthday", resNode.get("birthday").asText());
+				
+				String birthday1 = mapper.treeToValue(resNode.path("birthday"), String.class);
+				Calendar now = Calendar.getInstance();
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+				Integer currentYear = now.get(Calendar.YEAR);
+				
+				Date start = dateFormat.parse(birthday1);
+				
+				String year = dateFormat.format(start);
+				
+				Integer birthYear = Integer.parseInt(year);
+				
+				int age = (currentYear - birthYear);
+				String outputAge = Integer.toString(age);
+				
+				System.out.println(birthday1);
+				System.out.println(outputAge);
+				System.out.println(age);
+				String m_phone = mapper.treeToValue(resNode.path("phone"), String.class);
+				
+				System.out.println(m_phone);
+				vo.setM_phone(m_phone);
+				
+				int result = 0;
+				System.out.println(userService.getPw(vo));
+				result = userService.getPw(vo);
+				
+				if(result != 0) {
+					System.out.println("이미 가입된 사용자 입니다.");
+					
+					return "redirect:/";
+				}else {
+					if(age<19) {
+						System.out.println("나이 제한됨");
+					return "redirect:/";
+						
+					}else {
+						System.out.println("나이 통과");
+						session.setAttribute("signup", 1);
+						
+					return "signUp.wp";
+					}
+					
+				}			
+			}
+			
+		} catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+		return "signUp.wp";
+		
+		
+	}
 	
 	@RequestMapping(value="/phoneCertification.wp" , method = RequestMethod.POST)
 	@ResponseBody
@@ -286,6 +369,134 @@ public class IamportController {
 		return 0;
 		
 	}
+	@RequestMapping(value="/forgotPwget.wp" , method = RequestMethod.GET)
+	public String forgotPwget(HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) throws IOException {
+		Map<String, String> map = new HashMap<String, String>();
+		String token = getImportToken();
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpGet get = new HttpGet(IMPORT_CERTIFICATION_URL+"/"+request.getParameter("imp_uid")); 
+		System.out.println(IMPORT_CERTIFICATION_URL+"/"+request.getParameter("imp_uid")+"?_token="+token);
+		System.out.println(token);
+		get.setHeader("Authorization", token);
+		
+		try {
+			HttpResponse res = client.execute(get);
+			ObjectMapper mapper = new ObjectMapper();
+			String body = EntityUtils.toString(res.getEntity());
+			JsonNode rootNode = mapper.readTree(body); 
+			JsonNode resNode = rootNode.get("response"); 
+			
+			System.out.println("777: " + resNode);
+			if(resNode.asText().equals("null")) {
+				System.out.println("내역이 없습니다.");
+				
+			}else {
+				String m_phone = mapper.treeToValue(resNode.path("phone"), String.class);
+				
+				System.out.println(m_phone);
+				vo.setM_phone(m_phone);
+				
+				int result = 0;
+				System.out.println(userService.getPw(vo));
+				result = userService.getPw(vo);
+				
+				
+				System.out.println(result);
+				if(result != 1) {
+					System.out.println("가입되지 않은 사용자");
+					return "redirect:/";
+					
+				}else {
+					session.setAttribute("phone", resNode.get("phone").asText());
+					
+					System.out.println("비밀번호찾기 실행");
+					session.setAttribute("signup", 1);
+					return "forgotinfo.wp";
+				}
+			}
+			
+		} catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+		return "/";
+		
+		
+	}
+	
+	@RequestMapping(value="/mobilepay.wp", method=RequestMethod.GET)
+	public String mobilepay(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo, AddressVO avo, CartVO voList,WineVO vo, UserVO uvo, HttpSession session) throws IOException {
+		System.out.println("모바일 결제");
+		
+		
+		String nm = request.getParameter("unm");
+		String amount = request.getParameter("amount");
+		String mid = request.getParameter("merchant_uid");
+		String imp = request.getParameter("imp_uid");
+//		String addr = request.getParameter("addr");
+//		String phone = request.getParameter("phone");
+		System.out.println(request.getParameter("formValues"));
+		String token = getImportToken();
+		System.out.println("정보출력");
+		System.out.println(mid);
+		System.out.println(imp);
+		System.out.println(amount);
+		setHackCheck(amount, mid, token);
+		uvo.setId((String) session.getAttribute("userID"));
+		LocalDateTime  now = LocalDateTime.now();
+		 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        String formatedNow = now.format(formatter);
+        
+        
+        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder1 = new StringBuilder();
+        StringBuilder stringBuilder2 = new StringBuilder();
+        System.out.println(ovo);
+        if(ovo.getW_noList() != null) {
+        	 for (int i = 0; i < ovo.getW_noList().length; i++) {
+	        	  stringBuilder.append(ovo.getW_noList()[i]+ " ");
+	        	}
+	        String w_no = stringBuilder.toString();
+	        ovo.setW_no(w_no);
+        }
+       
+        
+       
+		model.addAttribute("user", userService.getUser(uvo));
+		voList.setId(uvo.getId());
+		avo.setId(uvo.getId());
+		ovo.setOrd_code(imp);
+		ovo.setMerchant_uid(mid);
+		ovo.setId((String) session.getAttribute("userID"));
+		int price = Integer.parseInt(amount);
+		ovo.setProd_price(price);
+		ovo.setOrd_t_price(price);
+		ovo.setProd_p_price(price);
+		ovo.setOrd_stat("상품준비중");
+		ovo.setOrd_date(formatedNow);
+//		ovo.setOrd_addr(addr);
+//		ovo.setOrd_phone(phone);
+		
+		List<CartVO> listVo = new ArrayList();
+		if(voList.getOrd_cart_noList() != null) {
+			for(int i = 0; i < voList.getOrd_cart_noList().length; i++) {
+				voList.setOrd_cart_no(voList.getOrd_cart_noList()[i]);
+				listVo.add(cartService.getCartpay(voList));
+				System.out.println(voList.getW_no());
+				cartService.deleteCart(voList);
+			}		  
+		}
+			  
+		  
+		
+		orderService.insertOrder(ovo);
+		System.out.println(nm);
+		System.out.println(amount);
+		System.out.println(mid);	
+		
+		return "redirect:myorderList.wp";
+		
+	}
 	
 	
 		@RequestMapping(value="/pay.wp", method=RequestMethod.POST)
@@ -334,7 +545,7 @@ public class IamportController {
 			ovo.setProd_p_price(price);
 			ovo.setOrd_stat("상품준비중");
 			ovo.setOrd_date(formatedNow);
-			
+		
 			List<CartVO> listVo = new ArrayList();
 			for(int i = 0; i < voList.getOrd_cart_noList().length; i++) {
 				voList.setOrd_cart_no(voList.getOrd_cart_noList()[i]);
@@ -408,7 +619,7 @@ public class IamportController {
 		    System.out.println(ovo.getW_nm_e()+"와인이름 영어");
 		    
 			orderService.subscribeOrder(ovo);
-			return "index.wp";		
+			return "WEB-INF/view/subscribe/subscribe-4.jsp";
 		}
 	
 	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수 private
@@ -508,7 +719,7 @@ public class IamportController {
 				return -1;
 			} else {
 				System.err.println("환불성공");
-
+				orderService.deleteOrderList(ovo);	
 				orderService.cancleOrder(ovo);
 				subscribeService.updateSubscribe(svo);
 				subscribeService.liset_deli_price_up(svo);

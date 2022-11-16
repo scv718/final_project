@@ -57,6 +57,23 @@ function fileDelete(fileNum){
 
 
 function registerAction(){
+
+	var tit= document.getElementById("insert_tit");
+	if(tit.value == ""){
+		alert("제목을 입력하세요");
+		tit.focus();
+		return false;
+	};
+	
+	var con= document.getElementById("insert_con");
+	if(con.value == ""){
+		alert("내용을 입력하세요");
+		con.focus();
+		return false;
+	};
+	
+	document.dataForm.submit();
+		
     let renum;
     var form = $("form")[0];        
     var formData = new FormData(form);
@@ -77,7 +94,7 @@ function registerAction(){
    	      contentType: false,
    	      async: false,
    	      success: function(data){
-   	      	alert("수정 완료");
+   	      	alert("등록 완료");
    	      	renum = data;
    	      },
    	      error: function(xhr, status, error) {

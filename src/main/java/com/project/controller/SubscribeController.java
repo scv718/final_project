@@ -33,6 +33,8 @@ public class SubscribeController {
 	@Autowired
 	ProductService productService;
 	
+	
+	
 	//구독페이지
 	@RequestMapping(value = "/subscribe.wp")
 	public String subscribe(UserVO uvo,SubscribeVO svo, HttpSession session,Model model) {
@@ -43,6 +45,9 @@ public class SubscribeController {
 		model.addAttribute("user", userSerivce.getUser(uvo));
 		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
 		}
+		
+		
+	
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 
@@ -65,7 +70,7 @@ public class SubscribeController {
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
 
 		if (id == null) {
-			return "singUp.wp";
+			return "signUp.wp";
 		}
 		return "WEB-INF/view/mypage/mysubscribe.jsp";
 	}
@@ -109,7 +114,7 @@ public class SubscribeController {
 	
 		try {
 			if (id == null) {
-				return "singUp.wp";
+				return "signUp.wp";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,7 +142,7 @@ public class SubscribeController {
 			model.addAttribute("anotheradd", addressService.selectAddress(avo));
 		}
 		if(uvo.getId() == null){
-			return "singUp.wp";
+			return "signUp.wp";
 			}else{
 				model.addAttribute("user", userSerivce.getUser(uvo));
 				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
@@ -172,7 +177,7 @@ public class SubscribeController {
 			model.addAttribute("anotheradd", addressService.selectAddress(avo));
 		}
 		if(uvo.getId() == null){
-			return "singUp.wp";
+			return "signUp.wp";
 			}else{
 				model.addAttribute("user", userSerivce.getUser(uvo));
 				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
@@ -209,7 +214,7 @@ public class SubscribeController {
 			model.addAttribute("anotheradd", addressService.selectAddress(avo));
 		}
 		if(uvo.getId() == null){
-			return "singUp.wp";
+			return "signUp.wp";
 			}else{
 				model.addAttribute("user", userSerivce.getUser(uvo));
 				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
@@ -229,4 +234,5 @@ public class SubscribeController {
 	System.out.println("테스트");
 	return "WEB-INF/view/admin/adminsubscription.jsp";
 	}
+
 }

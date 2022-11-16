@@ -15,9 +15,44 @@ public class SubscribeVO {
 	private int s_acidity;//선호 산미
 	private int s_tannins;//선호 타닌
 	
-	
 	private int prod_price;//상품 금액
 	private int deli_price;//배송비
+	private String s_product;
+	private String s_product2;
+	private String s_product3;
+	
+	public String getS_product() {
+		return s_product;
+	}
+
+	public void setS_product(String s_product) {
+		this.s_product = s_product;
+	}
+
+	public String getS_product2() {
+		return s_product2;
+	}
+
+	public void setS_product2(String s_product2) {
+		this.s_product2 = s_product2;
+	}
+
+	public String getS_product3() {
+		return s_product3;
+	}
+
+	public void setS_product3(String s_product3) {
+		this.s_product3 = s_product3;
+	}
+
+	@Override
+	public String toString() {
+		return "SubscribeVO [id=" + id + ", level=" + level + ", sub_date=" + sub_date + ", sub_pm_status="
+				+ sub_pm_status + ", sub_deli=" + sub_deli + ", e_date=" + e_date + ", sub_status=" + sub_status
+				+ ", s_sweet=" + s_sweet + ", s_body=" + s_body + ", s_acidity=" + s_acidity + ", s_tannins="
+				+ s_tannins + ", prod_price=" + prod_price + ", deli_price=" + deli_price + "]";
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -95,13 +130,6 @@ public class SubscribeVO {
 	}
 	public void setDeli_price(int deli_price) {
 		this.deli_price = deli_price;
-	}
-	@Override
-	public String toString() {
-		return "SubscribeVO [id=" + id + ", level=" + level + ", sub_date=" + sub_date + ", sub_pm_status="
-				+ sub_pm_status + ", sub_deli=" + sub_deli + ", e_date=" + e_date + ", sub_status=" + sub_status
-				+ ", s_sweet=" + s_sweet + ", s_body=" + s_body + ", s_acidity=" + s_acidity + ", s_tannins="
-				+ s_tannins + ", prod_price=" + prod_price + ", deli_price=" + deli_price + "]";
 	}
 
 	

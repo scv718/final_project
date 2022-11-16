@@ -15,33 +15,64 @@ public class StoryDAOMybatis {
 	private SqlSessionTemplate mybatis;
 
 	// CRUD 기능의 메소드 구현
-	// 구독하기
+	// 스토리 넣기
 	public void insertStory(StoryVO vo) {
-		System.out.println("===>mybatis로 insertSubscribe() 기능처리");
-		mybatis.insert("SubscribeDAO.insertSubscribe", vo);
+		System.out.println("===>mybatis로 insertStory() 기능처리");
+		mybatis.insert("StoryDAO.insertSubscribe", vo);
 	}
 
-	// 구독 수정
+	// 스토리 수정
 	public void updateStory(StoryVO vo) {
-		System.out.println("===>mybatis로 updateSubscribe() 기능처리");
-		mybatis.update("SubscribeDAO.updateSubscribe", vo);
+		System.out.println("===>mybatis로 updateStory() 기능처리");
+		mybatis.update("StoryDAO.updateSubscribe", vo);
 	}
 
-	// 구독 취소
+	// 스토리 지우기
 	public void deleteStory(StoryVO vo) {
-		System.out.println("===>mybatis로 deleteSubscribe() 기능처리");
-		mybatis.delete("SubscribeDAO.deleteSubscribe", vo);
+		System.out.println("===>mybatis로 deleteStory() 기능처리");
+		mybatis.delete("StoryDAO.deleteSubscribe", vo);
 	}
 
-	// 구독 조회
+	// 스토리 조회
 	public StoryVO getStory(StoryVO vo) {
-		System.out.println("===>mybatis로 getSubscribe() 기능처리");
-		return (StoryVO) mybatis.selectOne("SubscribeDAO.getSubscribe", vo);
+		System.out.println("===>mybatis로 getStory() 기능처리");
+		return (StoryVO) mybatis.selectOne("StoryDAO.getStory", vo);
 	}
 
-	// 구독 조회
+	// 스토리 리스트 조회
 	public List<StoryVO> getStoryList(StoryVO vo) {
-		System.out.println("===>mybatis로 getSubscribeList() 기능처리 ");
-		return mybatis.selectList("SubscribeDAO.getSubscribeList", vo);
+		System.out.println("===>mybatis로 getStoryList() 기능처리 ");
+		return mybatis.selectList("StoryDAO.getStoryList", vo);
+	}
+
+	public List<StoryVO> getStoryList1(StoryVO vo) {
+		System.out.println("===>mybatis로 getStoryList() 기능처리 ");
+		return mybatis.selectList("StoryDAO.getStoryList1", vo);
+	}
+
+	public StoryVO getStory1(StoryVO vo) {
+		System.out.println("===>mybatis로 getStory() 기능처리");
+		return (StoryVO) mybatis.selectOne("StoryDAO.getStory1", vo);
+	
+	}
+
+	public StoryVO getStory2(StoryVO vo) {
+		System.out.println("===>mybatis로 getStory() 기능처리");
+		return (StoryVO) mybatis.selectOne("StoryDAO.getStory2", vo);
+	}
+
+	public List<StoryVO> getStoryList2(StoryVO vo) {
+		System.out.println("===>mybatis로 getStoryList() 기능처리 ");
+		return mybatis.selectList("StoryDAO.getStoryList2", vo);
+	}
+	
+	public StoryVO getStory3(StoryVO vo) {
+		System.out.println("===>mybatis로 getStory() 기능처리");
+		return (StoryVO) mybatis.selectOne("StoryDAO.getStory3", vo);
+	}
+
+	public List<StoryVO> getStoryList3(StoryVO vo) {
+		System.out.println("===>mybatis로 getStoryList() 기능처리 ");
+		return mybatis.selectList("StoryDAO.getStoryList3", vo);
 	}
 }

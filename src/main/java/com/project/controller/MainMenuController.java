@@ -47,7 +47,5 @@ public class MainMenuController {
 		System.out.println(type);
 		List<MenuVO> typeList = menuService.typeMenu(vo);
 		return typeList;
-	
-	
 	}
 }

@@ -134,6 +134,7 @@ public class NaverController {
         	id = userService.getId(uvo).getId();
         	if(id.equals(m_email)) {
         		System.out.println("네이버 로그인 진행");
+        		session.setAttribute("login", m_email);
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userName", m_name);
         		session.setAttribute("userType", "naver");

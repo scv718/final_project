@@ -4,19 +4,34 @@
 
 <mapper namespace="StoryDAO">
 
-	<select id="getUser" resultType="users">
-		select * from member 
-		where id = #{id} and M_PW = #{m_pw}
+	<select id="getStoryList1" resultType="story">
+		select * from story
+		where story_p_no = 1 and story_a_no not in (1)
 	</select>
 	
-	<select id="checkUser" resultType="int">
-		select count(*) from member
-		where id = #{id}
+	<select id="getStory1" resultType="story">
+		select * from story
+		where story_p_no = 1 and story_a_no = 1
 	</select>
 	
-	<insert id="insertUser">
-		INSERT INTO member (ID, M_PW, M_NAME, M_PHONE, M_BIRTH, M_EMAIL)
-		VALUES (#{id}, #{m_pw}, #{m_name}, #{m_phone}, #{m_birth}, #{m_email})
-	</insert>
+	<select id="getStoryList2" resultType="story">
+		select * from story
+		where story_p_no = 2 and story_a_no not in (1)
+	</select>
+	
+	<select id="getStory2" resultType="story">
+		select * from story
+		where story_p_no = 2 and story_a_no = 1
+	</select>
+	
+	<select id="getStoryList3" resultType="story">
+		select * from story
+		where story_p_no = 3 and story_a_no not in (1)
+	</select>
+	
+	<select id="getStory3" resultType="story">
+		select * from story
+		where story_p_no = 3 and story_a_no = 1
+	</select>
 
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.review.ReviewService;
 import com.project.review.ReviewVO;
+import com.project.user.UserVO;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -86,11 +87,41 @@ public class ReviewServiceImpl implements ReviewService{
 	public int productReviewListCnt(ReviewVO rvo) {
 		return reviewDAO.productReviewListCnt(rvo);
 	}
+	
 	//관리자
 	@Override
 	public List<ReviewVO> ReviewListAd(ReviewVO vo) {
 		System.out.println("review까지 진행됨");
 		return ReviewDAO.ReviewListAd(vo);
 	}
+	@Override
+	public void deleteReviewAd(ReviewVO vo) {
+		ReviewDAO.deleteReviewAd(vo);
+		
+	}
+	
 
+	//상품별 평점평균
+	@Override
+	public Double getRatingAvg(int w_no) {
+		return reviewDAO.getRatingAvg(w_no);
+	}
+
+	//평점평균 반영
+	@Override
+	public void updateRating(ReviewVO vo) {
+		reviewDAO.updateRating(vo);
+	}
+
+
+	@Override
+	public List<ReviewVO> mainreviewFilter(ReviewVO vo){
+		return reviewDAO.mainreviewFilter(vo);
+	}
+
+	//상품페이지 정렬
+	@Override
+	public List<ReviewVO> productReviewFilter(ReviewVO rvo) {
+		return reviewDAO.productReviewFilter(rvo);
+	}
 }

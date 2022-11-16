@@ -20,6 +20,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 	
 </head>
+
 <style>
 table {
     width: 700px;
@@ -66,7 +67,12 @@ img {
     background-color: #E91E63;
 }
 
-
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -74,12 +80,13 @@ img {
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
-                <h3>관리자페이지</h3>
+            	<h3><strong>winery</strong></h3>
+                <h3><strong>관리자페이지</strong></h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>데이터정보</strong></a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
                             <a href="adminMain.wp">만든사람들(메인)</a>
@@ -91,7 +98,7 @@ img {
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">소개페이지관리</a>
+                           <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -102,7 +109,7 @@ img {
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                         <li>
                             <a href="adminNotice.wp">공지사항</a>
@@ -142,19 +149,19 @@ img {
                                 <a class="nav-link" href="adminMain.wp">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
+                                <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
+                                <a class="nav-link" href="index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
             <br>
-            <h1 align="center">만든사람들(프로필)</h1>
+            <h2 class="jumbotron" align="center">메인프로필(만든사람들)</h2>
             <br><br>
-      <table>
+      <table style="background: #white;">
         <thead>
         	<tr>
                 <th>프로필사진</th>
@@ -164,21 +171,21 @@ img {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이승진.png" ></td>
+            <tr >
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/이승진.jpg" ></td>
                 <td>Winery팀장</td>
                 <td>이승진</td>
                 <td>34</td>
             </tr>
 			<tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김경민.png" ></td>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김경민.jpg" ></td>
                 <td>Winery부팀장</td>
                 <td>김경민</td>
                 <td>32</td>
             </tr>
             <tr>
-                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.png" ></td>
-                <td>언니</td>
+                <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.jpg" ></td>
+                <td>소믈리에</td>
                 <td>김지나</td>
                 <td>33</td>
             </tr>
@@ -226,7 +233,7 @@ img {
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
-//                 $(this).toggleClass('active');
+                 $(this).toggleClass('active');
             });
         });
      

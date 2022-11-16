@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>구독 결제</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- 다음주소 -->
@@ -28,7 +29,7 @@ function checkOnlyOne(element) {
 <div class="wrapper">
 	<div class="wrap">
 		<div class="content_area">
-			<div class="content_subject"><span>결제하기</span></div>
+			<div class="content_subject"><span>구독결제</span></div>
 			<div class="content_main">
 				<!-- 회원 정보 -->
 				<div class="member_info_div">
@@ -36,7 +37,7 @@ function checkOnlyOne(element) {
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${userName} | ${memberInfo.m_email}</td>
+								<td style="width: *">${userName}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -101,9 +102,8 @@ function checkOnlyOne(element) {
 							</div>
 							</c:if>
 							<div class="addressInfo_input_div_wrap">
-							<c:forEach items="${anotheradd}" var="addanother">
 							<c:choose>
-							<c:when test="${addanother ne null}">
+							<c:when test="${anotheradd ne null}">
 							<div class="addressInfo_input_div addressInfo_input_div_2">
 								<table>
 									<colgroup>
@@ -113,20 +113,20 @@ function checkOnlyOne(element) {
 									<tbody>
 										<tr>
 											<th>이름</th>
-											<td>${addanother.m_name}</td>
+											<td>${anotheradd.m_name}</td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td>${addanother.m_address}
+											<td>${anotheradd.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
 												name="add" value="${userName}" type="hidden">
 												 <input
 												class="m_add" name="m_add" type="hidden"
-												value="${addanother.m_address}">	
+												value="${anotheradd.m_address}">	
 												 <input
 												class="m_phone" name="m_phone" type="hidden"
-												value="${addanother.m_phone}">							
+												value="${anotheradd.m_phone}">							
 												 <input
 												class="address1_input" name="m_address_1" type="hidden"
 												value="${add.m_address_1}"> <input
@@ -138,7 +138,7 @@ function checkOnlyOne(element) {
 										</tr>
 										<tr>
 										<th>전화번호</th>
-										<td>${addanother.m_phone}</td>
+										<td>${anotheradd.m_phone}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -150,7 +150,6 @@ function checkOnlyOne(element) {
 								</div>
 							</c:otherwise>
 							</c:choose>
-							</c:forEach>
 							<div class="addressInfo_input_div addressInfo_input_div_3">
 								<form id = "addform" name = "addform" action = "m_add.wp">
 									<table>
@@ -333,7 +332,7 @@ function checkOnlyOne(element) {
 					</div>
 					<!-- 버튼 영역 -->
 					<div class="total_info_btn_div">
-						<button id="check_module" type="button">결제하기</button>
+						<button id="check_module" type="button" class ="btn-hover color-8">결제하기</button>
 					</div>
 				</div>				
 				

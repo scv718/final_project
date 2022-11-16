@@ -1,8 +1,6 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +25,6 @@
 [type=search] {
     outline-offset: 0;
 }
-
 /*목록버튼*/
 .myButton {
 	background:linear-gradient(to bottom, #e0e0e0 5%, #fffaff 100%);
@@ -102,8 +99,12 @@
 	top:1px;
 }
 
-=======
-
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
 </style>
 <body>
 
@@ -111,12 +112,13 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
-                <h3>관리자페이지</h3>
+            <h3><strong>winery</strong></h3>
+                <h3><strong>관리자페이지</strong></h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>데이터정보</strong></a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
                             <a href="adminMain.wp">만든사람들(메인)</a>
@@ -128,7 +130,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">소개페이지관리</a>
+                           <a href="adminIntroduce.wp">와이너리 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -139,7 +141,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                          <li>
                             <a href="adminNotice.wp">공지사항</a>
@@ -179,44 +181,29 @@
                                 <a class="nav-link" href="adminMain.wp">관리자메인화면</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">홈페이지메인이동</a>
+                                <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8090/user/index.jsp">로그아웃</a>
+                                <a class="nav-link" href="index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-
             
-           <h2 align="center">구독 관리</h2>
-
-        
-           <h2 align="center">고객목록조회</h2>
-
+           <h2 class="jumbotron" align="center">구독자목록</h2>
            <br><br>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
         <thead>  
-
          <tr style="background-color: #FCA5A5" align="center">
 	        <th>회원 아이디</th>
-			<th>회원 등급</th>
-			<th>구독 시작일자</th>
-			<th>구독 종료일자</th>
-			<th>결제여부</th>
-			<th>구독 배송 확인</th>
-
-              <tr>
-			<th>아이디</th>
 			<th>회원 등급</th>
 			<th>구독 시작일자</th>
 			<th>결제여부</th>
 			<th>구독 배송 확인</th>
 			<th>구독 종료일자</th>
 			<th>구독 상태</th>
-
 			<th>선호 당도</th>
 			<th>선호 바디감</th>
 			<th>선호 산미</th>
@@ -225,86 +212,31 @@
         </thead>  
         <tbody> 
          
-
-<%--        <c:forEach items="${UserList}" var="users">                 --%>
-<!--        <tr align="center"> -->
-<%--          <td>${users.m_no}</td> --%>
-<%--       	 <td>${users.id}<input type="hidden" id="id${users.m_no}" value="${users.id}"></td> --%>
-<%--       	 <td>${users.m_birth}</td> --%>
-<%--       	 <td><input id="m_name${users.m_no}" value="${users.m_name}"></td> --%>
-<%--       	 <td>${users.m_email}</td> --%>
-<%--      	 <td>${users.login}</td> --%>
-<%--       	 <td>${users.level}</td> --%>
-<!-- 	  <td> -->
-<%-- 	  	<a style="color: white" class="myButton1" onclick="if(confirm('정말 수정하시겠습니까?')){updateAd('${users.m_no}')}">수정</a> --%>
-<%--       	<a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteAd('${users.id}')}">삭제</a> --%>
-<!--       </td> -->
-<!--        </tr>             -->
-<%--        </c:forEach> --%>
-       </tbody>
-    </table>
-    <br>
-    <div class='btnSet' align="center">
-		<a class='myButton' href="adminIntroduce.wp">전체 목록</a>
-            <br><br><hr> <br><br>
-	</div>
-    </div>
-
        <c:forEach items="${AllList}" var="all">                
-       <tr>
-								<td>${all.id}</td>
-								<td>${all.level}</td>
-								<td>${all.sub_date}</td>
-								<td>${all.sub_pm_status}</td>
-								<td>${all.sub_deli}</td>
-								<td>${all.e_date}</td>
-								<td>${all.sub_status}</td>
-								<td>${all.s_sweet}</td>
-								<td>${all.s_body}</td>
-								<td>${all.s_acidity}</td>
-								<td>${all.s_tannins}</td>
-		</tr>            
-       </c:forEach>
-       </tbody>
-    </table>
-    </div>
-            <br><br><hr> <br><br>
-            <h2 align="center">수정/삭제(공사중)임시적용</h2>
-             <table class="member" align="center">
-        <tr>
-	    <th>아이디</th>
-			<th>회원 등급</th>
-			<th>구독 시작일자</th>
-			<th>결제여부</th>
-			<th>구독 배송 확인</th>
-			<th>구독 종료일자</th>
-			<th>구독 상태</th>
-			<th>선호 당도</th>
-			<th>선호 바디감</th>
-			<th>선호 산미</th>
-			<th>선호 타닌</th>
-        </tr>
-		<tbody>
-        <c:forEach items="${AllList}" var="all">                
-       <tr>
-     <td>${all.id}</td>
-								<td>${all.level}</td>
-								<td>${all.sub_date}</td>
-								<td>${all.sub_pm_status}</td>
-								<td>${all.sub_deli}</td>
-								<td>${all.e_date}</td>
-								<td>${all.sub_status}</td>
-								<td>${all.s_sweet}</td>
-								<td>${all.s_body}</td>
-								<td>${all.s_acidity}</td>
-								<td>${all.s_tannins}</td>
+       <tr align="center">
+         <td>${all.id}</td>
+      	 <td>${all.level}</td>
+      	 <td>${all.sub_date}</td>
+      	 <td>${all.sub_pm_status}</td>
+      	 <td>${all.sub_deli}</td>
+     	 <td>${all.e_date}</td>
+      	 <td>${all.sub_status}</td>
+      	 <td>${all.s_sweet}</td>
+      	 <td>${all.s_body}</td>
+      	 <td>${all.s_acidity}</td>
+      	 <td>${all.s_tannins}</td>
        </tr>            
        </c:forEach>
        </tbody>
     </table>
-    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">수정</a>
-    <a href="http://localhost:8090/user/adminUser.wp" class="myButton">삭제</a>
-
+    <br>
+    <div class='btnSet' align="center">
+		<a class='myButton' href="adminSubscription.wp">전체 목록</a>
+		<a class='myButton' href="mysubscribes.wp">구독 관리</a>
+            <br><br><hr> <br><br>
+	</div>
+    </div>
+    
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
@@ -322,28 +254,26 @@
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
-//                 $(this).toggleClass('active');
+                $(this).toggleClass('active');
             });
         });
         $(document).ready(function(){
             $('#myTable').dataTable();
         });
-
         
-    function updateAd(param){
-    	var m_name = $('#m_name'+param).val();
-    	var id =  $('#id'+param).val();
-    	console.log('testad');
-    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
-    	document.userInfo.submit();
-    }
-    function deleteAd(param){
-    	var id = param;
-    	console.log('testad');
-    	location.href = 'deleteAd.wp?id='+id;
-    	document.userInfo.submit();
-    }
-
+//     function updateAd(param){
+//     	var m_name = $('#m_name'+param).val();
+//     	var id =  $('#id'+param).val();
+//     	console.log('testad');
+//     	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
+//     	document.userInfo.submit();
+//     }
+//     function deleteAd(param){
+//     	var id = param;
+//     	console.log('testad');
+//     	location.href = 'deleteAd.wp?id='+id;
+//     	document.userInfo.submit();
+//     }
     </script>
 </body>
 </html>

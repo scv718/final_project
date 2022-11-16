@@ -4,7 +4,7 @@
 
 <mapper namespace="QnaDAO">
 
-<!-- 사용자 문의 등록 -->
+	<!-- 사용자 문의 등록 -->
 	<insert id="insertQna">
 		INSERT INTO COMMUNITY
 		(COMMU_CAT,COMMU_TITLE,ID,COMMU_CONTENT,COMMU_DATE,FAQ_CAT,ANSWER_STATUS,COMMU_PHOTO1,COMMU_PHOTO2,COMMU_PHOTO3)
@@ -12,42 +12,24 @@
 		(#{commu_cat},#{commu_title},#{id},#{commu_content},NOW(),#{faq_cat},#{answer_status},#{commu_photo1},#{commu_photo2},#{commu_photo3})
 	</insert>
 	
-	<!-- 관리자 답변 등록  -->
-	<insert id="admin_insertQna">
-		INSERT INTO ANSWER
-		(COMMU_NO,ID,ANSWER_CON,ANSWER_DATE)
-		VALUES(#{commu_no},#{id},#{answer_con},NOW())
-	</insert>
-	
-	<!-- 수정 -->
+	<!-- 사용자 문의 수정 -->
 	<update id="updateQna">
-		UPDATE community SET commu_title=#{commu_title},
-		id=#{id},
-		commu_content=#{commu_content}, commu_date=NOW(),
-		faq_cat=#{faq_cat},
+		UPDATE COMMUNITY SET COMMU_TITLE=#{commu_title},
+		ID=#{id},
+		COMMU_CONTENT=#{commu_content}, COMMU_DATE=NOW(),
+		FAQ_CAT=#{faq_cat},
 		COMMU_PHOTO1=#{commu_photo1},
 		COMMU_PHOTO2=#{commu_photo2},
 		COMMU_PHOTO3=#{commu_photo3}
-		where commu_no=#{commu_no}
+		WHERE COMMU_NO=#{commu_no}
 	</update>
 	
-	<update id="admin_updateQna">
-		UPDATE ANSWER SET
-		COMMU_NO=#{commu_no},
-		ID=#{id},
-		ANSWER_CON=#{answer_con},
-		ANSWER_DATE=NOW()
-		where commu_no=#{commu_no}
-	</update>
-	
-	
-
-<!-- 답변여부 -->
+	<!-- 답변여부 -->
 	<update id="answerCount">
-	UPDATE community SET answer_status='답변완료' where commu_no=#{commu_no}
+	UPDATE COMMUNITY SET ANSWER_STATUS='답변완료' WHERE COMMU_NO=#{commu_no}
 	</update>
 	
-<!-- 삭제 -->
+	<!-- 사용자 문의 삭제 -->
 	<delete id="deleteQna">
 		DELETE C,A FROM COMMUNITY C LEFT JOIN ANSWER A ON C.COMMU_NO = A.COMMU_NO WHERE C.COMMU_NO=#{commu_no}
 	</delete>
@@ -58,56 +40,70 @@
 		commu_no = #{commu_no}
 	</select>
 	
-	<!-- 상세보기 - 관리자 -->
-	<select id="admin_getQna" resultType="community">
-		SELECT * FROM community c left outer JOIN answer a ON c.commu_no = a.COMMU_NO WHERE c.commu_no= #{commu_no}
-<!-- 			SELECT C.*, A.*  FROM COMMUNITY C JOIN ANSWER A ON  C.COMMU_NO = A.COMMU_NO WHERE C.COMMU_NO = #{commu_no}; -->
-<!-- 					SELECT * FROM community as C JOIN answer as A ON c.id = a.id	WHERE c.commu_no = #{commu_no} AND a.answer_no = #{answer_no}; -->
-<!-- 					SELECT * FROM community as C JOIN answer as A ON c.id = a.id	WHERE c.commu_no = #{commu_no}; -->
-	</select>
-	
 	<!-- 전체목록조회(검색)-사용자/ -->
  	<select id="getQnaList" resultType="community"> 
 		SELECT * FROM COMMUNITY C 
 		LEFT OUTER JOIN ANSWER A
  		ON C.COMMU_NO = A.COMMU_NO  
- 		WHERE 1=1 and commu_cat = 2 and C.ID = #{id} 
-<!--  		SELECT * FROM COMMUNITY WHERE 1=1 and commu_cat = 2 and id= #{id} -->
-		<if test="alignlist == 'zero' "> AND faq_cat = '0' </if> 
- 		<if test="alignlist == 'one' "> AND faq_cat = '1' </if> 
-		<if test="alignlist == 'two' "> AND faq_cat = '2' </if>
-		<if test="alignlist == 'three' "> AND faq_cat = '3' </if> 
-		<if test="alignlist == 'four' "> AND faq_cat = '4' </if> 
- 		ORDER BY commu_date 
+ 		WHERE 1=1 AND COMMU_CAT = 2 AND C.ID = #{id} 
+		<if test="alignlist == 'zero' "> AND FAQ_CAT = '0' </if> 
+ 		<if test="alignlist == 'one' "> AND FAQ_CAT = '1' </if> 
+		<if test="alignlist == 'two' "> AND FAQ_CAT = '2' </if>
+		<if test="alignlist == 'three' "> AND FAQ_CAT = '3' </if> 
+		<if test="alignlist == 'four' "> AND FAQ_CAT = '4' </if> 
+ 		ORDER BY COMMU_DATE DESC
  		LIMIT 10 OFFSET #{offset} 
  	</select> 
 	
-
-	<!-- 페이징처리 목록갯수 -->
+	<!-- 페이징처리 목록갯수 - 사용자 -->
 	<select id="totalQnaListCnt" resultType="_int">
-		select count(*) from community where 1=1 and commu_cat = 2 and id=#{id}
-<!-- 		SELECT COUNT(*) FROM COMMUNITY C LEFT OUTER JOIN ANSWER A ON C.COMMU_NO = A.COMMU_NO WHERE 1=1 and c.commu_cat = 2 and C.ID = #{id} -->
-		<if test="alignlist == 'zero' "> AND faq_cat = '0' </if> 
- 		<if test="alignlist == 'one' "> AND faq_cat = '1' </if> 
-		<if test="alignlist == 'two' "> AND faq_cat = '2' </if>
-		<if test="alignlist == 'three' "> AND faq_cat = '3' </if> 
-		<if test="alignlist == 'four' "> AND faq_cat = '4' </if>  
+		SELECT COUNT(*) FROM COMMUNITY WHERE 1=1 AND COMMU_CAT = 2 AND ID=#{id}
+		<if test="alignlist == 'zero' "> AND FAQ_CAT = '0' </if> 
+ 		<if test="alignlist == 'one' "> AND FAQ_CAT = '1' </if> 
+		<if test="alignlist == 'two' "> AND FAQ_CAT = '2' </if>
+		<if test="alignlist == 'three' "> AND FAQ_CAT = '3' </if> 
+		<if test="alignlist == 'four' "> AND FAQ_CAT = '4' </if> 
 	</select>
 	
-		<!-- 전체목록조회(검색)-관리자 -->
+	<!-- ========관리자==========  -->
+	
+	
+	<!-- 관리자 답변 등록  -->
+	<insert id="admin_insertQna">
+		INSERT INTO ANSWER (COMMU_NO,ID,ANSWER_CON,ANSWER_DATE)	VALUES(#{commu_no},#{id},#{answer_con},NOW())
+	</insert>
+	
+	<!-- 관리자 답변 수정 -->
+	<update id="admin_updateQna">
+		UPDATE ANSWER SET
+		COMMU_NO=#{commu_no},
+		ID=#{id},
+		ANSWER_CON=#{answer_con},
+		ANSWER_DATE=NOW()
+		WHERE COMMU_NO=#{commu_no}
+	</update>
+	
+	<!-- 상세보기 - 관리자 -->
+	<select id="admin_getQna" resultType="community">
+		SELECT * FROM COMMUNITY C LEFT OUTER JOIN ANSWER A ON C.COMMU_NO = A.COMMU_NO WHERE C.COMMU_NO= #{commu_no}
+	</select>
+	
+	<!-- 전체목록조회(검색)-관리자 -->
 	<select id="admin_getQnaList" resultType="community">
 		SELECT * FROM COMMUNITY WHERE 1=1 and commu_cat = 2
-		<if test="alignlist == 'waiting' "> AND answer_status = '답변대기' </if>
-		<if test="alignlist == 'completed' "> AND answer_status = '답변완료' </if>
-		ORDER BY commu_date
+		<if test="searchCondition == 'ID' "> AND ID LIKE REPLACE(CONCAT('%', #{searchKeyword}, '%'),' ','')</if>
+		<if test="alignlist == 'waiting' "> AND ANSWER_STATUS = '답변대기' </if>
+		<if test="alignlist == 'completed' "> AND ANSWER_STATUS = '답변완료' </if>
+		ORDER BY COMMU_DATE DESC
 		LIMIT 10 OFFSET #{offset}
 	</select>
 	
 	<!-- 페이징처리 목록갯수 - 관리자 -->
 	<select id="admin_totalQnaListCnt" resultType="_int">
-		SELECT COUNT(*) FROM COMMUNITY C LEFT OUTER JOIN ANSWER A ON C.COMMU_NO = A.COMMU_NO WHERE 1=1 and c.commu_cat = 2 
-		<if test="alignlist == 'waiting' "> AND answer_status = '답변대기' </if>
-		<if test="alignlist == 'completed' "> AND answer_status = '답변완료' </if>
+		SELECT COUNT(*) FROM COMMUNITY C LEFT OUTER JOIN ANSWER A ON C.COMMU_NO = A.COMMU_NO WHERE 1=1 AND C.COMMU_CAT = 2 
+		<if test="alignlist == 'waiting' "> AND ANSWER_STATUS = '답변대기' </if>
+		<if test="alignlist == 'completed' "> AND ANSWER_STATUS = '답변완료' </if>
 	</select>
+	
 <select id="QnaListAd" resultType="qna"> SELECT * FROM COMMUNITY WHERE commu_cat = 2 and 1=1 </select>
 </mapper>

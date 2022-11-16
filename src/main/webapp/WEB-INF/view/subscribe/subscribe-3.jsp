@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>cart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/cart.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -24,12 +25,11 @@
          <!-- cartInfo -->
          <div class="content_totalCount_section">
 
-            <table class="subject_table">
+            <table class="subject_table1">
                <caption>표 제목 부분</caption>
                <tbody>
 
                   <tr>
-<!--                      <th class="td_width_1"></th> -->
                      <th class="td_width_6">구독명</th>
                      <th class="td_width_2">배송현황</th>
                      <th class="td_width_2">가격</th>
@@ -38,7 +38,7 @@
                </tbody>
             </table>
             
-            <table class="cart_table">
+            <table class="cart_table1">
                <caption>표 내용 부분</caption>
                <tbody>
                      <tr><td class="td_width_6" style="text-align:center">${subscribe.w_nm_k}</td>
@@ -47,42 +47,42 @@
                         <td class="td_width_2 price_td" style = "text-align: center">
                           <fmt:formatNumber value="${subscribe.ord_t_price}" pattern="#,### 원" /><br>
                         </td>
-  
-                        <td class="td_width_3 table_text_align_center">
-                         <form action="deletesubscribe.wp" method="post">
-                        	<input type="hidden" name="ord_code" value="${subscribe.ord_code}">
-                           <button  type="submit" class="delete_btn">구독 내역삭제</button>
-                           </form>
-                      
-                
-                      	<c:if test="${subscribe.cs_stat ne '취소'}">
+                        
+    <td class="td_width_3 table_text_align_center">
+  							<c:if test="${subscribe.cs_stat ne '취소'}">
                       	    <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${subscribe.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${subscribe.merchant_uid}">
-                           <button  type="button" class="delete_btn">구독 취소</button>
+                           <button  type="button" id="delete_btn" class = "btn-hover color-90" >구독취소</button>
                            </form>
                       	</c:if>
+                      	
+                      
+<!--                          <form action="deletesubscribe.wp" method="post"> -->
+<%--                         	<input type="hidden" name="ord_code" value="${subscribe.ord_code}"> --%>
+<!--                            <button  type="submit" id="delete_btn" class = "btn-hover color-90">내역삭제</button> -->
+<!--                            </form>  -->
                         </td>
-                     </tr>
+                     </tr>  
                </tbody>
             </table>
+            <div id="wwit">
+               <a href="javascript:void(0);" id ="subscribes2" onclick="cancellation();">
+								<button type="button" id="colre"
+									class = "btn-hover color-90">재구독</button>
+						</a>  </div>
          </div>
      </div>
    </div>   <!-- class="wrap" -->
-   <a href="javascript:void(0);" id ="subscribes2" onclick="cancellation();">
-								<button type="button" id="colre"
-									class="w-100 btn btn-lg btn-outline-primary">재구독</button>
-							</a>
 </div>   <!-- class="wrapper" -->
 
 <script type="text/javascript">
 function cancellation() {
 	var level = ${mylevel};
 	 if (level > 0){
-		alert('구독 내역 삭제 후 구독 가능 합니다.');
+		alert('구독 취소 후 구독 가능 합니다.');
 	}else if (level == 0){
 		alert('재구독 가능 합니다.');
-		confirm("구독하겠습니까?")
 		if(confirm("구독하겠습니까?")){
 			location.href = "subscribe-1.wp";
 		}else{

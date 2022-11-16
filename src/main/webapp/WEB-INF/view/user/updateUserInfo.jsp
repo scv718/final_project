@@ -4,6 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mypage.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
@@ -282,9 +285,6 @@ $("#check").on("click", function() {
 	<div class="greenContainer">
 		<div class=".image-box">
 			<div>
-				<div>
-					<div class="name">등급 : ${UsserVO.lavel}</div>
-				</div>
 				<div class="name">
 					<div class="name">${userName}님</div>
 				</div>
@@ -292,8 +292,7 @@ $("#check").on("click", function() {
 		</div>
 	</div>
 
-	<div
-		style="width: 500px; margin: 0 auto; margin-top: 50px; margin-bottom: 50px;">
+	<div id = "updateform">
 		<div class="mb-3">
 			<form id="userInfo" id = "userInfo" name="userInfo" action="userEdit.wp"
 				method="post">

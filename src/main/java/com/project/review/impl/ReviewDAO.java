@@ -110,8 +110,28 @@ public class ReviewDAO {
 		System.out.println("상품별 리뷰 목록 개수");
 		return mybatis.selectOne("BoardDAO.productReviewListCnt", rvo);
 	}
-
 	
+	public List<ReviewVO> mainreviewFilter(ReviewVO vo) {
+		return mybatis.selectList("BoardDAO.mainreviewFilter", vo);
+	}
+
+	//상품별 평점평균
+	public Double getRatingAvg(int w_no) {
+		System.out.println("상품별 평점평균");
+		return mybatis.selectOne("BoardDAO.getRatingAvg", w_no);
+	}
+
+	//평점평균 반영
+	public void updateRating(ReviewVO vo) {
+		System.out.println("평점평균 반영");
+		mybatis.update("BoardDAO.updateReview", vo);
+	}
+
+	//상품페이지 정렬
+	public List<ReviewVO> productReviewFilter(ReviewVO rvo) {
+		System.out.println("DAO 상품페이지 정렬");
+		return mybatis.selectList("BoardDAO.productReviewFilter", rvo);
+	}
 
 
 }

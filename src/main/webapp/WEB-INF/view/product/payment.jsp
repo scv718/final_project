@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>결제페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -37,7 +38,7 @@ function checkOnlyOne(element) {
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${userName} | ${memberInfo.m_email}</td>
+								<td style="width: *">${userName}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -102,9 +103,8 @@ function checkOnlyOne(element) {
 							</div>
 							</c:if>
 							<div class="addressInfo_input_div_wrap">
-							<c:forEach items="${anotheradd}" var="addanother">
 							<c:choose>
-							<c:when test="${addanother ne null}">
+							<c:when test="${anotheradd ne null}">
 							<div class="addressInfo_input_div addressInfo_input_div_2">
 								<table>
 									<colgroup>
@@ -114,20 +114,20 @@ function checkOnlyOne(element) {
 									<tbody>
 										<tr>
 											<th>이름</th>
-											<td>${addanother.m_name}</td>
+											<td>${anotheradd.m_name}</td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td>${addanother.m_address}
+											<td>${anotheradd.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
 												name="add" value="${userName}" type="hidden">
 												 <input
 												class="m_add" name="m_add" type="hidden"
-												value="${addanother.m_address}">	
+												value="${anotheradd.m_address}">	
 												 <input
 												class="m_phone" name="m_phone" type="hidden"
-												value="${addanother.m_phone}">							
+												value="${anotheradd.m_phone}">							
 												 <input
 												class="address1_input" name="m_address_1" type="hidden"
 												value="${add.m_address_1}"> <input
@@ -139,7 +139,7 @@ function checkOnlyOne(element) {
 										</tr>
 										<tr>
 										<th>전화번호</th>
-										<td>${addanother.m_phone}</td>
+										<td>${anotheradd.m_phone}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -151,11 +151,13 @@ function checkOnlyOne(element) {
 								</div>
 							</c:otherwise>
 							</c:choose>
-							</c:forEach>
 							<div class="addressInfo_input_div addressInfo_input_div_3">
 								<form id = "addform" name = "addform" action = "m_add.wp">
 									<table>
 										<colgroup>
+										<col id = "ordername" />
+										<col id = "orderstatus"/>
+										<col id = "orderprice" />
 										</colgroup>
 										<tbody>
 											<tr>
@@ -171,12 +173,17 @@ function checkOnlyOne(element) {
 													<a class="address_search_btn" onclick="execution_daum_address()">주소 찾기</a><br> <input
 													class="address2_input" readonly="readonly"><br>
 													<input class="address3_input" readonly="readonly">
-													</td>
-												<th>전화번호</th>
+													</td>		
+											</tr>
+											<tr>
+											<th>전화번호</th>
 												<td><input class = "m_phone_insert" name = "m_phone"></td>
-												<td><label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="0" checked="checked">기본배송지등록</label>
+												
+											</tr>
+											<tr>
+											<td id= "btncheck"><label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="0" checked="checked">기본배송지등록</label>
 													<label><input type="checkbox" class = "m_default" name="m_default" onclick="checkOnlyOne(this)" value="1" >일반배송지등록</label>
-													<button id = "insertadd" type = "button">입력 완료</button></td>
+													<button id = "insertadd" class="btn btn-secondary" type = "button">입력 완료</button></td>
 											</tr>
 										</tbody>
 									</table>
@@ -323,7 +330,16 @@ function checkOnlyOne(element) {
 							</li>
 							<li>
 								<span class="price_span_label">배송비</span>
-								<span class="delivery_price_span">100000</span>원
+<!-- 								<span class="delivery_price_span">   -->
+                              <c:choose>
+                              <c:when test="${level.level < 0}">
+                               <span class="deliveryPrice">2500</span>원	
+                              </c:when>
+                              <c:otherwise>
+                               <span class=deliveryPrice>0</span>원
+                              </c:otherwise>
+                              </c:choose>
+<!--                             </span>원 -->
 							</li>
 																				
 							<li class="price_total_li">
@@ -339,7 +355,7 @@ function checkOnlyOne(element) {
 					</div>
 					<!-- 버튼 영역 -->
 					<div class="total_info_btn_div">
-						<button id="check_module" type="button">결제하기</button>
+						<button id="check_module" class = "btn-hover color-9"type="button">결제하기</button>
 					</div>
 				</div>				
 				
@@ -372,7 +388,7 @@ function checkOnlyOne(element) {
 <input name='w_noList' type='hidden' value='${ol.w_no}'>
 </c:forEach>
 	<input type="hidden" name="unm" id="unm" value = "${user.m_name}" ><br>
-    <input type="hidden" name="amount" id="amount" value="" ><br>	
+    <input type="hidden" name="amount" id="amount"><br>	
     <input type="hidden" name="imp_uid" id="imp_uid"><br>
     <input type="hidden" name="merchant_uid" id="merchant_uid"><br>
     <input type="hidden" name="ord_addr" id="ord_addr"><br>
@@ -416,13 +432,15 @@ $(document).ready(function(){
 	
 	finalTotalPrice = totalPrice;
 	
-	
 $("#check_module").click(function () {
-	
 	var m_address;
 	var postcode;
 	var phone;
+	
+	
 	$('#amount').val(finalTotalPrice);
+	console.log($('#amount').val());
+	console.log(finalTotalPrice);
 	$(".addressInfo_input_div").each(function(i, obj){
 		if($(obj).find(".selectAddress").val() == 'T'){
 			m_address = $(obj).find(".m_add").val();
@@ -439,6 +457,8 @@ $("#check_module").click(function () {
 	console.log(phone);
 	console.log(postcode[0]);
 	console.log(finalTotalPrice);
+	var formValues = $("form[name=fm]").serialize() ;
+	console.log(formValues);
 	IMP.request_pay({
 		pg: 'html5_inicis', // 자신이 설정한 pg사 설정
 		pay_method: 'card',
@@ -450,7 +470,7 @@ $("#check_module").click(function () {
 		buyer_tel: phone,
 		buyer_addr: m_address,
 		buyer_postcode: postcode[0],
-		m_redirect_url: 'http://localhost:8090/payments/complete'
+		m_redirect_url: "http://localhost:8090/mobilepay.wp?formValues="+formValues
 		}, function (rsp) {
 			console.log(rsp);
 			if (rsp.success) {
@@ -698,6 +718,12 @@ $(".order_btn").on("click", function(){
 
 
 </script>
-
+<%    
+response.setHeader("Cache-Control","no-store");    
+response.setHeader("Pragma","no-cache");    
+response.setDateHeader("Expires",0);    
+if (request.getProtocol().equals("HTTP/1.1"))  
+        response.setHeader("Cache-Control", "no-cache");  
+%>
 </body>
 </html>

@@ -1,81 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <meta name="description" content="">
-<meta name="author"
-	content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
+<meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
 <meta name="generator" content="Hugo 0.104.2">
-<title>공지사항 글쓰기</title>
-
-<link rel="canonical"
-	href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
-
-<link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- 네이버 스마트에디터  -->
-<!-- <head> 안에 추가 -->
-<script type="text/javascript"
-	src="resources/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- head 안에 추가 -->
-
+<link rel="stylesheet"   href="${pageContext.request.contextPath}/resources/css/admin_insertNotice.css"/>
+<title>공지사항 등록 - 관리자</title>
+<!-- <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
+<link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+ <%@ include file="../../../header.jsp"%>
 </head>
-<body>
-	<div class="jumbotron">
-		<h1>공지사항 글쓰기</h1>
+
+<body class="d-flex flex-column min-vh-100">
+	<div id="communityContainer">
+		<h1 id="comtitle">공지사항 글 등록</h1>
+
+		<div class="container-fluid">
+			<form action="admin_insertNotice.wp" method="post" id="dataForm">
+				<input type="hidden" class="form-control" name="commu_cat" value="0">
+
+				<div class="li_board">
+					<ul>
+						<li class="col1">작성자</li>
+						<li class="col2"><input type="text" class="name" name="id" value="${community.id}" readonly></li>
+					</ul>
+
+					<ul>
+						<li class="col1">제목</li>
+						<li class="col2"><input type="text" class="form-content" name="commu_title" required></li>
+					</ul>
+
+					<ul>
+						<li class="col1">내용</li>
+						<li class="col2"><textarea class="form-content" rows="10" id="comment" name="commu_content" required></textarea></li>
+					</ul>
+				</div>
+
+				<div id="bottom_btn">
+					<div id="se2_sample" style="margin: 10px 0;">
+						<input type="submit" class="insertbtn" value="글 등록">
+					</div>
+				</div>
+
+			</form>
+		</div>
 	</div>
-
-	<div class="container-fluid">
-		<form action="admin_insertNotice.wp" method="post">
-		<!-- 			<div class="input-group mb-3"> -->
-<!-- 				<div class="input-group-prepend"> -->
-<!-- 					<span class="input-group-text">구분번호</span> -->
-<!-- 				</div> -->
-			<input type="hidden" class="form-control" name="commu_cat" value="0">
-<!-- 			</div> -->
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">항목내번호</span>
-				</div>
-				<input type="text" class="form-control" name="commu_cat_no"
-					placeholder="항목내번호를 입력하세요" required>
-			</div>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">제목</span>
-				</div>
-				<input type="text" class="form-control" name="commu_title"
-					placeholder="제목을 입력하세요." required>
-			</div>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">작성자</span>
-				</div>
-				<input type="text" class="form-control innm" name="id" value="관리자"
-					readonly>
-			</div>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">내용</span>
-				</div>
-				<!-- 				<textarea class="form-control" rows="10" id="comment" name="commu_content"></textarea> -->
-								<textarea id="txtContent" name="commu_content" rows="10" cols="100" style="width: 100%;"></textarea>
-				
-			</div>
-			<div id="footer">
-				<div id="se2_sample" style="margin: 10px 0;">
-					<input type="submit" value="등록하기">
-				</div>
-			</div>
-		</form>
-	</div>
-
-
 </body>
-
 </html>

@@ -9,7 +9,7 @@
 		where id = #{id} and M_STATUS = 0
 	</select>
 	<select id="getUserPw" resultType="users">
-		select * from member and M_STATUS = 0
+		select * from member WHERE M_STATUS = 0 AND M_ROLE = 'user'
 	</select>
 
 	<select id="getUserList" resultType="users">
@@ -88,4 +88,15 @@
 		UPDATE MEMBER SET LEVEL = 3
 		WHERE ID = #{id} and M_STATUS = 0
 	</update>
+<!--관리자 회원 -->
+	<update id="updateMember">
+		UPDATE MEMBER
+		SET M_NAME = #{m_name}
+		WHERE id=#{id}
+	</update>
+	<update id="deleteMember">
+		DELETE FROM MEMBER
+		WHERE id=#{id}
+	</update>
+	
 </mapper>
