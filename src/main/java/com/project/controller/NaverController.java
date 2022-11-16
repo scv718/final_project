@@ -185,7 +185,8 @@ public class NaverController {
 		}    
        
          
-		REDIRECT_URL = "http://localhost:8090";		
+//		REDIRECT_URL = "http://localhost:8090";		
+		REDIRECT_URL = "http://winerycop.tk";		
 	    return access_token;
 	    
 	}

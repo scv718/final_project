@@ -54,7 +54,13 @@ public class AdminController {
 		return "WEB-INF/view/admin/adminintroduce.jsp";
 	}
 	
-
+	@RequestMapping("adminStory.wp")
+	public String adminStory() {
+		return "WEB-INF/view/admin/adminStory.jsp";
+	}
+	
+	
+	
 //	@RequestMapping("adminSubscription.wp")
 //	public String subscription() {
 //		return "WEB-INF/view/admin/adminsubscription.jsp";

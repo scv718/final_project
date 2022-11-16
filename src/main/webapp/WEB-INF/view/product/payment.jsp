@@ -470,7 +470,7 @@ $("#check_module").click(function () {
 		buyer_tel: phone,
 		buyer_addr: m_address,
 		buyer_postcode: postcode[0],
-		m_redirect_url: "http://localhost:8090/mobilepay.wp?formValues="+formValues
+		m_redirect_url: "http://winerycop.tk/mobilepay.wp?formValues="+formValues
 		}, function (rsp) {
 			console.log(rsp);
 			if (rsp.success) {

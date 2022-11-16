@@ -2,7 +2,10 @@ package com.project.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +25,7 @@ import com.project.subscribe.SubscribeService;
 import com.project.subscribe.SubscribeVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
+import com.project.wine.ProductService;
 
 
 @Controller
@@ -32,7 +36,8 @@ public class UserController {
 	
 	@Autowired
 	private SubscribeService subscribeservice;
-	
+	@Autowired
+	private ProductService productService;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -219,9 +224,30 @@ public class UserController {
 	@RequestMapping(value = "/preference_setting.wp")
 	public String setting(SubscribeVO vo, HttpSession session) {
 		vo.setId((String)session.getAttribute("userID"));
-	
+		List<Integer> intlist = new ArrayList<Integer>();
+		List<Integer> totallist = new ArrayList<Integer>();
 		subscribeservice.preference_Setting(vo);
+		System.out.println(productService.subscribeproduct(vo));
+		int size =  productService.subscribeproduct(vo).size();
+		for(int j= 0; j<productService.subscribeproduct(vo).size();j++) {
+			System.out.print(productService.subscribeproduct(vo).get(j).getW_no());				 
+		     intlist.add(productService.subscribeproduct(vo).get(j).getW_no());
+		}
 		
+			
+			totallist.addAll(intlist.subList(0, size-1));
+			
+			System.out.println(totallist);
+			System.out.println("섞기전");
+			Collections.shuffle(totallist);
+			
+			vo.setS_product(totallist.get(0).toString());
+			vo.setS_product2(totallist.get(1).toString());
+			vo.setS_product3(totallist.get(2).toString());
+			vo.setId((String)session.getAttribute("userID"));
+			
+			subscribeservice.insertProduct(vo);
+			
 		return "redirect:/";
 	}
 	

@@ -58,14 +58,13 @@
                       	   <input type="hidden" name = "id" value="${ci.id}"/>
                            <input type="hidden" name = "w_no" value="${ci.w_no}"/>
                            <input type="hidden" class = "ord_cart_no" name="ord_cart_no" value="${ci.ord_cart_no}"/>
-                           <input type="hidden"  name="ord_quan"value="${ci.ord_quan}"/>
                            <input type="hidden" name="w_price" value="${ci.w_price}"/>
                            <input type="hidden" name="pay_stat"value="${ci.pay_stat}"/>
                            <input type="hidden" name="ord_code"value="${ci.ord_code}"/>
                            <input type="hidden" name="w_nm_k"value="${ci.w_nm_k}"/>
                            <input type="hidden" name="w_nm_e"value="${ci.w_nm_e}"/>   
-                           <input type="hidden" name="ord_quan"value="${ci.ord_quan}"/>   
-                           <input type="hidden" name="quantity"value="${quantity}"/>  
+                           <input type="hidden" name="ord_quan" id = "ord_quan" value="${ci.ord_quan}"/>   
+                           <input type="hidden" name="quantity" id = "quantity" value="${ci.quantity}"/>  
                             <input type="hidden" name="w_image1"value="${w_image1}"/>              
                         </td>
 
@@ -79,15 +78,11 @@
                         <td class="td_width_4 table_text_align_center">
                         <form action="modifyCount.wp" method="post">
                            <div class="table_text_align_center quantity_div" id="text_cen">
-                           <input type="hidden" name="ord_quan"value="${ci.ord_quan}">
-                           <input type="hidden"name="quantity" value="${ci.quantity}">   
-                           
+                           <input type="hidden" name="quantity" class = "quantity_max" value="${ci.quantity}">   
                               <input type="text" value="${ci.ord_quan}" name = "ord_quan" class="quantity_input">   
                               <button type = "button" class="quantity_btn plus_btn">+</button>
                                <button  type = "button"  class="quantity_btn minus_btn">-</button>
                            </div>
-
-
                            <input type="hidden" name = "id" value="${ci.id}">
                            <input type="hidden" name = "w_no" value="${ci.w_no}">
                            <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
@@ -288,14 +283,27 @@ function setTotalInfo(){
 
 
 $(".plus_btn").on("click", function(){
-	   let ord_quan = $(this).parent("div").find("input").val();
-	   $(this).parent("div").find("input").val(++ord_quan);
+	
+	var quantity = Number($(this).parent("div").find('.quantity_max').val());
+	var ord_quan1 = Number($(this).parent("div").find('.quantity_input').val());
+	
+	console.log(ord_quan1);
+	console.log(quantity);
+	
+	if(quantity > ord_quan1){
+		 let ord_quan = $(this).parent("div").find('.quantity_input').val();
+		   $(this).parent("div").find('.quantity_input').val(++ord_quan);
+		   ord_quan = Number($('#ord_quan').val());
+		   console.log("업");
+	}else{
+		   console.log("한계");
+	}
+});
 
-	});
 	$(".minus_btn").on("click", function(){
-	   let ord_quan = $(this).parent("div").find("input").val();
+		 let ord_quan = $(this).parent("div").find('.quantity_input').val();
 	   if(ord_quan > 1){
-	      $(this).parent("div").find("input").val(--ord_quan);      
+		   $(this).parent("div").find('.quantity_input').val(--ord_quan);
 	   }
 	});	
 

@@ -99,12 +99,21 @@
 	top:1px;
 }
 
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #FCA5A5;
+    border-radius: 0.3rem;
+}
+
 </style>
 <body>
 
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
+            <div class="sidebar-header">
+            	<h3><strong>winery</strong></h3>
             <div class="sidebar-header">ㅋ
                 <h3><strong>관리자페이지</strong></h3>
             </div>
@@ -124,6 +133,9 @@
                         </li>
                         <li>
                             <a href="adminIntroduce.wp">와이너리 관리</a>
+                        </li>
+                        <li>
+                            <a href="adminStory.wp">와인이야기 페이지 관리</a>
                         </li>
                         <li>
                             <a href="adminSubscription.wp">구독관리</a>
@@ -184,8 +196,13 @@
                 </div>
             </nav>
             
-           <h2 align="center">QnA</h2>
+           <h2 class="jumbotron" align="center">QnA</h2>
            <br><br>
+             <div class='btnSet' align="center">
+		<a class='myButton' href="admin_getQnaList.wp">QnA관리자 목록</a>
+		<a class='myButton' href="getQnaList.wp">QnA사용자 목록</a>
+		<br><br>
+	</div>
       <div class="table-responsive">
     <table id="myTable" class="display table" width="100%">
         <thead>  
@@ -217,8 +234,6 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminQna.wp">전체 목록</a>
-		<a class='myButton' href="adminQna.wp">QnA 관리</a>
-		
             <br><br><hr> <br><br>
 	</div>
     </div>

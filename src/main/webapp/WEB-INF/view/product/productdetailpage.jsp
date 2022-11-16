@@ -166,7 +166,10 @@
 			
 			// 추천하기
 			$('.likeBtn').click(function() {
+<<<<<<< HEAD
+=======
 				var scroll = $(window).scrollTop();
+>>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
 				var trNum = $(this).closest('tr').prevAll().length;
 				console.log('trNum : ' + trNum);
 				var re_no = $(this).closest('tr').prevAll().attr('data-value');
@@ -186,6 +189,12 @@
 						success : function(likeCheck) {
 							if(likeCheck == 0) {
 							alert("추천 완료");
+<<<<<<< HEAD
+							location.reload();
+							} else if(likeCheck == 1) {
+							alert("추천 취소");
+							location.reload();
+=======
 // 							$('#reviewContainer').load(location.href + ' #reviewContainer');
 							location.reload(true);
 							$('#reviewdiv').scrollTop(scroll);
@@ -193,6 +202,7 @@
 							alert("추천 취소");
 // 							$('#reviewContainer').load(location.href + ' #reviewContainer');
 							location.reload(true);
+>>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
 							}
 						}
 					});
@@ -412,6 +422,16 @@
 							<div id="filterdiv">
 								<form action="productReviewFilter.wp" method="POST" id="filter">
 									<input type="hidden" name="w_no" value="${product.w_no}">
+<<<<<<< HEAD
+									<input type="radio" name="filter" value="PHOTO" onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'PHOTO'}">checked</c:if>>포토리뷰순&nbsp; 
+									<input type="radio" name="filter" value="NEW" onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'NEW'}">checked</c:if>>최신순&nbsp;
+									<input type="radio" name="filter" value="LIKE" onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'LIKE'}">checked</c:if>>추천순&nbsp;
+									<input type="radio" name="filter" value="SCORE"	onchange="this.form.submit()"
+										<c:if test="${radiochk eq 'SCORE'}">checked</c:if>>별점순
+=======
 									<input type="radio" name="filter"  id="PHOTO" value="PHOTO" onchange="this.form.submit()"
 										<c:if test="${radiochk eq 'PHOTO'}">checked</c:if>><label for="PHOTO">포토리뷰순</label>&nbsp;
 									<input type="radio" name="filter"  id="NEW" value="NEW" onchange="this.form.submit()"
@@ -420,6 +440,7 @@
 										<c:if test="${radiochk eq 'LIKE'}">checked</c:if>><label for="LIKE">추천순</label>&nbsp;
 									<input type="radio" name="filter"  id="SCORE" value="SCORE"	onchange="this.form.submit()"
 										<c:if test="${radiochk eq 'SCORE'}">checked</c:if>><label for="SCORE">별점순</label>
+>>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
 								</form>
 							</div>
 							<table id="reviewtab">

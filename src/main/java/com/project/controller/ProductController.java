@@ -136,6 +136,7 @@ public class ProductController {
 		
 		//평점평균 가져오기
 		Double d = reviewService.getRatingAvg(rvo.getW_no());
+		model.addAttribute("getRating", d);
 		d = (double)(Math.round(d*10));
 		d = d / 10;
 		model.addAttribute("getRating", d);
@@ -148,6 +149,20 @@ public class ProductController {
 		model.addAttribute("reviewCount", totalPageCnt);
 		
 		return "WEB-INF/view/product/productdetailpage.jsp";
+	}
+	
+	//평점평균반영
+	public void setRating(int w_no) {
+		Double rating_avg = reviewService.getRatingAvg(w_no);
+		
+		if(rating_avg == null)
+			rating_avg = 0.0;
+		
+		ReviewVO rvo = new ReviewVO();
+		rvo.setW_no(w_no);
+		rvo.setRating_avg(rating_avg);
+		
+		reviewService.updateRating(rvo);
 	}
 	
 }

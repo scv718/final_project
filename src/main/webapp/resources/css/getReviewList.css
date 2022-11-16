@@ -209,6 +209,8 @@
 		text-align: center;
 		border-right: 1px solid lightgray;
 		}
+<<<<<<< HEAD
+=======
 		
 	}
 	#filter input[type=radio] {
@@ -221,4 +223,5 @@
 	
 	a.detailreview:hover {
 	color: gray !important;
+>>>>>>> 3f7a509254cf1fc646bc2a123eabd00f1865ed6c
 	}

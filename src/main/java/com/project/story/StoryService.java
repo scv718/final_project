@@ -19,5 +19,8 @@ public interface StoryService {
 	List<StoryVO> getStoryList2(StoryVO vo);
 	StoryVO getStory3(StoryVO vo);
 	List<StoryVO> getStoryList3(StoryVO vo);
+	void admin_updateStory1(StoryVO vo);
+	void admin_updateStory1_c(StoryVO vo);
+	StoryVO getStory1_1(StoryVO vo);
 	
 }
