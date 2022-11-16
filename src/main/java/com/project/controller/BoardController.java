@@ -336,6 +336,9 @@ public class BoardController {
 		if(rating_avg == null)
 			rating_avg = 0.0;
 		
+		rating_avg = (double)(Math.round(rating_avg*10));
+		rating_avg = rating_avg / 10;
+		
 		ReviewVO rvo = new ReviewVO();
 		rvo.setW_no(w_no);
 		rvo.setRating_avg(rating_avg);
