@@ -106,6 +106,11 @@ public class Order_cartController {
 			e.printStackTrace();
 		}
 		svo.setId(Cid);
+		
+		System.out.println(cartService.getCartList(Cid) + "cvo 리스트");
+		cvo.getQuantity();
+		
+
 		model.addAttribute("level",subscribeService.getLevel(svo));
 		model.addAttribute("cartInfo", cartService.getCartList(Cid));
 

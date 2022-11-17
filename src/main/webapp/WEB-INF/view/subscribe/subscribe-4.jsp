@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>cart</title>
+<title>결제 완료</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/cart.css">
@@ -22,7 +22,6 @@
 	</span>
 	</div>
 	
-
 <%@ include file="/footer.jsp"%>	
 </body>
 </html>
