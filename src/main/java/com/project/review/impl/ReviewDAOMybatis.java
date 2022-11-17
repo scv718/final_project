@@ -16,11 +16,7 @@ public class ReviewDAOMybatis {
 
 	// 관리자 리스트
 	public List<ReviewVO> ReviewListAd(ReviewVO vo) {
-		System.out.println("유저 마이 바티스 실행");
 		List<ReviewVO> r = mybatis.selectList("ReviewDAO.ReviewListAd");
-		for(ReviewVO v : r ) {
-			System.out.println("v: "+v);
-		}
 		return mybatis.selectList("ReviewDAO.ReviewListAd");
 	}
 	public void deleteReviewAd(ReviewVO vo) {

@@ -67,11 +67,8 @@ public class NoticeDAOMybatis {
 
 	// 관리자 리스트
 	public List<NoticeVO> NoticeListAd(NoticeVO vo) {
-		System.out.println("유저 마이 바티스 실행");
 		List<NoticeVO> b = mybatis.selectList("NoticeDAO.NoticeListAd");
-		for(NoticeVO v : b ) {
-			System.out.println("v: "+v);
-		}
+
 		return mybatis.selectList("NoticeDAO.NoticeListAd");
 	}
 }

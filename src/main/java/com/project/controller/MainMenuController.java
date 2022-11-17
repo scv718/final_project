@@ -41,10 +41,6 @@ public class MainMenuController {
 		Map<String, String> map = new HashMap<String, String>();
 //		model.addAttribute("typeMenuList", menuService.typeMenu(vo));
 		session.setAttribute("typeMenuList", menuService.typeMenu(vo));
-	
-		System.out.println(menuService.typeMenu(vo));
-		
-		System.out.println(type);
 		List<MenuVO> typeList = menuService.typeMenu(vo);
 		return typeList;
 	}

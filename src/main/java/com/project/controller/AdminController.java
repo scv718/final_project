@@ -45,7 +45,6 @@ public class AdminController {
 	@RequestMapping("adminSalesdelivery.wp")
 	public String order(OrderVO vo, Model model) {
 		model.addAttribute("OrderListAd", orderService.OrderListAd(vo));
-		System.out.println("이동");
 		return "WEB-INF/view/admin/adminsalesdelivery.jsp";
 	}
 	
@@ -90,10 +89,8 @@ public class AdminController {
 	//관리자 리스트 컨트롤
 	@RequestMapping(value="adminUser.wp")
 	public String getUserList(UserVO vo, Model model){
-	System.out.println("유저 불러오기");
 	//addAttribute화면 뿌려주는놈
 	model.addAttribute("UserList", userService.getUserList(vo));
-	System.out.println("테스트");
 		return "WEB-INF/view/admin/adminuser.jsp";
 	}
 	

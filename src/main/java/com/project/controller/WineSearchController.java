@@ -2,12 +2,9 @@ package com.project.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
-import org.apache.maven.shared.invoker.SystemOutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.project.cart.CartVO;
-import com.project.story.StoryVO;
-import com.project.user.UserVO;
+import com.project.order.OrderVO;
 import com.project.wine.WineService;
 import com.project.wine.WineVO;
 
@@ -32,7 +27,6 @@ public class WineSearchController {
 
 	@RequestMapping(value = "/wineSearch.wp")
 	public String search(WineVO vo, Model model) {
-		System.out.println("와인 검색하기 페이지 이동");
 		model.addAttribute("wineList", wineService.getWineList(vo));
 		model.addAttribute("wineCount",wineService.getWineList(vo).size());
 		return "WEB-INF/view/Search/wineSearchList.jsp";
@@ -41,8 +35,6 @@ public class WineSearchController {
 	@RequestMapping(value = "/getWineSearch.wp", method = RequestMethod.POST)
 	public String getWineSearch(WineVO vo, Model model, String searchKeyword) {
 		System.out.println("와인 키워드로 검색하기");
-		System.out.println(searchKeyword);
-		System.out.println(vo.getSearchKeyword());
 		model.addAttribute("wineList", wineService.getWineSearchList(vo));
 		model.addAttribute("wineCount",wineService.getWineSearchList(vo).size());
 		return "WEB-INF/view/Search/wineSearchList.jsp";
@@ -52,7 +44,6 @@ public class WineSearchController {
 	@RequestMapping(value = "detaileSearch.wp", method = RequestMethod.POST)
 	public String detaileSearch(WineVO vo, Model model, String type, String continental, String country, String w_sweet,
 			String w_body, String w_acidity, String w_tannins) {
-		System.out.println("와인 필터로 상세하게 검색하기");
 
 		if (type == null) {
 			vo.setType(5);
@@ -146,7 +137,6 @@ public class WineSearchController {
 	//와인 등록 페이지 이동
 	@RequestMapping(value = "/addWine.wp")
 	public String insertWine(WineVO vo, Model model) {
-		System.out.println("와인 등록 페이지 이동");
 		return "WEB-INF/view/admin/addWine.jsp";
 	}
 	
@@ -169,13 +159,38 @@ public class WineSearchController {
 	
 	@RequestMapping(value="deleteWine.wp")
 	public String adminDelete(WineVO vo, Model model) {
-		System.out.println("유저 삭제 받아오기");
-		System.out.println(vo.toString());
+		
 		wineService.deleteWine(vo); 
 		return "adminWine.wp";
 		
 	}
 
+	@RequestMapping(value="updateWine.wp")
+	public String adminUpdate(HttpServletRequest request, WineVO vo, Model model) {
+		
+		String w_no1 = (String) request.getParameter("w_no");
+		String quantity = (String) request.getParameter("quantity");
+		String w_price = (String) request.getParameter("w_price");
+		
+		vo.setW_no(Integer.parseInt(w_no1));
+		vo.setQuantity(Integer.parseInt(quantity));
+		vo.setW_price(Integer.parseInt(w_price));
+		wineService.updateWine(vo); 
+		return "redirect:adminWine.wp";
+	
+	}
+	
+	@RequestMapping(value="updateorder.wp")
+	public String updateorder(HttpServletRequest request, OrderVO vo, Model model) {
+		
+		System.out.println("컨트롤러탐");
+		vo.setOrd_code(request.getParameter("ord_code"));
+		vo.setCs_stat(request.getParameter("cs_stat"));
+		vo.setOrd_stat(request.getParameter("ord_stat"));
+		wineService.updateorder(vo); 
+		return "redirect:adminSalesdelivery.wp";
+	
+	}
 	
 	
 }

@@ -66,8 +66,7 @@
 <!--                               <img></div>                         -->
 <!--                         </td> -->
 <%-- 						<c:forEach items="${product}" var="product"> --%>
-                        <td  style="text-align: center
-                        ">${ci.w_nm_k}</td>
+                        <td onclick="location.href='product.wp?w_no=${ci.w_no}';" style="text-align: center; cursor:pointer;">${ci.w_nm_k}</td>
 <%--                         </c:forEach> --%>
                         <td  style = "text-align: center">${ci.ord_stat}</td>
                         <td  style = "text-align: center">

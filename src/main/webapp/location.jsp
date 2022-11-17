@@ -35,7 +35,7 @@ request.setCharacterEncoding("UTF-8");
 					<hr>
 					<div id="map"></div>
 					<script type="text/javascript"
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2db5d7295a5d1c0f4730538e2141fb0a&libraries=services"></script>
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a4d35898ab647a658d69d0c1b3e936d6&libraries=services"></script>
 					<script>
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 						mapOption = {

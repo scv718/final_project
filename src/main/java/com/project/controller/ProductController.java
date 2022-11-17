@@ -37,8 +37,6 @@ public class ProductController {
 	@RequestMapping("product.wp")
 	public String productDetail(WineVO vo, Model model, UserVO uvo, HttpSession session, HttpServletRequest request, ReviewVO rvo, String nowPageBtn) {
 		
-		System.out.println("상품 상세페이지 이동");
-		System.out.println(productService.getProductdetail(vo));
 		uvo.setId((String) session.getAttribute("userID"));
 		List<Integer> num = new ArrayList();
 		for(int i=1; i<=productService.getProductdetail(vo).getQuantity();i++) {
@@ -51,14 +49,12 @@ public class ProductController {
 		model.addAttribute("user", userSerivce.getUser(uvo));
 		
 		/* 해당 상품 리뷰 목록 */
-		System.out.println("상품리뷰 목록 처리");
 		
 		//총 목록 수
 		int totalPageCnt = reviewService.productReviewListCnt(rvo);
 		
 		//현재 페이지 설정
 		int nowPage = Integer.parseInt(nowPageBtn == null || nowPageBtn.equals("") ? "1" : nowPageBtn);
-		System.out.println("총 목록 수: " + totalPageCnt);
 		
 		// 한 페이지당 보여줄 목록 수
 		int onePageCnt = 5;
@@ -68,7 +64,6 @@ public class ProductController {
 		
 		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
 		rvo.setOffset(pvo.getOffset());
-		System.out.println("pvo.getOffset(): "+pvo.getOffset());
 		
 		model.addAttribute("paging", pvo);
 		model.addAttribute("reviewList", reviewService.productReviewList(rvo));
@@ -76,7 +71,6 @@ public class ProductController {
 		//평점평균 가져오기
 		Double d = reviewService.getRatingAvg(rvo.getW_no());
 		model.addAttribute("getRating", d);
-		System.out.println("리뷰평점평균:" + d);
 		
 		request.getParameter("product");
 
@@ -91,9 +85,7 @@ public class ProductController {
 	@RequestMapping("/productReviewFilter.wp")
 	public String getFilterList(@RequestParam(value="filter") String filter, ReviewVO rvo, WineVO vo, 
 			Model model, UserVO uvo, HttpSession session, HttpServletRequest request, String nowPageBtn) {
-		System.out.println("상품 상세페이지 이동");
 		
-		System.out.println(productService.getProductdetail(vo));
 		uvo.setId((String) session.getAttribute("userID"));
 		List<Integer> num = new ArrayList();
 		for(int i=1; i<=productService.getProductdetail(vo).getQuantity();i++) {
@@ -106,8 +98,6 @@ public class ProductController {
 		model.addAttribute("user", userSerivce.getUser(uvo));
 		
 		
-		System.out.println("정렬 처리");
-		System.out.println(rvo.getFilter());
 		
 		// 총 목록 수
 		int totalPageCnt = reviewService.productReviewListCnt(rvo);
@@ -124,7 +114,6 @@ public class ProductController {
 		
 		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
 		rvo.setOffset(pvo.getOffset());
-		System.out.println("pvo.getOffset(): "+pvo.getOffset());
 		
 		model.addAttribute("paging", pvo);
 		model.addAttribute("reviewList", reviewService.productReviewFilter(rvo));
@@ -136,7 +125,6 @@ public class ProductController {
 		
 		//평점평균 가져오기
 		Double d = reviewService.getRatingAvg(rvo.getW_no());
-		System.out.println(d);
 		if(d != null) {			
 			model.addAttribute("getRating", d);
 			d = (double)(Math.round(d*10));
@@ -144,7 +132,6 @@ public class ProductController {
 		}
 		model.addAttribute("getRating", d);
 //		model.addAttribute("getRating" + vo.getRating_avg());
-		System.out.println("리뷰평점평균:" + d);
 		
 		request.getParameter("product");
 

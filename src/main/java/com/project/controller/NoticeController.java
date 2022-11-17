@@ -55,7 +55,6 @@ public class NoticeController {
       // 공지사항 목록 조회 - 사용자
       @RequestMapping("/getNoticeList.wp")
       public String getNoticeList(CommunityVO vo, String nowPageBtn, Model model) {
-         System.out.println("글 목록 검색 처리");
 
          // 총 목록 수
          int totalPageCnt = noticeService.totalNoticeListCnt(vo);

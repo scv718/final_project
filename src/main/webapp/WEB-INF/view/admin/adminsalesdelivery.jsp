@@ -206,12 +206,13 @@
 	        <th>주문코드(PK)</th>
 			<th>주문일자</th>
 			<th>주문자(ID)</th>
-			<th>배송상태</th>
 			<th>주문상태</th>
+			<th>배송상태</th>
 			<th>총 상품 금액</th>
 			<th>총 주문 금액</th>
 			<th>주문상품이름(K)</th>
-			<th>주문상품이름(E)</th>
+			<th>수정</th>
+			<th></th>
         </tr> 
         </thead>  
         <tbody> 
@@ -221,18 +222,52 @@
         	<th>${order.ord_code}</th>
 			<th>${order.ord_date}</th>
 			<th>${order.id}</th>
-			<th>${order.cs_stat}</th>
-			<th>${order.ord_stat}</th>
+<%-- 			<th><input style="width:50px;" name="cs_stat" id="cs_stat${order.ord_code}" value="${order.cs_stat}"></th> --%>
+			<th><select name="cs_stat" id="cs_stat${order.ord_code}" class="type-1">
+                    <option value="${order.cs_stat}">${order.cs_stat}</option>
+                    <option value="상품준비중">상품준비중</option>
+                    <option value="배송완료">배송완료</option>
+                    <option value="취소">취소</option>
+                    <option value="교환">교환</option>
+                    <option value="환불">환불</option>
+                    <option value="취소요청">취소요청</option>
+                </select></th>
+<%-- 			<th><input style="width:50px;" name="ord_stat" id="ord_stat${order.ord_code}" value="${order.ord_stat}"></th> --%>
+			<th><select name="ord_stat" id="ord_stat${order.ord_code}" class="type-1">
+                    <option value="${order.ord_stat}">${order.ord_stat}</option>
+                    <option value="취소">취소</option>
+                    <option value="배송준비중">배송준비중</option>
+                    <option value="배송중">배송중</option>
+                    <option value="배송완료">배송완료</option>
+                </select></th>
 			<th>${order.prod_price}</th>
 			<th>${order.ord_t_price}</th>
 			<th>${order.w_nm_k}</th>
-			<th>${order.w_nm_e}</th>
-	
+			<th><a style="color: white" class="myButton1" onclick="{updateOrder('${order.ord_code}')}">수정</a></th>
+			<th></th>
        </tr>  
                  
        </c:forEach>
        </tbody>
     </table>
+    <script type="text/javascript">
+    function updateOrder(val){
+    	
+    	var ord_code = val;
+      	var cs_stat = $('#cs_stat'+ord_code).val();
+      	var ord_stat =  $('#ord_stat'+ord_code).val();
+
+      	 if (confirm("" + cs_stat + "" + ord_stat + "으로 수정하시겠습니까?") == true){    //확인
+
+      		location.href = 'updateorder.wp?ord_code='+ord_code+'&cs_stat='+cs_stat+'&ord_stat='+ord_stat;
+
+      	 }else{  
+      		 
+      	     return false;
+
+      	 }
+      	
+    }</script>
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminSalesdelivery.wp">전체목록</a>
