@@ -111,7 +111,7 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar" >
             <div class="sidebar-header">
-            	<h3><strong>winery</strong></h3>
+            <h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -145,7 +145,7 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                        <li>
+                         <li>
                             <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>

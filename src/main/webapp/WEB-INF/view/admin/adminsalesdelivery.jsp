@@ -114,9 +114,9 @@
 
     <div class="wrapper">
         <!-- Sidebar Holder -->
-      <nav id="sidebar" >
+        <nav id="sidebar" >
             <div class="sidebar-header">
-            	<h3><strong>winery</strong></h3>
+            <h3><strong>winery</strong></h3>
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -150,7 +150,7 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                        <li>
+                         <li>
                             <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>
@@ -236,7 +236,6 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminSalesdelivery.wp">전체목록</a>
-		<a class='myButton' href="wineSearch.wp">판매등록</a>
             <br><br><hr> <br><br>
         </div>
     </div>

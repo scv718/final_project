@@ -104,15 +104,15 @@
 
     <div class="wrapper">
         <!-- Sidebar Holder -->
-       <nav id="sidebar" >
+        <nav id="sidebar" >
             <div class="sidebar-header">
-            	<h3><strong>winery</strong></h3>
-                <h3><strong>관리자페이지</strong></h3>
+            <h3><strong>winery</strong></h3>
+             <h3><strong>관리자페이지</strong></h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>데이터정보</strong></a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">데이터정보</a>
 					<ul class="collapse list-unstyled show" id="homeSubmenu">
                      	<li>
                             <a href="adminMain.wp">만든사람들(메인)</a>
@@ -138,9 +138,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                        <li>
+                         <li>
                             <a href="adminNotice.wp">공지사항</a>
                         </li>
                         <li>
@@ -156,6 +156,7 @@
 
            
         </nav>
+
         <!-- Page Content Holder -->
         <div id="content">
 
