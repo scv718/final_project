@@ -217,7 +217,7 @@
 			<div class="right">></div>
 		</a>
 	</div>
-		<a href="subscribe44.wp" role="button">tets</a>
+	
 
 	
 </body>
