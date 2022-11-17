@@ -98,7 +98,6 @@ img {
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                           <a href="adminIntroduce.wp">와이너리 관리</a>
                             <a href="admin_getIntro.wp">소개페이지관리</a>
                         </li>
                         <li>
@@ -156,7 +155,7 @@ img {
                                 <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.wp">로그아웃</a>
+                                <a class="nav-link" href="index.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>

@@ -114,7 +114,6 @@
         <nav id="sidebar" >
             <div class="sidebar-header">
             	<h3><strong>winery</strong></h3>
-            <div class="sidebar-header">ㅋ
                 <h3><strong>관리자페이지</strong></h3>
             </div>
 
@@ -132,7 +131,7 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="adminIntroduce.wp">와이너리 관리</a>
+                            <a href="admin_getIntro.wp">소개페이지관리</a>
                         </li>
                         <li>
                             <a href="adminStory.wp">와인이야기 페이지 관리</a>

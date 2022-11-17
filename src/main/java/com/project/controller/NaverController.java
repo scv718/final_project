@@ -70,16 +70,12 @@ public class NaverController {
 		} 
 		return "/";
 	}
-	
-	
 	@RequestMapping("/getNaverAuthUrl.wp")
 	public String getAuthUrl(NaverVO vo) {
 		REDIRECT_URL = vo.getCallback_url()+"/naverlogin.wp";
 		String result = NAVER_AUTH_URL + "?state=success&response_type=code&client_id="+vo.getClient_id()+"&redirect_uri="+REDIRECT_URL;
-		
 		return "redirect:"+result;
 	}
-	
 	
 	@RequestMapping(value = "/naverlogin.wp")
 	public String oauthKakao(NaverVO vo ,UserVO uvo, Model model, HttpSession session, SubscribeVO svo) throws Exception {
@@ -114,10 +110,9 @@ public class NaverController {
 
         if(userService.getId(uvo) == null) {
         	if(age < 20) {
-        		System.out.println("나이 제한");
+        		session.setAttribute("ageerror", 1);
         		return "redirect:/";
         	}else {
-        		System.out.println("회원가입 후 로그인 진행");
         		uvo.setM_pw(m_email);
         		uvo.setId(m_email);
         		svo.setId(uvo.getId());
@@ -141,8 +136,7 @@ public class NaverController {
         		
         		return "redirect:/";
         	}else {
-        		System.out.println("자사 아이디로 로그인해주세요");
-        		
+        		session.setAttribute("socialerror", 1);
         		return "redirect:signUp.wp";
         	}
         }

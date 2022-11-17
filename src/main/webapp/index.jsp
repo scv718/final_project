@@ -409,7 +409,16 @@ $( document ).ready(function() {
  	    });
     }
 });
-
+$( document ).ready(function() {
+	var error = '${ageerror}';
+    if(error != '' && error === '1'){
+    	swal ( "자사 아이디로 로그인해주세요." ,  "" ,  "error" );
+    	 $.ajax({
+ 	        url: '/ageerrorsession.wp',
+ 	        type: 'post'
+ 	    });
+    }
+});
 setInterval(function(){
     $('.slider-3 > .side-btns > div').eq(1).click();
 }, 5000);
