@@ -623,6 +623,7 @@ public class IamportController {
 //      int formValues = Integer.parseInt(request.getParameter("formValues"));
 //      String i = request.getParameter("formValues");
 
+		String w_no = request.getParameter("formValues");
 		String nm = request.getParameter("unm");
 		String amount = request.getParameter("amount");
 		String mid = request.getParameter("merchant_uid");
@@ -637,29 +638,25 @@ public class IamportController {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		String formatedNow = now.format(formatter);
 
-			int W = vo.getW_no(); 			
-			if (W == 999) {
+			if (w_no.equals("w_no=999")) {
 				ovo.setW_no("999");
 				ovo.setW_nm_k("와인 마스터 패키지");
 				subscribeService.insertSubscribe3(svo);
 				subscribeService.liset_deli_price(svo);
 				userService.updateuserle3(uvo);
-			} else if (W == 998) {
+			} else if (w_no.equals("w_no=998")) {
 				ovo.setW_no("998");
 				ovo.setW_nm_k("와인 마니아 패키지");
 				subscribeService.insertSubscribe2(svo);
 				subscribeService.liset_deli_price(svo);
 				userService.updateuserle2(uvo);
-			} else if (W == 997) {
-				System.out.println(vo.getW_no() + " w 안에 = 997 가져와야함");
-				System.out.println(ovo.getW_no() + " W 안에 W_no");
+			} else if (w_no.equals("w_no=997")) {
 				ovo.setW_no("997");
 				ovo.setW_nm_k("와인 입문자 패키지");
 				subscribeService.insertSubscribe1(svo);
 				subscribeService.liset_deli_price(svo);
 				userService.updateuserle1(uvo);
 			}
-
 				model.addAttribute("user", userService.getUser(uvo));
 				svo.setId(uvo.getId());
 				avo.setId(uvo.getId());
