@@ -510,7 +510,7 @@ li > .nava:hover {
 }
 
 #filter input[type=radio] {
-	accent-color: #e2373f;
+	accent-color: #e2373f !important;
 }
 
 a.viewhidden:hover {

@@ -121,3 +121,16 @@ h5 {
 .semi-img {
 	opacity:0;
 }
+
+/* top버튼 */
+a#MOVE_TOP_BTN {
+	color: gray;
+	text-decoration: none;
+    font-size: xxx-large;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    display: none;
+    z-index: 9999;
+    cursor: pointer;
+}

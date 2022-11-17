@@ -221,3 +221,15 @@
 	a.detailreview:hover {
 	color: gray !important;
 	}
+	
+	@media screen and (max-width : 340px) {
+		.searchinput {
+			width: 205px !important;
+		}
+	}
+	
+	@media screen and (max-width : 326px) {
+		.searchinput {
+			width: 190px !important;
+		}
+	}
