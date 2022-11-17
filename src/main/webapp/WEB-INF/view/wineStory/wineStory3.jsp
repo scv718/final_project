@@ -16,6 +16,8 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> 
+<link rel="icon" href="/resources/img/파비콘3.ico">
 </head>
 <script>
 	$(document).ready(function(){
@@ -66,6 +68,25 @@
 			</div>
 		</div>
 	</div>
+	<a id="MOVE_TOP_BTN" href="header" class="material-symbols-outlined">arrow_circle_up</a>
+	<script>
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('#MOVE_TOP_BTN').fadeIn();
+            } else {
+                $('#MOVE_TOP_BTN').fadeOut();
+            }
+        });
+        
+        $("#MOVE_TOP_BTN").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
+	</script>
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>

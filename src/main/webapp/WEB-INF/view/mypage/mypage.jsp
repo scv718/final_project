@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/mypage.css">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <title>마이페이지</title>
 </head>
@@ -14,8 +15,8 @@
 
 	<div class="wrap">
 		<div class="greenContainer">
+	
 			<div class=".image-box">
-
 				<div>
 					<div>
 						<c:if test='${mylevel != null}'>
@@ -39,13 +40,102 @@
 					<div class="name">
 						<c:choose>
 							<c:when test='${userID ne NULL}'>
-								<div class="name">${userName}님</div>
+								<div class="name">${userName}님 
+								<c:if test='${product ne null}'>
+								<a class = "mywine">추천와인</a>
+								</c:if>
+								</div>
 							</c:when>
+								
 						</c:choose>
+						
 					</div>
+<c:if test='${product ne null}'>
+<div class="modal">
+  <div class="modal_content" 
+       title="클릭하면 창이 닫힙니다.">
+    <div class = "product">
+    <img src= "${pageContext.request.contextPath}/resources/img/wine/${product.w_image1}"><br>
+    
+    <p>${product.w_nm_k}</p>
+    <p>${product.w_nm_e}</p>
+    <p id = "w_content">${product.w_info}</p>
+    <a class = "next">다음</a><br>
+    <a class = "end">닫기</a>
+    </div>
+    <div class = "product2">
+    <img src= "${pageContext.request.contextPath}/resources/img/wine/${product2.w_image1}"><br>
+    
+      <p>${product2.w_nm_k}</p>
+    <p>${product2.w_nm_e}</p>
+    <p id = "w_content">${product2.w_info}</p>
+    <a class = "before">이전</a>
+    <a class = "next1">다음</a><br>
+    <a class = "end">닫기</a>
+    </div>
+     <div class = "product3">
+    <img src= "${pageContext.request.contextPath}/resources/img/wine/${product3.w_image1}"><br>
+    
+       <p>${product3.w_nm_k}</p>
+    <p>${product3.w_nm_e}</p>
+    <p id = "w_content">${product3.w_info}</p>
+      <a class = "before1">이전</a><br>
+    <a class = "end">닫기</a>
+     </div>
+  </div>
+</div>
+</c:if>
+						
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+		$(function(){ 
+			$('.product2').hide();
+			$('.product3').hide();
+			
+			$('.next').click(function () {
+				$('.product2').show();
+				$('.product').hide();
+			})
+			
+			$('.before').click(function () {
+				$('.product2').hide();
+				$('.product').show();
+			})
+			$('.before1').click(function () {
+				$('.product2').show();
+				$('.product3').hide();
+			})
+			$('.next1').click(function () {
+				$('.product2').hide();
+				$('.product3').show();
+			})
+
+			  $(".mywine").click(function(){
+			    $(".modal").fadeIn();
+			  });
+			  $(".next").click(function(){
+				    $(".modal").fadeIn();
+				  });
+			  $(".end").click(function(){
+			    $(".modal").fadeOut();
+			  });
+			  
+			});
+// 		$('.mywine').click(function() {
+// 				Swal.fire({
+// 					  title: 'Sweet!',
+// 					  text: 'Modal with a custom image.',
+// 					  imageUrl: '${pageContext.request.contextPath}/resources/img/wine/${product2.w_image1}',
+// 					  imageWidth: 100,
+// 					  imageHeight: 300,
+// 					  imageAlt: 'Custom image',
+					  
+// 					})
+			
+// 		})
+		</script>
 
 		<div class="shippingStatusContainer">
 			<div class="title">마이페이지</div>

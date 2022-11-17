@@ -1,5 +1,6 @@
 package com.project.review.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,14 +125,25 @@ public class ReviewDAO {
 	//평점평균 반영
 	public void updateRating(ReviewVO vo) {
 		System.out.println("평점평균 반영");
+		mybatis.update("BoardDAO.updateReview", vo);
 		mybatis.update("BoardDAO.updateRating", vo);
 	}
 
 	//상품페이지 정렬
 	public List<ReviewVO> productReviewFilter(ReviewVO rvo) {
 		System.out.println("DAO 상품페이지 정렬");
-		return mybatis.selectList("BoardDAO.productReviewFilter", rvo);
+		List<ReviewVO> newList = new ArrayList<>();		
+		try {
+			List<ReviewVO> li = mybatis.selectList("BoardDAO.productReviewFilter", rvo);
+			return li;
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+		return newList;
+//		if(li == null || li.isEmpty()) {
+//			return new ArrayList<>();
+//		} else {
+//			return li;
+//		}
 	}
-
-
 }

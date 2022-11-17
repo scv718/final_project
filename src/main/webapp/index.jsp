@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="icon" href="/resources/img/파비콘3.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>와이너리</title>
 
 <style>
 video {
@@ -36,7 +38,7 @@ video {
 <div class="slider-1">
     <div class="slides">
         <div class="active">
-        <video muted autoplay loop>
+        <video autoplay loop muted playsinline>
 			<source src="resources/img/와인메인3.mp4" type="video/mp4">
 		</video>
 		</div>

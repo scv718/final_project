@@ -159,7 +159,7 @@ function joinform_check() {
 				IMP.certification(
 						{
 							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연8090/certificationget.wp"
-							m_redirect_url: "http://localhost:8090/certificationget.wp"
+							m_redirect_url: "http://winerycop.tk/certificationget.wp"
 						},
 						function(rsp) {
 							if (rsp.success) {

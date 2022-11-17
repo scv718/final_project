@@ -209,7 +209,6 @@
 		text-align: center;
 		border-right: 1px solid lightgray;
 		}
-		
 	}
 	#filter input[type=radio] {
 	accent-color: #e2373f;
@@ -221,4 +220,16 @@
 	
 	a.detailreview:hover {
 	color: gray !important;
+	}
+	
+	@media screen and (max-width : 340px) {
+		.searchinput {
+			width: 205px !important;
+		}
+	}
+	
+	@media screen and (max-width : 326px) {
+		.searchinput {
+			width: 190px !important;
+		}
 	}

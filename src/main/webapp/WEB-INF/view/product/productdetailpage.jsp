@@ -186,6 +186,10 @@
 						success : function(likeCheck) {
 							if(likeCheck == 0) {
 							alert("추천 완료");
+							location.reload();
+							} else if(likeCheck == 1) {
+							alert("추천 취소");
+							location.reload();
 // 							$('#reviewContainer').load(location.href + ' #reviewContainer');
 							location.reload(true);
 							$('#reviewdiv').scrollTop(scroll);
@@ -383,7 +387,7 @@
 			<!-- 상품정보 이미지 -->
 			<div class ="row" id="detailcontents">
 				<div class="col-8">
-				<img id = "productimginfo" src = "${pageContext.request.contextPath}/resources/img/예시.png">
+				<img id = "productimginfo" src = "${pageContext.request.contextPath}/resources/img/상세설명.png">
 				</div>
 			</div>
 			
@@ -412,6 +416,7 @@
 							<div id="filterdiv">
 								<form action="productReviewFilter.wp" method="POST" id="filter">
 									<input type="hidden" name="w_no" value="${product.w_no}">
+
 									<input type="radio" name="filter"  id="PHOTO" value="PHOTO" onchange="this.form.submit()"
 										<c:if test="${radiochk eq 'PHOTO'}">checked</c:if>><label for="PHOTO">포토리뷰순</label>&nbsp;
 									<input type="radio" name="filter"  id="NEW" value="NEW" onchange="this.form.submit()"

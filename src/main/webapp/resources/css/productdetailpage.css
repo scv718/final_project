@@ -27,7 +27,6 @@ html {
 }
  #productimginfo{
        width: 100%;
-       padding:20px;
    }
 .btn-hover {
     width: 88%;
@@ -511,7 +510,7 @@ li > .nava:hover {
 }
 
 #filter input[type=radio] {
-	accent-color: #e2373f;
+	accent-color: #e2373f !important;
 }
 
 a.viewhidden:hover {
@@ -539,6 +538,13 @@ a.viewhidden:hover {
 	margin-top: 40px;
 	text-align:center;
     display:table;
+    width:384px !important;
+    height:159px !important;
+   }
+   .litag{
+   width: 341px !important;
+    margin: 0px -5px;
+   }
     width:415px !important;
     height:159px !important;
    }

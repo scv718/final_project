@@ -11,11 +11,6 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <title>찾아오시는 길</title>
-<style>
-.col img {
-	filter: brightness(100%) !important;
-}
-</style>
 
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,28 +23,17 @@ request.setCharacterEncoding("UTF-8");
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/ordertable.css" />
+	href="${pageContext.request.contextPath}/resources/css/location.css" />
+<%@ include file="/header.jsp"%>
 </head>
 <body class = "d-flex flex-column min-vh-100">
-<body class = "d-flex flex-column min-vh-100">
-	<%@ include file="/header.jsp"%>
-	<div id="bestbooks">
-		<div class="container">
-			<div class="row" id="bestbooks1">
-				<div class="col-1" id="bookmenu">
-					<div>찾아오는 길</div>
-					<hr>
-					<ul>
-						<li><a class="active"
-							href="${pageContext.request.contextPath}/location.jsp">찾아오는 길</a></li>
-					</ul>
-				</div>
-				<div class="col">
-					<div class="row" id="titlemenu">
-						<a>찾아오시는 길</a>
+	<div id="locationContainer">
+			<div id="map-div">
+					<div id="titlemenu">
+						<h3 id="comtitle">찾아오시는 길</h3>
 					</div>
 					<hr>
-					<div id="map" style="width: 500px; height: 350px;"></div>
+					<div id="map"></div>
 					<script type="text/javascript"
 						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2db5d7295a5d1c0f4730538e2141fb0a&libraries=services"></script>
 					<script>
@@ -90,9 +74,12 @@ request.setCharacterEncoding("UTF-8");
 											}
 										});
 					</script>
-				</div>
+					<div class="location">
+					<span style="font-weight: 700;">주소</span>
+					<span>경기도 안양시 만안구 안양로314번길 10 광창빌딩 3층</span>
+					</div>
+					<hr>
 			</div>
-		</div>
 	</div>
 	<%@ include file="/footer.jsp"%>
 </body>

@@ -13,7 +13,7 @@
 	<link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css"rel="stylesheet">
 	
 	<link rel="icon" href="/resources/img/파비콘3.ico">
-	<title>Winery - 사용자</title>
+	<title>와이너리 | Winery?</title>
 	<%@ include file="../../../header.jsp"%>
 	<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/intro.css"/>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> 
