@@ -411,17 +411,14 @@ $(document).ready(function(){
 	}
 	
 	finalTotalPrice = totalPrice + deliveryPrice;	
-	
-
-	
 	finalTotalPrice = totalPrice;
 	
 	
 $("#check_module").click(function () {
-	
 	var m_address;
 	var postcode;
 	var phone;
+	
 	$('#amount').val(finalTotalPrice);
 	$(".addressInfo_input_div").each(function(i, obj){
 		if($(obj).find(".selectAddress").val() == 'T'){
@@ -439,6 +436,8 @@ $("#check_module").click(function () {
 	console.log(phone);
 	console.log(postcode[0]);
 	console.log(finalTotalPrice);
+	var formValues = $("form[name=fm]").serialize() ;
+	console.log(formValues);
 	IMP.request_pay({
 		pg: 'html5_inicis', // 자신이 설정한 pg사 설정
 		pay_method: 'card',
@@ -450,7 +449,7 @@ $("#check_module").click(function () {
 		buyer_tel: phone,
 		buyer_addr: m_address,
 		buyer_postcode: postcode[0],
-		m_redirect_url: 'http://localhost:8090/payments/complete'
+		m_redirect_url: "http://localhost:8090/mobilepay1.wp?formValues="+formValues
 		}, function (rsp) {
 			console.log(rsp);
 			if (rsp.success) {
@@ -474,14 +473,11 @@ $("#check_module").click(function () {
 })
 
 function orderList(){
-	alert('주문내역 처리할 곳. 컨트롤러 호출');
 	let fm = document.fm;
 	fm.action ="pay1.wp";
 	fm.method="post";
 	fm.submit();
 }
-
-
 });
 </script>
 <script>

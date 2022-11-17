@@ -62,7 +62,7 @@
 			<h5 class="semititle">더 알아보기</h5>
 			<div class="end-buttons">
 				<button class="btn-hover color-7" type="button" onclick="location.href = 'wineStory1.wp'">와인이란?</button>
-				<button class="btn-hover color-7" type="button" onclick="location.href = 'wineStory3.wp'">곁들이 레시피</button>
+				<button class="btn-hover color-7" type="button" onclick="location.href = 'wineStory2.wp'">와인종류</button>
 			</div>
 		</div>
 	</div>
