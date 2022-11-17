@@ -30,7 +30,6 @@
 <script>
 $( document ).ready(function() {
 	var error = '${error}';
-	console.log(error);
     if(error != '' && error === '1'){
     	swal ( "로그인 후 진행해주세요" ,  "" ,  "error" );
     	 $.ajax({
@@ -39,6 +38,17 @@ $( document ).ready(function() {
  	    });
     }
 });
+$( document ).ready(function() {
+	var error = '${socialerror}';
+    if(error != '' && error === '1'){
+    	swal ( "자사 아이디로 로그인해주세요." ,  "" ,  "error" );
+    	 $.ajax({
+ 	        url: '/socialerrorsession.wp',
+ 	        type: 'post'
+ 	    });
+    }
+});
+
 
 $( document ).ready(function() {
 	var loginerror = '${loginerror}';
@@ -91,7 +101,7 @@ function joinform_check() {
 		
 	  
 	  if (uid.value == "") { 
-		  swal ( "아이디를 입력하세요. ,  "" ,  "error" );
+		  swal ( "아이디를 입력하세요." ,  "" ,  "error");
 	    uid.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
 	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
 	  };
@@ -102,15 +112,16 @@ function joinform_check() {
 		    return false;
 		  };
 		  
-      if(idck == '0')
+      if(idck == '0'){
 			  swal ( "아이디 중복 체크 후 진행해주세요." ,  "" ,  "error" );
 			  return false;
 	   }  
 	  if (pwd.value == "") {
 		  swal ( "비밀번호를 입력하세요" ,  "" ,  "error" );
-	    pwd.focus();
-	    return false;
-		  };
+	    	pwd.focus();
+	    	return false;
+		 };
+		
 	  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
 	  var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 	  if (!pwdCheck.test(pwd.value)) {
@@ -222,7 +233,7 @@ function joinform_check() {
 		}
 		});
 	});
-	</script>
+	</script> 
 
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">

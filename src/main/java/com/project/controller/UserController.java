@@ -44,24 +44,28 @@ public class UserController {
 	
 	@RequestMapping("errorsession.wp")
 	public void errorsession(HttpServletResponse response, HttpSession session) {
-		System.out.println("에러세션");
 		session.setAttribute("error", 0);
+	}
+	@RequestMapping("ageerrorsession.wp")
+	public void ageerrorsession(HttpServletResponse response, HttpSession session) {
+		session.setAttribute("ageerror", 0);
+	}
+	@RequestMapping("socialerrorsession.wp")
+	public void socialerrorsession(HttpServletResponse response, HttpSession session) {
+		session.setAttribute("socialerror", 0);
 	}
 	@RequestMapping("loginerrorsession.wp")
 	public void loginerrorsession(HttpServletResponse response, HttpSession session) {
-		System.out.println("에러세션");
 		session.setAttribute("loginerror", 0);
 	}
 	@RequestMapping("passsession.wp")
 	public void passsession(HttpServletResponse response, HttpSession session) {
-		System.out.println("패스세션");
 		session.setAttribute("signup", 0);
 	}
 	@RequestMapping(value = "login.wp", method = RequestMethod.POST)
 	public String loginView(UserVO vo, HttpSession session, HttpServletResponse response) {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		System.out.println("로그인 인증 처리.....");
 	
 
 		if(vo.getId() == null || vo.getId().equals("")) {
@@ -71,14 +75,12 @@ public class UserController {
 		if(userService.getUser(vo) != null) {
 			if(passwordEncoder.matches(vo.getM_pw(), userService.getUser(vo).getM_pw())){
 				if(userService.getUser(vo).getM_role().equals("admin")) {
-					System.out.println("로그인아이디: "+userService.getUser(vo).getId());
 					session.setAttribute("login", userService.getUser(vo).getId());
 					session.setAttribute("userID", userService.getUser(vo).getId());
 					session.setAttribute("userName", userService.getUser(vo).getM_name());
 					session.setAttribute("userRole", userService.getUser(vo).getM_role());
 					return "redirect:/adminMain.wp";
 				}
-				System.out.println("로그인아이디: "+userService.getUser(vo).getId());
 				session.setAttribute("login", userService.getUser(vo).getId());
 				session.setAttribute("userID", userService.getUser(vo).getId());
 				session.setAttribute("userName", userService.getUser(vo).getM_name());
@@ -133,7 +135,7 @@ public class UserController {
 		
 		String password = vo.getM_pw();
 		String encryptPassword = passwordEncoder.encode(password);	
-//		
+		vo.setM_pw(encryptPassword);
 //		vo.setM_birth("1995-07-18");
 //		vo.setM_name("박상현");
 //		vo.setM_phone("010-9618-3516");
@@ -141,17 +143,13 @@ public class UserController {
 		System.out.println(encryptPassword);
 		System.out.println(vo.getM_email());
 		System.out.println(vo.getM_birth());
-		
 		userService.insertUser(vo);
-		
-	
-		
 		svo.setId(vo.getId());
-		
-		System.out.println("유저 아이디 값: "+ svo.getId());
-		
 		subscribeservice.insertSubscribe0(svo);
-		
+		session.setAttribute("login", userService.getUser(vo).getId());
+		session.setAttribute("userID", userService.getUser(vo).getId());
+		session.setAttribute("userName", userService.getUser(vo).getM_name());
+		session.setAttribute("userRole", userService.getUser(vo).getM_role());
         return "redirect:/preference.wp";
 	}
 	

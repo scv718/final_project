@@ -115,10 +115,9 @@ public class KakaoLoginController {
 //        REDIRECT_URI = "http://localhost:8090";
         if(userService.getId(vo) == null) {
         	if(age < 20) {
-        		System.out.println("나이 제한");
+        		session.setAttribute("ageerror", 1);
         		return "redirect:/";
         	}else {
-        		System.out.println("회원가입 후 로그인 진행");
         		vo.setM_pw(m_email);
         		vo.setId(m_email);
         		svo.setId(vo.getId());
@@ -142,8 +141,7 @@ public class KakaoLoginController {
         		
         		return "redirect:/";
         	}else {
-        		System.out.println("자사 아이디로 로그인해주세요");
-        		
+        		session.setAttribute("socialerror", 1);
         		return "redirect:signUp.wp";
         	}
         }
