@@ -36,7 +36,22 @@
 			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
 		</init-param>
 	</servlet>
+<web-app>    
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.wp</location>
+	</error-page>
 
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error.wp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.wp</location>
+	</error-page>
+</web-app>
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.wp</url-pattern>

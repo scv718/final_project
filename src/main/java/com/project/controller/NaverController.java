@@ -57,7 +57,6 @@ public class NaverController {
 //	
 	@RequestMapping("/naverLogout.wp")
 	public String naverLoginOut(Model model, NaverVO vo, HttpSession session){
-		System.out.println("네이버 로그아웃");
 		HttpClient client = HttpClientBuilder.create().build(); 
 		HttpGet get = new HttpGet(NAVER_LOGOUT_URL);
 		model.addAttribute("naverInfo", null);
@@ -82,7 +81,6 @@ public class NaverController {
 		vo.setAccess_token(getToken(vo));
         
         HashMap<String, Object> userInfo = getProfile(vo);
-        System.out.println("여기임?");
 //        System.out.println("access_Token : " + access_Token);
 //        System.out.println("userInfo : " + userInfo.get("email"));
 //        System.out.println("nickname : " + userInfo.get("mobile"));
@@ -118,6 +116,7 @@ public class NaverController {
         		svo.setId(uvo.getId());
         		userService.kakaoInsertUser(uvo);
         		subscribeService.insertSubscribe0(svo);
+        		session.setAttribute("login", m_email);
         		session.setAttribute("userName", m_name);
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userType", "naver");
@@ -128,7 +127,6 @@ public class NaverController {
         }else {
         	id = userService.getId(uvo).getId();
         	if(id.equals(m_email)) {
-        		System.out.println("네이버 로그인 진행");
         		session.setAttribute("login", m_email);
         		session.setAttribute("userID", m_email);
         		session.setAttribute("userName", m_name);
@@ -219,7 +217,6 @@ public class NaverController {
 			JsonNode response = rootNode.get("response"); 
 			
 			if(rootNode.asText().equals("null")) {
-				System.out.println("내역이 없습니다.");
 				map.put("msg","내역이 없습니다." );
 			}else {
 				//이곳에서 데이터베이스 연동로직 처리할 것
@@ -234,8 +231,6 @@ public class NaverController {
 				map.put("name",response.get("name").asText() );
 				map.put("email", response.get("email").asText() );
 				map.put("mobile",response.get("mobile").asText());
-				
-				
 				
 			}
 		} catch (Exception e) { 

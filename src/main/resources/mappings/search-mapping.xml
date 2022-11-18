@@ -34,10 +34,21 @@
    
    <insert id="insertWine">
   INSERT INTO WINE
-  (w_nm_k, w_nm_e, continental, country, since, quantity, w_price, type, w_sweet, w_body, w_acidity, w_tannins, w_image1)values
-  (#{w_nm_k}, #{w_nm_e}, #{continental}, #{country}, #{since}, #{quantity}, #{w_price}, #{type}, #{w_sweet}, #{w_body}, #{w_acidity}, #{w_tannins}, #{w_image1})
+  (w_nm_k, w_nm_e, continental, country, since, quantity, w_price, type, w_sweet, w_body, w_acidity, w_tannins, w_image1, w_info)values
+  (#{w_nm_k}, #{w_nm_e}, #{continental}, #{country}, #{since}, #{quantity}, #{w_price}, #{type}, #{w_sweet}, #{w_body}, #{w_acidity}, #{w_tannins}, #{w_image1}, #{w_info})
    </insert>
    
+   <update id="updateWine">
+   update wine set
+   quantity =  #{quantity}, w_price = #{w_price} 
+   where w_no = #{w_no}
+   </update>
+   
+    <update id="updateorder">
+   update order_list set
+   ORD_STAT =  #{ord_stat}, CS_STAT = #{cs_stat} 
+   where ORD_CODE = #{ord_code}
+   </update>
    <delete id="deleteWine">
    delete from wine where w_no = #{w_no}
    </delete>

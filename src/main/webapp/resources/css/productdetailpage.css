@@ -444,7 +444,7 @@ a:active {
 	padding: 10px 33px;
 }
 
-li > .nava:hover {
+button.litag:hover {
 	font-size: 21px;
 }
 
@@ -513,8 +513,13 @@ li > .nava:hover {
 	accent-color: #e2373f !important;
 }
 
-a.viewhidden:hover {
+td.viewhidden:hover {
 	color: gray !important;
+}
+
+.viewhidden {
+	text-align: left; 
+	cursor: pointer;
 }
 /* 유경 끝 */
 

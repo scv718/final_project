@@ -79,12 +79,10 @@ public class QnaController {
 					try {
 						InputStream fileStream = file.getInputStream();
 						FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-						System.out.println("파일저장");
 					} catch (Exception e) {
 						// 파일삭제
 						FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
 						e.printStackTrace();
-						System.out.println("파일삭제");
 						break;
 					}
 				}
@@ -125,7 +123,6 @@ public class QnaController {
 					String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
 					String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 					String savedFileName = UUID.randomUUID() + extension; // 저장될 파일명
-					System.out.println("파일명" + savedFileName);
 
 					if (index == 1) {
 						vo.setCommu_photo1(savedFileName);
@@ -140,12 +137,10 @@ public class QnaController {
 					try {
 						InputStream fileStream = file.getInputStream();
 						FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-						System.out.println("파일저장");
 					} catch (Exception e) {
 						// 파일삭제
 						FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
 						e.printStackTrace();
-						System.out.println("파일삭제");
 						break;
 					}
 				}
@@ -200,7 +195,6 @@ public class QnaController {
 	// 1:1 문의 목록 조회 - 사용자
 	@RequestMapping("/getQnaList.wp")
 	public String getQnaList(CommunityVO vo, String nowPageBtn, Model model, HttpSession session) {
-		System.out.println("글 목록 검색 처리");
 
 		vo.setId((String) session.getAttribute("userID"));
 

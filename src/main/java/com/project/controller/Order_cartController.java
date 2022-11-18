@@ -3,6 +3,7 @@ package com.project.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -19,7 +20,9 @@ import com.project.order.OrderService;
 import com.project.order.OrderVO;
 import com.project.user.UserVO;
 import com.project.wine.ProductService;
+import com.project.wine.WineService;
 import com.project.wine.WineVO;
+
 
 
 @Controller
@@ -35,6 +38,21 @@ public class Order_cartController {
 	private OrderService orderSerivce;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private WineService wineService;
+	
+	@RequestMapping(value="cancleorderrequest.wp")
+	public String updateorder(HttpServletRequest request, OrderVO vo, Model model) {
+		
+		System.out.println("컨트롤러탐");
+		vo.setOrd_code(request.getParameter("ord_code"));
+		vo.setCs_stat(request.getParameter("cs_stat"));
+		vo.setOrd_stat(request.getParameter("ord_stat"));
+		wineService.updateorder(vo); 
+		return "redirect:myorderList.wp";
+	
+	}
+	
 	
 	@RequestMapping("myorderList.wp")
 	public String myorderList(OrderVO ovo, HttpSession session, Model model, WineVO wvo) {
@@ -46,11 +64,14 @@ public class Order_cartController {
 		System.out.println();
 		List<WineVO> wineList = new ArrayList();
 		for(int i =0; i < orderSerivce.selectOrderList(ovo).size(); i++) {
+			System.out.println(orderSerivce.selectOrderList(ovo).get(i).getW_no());
+			wvo.setW_no(Integer.parseInt(orderSerivce.selectOrderList(ovo).get(i).getW_no().trim()));
 			wineList.add(productService.getProductdetail(wvo));
+			System.out.println(productService.getProductdetail(wvo));
+			
 		}
-		
+		System.out.println(wineList);
 		model.addAttribute("product", wineList);
-
 		return "WEB-INF/view/mypage/myorderList.jsp";
 		
 	}
