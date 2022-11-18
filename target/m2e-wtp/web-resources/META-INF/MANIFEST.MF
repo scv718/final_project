@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: PC-10
+=======
+Built-By: PC-18
+>>>>>>> 5436a4aced778846800428404b3d6a992b787bbd
 Build-Jdk: 11.0.15.1
 Created-By: Maven Integration for Eclipse
 

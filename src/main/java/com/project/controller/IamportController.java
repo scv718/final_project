@@ -470,7 +470,7 @@ public class IamportController {
 		ovo.setProd_price(price);
 		ovo.setOrd_t_price(price);
 		ovo.setProd_p_price(price);
-		ovo.setOrd_stat("상품준비중");
+		ovo.setOrd_stat("결제");
 		ovo.setOrd_date(formatedNow);
 //      ovo.setOrd_addr(addr);
 //      ovo.setOrd_phone(콜);
@@ -522,7 +522,7 @@ public class IamportController {
 			for (int i = 0; i < ovo.getW_noList().length; i++) {
 				stringBuilder.append(ovo.getW_noList()[i] + " ");
 			}
-			String w_no = stringBuilder.toString();
+			String w_no = stringBuilder.toString().trim();
 			ovo.setW_no(w_no);
 		}
 
@@ -536,7 +536,7 @@ public class IamportController {
 		ovo.setProd_price(price);
 		ovo.setOrd_t_price(price);
 		ovo.setProd_p_price(price);
-		ovo.setOrd_stat("상품준비중");
+		ovo.setOrd_stat("결제");
 		ovo.setOrd_date(formatedNow);
 
 		List<CartVO> listVo = new ArrayList();

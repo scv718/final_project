@@ -130,10 +130,7 @@
                         <li>
                             <a href="adminWine.wp">와인관리</a>
                         </li>
-                        <li>
-                            <a href="admin_getIntro.wp">소개페이지관리</a>
-                        </li>
-                        <li>
+                       <li>
                             <a href="adminStory.wp">와인이야기 페이지 관리</a>
                         </li>
                         <li>
@@ -204,7 +201,6 @@
 		<a class='myButton' href="addWine.wp">와인등록</a>
             <br><br><hr>
         </div>
-
     <table id="myTable" class="display table" style="width:100%">
         <thead>  
          <tr style="background-color: #FCA5A5;" align="center">
@@ -214,9 +210,9 @@
 			<th>원산지</th>
 			<th>생산년도</th>
 			<th>재고</th>
-			<th>가격</th>
+			<th>가격(원)</th>
 			<th>판매수량</th>
-			<th>판매수량</th>
+			<th>수정,삭제</th>
         </tr> 
         </thead>  
         <tbody> 
@@ -227,13 +223,16 @@
       	 <td>${wine.w_nm_e}</td>
       	 <td>${wine.country}</td>
       	 <td>${wine.since}</td>
-     	 <td>${wine.quantity}</td>
-      	 <td>${wine.w_price}</td>
+     	 <td ><input style="width:30px;" name="quantity" id="quantity${wine.w_no}" value="${wine.quantity}"></td>
+      	 <td ><input style="width:80px;" name="w_price" id="w_price${wine.w_no}" value="${wine.w_price}"></td>
       	 <td>${wine.w_sales}</td>
-      	 <td><a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteWine('${wine.w_no}')}">삭제</a></td>
+      	 <td>
+      	 <a style="color: white" class="myButton1" onclick="{updateWine(${wine.w_no})}">수정</a>
+      	 <a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteWine('${wine.w_no}')}">삭제</a></td>
        </tr>   
         </c:forEach>
        </tbody>
+       
     </table>
   
     
@@ -254,19 +253,31 @@
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');
             });
-        });
+        });	
         $(document).ready(function(){
             $('#myTable').dataTable();
         });
-    function updateWine(param){
-    	var m_name = $('#m_name'+param).val();
-    	var id =  $('#id'+param).val();
-    	console.log('testad');
-    	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
-    	document.userInfo.submit();
+    function updateWine(val){
+    	
+    	var w_no = val;
+      	var quantity = $('#quantity'+w_no).val();
+      	var w_price =  $('#w_price'+w_no).val();
+
+      	 if (confirm("수량 : " + quantity + "개, 가격 : " + w_price + "원 으로 수정하시겠습니까?") == true){    //확인
+
+      		location.href = 'updateWine.wp?w_no='+w_no+'&quantity='+quantity+'&w_price='+w_price;
+        	document.userInfo.submit();
+
+      	 }else{  
+      		 
+      	     return false;
+
+      	 }
+      	
     }
-    function deleteWine(w_no){
-    	var w_no = w_no;
+    function deleteWine(param){
+    	var w_no = param;
+  
     	location.href = 'deleteWine.wp?w_no='+w_no;
     	document.userInfo.submit();
     }

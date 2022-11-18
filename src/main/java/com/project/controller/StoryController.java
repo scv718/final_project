@@ -122,7 +122,6 @@ public class StoryController {
 		vo.setStory_p_no(Integer.parseInt(val1));
 		System.out.println(val2);
 		vo.setStory_a_no(Integer.parseInt(val2));
-		System.out.println("스토리 보드까진 도착");
 		model.addAttribute("story1_c_b", storyService.getStory1_1(vo));
 		System.out.println(vo);
 

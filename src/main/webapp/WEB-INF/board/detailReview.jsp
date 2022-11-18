@@ -167,7 +167,7 @@ dt {
 						</c:if>
 					</div>
 					<!-- 리뷰내용 -->
-					<p style="white-space:pre;"><c:out value="${detailReview.re_content}"/></p>
+					<p style="white-space:pre-wrap;"><c:out value="${detailReview.re_content}"/></p>
 				</div>
 				<div id="review-bottom">
 					<c:choose>

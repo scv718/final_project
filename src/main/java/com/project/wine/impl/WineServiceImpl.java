@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.order.OrderVO;
 import com.project.wine.WineService;
 import com.project.wine.WineVO;
 
@@ -79,6 +80,11 @@ public class WineServiceImpl implements WineService {
 	public List<WineVO> getCountry(WineVO vo) {
 		System.out.println("겟 컨츄리 서비스 임플까진 실행");
 		return wineDAO.getCountry(vo);
+	}
+
+	@Override
+	public void updateorder(OrderVO vo) {
+		wineDAO.updateorder(vo);
 	}
 
 	

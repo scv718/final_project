@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.order.OrderVO;
+import com.project.order.OrderVO;
 import com.project.wine.WineVO;
 
 @Repository
@@ -25,6 +27,10 @@ public class WineDAOMybatis {
 	public void updateWine(WineVO vo) {
 		System.out.println("===>mybatis로 updateWine() 기능처리");
 		mybatis.update("WineDAO.updateWine", vo);
+	}
+	public void updateorder(OrderVO vo) {
+		System.out.println("===>mybatis로 updateWine() 기능처리");
+		mybatis.update("WineDAO.updateorder", vo);
 	}
 
 	// 와인 삭제
@@ -72,11 +78,8 @@ public class WineDAOMybatis {
 	//관리자 와인관리리스트
 		public List<WineVO> WineListAd(WineVO vo) {
 			
-			System.out.println("유저 마이 바티스 실행");
 			List<WineVO> a = mybatis.selectList("WineDAO.WineListAd");
-			for(WineVO v : a ) {
-				System.out.println("v: "+v);
-			}
+	
 			return mybatis.selectList("WineDAO.WineListAd");
 
 		}

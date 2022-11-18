@@ -107,11 +107,11 @@ h6 {
 				<div class="typeoption">
 					<h6>당도</h6>
 					<hr>
-					<input type="radio" class = "selectbtn" id = "w_sweet" name="w_sweet" value="1"><label for = "w_sweet"><i class = "xi-full-moon" id = "one"></i></label>
-					<input type="radio" class = "selectbtn" id = "w_sweet2" name="w_sweet" value="2"><label for = "w_sweet2"><i class = "xi-full-moon" id = "two"></i></label>
-					<input type="radio" class = "selectbtn" id = "w_sweet3" name="w_sweet" value="3"><label for = "w_sweet3"><i class = "xi-full-moon" id = "three"></i> </label>
-					<input type="radio" class = "selectbtn" id = "w_sweet4" name="w_sweet" value="4"><label for = "w_sweet4"><i class = "xi-full-moon" id = "four"></i> </label>
-					<input type="radio" class = "selectbtn" id = "w_sweet5" name="w_sweet" value="5"><label for = "w_sweet5"><i class = "xi-full-moon" id = "five"></i> </label>
+					<input type="radio" class = "selectbtn" id = "w_sweetm" name="w_sweet" value="1"><label for = "w_sweetm"><i class = "xi-full-moon" id = "one"></i></label>
+					<input type="radio" class = "selectbtn" id = "w_sweetm2" name="w_sweet" value="2"><label for = "w_sweetm2"><i class = "xi-full-moon" id = "two"></i></label>
+					<input type="radio" class = "selectbtn" id = "w_sweetm3" name="w_sweet" value="3"><label for = "w_sweetm3"><i class = "xi-full-moon" id = "three"></i> </label>
+					<input type="radio" class = "selectbtn" id = "w_sweetm4" name="w_sweet" value="4"><label for = "w_sweetm4"><i class = "xi-full-moon" id = "four"></i> </label>
+					<input type="radio" class = "selectbtn" id = "w_sweetm5" name="w_sweet" value="5"><label for = "w_sweetm5"><i class = "xi-full-moon" id = "five"></i> </label>
 					<hr>
 				</div>
 				<br>
@@ -119,11 +119,11 @@ h6 {
 				<div class="typeoption">
 					<h6>바디감</h6>
 					<hr>
-					<input type="radio"  class = "selectbtn" id = "w_body" name="w_body" value="1"><label for = "w_body"><i class = "xi-full-moon" id = "one"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_body2" name="w_body" value="2"><label for = "w_body2"><i class = "xi-full-moon" id = "two"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_body3" name="w_body" value="3"><label for = "w_body3"><i class = "xi-full-moon" id = "three"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_body4" name="w_body" value="4"><label for = "w_body4"><i class = "xi-full-moon" id = "four"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_body5" name="w_body" value="5"><label for = "w_body5"><i class = "xi-full-moon" id = "five"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_bodym" name="w_body" value="1"><label for = "w_bodym"><i class = "xi-full-moon" id = "one"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_bodym2" name="w_body" value="2"><label for = "w_bodym2"><i class = "xi-full-moon" id = "two"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_bodym3" name="w_body" value="3"><label for = "w_bodym3"><i class = "xi-full-moon" id = "three"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_bodym4" name="w_body" value="4"><label for = "w_bodym4"><i class = "xi-full-moon" id = "four"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_bodym5" name="w_body" value="5"><label for = "w_bodym5"><i class = "xi-full-moon" id = "five"></i></label>
 						<br>
 					<hr>
 				</div>
@@ -132,11 +132,11 @@ h6 {
 				<div class="typeoption">
 					<h6>산미</h6>
 					<hr>
-					<input type="radio"  class = "selectbtn" id = "w_acidity" name="w_acidity" value="1"><label for = "w_acidity"><i class = "xi-full-moon" id = "one"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_acidity2" name="w_acidity" value="2"><label for = "w_acidity2"><i class = "xi-full-moon" id = "two"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_acidity3" name="w_acidity" value="3"><label for = "w_acidity3"><i class = "xi-full-moon" id = "three"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_acidity4" name="w_acidity" value="4"><label for = "w_acidity4"><i class = "xi-full-moon" id = "four"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_acidity5" name="w_acidity" value="5"><label for = "w_acidity5"><i class = "xi-full-moon" id = "five"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_aciditym" name="w_acidity" value="1"><label for = "w_aciditym"><i class = "xi-full-moon" id = "one"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_aciditym2" name="w_acidity" value="2"><label for = "w_aciditym2"><i class = "xi-full-moon" id = "two"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_aciditym3" name="w_acidity" value="3"><label for = "w_aciditym3"><i class = "xi-full-moon" id = "three"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_aciditym4" name="w_acidity" value="4"><label for = "w_aciditym4"><i class = "xi-full-moon" id = "four"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_aciditym5" name="w_acidity" value="5"><label for = "w_aciditym5"><i class = "xi-full-moon" id = "five"></i></label>
 					
 					<hr>
 				</div>
@@ -145,11 +145,11 @@ h6 {
 				<div class=typeoption>
 					<h6>타닌</h6>
 					<hr>
-					<input type="radio"  class = "selectbtn" id = "w_tannins" name="w_tannins" value="1"><label for = "w_tannins"><i class = "xi-full-moon" id = "one"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_tannins2" name="w_tannins" value="2"><label for = "w_tannins2"><i class = "xi-full-moon" id = "two"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_tannins3" name="w_tannins" value="3"><label for = "w_tannins3"><i class = "xi-full-moon" id = "three"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_tannins4" name="w_tannins" value="4"><label for = "w_tannins4"><i class = "xi-full-moon" id = "four"></i></label>
-					<input type="radio"  class = "selectbtn" id = "w_tannins5" name="w_tannins" value="5"><label for = "w_tannins5"><i class = "xi-full-moon" id = "five"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_tanninsm" name="w_tannins" value="1"><label for = "w_tanninsm"><i class = "xi-full-moon" id = "one"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_tanninsm2" name="w_tannins" value="2"><label for = "w_tanninsm2"><i class = "xi-full-moon" id = "two"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_tanninsm3" name="w_tannins" value="3"><label for = "w_tanninsm3"><i class = "xi-full-moon" id = "three"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_tanninsm4" name="w_tannins" value="4"><label for = "w_tanninsm4"><i class = "xi-full-moon" id = "four"></i></label>
+					<input type="radio"  class = "selectbtn" id = "w_tanninsm5" name="w_tannins" value="5"><label for = "w_tanninsm5"><i class = "xi-full-moon" id = "five"></i></label>
 					
 					<hr>
 				</div>

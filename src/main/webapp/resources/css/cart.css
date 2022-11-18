@@ -374,7 +374,7 @@ td {
 .btn-hover.color-90 {
 	background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
 	box-shadow: 0 4px 15px 0 rgb(65 132 234/ 75%);
-	width: 75px;
+	width: 71px;
 }
 
 /* float 속성 해제 */
@@ -384,12 +384,12 @@ td {
 
 .btn-hover {
 	width: 200px;
-	font-size: 16px;
+	font-size: 13px;
 	font-weight: 600;
 	color: #fff;
 	cursor: pointer;
-	margin: 20px;
-	height: 55px;
+	margin: 10px;
+	height: 51px;
 	text-align: center;
 	border: none;
 	background-size: 300% 100%;
@@ -515,52 +515,44 @@ td {
 		box-shadow: 0 4px 15px 0 rgb(65 132 234/ 75%);
 		height: -3px;
 	}
+	#wwit {
+		width: 100%;
+	}
+	.subject_table1 {
+		font-size: 16px;
+		line-height: 39px;
+		width: 100%;
+		text-align: center;
+		border-spacing: 27px 25px;
+	}
+	.subject_table1>tbody>tr {
+		border-bottom: 1px solid #e7e7e7;
+	}
+	.cart_table1 td {
+		border-bottom: 1px solid #e7e7e7;
+		font-size: 17px;
+	}
 
-#wwit {
-	width: 100%;
-}
+	/* 	결제 완료 */
+	.sub4 {
+		margin-top: 10%;
+		padding: 66px 0 47px;
+	}
+	.sc h4 {
+		font-size: 25px;
+	}
+	.sc p {
+		font-size: 17px;
+	}
+	.d-flex flex-column min-vh-100 {
+		width: 100%;
+	}
+	.total_wrap td {
+		width: -10%;
+	}
 
-.subject_table1 {
-	font-size: 16px;
-	line-height: 39px;
-	width: 100%;
-	text-align: center;
-	border-spacing: 27px 25px;
-}
-
-.subject_table1>tbody>tr {
-	border-bottom: 1px solid #e7e7e7;
-}
-
-.cart_table1 td {
-	border-bottom: 1px solid #e7e7e7;
-	font-size: 17px;
-}
-
-/* 	결제 완료 */
-.sub4 {
-	margin-top: 10% ;
-	padding: 66px 0 47px ;
-}
-
-.sc h4 {
-	font-size: 25px;
-}
-
-.sc p {
-	font-size: 17px;
-}
-
-.d-flex flex-column min-vh-100 {
-	width: 100%;
-}
-
-.total_wrap td {
-	width: -10%;
-}
-
-/* 구독 */
-.total_info_div {
+	/* 구독 */
+	.total_info_div {
 		FONT-VARIANT: JIS90;
 		position: absolute;
 		top: 80%;
@@ -569,5 +561,4 @@ td {
 		border: 1px solid #333;
 		border-top-width: 2px;
 	}
-
 }

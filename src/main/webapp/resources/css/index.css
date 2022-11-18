@@ -105,6 +105,9 @@ hr {
 	width: auto;
 	height: 200px;
 }
+.side-btns > div{
+	height: 69% !important;
+}
 
 .slider-1 {
 	height: 610px;
