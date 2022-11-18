@@ -26,13 +26,14 @@
 	border: 1px solid #D7D7D7;
 	border-radius: 3px;
 	width: 100%;
-	background-color: #f0f0f0;
+	resize: none;
 }
 
 .form-none{
 	border: none;
 	width: 100%;
 	background-color: #fff;
+	resize: none;
 }
 
 #dataForm{

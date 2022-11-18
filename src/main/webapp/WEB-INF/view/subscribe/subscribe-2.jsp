@@ -432,10 +432,6 @@ $("#check_module").click(function () {
 		}
 	});	
 	
-	console.log(m_address);
-	console.log(phone);
-	console.log(postcode[0]);
-	console.log(finalTotalPrice);
 	var formValues = $("form[name=fm]").serialize() ;
 	console.log(formValues);
 	IMP.request_pay({

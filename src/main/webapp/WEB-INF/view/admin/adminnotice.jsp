@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -23,7 +23,10 @@
 </head>
 <style>
 [type=search] {
-    outline-offset: 0;
+    outline-offset: -2px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+    outline: none;
 }
 
 /*목록버튼*/
@@ -170,7 +173,7 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                          <li>
-                            <a href="adminNotice.wp">공지사항</a>
+                            <a href="admin_getNoticeList.wp">공지사항</a>
                         </li>
                         <li>
                             <a href="adminQna.wp">Q&A</a>

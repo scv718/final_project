@@ -522,8 +522,11 @@ td.viewhidden:hover {
 	cursor: pointer;
 }
 /* 유경 끝 */
-
+.re-wrap{
+	width: 69%;
+}
 @media screen and (max-width: 990px) {
+
 	#productthree{
 	display: none;
 
@@ -579,9 +582,11 @@ td.viewhidden:hover {
    #mobilepayment{
    display: block;
    }
-   
+   .row{
+       width: 100% !important;
+       }
 	.re-wrap {
-		width: 161%;
+		width: 100%;
 	}
    
 	#reviewContainer table col {

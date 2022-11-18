@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -24,7 +24,10 @@
 <style>
 /*그리드 scss*/
 [type=search] {
-    outline-offset: 0;
+    outline-offset: -2px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+    outline: none;
 }
 .table thead th {
     vertical-align: middle;
@@ -151,7 +154,7 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                          <li>
-                            <a href="adminNotice.wp">공지사항</a>
+                            <a href="admin_getNoticeList.wp">공지사항</a>
                         </li>
                         <li>
                             <a href="adminQna.wp">Q&A</a>
@@ -225,8 +228,7 @@
 <%-- 			<th><input style="width:50px;" name="cs_stat" id="cs_stat${order.ord_code}" value="${order.cs_stat}"></th> --%>
 			<th><select name="cs_stat" id="cs_stat${order.ord_code}" class="type-1">
                     <option value="${order.cs_stat}">${order.cs_stat}</option>
-                    <option value="상품준비중">상품준비중</option>
-                    <option value="배송완료">배송완료</option>
+                    <option value="결제">결제</option>
                     <option value="취소">취소</option>
                     <option value="교환">교환</option>
                     <option value="환불">환불</option>

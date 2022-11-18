@@ -402,7 +402,12 @@ $( document ).ready(function() {
 	var error = '${error}';
 	console.log(error);
     if(error != '' && error === '1'){
-    	swal ( "장바구니에 제품이 없습니다." ,  "" ,  "error" );
+    	swal({
+        	  title: "장바구니에 제품이 없습니다.",
+        	  text: "",
+        	  icon: "error",
+        	  button: "닫기",
+        	});
     	 $.ajax({
  	        url: '/errorsession.wp',
  	        type: 'post'
@@ -412,7 +417,12 @@ $( document ).ready(function() {
 $( document ).ready(function() {
 	var error = '${ageerror}';
     if(error != '' && error === '1'){
-    	swal ( "자사 아이디로 로그인해주세요." ,  "" ,  "error" );
+    	swal({
+    	  title: "자사 아이디로 로그인해주세요.",
+    	  text: "",
+    	  icon: "error",
+    	  button: "닫기",
+    	});
     	 $.ajax({
  	        url: '/ageerrorsession.wp',
  	        type: 'post'

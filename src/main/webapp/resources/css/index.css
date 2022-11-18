@@ -22,13 +22,13 @@
     text-decoration: none;
     color : black;
 }
+#noticecol{
+	margin-right: 30px;
+}
 #notice{
 	margin-top: 40px;
     font-size: 17px;
     border-bottom: 1px solid lightgray;
-}
-#review{
-	border-bottom: 1px solid lightgray;
 }
 #reviewmain{
 	margin-bottom: 15px;	
@@ -37,7 +37,6 @@
 #titlename{
 	 text-decoration : underline;
   	text-underline-offset : 10px;
-	
 }
 #textbox{
 	   text-align: left;

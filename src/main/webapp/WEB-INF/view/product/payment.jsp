@@ -273,35 +273,38 @@ function checkOnlyOne(element) {
 					<table class="goods_subject_table">
 						<colgroup>
 							<col width="15%">
-							<col width="45%">
-							<col width="40%">
+							<col id = "nametable">
+							<col width="13%">
+							<col width="13%">
+							<col width="13%">
 						</colgroup>
 						<tbody>
 							<tr>
-								<th>이미지</th>
+								<th></th>
 								<th>상품 정보</th>
 								<th>판매가</th>
+								<th>갯수</th>
+								<th>총 금액</th>
 							</tr>
 						</tbody>
 					</table>
 					<table class="goods_table">
 						<colgroup>
 							<col width="15%">
-							<col width="45%">
-							<col width="40%">
+							<col id = "nametable">
+							<col width="13%">
+							<col width="13%">
+							<col width="13%">
 						</colgroup>					
 						<tbody>
 							<c:forEach items="${product}" var="ol">
 								<tr>
 									<td>
-<%-- 										<div class="image_wrap" data-bookid="${ol.imageList[0].bookId}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-filename="${ol.imageList[0].fileName}"> --%>
-<!-- 											<img> -->
-<!-- 										</div> -->
+
 									</td>
 									<td>${ol.w_nm_k}</td>
 									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" /> | 수량 ${ol.ord_quan}개
-										<br><fmt:formatNumber value="${ol.w_price*ol.ord_quan}" pattern="#,### 원" />
+										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" />  
 										
 										<input type="hidden" class="individual_bookPrice_input" value="${ol.w_price}">
 										<input type="hidden" class="individual_bookCount_input" value="${ol.ord_quan}">
@@ -310,6 +313,8 @@ function checkOnlyOne(element) {
 										<input type="hidden" class="individual_bookId_input" value="${ol.w_no}">
 										<input type="hidden" name = "w_no" class="w_no" value="${ol.w_no}">
 									</td>
+									<td>수량 ${ol.ord_quan}개</td>
+									<td><fmt:formatNumber value="${ol.w_price*ol.ord_quan}" pattern="#,### 원" /></td>
 								</tr>							
 								
 								
@@ -332,11 +337,11 @@ function checkOnlyOne(element) {
 								<span class="price_span_label">배송비</span>
 <!-- 								<span class="delivery_price_span">   -->
                               <c:choose>
-                              <c:when test="${level.level < 0}">
-                               <span class="deliveryPrice">2500</span>원	
+                              <c:when test="${level.level == 0}">
+                               <span class="delivery_price_span">2500</span>원	
                               </c:when>
                               <c:otherwise>
-                               <span class=deliveryPrice>0</span>원
+                               <span class=delivery_price_span>0</span>원
                               </c:otherwise>
                               </c:choose>
 <!--                             </span>원 -->
@@ -397,6 +402,8 @@ function checkOnlyOne(element) {
 <%@ include file="/footer.jsp"%>
 
 <script type="text/javascript">
+
+
 var chk = false;
 $(document).ready(function(){
 	var IMP = window.IMP; // 생략가능
@@ -404,33 +411,53 @@ $(document).ready(function(){
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
-	let deliveryPrice = 0;			// 배송비
+		// 배송비
 
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
+	let deliveryPrice = 0;
+
+	// 총 가격
+	$(".totalPrice_span").text(totalPrice.toLocaleString());
+	// 총 갯수
+	$(".totalCount_span").text(totalCount);
+	// 배송비
+	$(".delivery_price_span").text(deliveryPrice);	
+	// 최종 가격(총 가격 + 배송비)
+	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
 	
 	$(".goods_table_price_td").each(function(index, element){
 		// 총 가격
+		totalPrice += deliveryPrice;
 		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+		
 		// 총 갯수
 		totalCount += parseInt($(element).find(".individual_bookCount_input").val());
 		// 총 종류
-		totalKind += 1;
+		totalKind += 1;  
+		console.log(deliveryPrice +"배송비 + 1");
+		console.log(finalTotalPrice);
+		// 총합
+		finalTotalPrice = totalPrice;
+		finalTotalPrice += parseInt($(element).find(".finalTotalPrice_span").val());		
+		
 	});	
 
 	/* 배송비 결정 */
-	if(totalPrice >= 30000){
-		deliveryPrice = 0;
-	} else if(totalPrice == 0){
-		deliveryPrice = 0;
-	} else {
-		deliveryPrice = 3000;	
-	}
+// 	if(totalPrice >= 30000){
+// 		deliveryPrice = 0;
+// 	} else if(totalPrice == 0){
+// 		deliveryPrice = 0;
+// 	} else {
+// 		deliveryPrice = 3000;	
+// 	}
 	
 	finalTotalPrice = totalPrice + deliveryPrice;	
 	
 
 	
 	finalTotalPrice = totalPrice;
+	console.log(totalPrice +" 금액");
+	console.log(finalTotalPrice +"  총 금액");
 	
 $("#check_module").click(function () {
 	var m_address;
@@ -441,6 +468,7 @@ $("#check_module").click(function () {
 	$('#amount').val(finalTotalPrice);
 	console.log($('#amount').val());
 	console.log(finalTotalPrice);
+	
 	$(".addressInfo_input_div").each(function(i, obj){
 		if($(obj).find(".selectAddress").val() == 'T'){
 			m_address = $(obj).find(".m_add").val();
@@ -453,6 +481,15 @@ $("#check_module").click(function () {
 		}
 	});	
 	
+	if(m_address == undefined){
+	   	swal({
+      	  title: "등록된 주소가 없습니다.",
+      	  text: "",
+      	  icon: "error",
+      	  button: "닫기",
+      	});
+		return false;
+	}
 	console.log(m_address);
 	console.log(phone);
 	console.log(postcode[0]);
@@ -637,37 +674,36 @@ function execution_daum_address(){
 
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
-
+	
+	let deliveryPrice = 0;		
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
-	let deliveryPrice = 0;			// 배송비
-
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
 	
+	var level = "${level.level}";
+	if(level == 0){
+		deliveryPrice = 2500;
+	} else {
+		deliveryPrice = 0;	
+	}
 	$(".goods_table_price_td").each(function(index, element){
 		// 총 가격
+		deliveryPrice;
+		totalPrice ;
 		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 		// 총 갯수
 		totalCount += parseInt($(element).find(".individual_bookCount_input").val());
 		// 총 종류
-		totalKind += 1;
+		totalKind += 1; 	
+		
+		finalTotalPrice = totalPrice + deliveryPrice;
+		console.log(deliveryPrice +"배송비");
 	});	
 
-	/* 배송비 결정 */
-	if(totalPrice >= 30000){
-		deliveryPrice = 0;
-	} else if(totalPrice == 0){
-		deliveryPrice = 0;
-	} else {
-		deliveryPrice = 3000;	
-	}
 	
-	finalTotalPrice = totalPrice + deliveryPrice;	
 	
 
-	
-	finalTotalPrice = totalPrice;
 	
 	/* 값 삽입 */
 	// 총 가격

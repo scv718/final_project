@@ -32,27 +32,92 @@
             <div class ="container">    
             <div class = "row">
             <div class = "col-lg-12 col-sm-6">
-            <table class="subject_table">
+            <table>
                <caption>표 제목 부분</caption>
                <tbody>
 
                   <tr>
-                     <th class="td_width_1"></th>
                      <th class="td_width_2"></th>
-                     <th class="td_width_4">상품명</th>
-                     <th class="td_width_4">가격</th>
-                     <th class="td_width_4">수량</th>
-                     <th class="td_width_4">합계</th>
-                     <th class="td_width_4">삭제</th>
+                     <th class="td_width_2"></th>
+                     <th class="td_width_12" style="text-align: center;">상품정보</th>
                   </tr>
                </tbody>
             </table>
             
-            <table class="cart_table">
+<!--             모바일 -->
+            <table class="cart_table_mobile">
                <caption>표 내용 부분</caption>
                <tbody>
                   <c:forEach items="${cartInfo}" var="ci">
                      <tr>
+                     
+                        <td class="td_width_1 cart_info_td_mobile">
+                           <input type="checkbox" name = "product_check" class="individual_cart_checkbox input_size_20" checked="checked">
+                      	   <input type="hidden" name = "id" value="${ci.id}"/>
+                           <input type="hidden" name = "w_no" value="${ci.w_no}"/>
+                           <input type="hidden" class = "ord_cart_no" name="ord_cart_no" value="${ci.ord_cart_no}"/>
+                           <input type="hidden" name="w_price" value="${ci.w_price}"/>
+                           <input type="hidden" name="pay_stat"value="${ci.pay_stat}"/>
+                           <input type="hidden" name="ord_code"value="${ci.ord_code}"/>
+                           <input type="hidden" name="w_nm_k"value="${ci.w_nm_k}"/>
+                           <input type="hidden" name="w_nm_e"value="${ci.w_nm_e}"/>   
+                           <input type="hidden" name="ord_quan" id = "ord_quan" value="${ci.ord_quan}"/>   
+                           <input type="hidden" name="quantity" id = "quantity" value="${ci.quantity}"/>  
+                            <input type="hidden" name="w_image1"value="${w_image1}"/>    
+                             <input type="hidden" class="totalPrice_span" name="totalPrice"value="${ci.ord_quan*ci.w_price}"/>        
+                             <input type="hidden" class="totalCount_span" name="totalCount"value="${ci.ord_quan}"/>        
+                              <input type="hidden" class="delivery_price" name="delivery"value="${delivery_price}" />        
+                               <input type="hidden" class="finalTotalPrice_span" name="finalTotalPrice"value="${ci.ord_quan*ci.w_price + delivery_price}"/>        
+                        </td>
+
+
+<%--    <td class="td_width_2" id="image_wrap"><img id =  "w_image1" src = "resources/img/wine/${ci.w_image1}"></td> --%>
+      
+      			<td>
+      			<img id="w_image1"style="height: 145px;padding: 20px;position: relative;top: 29px;left:-1px;"src="resources/img/wine/${ci.w_image1}"><br>
+      			<form action="modifyCount.wp" method="post">
+                           <div class="table_text_align_center quantity_div" id="text_cen">
+                           <input type="hidden" name="quantity" class = "quantity_max" value="${ci.quantity}">   
+                           
+                                <input type="text" value="${ci.ord_quan}" name="ord_quan" class="quantity_input" readonly >      
+                              <button type = "submit"  formaction="/modifyCount.wp"  class="quantity_btn plus_btn" id ="plus">+</button>
+                               <button  type = "submit"   formaction="/modifyCount.wp"  class="quantity_btn minus_btn">-</button>
+                           </div>
+
+                           <input type="hidden" name = "id" value="${ci.id}">
+                           <input type="hidden" name = "w_no" value="${ci.w_no}">
+                           <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
+                           </form> 
+      			</td>
+                      <td style="text-align: initial;">${ci.w_nm_k}<br>
+                     상품금액  <fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /></td>
+
+			
+                                        
+                       <td><div id=tt_ci>총 금액<br> <fmt:formatNumber value="${ci.w_price * ci.ord_quan}" pattern="#,### 원" /></div></td> 
+                        
+                        
+                        <td class="td_width_4 table_text_align_center"><div id="delbutt">
+                           <form action="deleteCart.wp" method="post">
+                        <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
+<!--                            <button type="submit" class = "btn-hover color-9" id = "delete_btn" style="width: 75px;">삭제</button> -->
+                           
+                                     <button type="submit" class="btn btn-outline-secondary" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg></button></form></div></td>
+
+                     </tr>
+                  </c:forEach>
+               </tbody>
+            </table>
+<!--             브라우저 -->
+              <table class="cart_table_view">
+               <caption>표 내용 부분</caption>
+               <tbody>
+                  <c:forEach items="${cartInfo}" var="ci">
+                     <tr>
+                
                         <td class="td_width_1 cart_info_td">
                            <input type="checkbox" name = "product_check" class="individual_cart_checkbox input_size_20" checked="checked">
                       	   <input type="hidden" name = "id" value="${ci.id}"/>
@@ -79,44 +144,51 @@
       
                         <td class="td_width_4">${ci.w_nm_k}<p id = "engwinename">(${ci.w_nm_e})</p></td>
                         <td class="td_width_4 price_td">
-                           상품금액 : <fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /><br>
+                           상품금액<br><fmt:formatNumber value="${ci.w_price}" pattern="#,### 원" /><br>
                         </td>
                         <td class="td_width_4 table_text_align_center">
-                        <form action="modifyCount.wp" method="post">
+                      
+                      <div id="form_disabled">
+                        <form action="modifyCount.wp" id = "cnt" name = "cnt" method="post">
                            <div class="table_text_align_center quantity_div" id="text_cen">
                            <input type="hidden" name="quantity" class = "quantity_max" value="${ci.quantity}">   
                            
                                 <input type="text" value="${ci.ord_quan}" name="ord_quan" class="quantity_input" readonly >      
-                              <button type = "button" class="quantity_btn plus_btn">+</button>
-                               <button  type = "button"  class="quantity_btn minus_btn">-</button>
+                              <button type = "submit" class="quantity_btn plus_btn" id ="plus" onclick="javascript: form.action = '/modifyCount.wp';">+</button>
+                               <button  type = "submit"  class="quantity_btn minus_btn" onclick="javascript: form.action = '/modifyCount.wp';">-</button>
                            </div>
 
                            <input type="hidden" name = "id" value="${ci.id}">
                            <input type="hidden" name = "w_no" value="${ci.w_no}">
                            <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
-                           <button type = "submit" class="quantity_modify_btn" style="width: 75px;">변경</button>
-                           </form>                  
+<!--                            <button type = "submit" class="quantity_modify_btn" style="width: 77px;">변경</button> -->
+                           </form></div>            
                         </td>
                         
                         <td class="td_width_4 table_text_align_center">
+                        	<p>총 금액</p>
                            <fmt:formatNumber value="${ci.w_price * ci.ord_quan}" pattern="#,### 원" />
                         </td>
                         
                         <td class="td_width_4 table_text_align_center">
                            <form action="deleteCart.wp" method="post">
-                        <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">
-                           <button type="submit" class = "btn-hover color-9" id = "delete_btn" style="width: 75px;">삭제</button>
+                        <input type="hidden" name="ord_cart_no" value="${ci.ord_cart_no}">                
+                           <button type="submit" class = "btn-hover color-9" id = "delete_btn" style="width: 53px;height: 53px;">X</button>
                            </form>
                         </td>
                      </tr>
                   </c:forEach>
                </tbody>
             </table>
+          
             </div>
             </div>
             </div>
             
          </div>
+         
+         
+         
          
          <!-- 가격 종합 -->
          <div class = "col-lg-12 col-sm-6" id="cp12">
@@ -134,7 +206,7 @@
                      <td>
                         <table>              
                            <tr>
-                              <td>총 상품 가격</td>
+                              <td>총 가격</td>
                               <td>         <c:set var="totalKind" value="${totalKind + ci.ord_quan}" />
                                  <span class="totalPrice_span"><c:out value="${totalPrice}"/></span>원
                               </td>
@@ -144,17 +216,17 @@
                               <td>
                               <c:choose>
                               <c:when test="${level.level == 0}">
-                               <span class="delivery_price">2500</span>원	
+                               <span class="deliveryPrice">2500</span>원	
                               </c:when>
                               <c:otherwise>
-                               <span class="delivery_price">0</span>원    
+                               <span class=deliveryPrice>0</span>원
                               </c:otherwise>
                               </c:choose>
                               </td>
                               
                            </tr>                           
                            <tr>
-                              <td>총 주문 상품수</td>
+                              <td>총 상품수</td>
                               <td><span class="totalKind_span"></span>와인 <span class="totalCount_span"><c:out value="${totalKind}"/></span>병</td>
                            </tr>
                         </table>
@@ -262,24 +334,40 @@ $(".all_check_input").on("click", function(){
 	var totalPrice =0;
 	var totalCount =0;
 	var finalTotalPrice = 0;
-
-		$(".cart_info_td").each(function(index, element){
-			
-			if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
-				// 총 가격
-				totalPrice += parseInt($(element).find(".totalPrice_span").val());
-				// 총 갯수
-				totalCount += parseInt($(element).find(".totalCount_span").val());
-				// 총합
-				finalTotalPrice += parseInt($(element).find(".finalTotalPrice_span").val());		
-				finalTotalPrice = totalPrice + deliveryPrice;
-		console.log(totalPrice + " 총가격");console.log(totalCount+"총개수");console.log(finalTotalPrice +"총합!");
-				console.log(deliveryPrice +"배송비");
-
-			}
-
-		});
+	 if($('.cart_table_view').is(":visible")){
+		   $(".cart_info_td").each(function(index, element){
+				if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+					// 총 가격
+					totalPrice += parseInt($(element).find(".totalPrice_span").val());
+					// 총 갯수
+					totalCount += parseInt($(element).find(".totalCount_span").val());
+					// 총합
+					finalTotalPrice += parseInt($(element).find(".finalTotalPrice_span").val());		
+					finalTotalPrice = totalPrice + deliveryPrice;
+			console.log(totalPrice + " 총가격");console.log(totalCount+"총개수");console.log(finalTotalPrice +"총합!");
+					console.log(deliveryPrice +"배송비");
+				}
+			});
+	 }
 		
+		   if($('.cart_table_mobile').is(":visible")){
+			   $(".cart_info_td_mobile").each(function(index, element){
+					if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+						// 총 가격
+						totalPrice += parseInt($(element).find(".totalPrice_span").val());
+						// 총 갯수
+						totalCount += parseInt($(element).find(".totalCount_span").val());
+						// 총합
+						finalTotalPrice += parseInt($(element).find(".finalTotalPrice_span").val());		
+						finalTotalPrice = totalPrice + deliveryPrice;
+				console.log(totalPrice + " 총가격");console.log(totalCount+"총개수");console.log(finalTotalPrice +"총합!");
+						console.log(deliveryPrice +"배송비");
+
+					}
+					
+				});
+		   }
+
 		// 총 가격
 		$(".totalPrice_span").text(totalPrice.toLocaleString());
 		// 총 갯수
@@ -292,7 +380,6 @@ $(".all_check_input").on("click", function(){
 
 
 
-
 $(".plus_btn").on("click", function(){
 	var quantity = Number($(this).parent("div").find('.quantity_max').val());
 	var ord_quan1 = Number($(this).parent("div").find('.quantity_input').val());
@@ -301,6 +388,7 @@ $(".plus_btn").on("click", function(){
 		 let ord_quan = $(this).parent("div").find('.quantity_input').val();
 		   $(this).parent("div").find('.quantity_input').val(++ord_quan);
 		   ord_quan = Number($('#ord_quan').val());
+		   
 	}else{
 	}
 });
@@ -312,6 +400,9 @@ $(".plus_btn").on("click", function(){
 	   }
 	});	
 
+
+
+		
 	/* 주문 페이지 이동 */	
 	$("#order_btn").on("click", function(){
 		

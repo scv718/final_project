@@ -79,19 +79,20 @@
     <table id="myTable" class="display table"  style="width=80%">
         <thead>  
          <tr style="background-color: #FCA5A5" align="center">
-	       	<th width="15%">페이지 번호</th>
-	        <th width="50%">페이지 타이틀</th>
-			<th width="20%">타이틀 이미지</th>
-			<th width="15%">타이틀 수정</th>	
+	       	<th width="10%">페이지 번호</th>
+	        <th width="30%">페이지 타이틀</th>
+	         <th width="25%">선택된 이미지</th>
+			<th width="20%">수정할 이미지</th>
+			<th width="15%">타이틀 수정</th>		
         </tr> 
         </thead>  
         <tbody> 
        <tr align="center">
        	<td style="vertical-align:middle;"><input type="number"  style="width:50%; text-align:center;" id="s1_t" name="story_p_no" value="${story2_t.story_p_no}" readonly></td>
          <td style="vertical-align:middle;"><input type="text" id="s1_t" name="story_title" value="${story2_t.story_title}"></td>
+      	<td style="vertical-align:middle;">${story2_t.story_back_img}</td>
       	 <td style="vertical-align:middle;"><label for="s1_t_img"> 
-      	 <input type="file" class="form-control innm" id="s1_t_img" name="uploadFile">
-							</label><br>현재 선택 파일 : ${story2_t.story_back_img}</td>
+      	 <input type="file" class="form-control innm" id="s1_t_img" name="uploadFile"></label></td>
 	  <td style="vertical-align:middle;">
 	  	<button type="submit" style="background-color:#FCA5A5" class="myButton1 btn btn-lg" onclick="if(confirm('수정하시겠습니까?'))">수정</button>
       </td>
@@ -145,7 +146,6 @@
 <script>
 
 function conno(val1, val2){
-	alert("수정 페이지로 이동합니다.")
 	location.href  ="/admin_updateStory1_c_m.wp?val1=" + val1 + "&val2="+val2;
 	
 }

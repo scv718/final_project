@@ -399,7 +399,7 @@
 			
 			<!-- 유경 추가 시작 -->
 			<div class="row re-wrap">
-			<div class="col-8">
+			<div class="col-12">
 				<div id="reviewdiv">
 
 					<article class="blog-post">

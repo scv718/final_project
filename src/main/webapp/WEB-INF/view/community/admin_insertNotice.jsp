@@ -26,7 +26,7 @@
 				<div class="li_board">
 					<ul>
 						<li class="col1">작성자</li>
-						<li class="col2"><input type="text" class="name" name="id" value="${community.id}" readonly></li>
+						<li class="col2"><input type="text" class="name" name="id" value="admin" readonly></li>
 					</ul>
 
 					<ul>

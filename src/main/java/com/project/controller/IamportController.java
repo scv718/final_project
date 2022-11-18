@@ -612,7 +612,7 @@ public class IamportController {
 		System.out.println(ovo.getW_nm_e() + "와인이름 영어");
 
 		orderService.subscribeOrder(ovo);
-		return "WEB-INF/view/subscribe/subscribe-4.jsp";
+		return "redirect:subscribe-4.wp";
 	}
 
 	@RequestMapping(value = "/mobilepay1.wp", method = RequestMethod.GET)
@@ -634,11 +634,14 @@ public class IamportController {
 		uvo.setId((String) session.getAttribute("userID"));
 		svo.setId((String) session.getAttribute("userID"));
 
+//		if(setHackCheck(amount, mid, token)) {
+//			
+//		}
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		String formatedNow = now.format(formatter);
-
-			if (w_no.equals("w_no=999")) {
+		
+		 if (w_no.equals("w_no=999")) {
 				ovo.setW_no("999");
 				ovo.setW_nm_k("와인 마스터 패키지");
 				subscribeService.insertSubscribe3(svo);
@@ -675,11 +678,12 @@ public class IamportController {
 				System.out.println(ovo.getW_nm_k() + " 패키지 명");
 				System.out.println(ovo.getW_nm_e() + " 와인이름 영어");
 				System.out.println(ovo.getOrd_code() + " 오더 코드");
+				System.out.println(mid);
 				
 				
 				
 				orderService.subscribeOrder(ovo);
-				return "WEB-INF/view/subscribe/subscribe-4.jsp";
+				return "subscribe-4.wp";
 	}
 
 	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수 private
@@ -797,6 +801,14 @@ public class IamportController {
 		model.addAttribute("impKey", "imp86310263");
 		return "pay.wp";
 	}
+
+		@RequestMapping(value = { "/pay1" }, method = RequestMethod.GET)
+		public String pay1(HttpServletRequest request, Model model) {
+			String nm = request.getParameter("unm");
+			// 값은 아임포트의 가맹점 식별코드 입력
+			model.addAttribute("impKey", "imp86310263");
+			return "pay1.wp";
+		}
 
 	// 아임포트 결제완료건에 한하여 목록 반환
 	@RequestMapping(value = "/payamount.wp")

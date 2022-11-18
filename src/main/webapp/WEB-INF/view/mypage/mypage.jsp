@@ -143,7 +143,7 @@
 			<div class="status">
 
 				<div class="col-md-3">
-					<a href="confirmPassword.wp" role="button"> <svg id="amo"
+					<a id = "member" role="button"> <svg id="amo"
 							xmlns="http://www.w3.org/2000/svg" width="118px" height="103px"
 							fill="currentColor" class="bi bi-person-square"
 							viewBox="0 0 16 16">
@@ -152,7 +152,25 @@
 								d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" /></svg>
 						<div class="text">정보수정</div></a>
 				</div>
+<script type="text/javascript">
 
+$('#member').click(function () {
+	var userType = '${userType}';
+	if(userType == 'kakao' || userType == 'naver'){
+		  swal({
+			  title: "소셜 로그인 사용자는 사용 불가.",
+			  text: "소셜 로그인 사용자는 정보수정이 불가능합니다.",
+			  icon: "error",
+			  button: "닫기",
+			});
+	}else{
+		location.href = 'confirmPassword.wp';
+	}
+})
+
+
+
+</script>
 				<div class="col-md-3">
 					<a href="mysubscribe.wp" role="button">
 						<div>
@@ -217,7 +235,7 @@
 			<div class="right">></div>
 		</a>
 	</div>
-	
+		
 
 	
 </body>
