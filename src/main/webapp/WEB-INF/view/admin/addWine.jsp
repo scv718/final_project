@@ -102,6 +102,7 @@
 div.all {
         width: 100%;
          display: flex;
+         text-align: center;
     
     
     }
@@ -109,16 +110,30 @@ div.all {
     div.left {
         width: 50%;
         margin:5px;
-        border-right : solid 1px; color:gray; padding-left:5px;
+        border-right : solid 5px white; 
+        margin : 0 10px; 
     
     }
     div.right {
         width: 50%;
-           margin:5px;
+          margin : 0 10px; 
     }
 
 .option hr{
   margin:5px;
+}
+
+h4.add1{
+    background-color: #FCA5A5;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+textarea.w_info{
+    border-radius: 10px;
+
+
 }
 
 </style>
@@ -211,7 +226,7 @@ div.all {
             
 			
    <form action="insertWine.wp" method="post" enctype="multipart/form-data">
-         <h4 class="mb-3 add">와인 등록</h4>
+         <h4 class="mb-3 add add1">와인 등록</h4>
          <div class="input-form col-md-12 mx-auto all"  style="width: 100%;">
         
             <br>
@@ -267,45 +282,45 @@ div.all {
 
 				  <div class="mb-3 option">
                  <h6> <label for="type">당도</label></h6><hr>
-                    <input type="radio" name="w_sweet" value="1" required>1 
-					<input type="radio" name="w_sweet" value="2">2 
-					<input type="radio" name="w_sweet" value="3">3 
-					<input type="radio" name="w_sweet" value="4">4 
+                    <input type="radio" name="w_sweet" value="1" required>1  &nbsp;&nbsp;
+					<input type="radio" name="w_sweet" value="2">2  &nbsp;&nbsp;
+					<input type="radio" name="w_sweet" value="3">3  &nbsp;&nbsp;
+					<input type="radio" name="w_sweet" value="4">4  &nbsp;&nbsp;
 					<input type="radio" name="w_sweet" value="5">5 <br>
                </div>
 
 					  <div class="mb-3 option">
                  <h6> <label for="type">바디감</label></h6><hr>
-                    <input type="radio" name="w_body" value="1" required>1 
-					<input type="radio" name="w_body" value="2">2 
-					<input type="radio" name="w_body" value="3">3 
-					<input type="radio" name="w_body" value="4">4 
+                    <input type="radio" name="w_body" value="1" required>1  &nbsp;&nbsp;
+					<input type="radio" name="w_body" value="2">2  &nbsp;&nbsp;
+					<input type="radio" name="w_body" value="3">3  &nbsp;&nbsp;
+					<input type="radio" name="w_body" value="4">4  &nbsp;&nbsp;
 					<input type="radio" name="w_body" value="5">5 <br>
                </div>
                	  <div class="mb-3 option">
                  <h6> <label for="type">산미</label></h6><hr>
-                    <input type="radio" name="w_acidity" value="1" required>1 
-					<input type="radio" name="w_acidity" value="2">2 
-					<input type="radio" name="w_acidity" value="3">3 
-					<input type="radio" name="w_acidity" value="4">4 
+                    <input type="radio" name="w_acidity" value="1" required>1  &nbsp;&nbsp;
+					<input type="radio" name="w_acidity" value="2">2  &nbsp;&nbsp;
+					<input type="radio" name="w_acidity" value="3">3  &nbsp;&nbsp;
+					<input type="radio" name="w_acidity" value="4">4  &nbsp;&nbsp;
 					<input type="radio" name="w_acidity" value="5">5 <br>
                </div>
                	  <div class="mb-3 option">
                  <h6> <label for="type">타닌</label></h6><hr>
-                    <input type="radio" name="w_tannins" value="1" required>1 
-					<input type="radio" name="w_tannins" value="2">2 
-					<input type="radio" name="w_tannins" value="3">3 
-					<input type="radio" name="w_tannins" value="4">4 
+                    <input type="radio" name="w_tannins" value="1" required>1  &nbsp;&nbsp;
+					<input type="radio" name="w_tannins" value="2">2  &nbsp;&nbsp;
+					<input type="radio" name="w_tannins" value="3">3  &nbsp;&nbsp;
+					<input type="radio" name="w_tannins" value="4">4  &nbsp;&nbsp;
 					<input type="radio" name="w_tannins" value="5">5 <br>
                </div>
                
 				<div class="mb-3">
                   <label for="w_info">소개글 입력란</label>
-                  <textarea name="w_info" id="w_info" rows="10" style="width:100%; margin-top:10px; resize:none;" placeholder="작성할 내용을 입력하세요."></textarea> 
+                  <textarea class="w_info" name="w_info" id="w_info" rows="10" style="width:100%; margin-top:10px; resize:none;" placeholder="작성할 내용을 입력하세요."></textarea> 
                </div>
                </div>
            </div>
-               <button class="btn btn-lg btn-block" type="submit"
+               <button class="btn btn-lg btn-block"  type="submit"  style="background-color:#FCA5A5"
                   >등록 완료</button>
            
           </form>

@@ -273,35 +273,38 @@ function checkOnlyOne(element) {
 					<table class="goods_subject_table">
 						<colgroup>
 							<col width="15%">
-							<col width="45%">
-							<col width="40%">
+							<col id = "nametable">
+							<col width="13%">
+							<col width="13%">
+							<col width="13%">
 						</colgroup>
 						<tbody>
 							<tr>
-								<th>이미지</th>
+								<th></th>
 								<th>상품 정보</th>
 								<th>판매가</th>
+								<th>갯수</th>
+								<th>총 금액</th>
 							</tr>
 						</tbody>
 					</table>
 					<table class="goods_table">
 						<colgroup>
 							<col width="15%">
-							<col width="45%">
-							<col width="40%">
+							<col id = "nametable">
+							<col width="13%">
+							<col width="13%">
+							<col width="13%">
 						</colgroup>					
 						<tbody>
 							<c:forEach items="${product}" var="ol">
 								<tr>
 									<td>
-<%-- 										<div class="image_wrap" data-bookid="${ol.imageList[0].bookId}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-filename="${ol.imageList[0].fileName}"> --%>
-<!-- 											<img> -->
-<!-- 										</div> -->
+
 									</td>
 									<td>${ol.w_nm_k}</td>
 									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" /> | 수량 ${ol.ord_quan}개
-										<br><fmt:formatNumber value="${ol.w_price*ol.ord_quan}" pattern="#,### 원" />
+										<fmt:formatNumber value="${ol.w_price}" pattern="#,### 원" />  
 										
 										<input type="hidden" class="individual_bookPrice_input" value="${ol.w_price}">
 										<input type="hidden" class="individual_bookCount_input" value="${ol.ord_quan}">
@@ -310,6 +313,8 @@ function checkOnlyOne(element) {
 										<input type="hidden" class="individual_bookId_input" value="${ol.w_no}">
 										<input type="hidden" name = "w_no" class="w_no" value="${ol.w_no}">
 									</td>
+									<td>수량 ${ol.ord_quan}개</td>
+									<td><fmt:formatNumber value="${ol.w_price*ol.ord_quan}" pattern="#,### 원" /></td>
 								</tr>							
 								
 								
@@ -441,6 +446,7 @@ $("#check_module").click(function () {
 	$('#amount').val(finalTotalPrice);
 	console.log($('#amount').val());
 	console.log(finalTotalPrice);
+	
 	$(".addressInfo_input_div").each(function(i, obj){
 		if($(obj).find(".selectAddress").val() == 'T'){
 			m_address = $(obj).find(".m_add").val();
@@ -453,6 +459,15 @@ $("#check_module").click(function () {
 		}
 	});	
 	
+	if(m_address == undefined){
+	   	swal({
+      	  title: "등록된 주소가 없습니다.",
+      	  text: "",
+      	  icon: "error",
+      	  button: "닫기",
+      	});
+		return false;
+	}
 	console.log(m_address);
 	console.log(phone);
 	console.log(postcode[0]);

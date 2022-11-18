@@ -8,6 +8,10 @@
 a {
 	text-decoration: none;
 }
+
+#mobiletable{
+	display: none;
+}
 /* 화면 전체 렙 */
 .wrapper {
 	width: 100%;
@@ -550,7 +554,10 @@ td {
 	.total_wrap td {
 		width: -10%;
 	}
-
+	.mobileform{
+	display: inline-block;
+	}
+	
 	/* 구독 */
 	.total_info_div {
 		FONT-VARIANT: JIS90;
@@ -561,4 +568,11 @@ td {
 		border: 1px solid #333;
 		border-top-width: 2px;
 	}
+	#pctable{
+	display: none;
+	}
+	#mobiletable{
+	display: block;
+	}
+
 }

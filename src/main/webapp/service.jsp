@@ -3,24 +3,39 @@
 <html>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <head>
 <title>이용약관</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+.checkbox_group{
+	margin: 15px;
+}
+p{
+margin-top: 15px;
+}
+</style>
 </head>
 <body>
+
 <div class="checkbox_group">
  <h2 align="center">회원가입을 환영합니다.</h2><br/><br/>
   <tr>
-   <td align="left"><font size="2">이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두 동의합니다.</font></td>
+   <td align="left">이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두 동의합니다.</td>
    <td> 
    <input type="checkbox" id="check_all" name = "all">
   <label for="check_all">전체 동의</label>
   </td><hr/>
   </tr>
  <div id="accordion">
-   <h3> <input type="checkbox" id="check_1" class="normal" >
+   <p> <input type="checkbox" id="check_1" class="normal" >
   <label for="check_1">개인정보 처리방침 동의</label><strong>(필수)</strong></span>
 </label>
-</h3>
+</p>
    <td><textarea readonly="readonly" rows="5" cols="66">
 제 1 조 (목적)
 
@@ -38,9 +53,9 @@
 ⑥"포인트"라 함은 서비스의 효율적 이용을 위해 회사가 임의로 책정 또는 지급, 조정할 수 있는 재산적 가치가 없는 "서비스" 상의 가상 데이터를 의미합니다.
 ⑦"게시물"이라 함은 "회원"이 "서비스"를 이용함에 있어 "서비스상"에 게시한 부호ㆍ문자ㆍ음성ㆍ음향ㆍ화상ㆍ동영상 등의 정보 형태의 글, 사진, 동영상 및 각종 파일과 링크 등을 의미합니다. 
    </textarea>
-   <h3>  <input type="checkbox" id="check_2" class="normal" >
+   <p>  <input type="checkbox" id="check_2" class="normal" >
   <label for="check_2">서비스 이용약관 동의</label><strong>(필수)</strong></span>
-</label></h3>
+</label></p>
    <div>
      <textarea readonly="readonly" rows="5" cols="66">
 
@@ -53,8 +68,8 @@
  
    </textarea>
    </div>
-   <h3>  <input type="checkbox" id="check_3" class="normal" >
-  <label for="check_3">마케팅 수신 동의</label><strong>(필수)</strong></h3>
+   <p>  <input type="checkbox" id="check_3" class="normal" >
+  <label for="check_3">마케팅 수신 동의</label><strong>(필수)</strong></p>
    <div>
      <textarea readonly="readonly" rows="5" cols="66">
 
@@ -86,7 +101,7 @@
 </label><hr/>
   </tr>
 </div>
-<button id="sumbitcheck">확인</button>
+<button class="btn btn-dark" id="sumbitcheck">확인</button>
 <script>
 //체크박스 전체 선택
 $(".checkbox_group").on("click", "#check_all", function () {

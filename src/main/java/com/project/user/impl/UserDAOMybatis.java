@@ -16,14 +16,7 @@ public class UserDAOMybatis {
 	SqlSessionTemplate mybatis;
 
 	public UserVO getUser(UserVO vo) {
-		System.out.println("마이바티스 getUser 실행");
 
-		// Object[] args = {vo.getId(), vo.getPassword()};
-		// try {
-		// return jdbcTemplate.queryForObject(USER_GET, new UserRowMapper(),args);
-		// }catch(EmptyResultDataAccessException e) {
-		// return null;
-		// }
 		return mybatis.selectOne("UserDAO.getUser", vo);
 
 	}
@@ -33,7 +26,6 @@ public class UserDAOMybatis {
 
 	public List<UserVO> getUserList(UserVO vo) {
 		
-		System.out.println("유저 마이 바티스 실행");
 		List<UserVO> a = mybatis.selectList("UserDAO.getUserList");
 		for(UserVO v : a ) {
 			System.out.println("v: "+v);
@@ -70,14 +62,12 @@ public class UserDAOMybatis {
 	
 	//아이디 체크
 	public int checkUser(String id) {
-		System.out.println("아이디 체크 실행");
 		return mybatis.selectOne("UserDAO.checkUser", id);
 	}
 	
 	
 	//구독 level 
 	public int getUser1(UserVO vo) {
-		System.out.println("마이바티스 getUser1 실행");
 		return mybatis.selectOne("UserDAO.getUser1", vo);
 	}
 	//구독 취소 
