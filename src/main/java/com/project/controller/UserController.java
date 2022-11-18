@@ -252,8 +252,9 @@ public class UserController {
 	@RequestMapping("deleteUser.wp")
 	public String deleteUser(UserVO vo, HttpSession session) {
 		
-		vo.setId((String)session.getAttribute("name"));
-		userService.deleteUser(vo);
+		vo.setId((String)session.getAttribute("userID"));
+		userService.secessionUser(vo);
+		session.invalidate();
 		return "redirect:/";
 		
 	}

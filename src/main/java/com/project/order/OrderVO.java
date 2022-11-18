@@ -18,10 +18,13 @@ public class OrderVO {
 	private String ord_phone;
 	private String ord_memo;
 	private int w_noList[];
+	private String w_image1;
 	private String w_no;
 	private String w_nm_k;
 	private String w_nm_e;
 	private String merchant_uid;
+	
+	
 	
 	
 	
@@ -32,9 +35,18 @@ public class OrderVO {
 				+ ", pay_stat=" + pay_stat + ", cs_stat=" + cs_stat + ", prod_price=" + prod_price + ", prod_p_price="
 				+ prod_p_price + ", deli_price=" + deli_price + ", ord_t_price=" + ord_t_price + ", ord_addr="
 				+ ord_addr + ", ord_phone=" + ord_phone + ", ord_memo=" + ord_memo + ", w_noList="
-				+ Arrays.toString(w_noList) + ", w_no=" + w_no + ", w_nm_k=" + w_nm_k + ", w_nm_e=" + w_nm_e
-				+ ", merchant_uid=" + merchant_uid + "]";
+				+ Arrays.toString(w_noList) + ", w_image1=" + w_image1 + ", w_no=" + w_no + ", w_nm_k=" + w_nm_k
+				+ ", w_nm_e=" + w_nm_e + ", merchant_uid=" + merchant_uid + "]";
 	}
+
+	public String getW_image1() {
+		return w_image1;
+	}
+
+	public void setW_image1(String w_image1) {
+		this.w_image1 = w_image1;
+	}
+
 	public String getMerchant_uid() {
 		return merchant_uid;
 	}

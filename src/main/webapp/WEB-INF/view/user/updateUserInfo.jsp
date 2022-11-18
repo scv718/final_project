@@ -133,6 +133,8 @@ $('#update').click(function() {
 	  var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 	  var idCheck = /^[a-zA-Z0-9_!?@]{4,11}$/;
 		
+	  var pas = '${vo.m_pw}';
+	  
 	  
 	  if (uid.value == "") { 
 	    alert("아이디를 입력하세요.");
@@ -177,6 +179,7 @@ $('#update').click(function() {
 	    repwd.focus();
 	    return false;
 	  };
+	
 
 	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
 
@@ -299,10 +302,10 @@ $("#check").on("click", function() {
 				<label class="form-label">아이디 </label> <input class="form-control"
 					id="id" name="id" value="${vo.id}" disabled="disabled"> <label
 					class="form-label">비밀번호 </label> <input type="password"
-					class="form-control" id="m_pw" name="m_pw" value="${vo.m_pw}">
+					class="form-control" id="m_pw" name="m_pw" value="">
 				<label class="form-label">비밀번호 확인 </label> <input type="password"
 					class="form-control" id="repassword" name="repassword"
-					value="${vo.m_pw}"> <label class="form-label">휴대폰 </label>
+					value=""> <label class="form-label">휴대폰 </label>
 				<input type="tel" class="form-control" id="m_phone" name="m_phone"
 					value="${vo.m_phone}">
 				<button type="button" class="btn" id="phoneCertification">휴대폰

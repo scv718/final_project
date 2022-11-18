@@ -267,7 +267,8 @@
 
       	 }
       	
-    }</script>
+    }
+    </script>
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminSalesdelivery.wp">전체목록</a>

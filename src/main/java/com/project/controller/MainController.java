@@ -21,6 +21,14 @@ public class MainController {
 	ReviewService reviewService;
 	@Autowired
 	NoticeService noticeService;
+	
+	@RequestMapping(value = {"/error.wp"})
+	public String error() {
+		
+		return "WEB-INF/view/error/errorPage404.jsp";
+	}
+	
+	
 	@RequestMapping(value = {"/", "/index.wp"})
 	public String index(Model model, MenuVO vo, NoticeVO nvo, ReviewVO rvo) {
 		

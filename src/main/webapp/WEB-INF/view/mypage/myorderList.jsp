@@ -36,9 +36,12 @@
             <div class = "col-lg-12 col-sm-6">
             <table class="subject_table">
           		  <colgroup>
+          		  						<col id ="orderbtn" />
 										<col id = "ordername" />
 										<col id = "orderstatus"/>
+										<col id = "orderstatus"/>
 										<col id = "orderprice" />
+										<col id ="orderbtn" />
 										<col id ="orderbtn" />
 									</colgroup>
                <caption>표 제목 부분</caption>
@@ -46,63 +49,92 @@
 
                   <tr>
 <!--                      <th class="td_width_1"></th> -->
+                     <th >이미지</th>
                      <th >상품명</th>
                      <th >배송현황</th>
+                     <th >주문상태</th>
                      <th >가격</th>
                      <th >삭제</th>
+                     <th >리뷰</th>
                   </tr>
                </tbody>
     
                <caption>표 내용 부분</caption>
                <tbody>
-                  <c:forEach items="${cartInfo}" var="ci">
+                  <c:forEach items="${cartInfo}" var="ci" varStatus="status"> 
                      <tr>
-<!--                         <td class="td_width_1 cart_info_td"> -->
-<!--                            <input type="checkbox" name = "product_check" class="individual_cart_checkbox input_size_20" checked="checked"> -->
-<%-- <%--                       	   <input type="hidden" name = "id" value="${ci.id}"/> --%> 
-<!--                         </td> -->
-
-<%--   <div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].W_IMAGE1}"> --%>
-<!--                               <img></div>                         -->
-<!--                         </td> -->
-<%-- 						<c:forEach items="${product}" var="product"> --%>
+						<td id = "image_wrap"><img id ="w_image1" src = "${pageContext.request.contextPath}/resources/img/wine/${product[status.index].w_image1}"></td>
                         <td onclick="location.href='product.wp?w_no=${ci.w_no}';" style="text-align: center; cursor:pointer;">${ci.w_nm_k}</td>
-<%--                         </c:forEach> --%>
                         <td  style = "text-align: center">${ci.ord_stat}</td>
+                        <td  style = "text-align: center">${ci.cs_stat}</td>
                         <td  style = "text-align: center">
                           <fmt:formatNumber value="${ci.ord_t_price}" pattern="#,### 원" /><br>
                         </td>
   
-                        <td >
-                      
-                      	<c:if test="${ci.cs_stat ne '취소'}">
-                      	    <form id = "cancel_module" method="post">
+                       <td>
+                      <c:if test = '${ci.cs_stat ne "취소"}'>
+                      <c:choose>
+                      <c:when test ='${ci.ord_stat eq "배송준비중"}'>
+                      <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
                            <button type="button" class="btn-hover color-9"  id="delete_btn">주문취소</button>
-                           </form>
-                      	</c:if>
-                       
-                           
+                       </form> 	
+                      </c:when>                
+                      <c:when test='${ci.cs_stat ne "취소요청"}'>
+                      	 <input type = "hidden" id = "cs_stat${ci.ord_code}" value = "취소요청">
+                     	 <input type = "hidden" id = "ord_stat${ci.ord_code}" value = "${ci.ord_stat}">
+                      	  <button type="button" class="btn-hover color-9"  onclick="{updateOrder('${ci.ord_code}')}">취소요청</button>               
+                      </c:when>
+                      <c:otherwise>                    
+                      </c:otherwise>
+                       </c:choose>
+                      </c:if>
                            <form action="deleteOrder.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${ci.ord_code}">
                            <button  type="submit" class="btn-hover color-9" id="delete_btn">내역삭제</button>
                            </form>
+                           
+                          
                         </td>
+                        
+                       <td>
+                      <button type="button" class="btn-hover color-9"  onclick="location.href = 'product.wp?w_no=${ci.w_no}#reviewdiv'">리뷰쓰기</button>
+                     </td>
                      </tr>
+                 
+                
+                
                   </c:forEach>
+                
                </tbody>
             </table>
                 </div>
                 </div>
             </div>
          </div>
-         
-     
      </div>
    </div>   <!-- class="wrap" -->
 </div>   <!-- class="wrapper" -->
 <script type="text/javascript">
+function updateOrder(val){
+	
+	var ord_code = val;
+  	var cs_stat = '취소요청';
+  	var ord_stat =  $('#ord_stat'+ord_code).val();
+
+  	console.log(ord_code);
+  	console.log(cs_stat);
+  	console.log(ord_stat);
+  	 if (confirm("이미 배송중입니다 취소요청 하시겠습니까?") == true){    //확인
+
+  		location.href = 'cancleorderrequest.wp?ord_code='+ord_code+'&cs_stat='+cs_stat+'&ord_stat='+ord_stat;
+
+  	 }else{  
+  	     return false;
+  	 }
+}
+
 $("#cancel_module").click(function () {
 	$.ajax({
 		url : "paycan.wp",

@@ -168,10 +168,10 @@ $('.slider-1 > .side-btns > div').click(function(){
     </div>
     <div class="side-btns">
         <div>
-            <span><i class="fas fa-angle-left"></i></span>
+            <span><i class="xi-angle-left-min"></i></span>
         </div>
         <div>
-            <span><i class="fas fa-angle-right"></i></span>
+            <span><i class="xi-angle-right-min"></i></span>
         </div>
     </div>
 </div>
@@ -298,12 +298,12 @@ $('.WaterBtn').on('click', function () {
         <div></div>
         <div></div>
     </div>
-    <div class="side-btns">
+        <div class="side-btns">
         <div>
-            <span><i class="fas fa-angle-left"></i></span>
+            <span><i class="xi-angle-left-min"></i></span>
         </div>
         <div>
-            <span><i class="fas fa-angle-right"></i></span>
+            <span><i class="xi-angle-right-min"></i></span>
         </div>
     </div>
 </div>
@@ -384,12 +384,12 @@ $('.WaterBtn').on('click', function () {
         <div></div>
         </c:forEach>
     </div>
-    <div class="side-btns" style = "display : none">
+       <div class="side-btns" style = "display: none">
         <div>
-            <span><i class="fas fa-angle-left"></i></span>
+            <span><i class="xi-angle-left-min"></i></span>
         </div>
         <div>
-            <span><i class="fas fa-angle-right"></i></span>
+            <span><i class="xi-angle-right-min"></i></span>
         </div>
     </div>
 </div>
@@ -419,9 +419,10 @@ $( document ).ready(function() {
  	    });
     }
 });
-setInterval(function(){
-    $('.slider-3 > .side-btns > div').eq(1).click();
-}, 5000);
+
+// setInterval(function(){
+//     $('.slider-3 > .side-btns > div').eq(1).click();
+// }, 5000);
 
 $(document).on('click', '.slider-3 > .page-btns > div', function(){
     var $this = $(this);
@@ -465,7 +466,6 @@ $(document).on('click', ' .slider-3 > .side-btns > div',function(){
             $post = $slider.find(' > .page-btns > div:first-child');
         }
     };
-    
     $post.click();
 });
 

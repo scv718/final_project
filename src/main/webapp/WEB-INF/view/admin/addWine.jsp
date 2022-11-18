@@ -99,20 +99,27 @@
 	top:1px;
 }
 
+div.all {
+        width: 100%;
+         display: flex;
+    
+    
+    }
 
     div.left {
         width: 50%;
-        float: center;
-        box-sizing: border-box;
-        
+        margin:5px;
+        border-right : solid 1px; color:gray; padding-left:5px;
     
     }
     div.right {
         width: 50%;
-        float: center;
-        box-sizing: border-box;
-        
+           margin:5px;
     }
+
+.option hr{
+  margin:5px;
+}
 
 </style>
 <body>
@@ -203,11 +210,11 @@
             </nav>
             
 			
-
-         <div class="input-form col-md-12 mx-auto"  style="width: 100%;">
-            <h4 class="mb-3 add">와인 등록</h4>
+   <form action="insertWine.wp" method="post" enctype="multipart/form-data">
+         <h4 class="mb-3 add">와인 등록</h4>
+         <div class="input-form col-md-12 mx-auto all"  style="width: 100%;">
+        
             <br>
-            <form action="insertWine.wp" method="post" enctype="multipart/form-data">
             <div class="left" >
                <div class="mb-3">
                   <label for="w_nm_k">와인명(한)</label> <input type="text"
@@ -243,7 +250,11 @@
                   <label for="w_price">가격 설정</label> <input type="number"
                      class="form-control addb-input" id="w_price" name="w_price" required>
                </div>
-               
+               <div class="mb-3">
+                  <label for="uploadFile"> 파일 첨부 </label>
+					<input name="uploadFile" type="file"
+						 id="uploadFile" multiple="multiple" required="required" />
+               </div>
                </div>
                  <div class="right">
 				    <div class="mb-3 option">
@@ -287,19 +298,19 @@
 					<input type="radio" name="w_tannins" value="4">4 
 					<input type="radio" name="w_tannins" value="5">5 <br>
                </div>
-					   
-				 <div class="mb-3">
-                  <label for="uploadFile"> 파일 첨부 </label>
-					<input name="uploadFile" type="file"
-						 id="uploadFile" multiple="multiple" required="required" />
+               
+				<div class="mb-3">
+                  <label for="w_info">소개글 입력란</label>
+                  <textarea name="w_info" id="w_info" rows="10" style="width:100%; margin-top:10px; resize:none;" placeholder="작성할 내용을 입력하세요."></textarea> 
                </div>
                </div>
-           
+           </div>
                <button class="btn btn-lg btn-block" type="submit"
                   >등록 완료</button>
-            </form>
-         </div>
+           
+          </form>
 </div>
+
 </div>
 
 </body>
