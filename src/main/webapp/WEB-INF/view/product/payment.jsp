@@ -411,10 +411,9 @@ $(document).ready(function(){
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
-		// 배송비
-
+	let deliveryPrice = 0;	// 배송비
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
-	let deliveryPrice = 0;
+	
 
 	// 총 가격
 	$(".totalPrice_span").text(totalPrice.toLocaleString());
@@ -434,8 +433,7 @@ $(document).ready(function(){
 		totalCount += parseInt($(element).find(".individual_bookCount_input").val());
 		// 총 종류
 		totalKind += 1;  
-		console.log(deliveryPrice +"배송비 + 1");
-		console.log(finalTotalPrice);
+
 		// 총합
 		finalTotalPrice = totalPrice;
 		finalTotalPrice += parseInt($(element).find(".finalTotalPrice_span").val());		
@@ -464,7 +462,16 @@ $("#check_module").click(function () {
 	var postcode;
 	var phone;
 	
+	let deliveryPrice = 0;
+	var level = "${level.level}";
+	if(level == 0){
+		deliveryPrice = 2500;
+	} else {
+		deliveryPrice = 0;	
+	}
+	finalTotalPrice += deliveryPrice;
 	
+	console.log(level);
 	$('#amount').val(finalTotalPrice);
 	console.log($('#amount').val());
 	console.log(finalTotalPrice);
@@ -675,12 +682,12 @@ function execution_daum_address(){
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
 	
-	let deliveryPrice = 0;		
+			
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
-	
+	let deliveryPrice = 0;
 	var level = "${level.level}";
 	if(level == 0){
 		deliveryPrice = 2500;
@@ -698,7 +705,7 @@ function setTotalInfo(){
 		totalKind += 1; 	
 		
 		finalTotalPrice = totalPrice + deliveryPrice;
-		console.log(deliveryPrice +"배송비");
+		console.log(deliveryPrice +"배송비");console.log(finalTotalPrice +"최종 가격");
 	});	
 
 	

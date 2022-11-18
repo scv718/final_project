@@ -1,9 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/mysubscribe..css">
 <title>구독 확인 취향 설정</title>
@@ -17,6 +20,7 @@
 			<div class="listContainer">
 				<div class="mb-3 mt-3">
 					<div class="text"><div class="greenContainer">
+
 						<c:choose>
 							<c:when test='${userID ne NULL}'>
 								<div class="name">${userName}님의 구독 설정</div>
@@ -39,6 +43,15 @@
 						</c:if>
 						<c:if test="${mylevel eq 3}">
 							<div class="name">등급 : 와인 마스터</div>
+						</c:if>
+					</c:if>
+					<c:if test="${date.sub_date ne null}">
+						<c:if test='${date.sub_date ne zer}'>
+						<input name='sub_date' type='hidden' value='${date.sub_date}'>
+						<input name='e_date' type='hidden' value='${date.e_date}'>
+						<div id="D_day">구독 시작일 : ${date.sub_date}</div>
+						<div id="D_day">구독 종료일 : ${date.e_date}</div>
+<!-- 							<div id="D_day">구독 D-<p class="remain-time"id="remain-time"></p></div> -->
 						</c:if>
 					</c:if>
 				</div>
@@ -75,6 +88,8 @@ function test() {
 		}
 	   	
 }
+
+
 </script>
 <%@ include file="/footer.jsp"%>
 </body>

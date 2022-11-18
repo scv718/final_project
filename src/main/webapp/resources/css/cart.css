@@ -532,13 +532,15 @@ td {
     margin: 22px;
     padding: 22px;
 }
-.quantity_input {border-left: 0px;  color: #3a60df;
-
-left: 10px;
+.quantity_input {
+		border-left: 0px;
+		color: #3a60df;
+		left: 10px;
     top: 5px;
     width: 32px;
-    height: 28px;}
+    height: 32px;}
 .quantity_btn {
+    height: 32px;
 /*     border-bottom: 0px; */
     left: -21px;
     top: 5px;}
@@ -621,7 +623,7 @@ left: 10px;
 		font-size: 17px;
 	}
 	#text_cen input {
-		font-size: 1px;
+		font-size: 17px;
 	}
 	#cp12 {
 /* 		max-width: 147%; */

@@ -83,7 +83,8 @@ public class BoardController {
 		System.out.println("와인번호:"+w_no+", 회원id:"+vo.getId());
 		
 //		vo.setId((String)session.getAttribute("userID"));
-		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+//		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\review\\";
 		try {
 			// 파일이 있을때 탄다.
 			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
@@ -103,7 +104,7 @@ public class BoardController {
 				    	vo.setRe_photo3(savedFileName);
 				    }
 				    index++;
-					File targetFile = new File(realPath + savedFileName);	
+					File targetFile = new File(path + savedFileName);	
 
 					try {
 						InputStream fileStream = file.getInputStream();
@@ -147,9 +148,11 @@ public class BoardController {
 	// 리뷰수정
 	@ResponseBody
 	@RequestMapping(value = "/updateReview.wp", method = RequestMethod.POST)
-	public int updateReview(@RequestParam("article_file") List<MultipartFile> multipartFile, HttpServletRequest request, ReviewVO vo) {
+	public int updateReview(@RequestParam("article_file") List<MultipartFile> multipartFile, HttpServletRequest request, ReviewVO vo, HttpSession session) {
 		
-		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+//		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\review\\";
+		System.out.println("톰캣경로"+path);
 //		String re_no = request.getParameter("re_no");
 		int re_no = vo.getRe_no();
 		System.out.println("리뷰번호"+re_no);
@@ -175,7 +178,7 @@ public class BoardController {
 				    	vo.setRe_photo3(savedFileName);
 				    }
 				    index++;
-					File targetFile = new File(realPath + savedFileName);	
+					File targetFile = new File(path + savedFileName);	
 
 					try {
 						InputStream fileStream = file.getInputStream();
@@ -207,21 +210,22 @@ public class BoardController {
 	// 리뷰삭제
 	@RequestMapping("/deleteReview.wp")
 	public void deleteReview(ReviewVO vo, HttpSession session) {
-	String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+//	String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/review/";
+	String path = session.getServletContext().getRealPath("/")+"resources\\img\\review\\";
 	File targetFile = null;
 		vo = reviewService.detailReview(vo);
 			if(vo.getRe_photo1() != null) {
-				targetFile = new File(realPath + vo.getRe_photo1());
+				targetFile = new File(path + vo.getRe_photo1());
 				targetFile.delete();
-				System.out.println("파일1삭제: " + realPath + vo.getRe_photo1());
+				System.out.println("파일1삭제: " + path + vo.getRe_photo1());
 			} else if(vo.getRe_photo2() != null) {
-				targetFile = new File(realPath + vo.getRe_photo2());
+				targetFile = new File(path + vo.getRe_photo2());
 				targetFile.delete();
-				System.out.println("파일2삭제: " + realPath + vo.getRe_photo2());
+				System.out.println("파일2삭제: " + path + vo.getRe_photo2());
 			} else if(vo.getRe_photo3() != null) {
-				targetFile = new File(realPath + vo.getRe_photo3());
+				targetFile = new File(path + vo.getRe_photo3());
 				targetFile.delete();
-				System.out.println("파일3삭제: " + realPath + vo.getRe_photo3());
+				System.out.println("파일3삭제: " + path + vo.getRe_photo3());
 			}
 			reviewService.deleteReview(vo);
 			setRating(vo.getW_no());

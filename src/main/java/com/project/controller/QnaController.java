@@ -52,7 +52,8 @@ public class QnaController {
 	public int insertQna(@RequestParam("article_file") List<MultipartFile> multipartFile, HttpServletRequest request,
 			CommunityVO vo, HttpSession session) {
 
-		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+//		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\qna\\";
 		int commu_no = vo.getCommu_no();
 		System.out.println("vo: " + vo);
 		try {
@@ -74,7 +75,7 @@ public class QnaController {
 						vo.setCommu_photo3(savedFileName);
 					}
 					index++;
-					File targetFile = new File(realPath + savedFileName);
+					File targetFile = new File(path + savedFileName);
 
 					try {
 						InputStream fileStream = file.getInputStream();
@@ -111,7 +112,8 @@ public class QnaController {
 	public int updateQna(@RequestParam("article_file") List<MultipartFile> multipartFile, HttpServletRequest request,
 			@ModelAttribute("community") CommunityVO vo, HttpSession session) {
 
-		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+//		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\qna\\";
 		int commu_no = vo.getCommu_no();
 		System.out.println("vo: " + vo);
 		try {
@@ -132,7 +134,7 @@ public class QnaController {
 						vo.setCommu_photo3(savedFileName);
 					}
 					index++;
-					File targetFile = new File(realPath + savedFileName);
+					File targetFile = new File(path + savedFileName);
 
 					try {
 						InputStream fileStream = file.getInputStream();
@@ -160,22 +162,23 @@ public class QnaController {
 	// 1:1 문의 삭제 - 사용자
 	@RequestMapping("/deleteQna.wp")
 	public String deleteReview(CommunityVO vo, HttpSession session) {
-		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+//		String realPath = "c:/swork/final_Project/src/main/webapp/resources/img/qna/";
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\qna\\";
 		File targetFile = null;
 		vo = qnaService.getQna(vo);
 		if (vo.getId().equals(session.getAttribute("userID").toString())) {
 			if (vo.getCommu_photo1() != null) {
-				targetFile = new File(realPath + vo.getCommu_photo1());
+				targetFile = new File(path + vo.getCommu_photo1());
 				targetFile.delete();
-				System.out.println("파일1삭제: " + realPath + vo.getCommu_photo1());
+				System.out.println("파일1삭제: " + path + vo.getCommu_photo1());
 			} else if (vo.getCommu_photo2() != null) {
-				targetFile = new File(realPath + vo.getCommu_photo2());
+				targetFile = new File(path + vo.getCommu_photo2());
 				targetFile.delete();
-				System.out.println("파일2삭제: " + realPath + vo.getCommu_photo2());
+				System.out.println("파일2삭제: " + path + vo.getCommu_photo2());
 			} else if (vo.getCommu_photo3() != null) {
-				targetFile = new File(realPath + vo.getCommu_photo3());
+				targetFile = new File(path + vo.getCommu_photo3());
 				targetFile.delete();
-				System.out.println("파일3삭제: " + realPath + vo.getCommu_photo3());
+				System.out.println("파일3삭제: " + path + vo.getCommu_photo3());
 			}
 			qnaService.deleteQna(vo);
 			return "getQnaList.wp";

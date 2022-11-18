@@ -1,4 +1,8 @@
 package com.project.controller;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -43,11 +47,8 @@ public class SubscribeController {
 		svo.setId((String) session.getAttribute("userID"));
 		if(uvo.getId() != null){
 		model.addAttribute("user", userSerivce.getUser(uvo));
-		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+		
 		}
-		
-		
-	
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 
@@ -74,14 +75,22 @@ public class SubscribeController {
 
 	// 마이페이지 구독 조회
 	@RequestMapping("/mysubscribe.wp")
-	public String getSubscribe(SubscribeVO vo, HttpSession session, Model model) {
+	public String getSubscribe(SubscribeVO vo, HttpSession session, Model model) throws ParseException {
 		System.out.println("구독/취향 설정");
 		String id = (String) session.getAttribute("userID");
 		vo.setId(id);
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
+		model.addAttribute("date", subscribeService.getLevel(vo));
+	
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String zer = "0000-00-00";
+		System.out.println(subscribeService.getLevel(vo) + "date");
+		model.addAttribute("zer", zer);
 		if (id == null) {
-			return "signUp.wp";
+			return "signUp.wp"; 
 		}
+		
+		
 		return "WEB-INF/view/mypage/mysubscribe.jsp";
 	}
 	

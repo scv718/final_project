@@ -20,6 +20,8 @@ import com.project.cart.CartService;
 import com.project.cart.CartVO;
 import com.project.order.OrderService;
 import com.project.order.OrderVO;
+import com.project.subscribe.SubscribeService;
+import com.project.subscribe.SubscribeVO;
 import com.project.user.AddressService;
 import com.project.user.AddressVO;
 import com.project.user.UserService;
@@ -42,6 +44,8 @@ public class PaymentController {
 	UserService userSerivce;
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	SubscribeService subscribeService;
 	
 	@RequestMapping("cancleOrder.wp")
 	public String cancleOrder(OrderVO ovo ,  HttpSession session) {
@@ -86,11 +90,14 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("payment.wp")
-	public String payment(AddressVO avo, CartVO voList,WineVO vo, Model model, UserVO uvo, HttpSession session, HttpServletRequest req) {
+	public String payment(AddressVO avo, SubscribeVO svo,CartVO voList,WineVO vo, Model model, UserVO uvo, HttpSession session, HttpServletRequest req) {
 		
 		System.out.println("상품 결제 이동");
 		System.out.println(voList.toString());
 		uvo.setId((String) session.getAttribute("userID"));
+		svo.setId(uvo.getId());
+		model.addAttribute("level",subscribeService.getLevel(svo));
+		
 		List<CartVO> listVo = new ArrayList();
 		model.addAttribute("user", userSerivce.getUser(uvo));
 		voList.setId(uvo.getId());
