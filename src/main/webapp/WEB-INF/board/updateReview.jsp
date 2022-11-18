@@ -33,7 +33,7 @@ dt {
 			<div id="reviewcontent">
 				<div id="review-top">
 					<input type="hidden" id="re_no" name="re_no" value="${detailReview.re_no}">
-					<input type="hidden" id="re_photo1" name="re_photo1" value="${detailReview.re_photo1}">
+<%-- 					<input type="hidden" id="re_photo1" name="re_photo1" value="${detailReview.re_photo1}"> --%>
 					<h5>
 						<input type="text" name="re_title" id="updatetitle" placeholder="제목" value="${detailReview.re_title}">
 					</h5>
@@ -58,24 +58,24 @@ dt {
 					<span style="font-size:14px; color: gray;">※파일은 최대 3개까지 등록 가능합니다.</span>
 					
 					<div class="data_file_txt" id="data_file_txt">
-						<div id="existingFile" style="margin-right: 20px; float:left;">
-							<c:if test="${detailReview.re_photo1 ne NULL}">
-								<div id="exfile1" onclick="exfileDelete('exfile1')">
+<!-- 						<div id="existingFile" style="margin-right: 20px; float:left;"> -->
+<%-- 							<c:if test="${detailReview.re_photo1 ne NULL}"> --%>
+<!-- 								<div id="exfile1" onclick="exfileDelete('exfile1')"> -->
 <%-- 									<font style="font-size:12px">${detailReview.re_photo1}</font> --%>
 	<!-- 								<img src="마이너스사진" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"> -->
-									<img src="${pageContext.request.contextPath}/resources/img/review/${detailReview.re_photo1}" title="${detailReview.re_photo1}" style="width:80px; height:80px;">
-									<img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn">
-								</div>
-								<c:if test="${detailReview.re_photo2 ne NULL}">
-									<div id="exfile2" onclick="exfileDelete(exfile2)">
+<%-- 									<img src="${pageContext.request.contextPath}/resources/img/review/${detailReview.re_photo1}" title="${detailReview.re_photo1}" style="width:80px; height:80px;"> --%>
+<!-- 									<img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn"> -->
+<!-- 								</div> -->
+<%-- 								<c:if test="${detailReview.re_photo2 ne NULL}"> --%>
+<!-- 									<div id="exfile2" onclick="exfileDelete(exfile2)"> -->
 <%-- 									<font style="font-size:12px">${detailReview.re_photo1}</font> --%>
 	<!-- 								<img src="마이너스사진" alt="삭제" style="width:15px; vertical-align: middle; cursor: pointer;"> -->
-										<img src="${pageContext.request.contextPath}/resources/img/review/${detailReview.re_photo2}" title="${detailReview.re_photo3}" style="width:80px; height:80px;">
-										<img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn">
-									</div>
-								</c:if>
-							</c:if>
-						</div>
+<%-- 										<img src="${pageContext.request.contextPath}/resources/img/review/${detailReview.re_photo2}" title="${detailReview.re_photo3}" style="width:80px; height:80px;"> --%>
+<!-- 										<img src="https://cdn-icons-png.flaticon.com/512/54/54373.png" alt="삭제" class="delBtn"> -->
+<!-- 									</div> -->
+<%-- 								</c:if> --%>
+<%-- 							</c:if> --%>
+<!-- 						</div> -->
 						<div id="articlefileChange" style="margin-top:10px; margin-right: 20px;"></div>
 					</div>
 				</div>
