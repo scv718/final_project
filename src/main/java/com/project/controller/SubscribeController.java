@@ -43,11 +43,8 @@ public class SubscribeController {
 		svo.setId((String) session.getAttribute("userID"));
 		if(uvo.getId() != null){
 		model.addAttribute("user", userSerivce.getUser(uvo));
-		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
+		
 		}
-		
-		
-	
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
 
@@ -83,9 +80,13 @@ public class SubscribeController {
 		String id = (String) session.getAttribute("userID");
 		vo.setId(id);
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
-
+		model.addAttribute("date", subscribeService.getLevel(vo));
+	
+	
+		System.out.println(subscribeService.getLevel(vo) + "date");
+		
 		if (id == null) {
-			return "signUp.wp";
+			return "signUp.wp"; 
 		}
 		return "WEB-INF/view/mypage/mysubscribe.jsp";
 	}

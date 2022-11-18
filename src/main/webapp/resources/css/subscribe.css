@@ -334,7 +334,8 @@ width: 96%;
 
 #aa h3 {
    line-height: 53px;
-   font-size: 18px;
+    font-size: 24px;
+    text-align: left;
 }
 
 .win {
@@ -348,7 +349,7 @@ width: 96%;
 }
 
 .win1 {
-   font-size: 29px;
+   font-size: 43px;
    text-shadow: -1px 0px #444433, 0px 1px white, 1px 0px white, 0px -1px
       black;
 }
@@ -452,9 +453,9 @@ width: 96%;
 #tople{
 /*    position: absolute; */
    top: 437%;left: 22%;}
-#fm {padding: 16%;
-    margin: 1%;
-        transform: translate(5px, 287%);}
+#fm {    padding: 1%;
+    margin: 6%;
+    transform: translate(1px, 565%);}
 #fm h1{font-size:20px}
 .cll1 {font-size: 14px;}#jb-wrap {display: none;}
 #foooooootetetetetet{position: relative;transform: translateY(720%);}
