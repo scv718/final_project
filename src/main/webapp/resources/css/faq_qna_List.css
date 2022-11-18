@@ -173,6 +173,10 @@ input{
  textarea:focus{
  	outline: none;
  }
+ 
+ .addr {
+ 	resize: none;
+ }
 
 /* 수정 삭제 아이콘정렬 */
 span.material-symbols-outlined {

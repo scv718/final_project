@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>1:1 문의 수정하기</title>
+<title>와이너리 | 1:1 문의</title>
  <%@ include file="../../../header.jsp"%>
 <script src="resources/js/qna_update_fileupload.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/qna.css" />

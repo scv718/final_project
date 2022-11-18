@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/faq_qna_List.css" />
-<title>1:1 문의 목록</title>
+<title>와이너리 | 1:1 문의</title>
 <%@ include file="../../../header.jsp"%>
 
 </head>
