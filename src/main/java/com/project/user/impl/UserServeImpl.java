@@ -43,7 +43,6 @@ public class UserServeImpl implements UserService{
 
 	@Override
 	public List<UserVO> getUserList(UserVO vo) {
-		System.out.println("유저서비스 임플까지 진행됨");
 		return userDAO.getUserList(vo);
 	}
 

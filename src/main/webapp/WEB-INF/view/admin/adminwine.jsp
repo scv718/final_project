@@ -1,4 +1,4 @@
-﻿
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -148,7 +148,6 @@
 						<li><a href="adminMain.wp">만든사람들(메인)</a></li>
 						<li><a href="adminUser.wp">회원관리</a></li>
 						<li><a href="adminWine.wp">와인관리</a></li>
-						<li><a href="admin_getIntro.wp">소개페이지관리</a></li>
 						<li><a href="adminStory.wp">와인이야기 페이지 관리</a></li>
 						<li><a href="adminSubscription.wp">구독관리</a></li>
 						<li><a href="adminSalesdelivery.wp">판매,배송관리</a></li>
@@ -156,16 +155,16 @@
 				<li><a href="#pageSubmenu" data-toggle="collapse"
 					aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
 					<ul class="collapse list-unstyled show" id="pageSubmenu">
-						<li><a href="admin_getNoticeList.wp">공지사항</a></li>
-						<li><a href="adminQna.wp">Q&A</a></li>
+						 <li>
+                            <a href="admin_getNoticeList.wp">공지사항</a>
+                        </li>
+                        <li>
+                            <a href="admin_getQnaList.wp">Q&A</a>
+                        </li>
 						<li><a href="adminReview.wp">리뷰</a></li>
 					</ul></li>
-
 			</ul>
-
-
 		</nav>
-
 		<!-- Page Content Holder -->
 		<div id="content">
 
@@ -189,13 +188,12 @@
 								href="adminMain.wp">관리자메인화면</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.wp">홈페이지메인이동</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="index.wp">로그아웃</a>
+							<li class="nav-item"><a class="nav-link" href="logout.wp">로그아웃</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
-
 			<div>
 				<h2 class="jumbotron" align="center">와인관리</h2>
 			</div>
@@ -204,22 +202,20 @@
 			<div class='btnSet' align="center">
 				<a class='myButton' href="adminWine.wp">전체목록</a> <a class='myButton'
 					href="addWine.wp">와인등록</a> <br>
-				<br>
 				<hr>
 			</div>
-
-			<table id="myTable" class="display table" style="width: 100%">
+			<table id="myTable" class="display table" style="width: 100%; border-radius:5px;">
 				<thead>
-					<tr style="background-color: #FCA5A5;" align="center">
-						<th>NO</th>
-						<th>와인명(한)</th>
-						<th>와인명(영)</th>
-						<th>원산지</th>
-						<th>생산년도</th>
-						<th>재고</th>
-						<th>가격</th>
-						<th>판매수량</th>
-						<th>수정<br>삭제
+					<tr style="background-color: #FCA5A5; vertical-align: middle;" align="center">
+						<th style="vertical-align: middle;">NO</th>
+						<th style="vertical-align: middle;">와인명(한)</th>
+						<th style="vertical-align: middle;">와인명(영)</th>
+						<th style="vertical-align: middle;">원산지</th>
+						<th style="vertical-align: middle;">생산년도</th>
+						<th style="vertical-align: middle;">재고</th>
+						<th style="vertical-align: middle;">가격</th>
+						<th style="vertical-align: middle;">판매수량</th>
+						<th style="vertical-align: middle;">수정<br>삭제
 						</th>
 					</tr>
 				</thead>

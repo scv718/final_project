@@ -101,7 +101,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "index.wp";
+		return "redirect:/";
 	}
 	
 	

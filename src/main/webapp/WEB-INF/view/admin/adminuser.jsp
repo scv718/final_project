@@ -1,4 +1,4 @@
-﻿	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -134,9 +134,6 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="admin_getIntro.wp">소개페이지관리</a>
-                        </li>
-                        <li>
                             <a href="adminStory.wp">와인이야기 페이지 관리</a>
                         </li>
                         <li>
@@ -150,11 +147,11 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                         <li>
+                        <li>
                             <a href="admin_getNoticeList.wp">공지사항</a>
                         </li>
                         <li>
-                            <a href="adminQna.wp">Q&A</a>
+                            <a href="admin_getQnaList.wp">Q&A</a>
                         </li>
                         <li>
                             <a href="adminReview.wp">리뷰</a>
@@ -191,7 +188,7 @@
                                 <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.wp">로그아웃</a>
+                                <a class="nav-link" href="logout.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>

@@ -39,11 +39,13 @@
 		<!-- 카테고리 필터 -->
 		<div id="aligndiv">
 		<form action="admin_getQnaList.wp" method="POST" id="align">
+	
 			<nav>
 <!--         <div id="horizontal-underline"></div> -->
 <!--         <span id="serched">자주찾는 검색어</span> -->
         <label><input type="radio" name="alignlist" value="waiting" id="zero" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'zero'}">checked</c:if>>답변대기&nbsp;│</label>
-        <label><input type="radio" name="alignlist" value="completed" id="one" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'one'}">checked</c:if>>답변완료&nbsp;</label>
+        <label><input type="radio" name="alignlist" value="completed" id="one" onchange="this.form.submit()" <c:if test="${paging.viewType eq 'one'}">checked</c:if>>답변완료&nbsp;│</label>
+        	<a id="conWrite" class='myButton' onclick="javascript:history.back();">되돌아가기</a>
     		</nav>
 		</form>
 		</div>

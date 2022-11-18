@@ -23,7 +23,10 @@
 </head>
 <style>
 [type=search] {
-    outline-offset: 0;
+    outline-offset: -2px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+    outline: none;
 }
 /*목록버튼*/
 .myButton {
@@ -124,9 +127,6 @@
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="admin_getIntro.wp">소개페이지관리</a>
-                        </li>
-                        <li>
                             <a href="adminStory.wp">와인이야기 페이지 관리</a>
                         </li>
                         <li>
@@ -144,7 +144,7 @@
                             <a href="admin_getNoticeList.wp">공지사항</a>
                         </li>
                         <li>
-                            <a href="adminQna.wp">Q&A</a>
+                            <a href="admin_getQnaList.wp">Q&A</a>
                         </li>
                         <li>
                             <a href="adminReview.wp">리뷰</a>
@@ -181,7 +181,7 @@
                                 <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.wp">로그아웃</a>
+                                <a class="nav-link" href="logout.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>

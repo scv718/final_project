@@ -98,9 +98,6 @@ img {
                             <a href="adminWine.wp">와인관리</a>
                         </li>
                         <li>
-                            <a href="admin_getIntro.wp">소개페이지관리</a>
-                        </li>
-                        <li>
                             <a href="adminStory.wp">와인이야기 페이지 관리</a>
                         </li>
                         <li>
@@ -114,11 +111,11 @@ img {
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><strong>커뮤니티</strong></a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
-                        <li>
+                         <li>
                             <a href="admin_getNoticeList.wp">공지사항</a>
                         </li>
                         <li>
-                            <a href="adminQna.wp">Q&A</a>
+                            <a href="admin_getQnaList.wp">Q&A</a>
                         </li>
                         <li>
                             <a href="adminReview.wp">리뷰</a>
@@ -155,7 +152,7 @@ img {
                                 <a class="nav-link" href="index.wp">홈페이지메인이동</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.wp">로그아웃</a>
+                                <a class="nav-link" href="logout.wp">로그아웃</a>
                             </li>
                         </ul>
                     </div>
@@ -188,25 +185,25 @@ img {
             </tr>
             <tr>
                 <td><img src="${pageContext.request.contextPath}/resources/img/profile/김지나.jpg" ></td>
-                <td>소믈리에</td>
+                <td>팀원</td>
                 <td>김지나</td>
                 <td>33</td>
             </tr>
             <tr>
                 <td><img src="${pageContext.request.contextPath}/resources/img/profile/이기진.jpg" ></td>
-                <td>팀에이스</td>
+                <td>팀원</td>
                 <td>이기진</td>
                 <td>27</td>
             </tr>
             <tr>
                 <td><img src="${pageContext.request.contextPath}/resources/img/profile/박상현.png" ></td>
-                <td>팀에이스</td>
+                <td>팀원</td>
                 <td>박상현</td>
                 <td>28</td>
             </tr>
             <tr>
                 <td><img src="${pageContext.request.contextPath}/resources/img/profile/노유경.jpg" ></td>
-                <td>디자이너</td>
+                <td>팀원</td>
                 <td>노유경</td>
                 <td>24</td>
             </tr>

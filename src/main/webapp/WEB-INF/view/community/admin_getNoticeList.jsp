@@ -38,7 +38,7 @@ function selTr(val){
 
 		<div class="btn_ali">
 			<button id="conWrite" type="button" onclick="location.href='admin_insertNotice.wp'">글 쓰기</button>
-			<a id="conWrite" class='myButton' href="adminNotice.wp">되돌아가기</a>
+			<a id="conWrite" class='myButton' onclick="javascript:history.back();">되돌아가기</a>
 		</div>
 
 		<div class="li_board communitytab">

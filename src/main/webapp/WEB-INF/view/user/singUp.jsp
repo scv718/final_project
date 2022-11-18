@@ -183,6 +183,17 @@ function joinform_check() {
 	    return false;
 	  };
 	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
+	  var regemail= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	  if (!regemail.test(email_id.value)) {
+		  swal({
+		 	  title: "이메일을 다시 확인해주세요.",
+			  text: "",
+			  icon: "error",
+			  button: "닫기",
+			});
+		  email_id.focus();
+	    return false;
+	  }
 	  if (email_id.value == "") {
 		   swal({
 			 	  title: "이메일 주소를 입력하세요.",
@@ -212,90 +223,90 @@ function joinform_check() {
 	}
 </script>
 	<script type="text/javascript">
-	$(document).ready(function(){
-		var IMP = window.IMP; // 생략가능
+ 	$(document).ready(function(){  
+ 		var IMP = window.IMP; // 생략가능  
 		var pass = '${signup}';
-		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-		$("#signUp").click(function(){
+  		IMP.init('imp86310263'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용  
+  		$("#signUp").click(function(){  
 			
 			console.log('${signup}');
 			if('${signup}' == 0){
-				IMP.certification(
-						{
-							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연8090/certificationget.wp"
-							m_redirect_url: "http://winerycop.tk/certificationget.wp"
-						},
-						function(rsp) {
-							if (rsp.success) {
-								// 인증성공
-								console.log(rsp.imp_uid);
-								console.log(rsp.merchant_uid);
-								console.log('인증성공');
-								$.ajax({
-									type : 'POST',
-									url : 'certification.wp',
-									dataType : 'json',
-									contentType: 'application/json',
-									data : JSON.stringify ({
-					        			  imp_uid: rsp.imp_uid	                
-					        		}),
-					        		success : function(val){
-					        			console.log(val);
-					        			if (val == 1){
+  				IMP.certification(  
+  						{  
+  							merchant_uid : 'merchant_' + new Date().getTime(), //본인인증과 연8090/certificationget.wp"  
+  							m_redirect_url: "http://winerycop.tk/certificationget.wp"  
+  						},  
+  						function(rsp) {  
+  							if (rsp.success) {  
+  								// 인증성공  
+  								console.log(rsp.imp_uid);  
+  								console.log(rsp.merchant_uid);  
+  								console.log('인증성공');  
+  								$.ajax({  
+  									type : 'POST',  
+  									url : 'certification.wp',  
+  									dataType : 'json',  
+  									contentType: 'application/json',  
+  									data : JSON.stringify ({  
+  					        			  imp_uid: rsp.imp_uid	                  
+  					        		}),  
+  					        		success : function(val){  
+  					        			console.log(val);  
+  					        			if (val == 1){  
 					        				
-					        			}else if(val = 2){
-					        		   swal({
-                   					 	  title: "이미 가입된 사용자입니다.",
-                    					  text: "",
-                    					  icon: "error",
-                    					  button: "닫기",
-                    					});
-					        				location.href = 'index.wp';
-					        			}else{
-					        				   swal({
-			                   					 	  title: "나이제한",
-			                    					  text: "",
-			                    					  icon: "error",
-			                    					  button: "닫기",
-			                    					});
-					        				location.href = 'index.wp';
-					        			}
-					        		}
-								}).done(function() {
-									takeResponseAndHandle(rsp)
-								});
+  					        			}else if(val = 2){  
+  					        		   swal({  
+                     					 	  title: "이미 가입된 사용자입니다.",  
+                      					  text: "",  
+                      					  icon: "error",  
+                      					  button: "닫기",  
+                      					});  
+  					        				location.href = 'index.wp';  
+  					        			}else{  
+  					        				   swal({  
+  			                   					 	  title: "나이제한",  
+  			                    					  text: "",  
+  			                    					  icon: "error",  
+  			                    					  button: "닫기",  
+  			                    					});  
+  					        				location.href = 'index.wp';  
+  					        			}  
+  					        		}  
+  								}).done(function() {  
+  									takeResponseAndHandle(rsp)  
+  								});  
 								
-							} else {
-								// 인증취소 또는 인증실패
-								var msg = '인증에 실패하였습니다.';
-								msg += '에러내용 : ' + rsp.error_msg;
-								alert(msg);
-								location.href = 'index.wp';
+  							} else {  
+  								// 인증취소 또는 인증실패  
+  								var msg = '인증에 실패하였습니다.';  
+  								msg += '에러내용 : ' + rsp.error_msg;  
+  								alert(msg);  
+  								location.href = 'index.wp';  
 								
-							}
-						})
-			}else{
-				 $.ajax({
-			 	        url: '/passsession.wp',
-			 	        type: 'post'
-			 	    });
-			}
+  							}  
+  						})  
+  			}else{  
+  				 $.ajax({  
+  			 	        url: '/passsession.wp',  
+  			 	        type: 'post'  
+  			 	    });  
+  			}  
 		
 	
-		function takeResponseAndHandle(rsp) {
-			if (rsp.success) {
-				// 인증성공
-				console.log(rsp.imp_uid);
-				console.log(rsp.merchant_uid);
-			} else {
-				// 인증취소 또는 인증실패
-				var msg = '인증에 실패하였습니다.';
-				alert(msg);
-			}
-		}
-		});
-	});
-	</script>
+  		function takeResponseAndHandle(rsp) {  
+  			if (rsp.success) {  
+  				// 인증성공  
+  				console.log(rsp.imp_uid);  
+  				console.log(rsp.merchant_uid);  
+  			} else {  
+  				// 인증취소 또는 인증실패  
+  				var msg = '인증에 실패하였습니다.';  
+  				alert(msg);  
+  			}  
+  		}  
+  		});  
+  	});  
+</script> 
 
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
@@ -323,7 +334,7 @@ function joinform_check() {
 						href="#" id="naver_id_login" onclick="nBtn()" class="social"><i
 						class="xi-naver"></i></a>
 				</div>
-				<!-- 				<span>or use your account</span>  -->
+<!-- 			  				<span>or use your account</span>    -->
 				<input name='id' placeholder="아이디" /> <input type="password"
 					name='m_pw' placeholder="Password" /> <a href="forgotinfo.wp">아이디/비밀번호
 					찾기</a>

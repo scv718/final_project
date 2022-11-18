@@ -285,7 +285,7 @@ h2 {
 	}
 	#header {
 		padding: 0;
-		    position: inherit;
+		   position: inherit;
 	}
 	#memberbtn {
 		justify-content: flex-end;
@@ -297,4 +297,8 @@ h2 {
 	#box{
 		position: inherit;
 	}
+	#mobilemain{
+	display: block;
+	}
+
 }
