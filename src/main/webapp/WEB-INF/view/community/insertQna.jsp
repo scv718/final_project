@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>QNA 글쓰기</title>
+<title>와이너리 | 1:1 문의</title>
  <%@ include file="../../../header.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/qna.css" />
 <script src="resources/js/qna_fileupload.js"></script>

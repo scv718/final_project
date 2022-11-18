@@ -100,10 +100,10 @@
 						$('#noneDiv').show();
 					} else if (check == '00') {
 						alert("구매한 회원만 작성가능합니다.\n(구매자일 경우, 배송완료 이후 가능)")
-						location.reload();
+						location.reload(true);
 					} else {
 						alert("상품별 후기작성은 한 번만 가능합니다.");
-						location.reload();
+						location.reload(true);
 					}
 				}
 			});
@@ -376,12 +376,10 @@
 
 			<!-- nav 바 1 -->
 			<div class ="row">
-				<nav class="col-8" id="navtag2">
-					<ul class="ultag">
-						<li class="litag"><a href="#detailcontents" class="nava">상품정보</a></li>
-						<li class="litag"><a href="#reviewdiv" class="nava">상품후기</a></li>
-					</ul>
-				</nav>
+				<div class="col-8" id="navtag2">
+				<button class="litag" type="button" onclick="location.href='#detailcontents'">상품정보</button>
+				<button class="litag" type="button" onclick="location.href='#reviewdiv'">상품후기</button>
+				</div>
 			</div>
 
 			<!-- 상품정보 이미지 -->
@@ -393,17 +391,15 @@
 			
 			<!-- nav 바 2 -->
 			<div class ="row">
-				<nav class="col-8" id="navtag2">
-					<ul class="ultag">
-						<li class="litag"><a href="#detailcontents" class="nava">상품정보</a></li>
-						<li class="litag"><a href="#reviewdiv" class="nava">상품후기</a></li>
-					</ul>
-				</nav>
+				<div class="col-8" id="navtag2">
+				<button class="litag" type="button" onclick="location.href='#detailcontents'">상품정보</button>
+				<button class="litag" type="button" onclick="location.href='#reviewdiv'">상품후기</button>
+				</div>
 			</div>
 			
 			<!-- 유경 추가 시작 -->
 			<div class="row re-wrap">
-			<div class="col-8">
+			<div class="col-12">
 				<div id="reviewdiv">
 
 					<article class="blog-post">
@@ -414,7 +410,7 @@
 						</div>
 						<div id="reviewContainer">
 							<div id="filterdiv">
-								<form action="productReviewFilter.wp" method="POST" id="filter">
+								<form action="productReviewFilter.wp#reviewdiv" method="POST" id="filter">
 									<input type="hidden" name="w_no" value="${product.w_no}">
 
 									<input type="radio" name="filter"  id="PHOTO" value="PHOTO" onchange="this.form.submit()"
@@ -452,8 +448,9 @@
 											<td><c:if test="${review.re_photo1 ne NULL}">
 													<i class="bi bi-image" style="color: gray;"></i>
 												</c:if></td>
-											<td style="text-align: left">
-													<a href="#" class="viewhidden" onclick="return false;">${review.re_title}</a>
+											<td class="viewhidden" onclick="return false;">
+<%-- 													<a href="#" class="viewhidden" onclick="return false;">${review.re_title}</a> --%>
+													${review.re_title}
 											</td>
 											<td class="tdCenter">
 												<span class="rating" data-rate="${review.re_score}" style="color: #e6e6e6;">

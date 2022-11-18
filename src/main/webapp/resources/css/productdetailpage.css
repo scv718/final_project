@@ -444,7 +444,7 @@ a:active {
 	padding: 10px 33px;
 }
 
-li > .nava:hover {
+button.litag:hover {
 	font-size: 21px;
 }
 
@@ -513,12 +513,20 @@ li > .nava:hover {
 	accent-color: #e2373f !important;
 }
 
-a.viewhidden:hover {
+td.viewhidden:hover {
 	color: gray !important;
 }
-/* 유경 끝 */
 
+.viewhidden {
+	text-align: left; 
+	cursor: pointer;
+}
+/* 유경 끝 */
+.re-wrap{
+	width: 69%;
+}
 @media screen and (max-width: 990px) {
+
 	#productthree{
 	display: none;
 
@@ -574,9 +582,11 @@ a.viewhidden:hover {
    #mobilepayment{
    display: block;
    }
-   
+   .row{
+       width: 100% !important;
+       }
 	.re-wrap {
-		width: 161%;
+		width: 100%;
 	}
    
 	#reviewContainer table col {

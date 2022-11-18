@@ -141,7 +141,7 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">커뮤니티</a>
                     <ul class="collapse list-unstyled show" id="pageSubmenu">
                          <li>
-                            <a href="adminNotice.wp">공지사항</a>
+                            <a href="admin_getNoticeList.wp">공지사항</a>
                         </li>
                         <li>
                             <a href="adminQna.wp">Q&A</a>

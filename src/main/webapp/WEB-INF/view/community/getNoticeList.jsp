@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet"   href="${pageContext.request.contextPath}/resources/css/getNoticeList.css"/>
-	<title>공지사항 목록 - 사용자</title>
+	<title>와이너리 | 공지사항</title>
 	<%@ include file="../../../header.jsp"%>
     
 <script>
