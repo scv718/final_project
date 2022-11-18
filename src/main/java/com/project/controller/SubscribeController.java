@@ -1,4 +1,8 @@
 package com.project.controller;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -51,7 +55,6 @@ public class SubscribeController {
 	// 마이페이지
 	@RequestMapping(value = "/mypage.wp")
 	public String getSubscribe1(SubscribeVO vo, HttpSession session, Model model, WineVO wvo) {
-		System.out.println("마이페이지");
 		String id = (String) session.getAttribute("userID");
 		vo.setId(id);
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
@@ -67,34 +70,33 @@ public class SubscribeController {
 			productService.getProductdetail(wvo);
 			model.addAttribute("product3", productService.getProductdetail(wvo));
 		}
-	
-		
-		
 		return "WEB-INF/view/mypage/mypage.jsp";
 	}
 
 	// 마이페이지 구독 조회
 	@RequestMapping("/mysubscribe.wp")
-	public String getSubscribe(SubscribeVO vo, HttpSession session, Model model) {
+	public String getSubscribe(SubscribeVO vo, HttpSession session, Model model) throws ParseException {
 		System.out.println("구독/취향 설정");
 		String id = (String) session.getAttribute("userID");
 		vo.setId(id);
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
 		model.addAttribute("date", subscribeService.getLevel(vo));
 	
-	
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String zer = "0000-00-00";
 		System.out.println(subscribeService.getLevel(vo) + "date");
-		
+		model.addAttribute("zer", zer);
 		if (id == null) {
 			return "signUp.wp"; 
 		}
+		
+		
 		return "WEB-INF/view/mypage/mysubscribe.jsp";
 	}
 	
 	// 마이페이지 구독 설정
 	@RequestMapping("/mysubscribes.wp")
 	public String mysubscribes(SubscribeVO vo, HttpSession session, Model model) {
-		System.out.println("구독 설정");
 		vo.setId((String) session.getAttribute("userID"));
 		int result = subscribeService.getSubscribe(vo);
 		model.addAttribute("mylevel", subscribeService.getSubscribe(vo));
@@ -113,7 +115,6 @@ public class SubscribeController {
 	// 마이페이지 취향 설정
 	@RequestMapping("/mypreference.wp")
 	public String setting(SubscribeVO vo, HttpSession session, Model model) {
-		System.out.println("취향 설정");
 		vo.setId((String) session.getAttribute("userID"));
 		subscribeService.preference_Setting(vo);
 		
@@ -123,8 +124,6 @@ public class SubscribeController {
 	// 구독 결제 -1
 	@RequestMapping(value = "/subscribe-1.wp")
 	public String subscribePayment1(UserVO uvo,SubscribeVO vo,HttpSession session) {
-		System.out.println("구독 결제 폼 -1");
-
 		String id = (String) session.getAttribute("userID");
 		uvo.setId(id);
 		vo.setId(id);
@@ -143,12 +142,10 @@ public class SubscribeController {
 	@RequestMapping(value = "/subscribeP.wp")
 	public String subscribePayment1(AddressVO avo, UserVO uvo, WineVO wvo, SubscribeVO svo, Model model,
 			HttpSession session, HttpServletResponse response) {
-		System.out.println("구독 결제 폼 -2");
 		String id = (String) session.getAttribute("userID");
 		uvo.setId(id);
 		avo.setId(uvo.getId());
 		svo.setId(uvo.getId());
-		
 		model.addAttribute("product", productService.subscribeW1(wvo));
 		model.addAttribute("subscribeW", productService.subscribeW1(wvo));
 		AddressVO add = addressService.selectDefaultAddress(avo);
@@ -163,8 +160,6 @@ public class SubscribeController {
 			}else{
 				model.addAttribute("user", userSerivce.getUser(uvo));
 				model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
-				System.out.println(subscribeService.getSubscribe(svo) + "오류");
-
 				subscribeService.getSubscribe(svo);
 				return "WEB-INF/view/subscribe/subscribe-2.jsp";
 			}
@@ -175,7 +170,6 @@ public class SubscribeController {
 	@RequestMapping(value = "/subscribeM.wp")
 	public String subscribePayment2(AddressVO avo, UserVO uvo, WineVO wvo, SubscribeVO svo, Model model,
 			HttpSession session, HttpServletResponse response) {
-		System.out.println("구독 결제 폼 -2");
 		String id = (String) session.getAttribute("userID");
 
 		uvo.setId(id);
@@ -210,7 +204,6 @@ public class SubscribeController {
 	@RequestMapping(value = "/subscribeG.wp")
 	public String subscribePayment3(AddressVO avo, UserVO uvo, WineVO wvo, SubscribeVO svo, Model model,
 			HttpSession session, HttpServletResponse response) {
-		System.out.println("구독 결제 폼 -2");
 		String id = (String) session.getAttribute("userID");
 
 		uvo.setId(id);
@@ -245,10 +238,8 @@ public class SubscribeController {
 	//관리자
 	@RequestMapping(value="/adminSubscription.wp")
 	public String getUserList(SubscribeVO svo, Model model){
-	System.out.println("구독 리스트");
 //	model.addAttribute("UserList", userService.getUserList(vo));
 	model.addAttribute("AllList", subscribeService.allsubscriptList(svo));
-	System.out.println("테스트");
 	return "WEB-INF/view/admin/adminsubscription.jsp";
 	}
 

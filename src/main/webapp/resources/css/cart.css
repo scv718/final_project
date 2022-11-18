@@ -8,6 +8,10 @@
 a {
 	text-decoration: none;
 }
+
+#mobiletable{
+	display: none;
+}
 /* 화면 전체 렙 */
 .wrapper {
 	width: 100%;
@@ -16,7 +20,7 @@ a {
 .wrap {
 	width: 1050px;
 	margin: 0 auto;
-}
+}	
 /* 홈페이지 기능 네비 */
 .top_gnb_area {
 	width: 100%;
@@ -381,6 +385,11 @@ td {
 	box-shadow: 0 4px 15px 0 rgb(65 132 234/ 75%);
 	width: 71px;
 }
+.btn-hover1.color-90 {
+	background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+	box-shadow: 0 4px 15px 0 rgb(65 132 234/ 75%);
+	width: 71px;
+}
 
 /* float 속성 해제 */
 .clearfix {
@@ -404,8 +413,32 @@ td {
 	-webkit-transition: all .4s ease-in-out;
 	transition: all .4s ease-in-out;
 }
+.btn-hover1 {
+	width: 200px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #fff;
+	cursor: pointer;
+	margin: 10px;
+	height: 51px;
+	text-align: center;
+	border: none;
+	background-size: 300% 100%;
+	border-radius: 50px;
+	moz-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+}
 
 .btn-hover:hover {
+	background-position: 100% 0;
+	moz-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+}
+.btn-hover1:hover {
 	background-position: 100% 0;
 	moz-transition: all .4s ease-in-out;
 	-o-transition: all .4s ease-in-out;
@@ -416,8 +449,16 @@ td {
 .btn-hover:focus {
 	outline: none;
 }
+.btn-hover1:focus {
+	outline: none;
+}
 
 .btn-hover.color-9 {
+	background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);
+
+	width: 75px;
+}
+.btn-hover1.color-9 {
 	background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);
 
 	width: 75px;
@@ -638,7 +679,10 @@ td {
 	.total_wrap td {
 		width: -10%;
 	}
-
+	.mobileform{
+	display: inline-block;
+	}
+	
 	/* 구독 */
 	.total_info_div {
 		FONT-VARIANT: JIS90;
@@ -649,5 +693,14 @@ td {
 		border: 1px solid #333;
 		border-top-width: 2px;
 	}
-#foooooootetetetetet{position: relative;transform: translateY(720%);}
+	#pctable{
+	display: none;
+	}
+	#mobiletable{
+	display: block;
+	}
+	.btn-hover1{
+	height: 38px;
+	}
+
 }

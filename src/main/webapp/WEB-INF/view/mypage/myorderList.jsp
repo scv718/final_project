@@ -32,7 +32,67 @@
             
             
             <div class ="container">
-        	<div class = "row">
+               	<div class = "row" id = "mobiletable">
+            <div class = "col-lg-12 col-sm-6">
+            <table class="subject_table">
+          		  <colgroup>
+          		  						<col id ="mobileone" />
+										<col id = "mobiletwo" />
+				  </colgroup>
+               <caption>표 제목 부분</caption>
+               <tbody>
+                  <tr>
+<!--                      <th class="td_width_1"></th> -->
+                     <th >이미지</th>
+                     <th >상품정보</th>
+      
+                  </tr>
+               </tbody>
+               <caption>표 내용 부분</caption>
+               <tbody>
+                  <c:forEach items="${cartInfo}" var="ci" varStatus="status"> 
+                     <tr>
+						<td> <a id = "image_wrap"><img id ="w_image1" src = "${pageContext.request.contextPath}/resources/img/wine/${product[status.index].w_image1}"></a><td>
+				
+                        <a onclick="location.href='product.wp?w_no=${ci.w_no}';" style="text-align: center; cursor:pointer;">${ci.w_nm_k}</a><br>
+                    배송상태: ${ci.ord_stat}<br>
+                    주문상태: ${ci.cs_stat}<br>
+                          <fmt:formatNumber value="${ci.ord_t_price}" pattern="#,### 원" /><br>
+                      <c:if test = '${ci.cs_stat ne "취소"}'>
+                      <c:choose>
+                      <c:when test ='${ci.ord_stat eq "결제"}'>
+                      <form id = "cancel_module" method="post" class = "mobileform">
+                        	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
+                        	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
+                           <button type="button" class="btn-hover1 color-9"  id="delete_btn">주문취소</button>
+                       </form> 	
+                      </c:when>                
+                      <c:when test='${ci.cs_stat ne "취소요청"}'>
+                      	 <input type = "hidden" id = "cs_stat${ci.ord_code}" value = "취소요청">
+                     	 <input type = "hidden" id = "ord_stat${ci.ord_code}" value = "${ci.ord_stat}">
+                      	  <button type="button" class="btn-hover1 color-9"  onclick="{updateOrder('${ci.ord_code}')}">취소요청</button>               
+                      </c:when>
+                      <c:otherwise>                    
+                      </c:otherwise>
+                       </c:choose>
+                      </c:if>
+                           <form action="deleteOrder.wp" method="post" class = "mobileform">
+                        	<input type="hidden" name="ord_code" value="${ci.ord_code}">
+                           <button  type="submit" class="btn-hover1 color-9" id="delete_btn">내역삭제</button>
+                           </form>
+                      <button type="button" class="btn-hover1 color-9"  onclick="location.href = 'product.wp?w_no=${ci.w_no}#reviewdiv'">리뷰쓰기</button>
+                     </td>
+                     </tr>
+                 
+                
+                
+                  </c:forEach>
+                
+               </tbody>
+            </table>
+                </div>
+                </div>
+        	<div class = "row" id = "pctable">
             <div class = "col-lg-12 col-sm-6">
             <table class="subject_table">
           		  <colgroup>
@@ -78,13 +138,13 @@
                       <form id = "cancel_module" method="post">
                         	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
-                           <button type="button" class="btn-hover color-9"  id="delete_btn">주문취소</button>
+                           <button type="button" class="btn-hover1 color-9"  id="delete_btn">주문취소</button>
                        </form> 	
                       </c:when>                
                       <c:when test='${ci.cs_stat ne "취소요청"}'>
                       	 <input type = "hidden" id = "cs_stat${ci.ord_code}" value = "취소요청">
                      	 <input type = "hidden" id = "ord_stat${ci.ord_code}" value = "${ci.ord_stat}">
-                      	  <button type="button" class="btn-hover color-9"  onclick="{updateOrder('${ci.ord_code}')}">취소요청</button>               
+                      	  <button type="button" class="btn-hover1 color-9"  onclick="{updateOrder('${ci.ord_code}')}">취소요청</button>               
                       </c:when>
                       <c:otherwise>                    
                       </c:otherwise>
@@ -92,14 +152,14 @@
                       </c:if>
                            <form action="deleteOrder.wp" method="post">
                         	<input type="hidden" name="ord_code" value="${ci.ord_code}">
-                           <button  type="submit" class="btn-hover color-9" id="delete_btn">내역삭제</button>
+                           <button  type="submit" class="btn-hover1 color-9" id="delete_btn">내역삭제</button>
                            </form>
                            
                           
                         </td>
                         
                        <td>
-                      <button type="button" class="btn-hover color-9"  onclick="location.href = 'product.wp?w_no=${ci.w_no}#reviewdiv'">리뷰쓰기</button>
+                      <button type="button" class="btn-hover1 color-9"  onclick="location.href = 'product.wp?w_no=${ci.w_no}#reviewdiv'">리뷰쓰기</button>
                      </td>
                      </tr>
                  

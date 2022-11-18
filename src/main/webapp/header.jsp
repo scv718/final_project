@@ -78,27 +78,21 @@ function kakaoLogout() {
 			
 <div style = "text-align: center;">
 <a class="navbar-brand" href="${pageContext.request.contextPath}/index.wp">Winery</a>
-
 </div>
-
 <nav id = "header" class="navbar navbar-expand-sm  navbar-light">
 	<ul class="navbar-nav" id="upmenu">
 
 		<li class="nav-item">
 		<a id = "menuBtn" class ="dropdown-item" href="getIntro.wp" >Winery?</a></li>
 		<li class="nav-item" id = "btntwo" >
-		<a id = "menuBtn" >와인이야기</a></li>
+		<a id = "menuBtn" class ="dropdown-item">와인이야기</a></li>
 		<li class="nav-item">	
 		<a id = "menuBtn" class="dropdown-item" href="wineSearch.wp">와인검색</a></li>
 		<li class="nav-item">	
-
-
 		<a id = "menuBtn" class="dropdown-item" href="subscribe.wp">구독하기</a></li>
-		<li class="nav-item"  id = "btnone"><a id = "menuBtn" >커뮤니티</a></li>
-
+		<li class="nav-item"  id = "btnone"><a id = "menuBtn" class ="dropdown-item">커뮤니티</a></li>
 	</ul>
 </nav>
-
 <div class = "box" id = "box">
 <a  id = "secondMenu" href="getNoticeList.wp">공지사항</a>
 <a  id = "secondMenu" href="getFaqList.wp">FAQ</a> 
@@ -168,27 +162,28 @@ function kakaoLogout() {
 //	 		$('.box1').css("display", "none");
 //	 		display1 = style1.display
 //	 	});
-$('#btnone').mouseover(function() {
-	$('.box1').hide();
-	$('.box').show();
+$('#btnone').click(function() {
+	if($('.box').is(":visible")){
+		$('.box').hide();
+	}else{
+		$('.box1').hide();
+		$('.box').show();
+	}
 });
-
 $('.box').mouseleave(function(){
 	$('.box').hide();
 });
-
-$('#btntwo').mouseover(function() {
-	$('.box').hide();
-	$('.box1').show();
+$('#btntwo').click(function() {
+	if($('.box1').is(":visible")){
+		$('.box1').hide();
+	}else{
+		$('.box').hide();
+		$('.box1').show();
+	}
+	
 });
-
 $('.box1').mouseleave(function(){
 	$('.box1').hide();
 });
-
-
-	
-
-
 
 </script>
