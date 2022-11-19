@@ -38,17 +38,62 @@ video {
 }
 </style>
 <body class="d-flex flex-column min-vh-100">
-
+<script>
+                    var tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                    var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      videoId: 'rCuiEmYzuPk',
+      'height': '231.3',
+      playerVars: {   
+            'autoplay': 1,   
+            'rel': 0,
+            'showinfo': 0,
+            'modestbranding': 1,
+            'playsinline': 1,
+            'showinfo': 0,
+            'rel': 0,
+            'fs' : 0,
+            'controls': 0,
+            'playlist' : 'rCuiEmYzuPk',
+            'color':'white',
+            'loop': 1,
+            'mute':1,
+            'origin': 'http://localhost:8090',
+            'host': 'https://www.youtube.com'
+      },
+      events: {
+        'onReady': onPlayerReady,
+        // 'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+  function onPlayerReady(event) {
+    player.playVideo();
+    player.mute();
+  }var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 6000);
+      done = true;
+    }
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
+</script>
 	<%@ include file="header.jsp"%>
 	<div class="imgSlide">
 		<div class="slider-1">
 			<div class="slides">
-				<div class="active">
-					<video autoplay loop muted playsinline id="pcmain">
+				<div class="active" >
+					<video autoplay loop muted id = "pcmain" >
 						<source src="resources/img/winemain.mp4" type="video/mp4">
 					</video>
-	
-
+					<div class = "player" id="player"></div>
 				</div>
 				<div>
 					<video muted autoplay loop>

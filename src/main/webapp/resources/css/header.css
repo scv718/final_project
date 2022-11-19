@@ -231,6 +231,9 @@ h2 {
 	text-decoration: none;
 	background-color: gray !important;
 }
+.player{
+	display: none;
+}
 
 @media screen and (max-width: 768px) {
 	#textbox{
@@ -299,6 +302,12 @@ h2 {
 	}
 	#mobilemain{
 	display: block;
+	}
+	.player{
+	display: block;
+	}
+	#pcmain{
+	display: none;
 	}
 
 }

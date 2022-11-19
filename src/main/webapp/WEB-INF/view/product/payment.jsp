@@ -53,12 +53,13 @@ function checkOnlyOne(element) {
 								</c:if>
 								<c:if test = "${anotheradd ne null}">
 								<button class="address_btn address_btn_2"
-								onclick="showAdress('2')" style="background-color: #3c3838;">저장된
+								onclick="showAdress('2')">저장된
 								배송지</button>
 								</c:if>
 							<button class="address_btn address_btn_3"
 								onclick="showAdress('3')">직접 입력</button>
 						</div>
+					
 						<div class="addressInfo_input_div_wrap">
 						<c:if test = "${defaultadd ne null}">
 							<div class="addressInfo_input_div addressInfo_input_div_1"
@@ -78,7 +79,7 @@ function checkOnlyOne(element) {
 											<td>${defaultadd.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
-												name="add" value="${userName}" type="hidden"> 
+												name="add" value="${defaultadd.m_name}" type="hidden"> 
 												<input
 												class="m_add" name="m_add" type="hidden"
 												value="${defaultadd.m_address}"> 
@@ -121,7 +122,7 @@ function checkOnlyOne(element) {
 											<td>${anotheradd.m_address}
 												<input class="selectAddress" name="add" value="T"
 												type="hidden"> <input class="addressee_input"
-												name="add" value="${userName}" type="hidden">
+												name="add" value="${anotheradd.m_name}" type="hidden">
 												 <input
 												class="m_add" name="m_add" type="hidden"
 												value="${anotheradd.m_address}">	
@@ -213,24 +214,49 @@ function checkOnlyOne(element) {
 									var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/
 											
 									if($('.m_name_insert').val() == ''){
-										alert('이름을 입력해주세요');
+										swal({
+									      	  title: "이름을 입력해주세요.",
+									      	  text: "",
+									      	  icon: "error",
+									      	  button: "닫기",
+									      	});
 										return false;
 									}
 									if($('.address1_input').val() == ''){
-										alert('주소를 입력해주세요');
+										swal({
+									      	  title: "주소를 입력해주세요.",
+									      	  text: "",
+									      	  icon: "error",
+									      	  button: "닫기",
+									      	});
 										return false;
 									}
 									if($('.address2_input').val() == ''){
-										alert('주소를 입력해주세요');
+										swal({
+									      	  title: "주소를 입력해주세요.",
+									      	  text: "",
+									      	  icon: "error",
+									      	  button: "닫기",
+									      	});
 										return false;
 									}
 									if($('.m_phone_insert').val() == ''){
-										alert('휴대폰번호를 입력해주세요');
+										swal({
+									      	  title: "휴대폰번호를 입력해주세요.",
+									      	  text: "",
+									      	  icon: "error",
+									      	  button: "닫기",
+									      	});
 										return false;
 									}
 									if(!regPhone.test($('.m_phone_insert').val())){
 										console.log($('.m_phone_insert').val());
-										alert('휴대폰번호를 다시 입력해주세요.');
+										swal({
+									      	  title: "휴대폰번호를 다시 입력해주세요.",
+									      	  text: "",
+									      	  icon: "error",
+									      	  button: "닫기",
+									      	});
 										return false;
 									}
 									
@@ -249,8 +275,12 @@ function checkOnlyOne(element) {
 								            	history.go(0);
 								            },
 								            error : function(error) {
-								                
-								                alert("error : " + error);
+								            	swal({
+											      	  title: "다시 진행해주세요.",
+											      	  text: "",
+											      	  icon: "error",
+											      	  button: "닫기",
+											      	});
 								            }
 								        });
 									
@@ -398,6 +428,7 @@ function checkOnlyOne(element) {
     <input type="hidden" name="merchant_uid" id="merchant_uid"><br>
     <input type="hidden" name="ord_addr" id="ord_addr"><br>
     <input type="hidden" name="ord_phone" id="ord_phone"><br>
+    <input type="hidden" name="ord_name" id="ord_name"><br>
 </form>
 <%@ include file="/footer.jsp"%>
 
@@ -450,17 +481,13 @@ $(document).ready(function(){
 // 	}
 	
 	finalTotalPrice = totalPrice + deliveryPrice;	
-	
-
-	
 	finalTotalPrice = totalPrice;
-	console.log(totalPrice +" 금액");
-	console.log(finalTotalPrice +"  총 금액");
 	
 $("#check_module").click(function () {
 	var m_address;
 	var postcode;
 	var phone;
+	var name;
 	
 	let deliveryPrice = 0;
 	var level = "${level.level}";
@@ -471,23 +498,21 @@ $("#check_module").click(function () {
 	}
 	finalTotalPrice += deliveryPrice;
 	
-	console.log(level);
 	$('#amount').val(finalTotalPrice);
-	console.log($('#amount').val());
-	console.log(finalTotalPrice);
 	
 	$(".addressInfo_input_div").each(function(i, obj){
 		if($(obj).find(".selectAddress").val() == 'T'){
 			m_address = $(obj).find(".m_add").val();
 			postcode =  m_address.split('-');
 			phone = $(obj).find(".m_phone").val();
+			name = $(obj).find(".addressee_input").val();
 			$('#ord_addr').val(m_address);
 			$('#ord_phone').val(phone);
+			$('#ord_name').val(name);
 // 			m_address = $('.m_add').val();
 // 			postcode = $('.address1_input').val();
 		}
 	});	
-	
 	if(m_address == undefined){
 	   	swal({
       	  title: "등록된 주소가 없습니다.",
@@ -497,12 +522,7 @@ $("#check_module").click(function () {
       	});
 		return false;
 	}
-	console.log(m_address);
-	console.log(phone);
-	console.log(postcode[0]);
-	console.log(finalTotalPrice);
 	var formValues = $("form[name=fm]").serialize() ;
-	console.log(formValues);
 	IMP.request_pay({
 		pg: 'html5_inicis', // 자신이 설정한 pg사 설정
 		pay_method: 'card',
@@ -516,23 +536,25 @@ $("#check_module").click(function () {
 		buyer_postcode: postcode[0],
 		m_redirect_url: "http://winerycop.tk/mobilepay.wp?formValues="+formValues
 		}, function (rsp) {
-			console.log(rsp);
 			if (rsp.success) {
 				
 				var msg = '결제가 완료되었습니다.';
-				msg += '\n고유ID : ' + rsp.imp_uid;
-				msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-				msg += '\n결제 금액 : ' + rsp.paid_amount;
-				msg += '\n카드 승인번호 : ' + rsp.apply_num;
+				
+				var icon = 'success';
 				
 				$("#imp_uid").val(rsp.imp_uid);
 				$("#merchant_uid").val(rsp.merchant_uid);
 				chk = true;
 			} else {
 				var msg = '결제에 실패하였습니다.';
-				msg += '\n에러내용 : ' + rsp.error_msg;
+				var icon = 'error';
 			}
-			alert(msg);
+			swal({
+		      	  title: msg,
+		      	  text: "",
+		      	  icon: icon,
+		      	  button: "닫기",
+		      	});
 			if(chk==true) orderList();
 	})
 })
@@ -554,18 +576,11 @@ $(document).ready(function(){
 	var defaultadd = '${defaultadd}'; 	
 	var anotheradd = '${anotheradd}';
 	 if(defaultadd == '[]'){
-		console.log('비정상');
-		console.log(defaultadd);
 	}else{
-		console.log('정상');
-		console.log(defaultadd);
 	}
-	 
 	 if(anotheradd == '[]'){
-		console.log('비정상');
 	}else{
 		
-		console.log('정상');
 	}
 	 
 	
@@ -761,6 +776,24 @@ $(".order_btn").on("click", function(){
 
 
 </script>
+	<script type="text/javascript">
+	
+
+						console.log('${anotheradd}');
+						if('${defaultadd}' != ''){
+							$('.addressInfo_input_div_1').show();
+							$('.address_btn_1').css("background-color", "#3c3838");
+						}else{
+							if('${anotheradd}' != ''){
+								$('.addressInfo_input_div_2').show();
+								$('.address_btn_2').css("background-color", "#3c3838");
+							}else{
+								$('.addressInfo_input_div_3').show();	
+								$('.address_btn_3').css("background-color", "#3c3838");
+							}
+						}
+</script>
+						
 <%    
 response.setHeader("Cache-Control","no-store");    
 response.setHeader("Pragma","no-cache");    

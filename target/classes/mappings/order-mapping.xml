@@ -20,6 +20,7 @@
 		,W_NM_K
 		,W_NM_E
 		,MERCHANT_UID
+		,ORD_NAME
 		)VALUES(
 		#{ord_code}
 		,#{id}
@@ -35,6 +36,7 @@
 		,#{w_nm_k}
 		,#{w_nm_e}
 		,#{merchant_uid}
+		,#{ord_name}
 		)
 	</insert>
 	
@@ -79,6 +81,7 @@
 	<select id = "selectOrderList" resultType="myorder">
 	SELECT * FROM ORDER_LIST
 	WHERE ID = #{id} and ORD_DELETE = 0
+	ORDER BY ORD_DATE DESC 
 	</select>
 <!-- 구독 리스트 를 위한 확인 -->
 		<select id = "subscribeOrderList" resultType="myorder">

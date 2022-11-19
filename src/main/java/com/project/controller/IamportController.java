@@ -435,12 +435,7 @@ public class IamportController {
 		String imp = request.getParameter("imp_uid");
 //      String addr = request.getParameter("addr");
 //      String phone = request.getParameter("phone");
-		System.out.println(request.getParameter("formValues"));
 		String token = getImportToken();
-		System.out.println("정보출력");
-		System.out.println(mid);
-		System.out.println(imp);
-		System.out.println(amount);
 		setHackCheck(amount, mid, token);
 		uvo.setId((String) session.getAttribute("userID"));
 		LocalDateTime now = LocalDateTime.now();
@@ -486,9 +481,6 @@ public class IamportController {
 		}
 
 		orderService.insertOrder(ovo);
-		System.out.println(nm);
-		System.out.println(amount);
-		System.out.println(mid);
 
 		return "redirect:myorderList.wp";
 

@@ -8,7 +8,33 @@
 a {
 	text-decoration: none;
 }
-
+#card{
+	display: none;
+}
+#card.active {
+    display: table-row;
+}
+#plus{
+	font-size: 35px;
+	margin-bottom: 20px;
+	background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+    width: 58px !important;
+    height: 55px !important;
+}	
+	#js-btn-wrap{
+	text-align: center;
+} 
+a#MOVE_TOP_BTN {
+	color: gray;
+	text-decoration: none;
+    font-size: xxx-large;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    display: none;
+    z-index: 9999;
+    cursor: pointer;
+}
 #mobiletable{
 	display: none;
 }
@@ -420,7 +446,7 @@ td {
 	color: #fff;
 	cursor: pointer;
 	margin: 10px;
-	height: 51px;
+	height: 44px;
 	text-align: center;
 	border: none;
 	background-size: 300% 100%;
@@ -495,7 +521,9 @@ td {
 .cart_table_view td{
 	border-bottom: 1px solid #e7e7e7;
 }
-
+.mobileform{
+	display: inline-block;
+	}
 @media screen and (max-width: 768px) {
 
 	/* 	장바구니 */
@@ -679,9 +707,7 @@ td {
 	.total_wrap td {
 		width: -10%;
 	}
-	.mobileform{
-	display: inline-block;
-	}
+	
 	
 	/* 구독 */
 	.total_info_div {

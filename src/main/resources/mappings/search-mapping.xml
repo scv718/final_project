@@ -5,14 +5,15 @@
 <mapper namespace="WineDAO">
 
 	<select id="getWineList" resultType="wine">
-		select * from wine
+		select * from wine where w_no not in(997, 998, 999)
 	</select>
 	
 	
 	<select id="getWineSearchList" resultType="wine">
-		select * from wine where 1=1 
+		select * from wine where w_no not in(997, 998, 999) and
+		1=1 
 		<if test="searchKeyword != null">and w_nm_k LIKE CONCAT('%',#{searchKeyword},'%') or w_nm_e LIKE CONCAT('%',#{searchKeyword},'%')
-		or continental LIKE CONCAT('%',#{searchKeyword},'%') or country LIKE CONCAT('%',#{searchKeyword},'%')
+		or continental LIKE CONCAT('%',#{searchKeyword},'%') or country LIKE CONCAT('%',#{searchKeyword},'%') and w_no not in(997, 998, 999)
 		</if>
 	</select>
 	

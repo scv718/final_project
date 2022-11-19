@@ -23,12 +23,21 @@ public class OrderVO {
 	private String w_nm_k;
 	private String w_nm_e;
 	private String merchant_uid;
+	private String ord_name;
 	
 	
 	
 	
 	
 	
+	public String getOrd_name() {
+		return ord_name;
+	}
+
+	public void setOrd_name(String ord_name) {
+		this.ord_name = ord_name;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderVO [ord_code=" + ord_code + ", id=" + id + ", ord_date=" + ord_date + ", ord_stat=" + ord_stat

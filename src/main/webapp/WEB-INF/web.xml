@@ -36,7 +36,11 @@
 			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
 		</init-param>
 	</servlet>
-<web-app>    
+<web-app>
+<error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error.wp</location>
+</error-page>
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error.wp</location>

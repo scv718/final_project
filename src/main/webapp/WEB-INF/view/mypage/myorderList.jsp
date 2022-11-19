@@ -11,6 +11,7 @@
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/cart.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> 
 </head>
 <body class = "d-flex flex-column min-vh-100">
 <%@ include file="../../../header.jsp"%>
@@ -32,28 +33,22 @@
             
             
             <div class ="container">
-               	<div class = "row" id = "mobiletable">
+               	<div class = "row" >
             <div class = "col-lg-12 col-sm-6">
             <table class="subject_table">
           		  <colgroup>
           		  						<col id ="mobileone" />
 										<col id = "mobiletwo" />
 				  </colgroup>
-               <caption>표 제목 부분</caption>
-               <tbody>
                   <tr>
 <!--                      <th class="td_width_1"></th> -->
                      <th >이미지</th>
                      <th >상품정보</th>
-      
                   </tr>
-               </tbody>
-               <caption>표 내용 부분</caption>
                <tbody>
                   <c:forEach items="${cartInfo}" var="ci" varStatus="status"> 
-                     <tr>
-						<td> <a id = "image_wrap"><img id ="w_image1" src = "${pageContext.request.contextPath}/resources/img/wine/${product[status.index].w_image1}"></a><td>
-				
+                     <tr id ="card">
+						<td onclick="location.href='product.wp?w_no=${ci.w_no}';" style="text-align: center; cursor:pointer;"> <a id = "image_wrap"><img id ="w_image1" src = "${pageContext.request.contextPath}/resources/img/wine/${product[status.index].w_image1}"></a><td>
                         <a onclick="location.href='product.wp?w_no=${ci.w_no}';" style="text-align: center; cursor:pointer;">${ci.w_nm_k}</a><br>
                     배송상태: ${ci.ord_stat}<br>
                     주문상태: ${ci.cs_stat}<br>
@@ -66,12 +61,16 @@
                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
                            <button type="button" class="btn-hover1 color-9"  id="delete_btn">주문취소</button>
                        </form> 	
-                      </c:when>                
+                      </c:when>
+                      <c:when test='${ci.cs_stat eq "환불"}'>
+                      
+                      </c:when>             
                       <c:when test='${ci.cs_stat ne "취소요청"}'>
                       	 <input type = "hidden" id = "cs_stat${ci.ord_code}" value = "취소요청">
                      	 <input type = "hidden" id = "ord_stat${ci.ord_code}" value = "${ci.ord_stat}">
                       	  <button type="button" class="btn-hover1 color-9"  onclick="{updateOrder('${ci.ord_code}')}">취소요청</button>               
                       </c:when>
+                      
                       <c:otherwise>                    
                       </c:otherwise>
                        </c:choose>
@@ -83,99 +82,143 @@
                       <button type="button" class="btn-hover1 color-9"  onclick="location.href = 'product.wp?w_no=${ci.w_no}#reviewdiv'">리뷰쓰기</button>
                      </td>
                      </tr>
-                 
                 
                 
                   </c:forEach>
                 
                </tbody>
             </table>
+            <div id="js-btn-wrap" class="btn-wrap"><button id = "plus" class = "btn-hover color-9"><i class = "xi-plus-min"></i></button></div>
                 </div>
+                <a id="MOVE_TOP_BTN" href="#" onclick="window.scrollTo(0,0);" class="material-symbols-outlined">arrow_circle_up</a>
                 </div>
-        	<div class = "row" id = "pctable">
-            <div class = "col-lg-12 col-sm-6">
-            <table class="subject_table">
-          		  <colgroup>
-          		  						<col id ="orderbtn" />
-										<col id = "ordername" />
-										<col id = "orderstatus"/>
-										<col id = "orderstatus"/>
-										<col id = "orderprice" />
-										<col id ="orderbtn" />
-										<col id ="orderbtn" />
-									</colgroup>
-               <caption>표 제목 부분</caption>
-               <tbody>
+                	<script type="text/javascript">
+	$(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('#MOVE_TOP_BTN').fadeIn();
+            } else {
+                $('#MOVE_TOP_BTN').fadeOut();
+            }
+        });
+        
+        $("#MOVE_TOP_BTN").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
+	</script>
+<!--         	<div class = "row" id = "pctable"> -->
+<!--             <div class = "col-lg-12 col-sm-6"> -->
+<!--             <table class="subject_table"> -->
+<%--           		  <colgroup> --%>
+<%--           		  						<col id ="orderbtn" /> --%>
+<%-- 										<col id = "ordername" /> --%>
+<%-- 										<col id = "orderstatus"/> --%>
+<%-- 										<col id = "orderstatus"/> --%>
+<%-- 										<col id = "orderprice" /> --%>
+<%-- 										<col id ="orderbtn" /> --%>
+<%-- 										<col id ="orderbtn" /> --%>
+<%-- 									</colgroup> --%>
+<%--                <caption>표 제목 부분</caption> --%>
+<!--                <tbody> -->
 
-                  <tr>
-<!--                      <th class="td_width_1"></th> -->
-                     <th >이미지</th>
-                     <th >상품명</th>
-                     <th >배송현황</th>
-                     <th >주문상태</th>
-                     <th >가격</th>
-                     <th >삭제</th>
-                     <th >리뷰</th>
-                  </tr>
-               </tbody>
+<!--                   <tr> -->
+<!-- <!--                      <th class="td_width_1"></th> --> 
+<!--                      <th >이미지</th> -->
+<!--                      <th >상품명</th> -->
+<!--                      <th >배송현황</th> -->
+<!--                      <th >주문상태</th> -->
+<!--                      <th >가격</th> -->
+<!--                      <th >삭제</th> -->
+<!--                      <th >리뷰</th> -->
+<!--                   </tr> -->
+<!--                </tbody> -->
     
-               <caption>표 내용 부분</caption>
-               <tbody>
-                  <c:forEach items="${cartInfo}" var="ci" varStatus="status"> 
-                     <tr>
-						<td id = "image_wrap"><img id ="w_image1" src = "${pageContext.request.contextPath}/resources/img/wine/${product[status.index].w_image1}"></td>
-                        <td onclick="location.href='product.wp?w_no=${ci.w_no}';" style="text-align: center; cursor:pointer;">${ci.w_nm_k}</td>
-                        <td  style = "text-align: center">${ci.ord_stat}</td>
-                        <td  style = "text-align: center">${ci.cs_stat}</td>
-                        <td  style = "text-align: center">
-                          <fmt:formatNumber value="${ci.ord_t_price}" pattern="#,### 원" /><br>
-                        </td>
+<%--                <caption>표 내용 부분</caption> --%>
+<!--                <tbody> -->
+<%--                   <c:forEach items="${cartInfo}" var="ci" varStatus="status">  --%>
+<!--                      <tr> -->
+<%-- 						<td id = "image_wrap"><img id ="w_image1" src = "${pageContext.request.contextPath}/resources/img/wine/${product[status.index].w_image1}"></td> --%>
+<%--                         <td onclick="location.href='product.wp?w_no=${ci.w_no}';" style="text-align: center; cursor:pointer;">${ci.w_nm_k}</td> --%>
+<%--                         <td  style = "text-align: center">${ci.ord_stat}</td> --%>
+<%--                         <td  style = "text-align: center">${ci.cs_stat}</td> --%>
+<!--                         <td  style = "text-align: center"> -->
+<%--                           <fmt:formatNumber value="${ci.ord_t_price}" pattern="#,### 원" /><br> --%>
+<!--                         </td> -->
   
-                       <td>
-                      <c:if test = '${ci.cs_stat ne "취소"}'>
-                      <c:choose>
-                      <c:when test ='${ci.ord_stat eq "배송준비중"}'>
-                      <form id = "cancel_module" method="post">
-                        	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}">
-                        	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}">
-                           <button type="button" class="btn-hover1 color-9"  id="delete_btn">주문취소</button>
-                       </form> 	
-                      </c:when>                
-                      <c:when test='${ci.cs_stat ne "취소요청"}'>
-                      	 <input type = "hidden" id = "cs_stat${ci.ord_code}" value = "취소요청">
-                     	 <input type = "hidden" id = "ord_stat${ci.ord_code}" value = "${ci.ord_stat}">
-                      	  <button type="button" class="btn-hover1 color-9"  onclick="{updateOrder('${ci.ord_code}')}">취소요청</button>               
-                      </c:when>
-                      <c:otherwise>                    
-                      </c:otherwise>
-                       </c:choose>
-                      </c:if>
-                           <form action="deleteOrder.wp" method="post">
-                        	<input type="hidden" name="ord_code" value="${ci.ord_code}">
-                           <button  type="submit" class="btn-hover1 color-9" id="delete_btn">내역삭제</button>
-                           </form>
+<!--                        <td> -->
+<%--                       <c:if test = '${ci.cs_stat ne "취소"}'> --%>
+<%--                       <c:choose> --%>
+<%--                       <c:when test ='${ci.cs_stat eq "결제"}'> --%>
+<!--                       <form id = "cancel_module" method="post"> -->
+<%--                         	<input id = "ord_code" type="hidden" name="ord_code" value="${ci.ord_code}"> --%>
+<%--                         	<input id = "merchant_uid" type="hidden" name="merchant" value="${ci.merchant_uid}"> --%>
+<!--                            <button type="button" class="btn-hover1 color-9"  id="delete_btn">주문취소</button> -->
+<!--                        </form> 	 -->
+<%--                       </c:when>                 --%>
+<%--                       <c:when test='${ci.cs_stat ne "취소요청"}'> --%>
+<%--                       	 <input type = "hidden" id = "cs_stat${ci.ord_code}" value = "취소요청"> --%>
+<%--                      	 <input type = "hidden" id = "ord_stat${ci.ord_code}" value = "${ci.ord_stat}"> --%>
+<%--                       	  <button type="button" class="btn-hover1 color-9"  onclick="{updateOrder('${ci.ord_code}')}">취소요청</button>                --%>
+<%--                       </c:when> --%>
+<%--                       <c:otherwise>                     --%>
+<%--                       </c:otherwise> --%>
+<%--                        </c:choose> --%>
+<%--                       </c:if> --%>
+<!--                            <form action="deleteOrder.wp" method="post"> -->
+<%--                         	<input type="hidden" name="ord_code" value="${ci.ord_code}"> --%>
+<!--                            <button  type="submit" class="btn-hover1 color-9" id="delete_btn">내역삭제</button> -->
+<!--                            </form> -->
                            
                           
-                        </td>
+<!--                         </td> -->
                         
-                       <td>
-                      <button type="button" class="btn-hover1 color-9"  onclick="location.href = 'product.wp?w_no=${ci.w_no}#reviewdiv'">리뷰쓰기</button>
-                     </td>
-                     </tr>
+<!--                        <td> -->
+<%--                       <button type="button" class="btn-hover1 color-9"  onclick="location.href = 'product.wp?w_no=${ci.w_no}#reviewdiv'">리뷰쓰기</button> --%>
+<!--                      </td> -->
+<!--                      </tr> -->
                  
                 
                 
-                  </c:forEach>
+<%--                   </c:forEach> --%>
                 
-               </tbody>
-            </table>
-                </div>
-                </div>
+<!--                </tbody> -->
+<!--             </table> -->
+<!--                 </div> -->
+<!--                 </div> -->
             </div>
          </div>
      </div>
    </div>   <!-- class="wrap" -->
 </div>   <!-- class="wrapper" -->
+<script type="text/javascript">
+			$(window).on('load', function () {
+			    load('#card', '3');
+			    $("#plus").on("click", function () {
+			        load('#card', '3', '#js-btn-wrap');
+			    })
+			});
+			 
+			function load(id, cnt, btn) {
+			    var girls_list = id + "#card:not(.active)";
+			    console.log(id);
+			    console.log(girls_list);
+			    var girls_length = $(girls_list).length;
+			    console.log(girls_length);
+			    var girls_total_cnt;
+			    if (cnt < girls_length) {
+			        girls_total_cnt = cnt;
+			    } else {
+			        girls_total_cnt = girls_length;
+			        $('#plus').hide()
+			    }
+			    console.log(girls_total_cnt);
+			    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+			}
+			</script>
 <script type="text/javascript">
 function updateOrder(val){
 	

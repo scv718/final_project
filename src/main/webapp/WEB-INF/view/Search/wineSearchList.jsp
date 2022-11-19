@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>와이너리 | 와인검색</title>
 <link rel="stylesheet"
@@ -171,7 +171,7 @@ h6 {
 							<img class="card-img-top1" src="${pageContext.request.contextPath}/resources/img/wine/${wine.w_image1}" 
 							alt="wine image">
 								<p class="card-title">${wine.w_nm_k}</p>
-									<p class="card-text">${wine.w_price}</p>
+									<p class="card-text"> <fmt:formatNumber value="${wine.w_price}" pattern="#,###" /><br></p>
 									<button onclick = 'location.href="product.wp?w_no=${wine.w_no}"'
 										class="btn-hover color-8">상세보기</button>
 							</div>							

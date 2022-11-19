@@ -165,7 +165,7 @@ body {
 
 @media(max-width:768px){
 	.bg{
-	height: 20rem;
+	   height: 10rem;
 	}	
 	
 	h1#media_type{

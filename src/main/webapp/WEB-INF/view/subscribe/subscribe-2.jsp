@@ -451,19 +451,22 @@ $("#check_module").click(function () {
 			if (rsp.success) {
 				
 				var msg = '결제가 완료되었습니다.';
-				msg += '\n고유ID : ' + rsp.imp_uid;
-				msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-				msg += '\n결제 금액 : ' + rsp.paid_amount;
-				msg += '\n카드 승인번호 : ' + rsp.apply_num;
 				
+				var icon = 'success';
 				$("#imp_uid").val(rsp.imp_uid);
 				$("#merchant_uid").val(rsp.merchant_uid);
 				chk = true;
 			} else {
 				var msg = '결제에 실패하였습니다.';
-				msg += '\n에러내용 : ' + rsp.error_msg;
+				var icon = 'error';
+		
 			}
-			alert(msg);
+			swal({
+		      	  title: msg,
+		      	  text: "",
+		      	  icon: icon,
+		      	  button: "닫기",
+		      	});
 			if(chk==true) orderList();
 	})
 })
