@@ -22,12 +22,17 @@ public class MainController {
 	@Autowired
 	NoticeService noticeService;
 	
-	@RequestMapping(value = {"/error.wp"})
+	@RequestMapping(value = "/error.wp")
 	public String error() {
 		
 		return "WEB-INF/view/error/errorPage404.jsp";
 	}
-	
+	@RequestMapping("/505.wp")
+	public String problem(Model model) {
+		int result = 1 / 0;
+		model.addAttribute("serverTime", result);
+		return "home";
+	}
 	
 	@RequestMapping(value = {"/", "/index.wp"})
 	public String index(Model model, MenuVO vo, NoticeVO nvo, ReviewVO rvo) {

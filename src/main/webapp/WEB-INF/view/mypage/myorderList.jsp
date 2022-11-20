@@ -37,13 +37,12 @@
             <div class = "col-lg-12 col-sm-6">
             <table class="subject_table">
           		  <colgroup>
-          		  						<col id ="mobileone" />
-										<col id = "mobiletwo" />
+          		  <col id ="mobileone" />
+				  <col id = "mobiletwo" />
 				  </colgroup>
                   <tr>
-<!--                      <th class="td_width_1"></th> -->
-                     <th >이미지</th>
-                     <th >상품정보</th>
+                     <th>이미지</th>
+                     <th>상품정보</th>
                   </tr>
                <tbody>
                   <c:forEach items="${cartInfo}" var="ci" varStatus="status"> 
@@ -88,7 +87,7 @@
                 
                </tbody>
             </table>
-            <div id="js-btn-wrap" class="btn-wrap"><button id = "plus" class = "btn-hover color-9"><i class = "xi-plus-min"></i></button></div>
+            <div id="js-btn-wrap" class="btn-wrap"><button id = "plusbtn" class = "btn-hover color-9"><i class = "xi-plus-min"></i></button></div>
                 </div>
                 <a id="MOVE_TOP_BTN" href="#" onclick="window.scrollTo(0,0);" class="material-symbols-outlined">arrow_circle_up</a>
                 </div>
@@ -197,7 +196,7 @@
 <script type="text/javascript">
 			$(window).on('load', function () {
 			    load('#card', '3');
-			    $("#plus").on("click", function () {
+			    $("#plusbtn").on("click", function () {
 			        load('#card', '3', '#js-btn-wrap');
 			    })
 			});
@@ -213,7 +212,7 @@
 			        girls_total_cnt = cnt;
 			    } else {
 			        girls_total_cnt = girls_length;
-			        $('#plus').hide()
+			        $('#plusbtn').hide()
 			    }
 			    console.log(girls_total_cnt);
 			    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");

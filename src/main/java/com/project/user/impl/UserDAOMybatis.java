@@ -27,9 +27,6 @@ public class UserDAOMybatis {
 	public List<UserVO> getUserList(UserVO vo) {
 		
 		List<UserVO> a = mybatis.selectList("UserDAO.getUserList");
-		for(UserVO v : a ) {
-			System.out.println("v: "+v);
-		}
 		return mybatis.selectList("UserDAO.getUserList");
 	}
 

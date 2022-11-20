@@ -19,6 +19,11 @@
 	height: 100%;
 	object-fit: cover;
 }
+.bd-placeholder-img{
+	width: 100%;
+    object-fit: cover;
+}
+    
 
 .title {
 	padding: 20px;

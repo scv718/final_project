@@ -105,7 +105,7 @@ public class NaverController {
         uvo.setM_name(m_name);
         uvo.setM_phone(m_phone);
         String id = null;
-
+        uvo.setLogin(1);
         if(userService.getId(uvo) == null) {
         	if(age < 20) {
         		session.setAttribute("ageerror", 1);
@@ -114,6 +114,7 @@ public class NaverController {
         		uvo.setM_pw(m_email);
         		uvo.setId(m_email);
         		svo.setId(uvo.getId());
+        		
         		userService.kakaoInsertUser(uvo);
         		subscribeService.insertSubscribe0(svo);
         		session.setAttribute("login", m_email);

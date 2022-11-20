@@ -12,18 +12,18 @@
 
 	<mvc:annotation-driven />
 
-	<!-- <bean id="exceptionResolver" -->
-	<!-- class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
-	<!-- <property name="exceptionMappings"> -->
-	<!-- <props> -->
-	<!-- <prop key="java.lang.ArithmeticException">/error/errorArithmetic.jsp</prop> -->
-	<!-- <prop key="java.lang.NullPointerException">/error/errorNullPointer.jsp</prop> -->
-	<!-- <prop key="java.lang.IllegalArgumentException">/error/errorException.jsp</prop> -->
-	<!-- </props> -->
-	<!-- </property> -->
-	<!-- <property name="defaultErrorView" -->
-	<!-- value="/error/errorException.jsp" /> -->
-	<!-- </bean> -->
+<!-- 	<bean id="exceptionResolver" -->
+<!-- 	class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
+<!-- 	<property name="exceptionMappings"> -->
+<!-- 	<props> -->
+<!-- 	<prop key="java.lang.ArithmeticException">/error.wp</prop> -->
+<!-- 	<prop key="java.lang.NullPointerException">/error.wp</prop> -->
+<!-- 	<prop key="java.lang.IllegalArgumentException">/error.wp</prop> -->
+<!-- 	</props> -->
+<!-- 	</property> -->
+<!-- 	<property name="defaultErrorView" -->
+<!-- 	value="/error.wp" /> -->
+<!-- 	</bean> -->
 
 <!-- 	인터셉터 객체 생성 -->
 	<bean id="authenticationInterceptor"
@@ -53,6 +53,15 @@
 			<mvc:mapping path="/insertQna.wp" />
 			<mvc:mapping path="/mypage.wp" />
 			<mvc:mapping path="/preference.wp" />
+			<mvc:mapping path="/adminMain.wp" />
+			<mvc:mapping path="/adminUser.wp" />
+			<mvc:mapping path="/adminWine.wp" />
+			<mvc:mapping path="/adminStory.wp" />
+			<mvc:mapping path="/admin_Story1.wp" />
+			<mvc:mapping path="/admin_Story2.wp" />
+			<mvc:mapping path="/admin_Story3.wp" />
+			<mvc:mapping path="/adminSubscription.wp" />
+			<mvc:mapping path="/adminSalesdelivery.wp" />
 <!-- 			<mvc:exclude-mapping path="/signUp.wp" /> -->
 <!-- 			<mvc:exclude-mapping path="/index.wp" /> -->
 <!-- 			<mvc:exclude-mapping path="/" /> -->

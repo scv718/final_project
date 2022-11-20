@@ -89,7 +89,9 @@ public class AdminController {
 	//관리자 리스트 컨트롤
 	@RequestMapping(value="adminUser.wp")
 	public String getUserList(UserVO vo, Model model){
-	//addAttribute화면 뿌려주는놈
+		for(int i = 0; i<userService.getUserList(vo).size();i++) {
+			System.out.println(userService.getUserList(vo).get(i).getM_status());
+		}
 	model.addAttribute("UserList", userService.getUserList(vo));
 		return "WEB-INF/view/admin/adminuser.jsp";
 	}
@@ -98,10 +100,8 @@ public class AdminController {
 	//와인관리 리스트
 	@RequestMapping(value="adminWine.wp")
 	public String Wine(WineVO vo, Model model){
-	System.out.println("유저 불러오기");
 	//addAttribute화면 뿌려주는놈
 	model.addAttribute("WineListAd", wineService.WineListAd(vo));
-	System.out.println("테스트");
 		return "WEB-INF/view/admin/adminwine.jsp";
 	}
 	
@@ -118,9 +118,7 @@ public class AdminController {
 	}
 	@RequestMapping(value="deleteAd.wp")
 	public String adminDelete(UserVO vo, Model model) {
-		System.out.println("유저 삭제 받아오기");
-		System.out.println(vo.toString());
-		userService.deleteMember(vo); 
+		userService.secessionUser(vo);
 		model.addAttribute("UserList", userService.getUserList(vo));
 		return "WEB-INF/view/admin/adminuser.jsp";
 	}

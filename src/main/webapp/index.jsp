@@ -10,18 +10,15 @@
 <link rel="icon" href="/resources/img/파비콘3.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>와이너리</title>
-
 <style>
 video {
 	width: 100%;
 	display: block;
 	height: 610px;
 }
-
 .Btnimg {
 	width: 60px;
 }
-
 .WaterBtn {
 	background-color: white;
 	border: none;
@@ -40,7 +37,7 @@ video {
 <body class="d-flex flex-column min-vh-100">
 <script>
                     var tag = document.createElement('script');
-                    tag.src = "https://www.youtube.com/iframe_api";
+                    tag.src = "http://www.youtube.com/iframe_api";
                     var firstScriptTag = document.getElementsByTagName('script')[0];
                     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
                     var player;
@@ -63,7 +60,7 @@ video {
             'loop': 1,
             'mute':1,
             'origin': 'http://localhost:8090',
-            'host': 'https://www.youtube.com'
+            'host': 'http://www.youtube.com'
       },
       events: {
         'onReady': onPlayerReady,
@@ -84,6 +81,22 @@ video {
   function stopVideo() {
     player.stopVideo();
   }
+</script>
+<script type="text/javascript">
+history.pushState(null, null, "${pageContext.request.contextPath}/");
+window.onpopstate = function(event) {
+	var preUrl = document.referrer;
+	var id = '${userID}';
+	if(preUrl.includes('admin')){
+		if(id === ''){
+			history.go(1);
+		}else{
+			history.go(-1);
+		}
+	}else{
+		history.go(-1);
+	}
+};
 </script>
 	<%@ include file="header.jsp"%>
 	<div class="imgSlide">

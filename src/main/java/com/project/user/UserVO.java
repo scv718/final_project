@@ -12,8 +12,16 @@ public class UserVO {
 	private String m_email;
 	private int login;
 	private int level;
+	private int m_status;
 	private String m_role;
 	
+	public int getM_status() {
+		return m_status;
+	}
+
+	public void setM_status(int m_status) {
+		this.m_status = m_status;
+	}
 
 
 	public String getM_role() {

@@ -118,7 +118,6 @@ public class UserController {
 		System.out.println("아이디체크 컨트롤러");
 		int count = 0;
         Map<Object, Object> map = new HashMap<Object, Object>();
- 
         count = userService.checkUser(id);
         map.put("cnt", count);
  
@@ -127,7 +126,6 @@ public class UserController {
 	
 	@RequestMapping(value="insertUser.wp" , method = RequestMethod.POST)
 	public String insertUser(UserVO vo, SubscribeVO svo, HttpSession session) {
-		System.out.println("회원가입 실행");
 //		
 		vo.setM_birth((String)session.getAttribute("birthday"));
 		vo.setM_name((String)session.getAttribute("name"));

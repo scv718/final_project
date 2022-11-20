@@ -109,6 +109,7 @@ public class KakaoLoginController {
         System.out.println(age);
         vo.setM_email(m_email);
         vo.setM_name(m_name);
+        vo.setLogin(2);
         String id = null;
 
         REDIRECT_URI = "http://winerycop.tk";

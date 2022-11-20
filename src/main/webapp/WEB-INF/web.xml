@@ -27,6 +27,7 @@
 
 	<!-- 프론트 컨트롤러 설정 -->
 
+
 	<servlet>
 		<servlet-name>action</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -35,26 +36,18 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
 		</init-param>
+		<init-param>
+			<param-name>throwExceptionIfNoHandlerFound</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 	</servlet>
 <web-app>
 <error-page>
     <exception-type>java.lang.Throwable</exception-type>
-    <location>/error.wp</location>
+    <location>WEB-INF/view/error/errorPage404.jsp</location>
 </error-page>
-	<error-page>
-		<error-code>404</error-code>
-		<location>/error.wp</location>
-	</error-page>
-
-	<error-page>
-		<error-code>405</error-code>
-		<location>/error.wp</location>
-	</error-page>
-
-	<error-page>
-		<error-code>500</error-code>
-		<location>/error.wp</location>
-	</error-page>
 </web-app>
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>

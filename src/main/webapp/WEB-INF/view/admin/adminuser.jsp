@@ -208,6 +208,7 @@
 			<th>이메일</th>
 			<th>로그인</th>
 			<th>등급</th>
+			<th>탈퇴여부</th>
 			<th>수정/삭제</th>
         </tr> 
         </thead>  
@@ -221,7 +222,8 @@
       	 <td><input id="m_name${users.m_no}" value="${users.m_name}"></td>
       	 <td>${users.m_email}</td>
      	 <td>${users.login}</td>
-      	 <td>${users.level}</td>
+      	 <td>${users.level}</td>	
+     	 <td>${users.m_status}</td>
 	  <td>
 	  	<a style="color: white" class="myButton1" onclick="if(confirm('정말 수정하시겠습니까?')){updateAd('${users.m_no}')}">수정</a>
       	<a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteAd('${users.id}')}">삭제</a>
@@ -264,13 +266,11 @@
     function updateAd(param){
     	var m_name = $('#m_name'+param).val();
     	var id =  $('#id'+param).val();
-    	console.log('testad');
     	location.href = 'updateAd.wp?id='+id+'&&m_name='+m_name;
     	document.userInfo.submit();
     }
     function deleteAd(param){
     	var id = param;
-    	console.log('testad');
     	location.href = 'deleteAd.wp?id='+id;
     	document.userInfo.submit();
     }
