@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -76,14 +77,21 @@ public class KakaoLoginController {
 	@RequestMapping("/getAuthUrl.wp")
 	@ResponseBody
 	public String getToken() {
-	
-		REDIRECT_URI = REDIRECT_URI+"/getToken.wp";
-		String result = KAKAO_AUTH_URL + "?response_type=code&scope=account_email,age_range,profile_nickname&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
+		System.out.println("토큰겟");
 		
+		System.out.println(REDIRECT_URI.equals("getToken.wp"));
+		if(REDIRECT_URI.contains("getToken.wp")) {
+			System.out.println("이미있음");
+			REDIRECT_URI = REDIRECT_URI.replaceAll("getToken.wp", "");
+			return REDIRECT_URI;
+		}else {
+			 REDIRECT_URI = REDIRECT_URI+"/getToken.wp";
+		}
+	  
+		System.out.println(REDIRECT_URI);
+		String result = KAKAO_AUTH_URL + "?response_type=code&scope=account_email,age_range,profile_nickname&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
 		return result;
 	}
-	
-	
 	@RequestMapping(value = "/getToken.wp")
 	public String oauthKakao(
 			@RequestParam(value = "code", required = false) String code
@@ -91,14 +99,13 @@ public class KakaoLoginController {
 		System.out.println("code: " + code);
         String access_Token = getAccessToken(code);
         
-        
-        
         HashMap<String, Object> userInfo = getUserInfo(access_Token);
         System.out.println("access_Token : " + access_Token);
         System.out.println("userInfo : " + userInfo.get("email"));
         System.out.println("nickname : " + userInfo.get("nickname"));
         System.out.println("age_range : " + userInfo.get("age_range"));
         session.setAttribute("login", userInfo.get("email"));
+        session.setAttribute("access_token", access_Token);
         model.addAttribute("kakaoInfo", userInfo);
         String m_email = (String) userInfo.get("email");
         String m_name = (String) userInfo.get("nickname");
@@ -111,7 +118,6 @@ public class KakaoLoginController {
         vo.setM_name(m_name);
         vo.setLogin(2);
         String id = null;
-
         REDIRECT_URI = "http://winerycop.tk";
 //        REDIRECT_URI = "http://localhost:8090";
         if(userService.getId(vo) == null) {
@@ -148,14 +154,23 @@ public class KakaoLoginController {
         }
 	}
 	
+	HttpConnection conn = HttpConnection.getInstance();
 	
 	@RequestMapping("/logOutkakaoUrl.wp")
-	@ResponseBody
-	public String getLogout() {
-		REDIRECT_URI = REDIRECT_URI+"/logoutkakao.wp";
+	public String getLogout(HttpSession session) throws IOException {
 		
-		String result = KAKAO_AUTH_URL + "?response_type=code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
-		return result;
+		String access_token = (String)session.getAttribute("access_token");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("Authorization", "Bearer "+ access_token);
+		String result = conn.HttpPostConnection("https://kapi.kakao.com/v1/user/logout", map).toString();
+		session.invalidate();
+		return "redirect:/";
+		
+//		  REDIRECT_URI = REDIRECT_URI+"/logoutkakao.wp";
+//		System.out.println(REDIRECT_URI);
+//		String result = KAKAO_AUTH_URL + "?response_type=code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
+//		System.out.println(result); 
+//		return result;
 	}
 	
 	@RequestMapping(value = "/logoutkakao.wp")
@@ -163,7 +178,7 @@ public class KakaoLoginController {
 			@RequestParam(value = "code", required = false) String code
 			, Model model, HttpSession session) throws Exception {
 		System.out.println("code: " + code);
-		session.invalidate();
+	
         String access_Token = getAccessToken(code);
         String addURL = "?target_id_type=user_id&target_id="+id ;
         HttpClient client = HttpClientBuilder.create().build(); 
@@ -177,13 +192,11 @@ public class KakaoLoginController {
 			System.out.println("body333: "+body);
 		}catch (Exception e) { 
 			e.printStackTrace(); 
-		}
+		}	
 		REDIRECT_URI = "http://winerycop.tk";
 //		REDIRECT_URI = "http://localhost:8090";
         return "redirect:/";
 	}
-	
-	
 	//토큰발급
 	public String getAccessToken(String authorize_code) {
 		System.out.println("authorize_code: " + authorize_code);
@@ -253,11 +266,7 @@ public class KakaoLoginController {
     	return map; 
     }
 	
-	@RequestMapping(value = "/home.wp")
-	public String home() {
-		return "home.jsp";
-	}
-	
+
 	
 	
 	

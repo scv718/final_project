@@ -59,7 +59,7 @@ video {
             'color':'white',
             'loop': 1,
             'mute':1,
-            'origin': 'http://localhost:8090',
+            'origin': 'http://winerycop.tk',
             'host': 'http://www.youtube.com'
       },
       events: {

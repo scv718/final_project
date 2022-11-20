@@ -365,6 +365,7 @@ function joinform_check() {
 
 
 	<script type="text/javascript">
+
 var idck = 0;
 const target = document.getElementById('singupbtn');
 $(function() {

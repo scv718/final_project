@@ -36,8 +36,8 @@
 					<a id = "loginLang" class="nav-link" href="mypage.wp">MyPage</a>
 					<c:choose>
 						<c:when test="${userType eq 'kakao'}">
-								<a id = "loginLang" class="nav-link" href="#" onclick="kakaoLogout();">Logout</a>
-						</c:when>
+								<a id = "loginLang" class="nav-link" href="logOutkakaoUrl.wp" >Logout</a>
+						</c:when> 
 						<c:when test="${userType eq 'naver'}">
 								<a id = "loginLang" class="nav-link" href="naverLogout.wp" >Logout</a>
 						</c:when>

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -141,17 +142,18 @@ public class WineSearchController {
 	}
 	
 	@RequestMapping("/insertWine.wp")
-	public String insertWine(MultipartHttpServletRequest request, WineVO vo, Model model)
+	public String insertWine(HttpSession session, MultipartHttpServletRequest request, WineVO vo, Model model)
 			throws IllegalStateException, IOException {
 
 		MultipartFile uploadFile = vo.getUploadFile();
 		String wine_img = uploadFile.getOriginalFilename();
 		vo.setW_image1(wine_img);
 		String realPath = "C:\\Users\\PC-24\\Desktop\\WineProject\\final_project\\src\\main\\webapp\\resources\\img\\wine";
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\wine\\";
 		// 절대 경로 변경할 위치
 		System.out.println(wine_img);
 		if (!uploadFile.isEmpty()) {
-			uploadFile.transferTo(new File(realPath + wine_img));
+			uploadFile.transferTo(new File(path + wine_img));
 		}
 		wineService.insertWine(vo);
 		return "adminWine.wp";
@@ -159,15 +161,12 @@ public class WineSearchController {
 	
 	@RequestMapping(value="deleteWine.wp")
 	public String adminDelete(WineVO vo, Model model) {
-		
 		wineService.deleteWine(vo); 
 		return "adminWine.wp";
-		
 	}
-
 	@RequestMapping(value="updateWine.wp")
 	public String adminUpdate(HttpServletRequest request, WineVO vo, Model model) {
-		
+			
 		String w_no1 = (String) request.getParameter("w_no");
 		String quantity = (String) request.getParameter("quantity");
 		String w_price = (String) request.getParameter("w_price");
