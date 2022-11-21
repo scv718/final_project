@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,8 +81,15 @@
                     </ul>
 			</div>
 				<div id="bottom_btn">
-				<button type="button" class="updatebtn" onclick="location.href='admin_updateQna.wp'">답변수정</button>
+				<c:choose>
+				<c:when test="${community.answer_status eq '답변대기'}">
 				<button type="submit" class="insertbtn" onclick="registerAction()">등록하기</button>
+				</c:when>
+				<c:otherwise>
+				<button type="button" class="updatebtn" onclick="location.href='admin_updateQna.wp'">답변수정</button>
+				</c:otherwise>
+				</c:choose>
+					<button type="button" class="updatebtn" onclick="history.back()">뒤로가기</button>
 				</div>				
 			</form>
 	</div>

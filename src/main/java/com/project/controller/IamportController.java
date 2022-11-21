@@ -479,13 +479,11 @@ public class IamportController {
 				cartService.deleteCart(voList);
 			}
 		}
-
 		orderService.insertOrder(ovo);
-
 		return "redirect:myorderList.wp";
-
 	}
 
+	
 	@RequestMapping(value = "/pay.wp", method = RequestMethod.POST)
 	public String payment(HttpServletRequest request, HttpServletResponse response, Model model, OrderVO ovo,
 			AddressVO avo, CartVO voList, WineVO vo, UserVO uvo, HttpSession session) throws IOException {

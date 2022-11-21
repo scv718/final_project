@@ -268,6 +268,7 @@ public class QnaController {
 	@RequestMapping("/admin_getQna.wp")
 	public String admin_getQna(CommunityVO vo, Model model) {
 		model.addAttribute("community", qnaService.admin_getQna(vo));
+		System.out.println(qnaService.admin_getQna(vo));
 		System.out.println("컨트롤러qna" + qnaService.admin_getQna(vo).getAnswer_no());
 		return "WEB-INF/view/community/admin_insertQna.jsp";
 	}

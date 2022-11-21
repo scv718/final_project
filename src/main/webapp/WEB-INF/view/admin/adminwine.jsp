@@ -1,4 +1,4 @@
-
+﻿
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -148,6 +148,9 @@
 						<li><a href="adminMain.wp">만든사람들(메인)</a></li>
 						<li><a href="adminUser.wp">회원관리</a></li>
 						<li><a href="adminWine.wp">와인관리</a></li>
+ <li>
+                            <a href="admin_getIntro.wp">와이너리?페이지관리</a>
+                        </li>
 						<li><a href="adminStory.wp">와인이야기 페이지 관리</a></li>
 						<li><a href="adminSubscription.wp">구독관리</a></li>
 						<li><a href="adminSalesdelivery.wp">판매,배송관리</a></li>

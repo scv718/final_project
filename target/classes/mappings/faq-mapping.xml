@@ -58,5 +58,7 @@
 	<select id="admin_getFaq" resultType="community">
 		SELECT * FROM COMMUNITY WHERE COMMU_NO = #{commu_no}
 	</select>
+	
+
 
 </mapper>

@@ -47,7 +47,7 @@ public class SubscribeController {
 		svo.setId((String) session.getAttribute("userID"));
 		if(uvo.getId() != null){
 		model.addAttribute("user", userSerivce.getUser(uvo));
-		
+		model.addAttribute("mylevel", subscribeService.getSubscribe(svo));
 		}
 		return "WEB-INF/view/subscribe/subscribe.jsp";
 	}
