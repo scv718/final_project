@@ -38,65 +38,65 @@ import com.project.user.UserVO;
 
 @Controller
 public class KakaoLoginController {
-	
-	public static final String KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
-	public static final String KAKAO_TOKEN_URL = "https://kauth.kakao.com/oauth/token";
-	public static final String KAKAO_USER_INFO_URL = "https://kapi.kakao.com/v2/user/me";
-	public static final String KAKAO_LOGOUT_URL = "https://kapi.kakao.com/v1/user/logout";
-	public static final String KAKAO_UNLINK_URL = "https://kapi.kakao.com/v1/user/unlink";
-	public static String REDIRECT_URI = "http://winerycop.tk";
-//	public static String REDIRECT_URI = "http://localhost:8090";
-	private static String id ;
-	private String REST_API_KEY = "dc2fa6b3e7a1ed13915aa6e675bfc8a6";
-	
-	@Autowired
-	SubscribeService subscribeService;
-	@Autowired
-	UserService userService;
-	
-	@RequestMapping("naverLogin.wp")
-	public String naerLogin(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) {
-		System.out.println("네이버로그인");
-		System.out.println(param);
-		System.out.println(param.get("email"));
-		System.out.println(param.get("name"));
-		System.out.println(param.get("mobile"));
-		System.out.println(param.get("age"));
-		
-		
-		
-		return null;
-	}
-	
-	@RequestMapping("navercollback.wp")
-	public String navercollback() {
-		System.out.println("네이버 콜백 실행");
-		return "WEB-INF/view/user/collback.jsp";
-		
-	}
-	@RequestMapping("/getAuthUrl.wp")
-	@ResponseBody
-	public String getToken() {
-		System.out.println("토큰겟");
-		
-		System.out.println(REDIRECT_URI.equals("getToken.wp"));
-		if(REDIRECT_URI.contains("getToken.wp")) {
-			System.out.println("이미있음");
-			REDIRECT_URI = REDIRECT_URI.replaceAll("getToken.wp", "");
-			return REDIRECT_URI;
-		}else {
-			 REDIRECT_URI = REDIRECT_URI+"/getToken.wp";
-		}
-	  
-		System.out.println(REDIRECT_URI);
-		String result = KAKAO_AUTH_URL + "?response_type=code&scope=account_email,age_range,profile_nickname&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
-		return result;
-	}
-	@RequestMapping(value = "/getToken.wp")
-	public String oauthKakao(
-			@RequestParam(value = "code", required = false) String code
-			, Model model, HttpSession session, UserVO vo, SubscribeVO svo) throws Exception {
-		System.out.println("code: " + code);
+   
+   public static final String KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
+   public static final String KAKAO_TOKEN_URL = "https://kauth.kakao.com/oauth/token";
+   public static final String KAKAO_USER_INFO_URL = "https://kapi.kakao.com/v2/user/me";
+   public static final String KAKAO_LOGOUT_URL = "https://kapi.kakao.com/v1/user/logout";
+   public static final String KAKAO_UNLINK_URL = "https://kapi.kakao.com/v1/user/unlink";
+   public static String REDIRECT_URI = "http://winerycop.tk";
+//   public static String REDIRECT_URI = "http://localhost:8090";
+   private static String id ;
+   private String REST_API_KEY = "dc2fa6b3e7a1ed13915aa6e675bfc8a6";
+   
+   @Autowired
+   SubscribeService subscribeService;
+   @Autowired
+   UserService userService;
+   
+   @RequestMapping("naverLogin.wp")
+   public String naerLogin(@RequestBody HashMap<String, Object> param, HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, UserVO vo) {
+      System.out.println("네이버로그인");
+      System.out.println(param);
+      System.out.println(param.get("email"));
+      System.out.println(param.get("name"));
+      System.out.println(param.get("mobile"));
+      System.out.println(param.get("age"));
+      
+      
+      
+      return null;
+   }
+   
+   @RequestMapping("navercollback.wp")
+   public String navercollback() {
+      System.out.println("네이버 콜백 실행");
+      return "WEB-INF/view/user/collback.jsp";
+      
+   }
+   @RequestMapping("/getAuthUrl.wp")
+   @ResponseBody
+   public String getToken() {
+      System.out.println("토큰겟");
+      
+      System.out.println(REDIRECT_URI.equals("getToken.wp"));
+      if(REDIRECT_URI.contains("getToken.wp")) {
+         System.out.println("이미있음");
+         REDIRECT_URI = REDIRECT_URI.replaceAll("getToken.wp", "");
+         return REDIRECT_URI;
+      }else {
+          REDIRECT_URI = REDIRECT_URI+"/getToken.wp";
+      }
+     
+      System.out.println(REDIRECT_URI);
+      String result = KAKAO_AUTH_URL + "?response_type=code&scope=account_email,age_range,profile_nickname&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
+      return result;
+   }
+   @RequestMapping(value = "/getToken.wp")
+   public String oauthKakao(
+         @RequestParam(value = "code", required = false) String code
+         , Model model, HttpSession session, UserVO vo, SubscribeVO svo) throws Exception {
+      System.out.println("code: " + code);
         String access_Token = getAccessToken(code);
         
         HashMap<String, Object> userInfo = getUserInfo(access_Token);
@@ -121,153 +121,153 @@ public class KakaoLoginController {
         REDIRECT_URI = "http://winerycop.tk";
 //        REDIRECT_URI = "http://localhost:8090";
         if(userService.getId(vo) == null) {
-        	if(age < 20) {
-        		session.setAttribute("ageerror", 1);
-        		return "redirect:/";
-        	}else {
-        		vo.setM_pw(m_email);
-        		vo.setId(m_email);
-        		svo.setId(vo.getId());
-        		userService.kakaoInsertUser(vo);
-        		subscribeService.insertSubscribe0(svo);
-        		session.setAttribute("login", m_email);
-        		session.setAttribute("userName", m_name);
-        		session.setAttribute("userID", m_email);
-        		session.setAttribute("userType", "kakao");
-        		
-        		return "redirect:/preference.wp";
-        	}
+           if(age < 20) {
+              session.setAttribute("ageerror", 1);
+              return "redirect:/";
+           }else {
+              vo.setM_pw(m_email);
+              vo.setId(m_email);
+              svo.setId(vo.getId());
+              userService.kakaoInsertUser(vo);
+              subscribeService.insertSubscribe0(svo);
+              session.setAttribute("login", m_email);
+              session.setAttribute("userName", m_name);
+              session.setAttribute("userID", m_email);
+              session.setAttribute("userType", "kakao");
+              
+              return "redirect:/preference.wp";
+           }
         
         }else {
-        	id = userService.getId(vo).getId();
-        	if(id.equals(m_email)) {
-        		System.out.println("카카오 로그인 진행");
-        		session.setAttribute("userID", m_email);
-        		session.setAttribute("userName", m_name);
-        		session.setAttribute("userType", "kakao");
-        		
-        		return "redirect:/";
-        	}else {
-        		session.setAttribute("socialerror", 1);
-        		return "redirect:signUp.wp";
-        	}
+           id = userService.getId(vo).getId();
+           if(id.equals(m_email)) {
+              System.out.println("카카오 로그인 진행");
+              session.setAttribute("userID", m_email);
+              session.setAttribute("userName", m_name);
+              session.setAttribute("userType", "kakao");
+              
+              return "redirect:/";
+           }else {
+              session.setAttribute("socialerror", 1);
+              return "redirect:signUp.wp";
+           }
         }
-	}
-	
-	HttpConnection conn = HttpConnection.getInstance();
-	
-	@RequestMapping("/logOutkakaoUrl.wp")
-	public String getLogout(HttpSession session) throws IOException {
-		
-		String access_token = (String)session.getAttribute("access_token");
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("Authorization", "Bearer "+ access_token);
-		String result = conn.HttpPostConnection("https://kapi.kakao.com/v1/user/logout", map).toString();
-		session.invalidate();
-		return "redirect:/";
-		
-//		  REDIRECT_URI = REDIRECT_URI+"/logoutkakao.wp";
-//		System.out.println(REDIRECT_URI);
-//		String result = KAKAO_AUTH_URL + "?response_type=code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
-//		System.out.println(result); 
-//		return result;
-	}
-	
-	@RequestMapping(value = "/logoutkakao.wp")
-	public String logoutKakao(
-			@RequestParam(value = "code", required = false) String code
-			, Model model, HttpSession session) throws Exception {
-		System.out.println("code: " + code);
-	
+   }
+   
+   HttpConnection conn = HttpConnection.getInstance();
+   
+   @RequestMapping("/logOutkakaoUrl.wp")
+   public String getLogout(HttpSession session) throws IOException {
+      
+      String access_token = (String)session.getAttribute("access_token");
+      Map<String, String> map = new HashMap<String, String>();
+      map.put("Authorization", "Bearer "+ access_token);
+      String result = conn.HttpPostConnection("https://kapi.kakao.com/v1/user/logout", map).toString();
+      session.invalidate();
+      return "redirect:/";
+      
+//        REDIRECT_URI = REDIRECT_URI+"/logoutkakao.wp";
+//      System.out.println(REDIRECT_URI);
+//      String result = KAKAO_AUTH_URL + "?response_type=code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI;
+//      System.out.println(result); 
+//      return result;
+   }
+   
+   @RequestMapping(value = "/logoutkakao.wp")
+   public String logoutKakao(
+         @RequestParam(value = "code", required = false) String code
+         , Model model, HttpSession session) throws Exception {
+      System.out.println("code: " + code);
+   
         String access_Token = getAccessToken(code);
         String addURL = "?target_id_type=user_id&target_id="+id ;
         HttpClient client = HttpClientBuilder.create().build(); 
         HttpGet get = new HttpGet(KAKAO_UNLINK_URL+addURL);
-		HashMap<String, Object> map = new HashMap<String, Object>();;
-		get.setHeader("Authorization", "Bearer " + access_Token); 
-		try {
-			HttpResponse res = client.execute(get); 
-			ObjectMapper mapper = new ObjectMapper(); 
-			String body = EntityUtils.toString(res.getEntity()); 
-			System.out.println("body333: "+body);
-		}catch (Exception e) { 
-			e.printStackTrace(); 
-		}	
-		REDIRECT_URI = "http://winerycop.tk";
-//		REDIRECT_URI = "http://localhost:8090";
+      HashMap<String, Object> map = new HashMap<String, Object>();;
+      get.setHeader("Authorization", "Bearer " + access_Token); 
+      try {
+         HttpResponse res = client.execute(get); 
+         ObjectMapper mapper = new ObjectMapper(); 
+         String body = EntityUtils.toString(res.getEntity()); 
+         System.out.println("body333: "+body);
+      }catch (Exception e) { 
+         e.printStackTrace(); 
+      }   
+      REDIRECT_URI = "http://winerycop.tk";
+//      REDIRECT_URI = "http://localhost:8090";
         return "redirect:/";
-	}
-	//토큰발급
-	public String getAccessToken(String authorize_code) {
-		System.out.println("authorize_code: " + authorize_code);
+   }
+   //토큰발급
+   public String getAccessToken(String authorize_code) {
+      System.out.println("authorize_code: " + authorize_code);
         
-		String result = "";
-		HttpClient client = HttpClientBuilder.create().build(); 
-		HttpPost post = new HttpPost(KAKAO_TOKEN_URL); 
-		Map<String,String> m =new HashMap<String,String>(); 
-		m.put("grant_type", "authorization_code");
-		m.put("client_id", REST_API_KEY);
-		m.put("redirect_uri", REDIRECT_URI); 
-		m.put("code", authorize_code); 
-		try { 
-			post.setEntity(new UrlEncodedFormEntity(convertParameter(m)));
-			HttpResponse res = client.execute(post); 
-			ObjectMapper mapper = new ObjectMapper(); 
-			String body = EntityUtils.toString(res.getEntity()); 
-			JsonNode rootNode = mapper.readTree(body); 
-			result = rootNode.get("access_token").asText();
-		} catch (Exception e) { 
-			e.printStackTrace(); 
-		} 
-		return result;
-	}
-	
-	// Map을 사용해서 Http요청 파라미터를 만들어 주는 함수 private
-	List<NameValuePair> convertParameter(Map<String,String> paramMap){
-		List<NameValuePair> paramList = new ArrayList<NameValuePair>(); 
-		Set<Entry<String,String>> entries = paramMap.entrySet();
-		for(Entry<String,String> entry : entries) {
-		 paramList.add(new BasicNameValuePair(entry.getKey(), entry.getValue())); 
-		} 
-		return paramList; 
-	} 
-	
-	//유저정보조회
+      String result = "";
+      HttpClient client = HttpClientBuilder.create().build(); 
+      HttpPost post = new HttpPost(KAKAO_TOKEN_URL); 
+      Map<String,String> m =new HashMap<String,String>(); 
+      m.put("grant_type", "authorization_code");
+      m.put("client_id", REST_API_KEY);
+      m.put("redirect_uri", REDIRECT_URI); 
+      m.put("code", authorize_code); 
+      try { 
+         post.setEntity(new UrlEncodedFormEntity(convertParameter(m)));
+         HttpResponse res = client.execute(post); 
+         ObjectMapper mapper = new ObjectMapper(); 
+         String body = EntityUtils.toString(res.getEntity()); 
+         JsonNode rootNode = mapper.readTree(body); 
+         result = rootNode.get("access_token").asText();
+      } catch (Exception e) { 
+         e.printStackTrace(); 
+      } 
+      return result;
+   }
+   
+   // Map을 사용해서 Http요청 파라미터를 만들어 주는 함수 private
+   List<NameValuePair> convertParameter(Map<String,String> paramMap){
+      List<NameValuePair> paramList = new ArrayList<NameValuePair>(); 
+      Set<Entry<String,String>> entries = paramMap.entrySet();
+      for(Entry<String,String> entry : entries) {
+       paramList.add(new BasicNameValuePair(entry.getKey(), entry.getValue())); 
+      } 
+      return paramList; 
+   } 
+   
+   //유저정보조회
     public HashMap<String, Object> getUserInfo(String access_Token) {
-    	System.out.println("access_Token: "+access_Token);
-    	HttpClient client = HttpClientBuilder.create().build(); 
-		HttpGet get = new HttpGet(KAKAO_USER_INFO_URL);
-		HashMap<String, Object> map = new HashMap<String, Object>();;
-		get.setHeader("Authorization", "Bearer " + access_Token); 
-		try {
-			HttpResponse res = client.execute(get); 
-			ObjectMapper mapper = new ObjectMapper(); 
-			String body = EntityUtils.toString(res.getEntity()); 
-			
-			System.out.println("body999: "+body);
-			
-			JsonNode rootNode = mapper.readTree(body); 
-			if(rootNode.asText().equals("null")) {
-				System.out.println("내역이 없습니다.");
-				map.put("msg","내역이 없습니다." );
-			}else {
-				map.put("msg","ok" );
-				map.put("id",rootNode.get("id").asText() );
-				map.put("access_Token", access_Token );
-				map.put("connected_at",rootNode.get("connected_at").asText() );
-				map.put("nickname", rootNode.get("properties").get("nickname").asText() );
-				map.put("email", rootNode.get("kakao_account").get("email").asText() );
-				map.put("age_range", rootNode.get("kakao_account").get("age_range").asText() );
-		
-			}
-		} catch (Exception e) { 
-			e.printStackTrace(); 
-		}
-    	return map; 
+       System.out.println("access_Token: "+access_Token);
+       HttpClient client = HttpClientBuilder.create().build(); 
+      HttpGet get = new HttpGet(KAKAO_USER_INFO_URL);
+      HashMap<String, Object> map = new HashMap<String, Object>();;
+      get.setHeader("Authorization", "Bearer " + access_Token); 
+      try {
+         HttpResponse res = client.execute(get); 
+         ObjectMapper mapper = new ObjectMapper(); 
+         String body = EntityUtils.toString(res.getEntity()); 
+         
+         System.out.println("body999: "+body);
+         
+         JsonNode rootNode = mapper.readTree(body); 
+         if(rootNode.asText().equals("null")) {
+            System.out.println("내역이 없습니다.");
+            map.put("msg","내역이 없습니다." );
+         }else {
+            map.put("msg","ok" );
+            map.put("id",rootNode.get("id").asText() );
+            map.put("access_Token", access_Token );
+            map.put("connected_at",rootNode.get("connected_at").asText() );
+            map.put("nickname", rootNode.get("properties").get("nickname").asText() );
+            map.put("email", rootNode.get("kakao_account").get("email").asText() );
+            map.put("age_range", rootNode.get("kakao_account").get("age_range").asText() );
+      
+         }
+      } catch (Exception e) { 
+         e.printStackTrace(); 
+      }
+       return map; 
     }
-	
+   
 
-	
-	
-	
+   
+   
+   
 }

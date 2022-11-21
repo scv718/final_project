@@ -116,9 +116,16 @@ public class AdminController {
 		return "WEB-INF/view/admin/adminuser.jsp";
 		
 	}
+	@RequestMapping(value="adminsecession.wp")
+	public String secessionUseradmin(UserVO vo, Model model) {
+		userService.secessionUser(vo);
+		model.addAttribute("UserList", userService.getUserList(vo));
+		return "WEB-INF/view/admin/adminuser.jsp";
+	}
 	@RequestMapping(value="deleteAd.wp")
 	public String adminDelete(UserVO vo, Model model) {
-		userService.secessionUser(vo);
+		
+		userService.deleteMember(vo);
 		model.addAttribute("UserList", userService.getUserList(vo));
 		return "WEB-INF/view/admin/adminuser.jsp";
 	}
