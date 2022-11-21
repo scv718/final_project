@@ -30,5 +30,7 @@
 	#map {
 	width: auto !important;
 	}
-	
+	#map > div > div {
+	display: inline-block;
+}
 	}

@@ -43,6 +43,7 @@
 				<div id="bottom_btn">
 					<div id="se2_sample" style="margin: 10px 0;">
 						<input type="submit" class="insertbtn" value="글 등록">
+						<input type="button" onclick="location.href = 'admin_getNoticeList.wp'" class="insertbtn" value="글 목록" >
 					</div>
 				</div>
 

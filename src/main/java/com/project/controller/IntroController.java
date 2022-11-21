@@ -3,6 +3,8 @@ package com.project.controller;
 import java.io.File; 
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +44,7 @@ public class IntroController {
 
    // Winery 수정 - 관리자
    @RequestMapping("/admin_updateIntro.wp")
-   public String admin_updateIntro(MultipartHttpServletRequest request, @ModelAttribute("intro") IntroVO vo, Model model) 
+   public String admin_updateIntro(MultipartHttpServletRequest request, @ModelAttribute("intro") IntroVO vo, Model model, HttpSession session) 
          throws IllegalStateException, IOException{
       
          MultipartFile uploadFile = vo.getUploadFile();
@@ -52,38 +54,39 @@ public class IntroController {
          MultipartFile uploadFile5 = vo.getUploadFile5();
          
          String realPath = "c:/swork/final_project/src/main/webapp/resources/img/intro/" ;
+         String path = session.getServletContext().getRealPath("/")+"resources\\img\\wine\\";
          String intro_img = uploadFile.getOriginalFilename();
          if (!uploadFile.isEmpty()) {
             vo.setIntro_img(intro_img);
-            uploadFile.transferTo(new File(realPath + intro_img));
+            uploadFile.transferTo(new File(path + intro_img));
          }
 
          String realPath2 = "c:/swork/final_project/src/main/webapp/resources/img/intro/" ;
          String intro_s_img1 = uploadFile2.getOriginalFilename();
          if (!uploadFile2.isEmpty()) {
             vo.setIntro_s_img1(intro_s_img1);
-            uploadFile2.transferTo(new File(realPath2 + intro_s_img1));
+            uploadFile2.transferTo(new File(path + intro_s_img1));
          }
          
          String realPath3 = "c:/swork/final_project/src/main/webapp/resources/img/intro/" ;
          String intro_s_img2 = uploadFile3.getOriginalFilename();
          if (!uploadFile3.isEmpty()) {
             vo.setIntro_s_img2(intro_s_img2);
-            uploadFile3.transferTo(new File(realPath3 + intro_s_img2));
+            uploadFile3.transferTo(new File(path + intro_s_img2));
          }
          
          String realPath4 = "c:/swork/final_project/src/main/webapp/resources/img/intro/" ;
          String intro_s_img3 = uploadFile4.getOriginalFilename();
          if (!uploadFile4.isEmpty()) {
             vo.setIntro_s_img3(intro_s_img3);
-            uploadFile4.transferTo(new File(realPath4 + intro_s_img3));
+            uploadFile4.transferTo(new File(path + intro_s_img3));
          }
          
          String realPath5 = "c:/swork/final_project/src/main/webapp/resources/img/intro/" ;
          String intro_s_img4 = uploadFile5.getOriginalFilename();
          if (!uploadFile5.isEmpty()) {
             vo.setIntro_s_img4(intro_s_img4);
-            uploadFile5.transferTo(new File(realPath5 + intro_s_img4));
+            uploadFile5.transferTo(new File(path + intro_s_img4));
          }
                   
          

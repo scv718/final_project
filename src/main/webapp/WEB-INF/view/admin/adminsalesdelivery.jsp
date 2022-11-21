@@ -232,6 +232,7 @@
 			<th><select name="ord_stat" id="ord_stat${order.ord_code}" class="type-1">
                     <option value="${order.ord_stat}">${order.ord_stat}</option>
                     <option value="취소">취소</option>
+                    <option value="취소">결제</option>
                     <option value="배송준비중">배송준비중</option>
                     <option value="배송중">배송중</option>
                     <option value="배송완료">배송완료</option>

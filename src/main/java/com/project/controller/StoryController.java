@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.maven.shared.invoker.SystemOutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,16 +79,17 @@ public class StoryController {
 
 	// 스토리 타이틀 수정1-t - 관리자
 	@RequestMapping("/admin_updateStory1.wp")
-	public String admin_updateStory1(MultipartHttpServletRequest request, StoryVO vo, Model model)
+	public String admin_updateStory1(MultipartHttpServletRequest request, StoryVO vo, Model model, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		MultipartFile uploadFile = vo.getUploadFile();
 		String story_b_img = uploadFile.getOriginalFilename();
 		vo.setStory_back_img(story_b_img);
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\wine\\";
 		String realPath = "C:\\Users\\PC-24\\Desktop\\WineProject\\final_project\\src\\main\\webapp\\resources\\img\\story";
 		// 절대 경로 변경할 위치
 		if (!uploadFile.isEmpty()) {
-			uploadFile.transferTo(new File(realPath + story_b_img));
+			uploadFile.transferTo(new File(path + story_b_img));
 		}
 		storyService.admin_updateStory1(vo);
 		
