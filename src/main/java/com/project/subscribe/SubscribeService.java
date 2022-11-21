@@ -16,6 +16,7 @@ public interface SubscribeService {
 	
 	//구독 취소수정
 	void updateSubscribe(SubscribeVO vo);
+	void deletesub(SubscribeVO vo);
 
 	//구독 조회
 	int getSubscribe(SubscribeVO vo);

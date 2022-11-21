@@ -103,4 +103,9 @@ public class SubscribeServiceImpl implements SubscribeService {
 		subscribeDAO.insertProduct(vo);
 		
 	}
+	@Override
+	public void deletesub(SubscribeVO vo) {
+		subscribeDAO.deletesub(vo);
+		
+	}
 }

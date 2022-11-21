@@ -54,7 +54,7 @@ public class IntroController {
          MultipartFile uploadFile5 = vo.getUploadFile5();
          
          String realPath = "c:/swork/final_project/src/main/webapp/resources/img/intro/" ;
-         String path = session.getServletContext().getRealPath("/")+"resources\\img\\wine\\";
+         String path = session.getServletContext().getRealPath("/")+"resources\\img\\intro\\";
          String intro_img = uploadFile.getOriginalFilename();
          if (!uploadFile.isEmpty()) {
             vo.setIntro_img(intro_img);

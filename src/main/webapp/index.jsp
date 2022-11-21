@@ -366,7 +366,7 @@ window.onpopstate = function(event) {
 				</div>
 				<div>
 					<c:forEach items="${bestMenuList}" var="option" begin="8" end="11">
-						<div id="typediv" OnClick="location.href ='product.wp'"
+						<div id="typediv" OnClick="location.href ='product.wp?w_no=${option.w_no}'"
 							style="cursor: pointer;">
 							<img id="imgwine" src="resources/img/wine/${option.w_image1}">
 							<p id="typeWineName">${option.w_nm_k}</p>

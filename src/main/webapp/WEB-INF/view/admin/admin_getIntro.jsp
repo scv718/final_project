@@ -13,6 +13,12 @@
 <link href="https://getbootstrap.kr/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <%@ include file="../../../header.jsp"%>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/intro.css"/> 
+<style>
+.f_box{
+width: 60%;
+    margin: 0 auto;
+    }
+</style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -25,7 +31,7 @@
 		<div class="img">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img class="bd-placeholder-img" width="100%" height="100%" src="resources/img/${intro.intro_img}">
+					<img class="bd-placeholder-img" width="100%" height="100%" src="resources/img/intro/${intro.intro_img}">
 											
 				<div class="container">
 					<div class="carousel-caption text-start">
@@ -58,7 +64,7 @@
 				<div class="row">
 
 					<div class="col-lg-4">
-						<img class="bd-placeholder-img" width="140" height="140" src="resources/img/${intro.intro_s_img1}">
+						<img class="bd-placeholder-img" width="140" height="140" src="resources/img/intro/${intro.intro_s_img1}">
 						<div class="f_box">
 							<label for="img"></label> 
 							<input type="file" class="form-control innm" id="img" name="uploadFile2"><br>
@@ -74,7 +80,7 @@
 					</div>
 					
 					<div class="col-lg-4">
-						<img class="bd-placeholder-img" width="140" height="140" src="resources/img/${intro.intro_s_img2}">
+						<img class="bd-placeholder-img" width="140" height="140" src="resources/img/intro/${intro.intro_s_img2}">
 						<div class="f_box">
 							<label for="img"></label> 
 							<input type="file" class="form-control innm" id="img" name="uploadFile3"><br>
@@ -90,7 +96,7 @@
 					</div>
 					
 					<div class="col-lg-4">
-						<img class="bd-placeholder-img" width="140" height="140" src="resources/img/${intro.intro_s_img3}">
+						<img class="bd-placeholder-img" width="140" height="140" src="resources/img/intro/${intro.intro_s_img3}">
 						<div class="f_box">
 							<label for="img"></label> 
 							<input type="file" class="form-control innm" id="img" name="uploadFile4"><br>
@@ -136,7 +142,7 @@
 					</div>
 					<div class="col-md-5">
 
-                 		<img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="resources/img/${intro.intro_s_img4}">
+                 		<img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="resources/img/intro/${intro.intro_s_img4}">
                  		<div class="f_box">
 							<label for="img"></label> 
 							<input type="file" id="img" class="form-control innm" name="uploadFile5">
@@ -147,7 +153,7 @@
 				<hr class="featurette-divider">
 
 				<div class="d-grid gap-2 col-6 mx-auto">
- 					<button class="btn btn-primary" type="submit">수정하기</button>
+ 					<button class="btn btn-dark" type="submit">수정하기</button>
 				</div>
 				
 			</div>

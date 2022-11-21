@@ -96,4 +96,7 @@ public class UserDAOMybatis {
 	public void deleteMember(UserVO vo) {
 		mybatis.delete("UserDAO.deleteMember", vo);
 	}
+	public void deleteaddr(UserVO vo) {
+		mybatis.delete("UserDAO.deleteaddr", vo);
+	}
 }

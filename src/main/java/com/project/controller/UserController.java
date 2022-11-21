@@ -2,8 +2,10 @@ package com.project.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -251,6 +253,10 @@ public class UserController {
 	public String deleteUser(UserVO vo, HttpSession session) {
 		
 		vo.setId((String)session.getAttribute("userID"));
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+		Date time = new Date();			
+		String time1 = format1.format(time);
+		vo.setDelete_date(time1);
 		userService.secessionUser(vo);
 		session.invalidate();
 		return "redirect:/";

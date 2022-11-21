@@ -10,6 +10,10 @@
 		(ID,LEVEL,SUB_DATE,SUB_PM_STATUS,SUB_DELI,E_DATE,SUB_STATUS)
 		VALUES(#{id}, 0 , 0, '입금전', 0 , 0 ,0)
 	</insert>
+	<delete id = "deletesub">
+		DELETE FROM SUBSCRIPT
+		WHERE id = #{id}
+	</delete>
 
 	<!--사용자가 구독했을 때 배송비 변경 -->
 	<update id="liset_deli_price">

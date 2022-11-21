@@ -85,7 +85,7 @@ public class StoryController {
 		MultipartFile uploadFile = vo.getUploadFile();
 		String story_b_img = uploadFile.getOriginalFilename();
 		vo.setStory_back_img(story_b_img);
-		String path = session.getServletContext().getRealPath("/")+"resources\\img\\wine\\";
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\story\\";
 		String realPath = "C:\\Users\\PC-24\\Desktop\\WineProject\\final_project\\src\\main\\webapp\\resources\\img\\story";
 		// 절대 경로 변경할 위치
 		if (!uploadFile.isEmpty()) {
@@ -121,15 +121,16 @@ public class StoryController {
 
 // 	스토리 콘텐츠 수정 진행 - 관리자
 	@RequestMapping("/admin_updateStory1_c.wp")
-	public String admin_updateStory1_c(MultipartHttpServletRequest request, StoryVO vo, Model model)
+	public String admin_updateStory1_c(MultipartHttpServletRequest request, StoryVO vo, Model model, HttpSession session)
 			throws IllegalStateException, IOException {
 		MultipartFile uploadFile2 = vo.getUploadFile2();
 		String story_a_img = uploadFile2.getOriginalFilename();
 		vo.setStory_add_img(story_a_img);
+		String path = session.getServletContext().getRealPath("/")+"resources\\img\\story\\";
 		String realPath = "C:\\Users\\PC-24\\Desktop\\WineProject\\final_project\\src\\main\\webapp\\resources\\img\\story";
 		// 절대 경로 변경할 위치
 		if (!uploadFile2.isEmpty()) {
-			uploadFile2.transferTo(new File(realPath + story_a_img));
+			uploadFile2.transferTo(new File(path + story_a_img));
 		}
 		storyService.admin_updateStory1_c(vo);
 

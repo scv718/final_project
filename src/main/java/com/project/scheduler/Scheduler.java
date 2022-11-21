@@ -1,7 +1,10 @@
 package com.project.scheduler;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.project.subscribe.SubscribeService;
 import com.project.subscribe.SubscribeVO;
+import com.project.user.UserService;
 import com.project.user.UserVO;
 import com.project.wine.ProductService;
 import com.project.wine.WineVO;
@@ -22,6 +26,8 @@ public class Scheduler {
 	private SubscribeService subService;
 	@Autowired 
 	private ProductService productService;
+	@Autowired
+	private UserService userService;
 	
 //	
 //	/**
@@ -30,6 +36,23 @@ public class Scheduler {
 //	 * 을 입력할경우 모두(항상)으로 설정함.
 //	                 초  분  시  일  월  요일
 //	@Scheduled(cron = "0 14 14 * * *")
+	private static String AddDate(String strDate, int year, int month, int day) throws Exception {
+		
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+        
+		Calendar cal = Calendar.getInstance();
+        
+		Date dt = dtFormat.parse(strDate);
+        
+		cal.setTime(dt);
+        
+		cal.add(Calendar.YEAR,  year);
+		cal.add(Calendar.MONTH, month);
+		cal.add(Calendar.DATE,  day);
+        
+		return dtFormat.format(cal.getTime());
+	}
+	
 	@Scheduled(cron = "0 14 14 * * *")
 		public void autoUpdate(){
 		SubscribeVO vo = new SubscribeVO();
@@ -96,6 +119,29 @@ public class Scheduler {
 		System.out.println(size);
 		System.out.println(num);
 		System.out.println("오후 02:14:00에 호출이 됩니다 ");
+	}
+	
+	@Scheduled(cron = "0 0 * * * *")
+	public void memberUpdate() throws Exception{
+		System.out.println("회원탈퇴진행");
+		UserVO uvo = new UserVO();
+		userService.getUserList(uvo);
+		for(int i = 0; i<userService.getUserList(uvo).size() ;i++) {
+			if(userService.getUserList(uvo).get(i).getDelete_date() != null) {
+				String time1 = userService.getUserList(uvo).get(i).getDelete_date();
+				String addMonth = AddDate(time1, 0, 3, 0);
+				System.out.println(time1);
+				System.out.println(addMonth);
+				SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+				Date time = new Date();			
+				String time2 = format1.format(time);
+				System.out.println(time2);
+				if(addMonth.equals(time2)) {
+					uvo.setId(userService.getUserList(uvo).get(i).getId());
+					userService.deleteMember(uvo);
+				}
+			}
+		}
 	}
 	
 }

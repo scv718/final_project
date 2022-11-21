@@ -118,6 +118,12 @@ public class UserServeImpl implements UserService{
 		return userDAO.getUserListDefault(vo);
 	}
 
+	@Override
+	public void deleteaddr(UserVO vo) {
+		userDAO.deleteaddr(vo);
+		
+	}
+
 
 
 }

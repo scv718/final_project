@@ -27,10 +27,16 @@
 		WHERE id = #{id}
 	</select>
 	
+	<delete id="deleteaddr">
+		DELETE FROM m_add
+		WHERE id = #{id}
+	</delete>
+	
 		
 	<select id="secessionUser">
 		UPDATE MEMBER
-		SET M_STATUS = 1
+		SET M_STATUS = 1,
+		DELETE_DATE = #{delete_date}
 		WHERE id = #{id}
 	</select>
 	

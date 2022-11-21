@@ -76,4 +76,7 @@ public class SubscribeDAOMybatis {
 	public void insertProduct(SubscribeVO vo) {
 		mybatis.update("SubscribeDAO.insertProduct", vo);
 	}
+	public void deletesub(SubscribeVO vo) {
+		mybatis.delete("SubscribeDAO.deletesub", vo);
+	}
 }

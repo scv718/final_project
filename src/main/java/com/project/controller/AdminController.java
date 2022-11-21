@@ -1,6 +1,10 @@
 package com.project.controller;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +18,8 @@ import com.project.order.OrderService;
 import com.project.order.OrderVO;
 import com.project.review.ReviewService;
 import com.project.review.ReviewVO;
+import com.project.subscribe.SubscribeService;
+import com.project.subscribe.SubscribeVO;
 import com.project.user.UserService;
 import com.project.user.UserVO;
 import com.project.wine.WineService;
@@ -36,6 +42,8 @@ public class AdminController {
 	private QnaService qnaService;
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private SubscribeService subService;
 	
 	@RequestMapping("adminMain.wp")
 	public String main() {
@@ -116,15 +124,37 @@ public class AdminController {
 		return "WEB-INF/view/admin/adminuser.jsp";
 		
 	}
+	private static String AddDate(String strDate, int year, int month, int day) throws Exception {
+		
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+        
+		Calendar cal = Calendar.getInstance();
+        
+		Date dt = dtFormat.parse(strDate);
+        
+		cal.setTime(dt);
+        
+		cal.add(Calendar.YEAR,  year);
+		cal.add(Calendar.MONTH, month);
+		cal.add(Calendar.DATE,  day);
+        
+		return dtFormat.format(cal.getTime());
+	}
 	@RequestMapping(value="adminsecession.wp")
-	public String secessionUseradmin(UserVO vo, Model model) {
+	public String secessionUseradmin(UserVO vo, Model model) throws Exception {
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+		Date time = new Date();			
+		String time1 = format1.format(time);
+		vo.setDelete_date(time1);
 		userService.secessionUser(vo);
 		model.addAttribute("UserList", userService.getUserList(vo));
 		return "WEB-INF/view/admin/adminuser.jsp";
 	}
 	@RequestMapping(value="deleteAd.wp")
-	public String adminDelete(UserVO vo, Model model) {
-		
+	public String adminDelete(UserVO vo, Model model, SubscribeVO svo) {
+		svo.setId(vo.getId());
+		subService.deletesub(svo);
+		userService.deleteaddr(vo);
 		userService.deleteMember(vo);
 		model.addAttribute("UserList", userService.getUserList(vo));
 		return "WEB-INF/view/admin/adminuser.jsp";

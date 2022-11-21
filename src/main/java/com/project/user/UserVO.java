@@ -14,7 +14,17 @@ public class UserVO {
 	private int level;
 	private int m_status;
 	private String m_role;
+	private String delete_date;
 	
+	
+	public String getDelete_date() {
+		return delete_date;
+	}
+
+	public void setDelete_date(String delete_date) {
+		this.delete_date = delete_date;
+	}
+
 	public int getM_status() {
 		return m_status;
 	}
