@@ -213,8 +213,6 @@ function joinform_check() {
 		  if(check=='true'){
 		  	  document.userInfo.submit();
 		    }
-	
-	 	
 	}
 </script>
 	<script type="text/javascript">
@@ -238,7 +236,6 @@ function joinform_check() {
   						},  
   						function(rsp) {  
   							if (rsp.success) {  
-  								// 인증성공  
   								console.log(rsp.imp_uid);  
   								console.log(rsp.merchant_uid);  
   								console.log('인증성공');  

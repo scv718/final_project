@@ -226,6 +226,7 @@
      	 <td>${users.m_status}</td>
 	  <td>
 	  	<a style="color: white" class="myButton1" onclick="if(confirm('정말 수정하시겠습니까?')){updateAd('${users.m_no}')}">수정</a>
+      	<a style="color: white" class="myButton2" id="id" onclick="if(confirm('탈최처리 하시겠습니까?')){adminsecession('${users.id}')}">탈퇴처리</a>
       	<a style="color: white" class="myButton2" id="id" onclick="if(confirm('정말 삭제하시겠습니까?')){deleteAd('${users.id}')}">삭제</a>
       </td>
        </tr>            
@@ -272,6 +273,11 @@
     function deleteAd(param){
     	var id = param;
     	location.href = 'deleteAd.wp?id='+id;
+    	document.userInfo.submit();
+    }
+    function adminsecession(param){
+    	var id = param;
+    	location.href = 'adminsecession.wp?id='+id;
     	document.userInfo.submit();
     }
     </script>
