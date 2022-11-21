@@ -40,7 +40,24 @@
 		</div>
 	</div>
 
-
+	<div id="t2">
+		<img class="down-arrow" src="resources/img/구독 메인모바일-4-2.png" />
+		<div id="text-p">
+			<p>
+				와인 한 잔의 여유<br>그 한 잔이 안겨주는 즐거움<br>그 또 다른 여행이 아닐까?
+			</p>
+		</div>
+		<div id="btnan">
+			<span class="parent"><p class="child">와인과 떠나는 미각 여행 궁금하다면.</p></span>
+		</div>
+		<div id="btnann">
+			<a href="javascript:void(0);" id="subscribes"
+				onclick="levelConfirm();"><button type="button" id="colre"
+					class="btn-hover color-7">구독하기</button></a>
+		</div>
+	</div>
+	
+	
 	<div id="fofo">
 		<div class="row" id="bookmark">
 			<div class="col-md-4">

@@ -235,7 +235,7 @@
     <br>
     <div class='btnSet' align="center">
 		<a class='myButton' href="adminSubscription.wp">전체 목록</a>
-		<a class='myButton' href="mysubscribes.wp">구독 관리</a>
+<!-- 		<a class='myButton' href="mysubscribes.wp">구독 관리</a> -->
             <br><br><hr> <br><br>
 	</div>
     </div>
